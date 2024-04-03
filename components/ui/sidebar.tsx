@@ -196,11 +196,14 @@ export default function Sidebar() {
             <div className="mb-5 flex justify-between px-3">
               {/* Logo */}
               <Link href="/dashboard">
-                <h2 className="pl-3 font-semibold text-slate-500">
-                  <span className="text-2xl font-black text-neutral-300 lg:hidden lg:text-[28px] lg:sidebar-expanded:block 2xl:block">
-                    KnowledgeFi
+                <div className="pl-3 flex flex-col items-end">
+                  <span className="text-xs font-black text-aqua-700 lg:hidden lg:text-sm lg:sidebar-expanded:block 2xl:block tracking-wider">
+                    University
                   </span>
-                </h2>
+                  <span className="text-2xl font-black leading-3 text-neutral-300 lg:hidden lg:text-[28px] lg:sidebar-expanded:block 2xl:block tracking-wider">
+                    Open Campus
+                  </span>
+                </div>
               </Link>
               {/* Close button */}
               <button

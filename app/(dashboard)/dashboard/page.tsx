@@ -129,7 +129,7 @@ export default function Dashboard() {
   }, [breakpoint, pageSize, botsQuery.isFetching]); // Ensure dependencies are correctly listed
 
   return (
-    <div className="w-full bg-[#151515] px-4 py-8 sm:px-6 lg:px-12">
+    <div className="bg-[#171717] px-4 py-8 sm:px-6 lg:m-12 rounded-lg">
       <ModalLoginTwitter isOpen={modalLogin} setIsOpen={setModalLogin} />
 
       {/* Explorer Banner */}
@@ -192,7 +192,7 @@ const BotItem = ({
   return (
     <Link
       href={`/chatbot/${chatbotSlug(botData)}`}
-      className="grow group relative flex cursor-pointer flex-col w-auto rounded-sm bg-stone-500 transition ease-in-out delay-50 hover:bg-stone-600"
+      className="grow group relative flex cursor-pointer flex-col w-auto rounded-sm bg-[#212121] transition ease-in-out delay-50 hover:brightness-125"
       onClick={onClick}
     >
       <div className="p-2">

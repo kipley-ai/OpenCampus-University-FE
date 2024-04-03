@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${mikado.variable} bg-slate-100 font-mono text-slate-600 antialiased dark:bg-slate-900 dark:text-slate-400`}
+        className={`${mikado.variable} font-mono text-slate-600 antialiased dark:text-slate-400`}
       >
         <RQProviders>
           <Theme>

@@ -71,7 +71,7 @@ export default function Header() {
 
   return (
     <header
-      className=" z-30 border-b border-gray-700"
+      className=" z-30 border-b border-gray-700 bg-neutral-800"
       style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)" }}
     >
       <div className="px-4 sm:px-6 lg:px-8">

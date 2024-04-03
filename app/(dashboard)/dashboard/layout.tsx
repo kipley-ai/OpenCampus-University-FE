@@ -40,12 +40,12 @@ export default function DefaultLayout({
           <Sidebar />
 
           {/* Content area */}
-          <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden rounded-lg border-gray-700 bg-neutral-900 p-0 pl-0 lg:p-6">
+          <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden rounded-lg bg-neutral-800 border-gray-700 p-0 pl-0 lg:m-6 lg:ml-0 pb-8">
             <div className="rounded-lg border border-gray-700">
               {/*  Site header */}
               <Header />
 
-              <main className="h-[calc(100dvh-114px)] grow bg-stone-800 [&>*:first-child]:scroll-mt-16">
+              <main className="h-[calc(100dvh-114px)] grow [&>*:first-child]:scroll-mt-16">
                 {children}
               </main>
             </div>

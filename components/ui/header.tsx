@@ -20,6 +20,7 @@ import { StaticImageData } from "next/image";
 import { useUserDetail } from "@/hooks/api/user";
 import ChatIcon from "../icon/chat-list.svg";
 import HeaderIcon from "../icon/header-icon.svg";
+import { FaCirclePlus } from "react-icons/fa6";
 
 // const GetInvolvedButton = dynamic(
 // 	() => import("../GetInvolvedButton/get-involved-button"),
@@ -129,23 +130,8 @@ export default function Header() {
             {/* Create Chatbot Button */}
             <Link href="/knowledge/create">
               <button className="pr-3">
-                <div className="flex items-center rounded-md border border-[#01F7FF] px-1 py-2 pl-2">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="max-sm:size-[12px]"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M0.5 0.5H2.16667H13.8333H15.5V15.5L13.8333 15.5L2.16667 15.5H0.5V0.5ZM13.8333 13.8333V2.16667H2.16667V13.8333H13.8333ZM8.83333 7.16667H12.1667V8.83333H8.83333V12.1667H7.16667V8.83333H3.83333V7.16667H7.16667V3.83333H8.83333V7.16667Z"
-                      fill="#F1F5F9"
-                    />
-                  </svg>
-
+                <div className="flex items-center rounded-md border border-[#01F7FF] px-1 py-2 pl-2 text-white">
+                  <FaCirclePlus />
                   <span className="ml-1 sm:ml-2 text-[0.6rem] font-medium text-neutral-300 duration-200 md:text-sm">
                     CREATE KNOWLEDGE ASSET
                   </span>

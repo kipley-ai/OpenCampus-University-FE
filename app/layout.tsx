@@ -17,7 +17,7 @@ const mikado = localFont({
       style: "normal",
     },
     {
-      path: "../public/fonts/HVD Fonts  MikadoRegular.otf",
+      path: "../public/fonts/Poppins-Regular.ttf",
       weight: "400",
       style: "normal",
     },

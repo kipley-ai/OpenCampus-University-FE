@@ -1,7 +1,21 @@
 import Image from "next/image"
 import YatSiuImage from "components/images/michael-dziedzic-D6FMtY6XCyM-unsplash 1.png"
+import { useParams, useRouter } from "next/navigation"
+import { useChatbotDetail } from "@/hooks/api/chatbot"
+import { useNftDetail } from "@/hooks/api/nft"
+import { chatbotIdFromSlug } from "@/utils/utils"
 
 export default function ChatbotProfile() {
+    const { id: slug } = useParams();
+    const id = chatbotIdFromSlug(slug.toString());
+    const router = useRouter();
+
+    const { data: chatbotData } = useChatbotDetail({
+        chatbot_id: id as string,
+    });
+
+    console.log(chatbotData);
+
     return (
         <div>
             <div className="mx-6 my-3">

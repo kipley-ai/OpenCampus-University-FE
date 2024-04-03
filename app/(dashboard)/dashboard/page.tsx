@@ -137,19 +137,19 @@ export default function Dashboard() {
 
       {/* Featured Chatbot */}
       <div className="mt-8">
-        <h2 className="text-2xl text-white">Featured Chatbots</h2>
+        <h2 className="text-2xl text-white">Featured Creators</h2>
       </div>
       <div className="my-4 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 xl:grid-cols-5">
         {featuredBotsQuery.data?.data?.data
           ? featuredBotsQuery.data.data.data.chatbot_data.map((botData) => {
-              return (
-                <BotItem
-                  key={botData.chatbot_id}
-                  botData={botData}
-                  onClick={() => {}}
-                />
-              );
-            })
+            return (
+              <BotItem
+                key={botData.chatbot_id}
+                botData={botData}
+                onClick={() => { }}
+              />
+            );
+          })
           : null}
       </div>
 
@@ -159,19 +159,19 @@ export default function Dashboard() {
 
       {/* Chatbot lists */}
       <div className="mt-4">
-        <h2 className="text-2xl text-white">Popular Chatbots</h2>
+        <h2 className="text-2xl text-white">Popular Creators</h2>
       </div>
       <div className="my-4 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 xl:grid-cols-5">
         {botsQuery.data?.data.data
           ? botsQuery.data.data.data.chatbot_data.map((botData) => {
-              return (
-                <BotItem
-                  key={botData.chatbot_id}
-                  botData={botData}
-                  onClick={() => {}}
-                />
-              );
-            })
+            return (
+              <BotItem
+                key={botData.chatbot_id}
+                botData={botData}
+                onClick={() => { }}
+              />
+            );
+          })
           : null}
       </div>
 

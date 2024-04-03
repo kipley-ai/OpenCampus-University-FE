@@ -28,6 +28,8 @@ import CreditBalance from "../../app/(default)/chatbot/[id]/credit-balance";
 import { CreditBalanceProvider } from "../../app/(default)/chatbot/[id]/credit-balance-context";
 import { chatbotSlug } from "@/utils/utils";
 import TaskCenterSideBar from "./task-center-sidebar";
+import ExploreIcon from "../icon/explore.svg";
+import ChatListIcon from "../icon/chat-list.svg";
 
 const GetInvolvedButton = dynamic(
   () => import("../GetInvolvedButton/get-involved-button"),
@@ -239,20 +241,7 @@ export default function Sidebar() {
                     {/* style={{ border: '2px solid #01F7FF', borderRadius: '24px', padding: '6px 10px' }}> */}
                     <SidebarLink href="/dashboard">
                       <div className="flex items-center py-1">
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M12 0H8V2H6V4H4V6H2V8H0V10H2V20H9V14H11V20H18V10H20V8H18V6H16V4H14V2H12V0ZM12 2V4H14V6H16V8H18V10H16V18H13V12H7V18H4V10H2V8H4V6H6V4H8V2H12Z"
-                            fill="#00FFFF"
-                          />
-                        </svg>
+                        <Image src={ExploreIcon} alt="explore" width={20} height={20} />
                         <span className="ml-3 text-[14px] font-semibold  text-white duration-200 text-lg lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
                           Explore
                         </span>
@@ -286,20 +275,7 @@ export default function Sidebar() {
                     } `}
                   >
                     <div className="mb-2 flex items-center px-3">
-                      <svg
-                        width="19"
-                        height="19"
-                        viewBox="0 0 22 22"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M2.33342 0.166992H19.6668H21.8334V2.33366V15.3337V17.5003L19.6668 17.5003H4.50035V19.667H2.33369V17.5003L4.50009 17.5003V15.3337H19.6668V2.33366H2.33342V21.8337H0.166752V2.33366H0.166748V0.166992H0.166752H2.33342ZM7.75009 7.75033H5.58342V9.91699H7.75009V7.75033ZM9.91675 7.75033H12.0834V9.91699H9.91675V7.75033ZM16.4168 7.75033H14.2501V9.91699H16.4168V7.75033Z"
-                          fill="#00FFFF"
-                        />
-                      </svg>
+                      <Image src={ChatListIcon} alt="chat-list" />
                       <span className="ml-3 font-semibold tracking-tight text-white duration-200 text-lg lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
                         Chat List
                       </span>

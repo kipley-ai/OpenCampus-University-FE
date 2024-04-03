@@ -1,5 +1,6 @@
 import Image from "next/image"
 import YatSiuImage from "components/images/michael-dziedzic-D6FMtY6XCyM-unsplash 2.png"
+import { useNftDetail } from "@/hooks/api/nft"
 
 export default function SFTDetail() {
     return (

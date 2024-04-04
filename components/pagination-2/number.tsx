@@ -23,8 +23,8 @@ export const PaginationNumber: React.FC<PaginationNumberProps> = ({
   const className = clsx(
     "rounded inline-flex items-center justify-center leading-5 px-3.5 py-2 cursor-pointer",
     {
-      "text-cyan-400 border border-2 border-cyan-400": isActive,
-      "border border-transparent hover:border-cyan-400 text-gray-400 hover:text-cyan-400":
+      "text-aqua-700 border border-2 border-aqua-700": isActive,
+      "border border-transparent hover:border-aqua-700 text-gray-400 hover:text-aqua-700":
         !isActive && page !== "...",
       "cursor-default": page === "...",
     },

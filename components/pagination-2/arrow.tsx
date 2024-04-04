@@ -36,7 +36,7 @@ export const PaginationArrow = ({
         className={`inline-flex items-center justify-center rounded px-2.5 py-2 leading-5  ${
           isDisabled
             ? "pointer-event-none disabled text-gray-600"
-            : "text-gray-400 shadow-sm hover:border-cyan-400 hover:text-white"
+            : "text-gray-400 shadow-sm hover:border-aqua-700 hover:text-white"
         }`}
         disabled={isDisabled}
       >

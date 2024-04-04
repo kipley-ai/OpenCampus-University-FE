@@ -36,13 +36,9 @@ const NoData = ({ item, url }: NoDataProps) => {
       {/* Create new Item */}
       {item == "SFT" ? (
         <Link href={url}>
-          <div className="flex items-center gap-2 hover:brightness-75">
-            <IconContext.Provider value={{ color: "#01F7FF" }}>
-              <div>
-                <FaPlus />
-              </div>
-            </IconContext.Provider>
-            <p className="text-sm text-[#01F7FF]">Create new {item}</p>
+          <div className="flex items-center gap-2 hover:brightness-75 text-aqua-700">
+            <FaPlus />
+            <p className="text-sm">Create new {item}</p>
           </div>
         </Link>
       ) : (
@@ -76,7 +72,7 @@ const NFTCard = ({ nft }: NFTCardProps) => {
         </p> */}
       </div>
       <Link href={`/nft/${nft.sft_id}`}>
-        <div className="absolute bottom-0 hidden h-12 w-full items-center justify-center rounded-b-2xl bg-[#01F7FF] group-hover:flex">
+        <div className="absolute bottom-0 hidden h-12 w-full items-center justify-center rounded-b-2xl bg-aqua-700 group-hover:flex">
           <p className="text-center text-sm font-semibold text-black">
             View More
           </p>
@@ -168,15 +164,15 @@ const BotCard = ({ bot }: BotCardProps) => {
           {bot.category_name || "Uncategorised"}
         </p> */}
       </div>
-      <div className="absolute bottom-0 hidden h-12 w-full divide-x-2 divide-[#01F7FF] rounded-b-2xl border border-2 border-[#01F7FF] bg-[#222325] text-[#01F7FF] group-hover:flex">
+      <div className="absolute bottom-0 hidden h-12 w-full divide-x-2 divide-aqua-700 rounded-b-2xl border border-2 border-aqua-700 bg-[#222325] text-aqua-700 group-hover:flex">
         <Link
-          className="flex flex-1 items-center justify-center rounded-bl-xl px-1 hover:bg-[#01F7FF] hover:text-black"
+          className="flex flex-1 items-center justify-center rounded-bl-xl px-1 hover:bg-aqua-700 hover:text-black"
           href={`/nft/${bot.sft_id}`}
         >
           <p className="text-center text-sm font-semibold">View Details</p>
         </Link>
         <Link
-          className="flex flex-1 items-center justify-center rounded-br-xl hover:bg-[#01F7FF] hover:text-black"
+          className="flex flex-1 items-center justify-center rounded-br-xl hover:bg-aqua-700 hover:text-black"
           href={`/chatbot/` + chatbotSlug(bot)}
         >
           <p className="text-center text-sm font-semibold">Chat</p>

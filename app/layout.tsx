@@ -69,7 +69,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${mikado.variable} ${poppins.variable} text-slate-600 antialiased dark:text-slate-400`}
+        className={`${mikado.variable} ${poppins.variable} font-mikado text-slate-600 antialiased dark:text-slate-400`}
       >
         <RQProviders>
           <Theme>

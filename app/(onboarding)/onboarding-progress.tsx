@@ -34,7 +34,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
               </div>
               <div className="flex justify-center">
                 <span
-                  className={`text-center text-sm font-medium ${step >= 1 ? "text-[#00FFFF]" : "text-[#00FFFF]"}`}
+                  className={`text-center text-sm font-medium ${step >= 1 ? "text-[#00EDBE]" : "text-[#00EDBE]"}`}
                 >
                   Select Data Elements
                 </span>
@@ -52,7 +52,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
               </div>
               <div className="flex justify-center">
                 <span
-                  className={`text-center text-sm font-medium ${step >= 2 ? "text-[#00FFFF]" : "text-[#00FFFF]"}`}
+                  className={`text-center text-sm font-medium ${step >= 2 ? "text-[#00EDBE]" : "text-[#00EDBE]"}`}
                 >
                   Mint SFT
                 </span>
@@ -70,7 +70,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
               </div>
               <div className="flex justify-center">
                 <span
-                  className={`text-center text-sm font-medium ${step >= 3 ? "text-[#00FFFF]" : "text-[#00FFFF]"}`}
+                  className={`text-center text-sm font-medium ${step >= 3 ? "text-[#00EDBE]" : "text-[#00EDBE]"}`}
                 >
                   Create Chatbot
                 </span>
@@ -88,7 +88,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
               </div>
               <div className="flex justify-center">
                 <span
-                  className={`text-center text-sm font-medium ${step >= 4 ? "text-[#00FFFF]" : "text-[#00FFFF]"}`}
+                  className={`text-center text-sm font-medium ${step >= 4 ? "text-[#00EDBE]" : "text-[#00EDBE]"}`}
                 >
                   Get KFI Token
                 </span>

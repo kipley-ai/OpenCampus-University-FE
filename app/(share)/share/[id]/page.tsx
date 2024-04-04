@@ -75,7 +75,7 @@ const SharedChat = () => {
         <MessageHistory messageHistory={sharedChat.data?.data.chat_history} botImage={chatbotDetail.data?.data.data.profile_image} botName={chatbotDetail.data?.data.data.name} />
         <button
         type="button"
-        className="text-[#00FFFF] bg-[#353945] hover:bg-slate-600 px-5 py-2 mb-20 mx-auto rounded"
+        className="text-[#00EDBE] bg-[#353945] hover:bg-slate-600 px-5 py-2 mb-20 mx-auto rounded"
         onClick={() =>  router.push("/onboarding")}>
           Start to explore KnowledgeFi
         </button>

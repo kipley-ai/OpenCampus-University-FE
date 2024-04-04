@@ -8,7 +8,7 @@ export default function InaccessibleChat() {
             </span>
             <div className="pt-10 flex justify-center items-center">
                 <Link href="/dashboard">
-                    <button className="w-auto h-12 bg-[#353945] text-[#00FFFF] font-bold py-2 px-4 rounded">
+                    <button className="w-auto h-12 bg-[#353945] text-[#00EDBE] font-bold py-2 px-4 rounded">
                         Start to explore KnowledgeFi
                     </button>
                 </Link>

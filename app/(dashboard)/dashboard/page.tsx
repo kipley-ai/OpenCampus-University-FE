@@ -191,7 +191,7 @@ const BotItem = ({
 }) => {
   return (
     <Link
-      href={`/chatbot/${chatbotSlug(botData)}`}
+      href={`/chatbot/${chatbotSlug(botData)}/profile`}
       className="grow group relative flex cursor-pointer flex-col w-auto rounded-sm bg-[#212121] transition ease-in-out delay-50 hover:brightness-125"
       onClick={onClick}
     >

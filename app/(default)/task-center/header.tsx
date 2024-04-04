@@ -88,7 +88,7 @@ const Header = ({
               <p className="mb-4 text-sm text-gray-300">
                 Invite friends to earn more points!
               </p>
-              <div className="flex items-center border border-[#00EBFF] bg-transparent p-2">
+              <div className="flex items-center border border-aqua-700 bg-transparent p-2">
                 <input
                   type="text"
                   readOnly
@@ -108,7 +108,7 @@ const Header = ({
                       fill-rule="evenodd"
                       clip-rule="evenodd"
                       d="M21.0012 6H7.00122V22H15.0012V20H17.0012V18H15.0012V16H17.0012V18H19.0012V16H21.0012V6ZM9.00122 20V8H19.0012V14H13.0012V20H9.00122ZM3.00122 18H5.00122V4H17.0012V2H5.00122H3.00122V4V18Z"
-                      fill="#01F7FF"
+                      fill="#00EDBE"
                     />
                   </svg>
                 </button>

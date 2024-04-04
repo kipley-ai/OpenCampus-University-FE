@@ -41,17 +41,17 @@ export default function ManageAccount() {
   }, []);
 
   return (
-    <div className="flex flex-col bg-[#292D32]">
+    <div className="flex flex-col bg-neutral-900">
       <Image
-        className="w-full bg-[#292D32]"
+        className="w-full bg-neutral-900"
         src={HeaderBg}
         alt="Header Background"
       />
-      <div className="mx-10 -mt-20 flex rounded-2xl border border-gray-700 bg-[#292D32]">
+      <div className="mx-10 -mt-20 mb-10 flex rounded-2xl border border-gray-700 bg-neutral-900">
         <div className="flex w-2/6 flex-col border-r border-gray-700 px-8 py-8 pb-32 font-semibold text-[#7C878E]">
           {/* Account Information Section */}
           <div
-            className={`mb-2 flex cursor-pointer px-3 py-3 ${selectedPage == "dashboard" ? "rounded-3xl border border-[#01F7FF] text-[#01F7FF]" : ""}`}
+            className={`mb-2 flex cursor-pointer px-3 py-3 ${selectedPage == "dashboard" ? "rounded-3xl border border-aqua-700 text-aqua-700" : ""}`}
             onClick={() => setSelectedPage("dashboard")}
           >
             <svg
@@ -73,25 +73,25 @@ export default function ManageAccount() {
           </div>
           {/* Creator Overview Section */}
           <div
-            className={`my-2 flex cursor-pointer px-3 py-3 ${selectedPage == "creator" ? "rounded-3xl border border-[#01F7FF] text-[#01F7FF]" : ""}`}
+            className={`my-2 flex cursor-pointer px-3 py-3 ${selectedPage == "creator" ? "rounded-3xl border border-aqua-700 text-aqua-700" : ""}`}
             onClick={() => setSelectedPage("creator")}
           >
             <Icon active={selectedPage == "creator" ? true : false} />
             <h3 className="ml-3 text-sm">Creator Overview</h3>
           </div>
           {/* Earning Report */}
-          {/* <div className={`flex my-2 cursor-pointer px-3 py-3 ${selectedPage == 'earning' ? 'border border-[#01F7FF] rounded-3xl text-[#01F7FF]' : ''}`} onClick={() => setSelectedPage("earning")}>
+          {/* <div className={`flex my-2 cursor-pointer px-3 py-3 ${selectedPage == 'earning' ? 'border border-aqua-700 rounded-3xl text-aqua-700' : ''}`} onClick={() => setSelectedPage("earning")}>
                         <Icon active={selectedPage == 'earning' ? true : false} />
                         <h3 className="ml-3 text-sm">Earning Report</h3>
                     </div> */}
           {/* Withdraw History */}
-          {/* <div className={`flex my-2 cursor-pointer px-3 py-3 ${selectedPage == 'withdraw' ? 'border border-[#01F7FF] rounded-3xl text-[#01F7FF]' : ''}`} onClick={() => setSelectedPage("withdraw")}>
+          {/* <div className={`flex my-2 cursor-pointer px-3 py-3 ${selectedPage == 'withdraw' ? 'border border-aqua-700 rounded-3xl text-aqua-700' : ''}`} onClick={() => setSelectedPage("withdraw")}>
                         <Icon active={selectedPage == 'withdraw' ? true : false} />
                         <h3 className="ml-3 text-sm">Withdraw History</h3>
                     </div> */}
           {/* Deposit History */}
           <div
-            className={`my-2 flex cursor-pointer px-3 py-3 ${selectedPage == "deposit" ? "rounded-3xl border border-[#01F7FF] text-[#01F7FF]" : ""}`}
+            className={`my-2 flex cursor-pointer px-3 py-3 ${selectedPage == "deposit" ? "rounded-3xl border border-aqua-700 text-aqua-700" : ""}`}
             onClick={() => setSelectedPage("deposit")}
           >
             <Icon active={selectedPage == "deposit" ? true : false} />
@@ -99,7 +99,7 @@ export default function ManageAccount() {
           </div>
           {/* Credit Usage */}
           <div
-            className={`mt-2 flex cursor-pointer px-3 py-3 ${selectedPage == "credit" ? "rounded-3xl border border-[#01F7FF] text-[#01F7FF]" : ""}`}
+            className={`mt-2 flex cursor-pointer px-3 py-3 ${selectedPage == "credit" ? "rounded-3xl border border-aqua-700 text-aqua-700" : ""}`}
             onClick={() => setSelectedPage("credit")}
           >
             <Icon active={selectedPage == "credit" ? true : false} />

@@ -243,7 +243,7 @@ export default function AccountSettings() {
                   fill="#01F7FF"
                 />
               </svg>
-              <p className="ml-1 text-[#01F7FF]">Edit</p>
+              <p className="ml-1 text-aqua-700">Edit</p>
             </div>
           </button>
           <input
@@ -292,7 +292,7 @@ export default function AccountSettings() {
                 signIn("twitter", { callbackUrl: "/manage-account" });
               }}
             >
-              <p className="font-semibold text-[#01F7FF]">
+              <p className="font-semibold text-aqua-700">
                 Connect Twitter Account
               </p>
             </button>

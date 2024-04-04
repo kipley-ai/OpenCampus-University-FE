@@ -260,7 +260,7 @@ export default function NFT() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-12 bg-[#292D32] px-4 pb-32 pt-8 md:px-6 lg:px-8">
+    <div className="flex flex-col gap-12 bg-[#171717] px-4 pb-32 pt-8 md:px-6 lg:px-8">
       <div className="flex flex-col gap-2 lg:gap-8">
         <div className="flex flex-col">
           <h1 className="text-2xl font-semibold text-white">My SFTs</h1>

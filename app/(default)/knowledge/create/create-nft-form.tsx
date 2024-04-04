@@ -243,7 +243,7 @@ export default function NFT() {
         open={showFailModal}
         setOpen={setShowFailModal}
       />
-      <div className="flex flex-col bg-[#292D32] px-6 py-8 pb-14 lg:px-8 xl:px-32">
+      <div className="flex flex-col px-6 py-8 pb-14 lg:px-8 xl:px-32">
         <div>
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-semibold text-white">Mint SFT </h1>
@@ -505,7 +505,7 @@ export default function NFT() {
               </h5>
             </button>
             <button
-              className="flex w-44 flex-row items-center justify-between rounded-3xl  bg-[#01F7FF] p-2 px-5 hover:brightness-75 disabled:bg-gray-500"
+              className="flex w-44 flex-row items-center justify-between rounded-3xl bg-aqua-700 p-2 px-5 hover:brightness-75 disabled:bg-gray-500"
               onClick={handleGenerateSFT}
               type="button"
             >

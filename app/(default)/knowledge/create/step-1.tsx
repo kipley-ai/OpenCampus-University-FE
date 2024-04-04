@@ -29,7 +29,7 @@ const ButtonItem = ({
 }) => {
   return (
     <button
-      className={`relative flex flex-col items-center border-2 py-5 md:pt-10 ${isSelected ? "border-[#01F7FF] bg-[#181B1F]" : "border-transparent"} justify-end rounded-2xl`}
+      className={`relative flex flex-col items-center border-2 py-5 md:pt-10 ${isSelected ? "border-aqua-700 bg-[#181B1F]" : "border-transparent"} justify-end rounded-2xl`}
       onClick={onClick}
     >
       <Image

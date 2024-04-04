@@ -224,7 +224,7 @@ export default function Local({
   }, [files, toast]);
 
   return (
-    <div className="flex flex-col bg-[#292D32] px-6 py-10 pb-20 lg:px-8 xl:px-32">
+    <div className="flex flex-col px-6 py-10 pb-20 lg:px-8 xl:px-32">
       <Toast
         children={"KB creation successful"}
         open={toast}
@@ -259,7 +259,7 @@ export default function Local({
           </div>
           <label className="text-md mb-3 cursor-pointer font-semibold">
             Drop your files here OR{" "}
-            <span className="text-[#01F7FF]">Click here to browse</span>
+            <span className="text-aqua-700">Click here to browse</span>
           </label>
           <p className="text-xs text-slate-400">
             Supported file formats: .pdf, .csv, .txt, .json, .pptx, .xlsx,
@@ -315,7 +315,7 @@ export default function Local({
           className={`mt-8 flex flex-row items-center justify-between rounded-3xl p-2 px-5 hover:brightness-75 ${
             files.length === 0 || fileLimitExceeded
               ? "bg-gray-400"
-              : "bg-[#01F7FF]"
+              : "bg-aqua-700"
           }`}
           type="submit"
           disabled={files.length === 0 || fileLimitExceeded}

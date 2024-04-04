@@ -8,8 +8,8 @@ export const DEFAULT_COVER_IMAGE =
 
 export const KF_TITLE =
   process.env.NEXT_PUBLIC_ENV_DEV === "1"
-    ? "KnowledgeFi Test - "
-    : "KnowledgeFi - ";
+    ? "OC University Beta - "
+    : "Open Campus University - ";
 
 export enum ONBOARDING_FLOW {
   NORMAL = "1",

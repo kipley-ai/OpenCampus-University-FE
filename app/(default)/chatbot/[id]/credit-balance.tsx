@@ -82,7 +82,7 @@ export default function CreditBalance() {
         </div>
       )}
       <button
-        className="mt-2 flex w-full justify-center rounded-full border-2 border-[#01F7FF] px-2 py-2 disabled:brightness-50"
+        className="mt-2 flex w-full justify-center rounded-full border-2 border-aqua-700 px-2 py-2 disabled:brightness-50"
         onClick={() => setModalTopUp(true)}
         disabled={topUpStatus === "processing"}
       >

@@ -77,7 +77,7 @@ export default function DataSource() {
 					<h5 className="text-white font-semibold">Back</h5>
 				</button>
 				<button
-					className="flex flex-row items-center justify-between bg-[#01F7FF] rounded-3xl w-44 p-2 px-5 mt-8"
+					className="flex flex-row items-center justify-between bg-aqua-700 rounded-3xl w-44 p-2 px-5 mt-8"
 					type="submit"
 					onClick={() => {
                         if (selectedButton == "twitter"){

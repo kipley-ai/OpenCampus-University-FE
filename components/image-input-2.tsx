@@ -111,7 +111,7 @@ const ImageInput = ({ selectedFile, setSelectedFile }: any) => {
               ) : (
                 <div className="flex flex-col items-center justify-center rounded-md border-2 border-dashed border-[#777E90] px-2 py-14 text-center">
                   <p className="text-xs text-white">Drop your files here OR</p>
-                  <p className="text-xs text-[#01F7FF]">Click here to browse</p>
+                  <p className="text-xs text-aqua-700">Click here to browse</p>
                   <p className="text-xs text-[#777E90]">
                     PNG, GIF, WEBP or JPEG.<br />
                     Max 10MB.
@@ -127,13 +127,13 @@ const ImageInput = ({ selectedFile, setSelectedFile }: any) => {
               e.preventDefault();
               setIsImageModalOpen(true);
             }}
-            className="rounded-md bg-[#01F7FF] px-1 py-2 text-xs font-semibold text-black hover:brightness-75"
+            className="rounded-md bg-aqua-700 px-1 py-2 text-xs font-semibold text-black hover:brightness-75"
           >
             CHOOSE IMAGE FROM GALLERY
           </button>
           <button
             onClick={handleChangeImage}
-            className="rounded-md bg-[#01F7FF] px-1 py-2 text-xs font-semibold text-black hover:brightness-75"
+            className="rounded-md bg-aqua-700 px-1 py-2 text-xs font-semibold text-black hover:brightness-75"
           >
             CHOOSE IMAGE FROM DEVICE
           </button>

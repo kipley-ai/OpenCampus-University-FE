@@ -196,7 +196,7 @@ const InviteCode = ({ address }: InviteCodeProps) => {
         {otp.map((data, index) => {
           return (
             <input
-              className="h-24 w-24 border-0 border-b-[3px] border-[#01F7FF] bg-inherit text-center text-5xl font-semibold text-white outline-none focus:ring-0"
+              className="h-24 w-24 border-0 border-b-[3px] border-aqua-700 bg-inherit text-center text-5xl font-semibold text-white outline-none focus:ring-0"
               maxLength={1}
               key={index}
               value={otp[index]}
@@ -210,7 +210,7 @@ const InviteCode = ({ address }: InviteCodeProps) => {
       </div>
       {/* <button
         onClick={handleContinue}
-        className="rounded-full bg-[#01F7FF] px-16 py-3 text-sm font-bold text-black disabled:opacity-50"
+        className="rounded-full bg-aqua-700 px-16 py-3 text-sm font-bold text-black disabled:opacity-50"
         disabled={isBlankPresent}
       >
         Continue

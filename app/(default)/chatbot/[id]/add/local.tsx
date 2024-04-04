@@ -290,7 +290,7 @@ export default function Local({
 						</div>
 						<label className="text-md mb-3 font-semibold cursor-pointer">
 							Drop your files here OR{" "}
-							<span className="text-[#01F7FF]">Click here to browse</span>
+							<span className="text-aqua-700">Click here to browse</span>
 						</label>
 						<p className="text-slate-400 text-xs">
 							Supported file formats: .pdf, .csv, .txt, .json, .pptx, .xlsx, .docx.
@@ -334,7 +334,7 @@ export default function Local({
 						<h5 className="text-sm text-white font-semibold">Back</h5>
 					</button>
 					<button
-						className="flex flex-row items-center justify-between bg-[#01F7FF] rounded-3xl w-36 p-2 px-5 mt-8"
+						className="flex flex-row items-center justify-between bg-aqua-700 rounded-3xl w-36 p-2 px-5 mt-8"
 						type="submit"
 						onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
 							handleUpdateKB()

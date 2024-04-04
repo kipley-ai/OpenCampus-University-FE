@@ -468,7 +468,7 @@ export default function NFT() {
                 <h5 className="text-xs lg:text-sm text-white font-semibold">Back</h5>
               </button>
               <button
-                className="flex flex-row items-center justify-between bg-[#01F7FF] disabled:bg-gray-500  rounded-3xl w-44 p-2 px-5"
+                className="flex flex-row items-center justify-between bg-aqua-700 disabled:bg-gray-500  rounded-3xl w-44 p-2 px-5"
                 onClick={handleMintNFT}
                 type="button"
                 disabled={!allowGenerate}
@@ -507,7 +507,7 @@ export default function NFT() {
               </h5>
             </button>
             <button
-              className="flex w-44 flex-row items-center justify-between rounded-sm bg-[#01F7FF] p-2 px-5 hover:brightness-75"
+              className="flex w-44 flex-row items-center justify-between rounded-sm bg-aqua-700 p-2 px-5 hover:brightness-75"
               onClick={handleGenerateSFT}
               // onClick={() => setStep("create_chatbot")}
               type="button"

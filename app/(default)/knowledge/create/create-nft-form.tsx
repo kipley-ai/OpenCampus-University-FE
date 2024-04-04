@@ -466,7 +466,7 @@ export default function NFT() {
                 <h5 className="text-xs lg:text-sm text-white font-semibold">Back</h5>
               </button>
               <button
-                className="flex flex-row items-center justify-between bg-[#01F7FF] disabled:bg-gray-500  rounded-3xl w-44 p-2 px-5"
+                className="flex flex-row items-center justify-between bg-aqua-700 disabled:bg-gray-500  rounded-3xl w-44 p-2 px-5"
                 onClick={handleMintNFT}
                 type="button"
                 disabled={!allowGenerate}

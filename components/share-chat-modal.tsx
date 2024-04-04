@@ -135,7 +135,7 @@ const ShareModal = ({ isOpen, setIsOpen, messageHistory, chatbotData }: ModalPro
               <path fill-rule="evenodd" clip-rule="evenodd" d="M18.5 8V2V0H16.5H10.5V2H14.5V4H12.5V6H10.5V8H8.5V10H6.5V12H8.5V10H10.5V8H12.5V6H14.5V4H16.5V8H18.5ZM8.5 2H2.5H0.5V4V16V18H2.5H14.5H16.5V16V10H14.5V16H2.5V4H8.5V2Z" fill="#01F7FF"/>
             </svg>
           }
-          <p className="text-[#01F7FF]">
+          <p className="text-aqua-700">
             {copyClipboard ? (
               updateSharedAPI.isSuccess ? "COPIED!" : "COPYING..."
             ) : (

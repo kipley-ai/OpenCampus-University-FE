@@ -227,7 +227,7 @@ const ChatBotForm = () => {
             <h5 className="font-semibold text-white">Cancel</h5>
           </button>
           <button
-            className="group mt-8 flex items-center justify-center rounded-3xl bg-[#01F7FF] p-2 px-5 ring-1 ring-white transition-colors duration-200 ease-in-out hover:brightness-75"
+            className="group mt-8 flex items-center justify-center rounded-3xl bg-aqua-700 p-2 px-5 ring-1 ring-white transition-colors duration-200 ease-in-out hover:brightness-75"
             type="submit"
           >
             <h5 className="flex-grow font-semibold text-black duration-200 ease-in-out">

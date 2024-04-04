@@ -92,7 +92,7 @@ const ManageDataSources = () => {
 					<h1 className="text-2xl font-semibold">All Data Sources</h1>
 					{/* Add New Button */}
 					<button
-						className="flex items-center justify-center bg-[#01F7FF] rounded-3xl py-2 px-5"
+						className="flex items-center justify-center bg-aqua-700 rounded-3xl py-2 px-5"
 						type="submit"
 					>
 						<h5 className="text-sm text-black font-semibold flex-grow">

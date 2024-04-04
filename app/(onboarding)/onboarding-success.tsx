@@ -67,7 +67,7 @@ export default function OnboardingSuccess() {
         <div className="flex w-full justify-center">
           <button
             onClick={() => router.push("/dashboard")}
-            className="font-mono rounded-full bg-[#353945] px-12 py-4 text-base font-bold text-[#01F7FF]"
+            className="font-mono rounded-full bg-[#353945] px-12 py-4 text-base font-bold text-aqua-700"
           >
             Enter KnowledgeFi Homepage
           </button>

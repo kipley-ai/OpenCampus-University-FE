@@ -74,7 +74,7 @@ export default function ModalImageGallery({
                     onClick={() => setSelectedImage(image)}
                     className={`border-4 ${
                       selectedImage == image
-                        ? "border-[#01F7FF]"
+                        ? "border-aqua-700"
                         : "border-transparent"
                     }  col-span-2 rounded-xl`}
                     style={{ aspectRatio: "300/300" }}
@@ -95,7 +95,7 @@ export default function ModalImageGallery({
                 Cancel
               </button>
               <button
-                className="bg-[#01F7FF] text-black hover:brightness-75 rounded-3xl px-4 py-2 font-semibold"
+                className="bg-aqua-700 text-black hover:brightness-75 rounded-3xl px-4 py-2 font-semibold"
                 onClick={() => {
                   setImage(selectedImage);
                   // setUploadedFile(null);

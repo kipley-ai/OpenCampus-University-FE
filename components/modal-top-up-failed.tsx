@@ -34,14 +34,14 @@ export default function ModalTopUpFailed({
           <span>Sorry, something went wrong. Please try again.</span>
         </div>
         <div className="flex w-full">
-          <button className="mr-4 w-full rounded-3xl bg-[#353945] py-2 text-sm text-[#01F7FF]">
+          <button className="mr-4 w-full rounded-3xl bg-[#353945] py-2 text-sm text-aqua-700">
               Try again
           </button>
           {/* <button
             onClick={() =>
               router.push("/nft/" + "/create-chatbot")
             }
-            className="w-full rounded-3xl bg-[#353945] py-2 text-sm text-[#01F7FF]"
+            className="w-full rounded-3xl bg-[#353945] py-2 text-sm text-aqua-700"
           >
             Create Chatbot
           </button> */}

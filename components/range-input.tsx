@@ -88,7 +88,7 @@ const TwoThumbs= ({ rtl, min, max, step, values, setValues }: Props) => {
           
           <div
             {...props}
-            className="flex w-3 h-3 ring ring-[#01F7FF] rounded-lg bg-white items-center justify-center"
+            className="flex w-3 h-3 ring ring-aqua-700 rounded-lg bg-white items-center justify-center"
             style={{
               ...props.style,
             }}

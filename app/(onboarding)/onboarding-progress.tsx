@@ -24,7 +24,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
           <ul className="relative flex justify-between gap-24">
             <li className="flex-1">
               <div className="flex justify-center">
-                <span className="text-[#01F7FF]">
+                <span className="text-aqua-700">
                   {step > 1 ? (
                     <BoxWithNumber number="✓" />
                   ) : (
@@ -42,7 +42,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
             </li>
             <li className="flex-1">
               <div className="flex justify-center">
-                <span className="text-[#01F7FF]">
+                <span className="text-aqua-700">
                   {step > 2 ? (
                     <BoxWithNumber number="✓" />
                   ) : (
@@ -60,7 +60,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
             </li>
             <li className="flex-1">
               <div className="flex justify-center">
-                <span className="text-[#01F7FF]">
+                <span className="text-aqua-700">
                   {step > 3 ? (
                     <BoxWithNumber number="✓" />
                   ) : (
@@ -78,7 +78,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
             </li>
             <li className="flex-1">
               <div className="flex justify-center">
-                <span className="text-[#01F7FF]">
+                <span className="text-aqua-700">
                   {step > 4 ? (
                     <BoxWithNumber number="✓" />
                   ) : (

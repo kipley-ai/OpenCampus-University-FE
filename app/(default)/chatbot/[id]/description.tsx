@@ -15,7 +15,7 @@ import { useGetChatbotPrice } from "@/hooks/api/chatbot";
 import { chatbotIdFromSlug } from "@/utils/utils";
 
 export default function ChatbotDescription() {
-  const tokenSymbol = "$KFI";
+  const tokenSymbol = "$CREDIT";
 
   const { id: slug } = useParams();
   const id = chatbotIdFromSlug(slug.toString());

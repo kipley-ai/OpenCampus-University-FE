@@ -390,10 +390,10 @@ export default function NFT() {
                 </div> */}
                 <div className="flex w-2/3 flex-col gap-1">
                   <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold text-[#DDD] lg:text-sm">
-                    <span>Price Per Query (in $KFI)</span>
+                    <span>Price Per Query (in $CREDIT)</span>
                     <Tooltip bg="dark" position="right" size="md">
                       Set your price per query on your knowledge asset and get
-                      paid in $KFI.
+                      paid in $CREDIT.
                     </Tooltip>
                   </label>
                   <div className="flex w-full flex-col">

@@ -142,7 +142,7 @@ export default function ModalTopUp({
         action={false}
       >
         <p className="font-semibold">
-          Insufficient $KFI balance. Please get more $KFI token.
+          Insufficient $CREDIT balance. Please get more $CREDIT token.
         </p>
       </Notification>
       <div className="flex flex-col items-center justify-between rounded-lg p-4 shadow-md">
@@ -187,7 +187,7 @@ export default function ModalTopUp({
         <div className="inline-flex items-center justify-between self-stretch p-5 pt-0">
           <div className="w-full text-base font-semibold leading-10 text-gray-50">
             <span>Get Credits by Paying </span>
-            <span className="text-aqua-700">$KFI </span>
+            <span className="text-aqua-700">$CREDIT </span>
             <span>token</span>
           </div>
         </div>
@@ -198,7 +198,7 @@ export default function ModalTopUp({
                 onClick={switchToTargetNetwork}
                 className="text-sm text-gray-500 underline underline-offset-4 hover:brightness-75"
               >
-                Change network to claim $KFI token
+                Change network to claim $CREDIT token
               </button>
             ) : (
               <button
@@ -209,8 +209,8 @@ export default function ModalTopUp({
                 {minting
                   ? "Claiming..."
                   : minted
-                    ? "Successfully claimed 1,000 $KFI Token!"
-                    : "Claim Free $KFI Token"}
+                    ? "Successfully claimed 1,000 $CREDIT Token!"
+                    : "Claim Free $CREDIT Token"}
               </button>
             )}
           </div>
@@ -296,7 +296,7 @@ export default function ModalTopUp({
         <div className="inline-flex items-center justify-between self-stretch p-5 pt-2 ">
           <div className="w-80 text-sm font-semibold leading-10 text-gray-50">
             <span>You are paying </span>
-            <span className="text-aqua-700">{form?.amount} $KFI</span>
+            <span className="text-aqua-700">{form?.amount} $CREDIT</span>
           </div>
         </div>
         <div className="inline-flex items-center justify-between self-stretch p-5">

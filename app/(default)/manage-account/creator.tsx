@@ -102,7 +102,7 @@ const WithdrawConfirm = ({
             setValues={setValues}
           />
         </div>
-        <span>1000 $KFI</span>
+        <span>1000 $CREDIT</span>
       </div>
       <div className="flex flex-row justify-between">
         <button

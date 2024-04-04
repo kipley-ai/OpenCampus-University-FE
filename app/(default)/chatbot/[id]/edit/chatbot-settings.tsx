@@ -208,10 +208,10 @@ const ChatbotSettings = () => {
 
               <div>
                 <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold text-[#DDD] lg:text-sm">
-                  <span>Price Per Query (in $KFI)</span>
+                  <span>Price Per Query (in $CREDIT)</span>
                   <Tooltip bg="dark" position="right" size="md">
                     Set your price per query on your chatbot app and get paid in
-                    $KFI.
+                    $CREDIT.
                   </Tooltip>
                 </label>
                 <div className="mt-3">

@@ -44,7 +44,8 @@ module.exports = {
         blue: '2px solid rgba(0, 112, 244, 0.5)',
       },
       fontFamily: {
-        mono: ['var(--font-proto-mono)', 'sans-serif'],
+        mikado: ['var(--font-mikado)'],
+        poppins: ['var(--font-poppins)'],
       },
       fontSize: {
         xs: ['0.75rem', { lineHeight: '1.5' }],

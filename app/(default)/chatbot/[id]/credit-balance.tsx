@@ -55,7 +55,7 @@ export default function CreditBalance() {
   }, [data, topUpStatus]);
 
   return (
-    <div className="flex w-full flex-col justify-start gap-2 px-5 py-6 text-white">
+    <div className="flex w-full flex-col justify-start gap-2 px-5 py-4 text-white">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Image src={CreditBalanceIcon} alt="credit-icon" width={20} height={20} />
@@ -82,7 +82,7 @@ export default function CreditBalance() {
         </div>
       )}
       <button
-        className="mt-2 flex w-full justify-center rounded-md border-2 border-[#01F7FF] px-2 py-2 disabled:brightness-50"
+        className="mt-2 flex w-full justify-center rounded-full border-2 border-[#01F7FF] px-2 py-2 disabled:brightness-50"
         onClick={() => setModalTopUp(true)}
         disabled={topUpStatus === "processing"}
       >

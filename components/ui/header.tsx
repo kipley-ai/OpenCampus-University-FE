@@ -75,7 +75,7 @@ export default function Header() {
 
   return (
     <header
-      className=" z-30 border-b border-gray-700 bg-neutral-800"
+      className=" z-30 border-b border-gray-700 bg-[#171717] rounded-t-md font-mikado"
       style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)" }}
     >
       <div className="px-4 sm:px-6 lg:px-8">
@@ -129,21 +129,21 @@ export default function Header() {
           <div className="flex items-center">
             {/* Create Chatbot Button */}
             <Link href="/knowledge/create">
-              <button className="pr-3">
-                <div className="flex items-center rounded-md border border-[#01F7FF] px-1 py-2 pl-2 text-white">
+              <button className="pr-3 hover:brightness-150">
+                <div className="flex items-center rounded-full border-2 border-[#01F7FF] px-3 py-1 pl-2 text-white">
                   <FaCirclePlus />
                   <span className="ml-1 sm:ml-2 text-[0.6rem] font-medium text-neutral-300 duration-200 md:text-sm">
-                    CREATE KNOWLEDGE ASSET
+                    Create Knowledge Asset
                   </span>
                 </div>
               </button>
             </Link>
             {/* My Bot Button */}
             <Link href="/nft">
-              <button className="pr-3">
-                <div className="flex items-center rounded-md border border-[#01F7FF] px-2 py-2">
+              <button className="pr-3 hover:brightness-150">
+                <div className="flex items-center rounded-full border-2 border-[#01F7FF] px-3 py-1">
                   <span className="text-[0.6rem] font-medium text-neutral-300 duration-200 md:text-sm">
-                    MY ASSETS
+                    My Assets
                   </span>
                 </div>
               </button>

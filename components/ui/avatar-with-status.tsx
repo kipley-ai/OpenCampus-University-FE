@@ -60,18 +60,18 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
         {image === "" ? (
           <Image
             src={defaultAvatar}
-            width={42}
-            height={42}
+            width={33}
+            height={33}
             alt="Avatar"
-            className="h-10 w-10 rounded-full"
+            className="rounded-full"
           />
         ) : (
           <Image
             src={image}
-            width={42}
-            height={42}
+            width={33}
+            height={33}
             alt="Avatar"
-            className="h-10 w-10 rounded-full"
+            className="rounded-full"
           />
         )}
         {/* <span

@@ -60,7 +60,7 @@ const ChatHistoryList = () => {
               <SidebarLink href={`/chatbot/${chatbotSlug(chatbot)}`}>
                 <div className="flex items-center">
                   <span
-                    className={`text-[14px] text-sm font-medium font-semibold duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 ${pathname === `/chatbot/${chatbotSlug(chatbot)}` ? "text-aqua-700" : ""}`}
+                    className={`text-[14px] text-sm duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 ${pathname === `/chatbot/${chatbotSlug(chatbot)}` ? "text-aqua-700" : ""}`}
                   >
                     {pathname === `/chatbot/${chatbotSlug(chatbot)}`
                       ? "> "
@@ -162,7 +162,7 @@ export default function Sidebar() {
     <>
       <CreditBalanceProvider>
         <div
-          className={`min-w-fit ${sidebarExpanded ? "sidebar-expanded" : ""}`}
+          className={`min-w-fit ${sidebarExpanded ? "sidebar-expanded" : ""} font-mikado`}
           style={{
             boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
             backgroundColor: "#fff",
@@ -170,7 +170,7 @@ export default function Sidebar() {
         >
           {/* Sidebar backdrop (mobile only) */}
           <Transition
-            className="fixed inset-0 z-40 bg-slate-900 bg-opacity-30 lg:z-auto lg:hidden"
+            className="fixed inset-0 z-40 bg-black bg-opacity-30 lg:z-auto lg:hidden"
             show={sidebarOpen}
             enter="transition-opacity ease-out duration-200"
             enterFrom="opacity-0"
@@ -188,7 +188,7 @@ export default function Sidebar() {
             as="div"
             id="sidebar"
             ref={sidebar}
-            className="no-scrollbar absolute left-0 top-0 z-40 flex h-[100dvh] w-64 shrink-0 flex-col overflow-y-scroll bg-neutral-900 py-4 pt-9 transition-all duration-200 ease-in-out lg:static lg:left-auto lg:top-auto lg:!flex lg:w-12 lg:translate-x-0 lg:overflow-y-auto lg:sidebar-expanded:!w-64 2xl:!w-64"
+            className="no-scrollbar absolute left-0 top-0 z-40 flex h-[100dvh] w-64 shrink-0 flex-col overflow-y-scroll bg-black py-4 pt-6 transition-all duration-200 ease-in-out lg:static lg:left-auto lg:top-auto lg:!flex lg:w-12 lg:translate-x-0 lg:overflow-y-auto lg:sidebar-expanded:!w-64 2xl:!w-64"
             enterFrom="-translate-x-full"
             enterTo="translate-x-0"
             leaveFrom="translate-x-0"
@@ -268,7 +268,7 @@ export default function Sidebar() {
                   </li> */}
                   {/* Login */}
                   <li
-                    className={`mb-1 border-t-2 border-gray-700 px-3 pt-5 last:mb-0 ${
+                    className={`mb-1 border-t-2 border-gray-700 px-2 pt-3 last:mb-0 ${
                       (segments.includes("home") ||
                         segments.includes("dashboard")) &&
                       "bg-transparent"

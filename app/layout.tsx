@@ -17,7 +17,7 @@ const mikado = localFont({
       style: "normal",
     },
     {
-      path: "../public/fonts/Poppins-Regular.ttf",
+      path: "../public/fonts/HVD Fonts  MikadoRegular.otf",
       weight: "400",
       style: "normal",
     },
@@ -32,7 +32,33 @@ const mikado = localFont({
       style: "normal",
     },
   ],
-  variable: "--font-proto-mono",
+  variable: "--font-mikado",
+});
+
+const poppins = localFont({
+  src: [
+    {
+      path: "../public/fonts/Poppins-Light.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Poppins-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Poppins-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Poppins-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-poppins",
 });
 
 export default function RootLayout({
@@ -43,7 +69,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${mikado.variable} font-mono text-slate-600 antialiased dark:text-slate-400`}
+        className={`${mikado.variable} ${poppins.variable} text-slate-600 antialiased dark:text-slate-400`}
       >
         <RQProviders>
           <Theme>

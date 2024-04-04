@@ -50,7 +50,7 @@ export default function DefaultLayout({
       }
 
       return (
-        <div className="flex h-[100dvh] overflow-hidden bg-neutral-900">
+        <div className="flex h-[100dvh] overflow-hidden bg-black">
           {/* Sidebar */}
           {pathname === "/knowledge/create/iframe" ? null : <Sidebar />}
 
@@ -63,7 +63,7 @@ export default function DefaultLayout({
             isOpen={modalTopUpFailed}
             setIsOpen={setModalTopUpFailed}
           />
-          <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden rounded-lg border-gray-700 bg-neutral-900 lg:p-6 lg:pl-0">
+          <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden rounded-lg border-gray-700 lg:p-6 lg:pl-0">
             <div className="h-dvh rounded-lg bg-neutral-800 border border-gray-700">
               {/*  Site header */}
               {pathname === "/knowledge/create/iframe" ? null : <Header />}

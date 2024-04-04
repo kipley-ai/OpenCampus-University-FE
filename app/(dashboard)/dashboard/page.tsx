@@ -36,7 +36,7 @@ import Link from "next/link";
 import { KF_TITLE } from "@/utils/constants";
 import { chatbotSlug } from "@/utils/utils";
 
-import ExploreBanner from "components/banner/explore-banner.png";
+import ExploreBanner from "components/banner/explore-banner.svg";
 
 export default function Dashboard() {
   const title = KF_TITLE + "Dashboard";
@@ -129,7 +129,7 @@ export default function Dashboard() {
   }, [breakpoint, pageSize, botsQuery.isFetching]); // Ensure dependencies are correctly listed
 
   return (
-    <div className="bg-[#171717] px-4 py-8 sm:px-6 lg:m-12 rounded-lg">
+    <div className="bg-[#151515] px-4 py-8 sm:px-6 lg:my-8 lg:mx-12 rounded-lg">
       <ModalLoginTwitter isOpen={modalLogin} setIsOpen={setModalLogin} />
 
       {/* Explorer Banner */}
@@ -137,7 +137,7 @@ export default function Dashboard() {
 
       {/* Featured Chatbot */}
       <div className="mt-8">
-        <h2 className="text-2xl text-white">Featured Creators</h2>
+        <h2 className="font-mikado text-2xl text-white  font-bold">Featured Creators</h2>
       </div>
       <div className="my-4 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 xl:grid-cols-5">
         {featuredBotsQuery.data?.data?.data
@@ -159,7 +159,7 @@ export default function Dashboard() {
 
       {/* Chatbot lists */}
       <div className="mt-4">
-        <h2 className="text-2xl text-white">Popular Creators</h2>
+        <h2 className="font-mikado text-2xl text-white font-bold">Popular Creators</h2>
       </div>
       <div className="my-4 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 xl:grid-cols-5">
         {botsQuery.data?.data.data
@@ -206,7 +206,7 @@ const BotItem = ({
         </div>
       </div>
       <div className="flex-grow p-4">
-        <div className="text-sm md:text-base font-bold text-white break-words">{botData.name}</div>
+        <div className="font-poppins text-sm md:text-base text-white break-words">{botData.name}</div>
       </div>
     </Link>
   );

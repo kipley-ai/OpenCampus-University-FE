@@ -238,7 +238,7 @@ export default function Sidebar() {
                       ""
                     }`}
                   >
-                    {/* style={{ border: '2px solid #01F7FF', borderRadius: '24px', padding: '6px 10px' }}> */}
+                    {/* style={{ border: '2px solid #00EDBE', borderRadius: '24px', padding: '6px 10px' }}> */}
                     <SidebarLink href="/dashboard">
                       <div className="flex items-center py-1">
                         <Image src={ExploreIcon} alt="explore" width={20} height={20} />
@@ -258,7 +258,7 @@ export default function Sidebar() {
                     <SidebarLink href="/task-center">
                       <div className="flex items-center py-1">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd" clip-rule="evenodd" d="M2 11V5H4H6H8L8 11H6H4H2ZM6 9V7H4V9H6ZM22 5H10V7H22V5ZM22 9H10V11H22V9ZM10 13H22V15H10V13ZM22 17H10V19H22V17ZM2 13V19H4H6H8L8 13H6H4H2ZM6 15V17H4V15H6Z" fill="#01F7FF" />
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M2 11V5H4H6H8L8 11H6H4H2ZM6 9V7H4V9H6ZM22 5H10V7H22V5ZM22 9H10V11H22V9ZM10 13H22V15H10V13ZM22 17H10V19H22V17ZM2 13V19H4H6H8L8 13H6H4H2ZM6 15V17H4V15H6Z" fill="#00EDBE" />
                         </svg>
                         <span className="ml-3 text-[14px] text-xs font-semibold text-white duration-200 lg:text-lg lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
                           Task Center

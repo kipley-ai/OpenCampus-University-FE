@@ -132,7 +132,7 @@ const ShareModal = ({ isOpen, setIsOpen, messageHistory, chatbotData }: ModalPro
             copyClipboard ?
             <></> :
             <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M18.5 8V2V0H16.5H10.5V2H14.5V4H12.5V6H10.5V8H8.5V10H6.5V12H8.5V10H10.5V8H12.5V6H14.5V4H16.5V8H18.5ZM8.5 2H2.5H0.5V4V16V18H2.5H14.5H16.5V16V10H14.5V16H2.5V4H8.5V2Z" fill="#01F7FF"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M18.5 8V2V0H16.5H10.5V2H14.5V4H12.5V6H10.5V8H8.5V10H6.5V12H8.5V10H10.5V8H12.5V6H14.5V4H16.5V8H18.5ZM8.5 2H2.5H0.5V4V16V18H2.5H14.5H16.5V16V10H14.5V16H2.5V4H8.5V2Z" fill="#00EDBE"/>
             </svg>
           }
           <p className="text-aqua-700">

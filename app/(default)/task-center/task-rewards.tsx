@@ -49,7 +49,7 @@ const TaskDeadline = ({
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M6.33333 1H1.66667V1.66667H1V6.33333H1.66667V7H6.33333V6.33333H7V1.66667H6.33333V1ZM6.33333 1.66667V6.33333H1.66667V1.66667H6.33333ZM3.66667 2.33333H4.33333V4.33333H5.66667V5L4.33333 5H3.66667V2.33333Z"
-          fill="#01F7FF"
+          fill="#00EDBE"
         />
       </svg>
       <span className="ml-2">

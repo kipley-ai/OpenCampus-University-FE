@@ -52,7 +52,7 @@ const ChatbotInfo = ({setIsOpen}: {setIsOpen: (isOpen: boolean) => void;}) => {
               src={chatbotData?.data.data.profile_image as string}
               alt="Profile"
               className="rounded-full border-2 border-aqua-700 w-[80px] h-[80px] lg:w-[100px] lg:h-[100px]"
-              style={{ boxShadow: "0 0 10px #01F7FF" }}
+              style={{ boxShadow: "0 0 10px #00EDBE" }}
               width={100}
               height={100}
             />
@@ -67,7 +67,7 @@ const ChatbotInfo = ({setIsOpen}: {setIsOpen: (isOpen: boolean) => void;}) => {
                   src={nftData?.data.data.profile_image as string}
                   alt="Profile"
                   className=" border-2 border-aqua-700 w-[80px] h-[80px] lg:w-[100px] lg:h-[100px]"
-                  style={{ boxShadow: "0 0 10px #01F7FF" }}
+                  style={{ boxShadow: "0 0 10px #00EDBE" }}
                   width={100}
                   height={100}
                 />

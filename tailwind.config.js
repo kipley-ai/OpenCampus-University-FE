@@ -17,27 +17,28 @@ module.exports = {
         xl: '0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.01)',
       },
       colors: {
+        secondary: "#141BEA",
         gray: {
-          700:'#393E44'
+          700: '#393E44'
         },
         aqua: {
-          700:'#00EDBE'
+          700: '#00EDBE'
         },
         apricot: {
-          700:'#EBB15B'
+          700: '#EBB15B'
         },
-        neutral:{
+        neutral: {
           300: '#DDD',
           500: '#F1F5F9',
-          900:'#151515'
+          900: '#151515'
         },
         stone: {
-          400:'#151515',
-          500:'#222325',
-          600:'#393E44',
-          700:'#181B1F',
-          800:'#292D32',
-          900:'#272B30'
+          400: '#151515',
+          500: '#222325',
+          600: '#393E44',
+          700: '#181B1F',
+          800: '#292D32',
+          900: '#272B30'
         }
       },
       outline: {
@@ -78,6 +79,6 @@ module.exports = {
       addVariant('sidebar-expanded', ({ modifySelectors, separator }) => {
         modifySelectors(({ className }) => `.sidebar-expanded .${e(`sidebar-expanded${separator}${className}`)}`);
       });
-    }),    
+    }),
   ],
 };

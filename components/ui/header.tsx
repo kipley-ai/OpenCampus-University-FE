@@ -75,7 +75,7 @@ export default function Header() {
 
   return (
     <header
-      className=" z-30 border-b border-gray-700 bg-[#171717] rounded-t-md font-mikado"
+      className=" z-30 rounded-t-md border-b border-gray-700 bg-[#171717] font-mikado"
       style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)" }}
     >
       <div className="px-4 sm:px-6 lg:px-8">
@@ -103,14 +103,9 @@ export default function Header() {
               </svg>
             </button>
 
-            <div className="hidden sm:flex gap-2 items-center">
+            <div className="hidden items-center gap-2 sm:flex">
               {headerTitle === "AI CHAT" ? (
-                <Image
-                  src={ChatIcon}
-                  alt="Chat Icon"
-                  width={18}
-                  height={18}
-                />
+                <Image src={ChatIcon} alt="Chat Icon" width={18} height={18} />
               ) : (
                 <Image
                   src={HeaderIcon}
@@ -128,21 +123,21 @@ export default function Header() {
           {/* Header: Right side */}
           <div className="flex items-center">
             {/* Create Chatbot Button */}
-            <Link href="/knowledge/create">
-              <button className="pr-3 hover:brightness-150">
-                <div className="flex items-center rounded-full border-2 border-aqua-700 px-3 py-1 pl-2 text-white">
+            <Link href="/knowledge/create" className="group">
+              <button className="pr-3">
+                <div className="flex items-center rounded-full border-2 border-aqua-700 px-3 py-1 pl-2 text-white group-hover:bg-aqua-700">
                   <FaCirclePlus />
-                  <span className="ml-1 sm:ml-2 text-[0.6rem] font-medium text-neutral-300 duration-200 md:text-sm">
+                  <span className="ml-1 text-[0.6rem] font-medium text-neutral-300 group-hover:text-black sm:ml-2 md:text-sm">
                     Create Knowledge Asset
                   </span>
                 </div>
               </button>
             </Link>
             {/* My Bot Button */}
-            <Link href="/nft">
-              <button className="pr-3 hover:brightness-150">
-                <div className="flex items-center rounded-full border-2 border-aqua-700 px-3 py-1">
-                  <span className="text-[0.6rem] font-medium text-neutral-300 duration-200 md:text-sm">
+            <Link href="/nft" className="group">
+              <button className="pr-3">
+                <div className="flex items-center rounded-full border-2 border-aqua-700 px-3 py-1 group-hover:bg-aqua-700">
+                  <span className="text-[0.6rem] font-medium text-neutral-300 group-hover:text-black md:text-sm">
                     My Assets
                   </span>
                 </div>

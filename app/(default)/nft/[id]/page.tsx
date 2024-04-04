@@ -54,7 +54,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
           <p className="mr-2 text-center text-sm text-[#7C878E] md:text-left">
             SFT Owner
           </p>
-          <p className="text-center text-sm text-[#00EBFF] md:text-left">
+          <p className="text-center text-sm text-aqua-700 md:text-left">
             {nftDetail.wallet_addr!.substring(0, 6) +
               "..." +
               nftDetail.wallet_addr!.substring(
@@ -91,7 +91,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
                 fill="#7C878E"
               />
             </svg>
-            <p className="ml-2 text-center text-sm text-[#00EBFF] md:text-left">
+            <p className="ml-2 text-center text-sm text-aqua-700 md:text-left">
               View on OpenSea
             </p>
           </a>
@@ -102,7 +102,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
             Data Info
           </h3>
           <Link href={"/chatbot/" + nftDetail.chatbot_id + "/edit"}>
-            <button className="inline-flex items-center gap-2 rounded border border-[#00EBFF] px-4 py-2 text-sm text-white">
+            <button className="inline-flex items-center gap-2 rounded border-2 border-aqua-700 px-4 py-2 text-sm text-white">
               <svg
                 width="20"
                 height="20"
@@ -114,7 +114,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
                   fill-rule="evenodd"
                   clip-rule="evenodd"
                   d="M14.8 2H13.2L13.2 3.6H11.6V5.2H10V6.8H8.4V8.4H6.8V10H5.2V11.6H3.6V13.2L2 13.2V16.4V18H3.6H6.8V16.4L8.4 16.4V14.8H10V13.2L11.6 13.2V11.6H13.2V10H14.8V8.4H16.4V6.8H18V5.2H16.4L16.4 3.6H14.8V2ZM14.8 8.4H13.2L13.2 10H11.6V11.6H10V13.2H8.4V14.8H6.8V13.2L5.2 13.2V11.6H6.8V10H8.4V8.4H10V6.8H11.6V5.2H13.2L13.2 6.8H14.8V8.4ZM5.2 13.2H3.6V16.4H6.8V14.8H5.2V13.2Z"
-                  fill="#00EBFF"
+                  fill="#00EDBE"
                 />
               </svg>
               <span>Manage Data</span>
@@ -171,7 +171,7 @@ const ChatbotSection = ({
         </div>
         <div>
           <Link href={"/chatbot/" + chatbotDetail.chatbot_id + "/edit"}>
-            <button className="inline-flex gap-2 rounded border border-[#00EBFF] px-4 py-2 text-sm text-white">
+            <button className="inline-flex gap-2 rounded border-2 border-aqua-700 px-4 py-2 text-sm text-white">
               <svg
                 width="20"
                 height="20"
@@ -183,7 +183,7 @@ const ChatbotSection = ({
                   fill-rule="evenodd"
                   clip-rule="evenodd"
                   d="M14.8 2H13.2L13.2 3.6H11.6V5.2H10V6.8H8.4V8.4H6.8V10H5.2V11.6H3.6V13.2L2 13.2V16.4V18H3.6H6.8V16.4L8.4 16.4V14.8H10V13.2L11.6 13.2V11.6H13.2V10H14.8V8.4H16.4V6.8H18V5.2H16.4L16.4 3.6H14.8V2ZM14.8 8.4H13.2L13.2 10H11.6V11.6H10V13.2H8.4V14.8H6.8V13.2L5.2 13.2V11.6H6.8V10H8.4V8.4H10V6.8H11.6V5.2H13.2L13.2 6.8H14.8V8.4ZM5.2 13.2H3.6V16.4H6.8V14.8H5.2V13.2Z"
-                  fill="#00EBFF"
+                  fill="#00EDBE"
                 />
               </svg>
               <span>Manage Chatbot</span>
@@ -258,7 +258,7 @@ const NoNFT = () => {
           <h1 className="font-regular text-center text-sm text-white md:mb-[30px] md:text-[18px]">
             Meet our AI chat app revolutionizing conversations
           </h1>
-          <h1 className="w-fit rounded-full bg-[#01F7FF] px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-base">
+          <h1 className="w-fit rounded-full bg-aqua-700 px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-base">
             Mint your SFT
           </h1>
         </div>
@@ -292,8 +292,8 @@ const NoChatbot = () => {
             Connect with AI Chat Bot
           </h1> */}
           <Link href={"/nft/" + id + "/create-chatbot"}>
-            {/* <h1 className="w-fit rounded-full bg-[#01F7FF] px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-base"> */}
-            <h1 className="w-fit rounded-md bg-[#01F7FF] px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-2xl">
+            {/* <h1 className="w-fit rounded-full bg-aqua-700 px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-base"> */}
+            <h1 className="w-fit rounded-md bg-aqua-700 px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-2xl">
               Link Your SFT to Chatbot
             </h1>
           </Link>

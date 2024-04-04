@@ -130,7 +130,7 @@ export default function Header() {
             {/* Create Chatbot Button */}
             <Link href="/knowledge/create">
               <button className="pr-3 hover:brightness-150">
-                <div className="flex items-center rounded-full border-2 border-[#01F7FF] px-3 py-1 pl-2 text-white">
+                <div className="flex items-center rounded-full border-2 border-aqua-700 px-3 py-1 pl-2 text-white">
                   <FaCirclePlus />
                   <span className="ml-1 sm:ml-2 text-[0.6rem] font-medium text-neutral-300 duration-200 md:text-sm">
                     Create Knowledge Asset
@@ -141,7 +141,7 @@ export default function Header() {
             {/* My Bot Button */}
             <Link href="/nft">
               <button className="pr-3 hover:brightness-150">
-                <div className="flex items-center rounded-full border-2 border-[#01F7FF] px-3 py-1">
+                <div className="flex items-center rounded-full border-2 border-aqua-700 px-3 py-1">
                   <span className="text-[0.6rem] font-medium text-neutral-300 duration-200 md:text-sm">
                     My Assets
                   </span>

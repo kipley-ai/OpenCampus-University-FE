@@ -67,7 +67,7 @@ export const CreateChatbotProvider = ({
     url: "",
   });
 
-  const [step, setStep] = useState("mint_nft");
+  const [step, setStep] = useState("data_source");
   const [isComingSoon, setIsComingSoon] = useState(false);
 
   // const nftDetail = useNftDetail({

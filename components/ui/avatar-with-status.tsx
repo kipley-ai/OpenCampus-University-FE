@@ -88,7 +88,7 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
           <div className="mx-4 border-t border-gray-300"></div>
           <Link
             href="/manage-account"
-            className="block flex px-4 py-2 text-sm capitalize text-[#FCFCFD] hover:bg-blue-500 hover:text-white"
+            className="block flex px-4 py-2 text-sm capitalize text-[#FCFCFD] hover:bg-stone-600 hover:text-white"
           >
             <svg
               className="mr-2"
@@ -127,7 +127,7 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
           </Link>
           <div className="mx-4 border-t border-gray-300"></div>
           <button
-            className="block flex w-full px-4 py-2 text-sm capitalize text-[#FCFCFD] hover:bg-blue-500 hover:text-white"
+            className="block flex w-full px-4 py-2 text-sm capitalize text-[#FCFCFD] hover:bg-stone-600 hover:text-white"
             onClick={(e) => {
               e.preventDefault();
               localStorage.setItem("kip-protocol-signature", "");

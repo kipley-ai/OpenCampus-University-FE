@@ -26,22 +26,19 @@ const ChatbotInfo = ({setIsOpen}: {setIsOpen: (isOpen: boolean) => void;}) => {
     <div className="flex w-full items-start gap-4">
       <button
         onClick={() => router.back()}
-        className="text-2xl text-white focus:outline-none"
+        className="text-2xl text-aqua-700 focus:outline-none"
       >
         <PiArrowBendUpLeftBold />
       </button>
       <div className="mb-2 flex w-full flex-col divide-y-2 divide-aqua-700 border-2 border-aqua-700">
         <div className="flex flex-row justify-between px-6 py-2">
           <h1
-            className="font-semibold text-aqua-700 text-xl md:text-2xl"
-            style={{
-              textShadow: "0 0 10px #01F7FF",
-            }}
+            className="font-mikado font-semibold text-aqua-700 text-xl md:text-2xl"
           >
             @{chatbotData?.data.data.name}
           </h1>
           <button 
-            className="flex flex-row items-center space-x-3 bg-[#1E1E1E] px-4 rounded-md text-white text-sm hover:brightness-125"
+            className="font-mikado flex flex-row items-center space-x-1 bg-transparent px-4 rounded-full text-[#6C7275] text-sm border-2 border-[#3A3A3A] hover:brightness-150"
             type="button"
             onClick={() => setIsOpen(true)}
           >
@@ -59,7 +56,7 @@ const ChatbotInfo = ({setIsOpen}: {setIsOpen: (isOpen: boolean) => void;}) => {
               width={100}
               height={100}
             />
-            <p className="line-clamp-5 md:line-clamp-4 text-gray-400 text-xs md:text-sm">
+            <p className="font-mono line-clamp-5 md:line-clamp-4 text-white text-xs md:text-base">
               {chatbotData?.data.data.description}
             </p>
           </div>

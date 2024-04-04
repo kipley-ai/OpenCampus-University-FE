@@ -137,7 +137,7 @@ export default function Dashboard() {
 
       {/* Featured Chatbot */}
       <div className="mt-8">
-        <h2 className="font-mikado text-2xl text-white  font-bold">Featured Creators</h2>
+        <h2 className="font-mikado text-3xl text-white font-medium">Featured Creators</h2>
       </div>
       <div className="my-4 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 xl:grid-cols-5">
         {featuredBotsQuery.data?.data?.data
@@ -159,7 +159,7 @@ export default function Dashboard() {
 
       {/* Chatbot lists */}
       <div className="mt-4">
-        <h2 className="font-mikado text-2xl text-white font-bold">Popular Creators</h2>
+        <h2 className="font-mikado text-3xl text-white font-medium">Popular Creators</h2>
       </div>
       <div className="my-4 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 xl:grid-cols-5">
         {botsQuery.data?.data.data
@@ -206,7 +206,7 @@ const BotItem = ({
         </div>
       </div>
       <div className="flex-grow p-4">
-        <div className="font-poppins text-sm md:text-base text-white break-words">{botData.name}</div>
+        <div className="font-poppins text-sm font-medium md:text-base text-white break-words">{botData.name}</div>
       </div>
     </Link>
   );

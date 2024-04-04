@@ -21,7 +21,7 @@ module.exports = {
           700:'#393E44'
         },
         aqua: {
-          700:'#01F7FF'
+          700:'#00EDBE'
         },
         apricot: {
           700:'#EBB15B'

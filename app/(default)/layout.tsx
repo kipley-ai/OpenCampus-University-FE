@@ -64,7 +64,7 @@ export default function DefaultLayout({
             setIsOpen={setModalTopUpFailed}
           />
           <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden rounded-lg border-gray-700 lg:p-6 lg:pl-0">
-            <div className="h-dvh rounded-lg bg-neutral-800 border border-gray-700">
+            <div className="h-dvh rounded-lg bg-[#171717] border border-gray-700">
               {/*  Site header */}
               {pathname === "/knowledge/create/iframe" ? null : <Header />}
 

@@ -17,6 +17,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Avatar from "public/images/avatar-gradient-icon.svg";
 import EnterIcon from "public/images/arrow-right.svg";
+import { HiOutlineArrowRight } from "react-icons/hi";
 import { useDefaultValue } from "@/hooks/api/default_value";
 import { chatbotIdFromSlug } from "@/utils/utils";
 
@@ -203,18 +204,16 @@ const MessageInput = () => {
   };
 
   return (
-    <div className="sticky inset-x-0 bottom-4 mt-6 flex w-auto items-center gap-4">
+    <div className="sticky inset-x-0 bottom-4 mt-6 flex items-center gap-4">
       <button
-        className="rounded-2xl border border-gray-600 px-2 text-sm text-gray-600 hover:brightness-150"
+        className="rounded-full border-2 border-[#3A3A3A] px-2 text-sm text-[#6C7275] hover:brightness-150 w-28 h-full"
         onClick={handleClearChat}
       >
-        CLEAR
-        <br />
-        CHAT
+        Clear Chat
       </button>
       <form
         onSubmit={handleSendMessage}
-        className="flex grow items-center justify-between rounded-md border border-gray-600 bg-neutral-900 py-1 pl-1 focus-within:border-[#01F7FF] lg:bottom-0 lg:w-full"
+        className="flex grow items-center justify-between rounded-full border-2 border-[#3A3A3A] bg-neutral-900 py-1 pl-1 focus-within:border-aqua-700 lg:bottom-0 lg:w-full"
       >
         {/* Profile picture placeholder */}
         {/* <Image src={Avatar} alt="Profile" className="w-8 h-8 rounded-full mr-4" /> */}
@@ -222,7 +221,7 @@ const MessageInput = () => {
         <textarea
           ref={inputRef}
           placeholder="Ask me anything"
-          className="grow resize-none border-0 bg-neutral-900 text-white placeholder-gray-300 caret-[#01F7FF] outline-none focus:ring-0"
+          className="grow resize-none border-0 bg-neutral-900 rounded-full text-white placeholder-[#6C7275] caret-aqua-700 outline-none focus:ring-0"
           value={newQuestion}
           onChange={(e) => {
             let lengthOfText = e.target.value.match(/\n/g)?.length;
@@ -246,23 +245,10 @@ const MessageInput = () => {
         {/* Icons or buttons */}
         <div className="mx-4">
           <button
-            className="text-light-blue"
+            className="text-light-blue text-aqua-700"
             disabled={replyStatus === "answering"}
           >
-            <svg
-              width="20"
-              height="14"
-              viewBox="0 0 20 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M2.62268e-07 6L3.49691e-07 8L15 8L15 10L17 10L17 8L20 8L20 6L17 6L17 4L15 4L15 6L2.62268e-07 6ZM13 2L15 2L15 4L13 4L13 2ZM13 2L11 2L11 -4.80823e-07L13 -5.68248e-07L13 2ZM13 12L15 12L15 10L13 10L13 12ZM13 12L11 12L11 14L13 14L13 12Z"
-                fill="#00FFFF"
-              />
-            </svg>
+            <HiOutlineArrowRight className="size-[21px]" />
           </button>
         </div>
       </form>

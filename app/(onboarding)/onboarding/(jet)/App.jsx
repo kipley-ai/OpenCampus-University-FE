@@ -10,7 +10,6 @@ import {
 import Box from "@mui/material/Box";
 
 import LoadingOverlay from "@/components/LoadingOverlay";
-import GetInvolvedButton from "@/components/GetInvolvedButton/get-involved-button";
 import useBreakpoints from "@/hooks/useBreakpoints";
 import MainCanvas from "./main-canvas";
 
@@ -22,6 +21,9 @@ import {
 import "./App.css";
 import "animate.css";
 import { useCreateChatbotContext } from "../../create-knowledge-context";
+import GetInvolvedButton from "@/components/GetInvolvedButton/get-involved-button";
+
+import Pattern from "components/background/grid-opencampus-blue.svg";
 
 let hideText = false;
 
@@ -77,7 +79,12 @@ function App() {
 
   return (
     <div className="App">
-      <div className="app-wrapper relative" ref={containerRef}>
+      <div
+        className="app-wrapper relative" ref={containerRef}
+        style={{
+          backgroundImage: `url(${Pattern.src}), linear-gradient(180deg, #1228F3 0%, #FFFFFF 25%)`,
+        }}
+      >
         <MainCanvas
           swiperSlideStatus={swiperSlideStatus}
           setEnableSwiper={setEnableSwiper}
@@ -86,12 +93,12 @@ function App() {
           hideText={hideText}
         />
         <div className="absolute bottom-[8vh] min-[600px]:bottom-[20vh] lg:bottom-[10vh] xl:bottom-[12vh] flex w-full flex-row justify-center">
-          <button
-            className="rounded-md bg-aqua-700 px-6 py-3"
-            onClick={() => setWelcomePage("kip-video")}
-          >
-            <span className="text-sm font-bold text-black">EXPLORE NOW</span>
-          </button>
+          <GetInvolvedButton
+            buttonStyle="rounded-full bg-white px-10 py-3 w-full shadow-md border border-2 border-b-8 border-[#1228F3]"
+            content={
+              <span className="text-sm font-bold text-[#1227F2]">Get Started now</span>
+            }
+          />
         </div>
       </div>
     </div>

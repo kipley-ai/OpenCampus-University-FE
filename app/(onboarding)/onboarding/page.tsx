@@ -65,9 +65,9 @@ export default function Onboarding() {
     );
   }
 
-  if (welcomePage === "kip-video") {
-    return <KipProtocolVideo />;
-  }
+  // if (welcomePage === "kip-video") {
+  //   return <KipProtocolVideo />;
+  // }
 
   if (status === "disconnected") {
     return <JetWelcome />;

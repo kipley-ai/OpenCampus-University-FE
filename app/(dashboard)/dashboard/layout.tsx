@@ -35,13 +35,13 @@ export default function DefaultLayout({
       }
 
       return (
-        <div className="flex h-[100dvh] overflow-hidden bg-black">
+        <div className="flex h-[100dvh] overflow-hidden bg-sidebar text-heading">
           {/* Sidebar */}
           <Sidebar />
 
           {/* Content area */}
-          <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden rounded-lg bg-[#171717] p-0 pl-0 lg:m-6 lg:ml-0 pb-8">
-            <div className="rounded-t-lg border-t border-x border-gray-700">
+          <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden rounded-lg bg-container p-0 pl-0 lg:m-6 lg:ml-0 pb-8">
+            <div className="rounded-t-lg border-t border-x border-border">
               {/*  Site header */}
               <Header />
 

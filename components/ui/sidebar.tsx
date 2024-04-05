@@ -52,7 +52,7 @@ const ChatHistoryList = () => {
           {chatbotListData.map((chatbot: any, index: number) => (
             <li
               key={chatbot.chatbot_id}
-              className={`mx-3 py-1 last:mb-0 hover:rounded-md hover:bg-stone-600 hover:text-white ${
+              className={`mx-3 py-1 last:mb-0 hover:rounded-md hover:bg-secondary ${
                 (segments.includes("home") || segments.includes("dashboard")) &&
                 "bg-transparent"
               } ${pathname === `/chatbot/${chatbotSlug(chatbot)}` ? "" : ""}`}
@@ -60,7 +60,7 @@ const ChatHistoryList = () => {
               <SidebarLink href={`/chatbot/${chatbotSlug(chatbot)}`}>
                 <div className="flex items-center">
                   <span
-                    className={`text-[14px] text-sm duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 ${pathname === `/chatbot/${chatbotSlug(chatbot)}` ? "text-aqua-700" : ""}`}
+                    className={`text-[14px] text-sm duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 ${pathname === `/chatbot/${chatbotSlug(chatbot)}` ? "text-primary" : "text-heading"}`}
                   >
                     {pathname === `/chatbot/${chatbotSlug(chatbot)}`
                       ? "> "
@@ -170,7 +170,7 @@ export default function Sidebar() {
         >
           {/* Sidebar backdrop (mobile only) */}
           <Transition
-            className="fixed inset-0 z-40 bg-black bg-opacity-30 lg:z-auto lg:hidden"
+            className="fixed inset-0 z-40 bg-sidebar bg-opacity-30 lg:z-auto lg:hidden"
             show={sidebarOpen}
             enter="transition-opacity ease-out duration-200"
             enterFrom="opacity-0"
@@ -188,7 +188,7 @@ export default function Sidebar() {
             as="div"
             id="sidebar"
             ref={sidebar}
-            className="no-scrollbar absolute left-0 top-0 z-40 flex h-[100dvh] w-64 shrink-0 flex-col overflow-y-scroll bg-black py-4 pt-6 transition-all duration-200 ease-in-out lg:static lg:left-auto lg:top-auto lg:!flex lg:w-12 lg:translate-x-0 lg:overflow-y-auto lg:sidebar-expanded:!w-64 2xl:!w-64"
+            className="no-scrollbar absolute left-0 top-0 z-40 flex h-[100dvh] w-64 shrink-0 flex-col overflow-y-scroll bg-sidebar py-4 pt-6 transition-all duration-200 ease-in-out lg:static lg:left-auto lg:top-auto lg:!flex lg:w-12 lg:translate-x-0 lg:overflow-y-auto lg:sidebar-expanded:!w-64 2xl:!w-64"
             enterFrom="-translate-x-full"
             enterTo="translate-x-0"
             leaveFrom="translate-x-0"
@@ -199,10 +199,10 @@ export default function Sidebar() {
               {/* Logo */}
               <Link href="/dashboard">
                 <div className="pl-3 flex flex-col items-end">
-                  <span className="text-xs font-black text-aqua-700 lg:hidden lg:text-sm lg:sidebar-expanded:block 2xl:block tracking-wider">
+                  <span className="text-xs font-black text-primary lg:hidden lg:text-sm lg:sidebar-expanded:block 2xl:block tracking-wider">
                     University
                   </span>
-                  <span className="text-2xl font-black leading-3 text-neutral-300 lg:hidden lg:text-[28px] lg:sidebar-expanded:block 2xl:block tracking-wider">
+                  <span className="text-2xl font-black leading-3 text-heading lg:hidden lg:text-[28px] lg:sidebar-expanded:block 2xl:block tracking-wider">
                     Open Campus
                   </span>
                 </div>
@@ -229,10 +229,10 @@ export default function Sidebar() {
             <div className="space-y-8">
               {/* Pages group */}
               <div>
-                <ul className="border-b-2 border-gray-700 pb-4">
+                <ul className="border-b-2 border-border pb-4">
                   {/* Explore */}
                   <li
-                    className={`mx-3 mb-2 px-3 last:mb-0 hover:rounded-md hover:bg-stone-600 hover:text-aqua-700 ${
+                    className={`mx-3 mb-2 px-3 last:mb-0 hover:rounded-md hover:bg-secondary hover:text-primary ${
                       (segments.length === 0 ||
                         segments.includes("dashboard")) &&
                       ""
@@ -242,7 +242,7 @@ export default function Sidebar() {
                     <SidebarLink href="/dashboard">
                       <div className="flex items-center py-1">
                         <Image src={ExploreIcon} alt="explore" width={20} height={20} />
-                        <span className="ml-3 text-[14px] font-semibold  text-white duration-200 text-lg lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                        <span className="ml-3 text-[14px] font-semibold  text-heading duration-200 text-lg lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
                           Explore
                         </span>
                       </div>
@@ -250,7 +250,7 @@ export default function Sidebar() {
                   </li>
                   {/* Task Center */}
                   {/* <li
-                    className={`mx-3 mb-2 px-3 last:mb-0 hover:rounded-md hover:bg-stone-600 hover:text-aqua-700 ${(segments.length === 0 ||
+                    className={`mx-3 mb-2 px-3 last:mb-0 hover:rounded-md hover:bg-stone-600 hover:text-primary ${(segments.length === 0 ||
                       segments.includes("dashboard")) &&
                       ""
                       }`}
@@ -260,7 +260,7 @@ export default function Sidebar() {
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path fill-rule="evenodd" clip-rule="evenodd" d="M2 11V5H4H6H8L8 11H6H4H2ZM6 9V7H4V9H6ZM22 5H10V7H22V5ZM22 9H10V11H22V9ZM10 13H22V15H10V13ZM22 17H10V19H22V17ZM2 13V19H4H6H8L8 13H6H4H2ZM6 15V17H4V15H6Z" fill="#00EDBE" />
                         </svg>
-                        <span className="ml-3 text-[14px] text-xs font-semibold text-white duration-200 lg:text-lg lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                        <span className="ml-3 text-[14px] text-xs font-semibold text-heading duration-200 lg:text-lg lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
                           Task Center
                         </span>
                       </div>
@@ -268,7 +268,7 @@ export default function Sidebar() {
                   </li> */}
                   {/* Login */}
                   <li
-                    className={`mb-1 border-t-2 border-gray-700 px-2 pt-3 last:mb-0 ${
+                    className={`mb-1 border-t-2 border-border px-2 pt-3 last:mb-0 ${
                       (segments.includes("home") ||
                         segments.includes("dashboard")) &&
                       "bg-transparent"
@@ -276,7 +276,7 @@ export default function Sidebar() {
                   >
                     <div className="mb-2 flex items-center px-3">
                       <Image src={ChatListIcon} alt="chat-list" />
-                      <span className="ml-3 font-semibold tracking-tight text-white duration-200 text-lg lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                      <span className="ml-3 font-semibold tracking-tight text-heading duration-200 text-lg lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
                         Chat List
                       </span>
                     </div>

@@ -18,9 +18,12 @@ import AvatarWithStatus from "./avatar-with-status";
 import defaultAvatar from "public/images/user-32-03.jpg";
 import { StaticImageData } from "next/image";
 import { useUserDetail } from "@/hooks/api/user";
+import { FaCirclePlus } from "react-icons/fa6";
+import { useTheme } from "next-themes";
 import ChatIcon from "../icon/chat-list.svg";
 import HeaderIcon from "../icon/header-icon.svg";
-import { FaCirclePlus } from "react-icons/fa6";
+import DarkThemeIcon from "../icon/dark-theme.svg";
+import LightThemeIcon from "../icon/light-theme.svg";
 
 // const GetInvolvedButton = dynamic(
 // 	() => import("../GetInvolvedButton/get-involved-button"),
@@ -46,6 +49,8 @@ export default function Header() {
   const { refetch: refetchUserDetail } = useUserDetail();
 
   const { headerTitle } = useAppProvider();
+
+  const { systemTheme, theme, setTheme } = useTheme();
 
   useEffect(() => {
     let sub = true;
@@ -74,10 +79,7 @@ export default function Header() {
   }, [isConnected, twitterStatus]);
 
   return (
-    <header
-      className=" z-30 rounded-t-md border-b border-gray-700 bg-[#171717] font-mikado"
-      style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)" }}
-    >
+    <header className=" z-30 rounded-t-md border-b-2 border-border font-mikado">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="-mb-px flex h-16 items-center justify-between">
           {/* Header: Left side */}
@@ -114,7 +116,7 @@ export default function Header() {
                   height={18}
                 />
               )}
-              <span className="text-sm font-medium text-white duration-200">
+              <span className="text-sm font-medium duration-200">
                 {headerTitle !== "AI CHAT" && headerTitle}
               </span>
             </div>
@@ -125,9 +127,9 @@ export default function Header() {
             {/* Create Chatbot Button */}
             <Link href="/knowledge/create" className="group">
               <button className="pr-3">
-                <div className="flex items-center rounded-full border-2 border-aqua-700 px-3 py-1 pl-2 text-white group-hover:bg-aqua-700">
+                <div className="flex items-center rounded-full border-2 border-primary px-3 py-1 pl-2 group-hover:bg-primary">
                   <FaCirclePlus />
-                  <span className="ml-1 text-[0.6rem] font-medium text-neutral-300 group-hover:text-black sm:ml-2 md:text-sm">
+                  <span className="ml-1 text-[0.6rem] font-medium group-hover:text-black sm:ml-2 md:text-sm">
                     Create Knowledge Asset
                   </span>
                 </div>
@@ -136,8 +138,8 @@ export default function Header() {
             {/* My Bot Button */}
             <Link href="/nft" className="group">
               <button className="pr-3">
-                <div className="flex items-center rounded-full border-2 border-aqua-700 px-3 py-1 group-hover:bg-aqua-700">
-                  <span className="text-[0.6rem] font-medium text-neutral-300 group-hover:text-black md:text-sm">
+                <div className="flex items-center rounded-full border-2 border-primary px-3 py-1 group-hover:bg-primary">
+                  <span className="text-[0.6rem] font-medium group-hover:text-black md:text-sm">
                     My Assets
                   </span>
                 </div>
@@ -174,29 +176,29 @@ export default function Header() {
                 }
               />
             )}
+            {theme == "dark" ? (
+              <Image 
+                src={LightThemeIcon}
+                width={29}
+                height={29}
+                alt="Switch to Light Theme"
+                className="mr-4 cursor-pointer text-heading hover:fill-primary"
+                onClick={() => setTheme("light")}
+              />
+            ) : (
+              <Image
+                src={DarkThemeIcon}
+                width={29}
+                height={29}
+                alt="Switch to Dark Theme"
+                className="mr-4 cursor-pointer text-heading hover:fill-primary"
+                onClick={() => setTheme("dark")}
+              />
+            )}
             {/* Profile Picture */}
             {isConnected_ && (
               <AvatarWithStatus image={profileImage} status="away" />
             )}
-            {/* {showTwitterLogin && (
-							<>
-								<ModalLoginTwitter
-									isOpen={modalLogin}
-									setIsOpen={setModalLogin}
-								/>
-								<button
-									onClick={() => setModalLogin(true)}
-									className="text-sm font-medium ml-3  text-neutral-300 border border-gray-700 rounded-full py-3 px-4 duration-200"
-								>
-									Connect Twitter
-								</button>
-							</>
-						)}
-						{(showAccountButton && twitterStatus == "authenticated") && (
-							<>
-								<DropdownTwitter twitterSession={twitterSession} align="right" />
-							</>
-						)} */}
           </div>
         </div>
       </div>

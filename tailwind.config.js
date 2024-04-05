@@ -17,7 +17,14 @@ module.exports = {
         xl: '0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.01)',
       },
       colors: {
-        secondary: "#141BEA",
+        primary: "var(--color-primary)",
+        secondary: "var(--color-secondary)",
+        heading: "var(--color-heading)",
+        body: "var(--color-body)",
+        container: "var(--color-container)",
+        sidebar: "var(--color-sidebar)",
+        border: "var(--color-border)",
+        box: "var(--color-box)",
         gray: {
           700: '#393E44'
         },
@@ -71,7 +78,7 @@ module.exports = {
       },
     },
   },
-  plugins: [
+    plugins: [
     require('@tailwindcss/forms'),
     require('tailwind-scrollbar'),
     // add custom variant for expanding sidebar

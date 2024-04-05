@@ -8,9 +8,9 @@ export default function TaskCenterSideBar() {
       <Image src={TaskCenterImage} alt="Task Center" />
       <Link
         href={"/task-center"}
-        className="group absolute bottom-12 flex w-[50%] justify-center rounded-full border-2 border-aqua-700 bg-transparent px-2 py-2 hover:bg-aqua-700 disabled:brightness-50"
+        className="group absolute bottom-12 flex w-[50%] justify-center rounded-full border-2 border-primary bg-transparent px-2 py-2 hover:bg-primary disabled:brightness-50"
       >
-        <span className="text-xs font-medium text-[#FCFCFD] group-hover:text-black">
+        <span className="text-xs font-medium group-hover:text-container">
           Task Center
         </span>
       </Link>

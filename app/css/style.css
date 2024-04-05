@@ -6,3 +6,27 @@
 @import 'additional-styles/flatpickr.css';
 
 @import 'tailwindcss/utilities';
+
+@layer base {
+  :root {
+    --color-primary: #1227F2;
+    --color-secondary: #BABFF8;
+    --color-heading: #181B1F;
+    --color-body: #181B1F;
+    --color-container: #FFFFFF;
+    --color-sidebar: #F1F5F9;
+    --color-border: #E3E9EE;
+    --color-box: #F1F5F9;
+  }
+
+  :root[class~="dark"] {
+    --color-primary: #00EDBE;
+    --color-secondary: #141BEA;
+    --color-heading: #EEEEEE;
+    --color-body: #BBBBBB;
+    --color-container: #171717;
+    --color-sidebar: #000000;
+    --color-border: #3A3A3A;
+    --color-box: #212121;
+  }
+}

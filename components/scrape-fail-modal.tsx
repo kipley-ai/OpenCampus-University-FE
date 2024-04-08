@@ -45,7 +45,7 @@ export default function TwitterFailModal({ children, open, setOpen }: ToastProps
   return (
     <ModalBlank isOpen={open} setIsOpen={setOpen}>
       <div
-        className={`flex w-[360px] flex-col items-center justify-center rounded-2xl bg-[#181B1F] px-7 py-10 font-semibold text-[#7C878E]`}
+        className={`flex w-[360px] flex-col items-center justify-center rounded-2xl px-7 py-10`}
       >
         <div className="flex w-full flex-row items-center justify-between">
           <h2 className="text-3xl">Error</h2>
@@ -68,11 +68,11 @@ export default function TwitterFailModal({ children, open, setOpen }: ToastProps
           </button>
         </div>
         <div
-          className={`my-7 flex  flex-row items-center justify-center gap-2 text-sm text-red-500`}
+          className={`my-7 flex flex-row items-center justify-center gap-2 text-sm text-red-500`}
         >
           <svg
-            width="25%"
-            height="25%"
+            width="25"
+            height="25"
             viewBox="0 0 48 48"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
@@ -87,11 +87,11 @@ export default function TwitterFailModal({ children, open, setOpen }: ToastProps
           {children}
         </div>
         <button
-          className="w-full bg-[#353945] px-16 py-3 text-sm font-bold text-primary disabled:opacity-50"
+          className="button w-full"
           onClick={() => handleTryAgain()}
           disabled={twitterData?.user?.username === undefined}
         >
-          TRY AGAIN
+          Try Again
         </button>
       </div>
     </ModalBlank>

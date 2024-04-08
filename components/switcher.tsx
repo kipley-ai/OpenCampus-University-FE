@@ -14,11 +14,11 @@ const Switcher = ({
   mode,
   setWhich,
   fullWidth = false,
-  bg = "bg-stone-700",
+  bg = "bg-sidebar",
 }: SwitcherProps) => {
   return (
     <div
-      className={`${!fullWidth ? "max-w-[501px]" : ""} rounded-md border border-stone-600 ${bg} md:h-10 md:p-1`}
+      className={`${!fullWidth ? "max-w-[501px]" : ""} rounded-md border border-border ${bg} md:h-10 md:p-1`}
     >
       <div className="relative flex w-full flex-row items-center">
         {texts.map((text, index) => (
@@ -28,7 +28,7 @@ const Switcher = ({
           >
             <h1
               onClick={() => setWhich(index)}
-              className={`text-center text-xs font-semibold text-black text-neutral-500 lg:text-sm`}
+              className={`text-center text-xs font-semibold text-heading lg:text-sm`}
             >
               {text}
             </h1>
@@ -38,7 +38,7 @@ const Switcher = ({
         {/* <span aria-hidden="true" className={`${mode== 1 ? "left-[50%]": "left-0"} absolute h-full w-1/2 bg-stone-600 transition-all rounded-lg`}></span> */}
         <span
           aria-hidden="true"
-          className={`${mode != 0 ? `left-[${(mode * 100) / texts.length}%]` : "left-0"} absolute h-full w-1/${texts.length} rounded-lg bg-[#303030] transition-all`}
+          className={`${mode != 0 ? `left-[${(mode * 100) / texts.length}%]` : "left-0"} absolute h-full w-1/${texts.length} rounded-lg bg-container transition-all`}
         ></span>
       </div>
       {/* <div className="flex flex-row flex-wrap w-full relative">

@@ -13,6 +13,7 @@ import { ImageSrc, ReactSetter } from "@/lib/aliases";
 import { PossibleOption } from "./page";
 import { useSession } from "next-auth/react";
 import { useAppProvider } from "@/providers/app-provider";
+import { useTheme } from "next-themes";
 
 const ButtonItem = ({
   onClick,
@@ -27,21 +28,23 @@ const ButtonItem = ({
   optionText: string;
   isComingSoon: boolean;
 }) => {
+  const { theme } = useTheme();
+
   return (
     <button
-      className={`relative flex flex-col items-center border-2 py-5 md:pt-10 ${isSelected ? "border-primary bg-[#181B1F]" : "border-transparent"} justify-end rounded-2xl`}
+      className={`relative flex flex-col items-center border-2 py-5 md:pt-10 bg-box ${isSelected ? "border-primary" : "border-transparent"} justify-end rounded-2xl`}
       onClick={onClick}
     >
       <Image
         width={48}
         height={48}
         src={optionIcon}
-        className={isComingSoon ? "brightness-50" : ""}
+        className={theme === "light" ? "brightness-50" : ""}
         alt={`${optionText} Icon`}
       />
       <h3 className="pt-6">{optionText}</h3>
       {isComingSoon && isSelected && (
-        <span className="absolute right-2 top-2 rounded-md border border-primary bg-primary px-2 text-xs text-black">
+        <span className="absolute right-2 top-2 rounded-md border border-primary bg-primary px-2 text-xs text-container">
           COMING SOON
         </span>
       )}

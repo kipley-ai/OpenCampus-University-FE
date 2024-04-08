@@ -32,7 +32,7 @@ export default function ModalMintConfirmation({
     <ModalBlank isOpen={isOpen} setIsOpen={setIsOpen}>
       <div className="flex flex-col items-center justify-between rounded-lg p-4 shadow-md">
         <div className="inline-flex items-center justify-between self-stretch p-5">
-          <div className="w-80 text-[32px] font-semibold leading-10 text-gray-50">
+          <div className="w-80 text-[32px] font-semibold leading-10">
             <span>Mint your SFT</span>
           </div>
           <button
@@ -56,14 +56,14 @@ export default function ModalMintConfirmation({
                 width="38"
                 height="38"
                 rx="19"
-                stroke="#353945"
+                stroke="var(--color-heading)"
                 stroke-width="2"
               />
               <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
                 d="M13.2929 13.2929C13.6834 12.9024 14.3166 12.9024 14.7071 13.2929L20 18.5858L25.2929 13.2929C25.6834 12.9024 26.3166 12.9024 26.7071 13.2929C27.0976 13.6834 27.0976 14.3166 26.7071 14.7071L21.4142 20L26.7071 25.2929C27.0976 25.6834 27.0976 26.3166 26.7071 26.7071C26.3166 27.0976 25.6834 27.0976 25.2929 26.7071L20 21.4142L14.7071 26.7071C14.3166 27.0976 13.6834 27.0976 13.2929 26.7071C12.9024 26.3166 12.9024 25.6834 13.2929 25.2929L18.5858 20L13.2929 14.7071C12.9024 14.3166 12.9024 13.6834 13.2929 13.2929Z"
-                fill="#FCFCFD"
+                fill="var(--color-heading)"
               />
             </svg>
           </button>
@@ -121,7 +121,7 @@ export default function ModalMintConfirmation({
               </button>
             ) : (
               <button
-                className={`flex flex-row items-center justify-center gap-2 rounded-3xl font-semibold text-black ${isMinting ? "bg-gray-500" : "bg-primary"} p-2 px-5 hover:brightness-75`}
+                className={`flex flex-row items-center justify-center gap-2 rounded-3xl font-semibold text-container ${isMinting ? "bg-gray-500" : "bg-primary"} p-2 px-5 hover:brightness-75`}
                 onClick={handleMintNFT}
                 disabled={isMinting}
               >

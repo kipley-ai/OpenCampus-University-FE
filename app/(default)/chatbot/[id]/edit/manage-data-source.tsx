@@ -105,7 +105,7 @@ const ManageDataSources = () => {
     const totalPages = Math.ceil(kbItemCount / pageSize);
 
     return (
-      <div className="flex flex-col py-20 font-semibold text-[#7C878E] sm:px-6 lg:px-0">
+      <div className="flex flex-col py-20 font-semibold sm:px-6 lg:px-0">
         <div className="mb-4 flex items-center justify-between">
           <h1 className="text-2xl font-normal">Manage Data Sources</h1>
           {/* Add New Button */}
@@ -115,7 +115,7 @@ const ManageDataSources = () => {
                 className="flex items-center justify-center rounded-3xl bg-primary px-8 py-2"
                 type="submit"
               >
-                <h5 className="mr-3 flex-grow text-sm text-black">Add New</h5>
+                <h5 className="mr-3 flex-grow text-sm text-container">Add New</h5>
                 <svg
                   width="20"
                   height="20"
@@ -125,7 +125,7 @@ const ManageDataSources = () => {
                 >
                   <path
                     d="M10.0001 4.16602V15.8327M4.16675 9.99935H15.8334"
-                    stroke="#292D32"
+                    stroke="var(--color-container)"
                     stroke-width="2.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"

@@ -65,7 +65,7 @@ const ImageInput = ({
   return (
     <div className="flex md:flex-col justify-center md:justify-start gap-2">
       <div>
-        <label className="text-xs font-semibold text-[#DDD] lg:text-sm">
+        <label className="text-xs font-semibold lg:text-sm">
           Cover Image
         </label>
         <Dropzone
@@ -108,13 +108,13 @@ const ImageInput = ({
       <div className="flex flex-col pt-6 md:pt-0 gap-2">
         <button
           onClick={handleGalleryCover}
-          className="rounded-md bg-primary px-1 py-2 text-xs font-semibold text-black hover:brightness-75 lg:text-sm"
+          className="rounded-md bg-primary px-1 py-2 text-xs text-container font-semibold hover:brightness-75 lg:text-sm"
         >
           CHOOSE IMAGE FROM GALLERY
         </button>
         <button
           onClick={handleDeviceCover}
-          className="rounded-md bg-primary px-1 py-2 text-xs font-semibold text-black hover:brightness-75 lg:text-sm"
+          className="rounded-md bg-primary px-1 py-2 text-xs text-container font-semibold hover:brightness-75 lg:text-sm"
         >
           CHOOSE IMAGE FROM DEVICE
         </button>

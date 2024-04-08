@@ -74,7 +74,7 @@ const ImageInput = ({ selectedFile, setSelectedFile }: any) => {
     <>
       <div className="flex w-60 flex-col gap-2">
         <label
-          className="form-label mb-1 self-start text-sm font-semibold text-[#DDD] lg:text-base"
+          className="form-label mb-1 self-start text-sm font-semibold lg:text-base"
           htmlFor="email"
         >
           Cover Image
@@ -127,13 +127,13 @@ const ImageInput = ({ selectedFile, setSelectedFile }: any) => {
               e.preventDefault();
               setIsImageModalOpen(true);
             }}
-            className="rounded-md bg-primary px-1 py-2 text-xs font-semibold text-black hover:brightness-75"
+            className="rounded-md bg-primary px-1 py-2 text-xs font-semibold text-container hover:brightness-75"
           >
             CHOOSE IMAGE FROM GALLERY
           </button>
           <button
             onClick={handleChangeImage}
-            className="rounded-md bg-primary px-1 py-2 text-xs font-semibold text-black hover:brightness-75"
+            className="rounded-md bg-primary px-1 py-2 text-xs font-semibold text-container hover:brightness-75"
           >
             CHOOSE IMAGE FROM DEVICE
           </button>

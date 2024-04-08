@@ -24,16 +24,16 @@ export default function EditChatbot() {
   return (
     <div className="flex w-full flex-col items-center justify-center bg-container py-10">
       <div className="flex w-4/5 flex-col">
-        <div className="flex w-full rounded-xl border-2 border-[#393E44] bg-[#181B1F] p-1">
+        <div className="flex w-full rounded-xl border-2 border-border bg-box p-1">
           <button
             onClick={() => setActiveTab("settings")}
-            className={`w-1/2 rounded-lg px-6 py-2 font-semibold text-heading ${activeTab === "settings" ? "bg-[#292D32]" : "hover:bg-[#292D32]"} mr-1 shadow focus:outline-none`}
+            className={`w-1/2 rounded-lg px-6 py-2 font-semibold text-heading ${activeTab === "settings" ? "bg-container" : "hover:bg-secondary"} mr-1 shadow focus:outline-none`}
           >
             Chatbot Settings
           </button>
           <button
             onClick={() => setActiveTab("dataSources")}
-            className={`w-1/2 rounded-lg px-6 py-2 font-semibold text-heading ${activeTab === "dataSources" ? "bg-[#292D32]" : "hover:bg-[#292D32]"} shadow focus:outline-none`}
+            className={`w-1/2 rounded-lg px-6 py-2 font-semibold text-heading ${activeTab === "dataSources" ? "bg-container" : "hover:bg-secondary"} shadow focus:outline-none`}
           >
             Manage Data Sources
           </button>

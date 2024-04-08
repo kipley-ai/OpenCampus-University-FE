@@ -266,11 +266,11 @@ export default function NFT() {
             />
             <div className="flex w-full flex-col">
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-semibold text-[#DDD] lg:text-sm">
+                <label className="text-xs font-semibold text-heading lg:text-sm">
                   Name
                 </label>
                 <input
-                  className="rounded-xl bg-transparent text-xs text-[#DDD] lg:text-sm"
+                  className="rounded-xl bg-transparent text-xs text-heading lg:text-sm"
                   type="text"
                   name="name"
                   placeholder="Name your Knowledge SFT"
@@ -288,11 +288,11 @@ export default function NFT() {
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-semibold text-[#DDD] lg:text-sm">
+                <label className="text-xs font-semibold text-heading lg:text-sm">
                   Description
                 </label>
                 <textarea
-                  className="placeholder-text-[#7C878E] rounded-xl bg-transparent text-xs text-[#DDD] lg:text-sm"
+                  className="placeholder-text-[#7C878E] rounded-xl bg-transparent text-xs text-heading lg:text-sm"
                   name="description"
                   placeholder="Describe your Knowledge SFT"
                   rows={4}
@@ -312,11 +312,11 @@ export default function NFT() {
 
               <div className="flex flex-row flex-wrap">
                 <div className="flex w-1/3 flex-col gap-1">
-                  <label className="text-wrap text-xs font-semibold text-[#DDD] lg:text-sm">
+                  <label className="text-wrap text-xs font-semibold text-heading lg:text-sm">
                     Token Symbol
                   </label>
                   <input
-                    className="placeholder-text-[#7C878E] w-11/12 rounded-xl bg-transparent text-xs text-[#DDD] lg:text-sm"
+                    className="placeholder-text-[#7C878E] w-11/12 rounded-xl bg-transparent text-xs text-heading lg:text-sm"
                     type="text"
                     name="tokenSymbol"
                     placeholder={
@@ -339,11 +339,11 @@ export default function NFT() {
                   )}
                 </div>
                 {/* <div className="flex w-1/3 flex-col gap-1">
-                  <label className="text-wrap text-xs font-semibold text-[#DDD] lg:text-sm">
+                  <label className="text-wrap text-xs font-semibold text-heading lg:text-sm">
                     Shares Supply
                   </label>
                   <select
-                    className="w-11/12 rounded-xl bg-transparent text-xs text-[#DDD] lg:text-sm"
+                    className="w-11/12 rounded-xl bg-transparent text-xs text-heading lg:text-sm"
                     value={form?.shareSupply}
                     onChange={(e) =>
                       handleFormChange("shareSupply", e.target.value)
@@ -364,12 +364,12 @@ export default function NFT() {
                   </select>
                 </div>
                 <div className="flex w-1/3 flex-col gap-1">
-                  <label className="text-wrap text-xs font-semibold text-[#DDD] lg:text-sm">
+                  <label className="text-wrap text-xs font-semibold text-heading lg:text-sm">
                     Royalties
                   </label>
                   <div className="flex w-full items-center">
                     <input
-                      className="placeholder-text-[#7C878E] w-full rounded-xl bg-transparent text-xs text-[#DDD] lg:text-sm"
+                      className="placeholder-text-[#7C878E] w-full rounded-xl bg-transparent text-xs text-heading lg:text-sm"
                       type="number"
                       name="comissionRate"
                       placeholder="e.g. 5"
@@ -383,11 +383,11 @@ export default function NFT() {
                       }}
                       value={form?.comissionRate}
                     />
-                    <div className="ml-2 block w-fit text-[#DDD]">%</div>
+                    <div className="ml-2 block w-fit text-heading">%</div>
                   </div>
                 </div> */}
                 <div className="flex w-2/3 flex-col gap-1">
-                  <label className="flex flex-row items-center space-x-3 text-wrap text-xs font-semibold text-[#DDD] lg:text-sm">
+                  <label className="flex flex-row items-center space-x-3 text-wrap text-xs font-semibold text-heading lg:text-sm">
                     <span>Price Per Query (in $CREDIT)</span>
                     <Tooltip bg="dark" position="right" size="md">
                       Set your price per query on your knowledge asset and get
@@ -397,7 +397,7 @@ export default function NFT() {
                   <div className="flex w-full flex-col">
                     <input
                       // className="rounded-xl bg-transparent w-11/12"
-                      className="placeholder-text-[#7C878E] w-full rounded-xl bg-transparent text-xs text-[#DDD] lg:text-sm"
+                      className="placeholder-text-[#7C878E] w-full rounded-xl bg-transparent text-xs text-heading lg:text-sm"
                       type="number"
                       name="pricePerQuery"
                       placeholder="e.g. 1"
@@ -422,7 +422,7 @@ export default function NFT() {
           </div>
           {/* <div className="flex flex-row">
 					<div className="flex flex-col gap-1 w-1/3">
-						<label className="font-semibold text-[#DDD]">Price Per Query</label>
+						<label className="font-semibold text-heading">Price Per Query</label>
 						<input
 							className="rounded-xl bg-transparent w-11/12"
 							type="number"
@@ -432,7 +432,7 @@ export default function NFT() {
 					</div>
 
 					<div className="flex flex-col gap-1 w-1/3">
-						<label className="font-semibold text-[#DDD]">Query Royalties</label>
+						<label className="font-semibold text-heading">Query Royalties</label>
 						<select
 							className="rounded-xl bg-transparent text-[#7C878E] w-11/12"
 							value={queryRoyalties}
@@ -446,7 +446,7 @@ export default function NFT() {
 					</div>
 
 					<div className="flex flex-col gap-1 w-1/3">
-						<label className="font-semibold text-[#DDD]">Price Per Query</label>
+						<label className="font-semibold text-heading">Price Per Query</label>
 						<input
 							className="rounded-xl bg-transparent"
 							type="number"
@@ -509,7 +509,7 @@ export default function NFT() {
               onClick={handleGenerateSFT}
               type="button"
             >
-              <h5 className="text-xs font-semibold text-black lg:text-sm">
+              <h5 className="text-xs font-semibold text-container lg:text-sm">
                 MINT SFT
               </h5>
               <svg
@@ -521,11 +521,11 @@ export default function NFT() {
               >
                 <path
                   d="M17.98 5.7901C18.8936 5.7901 19.6343 6.53075 19.6343 7.44439V7.44439C19.6343 8.35803 18.8936 9.09868 17.98 9.09868L1.65435 9.09868C0.74071 9.09868 5.90253e-05 8.35803 5.90618e-05 7.44439V7.44439C5.90983e-05 6.53075 0.740711 5.7901 1.65435 5.7901L17.98 5.7901Z"
-                  fill="#151515"
+                  fill="var(--color-container)"
                 />
                 <path
                   d="M18.932 5.9907C19.5219 6.63674 19.5219 7.68418 18.932 8.33022C18.3422 8.97626 17.3859 8.97626 16.7961 8.33022L12.3947 3.50927C11.8049 2.86322 11.8049 1.81578 12.3947 1.16974C12.9845 0.523702 13.9408 0.523702 14.5306 1.16974L18.932 5.9907Z"
-                  fill="#151515"
+                  fill="var(--color-container)"
                 />
               </svg>
             </button>

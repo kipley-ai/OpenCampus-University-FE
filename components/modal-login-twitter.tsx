@@ -31,7 +31,7 @@ export default function ModalLoginTwitter({
     <ModalBlank isOpen={isOpen} setIsOpen={setIsOpen}>
       <div className="flex flex-col items-center justify-between rounded-lg p-4 shadow-md">
         <div className="inline-flex items-center justify-between self-stretch p-5">
-          <div className="w-80 text-2xl font-bold leading-10 text-gray-50">
+          <div className="w-80 text-2xl font-bold leading-10 text-heading">
             Sign in to continue
           </div>
           <Image
@@ -48,7 +48,7 @@ export default function ModalLoginTwitter({
           <div className="flex flex-grow items-center justify-center rounded-3xl">
             <button
               onClick={handleLoginButton}
-              className="flex h-11 flex-shrink-0 flex-grow items-center justify-center gap-2 rounded-3xl bg-white px-2 py-4"
+              className="flex h-11 flex-shrink-0 flex-grow items-center justify-center gap-2 rounded-3xl bg-primary px-2 py-4"
             >
               <Image
                 priority={true}
@@ -58,7 +58,7 @@ export default function ModalLoginTwitter({
                 height={40}
                 alt="Twitter-X Icon"
               />
-              <div className="text-center text-xs font-extrabold uppercase leading-tight tracking-wide text-zinc-950 md:text-sm">
+              <div className="text-center text-xs font-extrabold uppercase leading-tight tracking-wide text-container md:text-sm">
                 Connect X
               </div>
             </button>

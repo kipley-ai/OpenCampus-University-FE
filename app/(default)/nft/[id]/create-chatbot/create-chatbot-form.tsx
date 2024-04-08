@@ -284,13 +284,9 @@ const ChatBotForm = () => {
             <div className="flex w-60">
               {chatbotPKLStatus ? (
                 <>
-                  <Image
-                    src={SpinnerCheckIcon}
-                    alt="Profile"
-                    className="mr-3"
-                    width={40}
-                    height={40}
-                  />
+                  <svg className="size-[40px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="var(--color-primary)" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                  </svg>
                   <span className="text-wrap text-sm font-light text-heading">
                     Your Knowledge Asset are ready!
                   </span>
@@ -428,7 +424,7 @@ const ChatBotForm = () => {
                 </div>
               </div>
               <div>
-                <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold text-[#DDD] lg:text-sm">
+                <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold lg:text-sm">
                   <span>Price Per Query (in $CREDIT)</span>
                   <Tooltip bg="dark" position="right" size="md">
                     Set your price per query on your chatbot app and
@@ -437,7 +433,7 @@ const ChatBotForm = () => {
                 </label>
                 <div className="mt-3">
                   <input
-                    className="placeholder-text-[#7C878E] w-full rounded-xl bg-transparent text-xs text-[#DDD] lg:text-sm"
+                    className="placeholder-text-[#7C878E] w-full rounded-xl bg-transparent text-xs lg:text-sm"
                     type="number"
                     name="pricePerQuery"
                     placeholder="e.g. 1"
@@ -527,7 +523,7 @@ const ChatBotForm = () => {
 
           <div className="form-actions flex flex-row justify-between space-x-2">
             <button
-              className="mt-8 flex items-center justify-center rounded-3xl bg-[#292D32] p-2 px-5 ring-2 ring-gray-600"
+              className="mt-8 flex items-center justify-center rounded-3xl p-2 px-5 ring-2 ring-gray-600"
               type="button"
             >
               <h5 className="text-xs font-semibold text-heading lg:text-sm" onClick={handleCancel}>
@@ -538,7 +534,7 @@ const ChatBotForm = () => {
               className="mt-8 flex items-center justify-center rounded-3xl bg-primary p-2 px-5 ring-2 ring-gray-600 transition-all duration-200 ease-in-out hover:ring-0 hover:brightness-75"
               type="submit"
             >
-              <h5 className="text-xs font-semibold text-black transition-colors duration-200 ease-in-out lg:text-sm">
+              <h5 className="text-xs font-semibold text-container transition-colors duration-200 ease-in-out lg:text-sm">
                 Bring my chatbot to life
               </h5>
               <svg
@@ -551,11 +547,11 @@ const ChatBotForm = () => {
               >
                 <path
                   d="M17.98 5.7901C18.8936 5.7901 19.6343 6.53075 19.6343 7.44439V7.44439C19.6343 8.35803 18.8936 9.09868 17.98 9.09868L1.65435 9.09868C0.74071 9.09868 5.90253e-05 8.35803 5.90618e-05 7.44439V7.44439C5.90983e-05 6.53075 0.740711 5.7901 1.65435 5.7901L17.98 5.7901Z"
-                  fill="currentColor"
+                  fill="var(--color-container)"
                 />
                 <path
                   d="M18.932 5.9907C19.5219 6.63674 19.5219 7.68418 18.932 8.33022C18.3422 8.97626 17.3859 8.97626 16.7961 8.33022L12.3947 3.50927C11.8049 2.86322 11.8049 1.81578 12.3947 1.16974C12.9845 0.523702 13.9408 0.523702 14.5306 1.16974L18.932 5.9907Z"
-                  fill="currentColor"
+                  fill="var(--color-container)"
                 />
               </svg>
             </button>

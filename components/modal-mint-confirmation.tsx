@@ -3,6 +3,7 @@
 import React from "react";
 import ModalBlank from "@/components/modal-blank-3";
 import Image from "next/image";
+import Button from "@/components/button";
 import { useSwitchToSepolia, useSwitchToBase } from "@/hooks/useSwitchNetwork";
 
 export default function ModalMintConfirmation({
@@ -95,8 +96,7 @@ export default function ModalMintConfirmation({
           <div className="grid w-full grid-cols-1 font-bold text-heading">
             {/* Start the conditional rendering here */}
             {!isTargetNetworkActive ? (
-              <button
-                className="flex flex-row items-center justify-center gap-2 rounded-3xl bg-primary p-2 px-5 hover:brightness-75"
+              <Button
                 onClick={switchToTargetNetwork}
               >
                 <span className="font-semibold text-black">
@@ -118,15 +118,14 @@ export default function ModalMintConfirmation({
                     fill="#151515"
                   />
                 </svg>
-              </button>
+              </Button>
             ) : (
-              <button
-                className={`flex flex-row items-center justify-center gap-2 rounded-3xl font-semibold text-container ${isMinting ? "bg-gray-500" : "bg-primary"} p-2 px-5 hover:brightness-75`}
+              <Button
                 onClick={handleMintNFT}
                 disabled={isMinting}
               >
                 {isMinting ? "Minting..." : "Mint Now"}
-              </button>
+              </Button>
             )}
           </div>
         </div>

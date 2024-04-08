@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ProfileImage from "components/images/michael-dziedzic-D6FMtY6XCyM-unsplash 1.png";
 import SFTImage from "components/images/michael-dziedzic-D6FMtY6XCyM-unsplash 2.png";
+import Button from "@/components/button";
 import { useParams, useRouter } from "next/navigation";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
 import { useNftDetail } from "@/hooks/api/nft";
@@ -83,9 +84,9 @@ function ChatbotProfile() {
             </div>
             <div className="items-end">
               <Link href={`/chatbot/${slug}`}>
-                <button className="my-5 button">
+                <Button className="my-5 px-8">
                   Chat with {chatbotData?.data.data.name}
-                </button>
+                </Button>
               </Link>
             </div>
           </div>
@@ -184,9 +185,9 @@ function YatSiuProfile() {
             </div>
             <div className="items-end">
               <Link href={`/chatbot/${slug}`}>
-                <button className="my-5 px-8 button">
+                <Button className="my-5 px-8">
                   Chat with Yat Siu
-                </button>
+                </Button>
               </Link>
             </div>
           </div>
@@ -210,11 +211,10 @@ function YatSiuSFT() {
           <div className="text-body md:w-4/5 md:pl-6">
             <div className="md:w-3/4">
               <h1 className="text-3xl font-medium text-heading">
-                Name of SFT
+                Yat Siu's Ideas
               </h1>
               <p className="my-2 line-clamp-6 font-poppins">
-                Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.
-                Amet minim mollit non deserunt  dolor do amet sint.
+                Chairman of Animoca Brands and generally excited to talk about true digital property rights!
               </p>
             </div>
           </div>

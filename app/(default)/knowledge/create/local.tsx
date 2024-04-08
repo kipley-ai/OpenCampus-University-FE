@@ -16,6 +16,7 @@ import { useDebouncedCallback } from "use-debounce";
 import type { UIFile } from "./page";
 import { useCreateChatbotContext } from "./create-knowledge-context";
 import Toast from "@/components/toast";
+import Button from "@/components/button";
 import { useAppProvider } from "@/providers/app-provider";
 import { error } from "console";
 
@@ -239,7 +240,7 @@ export default function Local({
       </div>
       <div className="">
         <div
-          className="color-[#aaa] mb-4 mt-5 flex cursor-pointer flex-col items-center rounded-3xl border-2 border-dashed border-[#aaa] px-20 py-12 text-center font-inter text-heading "
+          className="mb-4 mt-5 flex cursor-pointer flex-col items-center rounded-3xl border-2 border-dashed border-heading px-20 py-12 bg-box text-center font-inter text-heading "
           onDragEnter={handleDrag}
           onDragOver={handleDrag}
           onDragLeave={handleDrag}
@@ -254,7 +255,7 @@ export default function Local({
             onChange={handleChange}
             style={{ display: "none" }}
           />
-          <div className="mb-8 h-14 w-14 shrink-0 grow-0 rounded-full bg-box p-4">
+          <div className="mb-8 h-14 w-14 shrink-0 grow-0 rounded-full bg-container p-4">
             <svg width="24" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" className="stroke-heading">
               <path d="M4.33329 18.6563C2.72531 17.58 1.66663 15.7469 1.66663 13.6667C1.66663 10.5419 4.0553 7.97506 7.10628 7.69249C7.73038 3.89618 11.027 1 15 1C18.973 1 22.2695 3.89618 22.8936 7.69249C25.9446 7.97506 28.3333 10.5419 28.3333 13.6667C28.3333 15.7469 27.2746 17.58 25.6666 18.6563M9.66663 18.3333L15 13M15 13L20.3333 18.3333M15 13V25" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -263,11 +264,11 @@ export default function Local({
             Drop your files here OR{" "}
             <span className="text-primary">Click here to browse</span>
           </label>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs">
             Supported file formats: .pdf, .csv, .txt, .json, .pptx, .xlsx,
             .docx.
           </p>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs">
             Maximum number of files allowed: 10
           </p>
         </div>
@@ -284,7 +285,7 @@ export default function Local({
             return (
               <div
                 key={file.bucketPath}
-                className="my-5 flex justify-between rounded-3xl bg-container px-8 py-5 text-heading"
+                className="my-5 flex justify-between rounded-3xl border-2 border-border bg-box px-8 py-5 text-heading"
               >
                 <div className="flex flex-row">
                   {showStateIcon(file.status)}
@@ -293,11 +294,31 @@ export default function Local({
                     <p className="text-xs">{formatBytes(file.size)}</p>
                   </div>
                 </div>
-                <Image
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 40 40"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="cursor-pointer"
                   onClick={handleDelete(index)}
-                  src={CrossIcon}
-                  alt="Cross Icon"
-                />
+                >
+                  <rect
+                    x="1"
+                    y="1"
+                    width="38"
+                    height="38"
+                    rx="19"
+                    stroke="#353945"
+                    stroke-width="2"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M13.2929 13.2929C13.6834 12.9024 14.3166 12.9024 14.7071 13.2929L20 18.5858L25.2929 13.2929C25.6834 12.9024 26.3166 12.9024 26.7071 13.2929C27.0976 13.6834 27.0976 14.3166 26.7071 14.7071L21.4142 20L26.7071 25.2929C27.0976 25.6834 27.0976 26.3166 26.7071 26.7071C26.3166 27.0976 25.6834 27.0976 25.2929 26.7071L20 21.4142L14.7071 26.7071C14.3166 27.0976 13.6834 27.0976 13.2929 26.7071C12.9024 26.3166 12.9024 25.6834 13.2929 25.2929L18.5858 20L13.2929 14.7071C12.9024 14.3166 12.9024 13.6834 13.2929 13.2929Z"
+                    fill="var(--color-heading)"
+                  />
+                </svg>
               </div>
             );
           })}
@@ -305,7 +326,7 @@ export default function Local({
       </div>
       <div className="flex justify-between">
         <button
-          className="mt-8 flex flex-row items-center justify-between rounded-3xl border-2 border-[#50575F] p-2 px-5"
+          className="mt-8 flex flex-row items-center justify-between rounded-3xl border-2 border-[#50575F] p-2 px-5 hover:opacity-75"
           type="submit"
           onClick={() => {
             setStep("data_source");
@@ -313,12 +334,8 @@ export default function Local({
         >
           <h5 className="text-sm font-semibold text-heading">Back</h5>
         </button>
-        <button
-          className={`mt-8 flex flex-row items-center justify-between rounded-3xl p-2 px-5 hover:brightness-75 ${
-            files.length === 0 || fileLimitExceeded
-              ? "bg-gray-400"
-              : "bg-primary"
-          }`}
+        <Button
+          className="mt-8 w-32"
           type="submit"
           disabled={files.length === 0 || fileLimitExceeded}
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
@@ -337,28 +354,10 @@ export default function Local({
             }
           }}
         >
-          <h5
-            className={`pr-2 text-sm font-semibold ${files.length === 0 || fileLimitExceeded ? "text-gray-700" : "text-container"}`}
-          >
+          <h5>
             Continue
           </h5>
-          <svg
-            width="20"
-            height="10"
-            viewBox="0 0 20 10"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M17.98 5.7901C18.8936 5.7901 19.6343 6.53075 19.6343 7.44439V7.44439C19.6343 8.35803 18.8936 9.09868 17.98 9.09868L1.65435 9.09868C0.74071 9.09868 5.90253e-05 8.35803 5.90618e-05 7.44439V7.44439C5.90983e-05 6.53075 0.740711 5.7901 1.65435 5.7901L17.98 5.7901Z"
-              fill="#151515"
-            />
-            <path
-              d="M18.932 5.9907C19.5219 6.63674 19.5219 7.68418 18.932 8.33022C18.3422 8.97626 17.3859 8.97626 16.7961 8.33022L12.3947 3.50927C11.8049 2.86322 11.8049 1.81578 12.3947 1.16974C12.9845 0.523702 13.9408 0.523702 14.5306 1.16974L18.932 5.9907Z"
-              fill="#151515"
-            />
-          </svg>
-        </button>
+        </Button>
       </div>
     </div>
   );

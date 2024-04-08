@@ -3,6 +3,7 @@ import Image from "next/image";
 import axios from "axios";
 import Dropzone from "react-dropzone";
 import ModalImageGallery from "@/components/modal-image-gallery";
+import Button from "@/components/button";
 import GalleryImages from "@/public/json/image-gallery-app.json";
 import LoadingIcon from "public/images/loading-icon.svg";
 
@@ -106,23 +107,23 @@ const ImageInput = ({
         </Dropzone>
       </div>
       <div className="flex flex-col pt-6 md:pt-0 gap-2">
-        <button
+        <Button
           onClick={handleGalleryCover}
-          className="rounded-md bg-primary px-1 py-2 text-xs text-container font-semibold hover:brightness-75 lg:text-sm"
+          className="rounded-xl"
         >
-          CHOOSE IMAGE FROM GALLERY
-        </button>
-        <button
+          Choose Image From Gallery
+        </Button>
+        <Button
           onClick={handleDeviceCover}
-          className="rounded-md bg-primary px-1 py-2 text-xs text-container font-semibold hover:brightness-75 lg:text-sm"
+          className="rounded-xl"
         >
-          CHOOSE IMAGE FROM DEVICE
-        </button>
+          Choose Image From Device
+        </Button>
         <div
           onClick={handleRandomCover}
-          className="w-full cursor-pointer rounded-md border-2 border-border py-1 text-center text-xs font-bold text-gray-400 hover:brightness-75 lg:text-sm"
+          className="w-full cursor-pointer rounded-xl border-2 border-border py-1 text-center text-xs font-bold text-gray-400 hover:brightness-75 lg:text-sm"
         >
-          RANDOM
+          Random
         </div>
       </div>
       <ModalImageGallery

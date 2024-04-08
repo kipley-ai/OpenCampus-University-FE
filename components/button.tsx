@@ -1,5 +1,5 @@
-import { useTheme } from 'next-themes';
-import { cn } from '@/lib/utils';
+import { useTheme } from "next-themes";
+import { cn } from "@/lib/utils";
 
 type ButtonProps = {
   children: React.ReactNode;
@@ -14,7 +14,10 @@ const Button = ({ children, className, disabled, ...props }: ButtonProps) => {
   if (theme === "dark") {
     return (
       <button
-        className={cn("max-md:text-xs text-sm border-2 border-primary font-medium rounded-full px-2 md:px-3 py-1 hover:bg-primary hover:text-container disabled:bg-[#B8BABE] disabled:text-[#909295] disabled:border-0", className)}
+        className={cn(
+          "flex items-center justify-center gap-2 rounded-full border-2 border-primary px-3 py-1 text-sm font-medium text-heading hover:bg-primary hover:text-container disabled:border-0 disabled:bg-[#B8BABE] disabled:text-[#909295] max-md:text-xs",
+          className,
+        )}
         disabled={disabled}
         {...props}
       >
@@ -25,7 +28,10 @@ const Button = ({ children, className, disabled, ...props }: ButtonProps) => {
 
   return (
     <button
-      className={cn("max-md:text-xs text-sm text-primary border-2 border-primary font-medium rounded-full px-2 md:px-3 py-1 hover:bg-primary hover:text-container disabled:bg-[#B8BABE] disabled:text-[#909295] disabled:border-0", className)}
+      className={cn(
+        "flex items-center justify-center gap-2 rounded-full border-2 border-primary px-3 py-1 text-sm font-medium text-heading text-primary hover:bg-primary hover:text-container disabled:border-0 disabled:bg-[#B8BABE] disabled:text-[#909295] max-md:text-xs",
+        className,
+      )}
       disabled={disabled}
       {...props}
     >

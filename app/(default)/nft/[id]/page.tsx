@@ -49,7 +49,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
         <h1 className="text-center text-3xl font-bold md:text-left md:text-4xl">
           {nftDetail.name}
         </h1>
-        <div className="my-4 border-t-2 border-stone-800"></div>
+        <div className="my-4 border-t-2 border-border"></div>
         <div className="flex flex-row">
           <p className="mr-2 text-center text-sm text-[#7C878E] md:text-left">
             SFT Owner
@@ -75,13 +75,12 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
             href={nftOpenSeaLink}
             target="_blank"
             rel="noreferrer"
-            className="flex flex-row"
+            className="flex flex-row hover:brightness-150"
           >
             <svg
               width="23"
               height="23"
               viewBox="0 0 25 24"
-              fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -96,32 +95,31 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
             </p>
           </a>
         </div>
-        <div className="my-4 border-t-2 border-stone-800"></div>
+        <div className="my-4 border-t-2 border-border"></div>
         <div className="mb-4 flex flex-grow justify-between">
           <h3 className="text-center text-xl font-semibold md:text-left">
             Data Info
           </h3>
           <Link href={"/chatbot/" + nftDetail.chatbot_id + "/edit"}>
-            <button className="inline-flex items-center gap-2 rounded border-2 border-primary px-4 py-2 text-sm text-heading">
+            <button className="group button inline-flex items-center gap-2">
               <svg
                 width="20"
                 height="20"
                 viewBox="0 0 20 20"
-                fill="none"
+                className="fill-primary group-hover:fill-container"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   fill-rule="evenodd"
                   clip-rule="evenodd"
                   d="M14.8 2H13.2L13.2 3.6H11.6V5.2H10V6.8H8.4V8.4H6.8V10H5.2V11.6H3.6V13.2L2 13.2V16.4V18H3.6H6.8V16.4L8.4 16.4V14.8H10V13.2L11.6 13.2V11.6H13.2V10H14.8V8.4H16.4V6.8H18V5.2H16.4L16.4 3.6H14.8V2ZM14.8 8.4H13.2L13.2 10H11.6V11.6H10V13.2H8.4V14.8H6.8V13.2L5.2 13.2V11.6H6.8V10H8.4V8.4H10V6.8H11.6V5.2H13.2L13.2 6.8H14.8V8.4ZM5.2 13.2H3.6V16.4H6.8V14.8H5.2V13.2Z"
-                  fill="#00EDBE"
                 />
               </svg>
               <span>Manage Data</span>
             </button>
           </Link>
         </div>
-        <div className="mt-2 rounded bg-[#1D1D1D] px-4 py-2">
+        <div className="mt-2 rounded bg-box px-4 py-2">
           <div className="flex flex-grow justify-between">
             <span className="block text-sm font-bold text-[#7C878E]">
               Data Type
@@ -131,7 +129,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
             </span>
           </div>
         </div>
-        <div className="mt-2 rounded bg-[#1D1D1D] px-4 py-2">
+        <div className="mt-2 rounded bg-box px-4 py-2">
           <div className="flex flex-grow justify-between">
             <span className="block text-sm font-bold text-[#7C878E]">
               Last Updated At
@@ -171,19 +169,18 @@ const ChatbotSection = ({
         </div>
         <div>
           <Link href={"/chatbot/" + chatbotDetail.chatbot_id + "/edit"}>
-            <button className="inline-flex gap-2 rounded border-2 border-primary px-4 py-2 text-sm text-heading">
+            <button className="group button inline-flex gap-2">
               <svg
                 width="20"
                 height="20"
                 viewBox="0 0 20 20"
-                fill="none"
+                className="fill-primary group-hover:fill-container"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   fill-rule="evenodd"
                   clip-rule="evenodd"
                   d="M14.8 2H13.2L13.2 3.6H11.6V5.2H10V6.8H8.4V8.4H6.8V10H5.2V11.6H3.6V13.2L2 13.2V16.4V18H3.6H6.8V16.4L8.4 16.4V14.8H10V13.2L11.6 13.2V11.6H13.2V10H14.8V8.4H16.4V6.8H18V5.2H16.4L16.4 3.6H14.8V2ZM14.8 8.4H13.2L13.2 10H11.6V11.6H10V13.2H8.4V14.8H6.8V13.2L5.2 13.2V11.6H6.8V10H8.4V8.4H10V6.8H11.6V5.2H13.2L13.2 6.8H14.8V8.4ZM5.2 13.2H3.6V16.4H6.8V14.8H5.2V13.2Z"
-                  fill="#00EDBE"
                 />
               </svg>
               <span>Manage Chatbot</span>
@@ -191,11 +188,11 @@ const ChatbotSection = ({
           </Link>
         </div>
       </div>
-      <div className="col-span-1 text-sm text-gray-400">
+      <div className="col-span-1 font-poppins text-sm text-body">
         <p className="mb-4">{chatbotDetail.description}</p>
       </div>
       <div className="text-sm font-semibold">
-        <div className="mt-2 rounded bg-[#1D1D1D] px-4 py-2">
+        <div className="mt-2 rounded bg-box px-4 py-2">
           <div className="flex flex-grow justify-between">
             <span className="block text-sm font-bold text-[#7C878E]">
               Chatbot Owner
@@ -209,7 +206,7 @@ const ChatbotSection = ({
             </span>
           </div>
         </div>
-        <div className="mt-2 rounded bg-[#1D1D1D] px-4 py-2">
+        <div className="mt-2 rounded bg-box px-4 py-2">
           <div className="flex flex-grow justify-between">
             <span className="block text-sm font-bold text-[#7C878E]">
               Created At
@@ -219,7 +216,7 @@ const ChatbotSection = ({
             </span>
           </div>
         </div>
-        <div className="mt-2 rounded bg-[#1D1D1D] px-4 py-2">
+        <div className="mt-2 rounded bg-box px-4 py-2">
           <div className="flex flex-grow justify-between">
             <span className="block text-sm font-bold text-[#7C878E]">
               Last Updated At
@@ -237,7 +234,7 @@ const ChatbotSection = ({
 const NoNFT = () => {
   return (
     <div className="h-full pb-4 md:pb-10">
-      <div className="relative  w-full rounded-3xl bg-[#151515]">
+      <div className="relative  w-full rounded-3xl bg-container">
         <Image
           className=" w-full rounded-3xl"
           src={link_nft_chatbot}
@@ -321,7 +318,7 @@ const NFTDetail = ({ params }: { params: any }) => {
   });
 
   return (
-    <div className="flex h-full flex-col divide-y-2 divide-stone-800 bg-[#151515] p-5 lg:p-12">
+    <div className="flex h-full flex-col divide-y-2 divide-border bg-container p-5 lg:p-12">
       {nftQuery.isPending ? (
         <div className="flex h-[45vh] w-full items-center justify-center gap-4">
           <FaSpinner size={20} className="animate-spin" />

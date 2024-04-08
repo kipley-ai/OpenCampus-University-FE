@@ -14,6 +14,7 @@ import { IconContext } from "react-icons";
 import ArrowIcon from "public/images/arrow.svg";
 import Link from "next/link";
 import RangeInputMulti from "@/components/range-input";
+import Button from "@/components/button";
 import { set } from "zod";
 import { withdrawEarnings } from "@/smart-contract/kip-protocol-contract";
 
@@ -106,7 +107,7 @@ const WithdrawConfirm = ({
       </div>
       <div className="flex flex-row justify-between">
         <button
-          className="rounded bg-[#272B30] px-4 py-2 text-sm font-semibold text-primary ring-1 ring-gray-700"
+          className="rounded bg-box px-4 py-2 text-sm font-semibold text-primary ring-1 ring-gray-700"
           onClick={() => {
             setValues([0, 0]);
             setWithdrawValue("0");
@@ -116,7 +117,7 @@ const WithdrawConfirm = ({
         </button>
         <input
           type="text"
-          className="rounded border-0 bg-[#272B30] text-center text-gray-50 ring-1 ring-gray-700"
+          className="rounded border-0 bg-box text-center ring-1 ring-gray-700"
           value={withdrawValue}
           onChange={(e) => {
             let value = parseInt(e.target.value);
@@ -127,7 +128,7 @@ const WithdrawConfirm = ({
           }}
         />
         <button
-          className="rounded bg-[#272B30] px-4 py-2 text-sm font-semibold text-primary ring-1 ring-gray-700"
+          className="rounded bg-box px-4 py-2 text-sm font-semibold text-primary ring-1 ring-gray-700"
           onClick={() => {
             setValues([0, 1000]);
             setWithdrawValue("1000");
@@ -136,28 +137,12 @@ const WithdrawConfirm = ({
           Max
         </button>
       </div>
-      <button
+      <Button
         onClick={handleWithdraw}
-        className="mb-2 mt-10 flex w-full flex-row items-center justify-center space-x-2 rounded-2xl bg-primary py-2"
+        className="mt-8 w-full"
       >
-        <p className="text-center text-sm font-semibold text-black">Continue</p>
-        <svg
-          width="21"
-          height="10"
-          viewBox="0 0 21 10"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M18.48 6.29004C19.3936 6.29004 20.1343 7.03069 20.1343 7.94433C20.1343 8.85797 19.3936 9.59862 18.48 9.59862L2.15435 9.59862C1.24071 9.59862 0.500059 8.85797 0.500059 7.94433C0.500059 7.03069 1.24071 6.29004 2.15435 6.29004L18.48 6.29004Z"
-            fill="#151515"
-          />
-          <path
-            d="M19.432 6.49088C20.0219 7.13692 20.0219 8.18436 19.432 8.83041C18.8422 9.47645 17.8859 9.47645 17.2961 8.8304L12.8947 4.00945C12.3049 3.36341 12.3049 2.31597 12.8947 1.66993C13.4845 1.02389 14.4408 1.02389 15.0306 1.66993L19.432 6.49088Z"
-            fill="#151515"
-          />
-        </svg>
-      </button>
+        <p>Continue</p>
+      </Button>
     </>
   );
 };
@@ -173,7 +158,7 @@ const NFTCard = ({
 }) => {
   return (
     <div
-      className="group relative flex cursor-pointer flex-col rounded-3xl bg-[#222325]"
+      className="group relative flex cursor-pointer flex-col rounded-3xl bg-box"
       onClick={() => {
         setStep(2);
         setNftData(nft);
@@ -196,23 +181,7 @@ const NFTCard = ({
         </p> */}
       </div>
       <div className="absolute bottom-0 hidden h-12 w-full items-center justify-center space-x-2 rounded-b-2xl bg-primary group-hover:flex">
-        <p className="text-center text-sm font-semibold text-black">Withdraw</p>
-        <svg
-          width="21"
-          height="10"
-          viewBox="0 0 21 10"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M18.48 6.29004C19.3936 6.29004 20.1343 7.03069 20.1343 7.94433C20.1343 8.85797 19.3936 9.59862 18.48 9.59862L2.15435 9.59862C1.24071 9.59862 0.500059 8.85797 0.500059 7.94433C0.500059 7.03069 1.24071 6.29004 2.15435 6.29004L18.48 6.29004Z"
-            fill="#151515"
-          />
-          <path
-            d="M19.432 6.49088C20.0219 7.13692 20.0219 8.18436 19.432 8.83041C18.8422 9.47645 17.8859 9.47645 17.2961 8.8304L12.8947 4.00945C12.3049 3.36341 12.3049 2.31597 12.8947 1.66993C13.4845 1.02389 14.4408 1.02389 15.0306 1.66993L19.432 6.49088Z"
-            fill="#151515"
-          />
-        </svg>
+        <p className="text-center text-sm font-semibold text-container">Withdraw</p>
       </div>
     </div>
   );
@@ -243,7 +212,7 @@ const NFTList = ({
     return (
       <div className="flex h-32 w-full items-center justify-center gap-4">
         <FaSpinner size={20} className="animate-spin" />
-        <p className="text-md text-gray-300">Loading</p>
+        <p className="text-md">Loading</p>
       </div>
     );
   }
@@ -274,7 +243,7 @@ const NFTList = ({
             className={`${!isFetching && "invisible"} flex w-full items-center justify-center gap-4`}
           >
             <FaSpinner size={20} className="animate-spin" />
-            <p className="text-md text-gray-300">Loading</p>
+            <p className="text-md">Loading</p>
           </div>
           <PaginationController
             currentPage={currentPage}
@@ -325,7 +294,29 @@ const WithdrawModal = ({
             }}
           >
             <div className="sr-only">Close</div>
-            <Image src={CrossIcon} alt="Close Icon" width={40} height={40} />
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 40 40"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="1"
+                y="1"
+                width="38"
+                height="38"
+                rx="19"
+                stroke="#353945"
+                stroke-width="2"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M13.2929 13.2929C13.6834 12.9024 14.3166 12.9024 14.7071 13.2929L20 18.5858L25.2929 13.2929C25.6834 12.9024 26.3166 12.9024 26.7071 13.2929C27.0976 13.6834 27.0976 14.3166 26.7071 14.7071L21.4142 20L26.7071 25.2929C27.0976 25.6834 27.0976 26.3166 26.7071 26.7071C26.3166 27.0976 25.6834 27.0976 25.2929 26.7071L20 21.4142L14.7071 26.7071C14.3166 27.0976 13.6834 27.0976 13.2929 26.7071C12.9024 26.3166 12.9024 25.6834 13.2929 25.2929L18.5858 20L13.2929 14.7071C12.9024 14.3166 12.9024 13.6834 13.2929 13.2929Z"
+                fill="var(--color-heading)"
+              />
+            </svg>
           </button>
         </div>
         <div className="mt-10">
@@ -354,7 +345,7 @@ export default function CreatorOverview() {
       <WithdrawModal isOpen={showModal} setIsOpen={setShowModal} />
       <div className="flex w-5/6 flex-col px-10 py-8">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-semibold text-slate-100">Dashboard</h1>
+          <h1 className="text-3xl font-semibold">Dashboard</h1>
           {/* <DateFilterComponent /> */}
         </div>
         <div className="my-8 flex flex-col gap-4 rounded-xl bg-[#1A1D1F] p-6 ">
@@ -368,18 +359,18 @@ export default function CreatorOverview() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <rect y="0.5" width="16" height="32" rx="4" fill="#B5E4CA" />
+                <rect y="0.5" width="16" height="32" rx="4" fill="var(--color-primary)" />
               </svg>
-              <h4 className="ml-4 text-2xl font-semibold text-heading">
+              <h4 className="ml-4 text-2xl font-semibold text-white">
                 Creator Overview
               </h4>
             </div>
-            <button
-              className="rounded-full bg-[#B5E4CA] px-4 py-3 text-base font-semibold text-[#1A1D1F]"
+            <Button
               onClick={() => setShowModal(true)}
+              className="text-white"
             >
               Withdraw your earnings
-            </button>
+            </Button>
           </div>
           <div className="flex">
             <div className="mr-3 w-1/2 rounded-xl bg-[#373f3c] p-8">
@@ -404,7 +395,7 @@ export default function CreatorOverview() {
                 </svg>
               </div>
               <div className="flex items-center">
-                <h4 className="mr-1 text-[16px] font-semibold text-heading">
+                <h4 className="mr-1 text-[16px] font-semibold text-white">
                   Earnings
                 </h4>
                 <svg
@@ -422,7 +413,7 @@ export default function CreatorOverview() {
                   />
                 </svg>
               </div>
-              <h4 className="text-4xl font-semibold text-heading">
+              <h4 className="text-4xl font-semibold text-white">
                 {overviewData?.data.data.earnings}
               </h4>
             </div>
@@ -450,7 +441,7 @@ export default function CreatorOverview() {
                 </svg>
               </div>
               <div className="flex items-center">
-                <h4 className="mr-1 text-[16px] font-semibold text-heading">
+                <h4 className="mr-1 text-[16px] font-semibold text-white">
                   Users
                 </h4>
                 <svg
@@ -468,7 +459,7 @@ export default function CreatorOverview() {
                   />
                 </svg>
               </div>
-              <h4 className="text-4xl font-semibold text-heading">
+              <h4 className="text-4xl font-semibold text-white">
                 {overviewData?.data.data.users}
               </h4>
             </div>
@@ -490,7 +481,7 @@ export default function CreatorOverview() {
                 </svg>
               </div>
               <div className="flex items-center">
-                <h4 className="mr-1 text-[16px] font-semibold text-heading">
+                <h4 className="mr-1 text-[16px] font-semibold text-white">
                   Conversations
                 </h4>
                 <svg
@@ -508,7 +499,7 @@ export default function CreatorOverview() {
                   />
                 </svg>
               </div>
-              <h4 className="text-4xl font-semibold text-heading">
+              <h4 className="text-4xl font-semibold text-white">
                 {overviewData?.data.data.conversations}
               </h4>
             </div>

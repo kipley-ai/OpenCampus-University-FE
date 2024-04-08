@@ -209,7 +209,7 @@ export default function AccountSettings() {
   return (
     <div className="flex w-5/6 flex-col px-10 py-8">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-semibold text-slate-100">
+        <h1 className="text-3xl font-semibold">
           Account Information
         </h1>
         {/* <DateFilterComponent /> */}
@@ -254,7 +254,7 @@ export default function AccountSettings() {
             onChange={handleProfileImage}
           />
           <div className="items-between ml-4">
-            <p className="text-sm text-slate-400">
+            <p className="text-sm">
               {address?.substring(0, 11) +
                 "..." +
                 address?.substring(address.length - 11)}
@@ -263,7 +263,7 @@ export default function AccountSettings() {
         </div>
       </div>
       {/* Connected Account */}
-      <p className="text-sm text-slate-400">Connected Account</p>
+      <p className="font-semibold">Connected Account</p>
       <div className="mb-4 mt-4 flex items-center justify-between">
         <div className="flex items-center">
           {/* Placeholder for Twitter icon SVG */}
@@ -322,9 +322,9 @@ export default function AccountSettings() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <rect y="0.5" width="16" height="32" rx="4" fill="#B1E5FC" />
+              <rect y="0.5" width="16" height="32" rx="4" fill="var(--color-primary)" />
             </svg>
-            <h4 className="ml-4 text-2xl font-semibold text-heading">
+            <h4 className="ml-4 text-2xl font-semibold text-white">
               User Overview
             </h4>
           </div>
@@ -372,7 +372,7 @@ export default function AccountSettings() {
             </div>
             <h4 className="text-4xl font-semibold text-heading">500</h4>
           </div> */}
-          <div className="w-1/2 rounded-xl bg-[#2b2d35] p-8">
+          <div className="w-1/2 rounded-xl bg-box p-8">
             <div className="mb-4 w-fit rounded-full bg-white p-3">
               <svg
                 width="24"
@@ -396,7 +396,7 @@ export default function AccountSettings() {
               </svg>
             </div>
             <div className="flex items-center">
-              <h4 className="mr-1 text-[16px] font-semibold text-heading">
+              <h4 className="mr-1 text-[16px] font-semibold">
                 Credit Balance
               </h4>
               <svg
@@ -414,7 +414,7 @@ export default function AccountSettings() {
                 />
               </svg>
             </div>
-            <h4 className="text-4xl font-semibold text-heading">
+            <h4 className="text-4xl font-semibold">
               {userDetail?.data.data.credit_balance}
             </h4>
           </div>

@@ -24,7 +24,7 @@ export default function Earning() {
     return (
       <div className="flex h-32 w-full items-center justify-center gap-4">
         <FaSpinner size={20} className="animate-spin" />
-        <p className="text-md text-gray-300">Loading</p>
+        <p className="text-md">Loading</p>
       </div>
     );
   }
@@ -80,7 +80,7 @@ export default function Earning() {
           className={`${!isFetching && "invisible"} flex w-full items-center justify-center gap-4`}
         >
           <FaSpinner size={20} className="animate-spin" />
-          <p className="text-md text-gray-300">Loading</p>
+          <p className="text-md">Loading</p>
         </div>
         <PaginationController
           currentPage={currentPage}

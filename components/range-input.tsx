@@ -73,7 +73,7 @@ const TwoThumbs= ({ rtl, min, max, step, values, setValues }: Props) => {
               style={{
                 background: getTrackBackground({
                   values,
-                  colors: ['#50575F', '#00EDBE', '#50575F'],
+                  colors: ['#50575F', 'var(--color-primary)', '#50575F'],
                   min: min,
                   max: max,
                   rtl: true,

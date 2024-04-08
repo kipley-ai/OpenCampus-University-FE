@@ -103,7 +103,7 @@ const NFTList = () => {
     return (
       <div className="flex h-32 w-full items-center justify-center gap-4">
         <FaSpinner size={20} className="animate-spin" />
-        <p className="text-md text-gray-300">Loading</p>
+        <p className="text-md text-heading">Loading</p>
       </div>
     );
   }
@@ -129,7 +129,7 @@ const NFTList = () => {
             className={`${!isFetching && "invisible"} flex w-full items-center justify-center gap-4`}
           >
             <FaSpinner size={20} className="animate-spin" />
-            <p className="text-md text-gray-300">Loading</p>
+            <p className="text-md text-heading">Loading</p>
           </div>
           <PaginationController
             currentPage={currentPage}
@@ -203,7 +203,7 @@ const BotList = () => {
     return (
       <div className="flex h-32 w-full items-center justify-center gap-4">
         <FaSpinner size={20} className="animate-spin" />
-        <p className="text-md text-gray-300">Loading</p>
+        <p className="text-md text-heading">Loading</p>
       </div>
     );
   }
@@ -229,7 +229,7 @@ const BotList = () => {
             className={`${!isFetching && "invisible"} flex w-full items-center justify-center gap-4`}
           >
             <FaSpinner size={20} className="animate-spin" />
-            <p className="text-md text-gray-300">Loading</p>
+            <p className="text-md text-heading">Loading</p>
           </div>
           <PaginationController
             currentPage={currentPage}

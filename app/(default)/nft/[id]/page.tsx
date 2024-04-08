@@ -290,7 +290,7 @@ const NoChatbot = () => {
           </h1> */}
           <Link href={"/nft/" + id + "/create-chatbot"}>
             {/* <h1 className="w-fit rounded-full bg-primary px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-base"> */}
-            <h1 className="w-fit rounded-md bg-primary px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-2xl">
+            <h1 className="w-fit rounded-md bg-primary px-8 py-1 text-xs font-semibold text-container md:py-3 md:text-2xl">
               Link Your SFT to Chatbot
             </h1>
           </Link>
@@ -322,7 +322,7 @@ const NFTDetail = ({ params }: { params: any }) => {
       {nftQuery.isPending ? (
         <div className="flex h-[45vh] w-full items-center justify-center gap-4">
           <FaSpinner size={20} className="animate-spin" />
-          <p className="text-md text-gray-300">Loading</p>
+          <p className="text-md text-heading">Loading</p>
         </div>
       ) : nftQuery.isError ? (
         <div>Error: {nftQuery.error.message}</div>
@@ -335,7 +335,7 @@ const NFTDetail = ({ params }: { params: any }) => {
       {chatbotQuery.isLoading ? (
         <div className="flex h-[50vh] w-full items-center justify-center gap-4">
           <FaSpinner size={20} className="animate-spin" />
-          <p className="text-md text-gray-300">Loading</p>
+          <p className="text-md text-heading">Loading</p>
         </div>
       ) : chatbotQuery.isError ? (
         <div>Error: {chatbotQuery.error.message}</div>

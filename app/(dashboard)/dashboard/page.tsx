@@ -129,7 +129,7 @@ export default function Dashboard() {
   }, [breakpoint, pageSize, botsQuery.isFetching]); // Ensure dependencies are correctly listed
 
   return (
-    <div className="bg-[#151515] px-4 py-8 sm:px-6 lg:my-8 lg:mx-12 rounded-lg">
+    <div className="px-4 py-8 sm:px-6 lg:my-8 lg:mx-12 rounded-lg">
       <ModalLoginTwitter isOpen={modalLogin} setIsOpen={setModalLogin} />
 
       {/* Explorer Banner */}
@@ -137,7 +137,7 @@ export default function Dashboard() {
 
       {/* Featured Chatbot */}
       <div className="mt-8">
-        <h2 className="font-mikado text-3xl text-white font-medium">Featured Creators</h2>
+        <h2 className="font-mikado text-3xl text-heading font-medium">Featured Creators</h2>
       </div>
       <div className="my-4 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 xl:grid-cols-5">
         {featuredBotsQuery.data?.data?.data
@@ -159,7 +159,7 @@ export default function Dashboard() {
 
       {/* Chatbot lists */}
       <div className="mt-4">
-        <h2 className="font-mikado text-3xl text-white font-medium">Popular Creators</h2>
+        <h2 className="font-mikado text-3xl text-heading font-medium">Popular Creators</h2>
       </div>
       <div className="my-4 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 xl:grid-cols-5">
         {botsQuery.data?.data.data
@@ -192,7 +192,7 @@ const BotItem = ({
   return (
     <Link
       href={`/chatbot/${chatbotSlug(botData)}/profile`}
-      className="grow group relative flex cursor-pointer flex-col w-auto rounded-sm bg-[#212121] transition ease-in-out delay-50 hover:brightness-125"
+      className="grow group relative flex cursor-pointer flex-col w-auto rounded-sm bg-box transition ease-in-out delay-50 hover:bg-secondary"
       onClick={onClick}
     >
       <div className="p-2">
@@ -206,7 +206,7 @@ const BotItem = ({
         </div>
       </div>
       <div className="flex-grow p-4">
-        <div className="font-poppins text-sm font-medium md:text-base text-white break-words">{botData.name}</div>
+        <div className="font-poppins text-sm font-medium md:text-base text-body break-words">{botData.name}</div>
       </div>
     </Link>
   );

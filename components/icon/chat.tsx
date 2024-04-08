@@ -1,0 +1,41 @@
+const Chat = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={20}
+    height={20}
+    {...props}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1.5}
+      d="M10.047 1.667a8.35 8.35 0 0 0-7.163 4 8.322 8.322 0 0 0-.27 8.19l.168.326c.136.256.165.556.079.833-.238.633-.437 1.28-.596 1.937 0 .333.095.523.453.515.634-.14 1.258-.32 1.868-.54.263-.072.543-.055.795.048.23.111.7.397.715.397a8.358 8.358 0 0 0 9.404-1.117 8.324 8.324 0 0 0 2.306-9.17 8.346 8.346 0 0 0-7.759-5.42v0Z"
+      clipRule="evenodd"
+    />
+    <circle
+      cx={6.073}
+      cy={10}
+      r={0.397}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1.5}
+    />
+    <circle
+      cx={10.047}
+      cy={10}
+      r={0.397}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1.5}
+    />
+    <circle
+      cx={14.022}
+      cy={10}
+      r={0.397}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1.5}
+    />
+  </svg>
+);
+export default Chat;

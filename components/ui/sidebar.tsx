@@ -241,7 +241,19 @@ export default function Sidebar() {
                     {/* style={{ border: '2px solid #00EDBE', borderRadius: '24px', padding: '6px 10px' }}> */}
                     <SidebarLink href="/dashboard">
                       <div className="flex items-center py-1">
-                        <Image src={ExploreIcon} alt="explore" width={20} height={20} />
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width={20}
+                          height={20}
+                          fill="none"
+                          className="fill-primary"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M3 20a3 3 0 0 1-3-3V9.336a3 3 0 0 1 .993-2.23l7-6.3a3 3 0 0 1 4.014 0l7 6.3A3 3 0 0 1 20 9.336V17a3 3 0 0 1-3 3H3ZM18 9.336V17a1 1 0 0 1-1 1h-3v-5a3 3 0 0 0-3-3H9a3 3 0 0 0-3 3v5H3a1 1 0 0 1-1-1V9.336a1 1 0 0 1 .331-.743l7-6.3a1 1 0 0 1 1.338 0l7 6.3a1 1 0 0 1 .331.743ZM8 18v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5H8Z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
                         <span className="ml-3 text-[14px] font-semibold  text-heading duration-200 text-lg lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
                           Explore
                         </span>
@@ -275,7 +287,12 @@ export default function Sidebar() {
                     } `}
                   >
                     <div className="mb-2 flex items-center px-3">
-                      <Image src={ChatListIcon} alt="chat-list" />
+                      <svg className="stroke-primary" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.0473 1.66682C7.12235 1.655 4.4046 3.17261 2.88371 5.66704C1.36282 8.16146 1.26073 11.2687 2.6146 13.8573L2.78154 14.1827C2.91837 14.4387 2.94699 14.7388 2.86103 15.016C2.62281 15.6487 2.4237 16.2954 2.26482 16.9525C2.26482 17.2858 2.36022 17.4763 2.71794 17.4684C3.35154 17.3285 3.97552 17.1482 4.58606 16.9287C4.84901 16.8563 5.1286 16.873 5.381 16.9763C5.61153 17.0874 6.08055 17.3731 6.09645 17.3731C9.15957 18.9838 12.9006 18.5394 15.4998 16.2563C18.0989 13.9731 19.0165 10.3251 17.8063 7.08678C16.5961 3.84849 13.5092 1.69219 10.0473 1.66682V1.66682Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <ellipse cx="6.07264" cy="10.0001" rx="0.397471" ry="0.396825" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <ellipse cx="10.0473" cy="10.0001" rx="0.397471" ry="0.396825" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <ellipse cx="14.022" cy="10.0001" rx="0.397471" ry="0.396825" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
                       <span className="ml-3 font-semibold tracking-tight text-heading duration-200 text-lg lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
                         Chat List
                       </span>

@@ -1,18 +1,26 @@
 import Image from "next/image";
 import TaskCenterImage from "public/images/join-box.svg";
+import TaskCenterLightImage from "public/images/join-box-light.svg";
 import Link from "next/link";
+import Button from "@/components/button";
+import { useTheme } from 'next-themes';
 
 export default function TaskCenterSideBar() {
+  const { theme } = useTheme();
+
   return (
     <div className="relative flex flex-col items-center">
-      <Image src={TaskCenterImage} alt="Task Center" />
+      {theme === "dark" ? (
+        <Image src={TaskCenterImage} alt="Task Center" />
+      ) : (
+        <Image src={TaskCenterLightImage} alt="Task Center" />
+      )}
       <Link
         href={"/task-center"}
-        className="group absolute bottom-12 flex w-[50%] justify-center rounded-full border-2 border-primary bg-transparent px-2 py-2 hover:bg-primary disabled:brightness-50"
       >
-        <span className="text-xs font-medium group-hover:text-container">
+        <Button className="absolute bottom-12 inset-x-0 mx-auto w-1/2">
           Task Center
-        </span>
+        </Button>
       </Link>
     </div>
   );

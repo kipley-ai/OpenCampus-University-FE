@@ -79,16 +79,16 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
         ></span> */}
       </div>
       {isDropdownOpen && (
-        <div className="absolute right-0 z-50 mt-2 w-48 rounded-md bg-[#151515] py-2 shadow-xl">
+        <div className="absolute right-0 z-50 mt-2 w-48 rounded-md bg-container py-2 shadow-xl">
           <div className="px-4 py-2">
-            <div className="text-sm font-medium text-[#FCFCFD]">
+            <div className="text-sm font-medium">
               {address && `${address.slice(0, 6)}...${address.slice(-6)}`}
             </div>
           </div>
           <div className="mx-4 border-t border-gray-300"></div>
           <Link
             href="/manage-account"
-            className="block flex px-4 py-2 text-sm capitalize text-[#FCFCFD] hover:bg-stone-600 hover:text-white"
+            className="block flex px-4 py-2 text-sm capitalize hover:bg-secondary"
           >
             <svg
               className="mr-2"
@@ -127,7 +127,7 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
           </Link>
           <div className="mx-4 border-t border-gray-300"></div>
           <button
-            className="block flex w-full px-4 py-2 text-sm capitalize text-[#FCFCFD] hover:bg-stone-600 hover:text-white"
+            className="block flex w-full px-4 py-2 text-sm capitalize hover:bg-secondary"
             onClick={(e) => {
               e.preventDefault();
               localStorage.setItem("kip-protocol-signature", "");

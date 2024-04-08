@@ -35,7 +35,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
   const nftOpenSeaLink = `${process.env.NEXT_PUBLIC_OPENSEA_URL}/${nftDetail.sft_address}`;
 
   return (
-    <div className="grid grid-cols-1 gap-4 pb-4 text-white md:grid-cols-2 md:pb-12">
+    <div className="grid grid-cols-1 gap-4 pb-4 text-heading md:grid-cols-2 md:pb-12">
       <div className="mx-auto w-2/5 md:w-full">
         <Image
           className="rounded-xl"
@@ -66,7 +66,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
           <p className="mr-2 text-center text-sm text-[#7C878E] md:text-left">
             Created At
           </p>
-          <p className="text-center text-sm text-white md:text-left">
+          <p className="text-center text-sm text-heading md:text-left">
             {formatTimestamp(nftDetail.created)}
           </p>
         </div>
@@ -102,7 +102,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
             Data Info
           </h3>
           <Link href={"/chatbot/" + nftDetail.chatbot_id + "/edit"}>
-            <button className="inline-flex items-center gap-2 rounded border-2 border-primary px-4 py-2 text-sm text-white">
+            <button className="inline-flex items-center gap-2 rounded border-2 border-primary px-4 py-2 text-sm text-heading">
               <svg
                 width="20"
                 height="20"
@@ -126,7 +126,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
             <span className="block text-sm font-bold text-[#7C878E]">
               Data Type
             </span>
-            <span className="block text-sm capitalize text-white">
+            <span className="block text-sm capitalize text-heading">
               {nftDetail.type}
             </span>
           </div>
@@ -154,7 +154,7 @@ const ChatbotSection = ({
   kbDetail: any;
 }) => {
   return (
-    <div className="grid grid-cols-1 gap-x-12 gap-y-8 pt-4 text-white md:grid-cols-2 md:gap-y-4 md:pt-10 xl:gap-x-20">
+    <div className="grid grid-cols-1 gap-x-12 gap-y-8 pt-4 text-heading md:grid-cols-2 md:gap-y-4 md:pt-10 xl:gap-x-20">
       <div className="flex items-center justify-between gap-4 md:col-span-2">
         <div className="flex items-center">
           <Image
@@ -171,7 +171,7 @@ const ChatbotSection = ({
         </div>
         <div>
           <Link href={"/chatbot/" + chatbotDetail.chatbot_id + "/edit"}>
-            <button className="inline-flex gap-2 rounded border-2 border-primary px-4 py-2 text-sm text-white">
+            <button className="inline-flex gap-2 rounded border-2 border-primary px-4 py-2 text-sm text-heading">
               <svg
                 width="20"
                 height="20"
@@ -200,7 +200,7 @@ const ChatbotSection = ({
             <span className="block text-sm font-bold text-[#7C878E]">
               Chatbot Owner
             </span>
-            <span className="block text-sm text-white">
+            <span className="block text-sm text-heading">
               {chatbotDetail.wallet_addr!.substring(0, 6) +
                 "..." +
                 chatbotDetail.wallet_addr!.substring(
@@ -214,7 +214,7 @@ const ChatbotSection = ({
             <span className="block text-sm font-bold text-[#7C878E]">
               Created At
             </span>
-            <span className="block text-sm text-white">
+            <span className="block text-sm text-heading">
               {formatTimestamp(chatbotDetail.created_at)}
             </span>
           </div>
@@ -252,10 +252,10 @@ const NoNFT = () => {
             transform: "translate(-50%, -50%)",
           }}
         >
-          <h1 className="mb-[2px] text-center text-xl font-semibold text-white md:text-4xl xl:text-[48px]">
+          <h1 className="mb-[2px] text-center text-xl font-semibold text-heading md:text-4xl xl:text-[48px]">
             Unlock the power of Web3
           </h1>
-          <h1 className="font-regular text-center text-sm text-white md:mb-[30px] md:text-[18px]">
+          <h1 className="font-regular text-center text-sm text-heading md:mb-[30px] md:text-[18px]">
             Meet our AI chat app revolutionizing conversations
           </h1>
           <h1 className="w-fit rounded-full bg-primary px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-base">
@@ -288,7 +288,7 @@ const NoChatbot = () => {
             transform: "translate(-50%, -50%)",
           }}
         >
-          {/* <h1 className="text-center text-xl font-extrabold text-white md:text-4xl xl:mb-[30px] xl:text-[48px]">
+          {/* <h1 className="text-center text-xl font-extrabold text-heading md:text-4xl xl:mb-[30px] xl:text-[48px]">
             Connect with AI Chat Bot
           </h1> */}
           <Link href={"/nft/" + id + "/create-chatbot"}>

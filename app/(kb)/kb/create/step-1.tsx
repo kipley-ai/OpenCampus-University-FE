@@ -7,7 +7,7 @@ import Image from "next/image";
 export default function Step1({ selectedButton, setSelectedButton }: { selectedButton: string, setSelectedButton: Function }) {
     console.log(selectedButton)
     return (
-        <div className="mx-64 grid grid-cols-2 gap-4 text-white font-bold mt-10">
+        <div className="mx-64 grid grid-cols-2 gap-4 text-heading font-bold mt-10">
             <button className={`flex flex-col px-20 py-10 items-center border-2 ${selectedButton == 'twitter' ? 'border-primary' : 'border-[#50575F]'} rounded-3xl`} onClick={() => setSelectedButton('twitter')}>
                 <Image width={48} height={48} src={XIcon} alt="X Icon" />
                 <h3 className="pt-6">Connect Twitter</h3>

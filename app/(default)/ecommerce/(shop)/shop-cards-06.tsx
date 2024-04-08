@@ -15,7 +15,7 @@ export default function ShopCards06() {
         <div className="absolute inset-0 bg-gradient-to-t from-slate-800 to-transparent" aria-hidden="true"></div>
         {/* Content */}
         <div className="relative h-full p-5 flex flex-col justify-end">
-          <h3 className="text-lg text-white font-semibold mt-16 mb-0.5">Merchandise</h3>
+          <h3 className="text-lg text-heading font-semibold mt-16 mb-0.5">Merchandise</h3>
           <a className="text-sm font-medium text-indigo-400 hover:text-indigo-300" href="#0">Explore -&gt;</a>
         </div>
       </div>
@@ -28,7 +28,7 @@ export default function ShopCards06() {
         <div className="absolute inset-0 bg-gradient-to-t from-slate-800 to-transparent" aria-hidden="true"></div>
         {/* Content */}
         <div className="relative h-full p-5 flex flex-col justify-end">
-          <h3 className="text-lg text-white font-semibold mt-16 mb-0.5">Audiobooks</h3>
+          <h3 className="text-lg text-heading font-semibold mt-16 mb-0.5">Audiobooks</h3>
           <a className="text-sm font-medium text-indigo-400 hover:text-indigo-300" href="#0">Explore -&gt;</a>
         </div>
       </div>
@@ -41,7 +41,7 @@ export default function ShopCards06() {
         <div className="absolute inset-0 bg-gradient-to-t from-slate-800 to-transparent" aria-hidden="true"></div>
         {/* Content */}
         <div className="relative h-full p-5 flex flex-col justify-end">
-          <h3 className="text-lg text-white font-semibold mt-16 mb-0.5">Design & Tech</h3>
+          <h3 className="text-lg text-heading font-semibold mt-16 mb-0.5">Design & Tech</h3>
           <a className="text-sm font-medium text-indigo-400 hover:text-indigo-300" href="#0">Explore -&gt;</a>
         </div>
       </div>
@@ -54,7 +54,7 @@ export default function ShopCards06() {
         <div className="absolute inset-0 bg-gradient-to-t from-slate-800 to-transparent" aria-hidden="true"></div>
         {/* Content */}
         <div className="relative h-full p-5 flex flex-col justify-end">
-          <h3 className="text-lg text-white font-semibold mt-16 mb-0.5">Apps & Software</h3>
+          <h3 className="text-lg text-heading font-semibold mt-16 mb-0.5">Apps & Software</h3>
           <a className="text-sm font-medium text-indigo-400 hover:text-indigo-300" href="#0">Explore -&gt;</a>
         </div>
       </div>

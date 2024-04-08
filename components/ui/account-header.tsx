@@ -67,7 +67,7 @@ export default function AccountHeader() {
 							</svg>
 
 							<span
-								className="text-sm font-medium text-white ml-3 duration-200"
+								className="text-sm font-medium text-heading ml-3 duration-200"
 								//style={{ fontSize: '14px', fontWeight: 600, color: '#FFFFFF' }}
 							>
 								Manage Account

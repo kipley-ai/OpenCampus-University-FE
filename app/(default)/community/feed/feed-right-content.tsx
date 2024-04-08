@@ -185,7 +185,7 @@ export default function FeedRightContent() {
               <ul className="space-y-3">
                 <li>
                   <div className="text-sm mb-1">
-                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">
+                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">
                       Tracking your website traffic on launch day 📈
                     </a>
                   </div>
@@ -193,7 +193,7 @@ export default function FeedRightContent() {
                 </li>
                 <li>
                   <div className="text-sm mb-1">
-                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">
+                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">
                       Freemium model questions
                     </a>
                   </div>
@@ -201,7 +201,7 @@ export default function FeedRightContent() {
                 </li>
                 <li>
                   <div className="text-sm mb-1">
-                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">
+                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">
                       Slack and Community
                     </a>
                   </div>
@@ -209,7 +209,7 @@ export default function FeedRightContent() {
                 </li>
                 <li>
                   <div className="text-sm mb-1">
-                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">
+                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">
                       Who owns user onboarding in your company?
                     </a>
                   </div>
@@ -217,7 +217,7 @@ export default function FeedRightContent() {
                 </li>
                 <li>
                   <div className="text-sm mb-1">
-                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">
+                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">
                       Questions from a very confused Web3 startup founder 🤔
                     </a>
                   </div>

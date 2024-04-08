@@ -83,7 +83,7 @@ const Header = () => {
           <div className="flex items-center gap-3">
             <button
               onClick={() => router.back()}
-              className="text-2xl text-white focus:outline-none"
+              className="text-2xl text-heading focus:outline-none"
             >
               <Image
                 src={"/images/corner-up-left.png"}

@@ -120,7 +120,7 @@ export default function FintechCard05() {
                 <td className="p-2 whitespace-nowrap">
                   <div className="flex items-center">
                     <div className="shrink-0 rounded-full mr-2 sm:mr-3 bg-[#EA4335]">
-                      <svg className="w-9 h-9 fill-current text-white" viewBox="0 0 36 36">
+                      <svg className="w-9 h-9 fill-current text-heading" viewBox="0 0 36 36">
                         <path d="M18 17v2.4h4.1c-.2 1-1.2 3-4 3-2.4 0-4.3-2-4.3-4.4 0-2.4 2-4.4 4.3-4.4 1.4 0 2.3.6 2.8 1.1l1.9-1.8C21.6 11.7 20 11 18.1 11c-3.9 0-7 3.1-7 7s3.1 7 7 7c4 0 6.7-2.8 6.7-6.8 0-.5 0-.8-.1-1.2H18Z" />
                       </svg>
                     </div>

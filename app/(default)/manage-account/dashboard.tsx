@@ -105,7 +105,7 @@ const ContentListComponent = ({ chats }: { chats: ChatData[] }) => {
                     height={32}
                     alt={`${chat.title} icon`}
                   />
-                  <span className="text-base font-semibold text-white">
+                  <span className="text-base font-semibold text-heading">
                     {chat.title}
                   </span>
                 </div>
@@ -127,7 +127,7 @@ const ContentListComponent = ({ chats }: { chats: ChatData[] }) => {
 const MyActivityTable = () => {
   return (
     <div className="flex w-full  flex-col">
-      <table className="mx-3 my-4 w-full table-auto text-left font-semibold text-white">
+      <table className="mx-3 my-4 w-full table-auto text-left font-semibold text-heading">
         <thead>
           <tr className="border-b border-gray-700 text-sm text-[#7C878E]">
             <th className="py-5 pl-8">My Activity</th>
@@ -216,7 +216,7 @@ export default function AccountSettings() {
       </div>
       <hr className="my-4 border border-gray-600" />
       {/* Profile Picture */}
-      <p className="font-semibold text-white">Profile</p>
+      <p className="font-semibold text-heading">Profile</p>
       <div className="mb-8 mt-4 flex items-center justify-between">
         <div className="relative flex items-center">
           <button
@@ -230,7 +230,7 @@ export default function AccountSettings() {
               alt="Profile Image"
               className="rounded-full transition duration-300 ease-in-out"
             />
-            <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black bg-opacity-50 text-sm font-semibold text-white opacity-0 transition duration-300 ease-in-out hover:opacity-100">
+            <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black bg-opacity-50 text-sm font-semibold text-heading opacity-0 transition duration-300 ease-in-out hover:opacity-100">
               <svg
                 width="17"
                 height="16"
@@ -282,7 +282,7 @@ export default function AccountSettings() {
           </svg>
           {twitterStatus == "authenticated" ? (
             <span className="ml-4">
-              <span className="text-white">Twitter X</span> (@
+              <span className="text-heading">Twitter X</span> (@
               {twitterSession.user?.username})
             </span>
           ) : (
@@ -300,7 +300,7 @@ export default function AccountSettings() {
         </div>
         {twitterStatus == "authenticated" ? (
           <button
-            className="flex items-center rounded-full border border-gray-700 px-4 py-1 text-white"
+            className="flex items-center rounded-full border border-gray-700 px-4 py-1 text-heading"
             onClick={() => {
               signOut();
             }}
@@ -324,7 +324,7 @@ export default function AccountSettings() {
             >
               <rect y="0.5" width="16" height="32" rx="4" fill="#B1E5FC" />
             </svg>
-            <h4 className="ml-4 text-2xl font-semibold text-white">
+            <h4 className="ml-4 text-2xl font-semibold text-heading">
               User Overview
             </h4>
           </div>
@@ -352,7 +352,7 @@ export default function AccountSettings() {
               </svg>
             </div>
             <div className="flex items-center">
-              <h4 className="mr-1 text-[16px] font-semibold text-white">
+              <h4 className="mr-1 text-[16px] font-semibold text-heading">
                 Token Deposits
               </h4>
               <svg
@@ -370,7 +370,7 @@ export default function AccountSettings() {
                 />
               </svg>
             </div>
-            <h4 className="text-4xl font-semibold text-white">500</h4>
+            <h4 className="text-4xl font-semibold text-heading">500</h4>
           </div> */}
           <div className="w-1/2 rounded-xl bg-[#2b2d35] p-8">
             <div className="mb-4 w-fit rounded-full bg-white p-3">
@@ -396,7 +396,7 @@ export default function AccountSettings() {
               </svg>
             </div>
             <div className="flex items-center">
-              <h4 className="mr-1 text-[16px] font-semibold text-white">
+              <h4 className="mr-1 text-[16px] font-semibold text-heading">
                 Credit Balance
               </h4>
               <svg
@@ -414,7 +414,7 @@ export default function AccountSettings() {
                 />
               </svg>
             </div>
-            <h4 className="text-4xl font-semibold text-white">
+            <h4 className="text-4xl font-semibold text-heading">
               {userDetail?.data.data.credit_balance}
             </h4>
           </div>

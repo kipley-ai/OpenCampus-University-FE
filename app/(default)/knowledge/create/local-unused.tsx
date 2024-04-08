@@ -175,7 +175,7 @@
 // 	return (
 // 		<div className="mx-64">
 // 			<div
-// 				className="flex flex-col mt-5 mb-8 border border-dashed border-[#aaa] rounded-xl py-20 px-32 text-center items-center cursor-pointer color-[#aaa] font-inter text-white "
+// 				className="flex flex-col mt-5 mb-8 border border-dashed border-[#aaa] rounded-xl py-20 px-32 text-center items-center cursor-pointer color-[#aaa] font-inter text-heading "
 // 				onDragEnter={handleDrag}
 // 				onDragOver={handleDrag}
 // 				onDragLeave={handleDrag}
@@ -216,7 +216,7 @@
 // 					return (
 // 						<div
 // 							key={file.bucketPath}
-// 							className="flex py-5 px-8 my-5 rounded-3xl text-white bg-neutral-900 justify-between"
+// 							className="flex py-5 px-8 my-5 rounded-3xl text-heading bg-neutral-900 justify-between"
 // 						>
 // 							<div className="flex flex-row">
 // 								<Image src={CheckIcon} alt="Check Icon" />

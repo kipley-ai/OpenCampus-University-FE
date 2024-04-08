@@ -37,7 +37,7 @@ export default function AppsPanel() {
                 <div className="grow">
                   <header className="flex items-center mb-4">
                     <div className="w-10 h-10 rounded-full shrink-0 bg-gradient-to-tr from-indigo-500 to-indigo-300 mr-3">
-                      <svg className="w-10 h-10 fill-current text-white" viewBox="0 0 40 40">
+                      <svg className="w-10 h-10 fill-current text-heading" viewBox="0 0 40 40">
                         <path d="M26.946 18.005a.583.583 0 00-.53-.34h-6.252l.985-3.942a.583.583 0 00-1.008-.52l-7 8.167a.583.583 0 00.442.962h6.252l-.984 3.943a.583.583 0 001.008.52l7-8.167a.583.583 0 00.087-.623z" />
                       </svg>
                     </div>
@@ -81,7 +81,7 @@ export default function AppsPanel() {
                 <div className="grow">
                   <header className="flex items-center mb-4">
                     <div className="w-10 h-10 rounded-full shrink-0 bg-gradient-to-tr from-emerald-500 to-emerald-300 mr-3">
-                      <svg className="w-10 h-10 fill-current text-white" viewBox="0 0 40 40">
+                      <svg className="w-10 h-10 fill-current text-heading" viewBox="0 0 40 40">
                         <path d="M26.946 18.005a.583.583 0 00-.53-.34h-6.252l.985-3.942a.583.583 0 00-1.008-.52l-7 8.167a.583.583 0 00.442.962h6.252l-.984 3.943a.583.583 0 001.008.52l7-8.167a.583.583 0 00.087-.623z" />
                       </svg>
                     </div>
@@ -125,7 +125,7 @@ export default function AppsPanel() {
                 <div className="grow">
                   <header className="flex items-center mb-4">
                     <div className="w-10 h-10 rounded-full shrink-0 bg-gradient-to-tr from-sky-500 to-sky-300 mr-3">
-                      <svg className="w-10 h-10 fill-current text-white" viewBox="0 0 40 40">
+                      <svg className="w-10 h-10 fill-current text-heading" viewBox="0 0 40 40">
                         <path d="M26.946 18.005a.583.583 0 00-.53-.34h-6.252l.985-3.942a.583.583 0 00-1.008-.52l-7 8.167a.583.583 0 00.442.962h6.252l-.984 3.943a.583.583 0 001.008.52l7-8.167a.583.583 0 00.087-.623z" />
                       </svg>
                     </div>
@@ -169,7 +169,7 @@ export default function AppsPanel() {
                 <div className="grow">
                   <header className="flex items-center mb-4">
                     <div className="w-10 h-10 rounded-full shrink-0 bg-gradient-to-tr from-rose-500 to-rose-300 mr-3">
-                      <svg className="w-10 h-10 fill-current text-white" viewBox="0 0 40 40">
+                      <svg className="w-10 h-10 fill-current text-heading" viewBox="0 0 40 40">
                         <path d="M26.946 18.005a.583.583 0 00-.53-.34h-6.252l.985-3.942a.583.583 0 00-1.008-.52l-7 8.167a.583.583 0 00.442.962h6.252l-.984 3.943a.583.583 0 001.008.52l7-8.167a.583.583 0 00.087-.623z" />
                       </svg>
                     </div>
@@ -213,7 +213,7 @@ export default function AppsPanel() {
                 <div className="grow">
                   <header className="flex items-center mb-4">
                     <div className="w-10 h-10 rounded-full shrink-0 bg-gradient-to-tr from-amber-500 to-amber-300 mr-3">
-                      <svg className="w-10 h-10 fill-current text-white" viewBox="0 0 40 40">
+                      <svg className="w-10 h-10 fill-current text-heading" viewBox="0 0 40 40">
                         <path d="M26.946 18.005a.583.583 0 00-.53-.34h-6.252l.985-3.942a.583.583 0 00-1.008-.52l-7 8.167a.583.583 0 00.442.962h6.252l-.984 3.943a.583.583 0 001.008.52l7-8.167a.583.583 0 00.087-.623z" />
                       </svg>
                     </div>
@@ -257,7 +257,7 @@ export default function AppsPanel() {
                 <div className="grow">
                   <header className="flex items-center mb-4">
                     <div className="w-10 h-10 rounded-full shrink-0 bg-gradient-to-tr from-slate-500 to-slate-300 mr-3">
-                      <svg className="w-10 h-10 fill-current text-white" viewBox="0 0 40 40">
+                      <svg className="w-10 h-10 fill-current text-heading" viewBox="0 0 40 40">
                         <path d="M26.946 18.005a.583.583 0 00-.53-.34h-6.252l.985-3.942a.583.583 0 00-1.008-.52l-7 8.167a.583.583 0 00.442.962h6.252l-.984 3.943a.583.583 0 001.008.52l7-8.167a.583.583 0 00.087-.623z" />
                       </svg>
                     </div>

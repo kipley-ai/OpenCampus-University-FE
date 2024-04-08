@@ -80,7 +80,7 @@ export default function Feed() {
                     <div>
                       <button
                         type="submit"
-                        className="btn-sm whitespace-nowrap bg-indigo-500 text-white hover:bg-indigo-600"
+                        className="btn-sm whitespace-nowrap bg-indigo-500 text-heading hover:bg-indigo-600"
                       >
                         Send -&gt;
                       </button>

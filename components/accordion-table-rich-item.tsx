@@ -76,7 +76,7 @@ export default function AccordionTableRichItem({ item }: RichItemProps) {
               <div className="font-medium text-slate-800 dark:text-slate-100 mb-1">{item.descriptionTitle}</div>
               <div>{item.descriptionBody}</div>
             </div>
-            <button className="btn-xs bg-indigo-500 hover:bg-indigo-600 text-white">Approve</button>
+            <button className="btn-xs bg-indigo-500 hover:bg-indigo-600 text-heading">Approve</button>
           </div>
         </td>
       </tr>

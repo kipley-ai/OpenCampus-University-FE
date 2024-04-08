@@ -14,7 +14,7 @@ export default function Task09() {
             </a>
           </div>
           <div className="grow">
-            <a className="inline-flex text-slate-800 dark:text-slate-100 hover:text-slate-900 dark:hover:text-white" href="#0">
+            <a className="inline-flex text-slate-800 dark:text-slate-100 hover:text-slate-900 dark:hover:text-heading" href="#0">
               <h2 className="font-semibold text-slate-800 dark:text-slate-100">Adrian Przetocki</h2>
             </a>
             <div className="text-xs font-medium text-slate-500">11:51 AM Jan 12</div>

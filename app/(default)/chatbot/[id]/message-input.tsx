@@ -221,7 +221,7 @@ const MessageInput = () => {
         <textarea
           ref={inputRef}
           placeholder="Ask me anything"
-          className="grow resize-none border-0 bg-neutral-900 rounded-full text-white placeholder-[#6C7275] caret-primary outline-none focus:ring-0"
+          className="grow resize-none border-0 bg-neutral-900 rounded-full text-heading placeholder-[#6C7275] caret-primary outline-none focus:ring-0"
           value={newQuestion}
           onChange={(e) => {
             let lengthOfText = e.target.value.match(/\n/g)?.length;

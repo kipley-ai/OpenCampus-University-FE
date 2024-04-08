@@ -27,7 +27,7 @@ export default function ProfileBody() {
         <Image className="object-cover h-full w-full" src={ProfileBg} width={979} height={220} alt="Profile background" />
         {/* Close button */}
         <button
-          className="md:hidden absolute top-4 left-4 sm:left-6 text-white opacity-80 hover:opacity-100"
+          className="md:hidden absolute top-4 left-4 sm:left-6 text-heading opacity-80 hover:opacity-100"
           onClick={() => setFlyoutOpen(!flyoutOpen)}
           aria-controls="profile-sidebar"
           aria-expanded={flyoutOpen}
@@ -63,7 +63,7 @@ export default function ProfileBody() {
                   <path d="M8 0C3.6 0 0 3.1 0 7s3.6 7 8 7h.6l5.4 2v-4.4c1.2-1.2 2-2.8 2-4.6 0-3.9-3.6-7-8-7Zm4 10.8v2.3L8.9 12H8c-3.3 0-6-2.2-6-5s2.7-5 6-5 6 2.2 6 5c0 2.2-2 3.8-2 3.8Z" />
                 </svg>
               </button>
-              <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">
+              <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-heading">
                 <svg className="fill-current shrink-0" width="11" height="8" viewBox="0 0 11 8">
                   <path d="m.457 4.516.969-.99 2.516 2.481L9.266.702l.985.99-6.309 6.284z" />
                 </svg>

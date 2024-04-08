@@ -38,12 +38,12 @@ export default function Error({
                 alt="404 illustration dark"
               />
             </div>
-            <div className="mb-6 text-white">
+            <div className="mb-6 text-heading">
               Sorry, this chatbot is currently not available.
             </div>
             <Link
               href="/dashboard"
-              className="btn bg-indigo-500 text-white hover:bg-indigo-600"
+              className="btn bg-indigo-500 text-heading hover:bg-indigo-600"
             >
               Back To Dashboard
             </Link>

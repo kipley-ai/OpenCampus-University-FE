@@ -49,7 +49,7 @@ export default function NFT() {
   return (
     <div className="flex flex-col bg-[#292D32] py-8 sm:px-6 lg:px-8">
       <div className="mx-56">
-        <h1 className="text-2xl font-semibold text-white">Create SFT</h1>
+        <h1 className="text-2xl font-semibold text-heading">Create SFT</h1>
         <h5 className="text-md text-[#7C878E]">
           Give some general information about your SFT.
         </h5>
@@ -57,9 +57,9 @@ export default function NFT() {
       </div>
       <form className="mx-56 mt-4 flex flex-col gap-8">
         <div className="flex flex-col gap-1">
-          <label className="font-semibold text-white">Name</label>
+          <label className="font-semibold text-heading">Name</label>
           <input
-            className="rounded-xl bg-transparent text-white"
+            className="rounded-xl bg-transparent text-heading"
             type="text"
             name="name"
             placeholder='e.g. "Redeemable KB Card with logo"'
@@ -69,7 +69,7 @@ export default function NFT() {
         </div>
 
         <div className="flex flex-col gap-1">
-          <label className="font-semibold text-white">Description</label>
+          <label className="font-semibold text-heading">Description</label>
           <textarea
             className="rounded-xl bg-transparent"
             name="description"
@@ -80,7 +80,7 @@ export default function NFT() {
 
         <div className="flex flex-row">
           <div className="flex w-1/3 flex-col gap-1">
-            <label className="font-semibold text-white">Supply</label>
+            <label className="font-semibold text-heading">Supply</label>
             <input
               className="w-11/12 rounded-xl bg-transparent"
               type="number"
@@ -91,7 +91,7 @@ export default function NFT() {
             />
           </div>
           <div className="flex w-1/3 flex-col gap-1">
-            <label className="font-semibold text-white">Category</label>
+            <label className="font-semibold text-heading">Category</label>
             <select
               className="w-11/12 rounded-xl bg-transparent text-[#7C878E]"
               value={category}
@@ -104,7 +104,7 @@ export default function NFT() {
             </select>
           </div>
           <div className="flex w-1/3 flex-col gap-1">
-            <label className="font-semibold text-white">Token Symbol</label>
+            <label className="font-semibold text-heading">Token Symbol</label>
             <input
               className="rounded-xl bg-transparent"
               type="text"
@@ -117,7 +117,7 @@ export default function NFT() {
         </div>
         <div className="flex flex-row">
           <div className="flex w-1/3 flex-col gap-1">
-            <label className="font-semibold text-white">Price Per Query</label>
+            <label className="font-semibold text-heading">Price Per Query</label>
             <input
               className="w-11/12 rounded-xl bg-transparent"
               type="number"
@@ -127,7 +127,7 @@ export default function NFT() {
           </div>
 
           <div className="flex w-1/3 flex-col gap-1">
-            <label className="font-semibold text-white">Query Royalties</label>
+            <label className="font-semibold text-heading">Query Royalties</label>
             <select
               className="w-11/12 rounded-xl bg-transparent text-[#7C878E]"
               value={queryRoyalties}
@@ -141,7 +141,7 @@ export default function NFT() {
           </div>
 
           <div className="flex w-1/3 flex-col gap-1">
-            <label className="font-semibold text-white">Price Per Query</label>
+            <label className="font-semibold text-heading">Price Per Query</label>
             <input
               className="rounded-xl bg-transparent"
               type="number"

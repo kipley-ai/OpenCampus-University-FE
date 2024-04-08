@@ -37,7 +37,7 @@ const TaskDeadline = ({
   }
 
   return (
-    <div className="flex flex-row items-center rounded-sm bg-[#303030] px-3 py-1 text-xs text-white">
+    <div className="flex flex-row items-center rounded-sm bg-[#303030] px-3 py-1 text-xs text-heading">
       <svg
         width="13"
         height="13"
@@ -170,7 +170,7 @@ const TaskCard = ({
       </div>
 
       <div className="grow self-center">
-        <p className="text-sm font-bold text-white">{data.task_name}</p>
+        <p className="text-sm font-bold text-heading">{data.task_name}</p>
         <div className="mt-1 flex flex-col md:flex-row gap-2">
           {/* Task Type Tag */}
           <TaskType taskFrequency={data.task_frequency} />
@@ -229,7 +229,7 @@ const TasksSection = (
             Verification failed. Please finish the task and try again.
           </Toast>
         </div>
-        <h2 className="mb-6 text-2xl font-bold text-white">TASK REWARDS</h2>
+        <h2 className="mb-6 text-2xl font-bold text-heading">TASK REWARDS</h2>
         <div className="grid grid-cols-2 gap-4">
           {listData.task_data.map((taskData, i) => {
             return (
@@ -251,7 +251,7 @@ const TasksSection = (
 
   return (
     <div className="h-full w-full bg-[#151515] p-6">
-      <h2 className="mb-6 text-2xl font-bold text-white">TASK REWARDS</h2>
+      <h2 className="mb-6 text-2xl font-bold text-heading">TASK REWARDS</h2>
       <div className="flex h-full max-h-full w-full max-w-full flex-col items-center justify-center">
         <Image
           src={SpinnerIcon}

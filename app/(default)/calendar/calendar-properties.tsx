@@ -20,15 +20,15 @@ export const CalendarProperties = () => {
   const eventColor = (color: string): string => {
     switch (color) {
       case 'sky':
-        return 'text-white bg-sky-500'
+        return 'text-heading bg-sky-500'
       case 'indigo':
-        return 'text-white bg-indigo-500'
+        return 'text-heading bg-indigo-500'
       case 'yellow':
-        return 'text-white bg-amber-500'
+        return 'text-heading bg-amber-500'
       case 'emerald':
-        return 'text-white bg-emerald-500'
+        return 'text-heading bg-emerald-500'
       case 'red':
-        return 'text-white bg-rose-400'
+        return 'text-heading bg-rose-400'
       default:
         return ''
     }

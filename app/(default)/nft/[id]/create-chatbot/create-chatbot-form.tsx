@@ -277,7 +277,7 @@ const ChatBotForm = () => {
         <div className="mx-5 md:mx-32">
           <div className="flex justify-between">
             <div className="">
-              <h1 className="text-2xl font-semibold text-white">
+              <h1 className="text-2xl font-semibold text-heading">
                 Create Chatbot
               </h1>
             </div>
@@ -291,7 +291,7 @@ const ChatBotForm = () => {
                     width={40}
                     height={40}
                   />
-                  <span className="text-wrap text-sm font-light text-white">
+                  <span className="text-wrap text-sm font-light text-heading">
                     Your Knowledge Asset are ready!
                   </span>
                 </>
@@ -304,7 +304,7 @@ const ChatBotForm = () => {
                     width={40}
                     height={40}
                   />
-                  <span className="text-wrap text-sm font-light text-white">
+                  <span className="text-wrap text-sm font-light text-heading">
                     Your Knowledge Asset are vectorising…
                   </span>
                 </>
@@ -329,7 +329,7 @@ const ChatBotForm = () => {
               <div>
                 <label
                   htmlFor="characterName"
-                  className="block text-xs font-semibold text-white lg:text-sm"
+                  className="block text-xs font-semibold text-heading lg:text-sm"
                 >
                   Name
                 </label>
@@ -339,7 +339,7 @@ const ChatBotForm = () => {
                     type="text"
                     value={form.name}
                     onChange={(e) => handleFormChange("name", e.target.value)}
-                    className="mt-2 w-full rounded-xl border-2 bg-transparent text-xs text-white lg:text-sm"
+                    className="mt-2 w-full rounded-xl border-2 bg-transparent text-xs text-heading lg:text-sm"
                     placeholder="Name your Chatbot"
                     maxLength={100}
                   />
@@ -358,7 +358,7 @@ const ChatBotForm = () => {
               <div>
                 <label
                   htmlFor="description"
-                  className="block text-xs font-semibold text-white lg:text-sm"
+                  className="block text-xs font-semibold text-heading lg:text-sm"
                 >
                   Description
                 </label>
@@ -370,7 +370,7 @@ const ChatBotForm = () => {
                       setDescription({ tmp: false, value: e.target.value })
                     }
                     placeholder={"Describe your Chatbot"}
-                    className="mt-2 w-full rounded-xl border-2 bg-transparent text-white"
+                    className="mt-2 w-full rounded-xl border-2 bg-transparent text-heading"
                     rows={3}
                     maxLength={1000}
                   />
@@ -379,7 +379,7 @@ const ChatBotForm = () => {
               <div>
                 <label
                   htmlFor="tone"
-                  className="block text-xs font-semibold text-white lg:text-sm "
+                  className="block text-xs font-semibold text-heading lg:text-sm "
                 >
                   Tone
                 </label>
@@ -391,7 +391,7 @@ const ChatBotForm = () => {
                   />
                 </div>
                 {/* <label
-                  className="flex w-1/3 flex-col text-sm font-semibold text-white"
+                  className="flex w-1/3 flex-col text-sm font-semibold text-heading"
                   htmlFor="category"
                 >
                   Category
@@ -415,7 +415,7 @@ const ChatBotForm = () => {
               <div>
                 <label
                   htmlFor="personality"
-                  className="block text-xs font-semibold text-white lg:text-sm"
+                  className="block text-xs font-semibold text-heading lg:text-sm"
                 >
                   Personality
                 </label>
@@ -459,7 +459,7 @@ const ChatBotForm = () => {
               </div>
             </div>
             {/* <div className="mx-64 mt-10">
-              <h1 className="text-2xl font-semibold text-white">
+              <h1 className="text-2xl font-semibold text-heading">
                 Chatbot Configuration
               </h1> */}
 
@@ -471,7 +471,7 @@ const ChatBotForm = () => {
             </div>
             <div className="mx-64">
               <label
-                className="mt-4 flex flex-col font-semibold text-white"
+                className="mt-4 flex flex-col font-semibold text-heading"
                 htmlFor="instructions"
               >
                 Instructions
@@ -481,7 +481,7 @@ const ChatBotForm = () => {
                 value={instructions}
                 onChange={(e) => setInstructions(e.target.value)}
                 placeholder="Give Instructions and Personality to your Chatbot"
-                className="mt-2 w-full rounded-xl border-2 bg-transparent text-white"
+                className="mt-2 w-full rounded-xl border-2 bg-transparent text-heading"
                 rows={5}
                 maxLength={1000}
               /> */}
@@ -498,7 +498,7 @@ const ChatBotForm = () => {
             {/* </div>
             <div className="mx-64">
               <label
-                className="mt-4 flex flex-col font-semibold text-white"
+                className="mt-4 flex flex-col font-semibold text-heading"
                 htmlFor="example"
               >
                 Conversation Starters
@@ -508,7 +508,7 @@ const ChatBotForm = () => {
                 value={example}
                 onChange={(e) => setExample(e.target.value)}
                 placeholder={"Examples for users to start the conversation"}
-                className="mt-2 w-full rounded-xl border-2 bg-transparent text-white"
+                className="mt-2 w-full rounded-xl border-2 bg-transparent text-heading"
                 rows={5}
                 maxLength={1000}
               /> */}
@@ -530,7 +530,7 @@ const ChatBotForm = () => {
               className="mt-8 flex items-center justify-center rounded-3xl bg-[#292D32] p-2 px-5 ring-2 ring-gray-600"
               type="button"
             >
-              <h5 className="text-xs font-semibold text-white lg:text-sm" onClick={handleCancel}>
+              <h5 className="text-xs font-semibold text-heading lg:text-sm" onClick={handleCancel}>
                 Cancel
               </h5>
             </button>

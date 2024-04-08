@@ -17,7 +17,7 @@ const SidebarRight: React.FC<SidebarRightProps> = ({ isOpen, onClose, children }
       >
         {children}
         <button
-          className="absolute right-4 top-4 text-white hover:text-gray-800"
+          className="absolute right-4 top-4 text-heading hover:text-gray-800"
           onClick={onClose}
         >
           &#10006;

@@ -27,7 +27,7 @@ export default function ProductExamples() {
         {/* Send Feedback */}
         <div className="m-1.5">
           {/* Start */}
-          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="feedback-modal" onClick={() => { setFeedbackModalOpen(true) }}>Send Feedback</button>
+          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-heading" aria-controls="feedback-modal" onClick={() => { setFeedbackModalOpen(true) }}>Send Feedback</button>
           <ModalBasic isOpen={feedbackModalOpen} setIsOpen={setFeedbackModalOpen} title="Send Feedback">
             {/* Modal content */}
             <div className="px-5 py-4">
@@ -53,7 +53,7 @@ export default function ProductExamples() {
             <div className="px-5 py-4 border-t border-slate-200 dark:border-slate-700">
               <div className="flex flex-wrap justify-end space-x-2">
                 <button className="btn-sm border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 text-slate-600 dark:text-slate-300" onClick={() => { setFeedbackModalOpen(false) }}>Cancel</button>
-                <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Send</button>
+                <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-heading">Send</button>
               </div>
             </div>
           </ModalBasic>
@@ -63,7 +63,7 @@ export default function ProductExamples() {
         {/* Newsletter */}
         <div className="m-1.5">
           {/* Start */}
-          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="newsletter-modal" onClick={() => { setNewsletterModalOpen(true) }}>Newsletter</button>
+          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-heading" aria-controls="newsletter-modal" onClick={() => { setNewsletterModalOpen(true) }}>Newsletter</button>
           <ModalAction isOpen={newsletterModalOpen} setIsOpen={setNewsletterModalOpen}>
             {/* Modal header */}
             <div className="mb-2 text-center">
@@ -88,7 +88,7 @@ export default function ProductExamples() {
                   <label htmlFor="subscribe-form" className="sr-only">Leave your Email</label>
                   <input id="subscribe-form" className="form-input w-full px-2 py-1" type="email" />
                 </div>
-                <button type="submit" className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white whitespace-nowrap">Subscribe</button>
+                <button type="submit" className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-heading whitespace-nowrap">Subscribe</button>
               </form>
               <div className="text-xs text-slate-500 italic mt-3">
                 I respect your privacy. No spam. Unsubscribe at any time!
@@ -101,7 +101,7 @@ export default function ProductExamples() {
         {/* Announcement */}
         <div className="m-1.5">
           {/* Start */}
-          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="announcement-modal" onClick={() => { setAnnouncementModalOpen(true) }}>Announcement</button>
+          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-heading" aria-controls="announcement-modal" onClick={() => { setAnnouncementModalOpen(true) }}>Announcement</button>
           <ModalAction isOpen={announcementModalOpen} setIsOpen={setAnnouncementModalOpen}>
             {/* Modal header */}
             <div className="mb-2 text-center">
@@ -118,7 +118,7 @@ export default function ProductExamples() {
               </div>
               {/* CTAs */}
               <div className="space-y-3">
-                <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Claim your Reward -&gt;</button>
+                <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-heading">Claim your Reward -&gt;</button>
                 <div>
                   <a className="font-medium text-sm text-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400" href="#0" onClick={(e) => { e.preventDefault(); setAnnouncementModalOpen(true) }}>Not Now!</a>
                 </div>
@@ -131,7 +131,7 @@ export default function ProductExamples() {
         {/* Integration */}
         <div className="m-1.5">
           {/* Start */}
-          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="integration-modal" onClick={() => { setIntegrationModalOpen(true) }}>Integration</button>
+          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-heading" aria-controls="integration-modal" onClick={() => { setIntegrationModalOpen(true) }}>Integration</button>
           <ModalAction isOpen={integrationModalOpen} setIsOpen={setIntegrationModalOpen}>
             {/* Modal header */}
             <div className="mb-5 text-center">
@@ -201,7 +201,7 @@ export default function ProductExamples() {
             {/* Modal footer */}
             <div className="flex flex-wrap justify-end space-x-2">
               <button className="btn-sm border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 text-slate-600 dark:text-slate-300" onClick={() => { setIntegrationModalOpen(false) }}>Cancel</button>
-              <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Allow Access</button>
+              <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-heading">Allow Access</button>
             </div>
           </ModalAction>
           {/* End */}
@@ -210,12 +210,12 @@ export default function ProductExamples() {
         {/* What's New */}
         <div className="m-1.5">
           {/* Start */}
-          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="news-modal" onClick={() => { setNewsModalOpen(true) }}>What's New</button>
+          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-heading" aria-controls="news-modal" onClick={() => { setNewsModalOpen(true) }}>What's New</button>
           <ModalBlank isOpen={newsModalOpen} setIsOpen={setNewsModalOpen}>
             <div className="relative">
               <Image className="w-full" src={ModalImage} width={460} height="200" alt="New on Mosaic" />
               {/* Close button */}
-              <button className="absolute top-0 right-0 mt-5 mr-5 text-slate-50 hover:text-white" onClick={() => { setNewsModalOpen(false) }}>
+              <button className="absolute top-0 right-0 mt-5 mr-5 text-slate-50 hover:text-heading" onClick={() => { setNewsModalOpen(false) }}>
                 <div className="sr-only">Close</div>
                 <svg className="w-4 h-4 fill-current">
                   <path d="M7.95 6.536l4.242-4.243a1 1 0 111.415 1.414L9.364 7.95l4.243 4.242a1 1 0 11-1.415 1.415L7.95 9.364l-4.243 4.243a1 1 0 01-1.414-1.415L6.536 7.95 2.293 3.707a1 1 0 011.414-1.414L7.95 6.536z" />
@@ -239,7 +239,7 @@ export default function ProductExamples() {
               </div>
               {/* Modal footer */}
               <div className="flex flex-wrap justify-end space-x-2">
-                <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white" onClick={() => { setNewsModalOpen(false) }}>Cool, I Got it</button>
+                <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-heading" onClick={() => { setNewsModalOpen(false) }}>Cool, I Got it</button>
               </div>
             </div>
           </ModalBlank>
@@ -249,7 +249,7 @@ export default function ProductExamples() {
         {/* Change your Plan */}
         <div className="m-1.5">
           {/* Start */}
-          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="feedback-modal" onClick={() => { setPlanModalOpen(true) }}>Change your Plan</button>
+          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-heading" aria-controls="feedback-modal" onClick={() => { setPlanModalOpen(true) }}>Change your Plan</button>
           <ModalBasic isOpen={planModalOpen} setIsOpen={setPlanModalOpen} title="Change your Plan">
             {/* Modal content */}
             <div className="px-5 pt-4 pb-1">
@@ -307,7 +307,7 @@ export default function ProductExamples() {
             <div className="px-5 py-4">
               <div className="flex flex-wrap justify-end space-x-2">
                 <button className="btn-sm border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 text-slate-600 dark:text-slate-300" onClick={() => { setPlanModalOpen(false) }}>Cancel</button>
-                <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Change Plan</button>
+                <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-heading">Change Plan</button>
               </div>
             </div>
           </ModalBasic>
@@ -317,7 +317,7 @@ export default function ProductExamples() {
         {/* Quick Find */}
         <div className="m-1.5">
           {/* Start */}
-          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="quick-find-modal" onClick={(e) => { e.stopPropagation(); setSearchModalOpen(true); }}>Quick Find</button>
+          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-heading" aria-controls="quick-find-modal" onClick={(e) => { e.stopPropagation(); setSearchModalOpen(true); }}>Quick Find</button>
           <SearchModal isOpen={searchModalOpen} setIsOpen={setSearchModalOpen} />
           {/* End */}
         </div>        

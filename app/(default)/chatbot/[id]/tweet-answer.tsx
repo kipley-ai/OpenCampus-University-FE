@@ -13,7 +13,7 @@ const AccordionItem = ({ header, ...rest }: any) => (
     {...rest}
     header={({ state: { isEnter } }) => (
       <>
-        <h2 className={`${isEnter ? "text-primary" : "text-white"}`}>
+        <h2 className={`${isEnter ? "text-primary" : "text-heading"}`}>
           {header}
         </h2>
         <svg
@@ -85,7 +85,7 @@ const TweetAnswer = ({ chunks }: TweetAnswerProps) => {
       <div className="flex justify-end">
         <button
           onClick={handleExpandAll}
-          className="rounded-md bg-stone-800 px-4 py-1 text-xs text-white hover:brightness-150"
+          className="rounded-md bg-stone-800 px-4 py-1 text-xs text-heading hover:brightness-150"
         >
           {isAllCollapsed ? "expand all" : "collapse all"}
           <span className="ml-2 text-gray-500">&gt;</span>

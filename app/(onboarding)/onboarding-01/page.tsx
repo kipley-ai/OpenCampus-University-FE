@@ -68,7 +68,7 @@ export default function Onboarding01() {
                     </label>
                   </div>
                   <div className="flex items-center justify-between">
-                    <Link className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-auto" href="/onboarding-02">Next Step -&gt;</Link>
+                    <Link className="btn bg-indigo-500 hover:bg-indigo-600 text-heading ml-auto" href="/onboarding-02">Next Step -&gt;</Link>
                   </div>
                 </form>
 

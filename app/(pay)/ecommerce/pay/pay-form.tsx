@@ -85,7 +85,7 @@ export default function PayForm() {
               {/* htmlForm footer */}
               <div className="mt-6">
                 <div className="mb-4">
-                  <button className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white">Pay $253.00</button>
+                  <button className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-heading">Pay $253.00</button>
                 </div>
                 <div className="text-xs text-slate-500 italic text-center">You'll be charged $253, including $48 for VAT in Italy</div>
               </div>
@@ -97,7 +97,7 @@ export default function PayForm() {
             <div>
               <div>
                 <div className="mb-4">
-                  <button className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white">Pay with PayPal - $253.00</button>
+                  <button className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-heading">Pay with PayPal - $253.00</button>
                 </div>
                 <div className="text-xs text-slate-500 italic text-center">You'll be charged $253, including $48 for VAT in Italy</div>
               </div>

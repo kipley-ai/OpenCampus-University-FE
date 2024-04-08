@@ -19,7 +19,7 @@ const TotalReferral = () => {
             <p>Referral </p>
             <p className="xs:ml-2">Points</p>
           </div>
-          <div className="text-3xl font-bold text-white">
+          <div className="text-3xl font-bold text-heading">
             {data.referral_count}
           </div>
         </div>
@@ -58,7 +58,7 @@ const Header = ({
               <p>Base </p>
               <p className="xs:ml-2">Points</p>
             </div>
-            <div className="text-3xl font-bold text-white">
+            <div className="text-3xl font-bold text-heading">
               <CountUp start={startPoints} end={endPoints} duration={1.5} />
             </div>
           </div>
@@ -83,7 +83,7 @@ const Header = ({
         <div className="flex w-full flex-col sm:flex-row justify-between gap-4 items-center">
           <div className="flex grow flex-col justify-center">
             {/* Referral Bonus Code */}
-            <div className="text-white">
+            <div className="text-heading">
               <h2 className="mb-2 text-xl font-bold">Referral Bonus</h2>
               <p className="mb-4 text-sm text-gray-300">
                 Invite friends to earn more points!
@@ -93,7 +93,7 @@ const Header = ({
                   type="text"
                   readOnly
                   value="Coming Soon..."
-                  className="grow mr-4 bg-transparent text-white focus:outline-none"
+                  className="grow mr-4 bg-transparent text-heading focus:outline-none"
                 />
                 <button className="">
                   {/* SVG icon */}

@@ -1,10 +1,10 @@
 const Notion = ({ closeModal }: any) => {
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur flex items-center justify-center z-50 px-4">
-            <div className="bg-[#141416] text-white max-w-md w-full rounded-lg p-6 shadow-lg">
+            <div className="bg-[#141416] text-heading max-w-md w-full rounded-lg p-6 shadow-lg">
                 <div className="flex justify-between items-center">
                     <h2 className="text-xl font-semibold">Connect Notion</h2>
-                    <button className="text-white hover:text-gray-400 focus:outline-none" onClick={closeModal}>
+                    <button className="text-heading hover:text-gray-400 focus:outline-none" onClick={closeModal}>
                         {/* Close icon SVG */}
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="1" y="1" width="38" height="38" rx="19" stroke="#353945" stroke-width="2" />
@@ -20,7 +20,7 @@ const Notion = ({ closeModal }: any) => {
                         id="notion-url"
                         type="text"
                         placeholder="Enter here"
-                        className="mt-1 block w-full px-3 py-2 bg-transparent text-white rounded-md border border-gray-600 placeholder-gray-400 focus:outline-none focus:border-blue-500"
+                        className="mt-1 block w-full px-3 py-2 bg-transparent text-heading rounded-md border border-gray-600 placeholder-gray-400 focus:outline-none focus:border-blue-500"
                     />
                 </div>
                 <div className="mt-4">

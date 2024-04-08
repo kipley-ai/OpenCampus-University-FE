@@ -67,7 +67,7 @@ export const TwitterScrapingStatus = ({
           width={40}
           height={40}
         />
-        <span className="text-wrap text-sm font-light text-white">
+        <span className="text-wrap text-sm font-light text-heading">
           Your Twitter Posts are ready!
         </span>
       </div>
@@ -87,7 +87,7 @@ export const TwitterScrapingStatus = ({
         width={40}
         height={40}
       />
-      <span className="text-wrap text-sm font-light text-white">
+      <span className="text-wrap text-sm font-light text-heading">
         Your Twitter Posts are processing...
       </span>
     </div>

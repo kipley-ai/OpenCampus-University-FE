@@ -51,13 +51,13 @@ export default function ChatbotDescription() {
             height={240}
           />
           <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center opacity-0 transition-opacity duration-300 hover:opacity-100">
-            <p className="text-center text-sm font-bold text-white lg:text-lg">
+            <p className="text-center text-sm font-bold text-heading lg:text-lg">
               View SFT on OpenSea
             </p>
           </div>
         </a>
       </div>
-      <div className="w-full space-y-2 text-white">
+      <div className="w-full space-y-2 text-heading">
         <p className="text-sm">{nftData?.data.data.name}</p>
         <p className="text-[11px]">
           <span className="text-[#777E90]">Price Per Query: </span>

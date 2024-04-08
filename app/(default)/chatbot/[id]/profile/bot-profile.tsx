@@ -19,9 +19,9 @@ export default function ChatbotProfile() {
     return (
         <div>
             <div className="mx-6 my-3">
-                <h2 className="text-2xl text-white">Yat Siu</h2>
+                <h2 className="text-2xl text-heading">Yat Siu</h2>
             </div>
-            <div className="bg-[#27282D] text-white p-6 mx-6 rounded-xl">
+            <div className="bg-[#27282D] text-heading p-6 mx-6 rounded-xl">
                 <div className="flex flex-col md:flex-row">
                     <div className="md:w-1/5">
                         <div className="mb-4">
@@ -39,7 +39,7 @@ export default function ChatbotProfile() {
                             <p className="text-base">Yat has numerous accolades, including Global Leader of Tomorrow at the World Economic Forum, Young Entrepreneur of the Year at the DHL/SCMP Awards, and recognition as one of Cointelegraph's top 100 notable people in blockchain. A classically trained musician, Yat is a member of the advisory board of BAFTA (British Academy of Film and Television Arts) and a director of the Asian Youth Orchestra.</p>
                         </div>
                         <div className="items-end">
-                            <button className="bg-transparent hover:brightness-75 text-white font-bold py-2 px-4 my-5 border border-[#00EDBE] rounded-full">
+                            <button className="bg-transparent hover:brightness-75 text-heading font-bold py-2 px-4 my-5 border border-[#00EDBE] rounded-full">
                                 Chat with Yat Siu
                             </button>
                         </div>

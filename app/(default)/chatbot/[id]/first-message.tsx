@@ -37,7 +37,7 @@ const FirstAnswer = ({
         {/* Loading icon and generating text */}
         {/* {isGenerating && (
 					<div className="flex items-center text-gray-400 text-sm mb-2 space-x-3">
-						<Image src={LoadingIcon} alt="Profile" className="animate-spin mr-10 h-5 w-5 ml-1 text-white" />
+						<Image src={LoadingIcon} alt="Profile" className="animate-spin mr-10 h-5 w-5 ml-1 text-heading" />
 						Generating answers for you...
 					</div>
 				)} */}
@@ -51,7 +51,7 @@ const FirstAnswer = ({
               width={50}
               height={50}
             />
-            <div className="w-full text-white">
+            <div className="w-full text-heading">
               <h6 className="mb-1 mt-1 font-black text-lg">
                 {chatbotData?.data.data.name}
               </h6>

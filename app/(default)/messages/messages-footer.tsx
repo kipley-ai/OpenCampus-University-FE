@@ -15,7 +15,7 @@ export default function MessagesFooter() {
             <label htmlFor="message-input" className="sr-only">Type a message</label>
             <input id="message-input" className="form-input w-full bg-slate-100 dark:bg-slate-800 border-transparent dark:border-transparent focus:bg-white dark:focus:bg-slate-800 placeholder-slate-500" type="text" placeholder="Aa" />
           </div>
-          <button type="submit" className="btn bg-indigo-500 hover:bg-indigo-600 text-white whitespace-nowrap">Send -&gt;</button>
+          <button type="submit" className="btn bg-indigo-500 hover:bg-indigo-600 text-heading whitespace-nowrap">Send -&gt;</button>
         </form>
       </div>
     </div>

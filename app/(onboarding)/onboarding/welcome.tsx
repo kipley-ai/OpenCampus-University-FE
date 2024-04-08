@@ -10,7 +10,7 @@ const Welcome = () => {
         height={200}
         alt="Welcome!"
       />
-      <h1 className="text-4xl font-semibold leading-4 text-white">
+      <h1 className="text-4xl font-semibold leading-4 text-heading">
         Welcome to KnowledgeFi!
       </h1>
       <p className="text-center text-[#7C878E] ">

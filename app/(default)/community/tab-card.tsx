@@ -36,7 +36,7 @@ export default function TabCard({ user }: { user: User}) {
               </Link>
             </div>
             <div className="text-center">
-              <Link className="inline-flex text-slate-800 dark:text-slate-100 hover:text-slate-900 dark:hover:text-white" href={user.link}>
+              <Link className="inline-flex text-slate-800 dark:text-slate-100 hover:text-slate-900 dark:hover:text-heading" href={user.link}>
                 <h2 className="text-xl leading-snug justify-center font-semibold">{user.name}</h2>
               </Link>
             </div>

@@ -62,7 +62,7 @@ export default function Toast({
     <>
       {open &&
         <div className={className} role="alert">
-          <div className={`inline-flex min-w-[20rem] px-4 py-2 rounded-sm text-sm text-white ${typeColor(type)}`}>
+          <div className={`inline-flex min-w-[20rem] px-4 py-2 rounded-sm text-sm text-heading ${typeColor(type)}`}>
             <div className="flex w-full justify-between items-start">
               <div className="flex">
                 {typeIcon(type)}

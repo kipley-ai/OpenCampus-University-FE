@@ -21,7 +21,7 @@ export default function TwitterButton({
 				<div className="m-1.5">
 					{/* Start */}
 					<button
-						className="btn bg-indigo-500 hover:bg-indigo-600 text-white"
+						className="btn bg-indigo-500 hover:bg-indigo-600 text-heading"
 						onClick={() => {
 							setModalLogin(true);
 						}}

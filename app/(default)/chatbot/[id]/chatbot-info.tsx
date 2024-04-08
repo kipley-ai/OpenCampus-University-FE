@@ -56,7 +56,7 @@ const ChatbotInfo = ({setIsOpen}: {setIsOpen: (isOpen: boolean) => void;}) => {
               width={100}
               height={100}
             />
-            <p className="font-mono line-clamp-5 md:line-clamp-4 text-white text-xs md:text-base">
+            <p className="font-mono line-clamp-5 md:line-clamp-4 text-heading text-xs md:text-base">
               {chatbotData?.data.data.description}
             </p>
           </div>
@@ -72,7 +72,7 @@ const ChatbotInfo = ({setIsOpen}: {setIsOpen: (isOpen: boolean) => void;}) => {
                   height={100}
                 />
                 <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center opacity-0 transition-opacity duration-300 hover:bg-gray-900/75 hover:opacity-100">
-                  <p className="text-center text-sm font-bold text-white lg:text-lg">
+                  <p className="text-center text-sm font-bold text-heading lg:text-lg">
                     View SFT on OpenSea
                   </p>
                 </div>

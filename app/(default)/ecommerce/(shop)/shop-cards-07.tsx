@@ -733,7 +733,7 @@ export default function ShopCards07() {
             <div className="text-xl text-slate-50 font-semibold mb-1">Excepteur sint occaecat <span className="text-indigo-500">cupidatat</span> 🎁</div>
             <div className="m-auto text-sm text-slate-400">Excepteur sint occaecat cupidatat non proidentsunt in culpa qui officia deserunt mollit!</div>
           </div>
-          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white shrink-0">Reedem Now!</button>
+          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-heading shrink-0">Reedem Now!</button>
         </div>
       </div>
 

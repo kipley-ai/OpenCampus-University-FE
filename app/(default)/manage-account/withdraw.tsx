@@ -124,10 +124,10 @@ const ContentListComponent = ({
 						{withdrawals?.map((withdrawal: any, index: number) => {
 							return (
 								<tr key={index} className="hover:bg-zinc-900">
-									<td className="text-white px-2 py-4 whitespace-nowrap font-semibold">
+									<td className="text-heading px-2 py-4 whitespace-nowrap font-semibold">
 										{`${withdrawal.pay_amount} ${withdrawal.pay_currency}`}
 									</td>
-									<td className="text-white px-2 py-4 whitespace-nowrap font-semibold">
+									<td className="text-heading px-2 py-4 whitespace-nowrap font-semibold">
 										{/* {withdrawal.pay_currency} */}
 									</td>
 									<td
@@ -160,8 +160,8 @@ const ContentListComponent = ({
 // export default function Withdraw() {
 //     return (
 //         <div className="flex flex-col py-8 px-10 w-5/6">
-//             <h1 className="text-3xl text-white font-semibold">Withdraw History</h1>
-//             <table className="w-full mx-3 my-4 text-left table-auto text-white font-semibold">
+//             <h1 className="text-3xl text-heading font-semibold">Withdraw History</h1>
+//             <table className="w-full mx-3 my-4 text-left table-auto text-heading font-semibold">
 //                 <thead>
 //                     <tr className="border-b border-gray-700 text-[#7C878E] text-sm">
 //                         <th className="py-5">Transaction</th>

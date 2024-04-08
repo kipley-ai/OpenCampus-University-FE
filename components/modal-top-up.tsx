@@ -230,7 +230,7 @@ export default function ModalTopUp({
           </div>
         </div>
         <div className="inline-flex items-center justify-between self-stretch px-5 py-0">
-          <div className="grid w-full grid-cols-3 gap-3 font-bold text-white">
+          <div className="grid w-full grid-cols-3 gap-3 font-bold text-heading">
             <button
               className={`flex h-12 flex-col items-center justify-center rounded-3xl border-2 ${
                 form?.amount == 50 ? "border-primary" : "border-[#50575F]"
@@ -300,7 +300,7 @@ export default function ModalTopUp({
           </div>
         </div>
         <div className="inline-flex items-center justify-between self-stretch p-5">
-          <div className="grid w-full grid-cols-1 font-bold text-white">
+          <div className="grid w-full grid-cols-1 font-bold text-heading">
             {!isTargetNetworkActive ? (
               <button
                 className="flex flex-row items-center justify-center gap-2 rounded-3xl bg-primary p-2 px-5 hover:brightness-75"

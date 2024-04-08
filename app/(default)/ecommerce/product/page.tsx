@@ -542,7 +542,7 @@ export default function Product() {
               </li>
             </ul>
             <div className="mb-4">
-              <a className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white" href="#0">Buy Now - $69.00</a>
+              <a className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-heading" href="#0">Buy Now - $69.00</a>
             </div>
             <div className="text-xs text-slate-500 italic text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <a className="underline hover:no-underline" href="#0">Terms</a>.</div>
           </div>

@@ -71,7 +71,7 @@ export default function DropdownProfile({ align }: {
                     <button className="btn-xs bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 text-slate-500 dark:text-slate-300 hover:text-slate-600 dark:hover:text-slate-200">Clear</button>
                   </li>
                   <li>
-                    <button className="btn-xs bg-indigo-500 hover:bg-indigo-600 text-white" onClick={() => close()}>Apply</button>
+                    <button className="btn-xs bg-indigo-500 hover:bg-indigo-600 text-heading" onClick={() => close()}>Apply</button>
                   </li>
                 </ul>
               </div>

@@ -86,7 +86,7 @@ const ManageDataSources = () => {
 	const end = start + Number(perPage);
 
 	return (
-		<div className="flex flex-col sm:px-6 lg:px-0 py-8 bg-[#292D32] text-white">
+		<div className="flex flex-col sm:px-6 lg:px-0 py-8 bg-[#292D32] text-heading">
 			<div className="mx-64">
 				<div className="flex justify-between items-center mb-4">
 					<h1 className="text-2xl font-semibold">All Data Sources</h1>
@@ -131,7 +131,7 @@ const ManageDataSources = () => {
 
 				{/* Table */}
 				<div className="overflow-x-auto">
-					<table className="min-w-full text-white">
+					<table className="min-w-full text-heading">
 						<thead className="text-left text-gray-400">
 							<tr>
 								<th className="px-6 py-3">

@@ -16,7 +16,7 @@ export default function ModalTopUpFailed({
   return (
     <ModalBlank isOpen={isOpen} setIsOpen={setIsOpen}>
       <div
-        className={`flex w-[360px] flex-col items-center justify-center rounded-2xl bg-[#181B1F] px-7 py-10 text-white font-semibold`}
+        className={`flex w-[360px] flex-col items-center justify-center rounded-2xl bg-[#181B1F] px-7 py-10 text-heading font-semibold`}
       >
         <div className="flex w-full flex-row items-center justify-between">
           <h2 className="text-xl">TOP UP FAILED</h2>

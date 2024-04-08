@@ -101,7 +101,7 @@ export default function DataSource() {
       {step == "data_source" ? (
         <div className="flex flex-col bg-[#292D32] py-8 sm:px-6 lg:px-8">
           <div className="mx-56">
-            <h1 className="text-2xl font-semibold text-white">
+            <h1 className="text-2xl font-semibold text-heading">
               Add Knowledge Assets
             </h1>
             <hr className="my-4 border border-gray-600" />
@@ -133,7 +133,7 @@ export default function DataSource() {
 							if (step > 0) setStep(step - 1);
 						}}
 					>
-						<h5 className="text-sm text-white font-semibold">Back</h5>
+						<h5 className="text-sm text-heading font-semibold">Back</h5>
 					</button> */}
             <button
               className="mt-8 flex w-36 flex-row items-center justify-between rounded-3xl bg-primary p-2 px-5"

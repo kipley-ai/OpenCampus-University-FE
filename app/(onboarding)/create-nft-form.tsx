@@ -249,7 +249,7 @@ export default function NFT() {
                 height={24}
               />
             </div>
-            <h1 className="text-2xl font-semibold text-white">MINT SFT</h1>
+            <h1 className="text-2xl font-semibold text-heading">MINT SFT</h1>
           </div>
           <div className="flex w-60">
             {createKb.type == "twitter" ? (
@@ -465,7 +465,7 @@ export default function NFT() {
                   setStep("data_source");
                 }}
               >
-                <h5 className="text-xs lg:text-sm text-white font-semibold">Back</h5>
+                <h5 className="text-xs lg:text-sm text-heading font-semibold">Back</h5>
               </button>
               <button
                 className="flex flex-row items-center justify-between bg-primary disabled:bg-gray-500  rounded-3xl w-44 p-2 px-5"

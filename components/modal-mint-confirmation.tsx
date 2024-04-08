@@ -77,7 +77,7 @@ export default function ModalMintConfirmation({
             className="rounded-lg"
           />
         </div>
-        <div className="text-md inline-flex items-end justify-between self-stretch p-5 pt-2 text-white">
+        <div className="text-md inline-flex items-end justify-between self-stretch p-5 pt-2 text-heading">
           <div className="">
             <span>Price:</span>
           </div>
@@ -92,7 +92,7 @@ export default function ModalMintConfirmation({
           🔥 Limited-Time Promotion: Zero Platform Fee
         </span>
         <div className="inline-flex items-center justify-between self-stretch p-5">
-          <div className="grid w-full grid-cols-1 font-bold text-white">
+          <div className="grid w-full grid-cols-1 font-bold text-heading">
             {/* Start the conditional rendering here */}
             {!isTargetNetworkActive ? (
               <button

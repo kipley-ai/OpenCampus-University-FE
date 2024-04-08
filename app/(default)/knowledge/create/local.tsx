@@ -232,14 +232,14 @@ export default function Local({
         className="mx-auto"
       />
       <div className="">
-        <h1 className="text-2xl font-semibold text-white">
+        <h1 className="text-2xl font-semibold text-heading">
           Upload Knowledge Files
         </h1>
         <hr className="my-4 border border-gray-600" />
       </div>
       <div className="">
         <div
-          className="color-[#aaa] mb-4 mt-5 flex cursor-pointer flex-col items-center rounded-3xl border-2 border-dashed border-[#aaa] px-20 py-12 text-center font-inter text-white "
+          className="color-[#aaa] mb-4 mt-5 flex cursor-pointer flex-col items-center rounded-3xl border-2 border-dashed border-[#aaa] px-20 py-12 text-center font-inter text-heading "
           onDragEnter={handleDrag}
           onDragOver={handleDrag}
           onDragLeave={handleDrag}
@@ -282,7 +282,7 @@ export default function Local({
             return (
               <div
                 key={file.bucketPath}
-                className="my-5 flex justify-between rounded-3xl bg-neutral-900 px-8 py-5 text-white"
+                className="my-5 flex justify-between rounded-3xl bg-neutral-900 px-8 py-5 text-heading"
               >
                 <div className="flex flex-row">
                   {showStateIcon(file.status)}
@@ -309,7 +309,7 @@ export default function Local({
             setStep("data_source");
           }}
         >
-          <h5 className="text-sm font-semibold text-white">Back</h5>
+          <h5 className="text-sm font-semibold text-heading">Back</h5>
         </button>
         <button
           className={`mt-8 flex flex-row items-center justify-between rounded-3xl p-2 px-5 hover:brightness-75 ${

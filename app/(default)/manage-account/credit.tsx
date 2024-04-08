@@ -47,7 +47,7 @@ export default function Credit() {
 
   return (
     <div className="flex w-5/6 flex-col px-10 py-8">
-      <h1 className="text-3xl font-semibold text-white">Credit Usage</h1>
+      <h1 className="text-3xl font-semibold text-heading">Credit Usage</h1>
       <table className="mx-3 my-4 w-full table-auto text-left">
         <thead>
           <tr className="border-b border-gray-700 text-sm text-[#7C878E]">
@@ -61,7 +61,7 @@ export default function Credit() {
             const isPositive = credit.credit_amount > 0;
             return (
               <tr key={index} className="text-md font-inter">
-                <td className="py-5 font-semibold text-white">
+                <td className="py-5 font-semibold text-heading">
                   {credit.product_name}
                 </td>
                 <td

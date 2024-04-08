@@ -103,11 +103,11 @@ const ContentListComponent = () => {
               const isPositive = credit.credit > 0;
               return (
                 <tr key={index} className="hover:bg-zinc-900">
-                  <td className="whitespace-nowrap px-2 py-4 text-white">
+                  <td className="whitespace-nowrap px-2 py-4 text-heading">
                     {credit.title}
                   </td>
                   <td
-                    className={`text-white ${
+                    className={`text-heading ${
                       isPositive ? "!text-green-500" : "!text-red-500"
                     } white whitespace-nowrap px-2 py-4`}
                   >

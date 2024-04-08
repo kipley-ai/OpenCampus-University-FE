@@ -397,7 +397,7 @@ export default function Calendar() {
             <hr className="mx-1 h-full w-px border-none bg-slate-200 dark:bg-slate-700" />
 
             {/* Create event button */}
-            <button className="btn bg-indigo-500 text-white hover:bg-indigo-600">
+            <button className="btn bg-indigo-500 text-heading hover:bg-indigo-600">
               <svg
                 className="h-4 w-4 shrink-0 fill-current opacity-50"
                 viewBox="0 0 16 16"

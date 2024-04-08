@@ -21,7 +21,7 @@ const MessageHistory = ({
   botName?: string;
 }) => {
   return (
-    <div className="h-full bg-[#151414] text-white scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-[#363434] scrollbar-track-[#151414] overflow-y-scroll">
+    <div className="h-full bg-[#151414] text-heading scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-[#363434] scrollbar-track-[#151414] overflow-y-scroll">
       {messageHistory.map((message, index) => {
         return (
           <div className="flex flex-row p-4 space-x-4" key={index}>
@@ -90,7 +90,7 @@ const ShareModal = ({ isOpen, setIsOpen, messageHistory, chatbotData }: ModalPro
 
   const firstShareText = () => {
     return (
-      <p className="text-sm text-white font-light">
+      <p className="text-sm text-heading font-light">
         Anyone with the URL will be able to view the shared chat. Messages you send after creating your link won't be shared.
       </p>
     )
@@ -98,7 +98,7 @@ const ShareModal = ({ isOpen, setIsOpen, messageHistory, chatbotData }: ModalPro
 
   const updateShareText = () => {
     return (
-      <p className="text-sm text-white font-light">
+      <p className="text-sm text-heading font-light">
         You have shared this chat before. If you want to update the shared chat content, please update and get a new shared link.
       </p>
     )
@@ -118,7 +118,7 @@ const ShareModal = ({ isOpen, setIsOpen, messageHistory, chatbotData }: ModalPro
         }
         <div className="flex flex-col h-[336px] border-2 border-[#1E1E1E] rounded">
           <div className="flex flex-row h-[48px] bg-[#1E1E1E] py-2 px-4 justify-between items-center rounded rounded-b-none">
-            <p className="text-white">{chatbotData?.name}</p>
+            <p className="text-heading">{chatbotData?.name}</p>
             <p className="text-[#7C878E]">| {lastSharedDate}</p>
           </div>
           <MessageHistory messageHistory={messageHistory} botImage={chatbotData?.profile_image} botName={chatbotData?.name}/>

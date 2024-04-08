@@ -135,7 +135,7 @@ const ChatbotSettings = () => {
               <div className="">
                 <label
                   htmlFor="characterName"
-                  className="block text-sm font-semibold text-white "
+                  className="block text-sm font-semibold text-heading "
                 >
                   Name
                 </label>
@@ -144,7 +144,7 @@ const ChatbotSettings = () => {
                     id="characterName"
                     type="text"
                     value={form.name}
-                    className="mt-2 w-full rounded-xl border-2 border-[#50575F] bg-transparent text-white"
+                    className="mt-2 w-full rounded-xl border-2 border-[#50575F] bg-transparent text-heading"
                     placeholder="Name your Chatbot"
                     onChange={(e) => handleFormChange("name", e.target.value)}
                     maxLength={100}
@@ -155,7 +155,7 @@ const ChatbotSettings = () => {
               <div className="">
                 <label
                   htmlFor="description"
-                  className="block text-sm font-semibold text-white"
+                  className="block text-sm font-semibold text-heading"
                 >
                   Description
                 </label>
@@ -163,7 +163,7 @@ const ChatbotSettings = () => {
                   <textarea
                     id="description"
                     value={form.description}
-                    className="mt-2 w-full rounded-xl border-2 border-[#50575F] bg-transparent text-white"
+                    className="mt-2 w-full rounded-xl border-2 border-[#50575F] bg-transparent text-heading"
                     placeholder="Describe your Chatbot"
                     onChange={(e) =>
                       handleFormChange("description", e.target.value)
@@ -177,7 +177,7 @@ const ChatbotSettings = () => {
               <div>
                 <label
                   htmlFor="tone"
-                  className="block text-xs font-semibold text-white lg:text-sm "
+                  className="block text-xs font-semibold text-heading lg:text-sm "
                 >
                   Tone
                 </label>
@@ -193,7 +193,7 @@ const ChatbotSettings = () => {
               <div>
                 <label
                   htmlFor="personality"
-                  className="block text-xs font-semibold text-white lg:text-sm"
+                  className="block text-xs font-semibold text-heading lg:text-sm"
                 >
                   Personality
                 </label>
@@ -252,7 +252,7 @@ const ChatbotSettings = () => {
                 router.push(`/nft/${chatbotDetail.data?.data.data.sft_id}`);
               }}
             >
-              <h5 className="text-sm font-semibold text-white">Cancel</h5>
+              <h5 className="text-sm font-semibold text-heading">Cancel</h5>
             </button>
             <button
               className="mt-8 flex items-center justify-center rounded-3xl bg-primary px-5 py-1 hover:brightness-75"

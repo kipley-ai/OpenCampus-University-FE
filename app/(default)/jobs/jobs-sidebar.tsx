@@ -36,7 +36,7 @@ export default function JobsSidebar() {
         <div className="relative">
           <div className="text-sm font-medium text-slate-800 dark:text-indigo-200 mb-2">Remember to keep track of your job research.</div>
           <div className="text-right">
-            <a className="text-sm font-medium text-indigo-500 dark:text-indigo-50 hover:text-indigo-600 dark:hover:text-white" href="#0">
+            <a className="text-sm font-medium text-indigo-500 dark:text-indigo-50 hover:text-indigo-600 dark:hover:text-heading" href="#0">
               Create Alert -&gt;
             </a>
           </div>

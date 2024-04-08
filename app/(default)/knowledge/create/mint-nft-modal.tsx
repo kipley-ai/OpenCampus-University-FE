@@ -57,7 +57,7 @@ export default function SuccessFailModal({
   return (
     <ModalBlank isOpen={open} setIsOpen={setOpen}>
       <div
-        className={`flex w-[360px] flex-col items-center justify-center rounded-2xl bg-[#181B1F] px-7 py-10 font-semibold text-white`}
+        className={`flex w-[360px] flex-col items-center justify-center rounded-2xl bg-[#181B1F] px-7 py-10 font-semibold text-heading`}
       >
         <div className="flex w-full flex-row items-center justify-between">
           <h2 className="text-3xl">Success</h2>

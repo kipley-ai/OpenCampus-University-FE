@@ -123,7 +123,7 @@ export default function NotificationsPanel() {
         <div className="flex flex-col px-6 py-5 border-t border-slate-200 dark:border-slate-700">
           <div className="flex self-end">
             <button className="btn dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 text-slate-600 dark:text-slate-300">Cancel</button>
-            <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3">Save Changes</button>
+            <button className="btn bg-indigo-500 hover:bg-indigo-600 text-heading ml-3">Save Changes</button>
           </div>
         </div>
       </footer>

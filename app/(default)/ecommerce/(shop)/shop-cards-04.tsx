@@ -48,7 +48,7 @@ export default function ShopCards04() {
             </div>
             {/* Card footer */}
             <div>
-              <a className="btn-sm w-full bg-indigo-500 hover:bg-indigo-600 text-white" href="#0">Back It</a>
+              <a className="btn-sm w-full bg-indigo-500 hover:bg-indigo-600 text-heading" href="#0">Back It</a>
             </div>
           </div>
         </div>
@@ -95,7 +95,7 @@ export default function ShopCards04() {
             </div>
             {/* Card footer */}
             <div>
-              <a className="btn-sm w-full bg-indigo-500 hover:bg-indigo-600 text-white" href="#0">Back It</a>
+              <a className="btn-sm w-full bg-indigo-500 hover:bg-indigo-600 text-heading" href="#0">Back It</a>
             </div>
           </div>
         </div>
@@ -142,7 +142,7 @@ export default function ShopCards04() {
             </div>
             {/* Card footer */}
             <div>
-              <a className="btn-sm w-full bg-indigo-500 hover:bg-indigo-600 text-white" href="#0">Back It</a>
+              <a className="btn-sm w-full bg-indigo-500 hover:bg-indigo-600 text-heading" href="#0">Back It</a>
             </div>
           </div>
         </div>
@@ -189,7 +189,7 @@ export default function ShopCards04() {
             </div>
             {/* Card footer */}
             <div>
-              <a className="btn-sm w-full bg-indigo-500 hover:bg-indigo-600 text-white" href="#0">Back It</a>
+              <a className="btn-sm w-full bg-indigo-500 hover:bg-indigo-600 text-heading" href="#0">Back It</a>
             </div>
           </div>
         </div>

@@ -24,7 +24,7 @@ export default function ButtonLibrary() {
               <div className="flex flex-wrap items-center -m-1.5">
                 <div className="m-1.5">
                   {/* Start */}
-                  <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white">Primary</button>
+                  <button className="btn bg-indigo-500 hover:bg-indigo-600 text-heading">Primary</button>
                   {/* End */}
                 </div>
                 <div className="m-1.5">
@@ -39,7 +39,7 @@ export default function ButtonLibrary() {
                 </div>
                 <div className="m-1.5">
                   {/* Start */}
-                  <button className="btn bg-rose-500 hover:bg-rose-600 text-white">Danger</button>
+                  <button className="btn bg-rose-500 hover:bg-rose-600 text-heading">Danger</button>
                   {/* End */}
                 </div>
                 <div className="m-1.5">
@@ -49,7 +49,7 @@ export default function ButtonLibrary() {
                 </div>
                 <div className="m-1.5">
                   {/* Start */}
-                  <button className="btn bg-emerald-500 hover:bg-emerald-600 text-white">Success</button>
+                  <button className="btn bg-emerald-500 hover:bg-emerald-600 text-heading">Success</button>
                   {/* End */}
                 </div>
                 <div className="m-1.5">
@@ -66,12 +66,12 @@ export default function ButtonLibrary() {
               <div className="flex flex-wrap items-center -m-1.5">
                 <div className="m-1.5">
                   {/* Start */}
-                  <button className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white disabled:border-slate-200 dark:disabled:border-slate-700 disabled:bg-slate-100 dark:disabled:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600 disabled:cursor-not-allowed shadow-none" disabled>Disabled</button>
+                  <button className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-heading disabled:border-slate-200 dark:disabled:border-slate-700 disabled:bg-slate-100 dark:disabled:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600 disabled:cursor-not-allowed shadow-none" disabled>Disabled</button>
                   {/* End */}
                 </div>
                 <div className="m-1.5">
                   {/* Start */}
-                  <button className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white disabled:border-slate-200 dark:disabled:border-slate-700 disabled:bg-slate-100 dark:disabled:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600 disabled:cursor-not-allowed shadow-none" disabled>
+                  <button className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-heading disabled:border-slate-200 dark:disabled:border-slate-700 disabled:bg-slate-100 dark:disabled:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600 disabled:cursor-not-allowed shadow-none" disabled>
                     <svg className="animate-spin w-4 h-4 fill-current shrink-0" viewBox="0 0 16 16">
                       <path d="M8 16a7.928 7.928 0 01-3.428-.77l.857-1.807A6.006 6.006 0 0014 8c0-3.309-2.691-6-6-6a6.006 6.006 0 00-5.422 8.572l-1.806.859A7.929 7.929 0 010 8c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" />
                     </svg>
@@ -88,22 +88,22 @@ export default function ButtonLibrary() {
               <div className="flex flex-wrap items-center -m-1.5">
                 <div className="m-1.5">
                   {/* Start */}
-                  <button className="btn-xs bg-indigo-500 hover:bg-indigo-600 text-white">Button</button>
+                  <button className="btn-xs bg-indigo-500 hover:bg-indigo-600 text-heading">Button</button>
                   {/* End */}
                 </div>
                 <div className="m-1.5">
                   {/* Start */}
-                  <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Button</button>
+                  <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-heading">Button</button>
                   {/* End */}
                 </div>
                 <div className="m-1.5">
                   {/* Start */}
-                  <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white">Button</button>
+                  <button className="btn bg-indigo-500 hover:bg-indigo-600 text-heading">Button</button>
                   {/* End */}
                 </div>
                 <div className="m-1.5">
                   {/* Start */}
-                  <button className="btn-lg bg-indigo-500 hover:bg-indigo-600 text-white">Button</button>
+                  <button className="btn-lg bg-indigo-500 hover:bg-indigo-600 text-heading">Button</button>
                   {/* End */}
                 </div>
               </div>
@@ -115,7 +115,7 @@ export default function ButtonLibrary() {
               <div className="flex flex-wrap items-center -m-1.5">
                 <div className="m-1.5">
                   {/* Start */}
-                  <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white">
+                  <button className="btn bg-indigo-500 hover:bg-indigo-600 text-heading">
                     <svg className="w-4 h-4 fill-current opacity-50 shrink-0" viewBox="0 0 16 16">
                       <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
                     </svg>
@@ -187,7 +187,7 @@ export default function ButtonLibrary() {
                 <div className="m-1.5">
                   {/* Start */}
                   <div className="flex flex-wrap -space-x-px">
-                    <button className="btn bg-indigo-600 text-white rounded-none border-l-indigo-400 first:rounded-l last:rounded-r first:border-l-transparent">Weekly</button>
+                    <button className="btn bg-indigo-600 text-heading rounded-none border-l-indigo-400 first:rounded-l last:rounded-r first:border-l-transparent">Weekly</button>
                     <button className="btn bg-indigo-500 hover:bg-indigo-600 text-indigo-100 rounded-none border-l-indigo-400 first:rounded-l last:rounded-r first:border-r-transparent">Monthly</button>
                     <button className="btn bg-indigo-500 hover:bg-indigo-600 text-indigo-100 rounded-none border-l-indigo-400 first:rounded-l last:rounded-r first:border-r-transparent">Yearly</button>
                   </div>

@@ -22,7 +22,7 @@ export default function Step1({ selectedButton, setSelectedButton }: { selectedB
 
 	
     return (
-        <div className="mx-56 grid grid-cols-2 gap-4 text-white font-bold mt-10">
+        <div className="mx-56 grid grid-cols-2 gap-4 text-heading font-bold mt-10">
             {
                 kbDetail.data?.data.data.type == 'twitter'?
                 <button className={`flex flex-col px-20 py-10 items-center border-2 ${selectedButton == 'twitter' ? 'border-primary bg-[#181B1F]' : 'border-[#50575F]'} rounded-2xl`} 

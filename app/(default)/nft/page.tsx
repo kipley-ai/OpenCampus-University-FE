@@ -31,7 +31,7 @@ const NoData = ({ item, url }: NoDataProps) => {
         height={115}
         alt={"No Data"}
       />
-      <p className="text-lg font-semibold text-white">No data yet</p>
+      <p className="text-lg font-semibold text-heading">No data yet</p>
 
       {/* Create new Item */}
       {item == "SFT" ? (
@@ -63,8 +63,8 @@ const NFTCard = ({ nft }: NFTCardProps) => {
         alt={"NFT Card"}
       />
       <div className="flex flex-col gap-1 px-4 py-4">
-        <p className="line-clamp-1 text-sm text-white">{nft.name}</p>
-        <p className="line-clamp-1 text-sm text-white">
+        <p className="line-clamp-1 text-sm text-heading">{nft.name}</p>
+        <p className="line-clamp-1 text-sm text-heading">
           {nft.price_per_query} {nft.token_symbol}
         </p>
         {/* <p className="line-clamp-1 text-[12px] text-gray-400">
@@ -159,7 +159,7 @@ const BotCard = ({ bot }: BotCardProps) => {
         alt={"Bot Card"}
       />
       <div className="flex flex-col gap-1 px-4 py-4 pb-6">
-        <p className="text-md line-clamp-1 text-white">{bot.name}</p>
+        <p className="text-md line-clamp-1 text-heading">{bot.name}</p>
         {/* <p className="line-clamp-1 text-xs text-gray-400">
           {bot.category_name || "Uncategorised"}
         </p> */}
@@ -263,14 +263,14 @@ export default function NFT() {
     <div className="flex flex-col gap-12 bg-[#171717] px-4 pb-32 pt-8 md:px-6 lg:px-8">
       <div className="flex flex-col gap-2 lg:gap-8">
         <div className="flex flex-col">
-          <h1 className="text-2xl font-semibold text-white">My SFTs</h1>
+          <h1 className="text-2xl font-semibold text-heading">My SFTs</h1>
           <hr className="my-4 border border-gray-700" />
         </div>
         <NFTList />
       </div>
       <div className="flex flex-col gap-2 lg:gap-8">
         <div className="flex flex-col">
-          <h1 className="text-2xl font-semibold text-white">My Chatbots</h1>
+          <h1 className="text-2xl font-semibold text-heading">My Chatbots</h1>
           <hr className="my-4 border border-gray-700" />
         </div>
         <BotList />

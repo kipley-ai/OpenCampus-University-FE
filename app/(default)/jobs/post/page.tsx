@@ -80,7 +80,7 @@ export default function Jobs() {
               <div className="text-sm text-slate-500 dark:text-slate-400 italic">179 Jobs Posted</div>
             </div>
             <div className="space-y-2 sm:flex sm:space-y-0 sm:space-x-2">
-              <button className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white">Apply Today -&gt;</button>
+              <button className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-heading">Apply Today -&gt;</button>
               <button className="btn w-full dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 text-slate-600 dark:text-slate-300">Company Profile</button>
             </div>
           </div>
@@ -182,7 +182,7 @@ export default function Jobs() {
             <p className="font-medium italic mb-6">Do you have what it takes?</p>
             <div className="flex justify-between items-center">
               {/* Apply button */}
-              <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white whitespace-nowrap">Apply Today -&gt;</button>
+              <button className="btn bg-indigo-500 hover:bg-indigo-600 text-heading whitespace-nowrap">Apply Today -&gt;</button>
               {/* Share */}
               <div className="flex items-center">
                 <div className="text-sm text-slate-500 dark:text-slate-400 italic mr-4">Share:</div>
@@ -238,7 +238,7 @@ export default function Jobs() {
               <div className="text-sm text-slate-500 dark:text-slate-400 italic">179 Jobs Posted</div>
             </div>
             <div className="space-y-2">
-              <button className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white">Apply Today -&gt;</button>
+              <button className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-heading">Apply Today -&gt;</button>
               <button className="btn w-full dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 text-slate-600 dark:text-slate-300">Company Profile</button>
             </div>
           </div>

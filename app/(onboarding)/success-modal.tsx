@@ -33,10 +33,10 @@ export default function SuccessModal({
     // TODO: add fail type
     return (
         <ModalBlank isOpen={open} setIsOpen={setOpen}>
-            <div className={`flex flex-col w-[410px] items-center rounded-2xl justify-center py-12 px-7 text-white bg-[#181B1F] ${dmsans.className} font-semibold`}>
+            <div className={`flex flex-col w-[410px] items-center rounded-2xl justify-center py-12 px-7 text-heading bg-[#181B1F] ${dmsans.className} font-semibold`}>
                 <div className="flex flex-row w-full justify-center items-center">
                     {/* <h2 className="text-3xl">Success</h2> */}
-                    <h1 className="text-5xl font-bold text-white">Yay! 🎉</h1>
+                    <h1 className="text-5xl font-bold text-heading">Yay! 🎉</h1>
                 </div>
                 <div className={`flex flex-row ${poppins.className} justify-center items-center my-8 text-sm`}>
                     <Image className="w-[30px] h-[30px] mr-4" src={CheckIcon} alt="check icon" />

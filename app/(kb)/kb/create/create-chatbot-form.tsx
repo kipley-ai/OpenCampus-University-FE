@@ -57,7 +57,7 @@ const ChatBotForm = () => {
   return (
     <div className="flex flex-col bg-[#292D32] py-8 sm:px-6 lg:px-8">
       <div className="mx-64">
-        <h1 className="text-3xl font-semibold text-white">
+        <h1 className="text-3xl font-semibold text-heading">
           General Information
         </h1>
         <h5 className="text-lg text-[#7C878E]">
@@ -108,7 +108,7 @@ const ChatBotForm = () => {
           <div>
             <label
               htmlFor="characterName"
-              className="block text-sm font-medium text-white "
+              className="block text-sm font-medium text-heading "
             >
               Name
             </label>
@@ -118,7 +118,7 @@ const ChatBotForm = () => {
                 type="text"
                 value={characterName}
                 onChange={(e) => setCharacterName(e.target.value)}
-                className="mt-2 w-11/12 rounded-xl bg-transparent text-white"
+                className="mt-2 w-11/12 rounded-xl bg-transparent text-heading"
                 placeholder="I.g. Sam Altman"
               />
             </div>
@@ -129,7 +129,7 @@ const ChatBotForm = () => {
           <div>
             <label
               htmlFor="description"
-              className="block text-sm font-medium text-white"
+              className="block text-sm font-medium text-heading"
             >
               Description
             </label>
@@ -139,7 +139,7 @@ const ChatBotForm = () => {
                 type="text"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="mt-2 w-11/12 rounded-xl bg-transparent text-white"
+                className="mt-2 w-11/12 rounded-xl bg-transparent text-heading"
                 placeholder="CEO of OpenAI"
               />
             </div>
@@ -151,7 +151,7 @@ const ChatBotForm = () => {
         <div className="mx-64 mb-4 grid grid-cols-1 gap-4 md:grid-cols-2">
           <div>
             <label
-              className="flex w-1/3 flex-col text-white"
+              className="flex w-1/3 flex-col text-heading"
               htmlFor="category"
             >
               Category
@@ -170,7 +170,7 @@ const ChatBotForm = () => {
           </div>
         </div>
         <div className="mx-64 mt-10">
-          <h1 className="text-3xl font-semibold text-white">Configuration</h1>
+          <h1 className="text-3xl font-semibold text-heading">Configuration</h1>
           <h5 className="text-lg text-[#7C878E]">
             Configuration defining AI behavior
           </h5>
@@ -178,7 +178,7 @@ const ChatBotForm = () => {
         </div>
         <div className="mx-64">
           <label
-            className="my-4 flex flex-col text-white"
+            className="my-4 flex flex-col text-heading"
             htmlFor="instructions"
           >
             Instructions
@@ -200,7 +200,7 @@ const ChatBotForm = () => {
           </div>
         </div>
         <div className="mx-64">
-          <label className="my-4 flex flex-col text-white" htmlFor="example">
+          <label className="my-4 flex flex-col text-heading" htmlFor="example">
             Example
           </label>
           <textarea
@@ -224,7 +224,7 @@ const ChatBotForm = () => {
             className="mt-8 flex items-center justify-center rounded-3xl bg-[#292D32] p-2 px-5 ring-1 ring-white"
             type="button"
           >
-            <h5 className="font-semibold text-white">Cancel</h5>
+            <h5 className="font-semibold text-heading">Cancel</h5>
           </button>
           <button
             className="group mt-8 flex items-center justify-center rounded-3xl bg-primary p-2 px-5 ring-1 ring-white transition-colors duration-200 ease-in-out hover:brightness-75"

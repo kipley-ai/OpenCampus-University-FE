@@ -26,10 +26,10 @@ export default function FreeKFIToken() {
   return (
     <div className="flex justify-center">
       <div className="flex flex-col items-center">
-        <h1 className="mb-8 mt-8 text-5xl font-bold text-white">
+        <h1 className="mb-8 mt-8 text-5xl font-bold text-heading">
           Free Mint $CREDIT Token
         </h1>
-        <p className="mb-8 w-2/3 text-lg text-white">
+        <p className="mb-8 w-2/3 text-lg text-heading">
           Get free $CREDIT Token. You can use it to top up credits and interact
           with any chatbots on KnowledgeFi.
         </p>

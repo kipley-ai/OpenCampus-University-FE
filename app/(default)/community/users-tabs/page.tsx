@@ -151,7 +151,7 @@ export default function UsersTiles() {
           {/* Search form */}
           <SearchForm />
           {/* Add member button */}
-          <button className="btn bg-indigo-500 text-white hover:bg-indigo-600">
+          <button className="btn bg-indigo-500 text-heading hover:bg-indigo-600">
             <svg
               className="h-4 w-4 shrink-0 fill-current opacity-50"
               viewBox="0 0 16 16"

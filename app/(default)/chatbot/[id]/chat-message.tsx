@@ -38,7 +38,7 @@ const ChatMessage = ({
           width={50}
           height={50}
         />
-        <div className="text-white">
+        <div className="text-heading">
           <h6 className="mb-1 mt-1 font-black text-lg">
             {message.sender == "bot" ? chatbotData?.data.data.name : "You"}
           </h6>

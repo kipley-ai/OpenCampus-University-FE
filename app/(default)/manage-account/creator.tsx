@@ -31,7 +31,7 @@ const NoData = ({ item, url }: NoDataProps) => {
         height={115}
         alt={"No Data"}
       />
-      <p className="text-lg font-semibold text-white">No data yet</p>
+      <p className="text-lg font-semibold text-heading">No data yet</p>
       <Link href={url}>
         <div className="flex items-center gap-2 hover:brightness-75">
           <IconContext.Provider value={{ color: "#00EDBE" }}>
@@ -88,7 +88,7 @@ const WithdrawConfirm = ({
           height={130}
           alt={"NFT Card"}
         />
-        <h6 className="text-base font-semibold text-white">{nftData?.name}</h6>
+        <h6 className="text-base font-semibold text-heading">{nftData?.name}</h6>
       </div>
       <div className="mb-5 mt-16 flex flex-row items-center justify-between text-xs text-gray-50 lg:text-sm">
         <span>0</span>
@@ -187,8 +187,8 @@ const NFTCard = ({
         alt={"NFT Card"}
       />
       <div className="flex flex-col gap-1 px-4 py-4">
-        <p className="line-clamp-1 text-sm text-white">{nft.name}</p>
-        <p className="line-clamp-1 text-sm text-white">
+        <p className="line-clamp-1 text-sm text-heading">{nft.name}</p>
+        <p className="line-clamp-1 text-sm text-heading">
           {nft.price_per_query} {nft.token_symbol}
         </p>
         {/* <p className="line-clamp-1 text-[12px] text-gray-400">
@@ -305,11 +305,11 @@ const WithdrawModal = ({
       >
         <div className="flex w-full flex-row items-center justify-between">
           {step === 1 ? (
-            <h1 className="text-3xl font-bold leading-10 text-white">
+            <h1 className="text-3xl font-bold leading-10 text-heading">
               My SFTs
             </h1>
           ) : step === 2 ? (
-            <h1 className="text-3xl font-bold leading-10 text-white">
+            <h1 className="text-3xl font-bold leading-10 text-heading">
               Withdraw SFT
             </h1>
           ) : (
@@ -370,7 +370,7 @@ export default function CreatorOverview() {
               >
                 <rect y="0.5" width="16" height="32" rx="4" fill="#B5E4CA" />
               </svg>
-              <h4 className="ml-4 text-2xl font-semibold text-white">
+              <h4 className="ml-4 text-2xl font-semibold text-heading">
                 Creator Overview
               </h4>
             </div>
@@ -404,7 +404,7 @@ export default function CreatorOverview() {
                 </svg>
               </div>
               <div className="flex items-center">
-                <h4 className="mr-1 text-[16px] font-semibold text-white">
+                <h4 className="mr-1 text-[16px] font-semibold text-heading">
                   Earnings
                 </h4>
                 <svg
@@ -422,7 +422,7 @@ export default function CreatorOverview() {
                   />
                 </svg>
               </div>
-              <h4 className="text-4xl font-semibold text-white">
+              <h4 className="text-4xl font-semibold text-heading">
                 {overviewData?.data.data.earnings}
               </h4>
             </div>
@@ -450,7 +450,7 @@ export default function CreatorOverview() {
                 </svg>
               </div>
               <div className="flex items-center">
-                <h4 className="mr-1 text-[16px] font-semibold text-white">
+                <h4 className="mr-1 text-[16px] font-semibold text-heading">
                   Users
                 </h4>
                 <svg
@@ -468,7 +468,7 @@ export default function CreatorOverview() {
                   />
                 </svg>
               </div>
-              <h4 className="text-4xl font-semibold text-white">
+              <h4 className="text-4xl font-semibold text-heading">
                 {overviewData?.data.data.users}
               </h4>
             </div>
@@ -490,7 +490,7 @@ export default function CreatorOverview() {
                 </svg>
               </div>
               <div className="flex items-center">
-                <h4 className="mr-1 text-[16px] font-semibold text-white">
+                <h4 className="mr-1 text-[16px] font-semibold text-heading">
                   Conversations
                 </h4>
                 <svg
@@ -508,7 +508,7 @@ export default function CreatorOverview() {
                   />
                 </svg>
               </div>
-              <h4 className="text-4xl font-semibold text-white">
+              <h4 className="text-4xl font-semibold text-heading">
                 {overviewData?.data.data.conversations}
               </h4>
             </div>

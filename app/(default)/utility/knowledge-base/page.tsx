@@ -47,7 +47,7 @@ export default function KnowledgeBase() {
         </div>
         <div className="relative w-full max-w-2xl mx-auto text-center">
           <div className="mb-5">
-            <h1 className="text-2xl md:text-3xl text-white font-bold">👋 What Can We Help You Find?</h1>
+            <h1 className="text-2xl md:text-3xl text-heading font-bold">👋 What Can We Help You Find?</h1>
           </div>
           <form className="relative">
             <label htmlFor="action-search" className="sr-only">

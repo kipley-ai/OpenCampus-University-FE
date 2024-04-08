@@ -5,11 +5,11 @@ import { useNftDetail } from "@/hooks/api/nft"
 export default function SFTDetail() {
     return (
         <div>
-            <div className="bg-[#27282D] text-white p-6 mx-6 rounded-xl">
+            <div className="bg-[#27282D] text-heading p-6 mx-6 rounded-xl">
                 <div className="flex flex-col-reverse md:flex-row">
                     <div className="md:w-4/5 md:pl-6 text-[#BBBBBB] text-sm">
                         <div className="md:w-3/4">
-                            <h1 className="text-6xl text-white">Knowledge Assets SFT</h1>
+                            <h1 className="text-6xl text-heading">Knowledge Assets SFT</h1>
                             <p className="mb-4 text-base">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Amet minim mollit non deserunt  dolor do amet sint.</p>
                         </div>
                     </div>

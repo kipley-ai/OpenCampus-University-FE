@@ -8,7 +8,7 @@ export default function ForumPostRightContent() {
         <div className="md:py-8">
           {/* Button */}
           <div className="mb-6">
-            <button className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white">Create Post</button>
+            <button className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-heading">Create Post</button>
           </div>
 
           {/* Blocks */}
@@ -42,7 +42,7 @@ export default function ForumPostRightContent() {
               <ul className="space-y-3">
                 <li>
                   <div className="text-sm mb-1">
-                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">
+                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">
                       I built and sold 2 small SaaS products and quit my job in the last two years — AMA
                     </a>
                   </div>
@@ -55,7 +55,7 @@ export default function ForumPostRightContent() {
                 </li>
                 <li>
                   <div className="text-sm mb-1">
-                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">
+                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">
                       Besides Product Hunt, where else should I promote my new project? 🤔
                     </a>
                   </div>
@@ -68,7 +68,7 @@ export default function ForumPostRightContent() {
                 </li>
                 <li>
                   <div className="text-sm mb-1">
-                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">
+                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">
                       Which are the main channels you use to drive traffic to your website? 📈
                     </a>
                   </div>
@@ -81,7 +81,7 @@ export default function ForumPostRightContent() {
                 </li>
                 <li>
                   <div className="text-sm mb-1">
-                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">
+                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">
                       Failed for the past 12 years as a tech entrepreneur. My key takeaways.
                     </a>
                   </div>
@@ -94,7 +94,7 @@ export default function ForumPostRightContent() {
                 </li>
                 <li>
                   <div className="text-sm mb-1">
-                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">
+                    <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">
                       How to build a following on Twitter as a founder - A guide to growing your audience 🚀
                     </a>
                   </div>

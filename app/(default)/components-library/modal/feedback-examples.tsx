@@ -17,7 +17,7 @@ export default function FeedbackExamples() {
         {/* Success Modal */}
         <div className="m-1.5">
           {/* Start */}
-          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" onClick={() => { setSuccessModalOpen(true) }}>Success Modal</button>
+          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-heading" onClick={() => { setSuccessModalOpen(true) }}>Success Modal</button>
           <ModalBlank isOpen={successModalOpen} setIsOpen={setSuccessModalOpen}>
             <div className="p-5 flex space-x-4">
               {/* Icon */}
@@ -41,7 +41,7 @@ export default function FeedbackExamples() {
                 {/* Modal footer */}
                 <div className="flex flex-wrap justify-end space-x-2">
                   <button className="btn-sm border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 text-slate-600 dark:text-slate-300" onClick={() => { setSuccessModalOpen(false) }}>Cancel</button>
-                  <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white" onClick={() => { setSuccessModalOpen(false) }}>Yes, Upgrade it</button>
+                  <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-heading" onClick={() => { setSuccessModalOpen(false) }}>Yes, Upgrade it</button>
                 </div>
               </div>
             </div>
@@ -52,7 +52,7 @@ export default function FeedbackExamples() {
         {/* Danger Modal */}
         <div className="m-1.5">
           {/* Start */}
-          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" onClick={() => { setDangerModalOpen(true) }}>Danger Modal</button>
+          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-heading" onClick={() => { setDangerModalOpen(true) }}>Danger Modal</button>
           <ModalBlank isOpen={dangerModalOpen} setIsOpen={setDangerModalOpen}>
             <div className="p-5 flex space-x-4">
               {/* Icon */}
@@ -76,7 +76,7 @@ export default function FeedbackExamples() {
                 {/* Modal footer */}
                 <div className="flex flex-wrap justify-end space-x-2">
                   <button className="btn-sm border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 text-slate-600 dark:text-slate-300" onClick={() => { setDangerModalOpen(false) }}>Cancel</button>
-                  <button className="btn-sm bg-rose-500 hover:bg-rose-600 text-white" onClick={() => { setDangerModalOpen(false) }}>Yes, Delete it</button>
+                  <button className="btn-sm bg-rose-500 hover:bg-rose-600 text-heading" onClick={() => { setDangerModalOpen(false) }}>Yes, Delete it</button>
                 </div>
               </div>
             </div>
@@ -87,7 +87,7 @@ export default function FeedbackExamples() {
         {/* Info Modal */}
         <div className="m-1.5">
           {/* Start */}
-          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" onClick={() => { setInfoModalOpen(true) }}>Info Modal</button>
+          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-heading" onClick={() => { setInfoModalOpen(true) }}>Info Modal</button>
           <ModalBlank isOpen={infoModalOpen} setIsOpen={setInfoModalOpen}>
             <div className="p-5 flex space-x-4">
               {/* Icon */}
@@ -111,7 +111,7 @@ export default function FeedbackExamples() {
                 {/* Modal footer */}
                 <div className="flex flex-wrap justify-end space-x-2">
                   <button className="btn-sm border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 text-slate-600 dark:text-slate-300" onClick={() => { setInfoModalOpen(false) }}>Cancel</button>
-                  <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white" onClick={() => { setInfoModalOpen(false) }}>Yes, Create it</button>
+                  <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-heading" onClick={() => { setInfoModalOpen(false) }}>Yes, Create it</button>
                 </div>
               </div>
             </div>

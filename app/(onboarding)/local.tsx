@@ -243,14 +243,14 @@ export default function Local({
             height={24}
           />
         </div>
-        <h1 className="text-2xl font-semibold text-white">
+        <h1 className="text-2xl font-semibold text-heading">
           UPLOAD KNOWLEDGE FILES
         </h1>
       </div>
       <hr className="my-4 border border-gray-600" />
       <div className="">
         <div
-          className="color-[#aaa] font-inter mb-4 mt-3 flex cursor-pointer flex-col items-center rounded-md border-2 border-dashed border-[#777E90] px-20 py-12 text-center text-white "
+          className="color-[#aaa] font-inter mb-4 mt-3 flex cursor-pointer flex-col items-center rounded-md border-2 border-dashed border-[#777E90] px-20 py-12 text-center text-heading "
           onDragEnter={handleDrag}
           onDragOver={handleDrag}
           onDragLeave={handleDrag}
@@ -293,7 +293,7 @@ export default function Local({
             return (
               <div
                 key={file.bucketPath}
-                className="my-5 flex justify-between rounded-3xl bg-neutral-900 px-8 py-5 text-white"
+                className="my-5 flex justify-between rounded-3xl bg-neutral-900 px-8 py-5 text-heading"
               >
                 <div className="flex flex-row">
                   {showStateIcon(file.status)}

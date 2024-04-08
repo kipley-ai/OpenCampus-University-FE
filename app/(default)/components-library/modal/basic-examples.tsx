@@ -19,7 +19,7 @@ export default function BasicExamples() {
 				<div className="m-1.5">
 					{/* Start */}
 					<button
-						className="btn bg-indigo-500 hover:bg-indigo-600 text-white"
+						className="btn bg-indigo-500 hover:bg-indigo-600 text-heading"
 						onClick={() => {
 							setBasicModalOpen(true);
 						}}
@@ -63,7 +63,7 @@ export default function BasicExamples() {
 								>
 									Close
 								</button>
-								<button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">
+								<button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-heading">
 									I Understand
 								</button>
 							</div>
@@ -76,7 +76,7 @@ export default function BasicExamples() {
 				<div className="m-1.5">
 					{/* Start */}
 					<button
-						className="btn bg-indigo-500 hover:bg-indigo-600 text-white"
+						className="btn bg-indigo-500 hover:bg-indigo-600 text-heading"
 						onClick={() => {
 							setScrollbarModalOpen(true);
 						}}
@@ -151,7 +151,7 @@ export default function BasicExamples() {
 								>
 									Close
 								</button>
-								<button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">
+								<button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-heading">
 									I Understand
 								</button>
 							</div>
@@ -164,7 +164,7 @@ export default function BasicExamples() {
 				<div className="m-1.5">
 					{/* Start */}
 					<button
-						className="btn bg-indigo-500 hover:bg-indigo-600 text-white"
+						className="btn bg-indigo-500 hover:bg-indigo-600 text-heading"
 						aria-controls="cookies-modal"
 						onClick={() => {
 							setCookiesModalOpen(true);
@@ -203,7 +203,7 @@ export default function BasicExamples() {
 								Decline
 							</button>
 							<button
-								className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white"
+								className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-heading"
 								onClick={() => {
 									setCookiesModalOpen(false);
 								}}

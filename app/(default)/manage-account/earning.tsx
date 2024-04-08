@@ -44,8 +44,8 @@ export default function Earning() {
 
   return (
     <div className="flex w-5/6 flex-col px-10 py-8">
-      <h1 className="text-3xl font-semibold text-white">Earning Report</h1>
-      <table className="mx-3 my-4 w-full table-auto text-left font-semibold text-white">
+      <h1 className="text-3xl font-semibold text-heading">Earning Report</h1>
+      <table className="mx-3 my-4 w-full table-auto text-left font-semibold text-heading">
         <thead>
           <tr className="border-b border-gray-700 text-sm text-[#7C878E]">
             <th className="py-5">Item</th>

@@ -127,10 +127,10 @@ const ContentListComponent = ({
             {withdrawals?.map((withdrawal: any, index: number) => {
               return (
                 <tr key={index} className="hover:bg-zinc-900">
-                  <td className="whitespace-nowrap px-2 py-4 text-white">
+                  <td className="whitespace-nowrap px-2 py-4 text-heading">
                     {`${withdrawal.pay_amount} ${withdrawal.pay_currency}`}
                   </td>
-                  <td className="whitespace-nowrap px-2 py-4 text-white">
+                  <td className="whitespace-nowrap px-2 py-4 text-heading">
                     {/* {withdrawal.pay_currency} */}
                   </td>
                   <td

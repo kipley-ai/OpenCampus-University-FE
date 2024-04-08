@@ -24,7 +24,7 @@ const MessageHistory = ({
   botName?: string;
 }) => {
   return (
-    <div className="text-white py-10">
+    <div className="text-heading py-10">
       {messageHistory?.map((message, index) => {
         const sources: string[] = [];
         if(message.chunks){
@@ -66,10 +66,10 @@ const SharedChat = () => {
     
   return (
     <div className={`flex flex-col bg-[#080403] ${sharedChat.isFetching ? "h-[200dvh]": "h-full"} border-[#393E44] text-[#7C878E]`}>
-      <h1 className="border-b border-[#393E44] text-center py-10 text-3xl text-white">Knowledgefi</h1>
+      <h1 className="border-b border-[#393E44] text-center py-10 text-3xl text-heading">Knowledgefi</h1>
       <div className="flex flex-col w-1/2 mx-auto pt-16">
         <div className="border-b border-[#393E44] pb-6 space-y-5">
-            <h1 className="text-white text-3xl">{chatbotDetail.data?.data.data.name}</h1>
+            <h1 className="text-heading text-3xl">{chatbotDetail.data?.data.data.name}</h1>
             <h6 className="text-sm">{sharedChat.isFetching ? "" : sharedDate}</h6>
         </div>
         <MessageHistory messageHistory={sharedChat.data?.data.chat_history} botImage={chatbotDetail.data?.data.data.profile_image} botName={chatbotDetail.data?.data.data.name} />

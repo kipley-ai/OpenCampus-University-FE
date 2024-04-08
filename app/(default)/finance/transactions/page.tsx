@@ -132,7 +132,7 @@ function Transactions() {
             </div>
 
             {/* Export button */}
-            <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white">Export Transactions</button>
+            <button className="btn bg-indigo-500 hover:bg-indigo-600 text-heading">Export Transactions</button>
 
           </div>
 
@@ -147,7 +147,7 @@ function Transactions() {
         <div className="mb-5">
           <ul className="flex flex-wrap -m-1">
             <li className="m-1">
-              <button className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-transparent shadow-sm bg-indigo-500 text-white duration-150 ease-in-out">
+              <button className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-transparent shadow-sm bg-indigo-500 text-heading duration-150 ease-in-out">
                 View All
               </button>
             </li>

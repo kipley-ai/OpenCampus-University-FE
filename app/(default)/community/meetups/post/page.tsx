@@ -357,7 +357,7 @@ export default function MeetupPost() {
           {/* 1st block */}
           <div className="rounded-sm border border-slate-200 bg-white p-5 shadow-lg dark:border-slate-700 dark:bg-slate-800 lg:w-[18rem] xl:w-[20rem]">
             <div className="space-y-2">
-              <button className="btn w-full bg-indigo-500 text-white hover:bg-indigo-600">
+              <button className="btn w-full bg-indigo-500 text-heading hover:bg-indigo-600">
                 <svg
                   className="h-4 w-4 shrink-0 fill-current"
                   viewBox="0 0 16 16"

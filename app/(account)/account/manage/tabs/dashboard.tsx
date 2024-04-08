@@ -114,10 +114,10 @@ const ContentListComponent = ({
             {activities.map((activity, index) => {
               return (
                 <tr key={index} className="hover:bg-zinc-900">
-                  <td className="whitespace-nowrap px-2 py-4 text-white">
+                  <td className="whitespace-nowrap px-2 py-4 text-heading">
                     {activity.name}
                   </td>
-                  <td className="whitespace-nowrap px-2 py-4 text-white">
+                  <td className="whitespace-nowrap px-2 py-4 text-heading">
                     {activity.amount}
                   </td>
                   <td className="whitespace-nowrap px-2 py-4 text-gray-500">

@@ -20,7 +20,7 @@ export default function DashboardCard10() {
               </div>
               <div className="grow flex items-center border-b border-slate-100 dark:border-slate-700 text-sm py-2">
                 <div className="grow flex justify-between">
-                  <div className="self-center"><a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">Nick Mark</a> mentioned <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">Sara Smith</a> in a new post</div>
+                  <div className="self-center"><a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">Nick Mark</a> mentioned <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">Sara Smith</a> in a new post</div>
                   <div className="shrink-0 self-end ml-2">
                     <a className="font-medium text-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400" href="#0">View<span className="hidden sm:inline"> -&gt;</span></a>
                   </div>
@@ -36,7 +36,7 @@ export default function DashboardCard10() {
               </div>
               <div className="grow flex items-center border-b border-slate-100 dark:border-slate-700 text-sm py-2">
                 <div className="grow flex justify-between">
-                  <div className="self-center">The post <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">Post Name</a> was removed by <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">Nick Mark</a></div>
+                  <div className="self-center">The post <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">Post Name</a> was removed by <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">Nick Mark</a></div>
                   <div className="shrink-0 self-end ml-2">
                     <a className="font-medium text-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400" href="#0">View<span className="hidden sm:inline"> -&gt;</span></a>
                   </div>
@@ -52,7 +52,7 @@ export default function DashboardCard10() {
               </div>
               <div className="grow flex items-center text-sm py-2">
                 <div className="grow flex justify-between">
-                  <div className="self-center"><a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">Patrick Sullivan</a> published a new <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">post</a></div>
+                  <div className="self-center"><a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">Patrick Sullivan</a> published a new <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">post</a></div>
                   <div className="shrink-0 self-end ml-2">
                     <a className="font-medium text-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400" href="#0">View<span className="hidden sm:inline"> -&gt;</span></a>
                   </div>
@@ -74,7 +74,7 @@ export default function DashboardCard10() {
               </div>
               <div className="grow flex items-center border-b border-slate-100 dark:border-slate-700 text-sm py-2">
                 <div className="grow flex justify-between">
-                  <div className="self-center"><a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">240+</a> users have subscribed to <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">Newsletter #1</a></div>
+                  <div className="self-center"><a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">240+</a> users have subscribed to <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">Newsletter #1</a></div>
                   <div className="shrink-0 self-end ml-2">
                     <a className="font-medium text-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400" href="#0">View<span className="hidden sm:inline"> -&gt;</span></a>
                   </div>
@@ -90,7 +90,7 @@ export default function DashboardCard10() {
               </div>
               <div className="grow flex items-center text-sm py-2">
                 <div className="grow flex justify-between">
-                  <div className="self-center">The post <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">Post Name</a> was suspended by <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-white" href="#0">Nick Mark</a></div>
+                  <div className="self-center">The post <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">Post Name</a> was suspended by <a className="font-medium text-slate-800 hover:text-slate-900 dark:text-slate-100 dark:hover:text-heading" href="#0">Nick Mark</a></div>
                   <div className="shrink-0 self-end ml-2">
                     <a className="font-medium text-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400" href="#0">View<span className="hidden sm:inline"> -&gt;</span></a>
                   </div>

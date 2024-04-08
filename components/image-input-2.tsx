@@ -110,7 +110,7 @@ const ImageInput = ({ selectedFile, setSelectedFile }: any) => {
                 />
               ) : (
                 <div className="flex flex-col items-center justify-center rounded-md border-2 border-dashed border-[#777E90] px-2 py-14 text-center">
-                  <p className="text-xs text-white">Drop your files here OR</p>
+                  <p className="text-xs text-heading">Drop your files here OR</p>
                   <p className="text-xs text-primary">Click here to browse</p>
                   <p className="text-xs text-[#777E90]">
                     PNG, GIF, WEBP or JPEG.<br />

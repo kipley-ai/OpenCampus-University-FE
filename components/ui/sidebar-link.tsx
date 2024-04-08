@@ -16,7 +16,7 @@ export default function SidebarLink({
 
 	return (
 		<Link
-			className={`block text-slate-200 hover:text-white transition duration-150 truncate ${
+			className={`block text-slate-200 hover:text-heading transition duration-150 truncate ${
 				pathname === href
 					? "group-[.is-link-group]:text-indigo-500"
 					: "group-[.is-link-group]:text-slate-400 hover:text-slate-200 hover:group-[.is-link-group]:text-slate-200"

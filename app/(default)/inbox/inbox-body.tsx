@@ -124,7 +124,7 @@ export default function InboxBody({ mails }: { mails: Mail[]}) {
                 placeholder="Aa"
               />
             </div>
-            <button type="submit" className="btn bg-indigo-500 hover:bg-indigo-600 text-white whitespace-nowrap">
+            <button type="submit" className="btn bg-indigo-500 hover:bg-indigo-600 text-heading whitespace-nowrap">
               Send -&gt;
             </button>
           </form>

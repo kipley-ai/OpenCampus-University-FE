@@ -135,10 +135,10 @@ const ContentListComponent = ({
 						{deposits?.map((deposit: any, index:number) => {
 							return (
 								<tr key={index} className="hover:bg-zinc-900">
-									<td className="text-white px-2 py-4 whitespace-nowrap font-semibold">
+									<td className="text-heading px-2 py-4 whitespace-nowrap font-semibold">
 										{deposit.description}
 									</td>
-									<td className="text-white px-2 py-4 whitespace-nowrap font-semibold">
+									<td className="text-heading px-2 py-4 whitespace-nowrap font-semibold">
 										{`${deposit.pay_amount} ${deposit.pay_currency}`}
 									</td>
 									<td className="px-2 py-4 text-gray-500 whitespace-nowrap font-semibold">
@@ -196,8 +196,8 @@ const ContentListComponent = ({
 // export default function Deposit() {
 //     return (
 //         <div className="flex flex-col py-8 px-10 w-5/6">
-//             <h1 className="text-3xl text-white font-semibold">Deposit History</h1>
-//             <table className="w-full mx-3 my-4 text-left table-auto text-white font-semibold">
+//             <h1 className="text-3xl text-heading font-semibold">Deposit History</h1>
+//             <table className="w-full mx-3 my-4 text-left table-auto text-heading font-semibold">
 //                 <thead>
 //                     <tr className="border-b border-gray-700 text-[#7C878E] text-sm">
 //                         <th className="py-5">Description</th>

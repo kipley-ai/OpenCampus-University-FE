@@ -75,7 +75,7 @@ const LastAnswer = ({
             <Image
               src={LoadingIcon}
               alt="Profile"
-              className="ml-1 h-5 w-5 animate-spin text-white"
+              className="ml-1 h-5 w-5 animate-spin text-heading"
               width={50}
               height={50}
             />
@@ -93,7 +93,7 @@ const LastAnswer = ({
               width={50}
               height={50}
             />
-            <div className="w-full text-white">
+            <div className="w-full text-heading">
               <h6 className="mb-1 mt-1 font-black text-lg">
                 {chatbotData?.data.data.name}
               </h6>

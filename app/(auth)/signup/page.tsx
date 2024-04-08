@@ -52,7 +52,7 @@ export default function SignUp() {
                       <span className="text-sm ml-2">Email me about product news.</span>
                     </label>
                   </div>
-                  <Link className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3 whitespace-nowrap" href="/">Sign Up</Link>
+                  <Link className="btn bg-indigo-500 hover:bg-indigo-600 text-heading ml-3 whitespace-nowrap" href="/">Sign Up</Link>
                 </div>
               </form>
               {/* Footer */}

@@ -28,7 +28,7 @@ export default function Meetups() {
           <SearchForm placeholder="Search…" />
 
           {/* Add meetup button */}
-          <button className="btn bg-indigo-500 text-white hover:bg-indigo-600">
+          <button className="btn bg-indigo-500 text-heading hover:bg-indigo-600">
             <svg
               className="h-4 w-4 shrink-0 fill-current opacity-50"
               viewBox="0 0 16 16"
@@ -44,7 +44,7 @@ export default function Meetups() {
       <div className="mb-5">
         <ul className="-m-1 flex flex-wrap">
           <li className="m-1">
-            <button className="inline-flex items-center justify-center rounded-full border border-transparent bg-indigo-500 px-3 py-1 text-sm font-medium leading-5 text-white shadow-sm duration-150 ease-in-out">
+            <button className="inline-flex items-center justify-center rounded-full border border-transparent bg-indigo-500 px-3 py-1 text-sm font-medium leading-5 text-heading shadow-sm duration-150 ease-in-out">
               View All
             </button>
           </li>

@@ -53,7 +53,7 @@ const Section2 = () => {
         justifyContent="center"
         flexDirection="column"
       >
-        <Box pb={3} className="flex flex-col items-center text-white">
+        <Box pb={3} className="flex flex-col items-center text-heading">
           <Image src={WelcomeToLight} className="self-center" />
           <Typography variant="h1" fontWeight="600" lineHeight="1" fontSize={55} className="z-[99999] text-[#1227F2]">
             Open Campus University

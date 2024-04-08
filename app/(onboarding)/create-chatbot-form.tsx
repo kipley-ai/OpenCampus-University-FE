@@ -277,7 +277,7 @@ const ChatBotForm = () => {
                   height={24}
                 />
               </div>
-              <h1 className="text-2xl font-semibold text-white">
+              <h1 className="text-2xl font-semibold text-heading">
                 CREATE CHATBOT
               </h1>
             </div>
@@ -291,7 +291,7 @@ const ChatBotForm = () => {
                     width={40}
                     height={40}
                   />
-                <span className="text-sm font-light text-white text-wrap">Your Knowledge Asset are ready!</span>
+                <span className="text-sm font-light text-heading text-wrap">Your Knowledge Asset are ready!</span>
               </>
               : 
                 <>
@@ -302,7 +302,7 @@ const ChatBotForm = () => {
                       width={40}
                       height={40}
                     />
-                  <span className="text-sm font-light text-white text-wrap">Your Knowledge Asset are vectorising…</span>
+                  <span className="text-sm font-light text-heading text-wrap">Your Knowledge Asset are vectorising…</span>
                 </>
               }
             </div>
@@ -326,7 +326,7 @@ const ChatBotForm = () => {
               <div>
                 <label
                   htmlFor="characterName"
-                  className="block text-xs font-semibold text-white lg:text-sm "
+                  className="block text-xs font-semibold text-heading lg:text-sm "
                 >
                   Name
                 </label>
@@ -336,7 +336,7 @@ const ChatBotForm = () => {
                     type="text"
                     value={form.name}
                     onChange={(e) => handleFormChange("name", e.target.value)}
-                    className="mt-2 w-full rounded-md border-2 border-gray-800 bg-transparent text-xs text-white lg:text-sm"
+                    className="mt-2 w-full rounded-md border-2 border-gray-800 bg-transparent text-xs text-heading lg:text-sm"
                     placeholder="Name your Chatbot"
                     maxLength={100}
                   />
@@ -355,7 +355,7 @@ const ChatBotForm = () => {
               <div>
                 <label
                   htmlFor="description"
-                  className="block text-sm font-semibold text-white"
+                  className="block text-sm font-semibold text-heading"
                 >
                   Description
                 </label>
@@ -367,7 +367,7 @@ const ChatBotForm = () => {
                       setDescription({ tmp: false, value: e.target.value })
                     }
                     placeholder={"Describe your Chatbot"}
-                    className="mt-2 w-full rounded-md border-2 border-gray-800 bg-transparent text-xs text-white lg:text-sm"
+                    className="mt-2 w-full rounded-md border-2 border-gray-800 bg-transparent text-xs text-heading lg:text-sm"
                     rows={3}
                     maxLength={1000}
                   />
@@ -376,7 +376,7 @@ const ChatBotForm = () => {
               <div>
                 <label
                   htmlFor="tone"
-                  className="block text-xs font-semibold text-white lg:text-sm "
+                  className="block text-xs font-semibold text-heading lg:text-sm "
                 >
                   Tone
                 </label>
@@ -390,7 +390,7 @@ const ChatBotForm = () => {
                   />
                 </div>
                 {/* <label
-                  className="flex w-1/3 flex-col text-sm font-semibold text-white"
+                  className="flex w-1/3 flex-col text-sm font-semibold text-heading"
                   htmlFor="category"
                 >
                   Category
@@ -414,7 +414,7 @@ const ChatBotForm = () => {
               <div>
                 <label
                   htmlFor="personality"
-                  className="block text-xs font-semibold text-white lg:text-sm"
+                  className="block text-xs font-semibold text-heading lg:text-sm"
                 >
                   Personality
                 </label>
@@ -429,7 +429,7 @@ const ChatBotForm = () => {
                 </div>
               </div>
               <div>
-                {/* <label className="block text-xs font-semibold text-white lg:text-sm "> */}
+                {/* <label className="block text-xs font-semibold text-heading lg:text-sm "> */}
                 <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold text-[#DDD] lg:text-sm">
                   <span>Price Per Query (in $CREDIT)</span>
                   <Tooltip bg="dark" position="right" size="md">
@@ -465,7 +465,7 @@ const ChatBotForm = () => {
               <div className="col-span-2">
                 {/* <label
                   htmlFor="description"
-                  className="block text-sm font-semibold text-white"
+                  className="block text-sm font-semibold text-heading"
                 >
                   Description
                 </label>
@@ -476,7 +476,7 @@ const ChatBotForm = () => {
                   type="text"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="rounded-xl bg-transparent mt-2 text-white w-full border-2"
+                  className="rounded-xl bg-transparent mt-2 text-heading w-full border-2"
                   placeholder="Describe your Chatbot"
                 /> */}
 
@@ -485,7 +485,7 @@ const ChatBotForm = () => {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder={"Describe your Chatbot"}
-                    className="mt-2 w-full rounded-xl border-2 bg-transparent text-white"
+                    className="mt-2 w-full rounded-xl border-2 bg-transparent text-heading"
                     rows={11}
                     maxLength={1000}
                   />
@@ -497,7 +497,7 @@ const ChatBotForm = () => {
               </div>
             </div>
             {/* <div className="mx-64 mt-10">
-              <h1 className="text-2xl font-semibold text-white">
+              <h1 className="text-2xl font-semibold text-heading">
                 Chatbot Configuration
               </h1> */}
 
@@ -509,7 +509,7 @@ const ChatBotForm = () => {
             </div>
             <div className="mx-64">
               <label
-                className="mt-4 flex flex-col font-semibold text-white"
+                className="mt-4 flex flex-col font-semibold text-heading"
                 htmlFor="instructions"
               >
                 Instructions
@@ -519,7 +519,7 @@ const ChatBotForm = () => {
                 value={instructions}
                 onChange={(e) => setInstructions(e.target.value)}
                 placeholder="Give Instructions and Personality to your Chatbot"
-                className="mt-2 w-full rounded-xl border-2 bg-transparent text-white"
+                className="mt-2 w-full rounded-xl border-2 bg-transparent text-heading"
                 rows={5}
                 maxLength={1000}
               /> */}
@@ -536,7 +536,7 @@ const ChatBotForm = () => {
             {/* </div>
             <div className="mx-64">
               <label
-                className="mt-4 flex flex-col font-semibold text-white"
+                className="mt-4 flex flex-col font-semibold text-heading"
                 htmlFor="example"
               >
                 Conversation Starters
@@ -546,7 +546,7 @@ const ChatBotForm = () => {
                 value={example}
                 onChange={(e) => setExample(e.target.value)}
                 placeholder={"Examples for users to start the conversation"}
-                className="mt-2 w-full rounded-xl border-2 bg-transparent text-white"
+                className="mt-2 w-full rounded-xl border-2 bg-transparent text-heading"
                 rows={5}
                 maxLength={1000}
               /> */}

@@ -11,7 +11,7 @@ export default function ForumLeftContent() {
 
             {/* Button */}
             <div className="xl:hidden mb-6">
-              <button className="btn md:w-full bg-indigo-500 hover:bg-indigo-600 text-white">Create Post</button>
+              <button className="btn md:w-full bg-indigo-500 hover:bg-indigo-600 text-heading">Create Post</button>
             </div>
           </div>
 

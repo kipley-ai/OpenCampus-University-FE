@@ -246,7 +246,7 @@ export default function NFT() {
       <div className="flex flex-col px-6 py-8 pb-14 lg:px-8 xl:px-32">
         <div>
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-semibold text-white">Mint SFT </h1>
+            <h1 className="text-2xl font-semibold text-heading">Mint SFT </h1>
             <div>
               {isTwitter ? (
                 <TwitterScrapingStatus setShowFailModal={setShowFailModal} />
@@ -463,7 +463,7 @@ export default function NFT() {
                   setStep("data_source");
                 }}
               >
-                <h5 className="text-xs lg:text-sm text-white font-semibold">Back</h5>
+                <h5 className="text-xs lg:text-sm text-heading font-semibold">Back</h5>
               </button>
               <button
                 className="flex flex-row items-center justify-between bg-primary disabled:bg-gray-500  rounded-3xl w-44 p-2 px-5"
@@ -500,7 +500,7 @@ export default function NFT() {
                 setStep("data_source");
               }}
             >
-              <h5 className="text-xs font-semibold text-white lg:text-sm">
+              <h5 className="text-xs font-semibold text-heading lg:text-sm">
                 Back
               </h5>
             </button>

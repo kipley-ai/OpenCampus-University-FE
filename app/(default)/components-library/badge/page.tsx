@@ -145,12 +145,12 @@ export default function BadgeLibrary() {
               <div className="flex flex-wrap items-center -m-1.5">
                 <div className="m-1.5">
                   {/* Start */}
-                  <div className="text-sm font-semibold text-white px-1.5 bg-emerald-500 rounded-full">+29%</div>
+                  <div className="text-sm font-semibold text-heading px-1.5 bg-emerald-500 rounded-full">+29%</div>
                   {/* End */}
                 </div>
                 <div className="m-1.5">
                   {/* Start */}
-                  <div className="text-sm font-semibold text-white px-1.5 bg-amber-500 rounded-full">-14%</div>
+                  <div className="text-sm font-semibold text-heading px-1.5 bg-amber-500 rounded-full">-14%</div>
                   {/* End */}
                 </div>
               </div>

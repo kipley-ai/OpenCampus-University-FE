@@ -110,7 +110,7 @@ export default function Step1({
     useCreateChatbotContext();
 
   return (
-    <div className="grid grid-cols-2 gap-4 font-bold text-white  md:mt-10 md:grid-cols-4">
+    <div className="grid grid-cols-2 gap-4 font-bold text-heading  md:mt-10 md:grid-cols-4">
       {buttons.map((button) => (
         <ButtonItem
           key={button.type}

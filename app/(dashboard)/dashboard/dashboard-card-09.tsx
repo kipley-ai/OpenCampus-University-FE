@@ -50,7 +50,7 @@ export default function DashboardCard09() {
       <div className="px-5 py-3">
         <div className="flex items-start">
           <div className="text-3xl font-bold text-slate-800 dark:text-slate-100 mr-2">+$6,796</div>
-          <div className="text-sm font-semibold text-white px-1.5 bg-amber-500 rounded-full">-34%</div>
+          <div className="text-sm font-semibold text-heading px-1.5 bg-amber-500 rounded-full">-34%</div>
         </div>
       </div>
       {/* Chart built with Chart.js 3 */}

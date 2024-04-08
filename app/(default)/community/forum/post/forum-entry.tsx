@@ -81,7 +81,7 @@ export default function ForumEntry() {
           </div>
         </div>
         <div className="text-right">
-          <button type="submit" className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white whitespace-nowrap">
+          <button type="submit" className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-heading whitespace-nowrap">
             Reply -&gt;
           </button>
         </div>

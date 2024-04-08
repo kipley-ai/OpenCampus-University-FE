@@ -112,7 +112,7 @@ export default function SelectDataElements() {
             {/* <div className="h-full">
               <Image src={"/images/corner-up-left.png"} alt="icon" width={24} height={24} />
             </div> */}
-            <h1 className="text-2xl font-semibold text-white">
+            <h1 className="text-2xl font-semibold text-heading">
               SELECT DATA ELEMENTS
             </h1>
           </div>

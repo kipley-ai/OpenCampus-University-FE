@@ -46,7 +46,7 @@ export default function DataSource() {
 	return (
 		<div className="flex flex-col sm:px-6 lg:px-8 py-8 bg-[#292D32]">
 			<div className="mx-64">
-				<h1 className="text-3xl font-semibold text-white">Data Sources</h1>
+				<h1 className="text-3xl font-semibold text-heading">Data Sources</h1>
 				<h5 className="text-lg text-[#7C878E]">
 					Give some general information about your SFT
 				</h5>
@@ -74,7 +74,7 @@ export default function DataSource() {
 						if (step > 0) setStep(step - 1);
 					}}
 				>
-					<h5 className="text-white font-semibold">Back</h5>
+					<h5 className="text-heading font-semibold">Back</h5>
 				</button>
 				<button
 					className="flex flex-row items-center justify-between bg-primary rounded-3xl w-44 p-2 px-5 mt-8"

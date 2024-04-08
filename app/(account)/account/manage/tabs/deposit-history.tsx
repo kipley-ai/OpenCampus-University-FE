@@ -136,10 +136,10 @@ const ContentListComponent = ({
             {deposits?.map((deposit: any, index: number) => {
               return (
                 <tr key={index} className="hover:bg-zinc-900">
-                  <td className="whitespace-nowrap px-2 py-4 text-white">
+                  <td className="whitespace-nowrap px-2 py-4 text-heading">
                     {deposit.description}
                   </td>
-                  <td className="whitespace-nowrap px-2 py-4 text-white">
+                  <td className="whitespace-nowrap px-2 py-4 text-heading">
                     {`${deposit.pay_amount} ${deposit.pay_currency}`}
                   </td>
                   <td className="whitespace-nowrap px-2 py-4 text-gray-500">

@@ -265,12 +265,12 @@ export default function Local({
 			<div className="flex flex-col sm:px-6 lg:px-8 py-8 bg-[#292D32]">
 				{/* <Toast children={"KB creation successful"} open={toast} setOpen={setToast} className="mx-auto" /> */}
 				<div className="mx-56">
-					<h1 className="text-2xl font-semibold text-white">Upload Knowledge Files</h1>
+					<h1 className="text-2xl font-semibold text-heading">Upload Knowledge Files</h1>
 					<hr className="my-4 border border-gray-600" />
 				</div>
 				<div className="mx-56">
 					<div
-						className="flex flex-col mt-5 mb-8 border-2 border-dashed border-[#aaa] rounded-3xl py-20 px-20 text-center items-center cursor-pointer color-[#aaa] font-inter text-white "
+						className="flex flex-col mt-5 mb-8 border-2 border-dashed border-[#aaa] rounded-3xl py-20 px-20 text-center items-center cursor-pointer color-[#aaa] font-inter text-heading "
 						onDragEnter={handleDrag}
 						onDragOver={handleDrag}
 						onDragLeave={handleDrag}
@@ -304,7 +304,7 @@ export default function Local({
 							return (
 								<div
 									key={file.bucketPath}
-									className="flex py-5 px-8 my-5 rounded-3xl text-white bg-neutral-900 justify-between"
+									className="flex py-5 px-8 my-5 rounded-3xl text-heading bg-neutral-900 justify-between"
 								>
 									<div className="flex flex-row">
 										{showStateIcon(file.status)}
@@ -331,7 +331,7 @@ export default function Local({
 							setStep("data_source")
 						}}
 					>
-						<h5 className="text-sm text-white font-semibold">Back</h5>
+						<h5 className="text-sm text-heading font-semibold">Back</h5>
 					</button>
 					<button
 						className="flex flex-row items-center justify-between bg-primary rounded-3xl w-36 p-2 px-5 mt-8"

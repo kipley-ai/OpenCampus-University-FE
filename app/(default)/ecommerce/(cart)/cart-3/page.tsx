@@ -241,7 +241,7 @@ export default function Cart3() {
 
                 <div className="mt-6">
                   <div className="mb-4">
-                    <Link href="/ecommerce/pay" className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white">
+                    <Link href="/ecommerce/pay" className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-heading">
                       View Your Order
                     </Link>
                   </div>

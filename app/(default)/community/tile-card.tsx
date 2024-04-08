@@ -30,7 +30,7 @@ export default function TileCard({ user }: { user: User}) {
                   <Image className="rounded-full" src={user.image} width={64} height={64} alt={user.name} />
                 </Link>
                 <div className="mt-1 pr-1">
-                  <Link className="inline-flex text-slate-800 dark:text-slate-100 hover:text-slate-900 dark:hover:text-white" href={user.link}>
+                  <Link className="inline-flex text-slate-800 dark:text-slate-100 hover:text-slate-900 dark:hover:text-heading" href={user.link}>
                     <h2 className="text-xl leading-snug justify-center font-semibold">{user.name}</h2>
                   </Link>
                   <div className="flex items-center"><span className="text-sm font-medium text-slate-400 -mt-0.5 mr-1">-&gt;</span> <span>{user.location}</span></div>

@@ -47,7 +47,7 @@ export default function CampaignCard({ campaign }: { campaign: Campaign }) {
           </div>
         </header>
         <div className="grow mt-2">
-          <Link className="inline-flex text-slate-800 dark:text-slate-100 hover:text-slate-900 dark:hover:text-white mb-1" href={campaign.link}>
+          <Link className="inline-flex text-slate-800 dark:text-slate-100 hover:text-slate-900 dark:hover:text-heading mb-1" href={campaign.link}>
             <h2 className="text-xl leading-snug font-semibold">{campaign.title}</h2>
           </Link>
           <div className="text-sm">{campaign.content}</div>

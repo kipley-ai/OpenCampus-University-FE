@@ -139,19 +139,19 @@ const ContentListComponent = ({
             {earnings.map((earning, index) => {
               return (
                 <tr key={index} className="hover:bg-zinc-900">
-                  <td className="whitespace-nowrap px-2 py-4 text-white">
+                  <td className="whitespace-nowrap px-2 py-4 text-heading">
                     {earning.item}
                   </td>
-                  <td className="whitespace-nowrap px-2 py-4 text-white">
+                  <td className="whitespace-nowrap px-2 py-4 text-heading">
                     {earning.price}
                   </td>
                   <td className="whitespace-nowrap px-2 py-4">
                     {earning.date}
                   </td>
-                  <td className="whitespace-nowrap px-2 py-4 text-white">
+                  <td className="whitespace-nowrap px-2 py-4 text-heading">
                     {earning.buyerId}
                   </td>
-                  <td className="whitespace-nowrap px-2 py-4 text-white">
+                  <td className="whitespace-nowrap px-2 py-4 text-heading">
                     {earning.earnings}
                   </td>
                   <td

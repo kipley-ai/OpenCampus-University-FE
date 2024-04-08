@@ -159,7 +159,7 @@ export default function RealtimeChart({
       <div className="px-5 py-3">
         <div className="flex items-start">
           <div className="text-3xl font-bold text-slate-800 dark:text-slate-100 mr-2 tabular-nums">$<span ref={chartValue}>57.81</span></div>
-          <div ref={chartDeviation} className="text-sm font-semibold text-white px-1.5 rounded-full"></div>
+          <div ref={chartDeviation} className="text-sm font-semibold text-heading px-1.5 rounded-full"></div>
         </div>
       </div>
       <div className="grow">

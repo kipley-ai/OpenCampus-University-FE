@@ -41,13 +41,13 @@ export default function ManageAccount() {
   }, []);
 
   return (
-    <div className="flex flex-col bg-neutral-900">
+    <div className="flex flex-col bg-container">
       <Image
-        className="w-full bg-neutral-900"
+        className="w-full bg-container"
         src={HeaderBg}
         alt="Header Background"
       />
-      <div className="mx-10 -mt-20 mb-10 flex rounded-2xl border border-gray-700 bg-neutral-900">
+      <div className="mx-10 -mt-20 mb-10 flex rounded-2xl border border-gray-700 bg-container">
         <div className="flex w-2/6 flex-col border-r border-gray-700 px-8 py-8 pb-32 font-semibold text-[#7C878E]">
           {/* Account Information Section */}
           <div

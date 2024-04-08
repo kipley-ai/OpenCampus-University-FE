@@ -273,7 +273,7 @@ const ChatBotForm = () => {
         setOpen={setShowModal}
       />
       {/* <div className="flex flex-col bg-[#292D32] py-8 sm:px-6 lg:px-0"> */}
-      <div className="flex flex-col bg-[#171717] py-8 sm:px-6 lg:px-0">
+      <div className="flex flex-col bg-container py-8 sm:px-6 lg:px-0">
         <div className="mx-5 md:mx-32">
           <div className="flex justify-between">
             <div className="">

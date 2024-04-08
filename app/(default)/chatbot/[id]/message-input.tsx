@@ -213,7 +213,7 @@ const MessageInput = () => {
       </button>
       <form
         onSubmit={handleSendMessage}
-        className="flex grow items-center justify-between rounded-full border-2 border-[#3A3A3A] bg-neutral-900 py-1 pl-1 focus-within:border-primary lg:bottom-0 lg:w-full"
+        className="flex grow items-center justify-between rounded-full border-2 border-[#3A3A3A] bg-container py-1 pl-1 focus-within:border-primary lg:bottom-0 lg:w-full"
       >
         {/* Profile picture placeholder */}
         {/* <Image src={Avatar} alt="Profile" className="w-8 h-8 rounded-full mr-4" /> */}
@@ -221,7 +221,7 @@ const MessageInput = () => {
         <textarea
           ref={inputRef}
           placeholder="Ask me anything"
-          className="grow resize-none border-0 bg-neutral-900 rounded-full text-heading placeholder-[#6C7275] caret-primary outline-none focus:ring-0"
+          className="grow resize-none border-0 bg-container rounded-full text-heading placeholder-[#6C7275] caret-primary outline-none focus:ring-0"
           value={newQuestion}
           onChange={(e) => {
             let lengthOfText = e.target.value.match(/\n/g)?.length;

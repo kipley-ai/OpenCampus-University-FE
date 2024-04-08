@@ -282,7 +282,7 @@ export default function Local({
             return (
               <div
                 key={file.bucketPath}
-                className="my-5 flex justify-between rounded-3xl bg-neutral-900 px-8 py-5 text-heading"
+                className="my-5 flex justify-between rounded-3xl bg-container px-8 py-5 text-heading"
               >
                 <div className="flex flex-row">
                   {showStateIcon(file.status)}

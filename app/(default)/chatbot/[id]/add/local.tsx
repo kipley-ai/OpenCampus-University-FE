@@ -304,7 +304,7 @@ export default function Local({
 							return (
 								<div
 									key={file.bucketPath}
-									className="flex py-5 px-8 my-5 rounded-3xl text-heading bg-neutral-900 justify-between"
+									className="flex py-5 px-8 my-5 rounded-3xl text-heading bg-container justify-between"
 								>
 									<div className="flex flex-row">
 										{showStateIcon(file.status)}

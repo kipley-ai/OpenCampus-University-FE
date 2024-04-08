@@ -143,7 +143,7 @@ export default function Local({
 			<div>
 				{files.map((file) => {
 					return (
-						<div className="flex py-5 px-8 my-5 rounded-3xl text-heading bg-neutral-900 justify-between">
+						<div className="flex py-5 px-8 my-5 rounded-3xl text-heading bg-container justify-between">
 							<div className="flex flex-row">
 								<Image src={CheckIcon} alt="Check Icon" />
 								<div className="flex flex-col ml-8">

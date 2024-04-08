@@ -35,7 +35,7 @@ export default function ModalBlank({
           leaveFrom="opacity-100 translate-y-0"
           leaveTo="opacity-0 translate-y-4"
         >
-          <Dialog.Panel className="max-h-full max-w-xl overflow-auto rounded-2xl bg-neutral-900 shadow-lg dark:bg-slate-800">
+          <Dialog.Panel className="max-h-full max-w-xl overflow-auto rounded-2xl bg-container shadow-lg dark:bg-slate-800">
             <div ref={divRef} />
             {children}
           </Dialog.Panel>

@@ -42,7 +42,7 @@ export default function ModalImageGallery({
           leaveFrom="opacity-100 translate-y-0"
           leaveTo="opacity-0 translate-y-4"
         >
-          <Dialog.Panel className="bg-white dark:bg-neutral-900 rounded shadow-lg overflow-auto max-w-3xl w-full max-h-full">
+          <Dialog.Panel className="bg-white dark:bg-container rounded shadow-lg overflow-auto max-w-3xl w-full max-h-full">
             {/* Modal header */}
             <div className="px-5 py-3 border-b border-slate-200 dark:border-slate-700">
               <div className="flex justify-between items-center">

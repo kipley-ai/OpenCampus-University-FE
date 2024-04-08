@@ -13,7 +13,7 @@ const SidebarRight: React.FC<SidebarRightProps> = ({ isOpen, onClose, children }
       <div
         className={`fixed inset-y-0 right-0 w-64 z-50 transform transition-transform pt-6 ${
           isOpen ? "translate-x-0" : "translate-x-full"
-        } bg-neutral-900 duration-300 ease-in-out`}
+        } bg-container duration-300 ease-in-out`}
       >
         {children}
         <button

@@ -121,7 +121,7 @@ const ChatbotSettings = () => {
         open={showModal}
         setOpen={setShowModal}
       />
-      <div className="flex flex-col bg-[#171717] py-8 sm:px-6 lg:px-0">
+      <div className="flex flex-col bg-container py-8 sm:px-6 lg:px-0">
         <form className="flex flex-col gap-4 space-y-4">
           <div className="flex flex-row justify-between gap-8">
             <div className="w-60">

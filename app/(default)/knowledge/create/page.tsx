@@ -96,7 +96,7 @@ export default function DataSource({
         redirectUrl={twitterRedirectUrl}
       />
       {step == "data_source" ? (
-        <div className="flex flex-col bg-[#171717] px-6 py-10 pb-20 lg:px-8 xl:px-32">
+        <div className="flex flex-col bg-container px-6 py-10 pb-20 lg:px-8 xl:px-32">
           <div>
             <h1 className="text-2xl font-semibold text-heading">
               Select Data Elements for your SFT

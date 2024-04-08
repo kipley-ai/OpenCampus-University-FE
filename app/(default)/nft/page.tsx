@@ -54,7 +54,7 @@ type NFTCardProps = {
 
 const NFTCard = ({ nft }: NFTCardProps) => {
   return (
-    <div className="group relative flex flex-col rounded-3xl bg-[#222325]">
+    <div className="group relative flex flex-col rounded-3xl bg-box">
       <Image
         src={nft.profile_image || "/images/nft-default-thumb.png"}
         className="mx-auto h-full rounded-t-3xl object-cover p-1 pb-0"
@@ -73,7 +73,7 @@ const NFTCard = ({ nft }: NFTCardProps) => {
       </div>
       <Link href={`/nft/${nft.sft_id}`}>
         <div className="absolute bottom-0 hidden h-12 w-full items-center justify-center rounded-b-2xl bg-primary group-hover:flex">
-          <p className="text-center text-sm font-semibold text-black">
+          <p className="text-center text-sm font-semibold text-container">
             View More
           </p>
         </div>
@@ -150,7 +150,7 @@ type BotCardProps = {
 
 const BotCard = ({ bot }: BotCardProps) => {
   return (
-    <div className="group relative flex flex-col rounded-3xl bg-[#222325]">
+    <div className="group relative flex flex-col rounded-3xl bg-box">
       <Image
         src={bot.profile_image || "/images/bot-default-thumb.png"}
         className="mx-auto h-4/5 rounded-t-3xl object-cover p-1 pb-0"
@@ -164,15 +164,15 @@ const BotCard = ({ bot }: BotCardProps) => {
           {bot.category_name || "Uncategorised"}
         </p> */}
       </div>
-      <div className="absolute bottom-0 hidden h-12 w-full divide-x-2 divide-primary rounded-b-2xl border border-2 border-primary bg-[#222325] text-primary group-hover:flex">
+      <div className="absolute bottom-0 hidden h-12 w-full divide-x-2 divide-primary rounded-b-2xl border border-2 border-primary bg-box text-primary group-hover:flex">
         <Link
-          className="flex flex-1 items-center justify-center rounded-bl-xl px-1 hover:bg-primary hover:text-black"
+          className="flex flex-1 items-center justify-center rounded-bl-xl px-1 hover:bg-primary hover:text-container"
           href={`/nft/${bot.sft_id}`}
         >
           <p className="text-center text-sm font-semibold">View Details</p>
         </Link>
         <Link
-          className="flex flex-1 items-center justify-center rounded-br-xl hover:bg-primary hover:text-black"
+          className="flex flex-1 items-center justify-center rounded-br-xl hover:bg-primary hover:text-container"
           href={`/chatbot/` + chatbotSlug(bot)}
         >
           <p className="text-center text-sm font-semibold">Chat</p>
@@ -264,14 +264,14 @@ export default function NFT() {
       <div className="flex flex-col gap-2 lg:gap-8">
         <div className="flex flex-col">
           <h1 className="text-2xl font-semibold text-heading">My SFTs</h1>
-          <hr className="my-4 border border-gray-700" />
+          <hr className="my-4 border border-border" />
         </div>
         <NFTList />
       </div>
       <div className="flex flex-col gap-2 lg:gap-8">
         <div className="flex flex-col">
           <h1 className="text-2xl font-semibold text-heading">My Chatbots</h1>
-          <hr className="my-4 border border-gray-700" />
+          <hr className="my-4 border border-border" />
         </div>
         <BotList />
       </div>

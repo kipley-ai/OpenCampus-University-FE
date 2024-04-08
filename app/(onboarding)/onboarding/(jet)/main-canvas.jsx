@@ -76,7 +76,7 @@ const Section2 = () => {
           </Box>
           <Box
             pb={2}
-            pt={4}
+            pt={1}
             display="flex"
             alignItems="center"
             justifyContent="center"

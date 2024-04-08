@@ -314,7 +314,7 @@ const ChatBotForm = () => {
           {/* <h5 className="text-md text-[#7C878E]">
 					Give some general information about your character.
 				</h5> */}
-          <hr className="my-4 border border-gray-600" />
+          <hr className="my-4 border border-border" />
         </div>
         <form className="mx-5 flex flex-col md:mx-32" onSubmit={handleSubmit}>
           <div className="flex">
@@ -467,7 +467,7 @@ const ChatBotForm = () => {
               Configuration defining AI behavior.
             </h5> */}
 
-            {/* <hr className="my-4 border border-gray-700" />
+            {/* <hr className="my-4 border border-border" />
             </div>
             <div className="mx-64">
               <label

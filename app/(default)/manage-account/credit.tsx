@@ -50,7 +50,7 @@ export default function Credit() {
       <h1 className="text-3xl font-semibold text-heading">Credit Usage</h1>
       <table className="mx-3 my-4 w-full table-auto text-left">
         <thead>
-          <tr className="border-b border-gray-700 text-sm text-[#7C878E]">
+          <tr className="border-b border-border text-sm text-[#7C878E]">
             <th className="py-5">Title</th>
             <th className="py-5">Credit</th>
             <th className="py-5">Date</th>

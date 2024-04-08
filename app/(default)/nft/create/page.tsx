@@ -53,7 +53,7 @@ export default function NFT() {
         <h5 className="text-md text-[#7C878E]">
           Give some general information about your SFT.
         </h5>
-        <hr className="my-4 border border-gray-600" />
+        <hr className="my-4 border border-border" />
       </div>
       <form className="mx-56 mt-4 flex flex-col gap-8">
         <div className="flex flex-col gap-1">

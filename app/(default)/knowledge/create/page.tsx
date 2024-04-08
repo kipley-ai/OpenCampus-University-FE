@@ -101,7 +101,7 @@ export default function DataSource({
             <h1 className="text-2xl font-semibold text-heading">
               Select Data Elements for your SFT
             </h1>
-            <hr className="my-4 border border-gray-600" />
+            <hr className="my-4 border border-border" />
           </div>
           <Step1
             selectedButton={selectedButton}

@@ -116,7 +116,7 @@ export default function SelectDataElements() {
               SELECT DATA ELEMENTS
             </h1>
           </div>
-          <hr className="my-4 border border-gray-600" />
+          <hr className="my-4 border border-border" />
           <Step1
             selectedButton={selectedButton}
             setSelectedButton={setSelectedButton}

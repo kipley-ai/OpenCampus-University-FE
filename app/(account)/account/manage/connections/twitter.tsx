@@ -44,7 +44,7 @@ const TwitterAuthed = ({ twitterSession }: { twitterSession: Session }) => {
         </div>
         <button
           onClick={handleDisconnect}
-          className="flex items-center justify-between gap-2 rounded-full border-2 border-gray-700 px-4 py-2 text-xs text-slate-200"
+          className="flex items-center justify-between gap-2 rounded-full border-2 border-border px-4 py-2 text-xs text-slate-200"
         >
           Disconnect
           <ImExit />

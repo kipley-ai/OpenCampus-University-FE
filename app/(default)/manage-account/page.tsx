@@ -47,8 +47,8 @@ export default function ManageAccount() {
         src={HeaderBg}
         alt="Header Background"
       />
-      <div className="mx-10 -mt-20 mb-10 flex rounded-2xl border border-gray-700 bg-container">
-        <div className="flex w-2/6 flex-col border-r border-gray-700 px-8 py-8 pb-32 font-semibold text-[#7C878E]">
+      <div className="mx-10 -mt-20 mb-10 flex rounded-2xl border border-border bg-container">
+        <div className="flex w-2/6 flex-col border-r border-border px-8 py-8 pb-32 font-semibold text-[#7C878E]">
           {/* Account Information Section */}
           <div
             className={`mb-2 flex cursor-pointer px-3 py-3 ${selectedPage == "dashboard" ? "rounded-3xl border border-primary text-primary" : ""}`}

@@ -20,7 +20,7 @@ const Notion = ({ closeModal }: any) => {
                         id="notion-url"
                         type="text"
                         placeholder="Enter here"
-                        className="mt-1 block w-full px-3 py-2 bg-transparent text-heading rounded-md border border-gray-600 placeholder-gray-400 focus:outline-none focus:border-blue-500"
+                        className="mt-1 block w-full px-3 py-2 bg-transparent text-heading rounded-md border border-border placeholder-gray-400 focus:outline-none focus:border-blue-500"
                     />
                 </div>
                 <div className="mt-4">

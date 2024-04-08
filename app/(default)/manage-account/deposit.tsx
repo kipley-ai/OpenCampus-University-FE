@@ -199,7 +199,7 @@ const ContentListComponent = ({
 //             <h1 className="text-3xl text-heading font-semibold">Deposit History</h1>
 //             <table className="w-full mx-3 my-4 text-left table-auto text-heading font-semibold">
 //                 <thead>
-//                     <tr className="border-b border-gray-700 text-[#7C878E] text-sm">
+//                     <tr className="border-b border-border text-[#7C878E] text-sm">
 //                         <th className="py-5">Description</th>
 //                         <th className="py-5">Amount</th>
 //                         <th className="py-5">Date</th>

@@ -259,7 +259,7 @@ export default function NFT() {
             )}
           </div>
         </div>
-        <hr className="my-4 border border-gray-600" />
+        <hr className="my-4 border border-border" />
         <form>
           <div className="flex flex-col gap-8 md:flex-row">
             <ImageInput

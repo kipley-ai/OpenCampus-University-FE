@@ -3,7 +3,7 @@ export default function SearchForm({ placeholder = 'Search' }: { placeholder?: s
     <form className="relative">
       <label htmlFor="action-search" className="sr-only">Search</label>
       <input id="action-search" 
-        className="form-input pl-3 bg-stone-800 border-2 border-gray-700 rounded-md text-neutral-300 placeholder-neutral-300" 
+        className="form-input pl-3 bg-stone-800 border-2 border-border rounded-md text-neutral-300 placeholder-neutral-300" 
         // style={{ backgroundColor: '#292D31', borderColor: '#393E44', borderWidth: 2, borderRadius: 8, color: '#DDD' }}
         type="search" placeholder={placeholder} />
       <button className="absolute inset-0 left-auto group" type="submit" aria-label="Search">

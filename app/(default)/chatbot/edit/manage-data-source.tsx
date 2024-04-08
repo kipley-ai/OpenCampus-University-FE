@@ -147,7 +147,7 @@ const ManageDataSources = () => {
 						</thead>
 						<tbody>
 							{data.slice(start, end).map((row, index) => (
-								<tr key={index} className="border-b border-gray-700">
+								<tr key={index} className="border-b border-border">
 									<td className="px-6 py-3">
 										<input type="checkbox" />
 									</td>{" "}

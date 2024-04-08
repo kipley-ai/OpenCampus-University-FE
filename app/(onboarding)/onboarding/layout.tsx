@@ -8,7 +8,7 @@ const OnboardingLayout = ({ children }: OnboardingLayoutProps) => {
   return (
     <div className="flex h-dvh overflow-hidden bg-[#080403]">
       {/* Content area */}
-      <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden rounded-lg border-gray-700 p-0 pl-0">
+      <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden rounded-lg border-border p-0 pl-0">
         <div className="rounded-lg">
           {/*  Site header */}
           {/* <HeaderOnboarding /> */}

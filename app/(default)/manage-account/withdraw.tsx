@@ -163,7 +163,7 @@ const ContentListComponent = ({
 //             <h1 className="text-3xl text-heading font-semibold">Withdraw History</h1>
 //             <table className="w-full mx-3 my-4 text-left table-auto text-heading font-semibold">
 //                 <thead>
-//                     <tr className="border-b border-gray-700 text-[#7C878E] text-sm">
+//                     <tr className="border-b border-border text-[#7C878E] text-sm">
 //                         <th className="py-5">Transaction</th>
 //                         <th className="py-5">Payout Method</th>
 //                         <th className="py-5">Status</th>

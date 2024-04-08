@@ -266,7 +266,7 @@ export default function Local({
 				{/* <Toast children={"KB creation successful"} open={toast} setOpen={setToast} className="mx-auto" /> */}
 				<div className="mx-56">
 					<h1 className="text-2xl font-semibold text-heading">Upload Knowledge Files</h1>
-					<hr className="my-4 border border-gray-600" />
+					<hr className="my-4 border border-border" />
 				</div>
 				<div className="mx-56">
 					<div

@@ -129,7 +129,7 @@ const MyActivityTable = () => {
     <div className="flex w-full  flex-col">
       <table className="mx-3 my-4 w-full table-auto text-left font-semibold text-heading">
         <thead>
-          <tr className="border-b border-gray-700 text-sm text-[#7C878E]">
+          <tr className="border-b border-border text-sm text-[#7C878E]">
             <th className="py-5 pl-8">My Activity</th>
             <th className="py-5 ">Amount</th>
             <th className="py-5 ">Last Updated</th>
@@ -214,7 +214,7 @@ export default function AccountSettings() {
         </h1>
         {/* <DateFilterComponent /> */}
       </div>
-      <hr className="my-4 border border-gray-600" />
+      <hr className="my-4 border border-border" />
       {/* Profile Picture */}
       <p className="font-semibold text-heading">Profile</p>
       <div className="mb-8 mt-4 flex items-center justify-between">
@@ -300,7 +300,7 @@ export default function AccountSettings() {
         </div>
         {twitterStatus == "authenticated" ? (
           <button
-            className="flex items-center rounded-full border border-gray-700 px-4 py-1 text-heading"
+            className="flex items-center rounded-full border border-border px-4 py-1 text-heading"
             onClick={() => {
               signOut();
             }}

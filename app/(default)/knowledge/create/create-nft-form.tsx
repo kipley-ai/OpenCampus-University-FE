@@ -255,7 +255,7 @@ export default function NFT() {
               )}
             </div>
           </div>
-          <hr className="my-4 border border-gray-600" />
+          <hr className="my-4 border border-border" />
         </div>
         <form>
           <div className="mt-4 flex flex-col gap-8 md:flex-row">

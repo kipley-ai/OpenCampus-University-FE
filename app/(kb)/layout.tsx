@@ -25,8 +25,8 @@ export default function DefaultLayout({
 			<Sidebar />
 
 			{/* Content area */}
-			<div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden bg-container p-6 pl-0 border-gray-700 rounded-lg">
-				<div className="border border-gray-700 rounded-lg">
+			<div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden bg-container p-6 pl-0 border-border rounded-lg">
+				<div className="border border-border rounded-lg">
 					{/*  Site header */}
 					<Header />
 

@@ -24,7 +24,7 @@ export default function AccountHeader() {
 
 	return (
 		<header
-			className=" bg-stone-800 border-b border-gray-700 z-30"
+			className=" bg-stone-800 border-b border-border z-30"
 			style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1);" }}
 		>
 			<div className="px-4 sm:px-6 lg:px-8">

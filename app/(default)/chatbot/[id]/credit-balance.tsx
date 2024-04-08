@@ -80,7 +80,7 @@ export default function CreditBalance() {
           className="self-end rounded-full hover:text-primary"
           onClick={() => setRefetch(true)}
         >
-          <div className="rounded-full border-gray-700 p-1 font-semibold">
+          <div className="rounded-full border-border p-1 font-semibold">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width={16}

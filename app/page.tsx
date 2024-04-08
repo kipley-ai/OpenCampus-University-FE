@@ -36,7 +36,7 @@ export default function Home() {
       return (
         <div className="flex h-[100dvh] items-center justify-center overflow-hidden bg-container">
           <GetInvolvedButton
-            buttonStyle="flex items-center border border-gray-700 rounded-full py-6 px-8 text-sm font-medium text-neutral-300 duration-200"
+            buttonStyle="flex items-center border border-border rounded-full py-6 px-8 text-sm font-medium text-neutral-300 duration-200"
             wrapStyle="flex items-center text-sm font-medium ml-3 text-neutral-300 duration-200"
             chainStyle="flex items-center text-sm font-medium ml-3 text-neutral-300 duration-200"
             content={

@@ -52,7 +52,7 @@ export default function HeaderOnboarding() {
 
 	return (
 		<header
-			className="border-b border-gray-700 z-30"
+			className="border-b border-border z-30"
 			style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)" }}
 		>
 			<div className="px-4 py-4 sm:px-6 lg:px-8">
@@ -106,7 +106,7 @@ export default function HeaderOnboarding() {
 						{/* Connect Wallet Button */}
 						{!isConnected_ && (
 							<GetInvolvedButton
-								buttonStyle="flex items-center border border-gray-700 rounded-full py-3 px-4 text-sm font-medium text-neutral-300 duration-200"
+								buttonStyle="flex items-center border border-border rounded-full py-3 px-4 text-sm font-medium text-neutral-300 duration-200"
 								wrapStyle="flex items-center text-sm font-medium ml-3 text-neutral-300 duration-200"
 								chainStyle="flex items-center text-sm font-medium ml-3 text-neutral-300 duration-200"
 								content={
@@ -146,7 +146,7 @@ export default function HeaderOnboarding() {
 								/>
 								<button
 									onClick={() => setModalLogin(true)}
-									className="text-sm font-medium ml-3  text-neutral-300 border border-gray-700 rounded-full py-3 px-4 duration-200"
+									className="text-sm font-medium ml-3  text-neutral-300 border border-border rounded-full py-3 px-4 duration-200"
 								>
 									Connect Twitter
 								</button>

@@ -247,7 +247,7 @@ export default function Local({
           UPLOAD KNOWLEDGE FILES
         </h1>
       </div>
-      <hr className="my-4 border border-gray-600" />
+      <hr className="my-4 border border-border" />
       <div className="">
         <div
           className="color-[#aaa] font-inter mb-4 mt-3 flex cursor-pointer flex-col items-center rounded-md border-2 border-dashed border-[#777E90] px-20 py-12 text-center text-heading "

@@ -307,7 +307,7 @@ const ChatBotForm = () => {
               }
             </div>
           </div>
-          <hr className="my-4 border border-gray-600" />
+          <hr className="my-4 border border-border" />
         </div>
         <form
           className="mx-5 -mt-6 flex flex-col md:mx-32"
@@ -336,7 +336,7 @@ const ChatBotForm = () => {
                     type="text"
                     value={form.name}
                     onChange={(e) => handleFormChange("name", e.target.value)}
-                    className="mt-2 w-full rounded-md border-2 border-gray-800 bg-transparent text-xs text-heading lg:text-sm"
+                    className="mt-2 w-full rounded-md border-2 border-border bg-transparent text-xs text-heading lg:text-sm"
                     placeholder="Name your Chatbot"
                     maxLength={100}
                   />
@@ -367,7 +367,7 @@ const ChatBotForm = () => {
                       setDescription({ tmp: false, value: e.target.value })
                     }
                     placeholder={"Describe your Chatbot"}
-                    className="mt-2 w-full rounded-md border-2 border-gray-800 bg-transparent text-xs text-heading lg:text-sm"
+                    className="mt-2 w-full rounded-md border-2 border-border bg-transparent text-xs text-heading lg:text-sm"
                     rows={3}
                     maxLength={1000}
                   />
@@ -439,7 +439,7 @@ const ChatBotForm = () => {
                 </label>
                 <div className="mt-3">
                   <input
-                    className="placeholder-text-[#7C878E] w-1/2 rounded-md border-2 border-gray-800 bg-transparent text-xs text-[#DDD] lg:text-sm"
+                    className="placeholder-text-[#7C878E] w-1/2 rounded-md border-2 border-border bg-transparent text-xs text-[#DDD] lg:text-sm"
                     type="number"
                     name="pricePerQuery"
                     placeholder="e.g. 1"
@@ -505,7 +505,7 @@ const ChatBotForm = () => {
               Configuration defining AI behavior.
             </h5> */}
 
-            {/* <hr className="my-4 border border-gray-700" />
+            {/* <hr className="my-4 border border-border" />
             </div>
             <div className="mx-64">
               <label

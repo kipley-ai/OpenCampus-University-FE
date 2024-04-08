@@ -202,7 +202,7 @@
 // 					htmlFor="file-input"
 // 				>
 // 					Drop your files here OR{" "}
-// 					<span className="text-aqua-700">Click here to browse</span>
+// 					<span className="text-primary">Click here to browse</span>
 // 				</label>
 // 				<p className="text-slate-400 text-xs">
 // 					Supported file formats: .pdf, .csv, .txt, .json, .pptx, .xlsx, .docx.

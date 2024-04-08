@@ -26,14 +26,14 @@ const ChatbotInfo = ({setIsOpen}: {setIsOpen: (isOpen: boolean) => void;}) => {
     <div className="flex w-full items-start gap-4">
       <button
         onClick={() => router.back()}
-        className="text-2xl text-aqua-700 focus:outline-none"
+        className="text-2xl text-primary focus:outline-none"
       >
         <PiArrowBendUpLeftBold />
       </button>
-      <div className="mb-2 flex w-full flex-col divide-y-2 divide-aqua-700 border-2 border-aqua-700">
+      <div className="mb-2 flex w-full flex-col divide-y-2 divide-primary border-2 border-primary">
         <div className="flex flex-row justify-between px-6 py-2">
           <h1
-            className="font-mikado font-semibold text-aqua-700 text-xl md:text-2xl"
+            className="font-mikado font-semibold text-primary text-xl md:text-2xl"
           >
             @{chatbotData?.data.data.name}
           </h1>
@@ -51,7 +51,7 @@ const ChatbotInfo = ({setIsOpen}: {setIsOpen: (isOpen: boolean) => void;}) => {
             <Image
               src={chatbotData?.data.data.profile_image as string}
               alt="Profile"
-              className="rounded-full border-2 border-aqua-700 w-[80px] h-[80px] lg:w-[100px] lg:h-[100px]"
+              className="rounded-full border-2 border-primary w-[80px] h-[80px] lg:w-[100px] lg:h-[100px]"
               style={{ boxShadow: "0 0 10px #00EDBE" }}
               width={100}
               height={100}
@@ -66,7 +66,7 @@ const ChatbotInfo = ({setIsOpen}: {setIsOpen: (isOpen: boolean) => void;}) => {
                 <Image
                   src={nftData?.data.data.profile_image as string}
                   alt="Profile"
-                  className=" border-2 border-aqua-700 w-[80px] h-[80px] lg:w-[100px] lg:h-[100px]"
+                  className=" border-2 border-primary w-[80px] h-[80px] lg:w-[100px] lg:h-[100px]"
                   style={{ boxShadow: "0 0 10px #00EDBE" }}
                   width={100}
                   height={100}

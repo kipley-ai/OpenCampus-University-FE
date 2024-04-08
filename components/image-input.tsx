@@ -108,13 +108,13 @@ const ImageInput = ({
       <div className="flex flex-col pt-6 md:pt-0 gap-2">
         <button
           onClick={handleGalleryCover}
-          className="rounded-md bg-aqua-700 px-1 py-2 text-xs font-semibold text-black hover:brightness-75 lg:text-sm"
+          className="rounded-md bg-primary px-1 py-2 text-xs font-semibold text-black hover:brightness-75 lg:text-sm"
         >
           CHOOSE IMAGE FROM GALLERY
         </button>
         <button
           onClick={handleDeviceCover}
-          className="rounded-md bg-aqua-700 px-1 py-2 text-xs font-semibold text-black hover:brightness-75 lg:text-sm"
+          className="rounded-md bg-primary px-1 py-2 text-xs font-semibold text-black hover:brightness-75 lg:text-sm"
         >
           CHOOSE IMAGE FROM DEVICE
         </button>

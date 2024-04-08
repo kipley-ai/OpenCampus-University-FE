@@ -255,7 +255,7 @@ const ChatbotSettings = () => {
               <h5 className="text-sm font-semibold text-white">Cancel</h5>
             </button>
             <button
-              className="mt-8 flex items-center justify-center rounded-3xl bg-aqua-700 px-5 py-1 hover:brightness-75"
+              className="mt-8 flex items-center justify-center rounded-3xl bg-primary px-5 py-1 hover:brightness-75"
               type="submit"
               onClick={(e) => {
                 e.preventDefault();

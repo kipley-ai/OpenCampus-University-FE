@@ -92,7 +92,7 @@ const Header = () => {
                 height={24}
               />
             </button>
-            <h1 className="font-semibold text-aqua-700">
+            <h1 className="font-semibold text-primary">
               EXPLORE THE POSSIBILITIES OF AI CHAT
             </h1>
           </div>

@@ -20,7 +20,7 @@ const Welcome = () => {
         progress.
       </p>
       <GetInvolvedButton
-        buttonStyle="rounded-full py-3 px-16 text-sm font-medium bg-aqua-700"
+        buttonStyle="rounded-full py-3 px-16 text-sm font-medium bg-primary"
         chainStyle="hidden"
         content={
           <span className="text-sm font-bold text-black duration-200">

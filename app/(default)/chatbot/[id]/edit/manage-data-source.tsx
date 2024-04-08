@@ -112,7 +112,7 @@ const ManageDataSources = () => {
           {kbDetail.data?.data.data.type !== "twitter" && (
             <Link href={"/chatbot/" + id + "/add"}>
               <button
-                className="flex items-center justify-center rounded-3xl bg-aqua-700 px-8 py-2"
+                className="flex items-center justify-center rounded-3xl bg-primary px-8 py-2"
                 type="submit"
               >
                 <h5 className="mr-3 flex-grow text-sm text-black">Add New</h5>
@@ -171,7 +171,7 @@ const ManageDataSources = () => {
               <tr>
                 <th className="px-3 py-7">
                   <div
-                    className={`rounded  ${checkHeader ? "bg-aqua-700" : "border-2 border-[#7C878E] bg-transparent"} flex h-4 w-4 items-center justify-center`}
+                    className={`rounded  ${checkHeader ? "bg-primary" : "border-2 border-[#7C878E] bg-transparent"} flex h-4 w-4 items-center justify-center`}
                     onClick={() => handleCheckAll()}
                   >
                     <Image
@@ -194,7 +194,7 @@ const ManageDataSources = () => {
                 <tr key={index}>
                   <td className="px-3 py-7">
                     <div
-                      className={`rounded  ${checkRow[index] ? "bg-aqua-700" : "border-2 border-[#7C878E] bg-transparent"} flex h-4 w-4 items-center justify-center`}
+                      className={`rounded  ${checkRow[index] ? "bg-primary" : "border-2 border-[#7C878E] bg-transparent"} flex h-4 w-4 items-center justify-center`}
                       onClick={() => handleCheckRow(index)}
                     >
                       <Image

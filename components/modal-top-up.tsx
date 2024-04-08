@@ -187,7 +187,7 @@ export default function ModalTopUp({
         <div className="inline-flex items-center justify-between self-stretch p-5 pt-0">
           <div className="w-full text-base font-semibold leading-10 text-gray-50">
             <span>Get Credits by Paying </span>
-            <span className="text-aqua-700">$CREDIT </span>
+            <span className="text-primary">$CREDIT </span>
             <span>token</span>
           </div>
         </div>
@@ -233,7 +233,7 @@ export default function ModalTopUp({
           <div className="grid w-full grid-cols-3 gap-3 font-bold text-white">
             <button
               className={`flex h-12 flex-col items-center justify-center rounded-3xl border-2 ${
-                form?.amount == 50 ? "border-aqua-700" : "border-[#50575F]"
+                form?.amount == 50 ? "border-primary" : "border-[#50575F]"
               }`}
               onClick={() => {
                 handleFormChange("amount", 50);
@@ -243,7 +243,7 @@ export default function ModalTopUp({
             </button>
             <button
               className={`flex h-12 flex-col items-center justify-center rounded-3xl border-2 ${
-                form?.amount == 100 ? "border-aqua-700" : "border-[#50575F]"
+                form?.amount == 100 ? "border-primary" : "border-[#50575F]"
               }`}
               onClick={() => {
                 handleFormChange("amount", 100);
@@ -253,7 +253,7 @@ export default function ModalTopUp({
             </button>
             <button
               className={`flex h-12 flex-col items-center justify-center rounded-3xl border-2 ${
-                form?.amount == 300 ? "border-aqua-700" : "border-[#50575F]"
+                form?.amount == 300 ? "border-primary" : "border-[#50575F]"
               }`}
               onClick={() => {
                 handleFormChange("amount", 300);
@@ -263,7 +263,7 @@ export default function ModalTopUp({
             </button>
             <button
               className={`flex h-12 flex-col items-center justify-center rounded-3xl border-2 ${
-                form?.amount == 500 ? "border-aqua-700" : "border-[#50575F]"
+                form?.amount == 500 ? "border-primary" : "border-[#50575F]"
               }`}
               onClick={() => {
                 handleFormChange("amount", 500);
@@ -273,7 +273,7 @@ export default function ModalTopUp({
             </button>
             <button
               className={`flex h-12 flex-col items-center justify-center rounded-3xl border-2 ${
-                form?.amount == 750 ? "border-aqua-700" : "border-[#50575F]"
+                form?.amount == 750 ? "border-primary" : "border-[#50575F]"
               }`}
               onClick={() => {
                 handleFormChange("amount", 750);
@@ -283,7 +283,7 @@ export default function ModalTopUp({
             </button>
             <button
               className={`flex h-12 flex-col items-center justify-center rounded-3xl border-2 ${
-                form?.amount == 1000 ? "border-aqua-700" : "border-[#50575F]"
+                form?.amount == 1000 ? "border-primary" : "border-[#50575F]"
               }`}
               onClick={() => {
                 handleFormChange("amount", 1000);
@@ -296,14 +296,14 @@ export default function ModalTopUp({
         <div className="inline-flex items-center justify-between self-stretch p-5 pt-2 ">
           <div className="w-80 text-sm font-semibold leading-10 text-gray-50">
             <span>You are paying </span>
-            <span className="text-aqua-700">{form?.amount} $CREDIT</span>
+            <span className="text-primary">{form?.amount} $CREDIT</span>
           </div>
         </div>
         <div className="inline-flex items-center justify-between self-stretch p-5">
           <div className="grid w-full grid-cols-1 font-bold text-white">
             {!isTargetNetworkActive ? (
               <button
-                className="flex flex-row items-center justify-center gap-2 rounded-3xl bg-aqua-700 p-2 px-5 hover:brightness-75"
+                className="flex flex-row items-center justify-center gap-2 rounded-3xl bg-primary p-2 px-5 hover:brightness-75"
                 onClick={switchToTargetNetwork}
               >
                 <h5 className="font-semibold text-black">
@@ -312,7 +312,7 @@ export default function ModalTopUp({
               </button>
             ) : (
               <button
-                className="flex flex-row items-center justify-center gap-2 rounded-3xl bg-aqua-700 p-2 px-5 disabled:bg-gray-500"
+                className="flex flex-row items-center justify-center gap-2 rounded-3xl bg-primary p-2 px-5 disabled:bg-gray-500"
                 type="button"
                 onClick={handleContinue}
                 disabled={continueBtn.disable}

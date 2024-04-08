@@ -39,7 +39,7 @@ const NoData = ({ item, url }: NoDataProps) => {
               <FaPlus />
             </div>
           </IconContext.Provider>
-          <p className="text-sm text-aqua-700">Create new {item}</p>
+          <p className="text-sm text-primary">Create new {item}</p>
         </div>
       </Link>
     </div>
@@ -106,7 +106,7 @@ const WithdrawConfirm = ({
       </div>
       <div className="flex flex-row justify-between">
         <button
-          className="rounded bg-[#272B30] px-4 py-2 text-sm font-semibold text-aqua-700 ring-1 ring-gray-700"
+          className="rounded bg-[#272B30] px-4 py-2 text-sm font-semibold text-primary ring-1 ring-gray-700"
           onClick={() => {
             setValues([0, 0]);
             setWithdrawValue("0");
@@ -127,7 +127,7 @@ const WithdrawConfirm = ({
           }}
         />
         <button
-          className="rounded bg-[#272B30] px-4 py-2 text-sm font-semibold text-aqua-700 ring-1 ring-gray-700"
+          className="rounded bg-[#272B30] px-4 py-2 text-sm font-semibold text-primary ring-1 ring-gray-700"
           onClick={() => {
             setValues([0, 1000]);
             setWithdrawValue("1000");
@@ -138,7 +138,7 @@ const WithdrawConfirm = ({
       </div>
       <button
         onClick={handleWithdraw}
-        className="mb-2 mt-10 flex w-full flex-row items-center justify-center space-x-2 rounded-2xl bg-aqua-700 py-2"
+        className="mb-2 mt-10 flex w-full flex-row items-center justify-center space-x-2 rounded-2xl bg-primary py-2"
       >
         <p className="text-center text-sm font-semibold text-black">Continue</p>
         <svg
@@ -195,7 +195,7 @@ const NFTCard = ({
           {nft.category || "Uncategorised"}
         </p> */}
       </div>
-      <div className="absolute bottom-0 hidden h-12 w-full items-center justify-center space-x-2 rounded-b-2xl bg-aqua-700 group-hover:flex">
+      <div className="absolute bottom-0 hidden h-12 w-full items-center justify-center space-x-2 rounded-b-2xl bg-primary group-hover:flex">
         <p className="text-center text-sm font-semibold text-black">Withdraw</p>
         <svg
           width="21"

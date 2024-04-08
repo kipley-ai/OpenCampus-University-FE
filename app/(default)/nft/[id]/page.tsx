@@ -54,7 +54,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
           <p className="mr-2 text-center text-sm text-[#7C878E] md:text-left">
             SFT Owner
           </p>
-          <p className="text-center text-sm text-aqua-700 md:text-left">
+          <p className="text-center text-sm text-primary md:text-left">
             {nftDetail.wallet_addr!.substring(0, 6) +
               "..." +
               nftDetail.wallet_addr!.substring(
@@ -91,7 +91,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
                 fill="#7C878E"
               />
             </svg>
-            <p className="ml-2 text-center text-sm text-aqua-700 md:text-left">
+            <p className="ml-2 text-center text-sm text-primary md:text-left">
               View on OpenSea
             </p>
           </a>
@@ -102,7 +102,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
             Data Info
           </h3>
           <Link href={"/chatbot/" + nftDetail.chatbot_id + "/edit"}>
-            <button className="inline-flex items-center gap-2 rounded border-2 border-aqua-700 px-4 py-2 text-sm text-white">
+            <button className="inline-flex items-center gap-2 rounded border-2 border-primary px-4 py-2 text-sm text-white">
               <svg
                 width="20"
                 height="20"
@@ -171,7 +171,7 @@ const ChatbotSection = ({
         </div>
         <div>
           <Link href={"/chatbot/" + chatbotDetail.chatbot_id + "/edit"}>
-            <button className="inline-flex gap-2 rounded border-2 border-aqua-700 px-4 py-2 text-sm text-white">
+            <button className="inline-flex gap-2 rounded border-2 border-primary px-4 py-2 text-sm text-white">
               <svg
                 width="20"
                 height="20"
@@ -258,7 +258,7 @@ const NoNFT = () => {
           <h1 className="font-regular text-center text-sm text-white md:mb-[30px] md:text-[18px]">
             Meet our AI chat app revolutionizing conversations
           </h1>
-          <h1 className="w-fit rounded-full bg-aqua-700 px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-base">
+          <h1 className="w-fit rounded-full bg-primary px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-base">
             Mint your SFT
           </h1>
         </div>
@@ -292,8 +292,8 @@ const NoChatbot = () => {
             Connect with AI Chat Bot
           </h1> */}
           <Link href={"/nft/" + id + "/create-chatbot"}>
-            {/* <h1 className="w-fit rounded-full bg-aqua-700 px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-base"> */}
-            <h1 className="w-fit rounded-md bg-aqua-700 px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-2xl">
+            {/* <h1 className="w-fit rounded-full bg-primary px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-base"> */}
+            <h1 className="w-fit rounded-md bg-primary px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-2xl">
               Link Your SFT to Chatbot
             </h1>
           </Link>

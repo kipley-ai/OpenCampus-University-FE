@@ -88,7 +88,7 @@ const Header = ({
               <p className="mb-4 text-sm text-gray-300">
                 Invite friends to earn more points!
               </p>
-              <div className="flex items-center border border-aqua-700 bg-transparent p-2">
+              <div className="flex items-center border border-primary bg-transparent p-2">
                 <input
                   type="text"
                   readOnly

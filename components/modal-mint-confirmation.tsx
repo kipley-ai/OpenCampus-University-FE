@@ -82,13 +82,13 @@ export default function ModalMintConfirmation({
             <span>Price:</span>
           </div>
           <div className="inline-flex w-1/2 items-end justify-end gap-2">
-            <span className="text-2xl font-extrabold leading-tight text-aqua-700">
+            <span className="text-2xl font-extrabold leading-tight text-primary">
               FREE
             </span>
             <span className="line-through">50$CREDIT</span>
           </div>
         </div>
-        <span className="text-lg italic text-aqua-700">
+        <span className="text-lg italic text-primary">
           🔥 Limited-Time Promotion: Zero Platform Fee
         </span>
         <div className="inline-flex items-center justify-between self-stretch p-5">
@@ -96,7 +96,7 @@ export default function ModalMintConfirmation({
             {/* Start the conditional rendering here */}
             {!isTargetNetworkActive ? (
               <button
-                className="flex flex-row items-center justify-center gap-2 rounded-3xl bg-aqua-700 p-2 px-5 hover:brightness-75"
+                className="flex flex-row items-center justify-center gap-2 rounded-3xl bg-primary p-2 px-5 hover:brightness-75"
                 onClick={switchToTargetNetwork}
               >
                 <span className="font-semibold text-black">
@@ -121,7 +121,7 @@ export default function ModalMintConfirmation({
               </button>
             ) : (
               <button
-                className={`flex flex-row items-center justify-center gap-2 rounded-3xl font-semibold text-black ${isMinting ? "bg-gray-500" : "bg-aqua-700"} p-2 px-5 hover:brightness-75`}
+                className={`flex flex-row items-center justify-center gap-2 rounded-3xl font-semibold text-black ${isMinting ? "bg-gray-500" : "bg-primary"} p-2 px-5 hover:brightness-75`}
                 onClick={handleMintNFT}
                 disabled={isMinting}
               >

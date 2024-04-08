@@ -153,7 +153,7 @@ export default function NFT() {
         <div className="flex flex-row-reverse">
           <div></div>
           <button
-            className="mt-8 flex w-44 flex-row items-center justify-between rounded-3xl bg-aqua-700 p-2 px-5"
+            className="mt-8 flex w-44 flex-row items-center justify-between rounded-3xl bg-primary p-2 px-5"
             type="button"
           >
             <h5 className="text-sm font-semibold text-black">MINT SFT</h5>

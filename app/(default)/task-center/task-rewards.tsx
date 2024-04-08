@@ -95,8 +95,8 @@ const TaskCard = ({
   }
 
   const statusClasses = isCompleted
-    ? "disabled bg-transparent text-gray-20 border border-aqua-700 border-opacity-30 cursor-not-allowed"
-    : "border border-aqua-700 bg-transparent text-aqua-700 hover:bg-aqua-700 hover:text-black";
+    ? "disabled bg-transparent text-gray-20 border border-primary border-opacity-30 cursor-not-allowed"
+    : "border border-primary bg-transparent text-primary hover:bg-primary hover:text-black";
 
   const { mutate: takeTask } = useTakeTask();
   const { mutate: completeTask } = useCompleteTask();
@@ -136,13 +136,13 @@ const TaskCard = ({
   };
 
   return (
-    <div className="flex flex-col xl:flex-row gap-2 rounded-lg border-2 border-aqua-700 p-4 shadow-md">
+    <div className="flex flex-col xl:flex-row gap-2 rounded-lg border-2 border-primary p-4 shadow-md">
       <div className="flex items-center justify-between gap-2">
       <div>
-        <div className="text-xl font-bold text-aqua-700">
+        <div className="text-xl font-bold text-primary">
           {data.task_reward_amount}
         </div>
-        <div className="text-xs text-aqua-700">POINTS</div>
+        <div className="text-xs text-primary">POINTS</div>
       </div>
         <svg
           width="42"

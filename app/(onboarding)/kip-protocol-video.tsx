@@ -19,7 +19,7 @@ function KipProtocolVideo() {
       {showButton && (
         <div className="absolute bottom-20 flex w-full flex-row justify-center">
           <GetInvolvedButton
-            buttonStyle="rounded-md w-full py-3 px-6 text-sm font-medium bg-aqua-700 transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300"
+            buttonStyle="rounded-md w-full py-3 px-6 text-sm font-medium bg-primary transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300"
             chainStyle="hidden"
             content={
               <span className="text-base font-bold text-black">

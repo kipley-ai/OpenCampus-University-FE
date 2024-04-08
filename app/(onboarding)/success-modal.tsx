@@ -45,7 +45,7 @@ export default function SuccessModal({
                 <div className='flex w-full'>
                 <button
                     onClick={() => router.push('/dashboard')}
-                    className="bg-[#353945] rounded-3xl w-full py-2 text-aqua-700 text-sm"
+                    className="bg-[#353945] rounded-3xl w-full py-2 text-primary text-sm"
                 >
                     Enter KnowledgeFi Homepage
                 </button>

@@ -13,13 +13,13 @@ const AccordionItem = ({ header, ...rest }: any) => (
     {...rest}
     header={({ state: { isEnter } }) => (
       <>
-        <h2 className={`${isEnter ? "text-aqua-700" : "text-white"}`}>
+        <h2 className={`${isEnter ? "text-primary" : "text-white"}`}>
           {header}
         </h2>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className={`ml-auto transition-transform duration-200 ease-out ${
-            isEnter ? "rotate-180 stroke-aqua-700" : "stroke-gray-500"
+            isEnter ? "rotate-180 stroke-primary" : "stroke-gray-500"
           }`}
           width="24"
           height="24"

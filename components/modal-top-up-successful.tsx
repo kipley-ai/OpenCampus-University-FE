@@ -38,14 +38,14 @@ export default function ModalTopUpSuccessful({
           <span>Your wallet has been successfully topped up</span>
         </div>
         <div className="flex w-full">
-          <button className="mr-4 w-full rounded-3xl bg-[#353945] py-2 text-sm text-aqua-700" onClick={() => setIsOpen(false)}>
+          <button className="mr-4 w-full rounded-3xl bg-[#353945] py-2 text-sm text-primary" onClick={() => setIsOpen(false)}>
               Close
           </button>
           {/* <button
             onClick={() =>
               router.push("/nft/" + "/create-chatbot")
             }
-            className="w-full rounded-3xl bg-[#353945] py-2 text-sm text-aqua-700"
+            className="w-full rounded-3xl bg-[#353945] py-2 text-sm text-primary"
           >
             Create Chatbot
           </button> */}

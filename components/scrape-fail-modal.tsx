@@ -87,7 +87,7 @@ export default function TwitterFailModal({ children, open, setOpen }: ToastProps
           {children}
         </div>
         <button
-          className="w-full bg-[#353945] px-16 py-3 text-sm font-bold text-aqua-700 disabled:opacity-50"
+          className="w-full bg-[#353945] px-16 py-3 text-sm font-bold text-primary disabled:opacity-50"
           onClick={() => handleTryAgain()}
           disabled={twitterData?.user?.username === undefined}
         >

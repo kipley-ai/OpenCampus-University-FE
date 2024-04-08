@@ -124,7 +124,7 @@ export default function SelectDataElements() {
           <div className="flex justify-end">
             {/* {isComingSoon && (
               <button
-                className="mt-8 flex flex-row items-center justify-between gap-2 rounded-sm bg-aqua-700 px-5 py-3 hover:brightness-75"
+                className="mt-8 flex flex-row items-center justify-between gap-2 rounded-sm bg-primary px-5 py-3 hover:brightness-75"
                 type="submit"
                 onClick={handleContinue}
               >

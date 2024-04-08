@@ -110,7 +110,7 @@ export default function DataSource({
           {/* <div className="flex justify-end">
             {isComingSoon ? (
               <button
-                className="mt-8 flex flex-row items-center justify-between rounded-3xl bg-aqua-700 p-2 px-5"
+                className="mt-8 flex flex-row items-center justify-between rounded-3xl bg-primary p-2 px-5"
                 type="submit"
                 onClick={handleContinue}
               >

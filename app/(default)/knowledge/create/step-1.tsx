@@ -29,7 +29,7 @@ const ButtonItem = ({
 }) => {
   return (
     <button
-      className={`relative flex flex-col items-center border-2 py-5 md:pt-10 ${isSelected ? "border-aqua-700 bg-[#181B1F]" : "border-transparent"} justify-end rounded-2xl`}
+      className={`relative flex flex-col items-center border-2 py-5 md:pt-10 ${isSelected ? "border-primary bg-[#181B1F]" : "border-transparent"} justify-end rounded-2xl`}
       onClick={onClick}
     >
       <Image
@@ -41,7 +41,7 @@ const ButtonItem = ({
       />
       <h3 className="pt-6">{optionText}</h3>
       {isComingSoon && isSelected && (
-        <span className="absolute right-2 top-2 rounded-md border border-aqua-700 bg-aqua-700 px-2 text-xs text-black">
+        <span className="absolute right-2 top-2 rounded-md border border-primary bg-primary px-2 text-xs text-black">
           COMING SOON
         </span>
       )}

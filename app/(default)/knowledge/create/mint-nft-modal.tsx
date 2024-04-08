@@ -80,7 +80,7 @@ export default function SuccessFailModal({
         </div>
         <div className="flex w-full">
           <button
-            className="mr-4 w-full rounded-3xl bg-[#353945] py-2 text-sm text-aqua-700  disabled:brightness-50"
+            className="mr-4 w-full rounded-3xl bg-[#353945] py-2 text-sm text-primary  disabled:brightness-50"
             disabled={!isNftMinted || nftIsPending}
             onClick={() => {
               window.open(nftOpenSeaLink, "_blank");
@@ -94,7 +94,7 @@ export default function SuccessFailModal({
             onClick={() =>
               router.push("/nft/" + nftIdCreated + "/create-chatbot")
             }
-            className="w-full rounded-3xl bg-[#353945] py-2 text-sm text-aqua-700"
+            className="w-full rounded-3xl bg-[#353945] py-2 text-sm text-primary"
           >
             Create Chatbot
           </button>

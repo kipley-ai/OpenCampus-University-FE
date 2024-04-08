@@ -50,7 +50,7 @@ export default function SuccessFailModal({
         </div>
         <button
           onClick={onDone || (() => router.push("/nft"))}
-          className="w-full rounded-3xl bg-[#353945] py-2 text-sm text-aqua-700"
+          className="w-full rounded-3xl bg-[#353945] py-2 text-sm text-primary"
         >
           Done
         </button>

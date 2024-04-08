@@ -11,7 +11,7 @@ const ProgressBar = ({ current, total }: ProgressBarProps) => {
   return (
     <div className="w-full bg-[#393E44] rounded-full">
       <div
-        className="bg-aqua-700 text-xs font-medium text-blue-100 text-center p-[1px] leading-none rounded-l-full"
+        className="bg-primary text-xs font-medium text-blue-100 text-center p-[1px] leading-none rounded-l-full"
         style={{ width: `${width}%` }}
       ></div>
     </div>

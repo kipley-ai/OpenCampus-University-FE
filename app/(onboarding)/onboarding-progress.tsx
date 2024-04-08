@@ -6,7 +6,7 @@ interface BoxWithNumberProps {
 
 const BoxWithNumber: React.FC<BoxWithNumberProps> = ({ number }) => {
   return (
-    <div className="flex h-5 w-5 items-center justify-center border border-aqua-700 bg-black">
+    <div className="flex h-5 w-5 items-center justify-center border border-primary bg-black">
       <span className="text-sm font-bold">{number}</span>
     </div>
   );
@@ -24,7 +24,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
           <ul className="relative flex justify-between gap-24">
             <li className="flex-1">
               <div className="flex justify-center">
-                <span className="text-aqua-700">
+                <span className="text-primary">
                   {step > 1 ? (
                     <BoxWithNumber number="✓" />
                   ) : (
@@ -42,7 +42,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
             </li>
             <li className="flex-1">
               <div className="flex justify-center">
-                <span className="text-aqua-700">
+                <span className="text-primary">
                   {step > 2 ? (
                     <BoxWithNumber number="✓" />
                   ) : (
@@ -60,7 +60,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
             </li>
             <li className="flex-1">
               <div className="flex justify-center">
-                <span className="text-aqua-700">
+                <span className="text-primary">
                   {step > 3 ? (
                     <BoxWithNumber number="✓" />
                   ) : (
@@ -78,7 +78,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
             </li>
             <li className="flex-1">
               <div className="flex justify-center">
-                <span className="text-aqua-700">
+                <span className="text-primary">
                   {step > 4 ? (
                     <BoxWithNumber number="✓" />
                   ) : (

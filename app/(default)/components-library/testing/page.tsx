@@ -25,7 +25,7 @@ const SwitchToPolygonButton = () => {
   return (
     <button
       disabled={isPolygon}
-      className="flex flex-row items-center justify-center gap-2 rounded-3xl bg-aqua-700 p-2 px-5 hover:brightness-75"
+      className="flex flex-row items-center justify-center gap-2 rounded-3xl bg-primary p-2 px-5 hover:brightness-75"
       onClick={switchToPolygon}
     >
       Switch to Polygon
@@ -39,7 +39,7 @@ const SwitchToSepoliaButton = () => {
   return (
     <button
       disabled={isSepolia}
-      className="flex flex-row items-center justify-center gap-2 rounded-3xl bg-aqua-700 p-2 px-5 hover:brightness-75"
+      className="flex flex-row items-center justify-center gap-2 rounded-3xl bg-primary p-2 px-5 hover:brightness-75"
       onClick={switchToSepolia}
     >
       Switch to Sepolia

@@ -535,7 +535,7 @@ const ChatBotForm = () => {
               </h5>
             </button>
             <button
-              className="mt-8 flex items-center justify-center rounded-3xl bg-aqua-700 p-2 px-5 ring-2 ring-gray-600 transition-all duration-200 ease-in-out hover:ring-0 hover:brightness-75"
+              className="mt-8 flex items-center justify-center rounded-3xl bg-primary p-2 px-5 ring-2 ring-gray-600 transition-all duration-200 ease-in-out hover:ring-0 hover:brightness-75"
               type="submit"
             >
               <h5 className="text-xs font-semibold text-black transition-colors duration-200 ease-in-out lg:text-sm">

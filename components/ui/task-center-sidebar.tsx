@@ -18,7 +18,7 @@ export default function TaskCenterSideBar() {
       <Link
         href={"/task-center"}
       >
-        <Button className="absolute bottom-12 inset-x-0 mx-auto w-1/2">
+        <Button className="absolute bottom-12 inset-x-0 mx-auto w-3/4">
           Task Center
         </Button>
       </Link>

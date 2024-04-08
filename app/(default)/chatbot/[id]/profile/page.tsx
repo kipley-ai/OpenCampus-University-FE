@@ -21,7 +21,7 @@ export default function Profile() {
 
   if (id === `1d7a4ecf-bcf6-44da-bf05-92225aec8a03`) {
     return (
-      <div className="bg-neutral-900 px-6 pb-6">
+      <div className="bg-container px-6 pb-6">
         <YatSiuProfile />
         <div className="my-4" />
         <YatSiuSFT />
@@ -29,7 +29,7 @@ export default function Profile() {
     );
   } else {
     return (
-      <div className="bg-neutral-900 px-6 pb-6">
+      <div className="bg-container px-6 pb-6">
         <ChatbotProfile />
         <div className="my-4" />
         <SFTDetail />
@@ -52,14 +52,14 @@ function ChatbotProfile() {
   return (
     <div>
       <div className="mx-6 my-3">
-        <h2 className="text-4xl font-medium text-white">
+        <h2 className="text-4xl font-medium text-heading">
           {chatbotData?.data.data.name}
         </h2>
       </div>
-      <div className="mx-6 flex flex-col gap-2 rounded-xl bg-[#27282D] p-6 text-white">
+      <div className="mx-6 flex flex-col gap-2 rounded-xl bg-box p-6 text-heading">
         <div className="flex gap-4">
-          <div className="w-4 rounded-md bg-aqua-700"></div>
-          <h2 className="font-poppins text-xl font-medium text-aqua-700">
+          <div className="w-4 rounded-md bg-primary"></div>
+          <h2 className="font-poppins text-xl font-medium text-primary">
             About
           </h2>
         </div>
@@ -75,7 +75,7 @@ function ChatbotProfile() {
               />
             </div>
           </div>
-          <div className="flex flex-col justify-between text-[#BBBBBB] md:w-4/5 md:pl-6">
+          <div className="flex flex-col justify-between text-body md:w-4/5 md:pl-6">
             <div className="items-start">
               <p className="mb-4 line-clamp-6 font-poppins">
                 {chatbotData?.data.data.description}
@@ -83,7 +83,7 @@ function ChatbotProfile() {
             </div>
             <div className="items-end">
               <Link href={`/chatbot/${slug}`}>
-                <button className="my-5 rounded-full border border-[#00EDBE] bg-transparent px-8 py-1 font-medium text-white hover:bg-aqua-700 hover:text-black">
+                <button className="my-5 button">
                   Chat with {chatbotData?.data.data.name}
                 </button>
               </Link>
@@ -110,17 +110,17 @@ function SFTDetail() {
 
   return (
     <div>
-      <div className="mx-6 flex flex-col gap-2 rounded-xl bg-[#27282D] p-6 text-white">
+      <div className="mx-6 flex flex-col gap-2 rounded-xl bg-box p-6 text-heading">
         <div className="flex gap-4">
-          <div className="w-4 rounded-md bg-aqua-700"></div>
-          <h2 className="font-poppins text-xl font-medium text-aqua-700">
+          <div className="w-4 rounded-md bg-primary"></div>
+          <h2 className="font-poppins text-xl font-medium text-primary">
             Knowledge Assets SFT
           </h2>
         </div>
         <div className="flex flex-col-reverse md:flex-row">
-          <div className="text-[#BBBBBB] md:w-4/5 md:pl-6">
+          <div className="text-body md:w-4/5 md:pl-6">
             <div className="md:w-3/4">
-              <h1 className="text-3xl font-medium text-white">
+              <h1 className="text-3xl font-medium text-heading">
                 {sftData?.data.data.name}
               </h1>
               <p className="my-2 line-clamp-6 font-poppins">
@@ -150,14 +150,14 @@ function YatSiuProfile() {
   return (
     <div>
       <div className="mx-6 my-3">
-        <h2 className="text-4xl font-medium text-white">
+        <h2 className="text-4xl font-medium text-heading">
           Yat Siu
         </h2>
       </div>
-      <div className="mx-6 flex flex-col gap-2 rounded-xl bg-[#27282D] p-6 text-white">
+      <div className="mx-6 flex flex-col gap-2 rounded-xl bg-box p-6 text-heading">
         <div className="flex gap-4">
-          <div className="w-4 rounded-md bg-aqua-700"></div>
-          <h2 className="font-poppins text-xl font-medium text-aqua-700">
+          <div className="w-4 rounded-md bg-primary"></div>
+          <h2 className="font-poppins text-xl font-medium text-primary">
             About
           </h2>
         </div>
@@ -173,7 +173,7 @@ function YatSiuProfile() {
               />
             </div>
           </div>
-          <div className="flex flex-col justify-between text-[#BBBBBB] md:w-4/5 md:pl-6">
+          <div className="flex flex-col justify-between text-body md:w-4/5 md:pl-6">
             <div className="items-start">
               <p className="mb-4 line-clamp-6 font-poppins">
                 Veteran technology entrepreneur/investor Yat Siu is the co-founder and executive chairman of Animoca Brands, a global leader in blockchain and gaming with the goal to provide property rights for virtual assets. Yat began his career at Atari Germany, then established Hong Kong Cybercity/Freenation, the first free web page and email provider in Asia. In 1998 he set up Outblaze, an award-winning pioneer of multilingual white label web services. After selling one of its business units to IBM, he pivoted Outblaze to incubate digital entertainment projects. One of those projects is Animoca Brands.
@@ -184,7 +184,7 @@ function YatSiuProfile() {
             </div>
             <div className="items-end">
               <Link href={`/chatbot/${slug}`}>
-                <button className="my-5 rounded-full border border-[#00EDBE] bg-transparent px-8 py-1 font-medium text-white hover:bg-aqua-700 hover:text-black">
+                <button className="my-5 px-8 button">
                   Chat with Yat Siu
                 </button>
               </Link>
@@ -199,17 +199,17 @@ function YatSiuProfile() {
 function YatSiuSFT() {
   return (
     <div>
-      <div className="mx-6 flex flex-col gap-2 rounded-xl bg-[#27282D] p-6 text-white">
+      <div className="mx-6 flex flex-col gap-2 rounded-xl bg-box p-6 text-heading">
         <div className="flex gap-4">
-          <div className="w-4 rounded-md bg-aqua-700"></div>
-          <h2 className="font-poppins text-xl font-medium text-aqua-700">
+          <div className="w-4 rounded-md bg-primary"></div>
+          <h2 className="font-poppins text-xl font-medium text-primary">
             Knowledge Assets SFT
           </h2>
         </div>
         <div className="flex flex-col-reverse md:flex-row">
-          <div className="text-[#BBBBBB] md:w-4/5 md:pl-6">
+          <div className="text-body md:w-4/5 md:pl-6">
             <div className="md:w-3/4">
-              <h1 className="text-3xl font-medium text-white">
+              <h1 className="text-3xl font-medium text-heading">
                 Name of SFT
               </h1>
               <p className="my-2 line-clamp-6 font-poppins">

@@ -15,7 +15,7 @@ const TotalReferral = () => {
       <div className="flex-1 px-4 py-4 flex items-center space-x-3">
         <Image src={PointIcon} className="size-[50px] md:size-auto" alt="" />
         <div>
-          <div className="flex flex-col xs:flex-row text-sm font-semibold text-[#808191]">
+          <div className="flex flex-col xs:flex-row text-sm font-semibold">
             <p>Referral </p>
             <p className="xs:ml-2">Points</p>
           </div>
@@ -48,13 +48,13 @@ const Header = ({
   endPoints: number;
 }) => {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between bg-[#303030]">
+    <div className="flex flex-col md:flex-row items-center justify-between bg-box">
       <div className="flex w-full h-full md:w-1/4 md:flex-col items-start">
         {/* Base Point Section */}
-        <div className="py-4 flex-1 px-4 flex items-center space-x-3 border-r border-white md:border-none">
+        <div className="py-4 flex-1 px-4 flex items-center space-x-3 border-r border-border md:border-none">
           <Image src={PointIcon} className="size-[50px] md:size-auto" alt="" />
           <div>
-            <div className="flex flex-col xs:flex-row text-sm font-semibold text-[#808191]">
+            <div className="flex flex-col xs:flex-row text-sm font-semibold">
               <p>Base </p>
               <p className="xs:ml-2">Points</p>
             </div>
@@ -65,7 +65,7 @@ const Header = ({
         </div>
 
         {/* Separator Line */}
-        <div className="hidden md:block my-2 w-full border-b border-white"></div>
+        <div className="hidden md:block my-2 w-full border-b border-border"></div>
 
         {/* Total Referral Section */}
         <TotalReferral />
@@ -84,16 +84,16 @@ const Header = ({
           <div className="flex grow flex-col justify-center">
             {/* Referral Bonus Code */}
             <div className="text-heading">
-              <h2 className="mb-2 text-xl font-bold">Referral Bonus</h2>
+              <h2 className="mb-2 text-xl font-bold text-white">Referral Bonus</h2>
               <p className="mb-4 text-sm text-gray-300">
                 Invite friends to earn more points!
               </p>
-              <div className="flex items-center border border-primary bg-transparent p-2">
+              <div className="flex items-center border border-primary rounded-md bg-box p-2">
                 <input
                   type="text"
                   readOnly
                   value="Coming Soon..."
-                  className="grow mr-4 bg-transparent text-heading focus:outline-none"
+                  className="grow mr-4 text-black focus:outline-none"
                 />
                 <button className="">
                   {/* SVG icon */}
@@ -108,7 +108,7 @@ const Header = ({
                       fill-rule="evenodd"
                       clip-rule="evenodd"
                       d="M21.0012 6H7.00122V22H15.0012V20H17.0012V18H15.0012V16H17.0012V18H19.0012V16H21.0012V6ZM9.00122 20V8H19.0012V14H13.0012V20H9.00122ZM3.00122 18H5.00122V4H17.0012V2H5.00122H3.00122V4V18Z"
-                      fill="#00EDBE"
+                      fill="var(--color-primary)"
                     />
                   </svg>
                 </button>

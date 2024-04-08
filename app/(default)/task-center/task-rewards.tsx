@@ -8,17 +8,20 @@ import { getNextDayAtMidnight, getRemainingTimeString } from "@/lib/date";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useTakeTask, useCompleteTask } from "@/hooks/api/task";
+import { useTheme } from "next-themes";
 
 const TaskType = ({ taskFrequency }: { taskFrequency: string }) => {
+  const { theme } = useTheme();
+
   if (taskFrequency == "daily") {
     return (
-      <div className="mr-1 w-min rounded-sm bg-[#FE8D08] bg-opacity-20 px-3 py-1 text-xs font-bold text-[#FE8D08] flex items-center">
+      <div className={`mr-1 w-min rounded-sm bg-opacity-20 px-3 py-1 text-xs font-bold flex items-center ${theme === "light" ? "bg-[#c47314] text-[#c47314]" : "bg-[#FE8D08] text-[#FE8D08]"}`}>
         Daily
       </div>
     );
   } else {
     return (
-      <div className="mr-1 w-min rounded-sm bg-[#97fe08] bg-opacity-20 px-3 py-1 text-xs font-bold text-[#97fe08] flex items-center">
+      <div className={`mr-1 w-min rounded-sm bg-opacity-20 px-3 py-1 text-xs font-bold flex items-center ${theme === "light" ? "bg-[#5f8c1b] text-[#5f8c1b]" : "bg-[#97fe08] text-[#97fe08]"}`}>
         Once
       </div>
     );
@@ -37,7 +40,7 @@ const TaskDeadline = ({
   }
 
   return (
-    <div className="flex flex-row items-center rounded-sm bg-[#303030] px-3 py-1 text-xs text-heading">
+    <div className="flex flex-row items-center rounded-sm bg-box px-3 py-1 text-xs">
       <svg
         width="13"
         height="13"
@@ -49,7 +52,7 @@ const TaskDeadline = ({
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M6.33333 1H1.66667V1.66667H1V6.33333H1.66667V7H6.33333V6.33333H7V1.66667H6.33333V1ZM6.33333 1.66667V6.33333H1.66667V1.66667H6.33333ZM3.66667 2.33333H4.33333V4.33333H5.66667V5L4.33333 5H3.66667V2.33333Z"
-          fill="#00EDBE"
+          fill="var(--color-primary)"
         />
       </svg>
       <span className="ml-2">
@@ -95,8 +98,8 @@ const TaskCard = ({
   }
 
   const statusClasses = isCompleted
-    ? "disabled bg-transparent text-gray-20 border border-primary border-opacity-30 cursor-not-allowed"
-    : "border border-primary bg-transparent text-primary hover:bg-primary hover:text-black";
+    ? "bg-[#B8BABE] text-[#909295] border-0 bg-transparent text-gray-20 cursor-not-allowed"
+    : "border border-primary bg-transparent text-primary hover:bg-primary hover:text-container";
 
   const { mutate: takeTask } = useTakeTask();
   const { mutate: completeTask } = useCompleteTask();
@@ -151,7 +154,7 @@ const TaskCard = ({
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <rect width="42" height="38" rx="2" fill="#4EE178" />
+          <rect width="42" height="38" rx="2" fill="var(--color-primary)" />
           <path
             fill-rule="evenodd"
             clip-rule="evenodd"
@@ -185,7 +188,7 @@ const TaskCard = ({
       <div className="self-center">
         <button
           onClick={handleButton}
-          className={`${statusClasses} rounded px-6 py-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2`}
+          className={`${statusClasses} rounded-full px-6 py-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2`}
         >
           {taskStatus}
         </button>
@@ -216,7 +219,7 @@ const TasksSection = (
   if (isSuccess) {
     console.log("listData.data :>> ", listData);
     return (
-      <div className="bg-[#151515] p-6">
+      <div className="bg-container p-6">
         <div className="mb-1 flex flex-col items-center justify-center">
           <Toast
             type="success"

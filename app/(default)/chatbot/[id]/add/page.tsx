@@ -99,7 +99,7 @@ export default function DataSource() {
   return (
     <>
       {step == "data_source" ? (
-        <div className="flex flex-col bg-[#292D32] py-8 sm:px-6 lg:px-8">
+        <div className="flex flex-col bg-container py-8 sm:px-6 lg:px-8">
           <div className="mx-56">
             <h1 className="text-2xl font-semibold text-heading">
               Add Knowledge Assets
@@ -136,7 +136,7 @@ export default function DataSource() {
 						<h5 className="text-sm text-heading font-semibold">Back</h5>
 					</button> */}
             <button
-              className="mt-8 flex w-36 flex-row items-center justify-between rounded-3xl bg-primary p-2 px-5"
+              className="mt-8 button"
               type="submit"
               onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                 if (selectedButton == "twitter") {
@@ -152,23 +152,7 @@ export default function DataSource() {
                 }
               }}
             >
-              <h5 className="text-sm font-semibold text-black">Continue</h5>
-              <svg
-                width="20"
-                height="10"
-                viewBox="0 0 20 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M17.98 5.7901C18.8936 5.7901 19.6343 6.53075 19.6343 7.44439V7.44439C19.6343 8.35803 18.8936 9.09868 17.98 9.09868L1.65435 9.09868C0.74071 9.09868 5.90253e-05 8.35803 5.90618e-05 7.44439V7.44439C5.90983e-05 6.53075 0.740711 5.7901 1.65435 5.7901L17.98 5.7901Z"
-                  fill="#151515"
-                />
-                <path
-                  d="M18.932 5.9907C19.5219 6.63674 19.5219 7.68418 18.932 8.33022C18.3422 8.97626 17.3859 8.97626 16.7961 8.33022L12.3947 3.50927C11.8049 2.86322 11.8049 1.81578 12.3947 1.16974C12.9845 0.523702 13.9408 0.523702 14.5306 1.16974L18.932 5.9907Z"
-                  fill="#151515"
-                />
-              </svg>
+              <h5 className="text-sm">Continue</h5>
             </button>
           </div>
         </div>

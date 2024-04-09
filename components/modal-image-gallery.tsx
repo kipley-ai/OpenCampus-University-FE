@@ -46,7 +46,7 @@ export default function ModalImageGallery({
             {/* Modal header */}
             <div className="px-5 py-3 border-b border-slate-200 dark:border-slate-700">
               <div className="flex justify-between items-center">
-                <Dialog.Title className="font-semibold text-slate-800 dark:text-slate-100">
+                <Dialog.Title className="font-semibold text-slate-800 dark:text-slate-100 text-2xl">
                   {title}
                 </Dialog.Title>
                 <button
@@ -57,8 +57,29 @@ export default function ModalImageGallery({
                   }}
                 >
                   <div className="sr-only">Close</div>
-                  <svg className="w-4 h-4 fill-current">
-                    <path d="M7.95 6.536l4.242-4.243a1 1 0 111.415 1.414L9.364 7.95l4.243 4.242a1 1 0 11-1.415 1.415L7.95 9.364l-4.243 4.243a1 1 0 01-1.414-1.415L6.536 7.95 2.293 3.707a1 1 0 011.414-1.414L7.95 6.536z" />
+                  <svg
+                    width="40"
+                    height="40"
+                    viewBox="0 0 40 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="hover:opacity-75"
+                  >
+                    <rect
+                      x="1"
+                      y="1"
+                      width="38"
+                      height="38"
+                      rx="19"
+                      stroke="#353945"
+                      stroke-width="2"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M13.2929 13.2929C13.6834 12.9024 14.3166 12.9024 14.7071 13.2929L20 18.5858L25.2929 13.2929C25.6834 12.9024 26.3166 12.9024 26.7071 13.2929C27.0976 13.6834 27.0976 14.3166 26.7071 14.7071L21.4142 20L26.7071 25.2929C27.0976 25.6834 27.0976 26.3166 26.7071 26.7071C26.3166 27.0976 25.6834 27.0976 25.2929 26.7071L20 21.4142L14.7071 26.7071C14.3166 27.0976 13.6834 27.0976 13.2929 26.7071C12.9024 26.3166 12.9024 25.6834 13.2929 25.2929L18.5858 20L13.2929 14.7071C12.9024 14.3166 12.9024 13.6834 13.2929 13.2929Z"
+                      fill="var(--color-heading)"
+                    />
                   </svg>
                 </button>
               </div>
@@ -87,7 +108,7 @@ export default function ModalImageGallery({
             {/* Modal footer */}
             <div className="px-5 py-3 border-t dark:border-slate-700 flex justify-center gap-16">
               <button
-                className="dark:text-slate-100 hover:brightness-75 rounded-3xl px-4 py-2 font-semibold border-2 border-[#50575F]"
+                className="dark:text-slate-100 hover:opacity-75 rounded-3xl w-32 py-2 border-2 border-[#50575F]"
                 onClick={() => {
                   setIsOpen(false);
                 }}
@@ -95,7 +116,7 @@ export default function ModalImageGallery({
                 Cancel
               </button>
               <button
-                className="bg-primary text-black hover:brightness-75 rounded-3xl px-4 py-2 font-semibold"
+                className="button w-32"
                 onClick={() => {
                   setImage(selectedImage);
                   // setUploadedFile(null);

@@ -27,13 +27,13 @@ export default function EditChatbot() {
         <div className="flex w-full rounded-xl border-2 border-border bg-box p-1">
           <button
             onClick={() => setActiveTab("settings")}
-            className={`w-1/2 rounded-lg px-6 py-2 font-semibold text-heading ${activeTab === "settings" ? "bg-container" : "hover:bg-secondary"} mr-1 shadow focus:outline-none`}
+            className={`w-1/2 rounded-lg px-6 py-2 font-semibold text-heading ${activeTab === "settings" ? "bg-container" : "hover:text-primary"} mr-1 shadow focus:outline-none`}
           >
             Chatbot Settings
           </button>
           <button
             onClick={() => setActiveTab("dataSources")}
-            className={`w-1/2 rounded-lg px-6 py-2 font-semibold text-heading ${activeTab === "dataSources" ? "bg-container" : "hover:bg-secondary"} shadow focus:outline-none`}
+            className={`w-1/2 rounded-lg px-6 py-2 font-semibold text-heading ${activeTab === "dataSources" ? "bg-container" : "hover:text-primary"} shadow focus:outline-none`}
           >
             Manage Data Sources
           </button>

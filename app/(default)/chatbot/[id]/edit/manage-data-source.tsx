@@ -105,32 +105,31 @@ const ManageDataSources = () => {
     const totalPages = Math.ceil(kbItemCount / pageSize);
 
     return (
-      <div className="flex flex-col py-20 font-semibold sm:px-6 lg:px-0">
+      <div className="flex flex-col py-8 sm:px-6 lg:px-0">
         <div className="mb-4 flex items-center justify-between">
-          <h1 className="text-2xl font-normal">Manage Data Sources</h1>
+          <h1 className="text-3xl font-bold">Manage Data Sources</h1>
           {/* Add New Button */}
           {kbDetail.data?.data.data.type !== "twitter" && (
             <Link href={"/chatbot/" + id + "/add"}>
               <button
-                className="flex items-center justify-center rounded-3xl bg-primary px-8 py-2"
+                className="button flex items-center justify-center gap-2"
                 type="submit"
               >
-                <h5 className="mr-3 flex-grow text-sm text-container">Add New</h5>
                 <svg
                   width="20"
                   height="20"
                   viewBox="0 0 20 20"
-                  fill="none"
+                  className="stroke-current"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
                     d="M10.0001 4.16602V15.8327M4.16675 9.99935H15.8334"
-                    stroke="var(--color-container)"
                     stroke-width="2.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   />
                 </svg>
+                <h5 className="text-sm leading-none">Add</h5>
               </button>
             </Link>
           )}
@@ -144,7 +143,7 @@ const ManageDataSources = () => {
                 {checkRow.filter((value) => value === true).length} selected
               </span>
               <button
-                className="flex items-center justify-center rounded-3xl border-2 border-[#FF6C3E] bg-transparent px-9 py-2"
+                className="flex items-center justify-center rounded-3xl border-2 border-[#FF6C3E] bg-transparent px-9 py-2 hover:opacity-75"
                 type="submit"
                 onClick={handleDelete}
               >
@@ -174,11 +173,9 @@ const ManageDataSources = () => {
                     className={`rounded  ${checkHeader ? "bg-primary" : "border-2 border-[#7C878E] bg-transparent"} flex h-4 w-4 items-center justify-center`}
                     onClick={() => handleCheckAll()}
                   >
-                    <Image
-                      src={CheckIcon}
-                      className={`${checkHeader ? "" : "hidden"}`}
-                      alt="Check Icon"
-                    />
+                    <svg width="10" height="9" viewBox="0 0 10 9" className={`${checkHeader ? "fill-container" : "hidden"}`} xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3.5 5.375L1.5 3.375L0 4.875L3.5 8.375L10 1.875L8.5 0.375L3.5 5.375Z"/>
+                    </svg>
                   </div>
                 </th>{" "}
                 {/* Header Checkbox */}
@@ -197,11 +194,9 @@ const ManageDataSources = () => {
                       className={`rounded  ${checkRow[index] ? "bg-primary" : "border-2 border-[#7C878E] bg-transparent"} flex h-4 w-4 items-center justify-center`}
                       onClick={() => handleCheckRow(index)}
                     >
-                      <Image
-                        src={CheckIcon}
-                        className={`${checkRow[index] ? "" : "hidden"}`}
-                        alt="Check Icon"
-                      />
+                      <svg width="10" height="9" viewBox="0 0 10 9" className={`${checkRow[index] ? "fill-container" : "hidden"}`} xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.5 5.375L1.5 3.375L0 4.875L3.5 8.375L10 1.875L8.5 0.375L3.5 5.375Z"/>
+                      </svg>
                     </div>
                   </td>{" "}
                   {/* Row Checkbox */}

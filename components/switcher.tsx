@@ -28,7 +28,7 @@ const Switcher = ({
           >
             <h1
               onClick={() => setWhich(index)}
-              className={`text-center text-xs font-semibold text-heading lg:text-sm`}
+              className={`text-center text-xs font-semibold text-heading lg:text-sm ${mode === index ? "" : "hover:text-primary"}`}
             >
               {text}
             </h1>

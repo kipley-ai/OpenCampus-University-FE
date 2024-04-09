@@ -192,7 +192,7 @@ const BotItem = ({
   return (
     <Link
       href={`/chatbot/${chatbotSlug(botData)}/profile`}
-      className="grow group relative flex cursor-pointer flex-col w-auto rounded-sm bg-box transition ease-in-out delay-50 hover:bg-secondary"
+      className="grow group relative flex cursor-pointer flex-col w-auto rounded-sm bg-box transition ease-in-out delay-50 hover:shadow-2xl dark:hover:shadow-gray-700"
       onClick={onClick}
     >
       <div className="p-2">

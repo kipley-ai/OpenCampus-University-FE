@@ -36,14 +36,14 @@ export default function FreeKFIToken() {
         <div className="flex flex-col items-center space-y-4">
           <button
             onClick={handleMintToken}
-            className="w-auto max-w-xs rounded bg-gray-700 px-8 py-2 font-bold text-cyan-500 hover:brightness-75 disabled:brightness-75"
+            className="button w-auto max-w-xs px-8 py-2 font-bold"
             disabled={minting}
           >
             {minting ? "Minting..." : "Mint Now"}
           </button>
           <button
             onClick={() => setStep("onboarding_success")}
-            className="w-auto max-w-xs rounded bg-transparent px-8 py-2 text-[#353945] hover:text-blue-700"
+            className="w-auto max-w-xs bg-transparent px-8 py-2 hover:opacity-75"
           >
             Skip for Now
           </button>

@@ -6,7 +6,7 @@ interface BoxWithNumberProps {
 
 const BoxWithNumber: React.FC<BoxWithNumberProps> = ({ number }) => {
   return (
-    <div className="flex h-5 w-5 items-center justify-center border border-primary bg-black">
+    <div className="flex h-5 w-5 items-center justify-center border border-primary bg-container">
       <span className="text-sm font-bold">{number}</span>
     </div>
   );
@@ -18,13 +18,13 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
       <div className="flex w-full justify-center">
         <div className="relative">
           <div
-            className="absolute inset-x-14 top-1/4 -mt-px h-0.5 bg-[#50575F]"
+            className="absolute inset-x-14 top-1/4 -mt-px h-0.5 bg-[#50575F] z-0"
             aria-hidden="true"
           ></div>
           <ul className="relative flex justify-between gap-24">
             <li className="flex-1">
               <div className="flex justify-center">
-                <span className="text-primary">
+                <span className="">
                   {step > 1 ? (
                     <BoxWithNumber number="✓" />
                   ) : (
@@ -34,7 +34,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
               </div>
               <div className="flex justify-center">
                 <span
-                  className={`text-center text-sm font-medium ${step >= 1 ? "text-[#00EDBE]" : "text-[#00EDBE]"}`}
+                  className={`text-center text-sm font-medium`}
                 >
                   Select Data Elements
                 </span>
@@ -42,7 +42,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
             </li>
             <li className="flex-1">
               <div className="flex justify-center">
-                <span className="text-primary">
+                <span className="">
                   {step > 2 ? (
                     <BoxWithNumber number="✓" />
                   ) : (
@@ -52,7 +52,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
               </div>
               <div className="flex justify-center">
                 <span
-                  className={`text-center text-sm font-medium ${step >= 2 ? "text-[#00EDBE]" : "text-[#00EDBE]"}`}
+                  className={`text-center text-sm font-medium`}
                 >
                   Mint SFT
                 </span>
@@ -60,7 +60,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
             </li>
             <li className="flex-1">
               <div className="flex justify-center">
-                <span className="text-primary">
+                <span className="">
                   {step > 3 ? (
                     <BoxWithNumber number="✓" />
                   ) : (
@@ -70,7 +70,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
               </div>
               <div className="flex justify-center">
                 <span
-                  className={`text-center text-sm font-medium ${step >= 3 ? "text-[#00EDBE]" : "text-[#00EDBE]"}`}
+                  className={`text-center text-sm font-medium`}
                 >
                   Create Chatbot
                 </span>
@@ -78,7 +78,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
             </li>
             <li className="flex-1">
               <div className="flex justify-center">
-                <span className="text-primary">
+                <span className="">
                   {step > 4 ? (
                     <BoxWithNumber number="✓" />
                   ) : (
@@ -88,7 +88,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
               </div>
               <div className="flex justify-center">
                 <span
-                  className={`text-center text-sm font-medium ${step >= 4 ? "text-[#00EDBE]" : "text-[#00EDBE]"}`}
+                  className={`text-center text-sm font-medium`}
                 >
                   Get KFI Token
                 </span>

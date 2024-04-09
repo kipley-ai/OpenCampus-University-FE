@@ -48,7 +48,7 @@ export default function Header() {
 
   const { headerTitle } = useAppProvider();
 
-  const { systemTheme, theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     let sub = true;
@@ -130,25 +130,21 @@ export default function Header() {
           {/* Header: Right side */}
           <div className="flex items-center gap-2 md:gap-4">
             {/* Create Chatbot Button */}
-            <Link href="/knowledge/create" className="group">
-              <Button>
-                <div className="flex items-center group-hover:bg-primary">
-                  <FaCirclePlus />
-                  <span className="ml-1 sm:ml-2 md:text-sm">
-                    Create Knowledge Asset
-                  </span>
-                </div>
-              </Button>
+            <Link href="/knowledge/create">
+              <div className="button flex items-center">
+                <FaCirclePlus />
+                <span className="ml-1 sm:ml-2 md:text-sm">
+                  Create Knowledge Asset
+                </span>
+              </div>
             </Link>
             {/* My Bot Button */}
-            <Link href="/nft" className="group">
-              <Button>
-                <div className="flex items-center group-hover:bg-primary">
-                  <span className="md:text-sm">
-                    My Assets
-                  </span>
-                </div>
-              </Button>
+            <Link href="/nft">
+              <div className="button">
+                <span className="md:text-sm">
+                  My Assets
+                </span>
+              </div>
             </Link>
             {/* Connect Wallet Button */}
             {!isConnected_ && (

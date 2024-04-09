@@ -6,7 +6,7 @@ type OnboardingLayoutProps = {
 
 const OnboardingLayout = ({ children }: OnboardingLayoutProps) => {
   return (
-    <div className="flex h-dvh overflow-hidden bg-[#080403]">
+    <div className="flex h-dvh overflow-hidden bg-container text-heading">
       {/* Content area */}
       <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden rounded-lg border-border p-0 pl-0">
         <div className="rounded-lg">

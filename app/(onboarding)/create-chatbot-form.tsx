@@ -68,8 +68,8 @@ const ChatBotForm = () => {
 
   const categoryList = useGetCategory();
 
-  const [ chatbotPKLStatus, setChatbotPKLStatus ] = useState<any>(false);
-  const [ willRefetch, setWillRefetch ] = useState<boolean>(true);
+  const [chatbotPKLStatus, setChatbotPKLStatus] = useState<any>(false);
+  const [willRefetch, setWillRefetch] = useState<boolean>(true);
 
   const formValidation = z.object({
     name: z
@@ -206,15 +206,17 @@ const ChatBotForm = () => {
       setPersonalityData("instruction_2");
     }
   }, [personality]);
-  
-  const { data, isFetching, isError, isSuccess, refetch } = useChatbotPKLStatus({
-    kb_id: kbId as string, 
-    willRefetch : willRefetch,
-  });
+
+  const { data, isFetching, isError, isSuccess, refetch } = useChatbotPKLStatus(
+    {
+      kb_id: kbId as string,
+      willRefetch: willRefetch,
+    },
+  );
 
   useEffect(() => {
     if (!isFetching && isSuccess && data) {
-      console.log(data.data.status)
+      console.log(data.data.status);
       switch (data.data.status) {
         case "success":
           setWillRefetch(false);
@@ -282,29 +284,33 @@ const ChatBotForm = () => {
               </h1>
             </div>
             <div className="flex w-60">
-              {chatbotPKLStatus ? 
+              {chatbotPKLStatus ? (
                 <>
-                <Image
+                  <Image
                     src={SpinnerCheckIcon}
                     alt="Profile"
                     className="mr-3"
                     width={40}
                     height={40}
                   />
-                <span className="text-sm font-light text-heading text-wrap">Your Knowledge Asset are ready!</span>
-              </>
-              : 
+                  <span className="text-wrap text-sm font-light text-heading">
+                    Your Knowledge Asset are ready!
+                  </span>
+                </>
+              ) : (
                 <>
                   <Image
-                      src={SpinnerIcon}
-                      alt="Profile"
-                      className="animate-spin mr-3"
-                      width={40}
-                      height={40}
-                    />
-                  <span className="text-sm font-light text-heading text-wrap">Your Knowledge Asset are vectorising…</span>
+                    src={SpinnerIcon}
+                    alt="Profile"
+                    className="mr-3 animate-spin"
+                    width={40}
+                    height={40}
+                  />
+                  <span className="text-wrap text-sm font-light text-heading">
+                    Your Knowledge Asset are vectorising…
+                  </span>
                 </>
-              }
+              )}
             </div>
           </div>
           <hr className="my-4 border border-border" />
@@ -336,7 +342,7 @@ const ChatBotForm = () => {
                     type="text"
                     value={form.name}
                     onChange={(e) => handleFormChange("name", e.target.value)}
-                    className="mt-2 w-full rounded-md border-2 border-border bg-transparent text-xs text-heading lg:text-sm"
+                    className="mt-2 w-full rounded-xl border-2 bg-transparent text-xs text-heading lg:text-sm"
                     placeholder="Name your Chatbot"
                     maxLength={100}
                   />
@@ -367,7 +373,7 @@ const ChatBotForm = () => {
                       setDescription({ tmp: false, value: e.target.value })
                     }
                     placeholder={"Describe your Chatbot"}
-                    className="mt-2 w-full rounded-md border-2 border-border bg-transparent text-xs text-heading lg:text-sm"
+                    className="mt-2 w-full rounded-xl border-2 bg-transparent text-heading"
                     rows={3}
                     maxLength={1000}
                   />
@@ -386,7 +392,6 @@ const ChatBotForm = () => {
                     mode={mode}
                     setWhich={setMode}
                     fullWidth={true}
-                    bg="bg-transparent"
                   />
                 </div>
                 {/* <label
@@ -424,13 +429,12 @@ const ChatBotForm = () => {
                     mode={personality}
                     setWhich={setPersonality}
                     fullWidth={true}
-                    bg="bg-transparent"
                   />
                 </div>
               </div>
               <div>
                 {/* <label className="block text-xs font-semibold text-heading lg:text-sm "> */}
-                <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold text-[#DDD] lg:text-sm">
+                <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold text-heading lg:text-sm">
                   <span>Price Per Query (in $CREDIT)</span>
                   <Tooltip bg="dark" position="right" size="md">
                     Set your price per query on your chatbot app and get paid in
@@ -439,7 +443,7 @@ const ChatBotForm = () => {
                 </label>
                 <div className="mt-3">
                   <input
-                    className="placeholder-text-[#7C878E] w-1/2 rounded-md border-2 border-border bg-transparent text-xs text-[#DDD] lg:text-sm"
+                    className="placeholder-text-[#7C878E] w-1/2 rounded-xl border-2 bg-transparent text-xs text-heading lg:text-sm"
                     type="number"
                     name="pricePerQuery"
                     placeholder="e.g. 1"
@@ -565,22 +569,22 @@ const ChatBotForm = () => {
 
           <div className="form-actions mt-8 flex flex-row items-center justify-between space-x-2">
             <button
-              className="flex flex-row items-center justify-between  rounded-3xl p-2 px-5"
+              className="mt-8 flex items-center justify-center rounded-3xl p-2 px-5 ring-2 ring-gray-600"
               type="submit"
               onClick={() => {
                 setStep("mint_nft");
               }}
             >
-              <h5 className="text-xs font-semibold text-gray-400 hover:brightness-75 lg:text-sm">
+              <h5 className="text-xs font-semibold text-heading lg:text-sm">
                 BACK
               </h5>
             </button>
             <button
-              className="group flex items-center justify-center rounded-sm bg-primary p-2 px-5 ring-2 ring-gray-600 transition-all duration-200 ease-in-out hover:brightness-75 disabled:bg-gray-500"
+              className="mt-8 flex items-center justify-center rounded-3xl bg-primary p-2 px-5 ring-2 ring-gray-600 transition-all duration-200 ease-in-out hover:ring-0 hover:brightness-75"
               type="submit"
             >
-              <h5 className="text-xs font-semibold text-black transition-colors duration-200 ease-in-out lg:text-sm">
-                BRING MY CHATBOT TO LIFE
+              <h5 className="text-xs font-semibold text-container transition-colors duration-200 ease-in-out lg:text-sm">
+                Bring my chatbot to life
               </h5>
               <svg
                 width="20"

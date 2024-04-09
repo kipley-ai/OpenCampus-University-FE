@@ -269,7 +269,7 @@ export default function NFT() {
             />
             <div className="flex w-full flex-col">
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-semibold text-[#DDD] lg:text-sm">
+                <label className="text-xs font-semibold text-heading lg:text-sm">
                   Name
                 </label>
                 <input
@@ -291,7 +291,7 @@ export default function NFT() {
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-semibold text-[#DDD] lg:text-sm">
+                <label className="text-xs font-semibold text-heading lg:text-sm">
                   Description
                 </label>
                 <textarea
@@ -315,7 +315,7 @@ export default function NFT() {
 
               <div className="flex flex-row flex-wrap">
                 <div className="flex w-1/3 flex-col gap-1">
-                  <label className="text-wrap text-xs font-semibold text-[#DDD] lg:text-sm">
+                  <label className="text-wrap text-xs font-semibold text-heading lg:text-sm">
                     Token Symbol
                   </label>
                   <input
@@ -389,7 +389,7 @@ export default function NFT() {
                   </div>
                 </div> */}
                 <div className="flex w-2/3 flex-col gap-1">
-                  <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold text-[#DDD] lg:text-sm">
+                  <label className="flex flex-row items-center space-x-3 text-wrap text-xs font-semibold text-heading lg:text-sm">
                     <span>Price Per Query (in $CREDIT)</span>
                     <Tooltip bg="dark" position="right" size="md">
                       Set your price per query on your knowledge asset and get
@@ -496,25 +496,21 @@ export default function NFT() {
             </div> */}
           <div className="mt-8 flex justify-between">
             <button
-              className="flex flex-row items-center justify-between  rounded-3xl p-2 px-5"
+              className="flex flex-row items-center justify-between  rounded-3xl border-2 border-[#50575F] p-2 px-5 hover:opacity-75"
               type="submit"
               onClick={() => {
                 setStep("data_source");
               }}
             >
-              <h5 className="text-xs font-semibold text-gray-400 hover:brightness-75 lg:text-sm">
-                BACK
-              </h5>
+              <h5 className="text-xs lg:text-sm">BACK</h5>
             </button>
             <button
-              className="flex w-44 flex-row items-center justify-between rounded-sm bg-primary p-2 px-5 hover:brightness-75"
+              className="button flex w-44 flex-row items-center justify-between"
               onClick={handleGenerateSFT}
               // onClick={() => setStep("create_chatbot")}
               type="button"
             >
-              <h5 className="text-xs font-semibold text-black lg:text-sm">
-                MINT SFT
-              </h5>
+              <h5>MINT SFT</h5>
               <Image
                 width={24}
                 height={24}

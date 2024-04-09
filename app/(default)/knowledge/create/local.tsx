@@ -315,6 +315,7 @@ export default function Local({
                     viewBox="0 0 40 40"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
+                    className="hover:opacity-75"
                   >
                     <rect
                       x="1"
@@ -346,10 +347,10 @@ export default function Local({
             setStep("data_source");
           }}
         >
-          <h5 className="text-sm font-semibold text-heading">Back</h5>
+          <h5 className="text-sm">Back</h5>
         </button>
-        <Button
-          className="mt-8 w-32"
+        <button
+          className="button mt-8 w-32"
           type="submit"
           disabled={files.length === 0 || fileLimitExceeded}
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
@@ -371,7 +372,7 @@ export default function Local({
           <h5>
             Continue
           </h5>
-        </Button>
+        </button>
       </div>
     </div>
   );

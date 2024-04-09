@@ -501,19 +501,19 @@ export default function NFT() {
                 setStep("data_source");
               }}
             >
-              <h5 className="text-xs font-semibold text-heading lg:text-sm">
+              <h5 className="text-xs lg:text-sm">
                 Back
               </h5>
             </button>
-            <Button
+            <button
               onClick={handleGenerateSFT}
-              className="w-32"
+              className="button w-32"
               type="button"
             >
-              <h5 className="">
+              <h5>
                 Mint SFT
               </h5>
-            </Button>
+            </button>
           </div>
         </form>
       </div>

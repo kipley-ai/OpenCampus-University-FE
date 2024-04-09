@@ -12,7 +12,7 @@ import Box from "@mui/material/Box";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import useBreakpoints from "@/hooks/useBreakpoints";
 import MainCanvas from "./main-canvas";
-
+import { useTheme } from "next-themes";
 import {
   showLoadingProgress,
   showLoaderOnMobile as showLoaderOnMobileDefault,
@@ -24,6 +24,7 @@ import { useCreateChatbotContext } from "../../create-knowledge-context";
 import GetInvolvedButton from "@/components/GetInvolvedButton/get-involved-button";
 
 import Pattern from "components/background/grid-opencampus-blue.svg";
+import ThemeSwitcher from "@/components/theme-switcher";
 
 let hideText = false;
 
@@ -42,11 +43,13 @@ function App() {
 
   const [enableSwiper, setEnableSwiper] = useState(true);
   const [controlledSwiper, setControlledSwiper] = useState(null);
-  console.log("swiperSlideStatus", swiperSlideStatus);
+  // console.log("swiperSlideStatus: ", swiperSlideStatus);
 
   const containerRef = useRef();
   const trackingRef = useRef();
   const [hideLoadingOverlay, setHideLoadingOverlay] = useState(true);
+
+  const { theme, setTheme } = useTheme();
 
   let speed = 1000;
 
@@ -77,14 +80,49 @@ function App() {
 
   const hideText = true;
 
+  // if (theme === "light") {
+  //   return (
+  //     <div className="App">
+  //       <div
+  //         className="app-wrapper relative" ref={containerRef}
+  //         style={{
+  //           backgroundImage: `url(${Pattern.src}), linear-gradient(180deg, #1228F3 0%, #FFFFFF 25%)`,
+  //         }}
+  //       >
+  //         <div>
+  //           <ThemeSwitcher />
+  //         </div>
+  //         <MainCanvas
+  //           swiperSlideStatus={swiperSlideStatus}
+  //           setEnableSwiper={setEnableSwiper}
+  //           ref={containerRef}
+  //           isMobileDevices={isMobileDevices}
+  //           hideText={hideText}
+  //         />
+  //         <div className="absolute bottom-[8vh] min-[600px]:bottom-[20vh] lg:bottom-[10vh] xl:bottom-[12vh] flex w-full flex-row justify-center">
+  //           <GetInvolvedButton
+  //             buttonStyle="rounded-full bg-white px-10 py-3 w-full shadow-md border border-2 border-b-8 border-[#1228F3]"
+  //             content={
+  //               <span className="text-sm font-bold text-[#1227F2]">Get Started now</span>
+  //             }
+  //           />
+  //         </div>
+  //       </div>
+  //     </div>
+  //   )
+  // };
+
   return (
     <div className="App">
       <div
         className="app-wrapper relative" ref={containerRef}
         style={{
-          backgroundImage: `url(${Pattern.src}), linear-gradient(180deg, #1228F3 0%, #FFFFFF 25%)`,
+          backgroundImage: `url(${Pattern.src})`,
         }}
       >
+        <div>
+          <ThemeSwitcher />
+        </div>
         <MainCanvas
           swiperSlideStatus={swiperSlideStatus}
           setEnableSwiper={setEnableSwiper}
@@ -94,15 +132,16 @@ function App() {
         />
         <div className="absolute bottom-[8vh] min-[600px]:bottom-[20vh] lg:bottom-[10vh] xl:bottom-[12vh] flex w-full flex-row justify-center">
           <GetInvolvedButton
-            buttonStyle="rounded-full bg-white px-10 py-3 w-full shadow-md border border-2 border-b-8 border-[#1228F3]"
+            buttonStyle="rounded-full px-10 py-3 w-full shadow-md border border-2 border-b-8 "
             content={
-              <span className="text-sm font-bold text-[#1227F2]">Get Started now</span>
+              <span className="text-sm font-bold">Get Started now</span>
             }
           />
         </div>
       </div>
     </div>
-  );
+  )
+
 }
 
 export default App;

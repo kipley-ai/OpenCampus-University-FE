@@ -1,5 +1,5 @@
 "use client";
-import XIcon from "public/images/X-icon.svg";
+import XIcon from "public/images/X-icon-black.png";
 import NotionIcon from "public/images/notion.svg";
 import FolderAddIcon from "public/images/knowledge-source/folder-add.png";
 import MirrorIcon from "public/images/knowledge-source/mirror-icon.png";

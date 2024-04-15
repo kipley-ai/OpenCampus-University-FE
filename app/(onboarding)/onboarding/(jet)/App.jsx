@@ -120,9 +120,9 @@ function App() {
           backgroundImage: `url(${Pattern.src})`,
         }}
       >
-        <div>
+        {/* <div>
           <ThemeSwitcher />
-        </div>
+        </div> */}
         <MainCanvas
           swiperSlideStatus={swiperSlideStatus}
           setEnableSwiper={setEnableSwiper}

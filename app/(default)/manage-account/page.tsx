@@ -42,13 +42,8 @@ export default function ManageAccount() {
 
   return (
     <div className="flex flex-col bg-container">
-      <Image
-        className="w-full bg-container"
-        src={HeaderBg}
-        alt="Header Background"
-      />
-      <div className="mx-10 -mt-20 mb-10 flex rounded-2xl border border-border bg-container">
-        <div className="flex w-2/6 flex-col border-r border-border px-8 py-8 pb-32 font-semibold text-[#7C878E]">
+      <div className="flex border border-border bg-container">
+        <div className="flex w-2/6 flex-col border-r border-border px-8 py-8 pb-32 font-semibold">
           {/* Account Information Section */}
           <div
             className={`mb-2 flex cursor-pointer px-3 py-3 ${selectedPage == "dashboard" ? "rounded-3xl border border-primary text-primary" : ""}`}
@@ -79,17 +74,6 @@ export default function ManageAccount() {
             <Icon active={selectedPage == "creator" ? true : false} />
             <h3 className="ml-3 text-sm">Creator Overview</h3>
           </div>
-          {/* Earning Report */}
-          {/* <div className={`flex my-2 cursor-pointer px-3 py-3 ${selectedPage == 'earning' ? 'border border-primary rounded-3xl text-primary' : ''}`} onClick={() => setSelectedPage("earning")}>
-                        <Icon active={selectedPage == 'earning' ? true : false} />
-                        <h3 className="ml-3 text-sm">Earning Report</h3>
-                    </div> */}
-          {/* Withdraw History */}
-          {/* <div className={`flex my-2 cursor-pointer px-3 py-3 ${selectedPage == 'withdraw' ? 'border border-primary rounded-3xl text-primary' : ''}`} onClick={() => setSelectedPage("withdraw")}>
-                        <Icon active={selectedPage == 'withdraw' ? true : false} />
-                        <h3 className="ml-3 text-sm">Withdraw History</h3>
-                    </div> */}
-          {/* Deposit History */}
           <div
             className={`my-2 flex cursor-pointer px-3 py-3 ${selectedPage == "deposit" ? "rounded-3xl border border-primary text-primary" : ""}`}
             onClick={() => setSelectedPage("deposit")}

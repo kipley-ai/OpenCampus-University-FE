@@ -166,6 +166,7 @@ export default function ModalTopUp({
               viewBox="0 0 40 40"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className="fill-none hover:fill-secondary"
             >
               <rect
                 x="1"
@@ -185,14 +186,14 @@ export default function ModalTopUp({
             </svg>
           </button>
         </div>
-        <div className="inline-flex items-center justify-between self-stretch p-5 pt-0">
+        <div className="inline-flex items-center justify-between self-stretch pl-5 pr-5">
           <div className="w-full text-base font-semibold leading-10">
             <span>Get Credits by Paying </span>
-            <span className="text-primary">$CREDIT </span>
+            <span className="text-primary">$EDU </span>
             <span>token</span>
           </div>
         </div>
-        <div className="inline-flex items-center self-stretch pl-5">
+        {/* <div className="inline-flex items-center self-stretch pl-5">
           <div className="flex cursor-pointer items-center gap-2">
             {!isTargetNetworkActive ? (
               <button
@@ -215,11 +216,11 @@ export default function ModalTopUp({
               </button>
             )}
           </div>
-        </div>
+        </div> */}
         <div className="inline-flex items-center justify-between self-stretch p-5">
           <div className="w-full text-lg font-bold leading-10">
             <input
-              className="placeholder-text-[#7C878E] w-full bg-transparent rounded-xl px-4 py-3 text-sm leading-6 placeholder-[#777E90]"
+              className="placeholder-text-[#7C878E] w-full rounded-xl bg-transparent px-4 py-3 text-sm leading-6 placeholder-[#777E90]"
               type="number"
               name="amount"
               placeholder="Enter your credit amount here"
@@ -294,27 +295,20 @@ export default function ModalTopUp({
             </button>
           </div>
         </div>
-        <div className="inline-flex items-center justify-between self-stretch p-5 pt-2 ">
+        <div className="inline-flex items-center justify-between self-stretch pl-5 pr-5 pt-2 ">
           <div className="w-80 text-sm font-semibold leading-10">
             <span>You are paying </span>
-            <span className="text-primary">{form?.amount} $CREDIT</span>
+            <span className="text-primary">{form?.amount} $EDU</span>
           </div>
         </div>
         <div className="inline-flex items-center justify-between self-stretch p-5">
           <div className="grid w-full grid-cols-1 font-bold text-heading">
             {!isTargetNetworkActive ? (
-              <Button
-                onClick={switchToTargetNetwork}
-              >
-                <h5>
-                  Change Network to {targetNetworkName}
-                </h5>
+              <Button onClick={switchToTargetNetwork}>
+                <h5>Change Network to {targetNetworkName}</h5>
               </Button>
             ) : (
-              <Button
-                onClick={handleContinue}
-                disabled={continueBtn.disable}
-              >
+              <Button onClick={handleContinue} disabled={continueBtn.disable}>
                 <h5>{continueBtn.text}</h5>
               </Button>
             )}

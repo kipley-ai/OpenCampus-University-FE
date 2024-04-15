@@ -21,7 +21,7 @@
 	--angle: 90deg;
 	--gradX: 100%;
 	--gradY: 50%;
-	--c1: #00EDBE;
+	--c1: var(--color-primary);
 	--c2: rgba(168, 239, 255, 0.1);
 }
 

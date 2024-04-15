@@ -7,7 +7,11 @@ import { PiArrowBendUpLeftBold, PiShareFatLight } from "react-icons/pi";
 import "./chat-messages.css";
 import { chatbotIdFromSlug } from "@/utils/utils";
 
-const ChatbotInfo = ({setIsOpen}: {setIsOpen: (isOpen: boolean) => void;}) => {
+const ChatbotInfo = ({
+  setIsOpen,
+}: {
+  setIsOpen: (isOpen: boolean) => void;
+}) => {
   const { id: slug } = useParams();
   const id = chatbotIdFromSlug(slug.toString());
   const router = useRouter();
@@ -30,20 +34,18 @@ const ChatbotInfo = ({setIsOpen}: {setIsOpen: (isOpen: boolean) => void;}) => {
       >
         <PiArrowBendUpLeftBold />
       </button>
-      <div className="mb-2 flex w-full flex-col divide-y-2 divide-primary border-2 border-primary">
+      <div className="mb-2 flex w-full flex-col divide-y-2 divide-primary rounded-lg border-2 border-primary">
         <div className="flex flex-row justify-between px-6 py-2">
-          <h1
-            className="font-mikado font-semibold text-primary text-xl md:text-2xl"
-          >
+          <h1 className="font-mikado text-xl font-semibold text-primary md:text-2xl">
             @{chatbotData?.data.data.name}
           </h1>
-          <button 
-            className="font-mikado flex flex-row items-center space-x-1 bg-transparent px-4 rounded-full text-[#6C7275] text-sm border-2 border-[#3A3A3A] hover:brightness-150"
+          <button
+            className="flex flex-row items-center self-center space-x-1 rounded-full border-2 border-border bg-transparent px-4 py-1 font-mikado text-sm text-[#6C7275] hover:border-secondary"
             type="button"
             onClick={() => setIsOpen(true)}
           >
+            <p className="leading-none">Share</p>
             <PiShareFatLight />
-            <p>Share</p>
           </button>
         </div>
         <div className="relative flex flex-col gap-2 px-6 py-4">
@@ -51,12 +53,12 @@ const ChatbotInfo = ({setIsOpen}: {setIsOpen: (isOpen: boolean) => void;}) => {
             <Image
               src={chatbotData?.data.data.profile_image as string}
               alt="Profile"
-              className="rounded-full border-2 border-primary w-[80px] h-[80px] lg:w-[100px] lg:h-[100px]"
-              style={{ boxShadow: "0 0 10px #00EDBE" }}
+              className="h-[80px] w-[80px] rounded-full border-2 border-primary lg:h-[100px] lg:w-[100px]"
+              style={{ boxShadow: "0 0 10px var(--color-primary)" }}
               width={100}
               height={100}
             />
-            <p className="font-mono line-clamp-5 md:line-clamp-4 text-heading text-xs md:text-base">
+            <p className="line-clamp-5 font-mono text-xs text-heading md:line-clamp-4 md:text-base">
               {chatbotData?.data.data.description}
             </p>
           </div>
@@ -66,8 +68,8 @@ const ChatbotInfo = ({setIsOpen}: {setIsOpen: (isOpen: boolean) => void;}) => {
                 <Image
                   src={nftData?.data.data.profile_image as string}
                   alt="Profile"
-                  className=" border-2 border-primary w-[80px] h-[80px] lg:w-[100px] lg:h-[100px]"
-                  style={{ boxShadow: "0 0 10px #00EDBE" }}
+                  className=" h-[80px] w-[80px] border-2 border-primary lg:h-[100px] lg:w-[100px]"
+                  style={{ boxShadow: "0 0 10px var(--color-primary" }}
                   width={100}
                   height={100}
                 />
@@ -79,7 +81,7 @@ const ChatbotInfo = ({setIsOpen}: {setIsOpen: (isOpen: boolean) => void;}) => {
               </a>
             </div>
           </div>
-          <div className="box absolute bottom-0 left-16 lg:left-[74px] top-0 m-auto h-3/6 w-7/12 bg-transparent sm:w-9/12 xl:w-10/12"></div>
+          <div className="box absolute bottom-0 left-16 top-0 m-auto h-3/6 w-7/12 bg-transparent sm:w-9/12 lg:left-[74px] xl:w-10/12"></div>
         </div>
       </div>
     </div>

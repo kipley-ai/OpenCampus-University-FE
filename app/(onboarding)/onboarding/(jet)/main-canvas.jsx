@@ -77,10 +77,10 @@ const Section2 = () => {
           mt={3}
         >
           <Box pb={2} display="flex" flexDirection="column" alignItems="center" className="">
-            <Box className="z-[99999]">
+            <Box className="z-[99]">
               Open Campus University represents the forefront of
             </Box>
-            <Box className="z-[99999]">
+            <Box className="z-[99]">
               Web3 education and innovation.
             </Box>
           </Box>
@@ -93,14 +93,14 @@ const Section2 = () => {
             flexDirection="column"
             className=""
           >
-            <Box className="z-[99999]">
+            <Box className="z-[99]">
               Powered by KIP Protocol, Open Campus University unlocks
             </Box>
-            <Box className="z-[99999]">
+            <Box className="z-[99]">
               true digital property rights of educators’ Knowledge Assets,
             </Box>
 
-            <Box className="z-[99999]">
+            <Box className="z-[99]">
               and transform education through blockchain + AI technology.
             </Box>
           </Box>

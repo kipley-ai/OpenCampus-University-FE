@@ -7,7 +7,7 @@ import { PiArrowBendUpLeftBold, PiShareFatLight } from "react-icons/pi";
 import "./chat-messages.css";
 import { chatbotIdFromSlug } from "@/utils/utils";
 
-const ChatbotInfo = ({setIsOpen}: {setIsOpen: (isOpen: boolean) => void;}) => {
+const ChatbotInfo = ({ setIsOpen }: { setIsOpen: (isOpen: boolean) => void; }) => {
   const { id: slug } = useParams();
   const id = chatbotIdFromSlug(slug.toString());
   const router = useRouter();
@@ -37,7 +37,7 @@ const ChatbotInfo = ({setIsOpen}: {setIsOpen: (isOpen: boolean) => void;}) => {
           >
             @{chatbotData?.data.data.name}
           </h1>
-          <button 
+          <button
             className="font-mikado flex flex-row items-center space-x-1 bg-transparent px-4 rounded-full text-[#6C7275] text-sm border-2 border-[#3A3A3A] hover:brightness-150"
             type="button"
             onClick={() => setIsOpen(true)}
@@ -72,7 +72,7 @@ const ChatbotInfo = ({setIsOpen}: {setIsOpen: (isOpen: boolean) => void;}) => {
                   height={100}
                 />
                 <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center opacity-0 transition-opacity duration-300 hover:bg-gray-900/75 hover:opacity-100">
-                  <p className="text-center text-sm font-bold text-heading lg:text-lg">
+                  <p className="text-center text-sm font-bold text-heading lg:text-md">
                     View SFT on OpenSea
                   </p>
                 </div>

@@ -348,7 +348,7 @@ export default function CreatorOverview() {
           <h1 className="text-3xl font-semibold">Dashboard</h1>
           {/* <DateFilterComponent /> */}
         </div>
-        <div className="my-8 flex flex-col gap-4 rounded-xl bg-[#1A1D1F] p-6 ">
+        <div className="my-8 flex flex-col gap-4 rounded-xl p-6 ">
           <div className="mb-8 flex items-center justify-between">
             {/* <div className="content-none rounded-xl bg-[#B1E5FC]">a</div> */}
             <div className="flex">
@@ -361,19 +361,19 @@ export default function CreatorOverview() {
               >
                 <rect y="0.5" width="16" height="32" rx="4" fill="var(--color-primary)" />
               </svg>
-              <h4 className="ml-4 text-2xl font-semibold text-white">
+              <h4 className="ml-4 text-2xl font-semibold ">
                 Creator Overview
               </h4>
             </div>
             <Button
               onClick={() => setShowModal(true)}
-              className="text-white"
+              className=""
             >
               Withdraw your earnings
             </Button>
           </div>
           <div className="flex">
-            <div className="mr-3 w-1/2 rounded-xl bg-[#373f3c] p-8">
+            <div className="mr-3 w-1/2 rounded-xl p-8 border">
               <div className="mb-4 w-fit rounded-full bg-white p-3">
                 <svg
                   width="24"
@@ -395,7 +395,7 @@ export default function CreatorOverview() {
                 </svg>
               </div>
               <div className="flex items-center">
-                <h4 className="mr-1 text-[16px] font-semibold text-white">
+                <h4 className="mr-1 text-[16px] font-semibold ">
                   Earnings
                 </h4>
                 <svg
@@ -413,11 +413,11 @@ export default function CreatorOverview() {
                   />
                 </svg>
               </div>
-              <h4 className="text-4xl font-semibold text-white">
+              <h4 className="text-4xl font-semibold ">
                 {overviewData?.data.data.earnings}
               </h4>
             </div>
-            <div className="mr-3 w-1/2 rounded-xl bg-[#293135] p-8">
+            <div className="mr-3 w-1/2 rounded-xl p-8 border">
               <div className="mb-4 w-fit rounded-full bg-white p-3">
                 <svg
                   width="24"
@@ -441,7 +441,7 @@ export default function CreatorOverview() {
                 </svg>
               </div>
               <div className="flex items-center">
-                <h4 className="mr-1 text-[16px] font-semibold text-white">
+                <h4 className="mr-1 text-[16px] font-semibold ">
                   Users
                 </h4>
                 <svg
@@ -459,11 +459,11 @@ export default function CreatorOverview() {
                   />
                 </svg>
               </div>
-              <h4 className="text-4xl font-semibold text-white">
+              <h4 className="text-4xl font-semibold ">
                 {overviewData?.data.data.users}
               </h4>
             </div>
-            <div className="w-1/2 rounded-xl bg-[#2b2d35] p-8">
+            <div className="w-1/2 rounded-xl border p-8">
               <div className="mb-4 w-fit rounded-full bg-white p-3">
                 <svg
                   width="20"
@@ -481,7 +481,7 @@ export default function CreatorOverview() {
                 </svg>
               </div>
               <div className="flex items-center">
-                <h4 className="mr-1 text-[16px] font-semibold text-white">
+                <h4 className="mr-1 text-[16px] font-semibold ">
                   Conversations
                 </h4>
                 <svg
@@ -499,7 +499,7 @@ export default function CreatorOverview() {
                   />
                 </svg>
               </div>
-              <h4 className="text-4xl font-semibold text-white">
+              <h4 className="text-4xl font-semibold ">
                 {overviewData?.data.data.conversations}
               </h4>
             </div>

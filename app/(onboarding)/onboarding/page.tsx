@@ -53,9 +53,11 @@ export default function Onboarding() {
           <MintNFT />
         ) : step == "create_chatbot" ? (
           <CreateChatbot />
-        ) : step == "free_kfi" ? (
-          <FreeKFI />
-        ) : step == "onboarding_success" ? (
+        ) 
+        // : step == "free_kfi" ? (
+        //   <FreeKFI />
+        // ) 
+        : step == "onboarding_success" ? (
           <OnboardingSuccess />
         ) : (
           <InviteCode address={address} />

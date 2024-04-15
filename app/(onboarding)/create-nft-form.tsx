@@ -20,6 +20,7 @@ import MintConfirmationModal from "@/components/modal-mint-confirmation";
 import { DEFAULT_COVER_IMAGE, KF_TITLE } from "@/utils/constants";
 import Tooltip from "@/components/tooltip";
 import ArrowRight from "public/images/arrow-right.svg";
+import CornerUpLeft from "public/images/corner-up-left.svg";
 import { ZodError, z } from "zod";
 import { noMoreThanCharacters } from "@/utils/utils";
 import { TwitterScrapingStatus } from "@/components/twitter-scraping-status";
@@ -243,7 +244,7 @@ export default function NFT() {
               onClick={() => setStep("data_source")}
             >
               <Image
-                src={"/images/corner-up-left.png"}
+                src={CornerUpLeft}
                 alt="icon"
                 width={24}
                 height={24}
@@ -273,7 +274,7 @@ export default function NFT() {
                   Name
                 </label>
                 <input
-                  className="rounded-xl bg-transparent text-xs text-[#DDD] lg:text-sm"
+                  className="rounded-xl bg-transparent text-xs lg:text-sm"
                   type="text"
                   name="name"
                   placeholder="Name your Knowledge SFT"
@@ -295,7 +296,7 @@ export default function NFT() {
                   Description
                 </label>
                 <textarea
-                  className="placeholder-text-[#7C878E] rounded-xl bg-transparent text-xs text-[#DDD] lg:text-sm"
+                  className="placeholder-text-[#7C878E] rounded-xl bg-transparent text-xs lg:text-sm"
                   name="description"
                   placeholder="Describe your Knowledge SFT"
                   rows={4}
@@ -319,7 +320,7 @@ export default function NFT() {
                     Token Symbol
                   </label>
                   <input
-                    className="placeholder-text-[#7C878E] w-11/12 rounded-xl bg-transparent text-xs text-[#DDD] lg:text-sm"
+                    className="placeholder-text-[#7C878E] w-11/12 rounded-xl bg-transparent text-xs lg:text-sm"
                     type="text"
                     name="tokenSymbol"
                     placeholder={
@@ -390,16 +391,16 @@ export default function NFT() {
                 </div> */}
                 <div className="flex w-2/3 flex-col gap-1">
                   <label className="flex flex-row items-center space-x-3 text-wrap text-xs font-semibold text-heading lg:text-sm">
-                    <span>Price Per Query (in $CREDIT)</span>
+                    <span>Price Per Query (in $EDU)</span>
                     <Tooltip bg="dark" position="right" size="md">
                       Set your price per query on your knowledge asset and get
-                      paid in $CREDIT.
+                      paid in $EDU.
                     </Tooltip>
                   </label>
                   <div className="flex w-full flex-col">
                     <input
                       // className="rounded-xl bg-transparent w-11/12"
-                      className="placeholder-text-[#7C878E] w-full rounded-xl bg-transparent text-xs text-[#DDD] lg:text-sm"
+                      className="placeholder-text-[#7C878E] w-full rounded-xl bg-transparent text-xs lg:text-sm"
                       type="number"
                       name="pricePerQuery"
                       placeholder="e.g. 1"
@@ -505,7 +506,7 @@ export default function NFT() {
               <h5 className="text-xs lg:text-sm">BACK</h5>
             </button>
             <button
-              className="button flex w-44 flex-row items-center justify-between"
+              className="button flex w-32 flex-row items-center justify-between"
               onClick={handleGenerateSFT}
               // onClick={() => setStep("create_chatbot")}
               type="button"

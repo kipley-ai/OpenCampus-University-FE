@@ -74,7 +74,7 @@ const ChatbotInfo = ({
                   height={100}
                 />
                 <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center opacity-0 transition-opacity duration-300 hover:bg-gray-900/75 hover:opacity-100">
-                  <p className="text-center text-sm font-bold text-heading lg:text-lg">
+                  <p className="text-center text-sm font-bold text-heading lg:text-md">
                     View SFT on OpenSea
                   </p>
                 </div>

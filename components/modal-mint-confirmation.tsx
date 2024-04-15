@@ -86,7 +86,7 @@ export default function ModalMintConfirmation({
             <span className="text-2xl font-extrabold leading-tight text-primary">
               FREE
             </span>
-            <span className="line-through">50$CREDIT</span>
+            <span className="line-through">50$EDU</span>
           </div>
         </div>
         <span className="text-lg italic text-primary">

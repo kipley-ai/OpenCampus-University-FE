@@ -121,7 +121,8 @@ const ImageInput = ({
         </Button>
         <div
           onClick={handleRandomCover}
-          className="w-full cursor-pointer rounded-xl border-2 border-border py-1 text-center text-xs text-gray-400 hover:brightness-75 lg:text-sm"
+          // className="w-full cursor-pointer rounded-xl border-2 border-border py-1 text-center text-xs text-gray-400 hover:brightness-75 lg:text-sm"
+          className="w-full cursor-pointer rounded-xl border-2 border-2 border-[#50575F] hover:opacity-75 py-1 text-center text-xs lg:text-sm"
         >
           Random
         </div>

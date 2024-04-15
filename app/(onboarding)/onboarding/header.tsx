@@ -12,7 +12,7 @@ const Header = () => {
     <header className="flex items-center justify-between border-b-2 border-border px-6 py-4">
       <Logo />
       <div className="flex items-center gap-4">
-        <ThemeSwitcher />
+        {/* <ThemeSwitcher /> */}
         {isConnected ? <AvatarWithStatus image="" status="away" /> : null}
       </div>
     </header>

@@ -76,7 +76,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
                 </span>
               </div>
             </li>
-            <li className="flex-1">
+            {/* <li className="flex-1">
               <div className="flex justify-center">
                 <span className="">
                   {step > 4 ? (
@@ -93,7 +93,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
                   Get KFI Token
                 </span>
               </div>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

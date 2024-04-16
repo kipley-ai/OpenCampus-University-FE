@@ -101,7 +101,7 @@ export function CryptoProvider({ children }: React.PropsWithChildren) {
 
     createMessage: ({ nonce, address, chainId }) => {
       setAddress(address);
-      return "Welcome to KnowledgeFi.xyz!";
+      return "Welcome to Open Campus University!";
     },
 
     getMessageBody: ({ message }) => {

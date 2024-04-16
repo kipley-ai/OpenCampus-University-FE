@@ -47,7 +47,7 @@ export default function SuccessModal({
                     onClick={() => router.push('/dashboard')}
                     className="bg-[#353945] rounded-3xl w-full py-2 text-primary text-sm"
                 >
-                    Enter KnowledgeFi Homepage
+                    Enter Open Campus University
                 </button>
                 </div>
             </div>

@@ -66,7 +66,7 @@ export default function OnboardingSuccess() {
             onClick={() => router.push("/dashboard")}
             className="font-mono rounded-full px-12 py-4 button font-bold"
           >
-            Enter KnowledgeFi Homepage
+            Enter Open Campus University
           </button>
         </div>
       </div>

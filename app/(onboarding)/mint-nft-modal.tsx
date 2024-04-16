@@ -81,7 +81,7 @@ export default function SuccessFailModal({
         </div>
         <div className="flex w-full">
           <button
-            className="mr-4 w-full rounded-3xl py-2 text-sm button disabled:brightness-50"
+            className="mr-4 w-full rounded-3xl py-2 text-sm button"
             disabled={!isNftMinted || nftIsPending}
             onClick={() => {
               window.open(nftOpenSeaLink, "_blank");

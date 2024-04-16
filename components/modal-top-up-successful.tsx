@@ -34,7 +34,7 @@ export default function ModalTopUpSuccessful({
               viewBox="0 0 40 40"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-							className="fill-none hover:fill-secondary"
+							className="hover:opacity-75"
             >
               <rect
                 x="1"
@@ -42,26 +42,25 @@ export default function ModalTopUpSuccessful({
                 width="38"
                 height="38"
                 rx="19"
-                stroke="black"
+                stroke="var(--color-heading)"
                 stroke-width="2"
               />
               <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
                 d="M13.2929 13.2929C13.6834 12.9024 14.3166 12.9024 14.7071 13.2929L20 18.5858L25.2929 13.2929C25.6834 12.9024 26.3166 12.9024 26.7071 13.2929C27.0976 13.6834 27.0976 14.3166 26.7071 14.7071L21.4142 20L26.7071 25.2929C27.0976 25.6834 27.0976 26.3166 26.7071 26.7071C26.3166 27.0976 25.6834 27.0976 25.2929 26.7071L20 21.4142L14.7071 26.7071C14.3166 27.0976 13.6834 27.0976 13.2929 26.7071C12.9024 26.3166 12.9024 25.6834 13.2929 25.2929L18.5858 20L13.2929 14.7071C12.9024 14.3166 12.9024 13.6834 13.2929 13.2929Z"
-                fill="black"
+                fill="var(--color-heading)"
               />
             </svg>
           </button>
         </div>
         <div
-          className={`my-7 flex flex-row items-center justify-center text-sm`}
+          className={`my-7 flex flex-row gap-4 items-center justify-center text-sm`}
         >
-          <Image
-            className="mr-4 h-[30px] w-[30px]"
-            src={CheckIcon}
-            alt="check icon"
-          />
+          <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+            <rect className="fill-primary" width="30" height="30" rx="15"/>
+            <path className="fill-container" fillRule="evenodd" clipRule="evenodd" d="M21.7071 10.2929C22.0976 10.6834 22.0976 11.3166 21.7071 11.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071L8.29289 15.7071C7.90237 15.3166 7.90237 14.6834 8.29289 14.2929C8.68342 13.9024 9.31658 13.9024 9.70711 14.2929L13 17.5858L20.2929 10.2929C20.6834 9.90237 21.3166 9.90237 21.7071 10.2929Z"/>
+          </svg>
           <span>Your wallet has been successfully topped up</span>
         </div>
         <div className="flex w-full">

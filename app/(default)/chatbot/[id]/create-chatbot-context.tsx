@@ -66,7 +66,7 @@ export const CreateChatbotProvider = ({
   const { lastJsonMessage, readyState, sendValidatedMessage } = useChatboxWS(
     `${process.env.NEXT_PUBLIC_CHATBOT_WS}/chat_with_kb`,
   );
-  const [replyStatus, setReplyStatus] = useState<"idle" | "answering">("idle");
+  const [replyStatus, setReplyStatus] = useState<"idle" | "answering">("idle"); 
 
   // const nftDetail = useNftDetail({
   // 	sft_id: "SFTID11",

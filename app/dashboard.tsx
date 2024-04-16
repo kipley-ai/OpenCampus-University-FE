@@ -10,7 +10,7 @@ import { getBreakpoint } from "@/components/utils/utils";
 import { AnimationOnScroll } from "react-animation-on-scroll";
 import { accounts } from "@/components/utils/twitter-account";
 import { useChatSession } from "@/hooks/api/chatbox";
-import { KF_TITLE } from "@/utils/constants"; 
+import { KF_TITLE } from "@/utils/constants";
 
 export default function Dashboard() {
   const title = KF_TITLE + "Dashboard";

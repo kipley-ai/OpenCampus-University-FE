@@ -63,7 +63,7 @@ const Section2 = () => {
         justifyContent="center"
         flexDirection="column"
       >
-        <Box pb={3} className="flex flex-col items-center text-heading">
+        <Box pb={3} className="flex flex-col items-center">
           <Image src={WelcomeToLight} className="self-center" />
           <Typography variant="h1" fontWeight="600" lineHeight="1" fontSize={55} className="z-[99999]">
             Open Campus University
@@ -75,6 +75,7 @@ const Section2 = () => {
           justifyContent="center"
           flexDirection="column"
           mt={3}
+          className="font-poppins font-medium"
         >
           <Box pb={2} display="flex" flexDirection="column" alignItems="center" className="">
             <Box className="z-[99]">

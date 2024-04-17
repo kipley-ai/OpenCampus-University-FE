@@ -130,11 +130,11 @@ function App() {
           isMobileDevices={isMobileDevices}
           hideText={hideText}
         />
-        <div className="z-[999] absolute bottom-[8vh] min-[600px]:bottom-[20vh] lg:bottom-[10vh] xl:bottom-[12vh] flex w-full flex-row justify-center">
+        <div className="z-[99] absolute bottom-[8vh] min-[600px]:bottom-[20vh] lg:bottom-[10vh] xl:bottom-[12vh] flex w-full flex-row justify-center">
           <GetInvolvedButton
-            buttonStyle="rounded-full px-10 py-3 w-full shadow-md border border-2 border-b-8 "
+            buttonStyle="button bg-container rounded-full px-10 py-2 w-full border-b-4"
             content={
-              <span className="text-sm font-bold">Get Started now</span>
+              <span className="text-sm font-medium">Get Started Now</span>
             }
           />
         </div>

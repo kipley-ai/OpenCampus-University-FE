@@ -1,11 +1,4 @@
 "use client";
-import XIcon from "public/images/X-icon-black.png";
-import NotionIcon from "public/images/notion.svg";
-import FolderAddIcon from "public/images/knowledge-source/folder-add.png";
-import MirrorIcon from "public/images/knowledge-source/mirror-icon.png";
-import SubstackIcon from "public/images/knowledge-source/substack-icon.svg";
-import MediumIcon from "public/images/knowledge-source/medium-icon.png";
-import ApiIcon from "public/images/knowledge-source/api-icon.svg";
 import Image from "next/image";
 import { useCreateChatbotContext } from "./create-knowledge-context";
 import React, { useState } from "react";
@@ -13,6 +6,8 @@ import { ImageSrc, ReactSetter } from "@/lib/aliases";
 import { PossibleOption } from "./select-data-elements";
 import { useSession } from "next-auth/react";
 import { useAppProvider } from "@/providers/app-provider";
+import { useTheme } from "next-themes";
+import { buttons } from "@/components/utils/data-elements";
 
 const ButtonItem = ({
   onClick,
@@ -29,71 +24,25 @@ const ButtonItem = ({
 }) => {
   return (
     <button
-      className={`button relative flex flex-col items-center border-2 py-5 md:mt-4 ${isSelected ? "border-primary" : "border-transparent"} justify-end rounded-md`}
+      className={`relative flex flex-col gap-6 items-center border-2 py-5 md:pt-10 ${isSelected ? "border-primary" : "border-transparent"} justify-end rounded-xl hover:bg-box`}
       onClick={onClick}
     >
       <Image
-        width={36}
-        height={36}
+        width={42}
+        height={42}
         src={optionIcon}
-        className={isComingSoon ? "brightness-50" : ""}
+        className="grow"
         alt={`${optionText} Icon`}
       />
-      <h3 className="pt-6">{optionText}</h3>
+      <h3 className="font-poppins font-semibold">{optionText}</h3>
       {isComingSoon && isSelected && (
-        <span className="absolute right-1 top-1 rounded-sm border border-primary px-2 text-xs">
+        <span className="absolute right-2 top-2 rounded-md border border-primary bg-primary px-2 text-xs text-container">
           COMING SOON
         </span>
       )}
     </button>
   );
 };
-
-const buttons = [
-  {
-    type: "twitter",
-    icon: XIcon,
-    text: "Twitter",
-    comingSoon: false,
-  },
-  {
-    type: "notion",
-    icon: NotionIcon,
-    text: "Notion",
-    comingSoon: true,
-  },
-  {
-    type: "substack",
-    icon: SubstackIcon,
-    text: "Substack",
-    comingSoon: true,
-  },
-  {
-    type: "medium",
-    icon: MediumIcon,
-    text: "Medium",
-    comingSoon: true,
-  },
-  {
-    type: "mirror",
-    icon: MirrorIcon,
-    text: "Mirror",
-    comingSoon: true,
-  },
-  {
-    type: "files",
-    icon: FolderAddIcon,
-    text: "Upload Files",
-    comingSoon: false,
-  },
-  {
-    type: "api",
-    icon: ApiIcon,
-    text: "Customized API",
-    comingSoon: true,
-  },
-  // Add more buttons here...
-];
 
 export default function Step1({
   selectedButton,
@@ -108,6 +57,8 @@ export default function Step1({
 
   const { handleChangeKb, setIsComingSoon, setStep } =
     useCreateChatbotContext();
+
+  const { theme } = useTheme();
 
   return (
     <div className="grid grid-cols-2 gap-4 font-bold text-heading  md:mt-4 md:grid-cols-4">
@@ -131,7 +82,7 @@ export default function Step1({
             }
           }}
           isSelected={selectedButton == button.type}
-          optionIcon={button.icon}
+          optionIcon={theme === "dark" ? button.icon : button.lightIcon || button.icon}
           optionText={button.text}
           isComingSoon={button.comingSoon}
         />

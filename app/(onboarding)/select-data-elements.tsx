@@ -113,7 +113,7 @@ export default function SelectDataElements() {
               <Image src={"/images/corner-up-left.png"} alt="icon" width={24} height={24} />
             </div> */}
             <h1 className="text-2xl font-semibold text-heading">
-              SELECT DATA ELEMENTS
+              Select Data Elements
             </h1>
           </div>
           <hr className="my-4 border border-border" />

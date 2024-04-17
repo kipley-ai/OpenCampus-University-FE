@@ -53,6 +53,11 @@ const poppins = localFont({
       style: "normal",
     },
     {
+      path: "../public/fonts/Poppins-SemiBold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
       path: "../public/fonts/Poppins-Bold.ttf",
       weight: "700",
       style: "normal",

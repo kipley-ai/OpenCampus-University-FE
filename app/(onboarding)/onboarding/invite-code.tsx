@@ -186,8 +186,8 @@ const InviteCode = ({ address }: InviteCodeProps) => {
 
   return (
     <div className="flex h-full flex-col items-center gap-6">
-      <p className="text-xl font-semibold text-heading">
-        Enter invite code to join
+      <p className="text-xl font-semibold">
+        Enter Invite Code to Join
       </p>
       <div className="flex h-1 gap-2">
         <p className="text-sm font-semibold text-red-500">{errorMessage}</p>
@@ -196,7 +196,7 @@ const InviteCode = ({ address }: InviteCodeProps) => {
         {otp.map((data, index) => {
           return (
             <input
-              className="h-24 w-24 border-0 border-b-[3px] border-primary bg-inherit text-center text-5xl font-semibold text-heading outline-none focus:ring-0 focus:border-secondary"
+              className="h-24 w-24 border-0 border-b-[3px] border-gray-500 bg-inherit text-center text-5xl font-semibold outline-none focus:ring-0 focus:border-primary"
               maxLength={1}
               key={index}
               value={otp[index]}

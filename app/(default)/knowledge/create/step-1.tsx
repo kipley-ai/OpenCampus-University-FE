@@ -1,10 +1,13 @@
 "use client";
 import XIcon from "public/images/X-icon.svg";
+import XLightIcon from "public/images/knowledge-source/twitter-light.svg";
 import NotionIcon from "public/images/notion.svg";
-import FolderAddIcon from "public/images/knowledge-source/folder-add.png";
-import MirrorIcon from "public/images/knowledge-source/mirror-icon.png";
+import NotionLightIcon from "public/images/knowledge-source/notion-light.svg";
+import FolderAddIcon from "public/images/knowledge-source/folder-add.svg";
+import MirrorIcon from "public/images/knowledge-source/mirror.svg";
 import SubstackIcon from "public/images/knowledge-source/substack-icon.svg";
-import MediumIcon from "public/images/knowledge-source/medium-icon.png";
+import MediumIcon from "public/images/knowledge-source/medium.svg";
+import MediumLightIcon from "public/images/knowledge-source/medium-light.svg";
 import ApiIcon from "public/images/knowledge-source/api-icon.svg";
 import Image from "next/image";
 import { useCreateChatbotContext } from "./create-knowledge-context";
@@ -32,17 +35,17 @@ const ButtonItem = ({
 
   return (
     <button
-      className={`relative flex flex-col items-center border-2 py-5 md:pt-10 bg-box ${isSelected ? "border-primary" : "border-transparent"} justify-end rounded-2xl`}
+      className={`relative flex flex-col gap-6 items-center border-2 py-5 md:pt-10 ${isSelected ? "border-primary" : "border-transparent"} justify-end rounded-2xl`}
       onClick={onClick}
     >
       <Image
         width={48}
         height={48}
         src={optionIcon}
-        className={theme === "light" ? "brightness-50" : ""}
+        className="grow"
         alt={`${optionText} Icon`}
       />
-      <h3 className="pt-6">{optionText}</h3>
+      <h3>{optionText}</h3>
       {isComingSoon && isSelected && (
         <span className="absolute right-2 top-2 rounded-md border border-primary bg-primary px-2 text-xs text-container">
           COMING SOON
@@ -56,12 +59,14 @@ const buttons = [
   {
     type: "twitter",
     icon: XIcon,
+    lightIcon: XLightIcon,
     text: "Twitter",
     comingSoon: false,
   },
   {
     type: "notion",
     icon: NotionIcon,
+    lightIcon: NotionLightIcon,
     text: "Notion",
     comingSoon: true,
   },
@@ -74,6 +79,7 @@ const buttons = [
   {
     type: "medium",
     icon: MediumIcon,
+    lightIcon: MediumLightIcon,
     text: "Medium",
     comingSoon: true,
   },
@@ -112,8 +118,10 @@ export default function Step1({
   const { handleChangeKb, setIsComingSoon, setStep } =
     useCreateChatbotContext();
 
+  const { theme } = useTheme();
+
   return (
-    <div className="grid grid-cols-2 gap-4 font-bold text-heading  md:mt-10 md:grid-cols-4">
+    <div className="grid grid-cols-2 gap-4 font-bold text-heading md:grid-cols-4">
       {buttons.map((button) => (
         <ButtonItem
           key={button.type}
@@ -135,7 +143,7 @@ export default function Step1({
             }
           }}
           isSelected={selectedButton == button.type}
-          optionIcon={button.icon}
+          optionIcon={theme === "dark" ? button.icon : button.lightIcon || button.icon}
           optionText={button.text}
           isComingSoon={button.comingSoon}
         />

@@ -99,7 +99,7 @@ export default function DataSource({
         <div className="flex flex-col bg-container px-6 py-10 pb-20 lg:px-8 xl:px-32">
           <div>
             <h1 className="text-2xl font-semibold text-heading">
-              Select Data Elements for your SFT
+              Select Data Elements for Your SFT
             </h1>
             <hr className="my-4 border border-border" />
           </div>

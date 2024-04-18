@@ -181,7 +181,10 @@ const InviteCode = ({ address }: InviteCodeProps) => {
   if (isLoading) return null;
 
   if (isWl?.data && isWl?.data?.status !== "error") {
-    setStep("data_source");
+    if (process.env.NEXT_PUBLIC_ONBOARDING_FLOW! === ONBOARDING_FLOW.KOL) {
+      window.location.href = "/dashboard";
+      return;
+    }
   }
 
   return (

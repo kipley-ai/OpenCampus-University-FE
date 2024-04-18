@@ -185,6 +185,7 @@ const InviteCode = ({ address }: InviteCodeProps) => {
       window.location.href = "/dashboard";
       return;
     }
+    setStep("data_source");
   }
 
   return (

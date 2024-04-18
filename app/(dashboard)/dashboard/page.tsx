@@ -129,11 +129,17 @@ export default function Dashboard() {
   }, [breakpoint, pageSize, botsQuery.isFetching]); // Ensure dependencies are correctly listed
 
   return (
-    <div className="px-4 py-8 sm:px-6 lg:my-8 lg:mx-12 rounded-lg">
+    <div className="px-4 py-8 sm:px-6 lg:my-2 lg:mx-12 rounded-lg">
       <ModalLoginTwitter isOpen={modalLogin} setIsOpen={setModalLogin} />
 
-      {/* Explorer Banner */}
-      <Image src={ExploreBanner} alt="" className="w-full" />
+      {/* Explore Banner */}
+      <Image 
+        src="/images/explore-banner.png" 
+        alt="Explore Banner" 
+        className="w-full rounded-md"
+        width={1030}
+        height={264}
+      />
 
       {/* Featured Chatbot */}
       <div className="mt-8">

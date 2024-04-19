@@ -66,17 +66,17 @@ function ChatbotProfile() {
         </div>
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/5">
-            <div className="mb-4">
+            <div className="mb-4" style={{ width: '300px', height: '300px', position: 'relative' }}>
               <Image
                 src={chatbotData?.data.data.profile_image as string}
                 alt=""
-                width={300}
-                height={300}
+                layout="fill"
+                objectFit="cover"
                 className="rounded-lg"
               />
             </div>
           </div>
-          <div className="flex flex-col justify-between text-body md:w-4/5 md:pl-6">
+          <div className="flex flex-col justify-between text-body md:w-4/5 md:pl-6 ml-8">
             <div className="items-start">
               <p className="mb-4 line-clamp-6 font-poppins">
                 {chatbotData?.data.data.description}
@@ -119,7 +119,7 @@ function SFTDetail() {
           </h2>
         </div>
         <div className="flex flex-col-reverse md:flex-row">
-          <div className="text-body md:w-4/5 md:pl-6">
+          <div className="text-body md:w-4/5 md:pl-6 -mr-10">
             <div className="md:w-3/4">
               <h1 className="text-3xl font-medium text-heading">
                 {sftData?.data.data.name}
@@ -130,12 +130,12 @@ function SFTDetail() {
             </div>
           </div>
           <div className="md:w-1/5">
-            <div className="mb-4">
+            <div style={{ width: '300px', height: '300px', position: 'relative' }}>
               <Image
                 src={sftData?.data.data.profile_image as string}
-                alt="Yat Siu"
-                width={300}
-                height={300}
+                alt="Knowledge Asset"
+                layout="fill"
+                objectFit="cover"
                 className="rounded-lg"
               />
             </div>
@@ -164,17 +164,17 @@ function YatSiuProfile() {
         </div>
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/5">
-            <div className="mb-4">
+            <div className="mb-4" style={{ width: '300px', height: '300px', position: 'relative' }}>
               <Image
                 src={ProfileImage}
                 alt=""
-                width={300}
-                height={300}
+                layout="fill"
+                objectFit="cover"
                 className="rounded-lg"
               />
             </div>
           </div>
-          <div className="flex flex-col justify-between text-body md:w-4/5 md:pl-6">
+          <div className="flex flex-col justify-between text-body md:w-4/5 md:pl-6 ml-8">
             <div className="items-start">
               <p className="mb-4 line-clamp-6 font-poppins">
                 Veteran technology entrepreneur/investor Yat Siu is the co-founder and executive chairman of Animoca Brands, a global leader in blockchain and gaming with the goal to provide property rights for virtual assets. Yat began his career at Atari Germany, then established Hong Kong Cybercity/Freenation, the first free web page and email provider in Asia. In 1998 he set up Outblaze, an award-winning pioneer of multilingual white label web services. After selling one of its business units to IBM, he pivoted Outblaze to incubate digital entertainment projects. One of those projects is Animoca Brands.
@@ -208,7 +208,7 @@ function YatSiuSFT() {
           </h2>
         </div>
         <div className="flex flex-col-reverse md:flex-row">
-          <div className="text-body md:w-4/5 md:pl-6">
+          <div className="text-body md:w-4/5 md:pl-6 -mr-10">
             <div className="md:w-3/4">
               <h1 className="text-3xl font-medium text-heading">
                 Yat Siu's Ideas
@@ -219,12 +219,12 @@ function YatSiuSFT() {
             </div>
           </div>
           <div className="md:w-1/5">
-            <div className="mb-4">
+            <div style={{ width: '300px', height: '300px', position: 'relative' }}>
               <Image
                 src={SFTImage}
-                alt="Yat Siu"
-                width={300}
-                height={300}
+                alt="Knowledge Asset"
+                layout="fill"
+                objectFit="cover"
                 className="rounded-lg"
               />
             </div>

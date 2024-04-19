@@ -52,10 +52,9 @@ const ChatHistoryList = () => {
           {chatbotListData.map((chatbot: any, index: number) => (
             <li
               key={chatbot.chatbot_id}
-              className={`mx-3 py-1 last:mb-0 hover:rounded-md hover:bg-secondary ${
-                (segments.includes("home") || segments.includes("dashboard")) &&
+              className={`mx-3 py-1 last:mb-0 hover:rounded-md hover:bg-secondary ${(segments.includes("home") || segments.includes("dashboard")) &&
                 "bg-transparent"
-              } ${pathname === `/chatbot/${chatbotSlug(chatbot)}` ? "" : ""}`}
+                } ${pathname === `/chatbot/${chatbotSlug(chatbot)}` ? "" : ""}`}
             >
               <SidebarLink href={`/chatbot/${chatbotSlug(chatbot)}`}>
                 <div className="flex items-center">
@@ -232,11 +231,10 @@ export default function Sidebar() {
                 <ul className="border-b-2 border-border pb-4">
                   {/* Explore */}
                   <li
-                    className={`mx-3 mb-2 px-3 last:mb-0 hover:rounded-md hover:bg-secondary hover:text-primary ${
-                      (segments.length === 0 ||
+                    className={`mx-3 mb-2 px-3 last:mb-0 hover:rounded-md hover:bg-secondary hover:text-primary ${(segments.length === 0 ||
                         segments.includes("dashboard")) &&
                       ""
-                    }`}
+                      }`}
                   >
                     {/* style={{ border: '2px solid #00EDBE', borderRadius: '24px', padding: '6px 10px' }}> */}
                     <SidebarLink href="/dashboard">
@@ -254,7 +252,7 @@ export default function Sidebar() {
                             clipRule="evenodd"
                           />
                         </svg>
-                        <span className="ml-3 text-[14px] font-semibold  text-heading duration-200 text-lg lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                        <span className="ml-3 text-[14px] font-semibold text-heading duration-200 text-lg lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
                           Explore
                         </span>
                       </div>
@@ -280,18 +278,17 @@ export default function Sidebar() {
                   </li> */}
                   {/* Login */}
                   <li
-                    className={`mb-1 border-t-2 border-border px-2 pt-3 last:mb-0 ${
-                      (segments.includes("home") ||
+                    className={`mb-1 border-t-2 border-border px-2 pt-3 last:mb-0 ${(segments.includes("home") ||
                         segments.includes("dashboard")) &&
                       "bg-transparent"
-                    } `}
+                      } `}
                   >
                     <div className="mb-2 flex items-center px-3">
                       <svg className="stroke-primary" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.0473 1.66682C7.12235 1.655 4.4046 3.17261 2.88371 5.66704C1.36282 8.16146 1.26073 11.2687 2.6146 13.8573L2.78154 14.1827C2.91837 14.4387 2.94699 14.7388 2.86103 15.016C2.62281 15.6487 2.4237 16.2954 2.26482 16.9525C2.26482 17.2858 2.36022 17.4763 2.71794 17.4684C3.35154 17.3285 3.97552 17.1482 4.58606 16.9287C4.84901 16.8563 5.1286 16.873 5.381 16.9763C5.61153 17.0874 6.08055 17.3731 6.09645 17.3731C9.15957 18.9838 12.9006 18.5394 15.4998 16.2563C18.0989 13.9731 19.0165 10.3251 17.8063 7.08678C16.5961 3.84849 13.5092 1.69219 10.0473 1.66682V1.66682Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <ellipse cx="6.07264" cy="10.0001" rx="0.397471" ry="0.396825" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <ellipse cx="10.0473" cy="10.0001" rx="0.397471" ry="0.396825" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <ellipse cx="14.022" cy="10.0001" rx="0.397471" ry="0.396825" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.0473 1.66682C7.12235 1.655 4.4046 3.17261 2.88371 5.66704C1.36282 8.16146 1.26073 11.2687 2.6146 13.8573L2.78154 14.1827C2.91837 14.4387 2.94699 14.7388 2.86103 15.016C2.62281 15.6487 2.4237 16.2954 2.26482 16.9525C2.26482 17.2858 2.36022 17.4763 2.71794 17.4684C3.35154 17.3285 3.97552 17.1482 4.58606 16.9287C4.84901 16.8563 5.1286 16.873 5.381 16.9763C5.61153 17.0874 6.08055 17.3731 6.09645 17.3731C9.15957 18.9838 12.9006 18.5394 15.4998 16.2563C18.0989 13.9731 19.0165 10.3251 17.8063 7.08678C16.5961 3.84849 13.5092 1.69219 10.0473 1.66682V1.66682Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <ellipse cx="6.07264" cy="10.0001" rx="0.397471" ry="0.396825" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <ellipse cx="10.0473" cy="10.0001" rx="0.397471" ry="0.396825" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <ellipse cx="14.022" cy="10.0001" rx="0.397471" ry="0.396825" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
                       <span className="ml-3 font-semibold tracking-tight text-heading duration-200 text-lg lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
                         Chat List

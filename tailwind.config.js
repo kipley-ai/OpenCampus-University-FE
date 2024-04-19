@@ -78,7 +78,7 @@ module.exports = {
       },
     },
   },
-    plugins: [
+  plugins: [
     require('@tailwindcss/forms'),
     require('tailwind-scrollbar'),
     // add custom variant for expanding sidebar

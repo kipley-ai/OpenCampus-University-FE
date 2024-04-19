@@ -161,7 +161,7 @@ export default function Sidebar() {
     <>
       <CreditBalanceProvider>
         <div
-          className={`min-w-fit ${sidebarExpanded ? "sidebar-expanded" : ""} font-mikado`}
+          className={`min-w-fit ${sidebarExpanded ? "sidebar-expanded" : ""}`}
           style={{
             boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
             backgroundColor: "#fff",

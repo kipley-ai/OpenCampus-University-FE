@@ -77,7 +77,7 @@ export default function Header() {
   }, [isConnected, twitterStatus]);
 
   return (
-    <header className=" z-30 rounded-t-md border-b-2 border-border font-mikado">
+    <header className=" z-30 rounded-t-md border-b-2 border-border">
       <div className="px-2 md:px-6">
         <div className="-mb-px flex h-16 items-center justify-between">
           {/* Header: Left side */}

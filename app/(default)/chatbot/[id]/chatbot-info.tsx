@@ -36,11 +36,11 @@ const ChatbotInfo = ({
       </button>
       <div className="mb-2 flex w-full flex-col divide-y-2 divide-primary rounded-lg border-2 border-primary">
         <div className="flex flex-row justify-between px-6 py-2">
-          <h1 className="font-mikado text-xl font-semibold text-primary md:text-2xl">
+          <h1 className="text-xl font-semibold text-primary md:text-2xl">
             @{chatbotData?.data.data.name}
           </h1>
           <button
-            className="flex flex-row items-center self-center space-x-1 rounded-full border-2 border-border bg-transparent px-4 py-1 font-mikado text-sm text-[#6C7275] hover:border-secondary"
+            className="flex flex-row items-center self-center space-x-1 rounded-full border-2 border-border bg-transparent px-4 py-1 text-sm text-[#6C7275] hover:border-secondary"
             type="button"
             onClick={() => setIsOpen(true)}
           >

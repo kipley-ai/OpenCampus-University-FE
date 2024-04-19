@@ -46,7 +46,7 @@ export default function ChatBotPage() {
   return (
     <div className="flex h-full flex-col px-4 md:flex-row md:px-0">
       <CreditBalanceProvider>
-        <div className="mx-auto flex h-[calc(100vh-70px)] w-full flex-col py-4 md:w-3/4 lg:h-[calc(100vh-120px)] font-mikado">
+        <div className="mx-auto flex h-[calc(100vh-70px)] w-full flex-col py-4 md:w-3/4 lg:h-[calc(100vh-120px)]">
           <CreateChatbotProvider>
             {/* <Header /> */}
             <ChatbotInfo setIsOpen={setShowShareModal} />

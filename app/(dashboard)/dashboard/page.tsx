@@ -134,7 +134,7 @@ export default function Dashboard() {
 
       {/* Explore Banner */}
       <Image 
-        src="/images/explore-banner.png" 
+        src="/images/explore-banner.svg" 
         alt="Explore Banner" 
         className="w-full rounded-md"
         width={1030}

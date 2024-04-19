@@ -57,7 +57,7 @@ function ChatbotProfile() {
           <div className="relative mb-4 size-[200px] shrink-0">
             <Image
               src={chatbotData?.data.data.profile_image as string}
-              alt={chatbotData?.data.data.name}
+              alt="Chatbot Profile Image"
               layout="fill"
               className="rounded-lg object-fill"
             />
@@ -149,7 +149,7 @@ function SFTDetail() {
             <div className="relative mb-4 size-[200px]">
               <Image
                 src={sftData?.data.data.profile_image as string}
-                alt={sftData?.data.data.name}
+                alt="SFT Image"
                 layout="fill"
                 className="rounded-lg object-contain"
               />

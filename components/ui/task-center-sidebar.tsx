@@ -1,6 +1,6 @@
 import Image from "next/image";
-import TaskCenterImage from "public/images/join-box.svg";
-import TaskCenterLightImage from "public/images/join-box-light.svg";
+import TaskCenterImage from "public/images/join-box-nogrid.svg";
+import TaskCenterLightImage from "public/images/join-box-nogrid-light.svg";
 import Link from "next/link";
 import Button from "@/components/button";
 import { useTheme } from 'next-themes';

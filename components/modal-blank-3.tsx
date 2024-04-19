@@ -15,7 +15,7 @@ export default function ModalBlank({
     <Transition appear show={isOpen}>
       <Dialog as="div" onClose={() => {}}>
         <Transition.Child
-          className="fixed inset-0 backdrop-blur bg-opacity-100 z-50 transition-opacity"
+          className="fixed inset-0 bg-opacity-100 z-50 transition-opacity"
           enter="transition ease-out duration-200"
           enterFrom="opacity-0"
           enterTo="opacity-100"

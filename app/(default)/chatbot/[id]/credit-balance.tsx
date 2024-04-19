@@ -74,7 +74,7 @@ export default function CreditBalance() {
             clipRule="evenodd"
           />
         </svg>
-          <h6 className="text-lg font-bold tracking-tight">Credit Balance</h6>
+          <h6 className="text-lg font-semibold tracking-tight">Credit Balance</h6>
         </div>
         <button
           className="self-end rounded-full hover:text-primary"

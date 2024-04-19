@@ -116,9 +116,9 @@ function App() {
     <div className="App">
       <div
         className="app-wrapper relative" ref={containerRef}
-        style={{
-          backgroundImage: `url(${Pattern.src})`,
-        }}
+        // style={{
+        //   backgroundImage: `url(${Pattern.src})`,
+        // }}
       >
         {/* <div>
           <ThemeSwitcher />

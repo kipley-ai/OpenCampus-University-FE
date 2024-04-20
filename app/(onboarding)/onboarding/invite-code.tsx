@@ -153,12 +153,6 @@ const InviteCode = ({ address }: InviteCodeProps) => {
     if (inputsRef.current[0]) {
       inputsRef.current[0].focus();
     }
-
-    // window.addEventListener("paste", handlePaste);
-
-    // return () => {
-    //   window.removeEventListener("paste", handlePaste);
-    // };
   }, []);
 
   useEffect(() => {
@@ -190,9 +184,7 @@ const InviteCode = ({ address }: InviteCodeProps) => {
 
   return (
     <div className="flex h-full flex-col items-center gap-6">
-      <p className="text-xl font-semibold">
-        Enter Invite Code to Join
-      </p>
+      <p className="text-xl font-semibold">Enter Invite Code to Join</p>
       <div className="flex h-1 gap-2">
         <p className="text-sm font-semibold text-red-500">{errorMessage}</p>
       </div>
@@ -200,7 +192,7 @@ const InviteCode = ({ address }: InviteCodeProps) => {
         {otp.map((data, index) => {
           return (
             <input
-              className="h-24 w-24 border-0 border-b-[3px] border-gray-500 bg-inherit text-center text-5xl font-semibold outline-none focus:ring-0 focus:border-primary"
+              className="size-12 border-0 border-b-[3px] border-gray-500 bg-inherit text-center text-3xl font-semibold outline-none focus:border-primary focus:ring-0 md:size-24 md:text-5xl"
               maxLength={1}
               key={index}
               value={otp[index]}
@@ -212,13 +204,6 @@ const InviteCode = ({ address }: InviteCodeProps) => {
           );
         })}
       </div>
-      {/* <button
-        onClick={handleContinue}
-        className="rounded-full bg-primary px-16 py-3 text-sm font-bold text-black disabled:opacity-50"
-        disabled={isBlankPresent}
-      >
-        Continue
-      </button> */}
     </div>
   );
 };

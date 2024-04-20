@@ -58,7 +58,7 @@ const ChatbotInfo = ({
               width={100}
               height={100}
             />
-            <p className="line-clamp-5 font-mono text-xs text-heading md:line-clamp-4 md:text-base">
+            <p className="line-clamp-5 text-xs text-heading md:line-clamp-4 md:text-base">
               {chatbotData?.data.data.description}
             </p>
           </div>

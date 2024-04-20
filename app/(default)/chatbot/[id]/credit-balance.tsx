@@ -83,10 +83,12 @@ export default function CreditBalance() {
           <div className="rounded-full border-border p-1 font-semibold">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width={16}
-            height={16}
+            width="20"
+            height="20"
+            viewBox="-2 -2 16 16"
             stroke={theme === "dark" ? "#A4AEB4" : "#000000"}
             fill="none"
+            className="hover:stroke-primary"
           >
             <path
               strokeLinecap="round"

@@ -3,7 +3,7 @@
 import { useAccount } from "wagmi";
 import { useCreateChatbotContext } from "../create-knowledge-context";
 import OnboardingHeader from "./header";
-import JetWelcome from "./(jet)/main";
+import LandingPage from "./landing";
 import InviteCode from "./invite-code";
 import SelectDataElements from "../select-data-elements";
 import MintNFT from "../mint-nft";
@@ -72,6 +72,6 @@ export default function Onboarding() {
   // }
 
   if (status === "disconnected") {
-    return <JetWelcome />;
+    return <LandingPage />;
   }
 }

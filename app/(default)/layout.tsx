@@ -1,15 +1,14 @@
 "use client";
 import Sidebar from "@/components/ui/sidebar";
 import Header from "@/components/ui/header";
+import ModalTopUpSuccessful from "@/components/modal-top-up-successful";
+import ModalTopUpFailed from "@/components/modal-top-up-failed";
 import { useAccount } from "wagmi";
 import { useEffect } from "react";
 import { redirect, useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useUserDetail } from "@/hooks/api/user";
 import { useAppProvider } from "@/providers/app-provider";
-
-import ModalTopUpSuccessful from "@/components/modal-top-up-successful";
-import ModalTopUpFailed from "@/components/modal-top-up-failed";
 import { SUBDOMAINS } from "@/utils/constants";
 
 export default function DefaultLayout({
@@ -29,8 +28,6 @@ export default function DefaultLayout({
   const { data: userDetail, isLoading, isSuccess } = useUserDetail();
 
   const {
-    topUpStatus,
-    setTopUpStatus,
     modalTopUpSuccessful,
     setModalTopUpSuccessful,
     modalTopUpFailed,
@@ -50,7 +47,7 @@ export default function DefaultLayout({
       }
 
       return (
-        <div className="flex h-[100dvh] overflow-hidden bg-sidebar text-heading">
+        <div className="flex h-dvh bg-sidebar text-heading">
           {/* Sidebar */}
           {pathname === "/knowledge/create/iframe" ? null : <Sidebar />}
 
@@ -63,14 +60,12 @@ export default function DefaultLayout({
             isOpen={modalTopUpFailed}
             setIsOpen={setModalTopUpFailed}
           />
-          <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden rounded-lg border-border lg:p-6 lg:pl-0">
-            <div className="h-dvh rounded-lg bg-container border border-border">
+          <div className="relative flex flex-1 flex-col overflow-y-auto">
+            <div className="h-[max(100vh, fit-content)] grow rounded-lg border border-border bg-container lg:m-6 lg:ml-0">
               {/*  Site header */}
               {pathname === "/knowledge/create/iframe" ? null : <Header />}
 
-              <main className="grow [&>*:first-child]:scroll-mt-16">
-                {children}
-              </main>
+              <main className="grow">{children}</main>
             </div>
           </div>
         </div>

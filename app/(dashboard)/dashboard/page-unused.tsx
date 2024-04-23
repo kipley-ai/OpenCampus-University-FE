@@ -1,5 +1,5 @@
 "use client";
-
+// MOVED TO app/(default)/dashboard/page.tsx
 import WelcomeBanner from "./welcome-banner";
 import DashboardAvatars from "./dashboard-avatars";
 import FilterButton from "@/components/dropdown-filter";

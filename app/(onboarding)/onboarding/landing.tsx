@@ -3,7 +3,7 @@ import Logo from "components/ui/logo";
 import WelcomeToLight from "components/logo/welcome-to-light.svg";
 import GetInvolvedButton from "@/components/GetInvolvedButton/get-involved-button";
 
-const Landing = (props) => {
+const Landing = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
       <Logo />
@@ -12,6 +12,7 @@ const Landing = (props) => {
           <div className="flex flex-col items-center pb-6">
             <Image
               src={WelcomeToLight}
+              alt="Welcome!"
               className="w-[180px] self-center md:w-[266px]"
             />
             <h1 className="text-center text-2xl font-bold xs:text-3xl md:text-4xl lg:text-5xl">

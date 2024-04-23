@@ -79,35 +79,6 @@ export default function Sidebar() {
   const expandOnly =
     !sidebarExpanded && (breakpoint === "lg" || breakpoint === "xl");
 
-  // Wallet logic and modal
-  const [isConnected_, setIsConnected_] = useState<boolean>(false);
-  const { isConnected } = useAccount();
-
-  useEffect(() => {
-    setIsConnected_(isConnected);
-  }, [isConnected]);
-
-  // Twitter logic and modal
-  const { status: twitterStatus } = useSession();
-  const { modalLogin: showTwitterLogin, setModalLogin: setShowTwitterLogin } =
-    useAppProvider();
-
-  const handleWalletReadyClick = (e: React.MouseEvent) => {
-    if (twitterStatus == "authenticated") {
-      router.push("/create-chatbot");
-    } else {
-      setShowTwitterLogin(true);
-    }
-  };
-
-  const handleChatbotClick = (e: React.MouseEvent) => {
-    if (!(twitterStatus == "authenticated" && isConnected_)) {
-      e.preventDefault();
-      e.stopPropagation();
-      e.nativeEvent.stopImmediatePropagation();
-    }
-  };
-
   // close on click outside
   useEffect(() => {
     const clickHandler = ({ target }: { target: EventTarget | null }): void => {
@@ -207,7 +178,6 @@ export default function Sidebar() {
                     ""
                   }`}
                 >
-                  {/* style={{ border: '2px solid #00EDBE', borderRadius: '24px', padding: '6px 10px' }}> */}
                   <SidebarLink href="/dashboard">
                     <div className="flex items-center py-1">
                       <svg

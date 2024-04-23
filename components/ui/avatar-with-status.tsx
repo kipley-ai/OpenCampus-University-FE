@@ -4,7 +4,6 @@ import { StaticImageData } from "next/image";
 import Image from "next/image";
 import { signOut } from "next-auth/react";
 import { useDisconnect, useAccount } from "wagmi";
-import defaultAvatar from "@/public/images/avatar-default-02.svg";
 import { useAppProvider } from "@/providers/app-provider";
 import Link from "next/link";
 import { FaSpinner } from "react-icons/fa";
@@ -15,14 +14,6 @@ interface AvatarWithStatusProps {
   image: string | StaticImageData;
   status: StatusType;
 }
-
-// This is the color for the status
-const statusColor = {
-  online: "bg-green-500",
-  busy: "bg-red-500",
-  away: "bg-yellow-500",
-  offline: "bg-gray-500",
-};
 
 // The AvatarWithStatus component accepts the avatar image and the status as props
 const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
@@ -55,40 +46,38 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
 
   return (
     <div className="relative inline-block" ref={dropdownRef}>
-      <div onClick={toggleDropdown} className="min-w-10 cursor-pointer">
-        {/* <img src={image} alt="Avatar" className="w-12 h-12 rounded-full" /> */}
+      <div onClick={toggleDropdown} className="cursor-pointer">
         {image === "" ? (
-          <Image
-            src={defaultAvatar}
-            width={33}
-            height={33}
-            alt="Avatar"
-            className="rounded-full"
-          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="33"
+            height="33"
+            viewBox="0 0 338 338"
+            className="fill-[#181B1F] hover:fill-gray-500 dark:fill-heading dark:hover:brightness-50"
+          >
+            <path d="m169,.5a169,169 0 1,0 2,0zm0,86a76,76 0 11-2,0zM57,287q27-35 67-35h92q40,0 67,35a164,164 0 0,1-226,0" />
+          </svg>
         ) : (
           <Image
             src={image}
             width={33}
             height={33}
             alt="Avatar"
-            className="rounded-full"
+            className="rounded-full hover:brightness-50"
           />
         )}
-        {/* <span
-          className={`absolute top-0 right-0 w-3 h-3 rounded-full border-2 border-white ${statusColor[status]}`}
-        ></span> */}
       </div>
       {isDropdownOpen && (
         <div className="absolute right-0 z-50 mt-2 w-48 rounded-md bg-container py-2 shadow-xl">
-          <div className="px-4 py-2">
+          <div className="mx-4 py-2">
             <div className="text-sm font-medium">
               {address && `${address.slice(0, 6)}...${address.slice(-6)}`}
             </div>
           </div>
-          <div className="mx-4 border-t border-gray-300"></div>
+          <div className="mx-4 border-t border-border"></div>
           <Link
             href="/manage-account"
-            className="block flex px-4 py-2 text-sm capitalize hover:bg-secondary"
+            className="mx-2 block flex rounded-md px-2 py-2 text-sm capitalize hover:bg-secondary"
           >
             <svg
               className="mr-2"
@@ -125,9 +114,9 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
             </svg>
             Manage Account
           </Link>
-          <div className="mx-4 border-t border-gray-300"></div>
+          <div className="mx-4 border-t border-border"></div>
           <button
-            className="block flex w-full px-4 py-2 text-sm capitalize hover:bg-secondary"
+            className="mx-2 block flex w-44 rounded-md px-2 py-2 text-sm capitalize hover:bg-secondary"
             onClick={(e) => {
               e.preventDefault();
               localStorage.setItem("kip-protocol-signature", "");

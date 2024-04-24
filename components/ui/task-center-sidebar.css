@@ -1,0 +1,48 @@
+/* SOURCE: https://codepen.io/Chester/pen/QPoyjN */
+
+.rainbow,
+.rainbow::before,
+.rainbow::after {
+  box-sizing: border-box;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.rainbow {
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.rainbow::before {
+  content: '';
+  position: absolute;
+  z-index: -2;
+  left: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
+  /* background-color: #399953; */
+  background-repeat: no-repeat;
+  background-size: 50% 50%, 50% 50%;
+  background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+  background-image: linear-gradient(var(--color-border), var(--color-border)), linear-gradient(var(--color-border), var(--color-border)), linear-gradient(var(--color-border), var(--color-border)), linear-gradient(var(--color-primary), var(--color-primary));
+  animation: rotate 4s linear infinite;
+}
+
+.rainbow::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 3px;
+  top: 3px;
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+  background: var(--color-sidebar);
+  border-radius: 7px;
+}

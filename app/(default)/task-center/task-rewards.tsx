@@ -253,7 +253,7 @@ const TasksSection = (
   }
 
   return (
-    <div className="h-full w-full bg-[#151515] p-6">
+    <div className="h-full w-full p-6">
       <h2 className="mb-6 text-2xl font-bold text-heading">TASK REWARDS</h2>
       <div className="flex h-full max-h-full w-full max-w-full flex-col items-center justify-center">
         <Image

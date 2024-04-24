@@ -69,7 +69,7 @@ export default function Header() {
   return (
     <header className="z-30 rounded-t-md border-b-2 border-border">
       <div className="px-2 md:px-6">
-        <div className="-mb-px flex h-16 items-center justify-between">
+        <div className="-mb-px flex h-12 md:h-16 items-center justify-between">
           {/* Header: Left side */}
           <div className="flex gap-4">
             {/* Hamburger button */}
@@ -121,19 +121,19 @@ export default function Header() {
           <div className="flex items-center gap-2 md:gap-4">
             {/* Create Chatbot Button */}
             <Link href="/knowledge/create">
-              <div className="button flex items-center">
+              <div className="button flex gap-1 xs:gap-2 items-center">
                 <FaCirclePlus />
-                <span className="ml-1 sm:ml-2 md:text-sm">
+                <p className="text-center max-xs:text-[10px]">
                   Create Knowledge Asset
-                </span>
+                </p>
               </div>
             </Link>
             {/* My Bot Button */}
             <Link href="/nft">
               <div className="button">
-                <span className="md:text-sm">
+                <p className="text-center max-xs:text-[10px]">
                   My Assets
-                </span>
+                </p>
               </div>
             </Link>
             <ThemeSwitcher />

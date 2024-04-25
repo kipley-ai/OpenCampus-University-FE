@@ -10,7 +10,7 @@ export default function TaskCenterSideBar() {
   const { theme } = useTheme();
 
   return (
-    <div className="rainbow relative mx-5 flex flex-col items-center gap-4 px-1 py-8">
+    <div className="relative mx-5 flex flex-col items-center gap-4 rounded-xl border-2 border-primary px-1 py-8">
       {theme === "dark" ? (
         <Image src={TaskCenterImage} alt="Task Center" />
       ) : (

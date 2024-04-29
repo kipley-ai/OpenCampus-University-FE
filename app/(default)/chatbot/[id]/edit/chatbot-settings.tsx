@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useAccount } from "wagmi";
 import { useChatbotDetail, useUpdateChatbotAPI } from "@/hooks/api/chatbot";
 import { useSuperAdmin } from "@/hooks/api/access";
+import { useGetCategory } from "@/hooks/api/chatbot";
 import defaulUserAvatar from "public/images/chatbot-avatar.png";
 import { useParams, redirect, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
@@ -11,6 +12,14 @@ import LoadingIcon from "public/images/loading-icon.svg";
 import CreateChatbotModal from "@/components/toast-4";
 import Switcher from "@/components/switcher";
 import Tooltip from "@/components/tooltip";
+
+interface Category {
+  title: string;
+  created: string;
+  category_id: string;
+  use_for: string;
+  sort: number;
+}
 
 interface Form {
   category_id: string;
@@ -30,7 +39,9 @@ const ChatbotSettings = () => {
   const router = useRouter();
   const chatbotDetail = useChatbotDetail({ chatbot_id: id as string });
   const superAdmin = useSuperAdmin();
+  const categoryList = useGetCategory();
   const [form, setForm] = useState<any>({
+    category_id: "",
     chatbot_id: "",
     name: "",
     description: "",
@@ -40,6 +51,7 @@ const ChatbotSettings = () => {
   const [selectedFile, setSelectedFile] = useState<any>(LoadingIcon);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [showModal, setShowModal] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [mode, setMode] = useState(0);
   const [toneData, setToneData] = useState("");
   const [personality, setPersonality] = useState(0);
@@ -57,6 +69,7 @@ const ChatbotSettings = () => {
     try {
       updateChatbot.mutate(
         {
+          category_id: form.category_id as string,
           chatbot_id: id as string,
           profile_image: selectedFile,
           name: form.name as string,
@@ -75,6 +88,13 @@ const ChatbotSettings = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (categoryList && categoryList.data) {
+      const categoryData: Category[] = categoryList.data.data.data;
+      setCategories(categoryData);
+    }
+  }, [categoryList]);
 
   useEffect(() => {
     if (mode == 0) {
@@ -174,6 +194,28 @@ const ChatbotSettings = () => {
                 </div>
               </div>
 
+              <div className="">
+                <label
+                  className="flex flex-col text-sm font-semibold w-1/3"
+                  htmlFor="category"
+                >
+                  Category
+                </label>
+                <select
+                  id="category"
+                  value={form.category_id}
+                  className="mt-2 w-full rounded-xl border-2 bg-transparent"
+                  onChange={(e) => handleFormChange("category_id", e.target.value)}
+                >
+                  <option className="bg-sidebar text-body" selected disabled hidden value="">Select a category</option>
+                  {categories.map((cat) => (
+                    <option className="bg-sidebar text-body" key={cat.category_id} value={cat.category_id}>
+                      {cat.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               <div>
                 <label
                   htmlFor="tone"
@@ -216,7 +258,7 @@ const ChatbotSettings = () => {
                 </label>
                 <div className="mt-3">
                   <input
-                    className="placeholder-text-[#7C878E] w-full rounded-xl bg-transparent text-xs lg:text-sm"
+                    className="placeholder-text-[#7C878E] w-full rounded-xl bg-transparent border-2 text-xs lg:text-sm"
                     type="number"
                     name="pricePerQuery"
                     placeholder="e.g. 1"

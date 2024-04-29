@@ -139,7 +139,7 @@ const ChatBotForm = () => {
         tone: toneData,
         personality: personalityData,
         price_per_query: form.pricePerQuery as number,
-        // category_id: category,
+        category_id: category,
         description: description.value,
         // instruction: instructions,
         // example_conversation: example,
@@ -335,7 +335,7 @@ const ChatBotForm = () => {
                     type="text"
                     value={form.name}
                     onChange={(e) => handleFormChange("name", e.target.value)}
-                    className="mt-2 w-full rounded-xl border-2 bg-transparent text-xs text-heading lg:text-sm"
+                    className="mt-2 w-full rounded-xl border-2 bg-transparent text-xs text-heading lg:text-base"
                     placeholder="Name your Chatbot"
                     maxLength={100}
                   />
@@ -374,6 +374,27 @@ const ChatBotForm = () => {
               </div>
               <div>
                 <label
+                  className="flex w-1/3 flex-col text-sm font-semibold text-heading"
+                  htmlFor="category"
+                >
+                  Category
+                </label>
+                <select
+                  id="category"
+                  value={category}
+                  className="mt-2 w-full rounded-xl border-2 bg-transparent"
+                  onChange={(e) => setCategory(e.target.value)}
+                >
+                  <option className="bg-sidebar text-body" selected disabled hidden value="">Select a category</option>
+                  {categories.map((cat) => (
+                    <option className="bg-sidebar text-body" key={cat.category_id} value={cat.category_id}>
+                      {cat.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label
                   htmlFor="tone"
                   className="block text-xs font-semibold text-heading lg:text-sm "
                 >
@@ -386,27 +407,6 @@ const ChatBotForm = () => {
                     setWhich={setMode}
                   />
                 </div>
-                {/* <label
-                  className="flex w-1/3 flex-col text-sm font-semibold text-heading"
-                  htmlFor="category"
-                >
-                  Category
-                </label>
-                <select
-                  id="category"
-                  value={category}
-                  className="mt-2 w-full rounded-xl border-2 bg-transparent text-[#7C878E]"
-                  onChange={(e) => setCategory(e.target.value)}
-                >
-                  <option value="">Select a category</option>
-                  {categories.map((cat) => (
-                    <option key={cat.category_id} value={cat.category_id}>
-                      {cat.title}
-                    </option>
-                  ))}
-                </select> */}
-
-                {/* <p className="mt-2 text-xs text-gray-400">Category of your AI.</p> */}
               </div>
               <div>
                 <label

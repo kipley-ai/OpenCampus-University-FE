@@ -1,9 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { useAccount } from "wagmi";
-import { useChatbotDetail, useUpdateChatbotAPI } from "@/hooks/api/chatbot";
+import { useChatbotDetail, useUpdateChatbotAPI, useGetCategory } from "@/hooks/api/chatbot";
 import { useSuperAdmin } from "@/hooks/api/access";
-import { useGetCategory } from "@/hooks/api/chatbot";
 import defaulUserAvatar from "public/images/chatbot-avatar.png";
 import { useParams, redirect, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";

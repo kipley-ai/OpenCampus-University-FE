@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { useChatbotPKLStatus, useCreateChatbotAPI } from "@/hooks/api/chatbot";
+import { useChatbotPKLStatus, useCreateChatbotAPI, useGetCategory } from "@/hooks/api/chatbot";
 import { useCreateChatbotContext } from "./create-knowledge-context";
-import { useGetCategory } from "@/hooks/api/chatbot";
 import { useSession } from "next-auth/react";
 import CreateChatbotModal from "@/components/toast-4";
 import { useNftDetail } from "@/hooks/api/nft";
@@ -30,6 +29,7 @@ interface Category {
 interface Form {
   name?: string;
   pricePerQuery?: number;
+  category_id?: string;
 }
 
 const ChatBotForm = () => {
@@ -136,7 +136,7 @@ const ChatBotForm = () => {
         tone: toneData,
         personality: personalityData,
         price_per_query: form.pricePerQuery as number,
-        // category_id: category,
+        category_id: form.category_id,
         description: description.value,
         // instruction: instructions,
         // example_conversation: example,
@@ -355,9 +355,6 @@ const ChatBotForm = () => {
                     <div className="text-xs opacity-0 lg:text-sm">a</div>
                   )}
                 </div>
-                {/* <p className="mt-2 text-xs text-gray-400">
-                The name of your AI character.
-              </p> */}
               </div>
               <div>
                 <label
@@ -380,6 +377,27 @@ const ChatBotForm = () => {
                   />
                 </div>
               </div>
+              <div className="">
+                <label
+                  className="flex flex-col text-sm font-semibold w-1/3"
+                  htmlFor="category"
+                >
+                  Category
+                </label>
+                <select
+                  id="category"
+                  value={form.category_id}
+                  className="mt-2 w-full rounded-xl border-2 bg-transparent"
+                  onChange={(e) => handleFormChange("category_id", e.target.value)}
+                >
+                  <option className="bg-sidebar text-body" selected disabled hidden value="">Select a category</option>
+                  {categories.map((cat) => (
+                    <option className="bg-sidebar text-body" key={cat.category_id} value={cat.category_id}>
+                      {cat.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <div>
                 <label
                   htmlFor="tone"
@@ -395,27 +413,6 @@ const ChatBotForm = () => {
                     fullWidth={true}
                   />
                 </div>
-                {/* <label
-                  className="flex w-1/3 flex-col text-sm font-semibold text-heading"
-                  htmlFor="category"
-                >
-                  Category
-                </label>
-                <select
-                  id="category"
-                  value={category}
-                  className="mt-2 w-full rounded-xl border-2 bg-transparent text-[#7C878E]"
-                  onChange={(e) => setCategory(e.target.value)}
-                >
-                  <option value="">Select a category</option>
-                  {categories.map((cat) => (
-                    <option key={cat.category_id} value={cat.category_id}>
-                      {cat.title}
-                    </option>
-                  ))}
-                </select> */}
-
-                {/* <p className="mt-2 text-xs text-gray-400">Category of your AI.</p> */}
               </div>
               <div>
                 <label

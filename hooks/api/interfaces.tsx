@@ -22,7 +22,7 @@ export interface ICreateChatbotParams {
   sft_id: string;
   kb_id: string;
   price_per_query: number;
-  // category_id: string;
+  category_id: string | undefined;
   description: string;
   // instruction: string;
   // example_conversation: string;
@@ -63,6 +63,7 @@ export interface IUpdateChatbotParams {
   tone: string;
   personality: string;
   price_per_query: number;
+  category_id: string;
 }
 
 export interface IPaginate {

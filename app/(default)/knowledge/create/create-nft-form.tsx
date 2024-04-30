@@ -348,7 +348,7 @@ export default function NFT() {
                     </option>
                   ))}
                 </select>
-                {errorMessage && errorMessage.symbol ? (
+                {errorMessage && errorMessage.category ? (
                   <div className=" text-xs text-red-400">
                     {errorMessage.category}
                   </div>

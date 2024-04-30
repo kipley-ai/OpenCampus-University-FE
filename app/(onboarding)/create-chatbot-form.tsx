@@ -83,6 +83,11 @@ const ChatBotForm = () => {
       .min(1, "Name is required")
       .max(100, noMoreThanCharacters(100)),
 
+    category_id: z
+      .string({
+        required_error: "Category is required",
+      }),
+
     pricePerQuery: z
       .string({
         required_error: "Price per query is required",
@@ -397,6 +402,13 @@ const ChatBotForm = () => {
                     </option>
                   ))}
                 </select>
+                {errorMessage && errorMessage.category_id ? (
+                  <div className=" text-xs text-red-400">
+                    {errorMessage.category_id}
+                  </div>
+                ) : (
+                  <div className="text-xs opacity-0 lg:text-sm">a</div>
+                )}
               </div>
               <div>
                 <label

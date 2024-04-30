@@ -32,6 +32,7 @@ interface Category {
 
 interface Form {
   name?: string;
+  category_id?: string;
   pricePerQuery?: number;
 }
 
@@ -47,7 +48,6 @@ const ChatBotForm = () => {
     value: "",
   });
   const { address } = useAccount();
-  const [category, setCategory] = useState("");
   const [categories, setCategories] = useState<Category[]>([]);
   const [profileImage, setProfileImage] = useState("");
   const [profileImageUrl, setProfileImageUrl] = useState("");
@@ -86,6 +86,11 @@ const ChatBotForm = () => {
       })
       .min(1, "Name is required")
       .max(100, noMoreThanCharacters(100)),
+
+    category_id: z
+      .string({
+        required_error: "Category is required",
+      }),
 
     pricePerQuery: z
       .string({
@@ -139,7 +144,7 @@ const ChatBotForm = () => {
         tone: toneData,
         personality: personalityData,
         price_per_query: form.pricePerQuery as number,
-        category_id: category,
+        category_id: form.category_id,
         description: description.value,
         // instruction: instructions,
         // example_conversation: example,
@@ -381,9 +386,9 @@ const ChatBotForm = () => {
                 </label>
                 <select
                   id="category"
-                  value={category}
+                  value={form.category_id}
                   className="mt-2 w-full rounded-xl border-2 bg-transparent"
-                  onChange={(e) => setCategory(e.target.value)}
+                  onChange={(e) => handleFormChange("category_id", e.target.value)}
                 >
                   <option className="bg-sidebar text-body" selected disabled hidden value="">Select a category</option>
                   {categories.map((cat) => (
@@ -392,6 +397,13 @@ const ChatBotForm = () => {
                     </option>
                   ))}
                 </select>
+                {errorMessage && errorMessage.category_id ? (
+                  <div className=" text-xs text-red-400">
+                    {errorMessage.category_id}
+                  </div>
+                ) : (
+                  <div className="text-xs opacity-0 lg:text-sm">a</div>
+                )}
               </div>
               <div>
                 <label

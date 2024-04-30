@@ -9,6 +9,7 @@ import {
   useMintNFT,
   useScrapeTwitter,
 } from "@/hooks/api/kb";
+import { useGetCategory } from "@/hooks/api/chatbot";
 import { useSession } from "next-auth/react";
 import { uploadFileS3 } from "@/app/api/upload/s3/helper";
 import MintNFTModal from "./mint-nft-modal";
@@ -23,14 +24,18 @@ import { noMoreThanCharacters } from "@/utils/utils";
 import { TwitterScrapingStatus } from "@/components/twitter-scraping-status";
 import ScrapeFailModal from "@/components/scrape-fail-modal";
 
-// export const metadata = {
-//     title: 'SFT - Mosaic',
-//     description: 'Page description',
-// }
+interface Category {
+  title: string;
+  created: string;
+  category_id: string;
+  use_for: string;
+  sort: number;
+}
 
 interface Form {
   name?: string;
   description?: string;
+  category?: string;
   symbol?: string;
   shareSupply?: string;
   comissionRate?: number;
@@ -43,7 +48,8 @@ export default function NFT() {
   const [showModal, setShowModal] = useState(false);
   const createKBandMintNFT = useCreateKBAndMintNFT();
   const { createKb, createNft } = useCreateChatbotContext();
-  const [category, setCategory] = useState("");
+  const categoryList = useGetCategory();
+  const [categories, setCategories] = useState<Category[]>([]);
   const [queryRoyalties, setQueryRoyalties] = useState("");
   const { setStep } = useCreateChatbotContext();
   const [errorMessage, setErrorMessage] = useState<any>({});
@@ -78,6 +84,11 @@ export default function NFT() {
       })
       .min(1, "Description is required")
       .max(1000, noMoreThanCharacters(1000)),
+
+    category: z
+      .string({
+        required_error: "Category is required",
+      }),
 
     symbol: z
       .string({
@@ -135,7 +146,7 @@ export default function NFT() {
           contract_address: "",
           wallet_address: "",
           supply: form?.shareSupply as string,
-          category: "",
+          category: form.category as string,
           token_symbol: form?.symbol as string,
           price_per_query: form?.pricePerQuery as number,
           query_royalties: form?.comissionRate as number,
@@ -222,6 +233,12 @@ export default function NFT() {
     sessionStorage.removeItem("kbType");
   }, []);
 
+  useEffect(() => {
+    if (categoryList && categoryList.data) {
+      const categoryData: Category[] = categoryList.data.data.data;
+      setCategories(categoryData);
+    }
+  }, [categoryList]);
 
   return (
     <>
@@ -265,7 +282,7 @@ export default function NFT() {
               setSelectedFile={setSelectedFile}
               setUploadedFile={setUploadedFile}
             />
-            <div className="flex w-full flex-col">
+            <div className="flex w-full flex-col gap-2">
               <div className="flex flex-col gap-1">
                 <label className="text-xs font-semibold text-heading lg:text-sm">
                   Name
@@ -305,6 +322,35 @@ export default function NFT() {
                 {errorMessage && errorMessage.description ? (
                   <div className=" text-xs text-red-400">
                     {errorMessage.description}
+                  </div>
+                ) : (
+                  <div className="text-xs opacity-0 lg:text-sm">a</div>
+                )}
+              </div>
+
+              <div className="">
+                <label
+                  className="flex flex-col text-sm font-semibold w-1/3"
+                  htmlFor="category"
+                >
+                  Category
+                </label>
+                <select
+                  id="category"
+                  value={form.category}
+                  className="mt-2 w-full rounded-xl bg-transparent"
+                  onChange={(e) => handleFormChange("category", e.target.value)}
+                >
+                  <option className="bg-sidebar text-body" selected disabled hidden value="">Select a category</option>
+                  {categories.map((cat) => (
+                    <option className="bg-sidebar text-body" key={cat.category_id} value={cat.category_id}>
+                      {cat.title}
+                    </option>
+                  ))}
+                </select>
+                {errorMessage && errorMessage.symbol ? (
+                  <div className=" text-xs text-red-400">
+                    {errorMessage.category}
                   </div>
                 ) : (
                   <div className="text-xs opacity-0 lg:text-sm">a</div>

@@ -66,29 +66,29 @@ export default function Dashboard() {
   }, [breakpoint, pageSize, botsQuery.isFetching]);
 
   return (
-    <div className="rounded-lg px-4 py-8 sm:px-6 lg:mx-12 lg:my-2">
+    <div className="rounded-lg px-3 py-8 text-primary md:px-6 xl:px-16">
       <Image
         src="/images/explore-banner.svg"
         alt="Explore Banner"
-        className="w-full rounded-md"
+        className="w-full rounded-xl"
         width={1030}
         height={264}
       />
-      <div className="mt-8">
-        <h2 className="text-3xl font-medium text-heading">Featured Creators</h2>
-        <div className="my-4 grid grid-cols-2 gap-x-6 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
+      <div className="mt-12 rounded-xl border-2 border-border bg-sidebar p-3 lg:p-8">
+        <h1 className="text-xl font-semibold md:text-2xl">Featured Creators</h1>
+        <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
           {featuredBotsQuery.data?.data?.data &&
             featuredBotsQuery.data?.data.data.chatbot_data.map((botData) => (
               <BotItem key={botData.chatbot_id} botData={botData} />
             ))}
         </div>
       </div>
-      <div ref={loadMoreRef} className="mb-8">
+      <div ref={loadMoreRef} className="mb-12">
         {featuredBotsQuery.isFetching && <LoadMoreSpinner />}
       </div>
-      <div className="mt-4">
-        <h2 className="text-3xl font-medium text-heading">Popular Creators</h2>
-        <div className="my-4 grid grid-cols-2 gap-x-6 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
+      <div className="mt-4 rounded-xl border-2 border-border bg-sidebar p-3 lg:p-8">
+        <h1 className="text-xl font-semibold md:text-2xl">Popular Creators</h1>
+        <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
           {botsQuery.data?.data.data &&
             botsQuery.data?.data.data.chatbot_data.map((botData) => (
               <BotItem key={botData.chatbot_id} botData={botData} />
@@ -102,27 +102,20 @@ export default function Dashboard() {
   );
 }
 
-const BotItem = ({
-  botData,
-}: {
-  botData: ChatbotData;
-}) => (
+const BotItem = ({ botData }: { botData: ChatbotData }) => (
   <Link
     href={`/chatbot/${chatbotSlug(botData)}/profile`}
-    className="delay-50 group relative flex w-auto grow cursor-pointer flex-col rounded-sm bg-box transition ease-in-out hover:shadow-2xl dark:hover:shadow-gray-700"
+    className="delay-50 group relative flex grow cursor-pointer flex-col transition ease-in-out"
   >
-    <div className="p-2">
-      <div className="relative w-full overflow-hidden pb-[100%]">
-        <Image
-          src={botData.profile_image ?? ""}
-          layout="fill"
-          objectFit="cover"
-          alt="Avatar"
-        />
-      </div>
-    </div>
-    <div className="flex-grow p-4">
-      <div className="break-words font-poppins text-sm font-medium text-body md:text-base">
+    <Image
+      src={botData.profile_image ?? ""}
+      height={200}
+      width={200}
+      className="rounded-xl group-hover:shadow-xl dark:group-hover:shadow-gray-700"
+      alt="Avatar"
+    />
+    <div className="mt-4 flex-grow">
+      <div className="break-words font-medium max-md:text-sm">
         {botData.name}
       </div>
     </div>

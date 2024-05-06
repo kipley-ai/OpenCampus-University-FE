@@ -7,6 +7,7 @@ import { useDisconnect, useAccount } from "wagmi";
 import { useAppProvider } from "@/providers/app-provider";
 import Link from "next/link";
 import { FaSpinner } from "react-icons/fa";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 type StatusType = "online" | "busy" | "away" | "offline";
 
@@ -46,14 +47,14 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
 
   return (
     <div className="relative inline-block" ref={dropdownRef}>
-      <div onClick={toggleDropdown} className="cursor-pointer">
+      <div onClick={toggleDropdown} className="group cursor-pointer flex gap-4 items-center">
         {image === "" ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="33"
             height="33"
             viewBox="0 0 338 338"
-            className="fill-[#181B1F] hover:fill-gray-500 dark:fill-heading dark:hover:brightness-50"
+            className="fill-[#181B1F] group-hover:fill-gray-500 dark:fill-heading dark:group-hover:brightness-50"
           >
             <path d="m169,.5a169,169 0 1,0 2,0zm0,86a76,76 0 11-2,0zM57,287q27-35 67-35h92q40,0 67,35a164,164 0 0,1-226,0" />
           </svg>
@@ -63,17 +64,16 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
             width={33}
             height={33}
             alt="Avatar"
-            className="rounded-full hover:brightness-50"
+            className="rounded-full group-hover:brightness-50"
           />
         )}
+        <span className="text-sm font-medium flex items-center gap-2 group-hover:underline">
+          {address && `${address.slice(0, 6)}...${address.slice(-6)}`}
+          <IoMdArrowDropdown />
+        </span>
       </div>
       {isDropdownOpen && (
         <div className="absolute right-0 z-50 mt-2 w-48 rounded-md bg-container py-2 shadow-xl">
-          <div className="mx-4 py-2">
-            <div className="text-sm font-medium">
-              {address && `${address.slice(0, 6)}...${address.slice(-6)}`}
-            </div>
-          </div>
           <div className="mx-4 border-t border-border"></div>
           <Link
             href="/manage-account"

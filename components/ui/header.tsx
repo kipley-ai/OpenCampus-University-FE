@@ -67,7 +67,7 @@ export default function Header() {
   }, [isConnected, twitterStatus]);
 
   return (
-    <header className="z-30 rounded-t-md border-b-2 border-border">
+    <header className="z-30 bg-sidebar rounded-t-md border-b-2 border-border">
       <div className="px-2 md:px-6">
         <div className="-mb-px flex h-12 md:h-16 items-center justify-between">
           {/* Header: Left side */}
@@ -93,7 +93,7 @@ export default function Header() {
               </svg>
             </button>
 
-            <div className="hidden items-center gap-2 sm:flex">
+            {/* <div className="hidden items-center gap-2 sm:flex">
               {headerTitle === "AI CHAT" ? (
                 <svg className="stroke-primary" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M10.0473 1.66682C7.12235 1.655 4.4046 3.17261 2.88371 5.66704C1.36282 8.16146 1.26073 11.2687 2.6146 13.8573L2.78154 14.1827C2.91837 14.4387 2.94699 14.7388 2.86103 15.016C2.62281 15.6487 2.4237 16.2954 2.26482 16.9525C2.26482 17.2858 2.36022 17.4763 2.71794 17.4684C3.35154 17.3285 3.97552 17.1482 4.58606 16.9287C4.84901 16.8563 5.1286 16.873 5.381 16.9763C5.61153 17.0874 6.08055 17.3731 6.09645 17.3731C9.15957 18.9838 12.9006 18.5394 15.4998 16.2563C18.0989 13.9731 19.0165 10.3251 17.8063 7.08678C16.5961 3.84849 13.5092 1.69219 10.0473 1.66682V1.66682Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -114,29 +114,27 @@ export default function Header() {
               <span className="text-sm font-medium duration-200">
                 {headerTitle !== "AI CHAT" && headerTitle}
               </span>
-            </div>
+            </div> */}
           </div>
 
           {/* Header: Right side */}
           <div className="flex items-center gap-2 md:gap-4">
             {/* Create Chatbot Button */}
             <Link href="/knowledge/create">
-              <div className="button flex gap-1 xs:gap-2 items-center">
+              <div className="group flex gap-1 xs:gap-2 items-center text-primary">
                 <FaCirclePlus />
-                <p className="text-center max-xs:text-[10px]">
+                <p className="group-hover:underline text-sm font-medium max-xs:text-[10px]">
                   Create Knowledge Asset
                 </p>
               </div>
             </Link>
             {/* My Bot Button */}
             <Link href="/nft">
-              <div className="button">
-                <p className="text-center max-xs:text-[10px]">
-                  My Assets
-                </p>
-              </div>
+              <p className="hover:underline text-sm font-medium text-primary max-xs:text-[10px]">
+                My Assets
+              </p>
             </Link>
-            <ThemeSwitcher />
+            {/* <ThemeSwitcher /> */}
             {/* Profile Picture */}
             {isConnected_ && (
               <AvatarWithStatus image={profileImage} status="away" />

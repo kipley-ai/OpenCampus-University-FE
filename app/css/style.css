@@ -12,11 +12,11 @@
     --color-primary: #1227F2;
     --color-secondary: #BABFF8;
     --color-heading: #181B1F;
-    --color-body: #181B1F;
-    --color-container: #FFFFFF;
-    --color-sidebar: #F1F5F9;
+    --color-body: #525252;
+    --color-container: #F9F9FF;
+    --color-sidebar: #FFFFFF;
     --color-border: #E3E9EE;
-    --color-box: #F1F5F9;
+    --color-box: #FFFFFF;
   }
 
   :root[class~="dark"] {

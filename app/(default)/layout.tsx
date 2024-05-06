@@ -47,7 +47,7 @@ export default function DefaultLayout({
       // }
 
       return (
-        <div className="flex h-dvh bg-sidebar text-heading">
+        <div className="flex h-dvh text-heading divide-x-2 divide-border">
           {/* Sidebar */}
           {pathname === "/knowledge/create/iframe" ? null : <Sidebar />}
 
@@ -61,7 +61,7 @@ export default function DefaultLayout({
             setIsOpen={setModalTopUpFailed}
           />
           <div className="relative flex flex-1 flex-col overflow-y-auto">
-            <div className="h-[max(100vh, fit-content)] grow rounded-lg border border-border bg-container lg:m-6 lg:ml-0">
+            <div className="h-[max(100vh, fit-content)] grow bg-container">
               {/*  Site header */}
               {pathname === "/knowledge/create/iframe" ? null : <Header />}
 

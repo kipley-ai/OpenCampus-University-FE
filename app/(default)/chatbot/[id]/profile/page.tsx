@@ -10,7 +10,7 @@ import { useNftDetail } from "@/hooks/api/nft";
 import { chatbotIdFromSlug } from "@/utils/utils";
 import { BiPencil } from "react-icons/bi";
 
-type Tabs = "Knowledge Assets" | "SFT" | "Apps";
+type Tabs = "Knowledge Assets" | "Apps";
 
 export default function Profile() {
   const [activeTab, setActiveTab] = useState<Tabs>("Knowledge Assets");
@@ -99,12 +99,6 @@ export default function Profile() {
             Knowledge Assets
           </li>
           <li
-            onClick={() => setActiveTab("SFT")}
-            className={`relative top-[1px] cursor-pointer ${activeTab === "SFT" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
-          >
-            SFT
-          </li>
-          <li
             onClick={() => setActiveTab("Apps")}
             className={`relative top-[1px] cursor-pointer ${activeTab === "Apps" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
           >
@@ -115,8 +109,6 @@ export default function Profile() {
           switch (activeTab) {
             case "Knowledge Assets":
               return <KnowledgeAssets />;
-            case "SFT":
-              return <SFT />;
             case "Apps":
               return <Apps />;
             default:
@@ -133,16 +125,6 @@ const KnowledgeAssets = () => {
     <div className="mt-4 flex flex-wrap gap-8">
       {[1, 2, 3].map((item) => (
         <ProfileItem key={item} name={`Knowledge Asset ${item}`} />
-      ))}
-    </div>
-  );
-};
-
-const SFT = () => {
-  return (
-    <div className="mt-4 flex flex-wrap gap-8">
-      {[1, 2, 3].map((item) => (
-        <ProfileItem key={item} name={`SFT ${item}`} />
       ))}
     </div>
   );

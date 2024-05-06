@@ -2,15 +2,19 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import ProfileImage from "components/images/michael-dziedzic-D6FMtY6XCyM-unsplash 1.png";
-import SFTImage from "components/images/michael-dziedzic-D6FMtY6XCyM-unsplash 2.png";
 import Button from "@/components/button";
+import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
 import { useNftDetail } from "@/hooks/api/nft";
 import { chatbotIdFromSlug } from "@/utils/utils";
+import { BiPencil } from "react-icons/bi";
+
+type Tabs = "Knowledge Assets" | "SFT" | "Apps";
 
 export default function Profile() {
+  const [activeTab, setActiveTab] = useState<Tabs>("Knowledge Assets");
+
   const { id: slug } = useParams();
   const id = chatbotIdFromSlug(slug.toString());
 
@@ -18,16 +22,156 @@ export default function Profile() {
     chatbot_id: id as string,
   });
 
-  console.log(id);
+  console.log(chatbotData?.data.data);
 
   return (
-    <div className="md:px-6 pb-6">
-      <ChatbotProfile />
-      <div className="my-4" />
-      <SFTDetail />
+    <div className="px-3 py-8 md:px-6 xl:px-16">
+      <h1 className="font-semibold">Profile</h1>
+      <section className="mt-4">
+        <Image
+          src="/images/explore-banner.svg"
+          alt="Explore Banner"
+          className="w-full rounded-xl"
+          width={1030}
+          height={264}
+        />
+        <div className="relative bottom-16 flex w-full flex-col items-center gap-2">
+          <div className="relative">
+            <Image
+              src={chatbotData?.data.data.profile_image as string}
+              width={120}
+              height={120}
+              alt="Chatbot Profile Image"
+              className="rounded-full border-4 border-border"
+            />
+            <button className="absolute bottom-0 right-2 size-6 rounded-full bg-primary text-white hover:bg-secondary">
+              <BiPencil className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform" />
+            </button>
+          </div>
+          <h2 className="text-2xl font-semibold leading-none text-primary">
+            {chatbotData?.data.data.name}
+          </h2>
+          <h3 className="text-lg font-medium text-gray-500">
+            @{chatbotData?.data.data.name}
+          </h3>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="font-semibold text-primary">About</h2>
+        {id === "1d7a4ecf-bcf6-44da-bf05-92225aec8a03" ? (
+          <>
+            <p className="mb-4 text-body">
+              Veteran technology entrepreneur/investor Yat Siu is the co-founder
+              and executive chairman of Animoca Brands, a global leader in
+              blockchain and gaming with the goal to provide property rights for
+              virtual assets. Yat began his career at Atari Germany, then
+              established Hong Kong Cybercity/Freenation, the first free web
+              page and email provider in Asia. In 1998 he set up Outblaze, an
+              award-winning pioneer of multilingual white label web services.
+              After selling one of its business units to IBM, he pivoted
+              Outblaze to incubate digital entertainment projects. One of those
+              projects is Animoca Brands.
+            </p>
+            <p className="text-body">
+              Yat has numerous accolades, including Global Leader of Tomorrow at
+              the World Economic Forum, Young Entrepreneur of the Year at the
+              DHL/SCMP Awards, and recognition as one of Cointelegraph's top 100
+              notable people in blockchain. A classically trained musician, Yat
+              is a member of the advisory board of BAFTA (British Academy of
+              Film and Television Arts) and a director of the Asian Youth
+              Orchestra.
+            </p>
+          </>
+        ) : (
+          <>
+            <p className="text-body">{chatbotData?.data.data.description}</p>
+          </>
+        )}
+      </section>
+
+      <section className="mt-8">
+        <ul className="flex w-full gap-12 border-b-2 border-secondary text-sm font-semibold dark:border-border">
+          <li
+            onClick={() => setActiveTab("Knowledge Assets")}
+            className={`relative top-[1px] cursor-pointer ${activeTab === "Knowledge Assets" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
+          >
+            Knowledge Assets
+          </li>
+          <li
+            onClick={() => setActiveTab("SFT")}
+            className={`relative top-[1px] cursor-pointer ${activeTab === "SFT" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
+          >
+            SFT
+          </li>
+          <li
+            onClick={() => setActiveTab("Apps")}
+            className={`relative top-[1px] cursor-pointer ${activeTab === "Apps" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
+          >
+            Apps
+          </li>
+        </ul>
+        {(() => {
+          switch (activeTab) {
+            case "Knowledge Assets":
+              return <KnowledgeAssets />;
+            case "SFT":
+              return <SFT />;
+            case "Apps":
+              return <Apps />;
+            default:
+              return null;
+          }
+        })()}
+      </section>
     </div>
   );
 }
+
+const KnowledgeAssets = () => {
+  return (
+    <div className="mt-4 flex flex-wrap gap-8">
+      {[1, 2, 3].map((item) => (
+        <ProfileItem key={item} name={`Knowledge Asset ${item}`} />
+      ))}
+    </div>
+  );
+};
+
+const SFT = () => {
+  return (
+    <div className="mt-4 flex flex-wrap gap-8">
+      {[1, 2, 3].map((item) => (
+        <ProfileItem key={item} name={`SFT ${item}`} />
+      ))}
+    </div>
+  );
+};
+
+const Apps = () => {
+  return (
+    <div className="mt-4 flex flex-wrap gap-8">
+      {[1, 2, 3].map((item) => (
+        <ProfileItem key={item} name={`App ${item}`} />
+      ))}
+    </div>
+  );
+};
+
+const ProfileItem = ({ name }: { name: string }) => {
+  return (
+    <div className="flex w-fit flex-col gap-2 md:w-max">
+      <Image
+        src="/images/product-img.png"
+        alt="Profile Image"
+        className="rounded-lg max-sm:w-[110px]"
+        width={200}
+        height={200}
+      />
+      <h2 className="font-medium text-primary">{name}</h2>
+    </div>
+  );
+};
 
 function ChatbotProfile() {
   const { id: slug } = useParams();
@@ -49,12 +193,10 @@ function ChatbotProfile() {
       <div className="mx-6 flex flex-col gap-2 rounded-xl bg-box p-6 text-heading">
         <div className="flex gap-4">
           <div className="w-4 rounded-md bg-primary"></div>
-          <h2 className=" text-xl font-medium text-primary">
-            About
-          </h2>
+          <h2 className=" text-xl font-medium text-primary">About</h2>
         </div>
         <div className="flex flex-col md:flex-row md:gap-16 md:pl-8">
-          <div className="relative mb-4 size-[150px] md:size-[200px] shrink-0">
+          <div className="relative mb-4 size-[150px] shrink-0 md:size-[200px]">
             <Image
               src={chatbotData?.data.data.profile_image as string}
               alt="Chatbot Profile Image"
@@ -92,9 +234,7 @@ function ChatbotProfile() {
                 </>
               ) : (
                 <>
-                  <p className="mb-4">
-                    {chatbotData?.data.data.description}
-                  </p>
+                  <p className="mb-4">{chatbotData?.data.data.description}</p>
                 </>
               )}
             </div>

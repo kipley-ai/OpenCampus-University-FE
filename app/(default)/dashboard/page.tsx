@@ -66,7 +66,7 @@ export default function Dashboard() {
   }, [breakpoint, pageSize, botsQuery.isFetching]);
 
   return (
-    <div className="rounded-lg px-3 py-8 text-primary md:px-6 xl:px-16">
+    <div className="px-3 py-8 text-primary md:px-6 xl:px-16">
       <Image
         src="/images/explore-banner.svg"
         alt="Explore Banner"

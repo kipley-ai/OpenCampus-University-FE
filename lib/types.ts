@@ -16,6 +16,7 @@ export type ChatbotData = {
   category_name: string;
   tone: string;
   personality: string;
+  suggestion_chat: string;
 };
 
 export type ChatbotDataListResponse = {

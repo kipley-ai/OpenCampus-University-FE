@@ -36,15 +36,15 @@ export default function DefaultLayout({
 
   if (isLoading) return null;
 
-  switch (status) {
-    case "connected":
-      if (
-        userDetail?.data?.status !== "error" &&
-        !userDetail?.data?.data.onboarding &&
-        pathname !== "/knowledge/create/iframe"
-      ) {
-        return redirect("/onboarding");
-      }
+  // switch (status) {
+    // case "connected":
+      // if (
+      //   userDetail?.data?.status !== "error" &&
+      //   !userDetail?.data?.data.onboarding &&
+      //   pathname !== "/knowledge/create/iframe"
+      // ) {
+      //   return redirect("/onboarding");
+      // }
 
       return (
         <div className="flex h-dvh text-heading divide-x-2 divide-border">
@@ -70,9 +70,9 @@ export default function DefaultLayout({
           </div>
         </div>
       );
-    case "disconnected":
-      return redirect(`/?next=${pathname}`);
-    default:
-      break;
-  }
+    // case "disconnected":
+    //   return redirect(`/?next=${pathname}`);
+    // default:
+    //   break;
+  // }
 }

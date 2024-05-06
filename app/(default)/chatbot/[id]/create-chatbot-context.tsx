@@ -37,6 +37,7 @@ interface Message {
   sender: "bot" | "user";
   message: string;
   chunks?: string;
+  created?: any;
 }
 
 const CreateChatbotContext = createContext<

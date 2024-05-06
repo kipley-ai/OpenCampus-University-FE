@@ -33,12 +33,14 @@ const LastAnswer = ({
   message,
   isGenerating,
   chunks = "",
+  created = ""
 }: {
   profileImage: any;
   sender: string;
   message: string[] | string;
   isGenerating: boolean;
   chunks?: string;
+  created?: string;
 }) => {
   const isStream = Array.isArray(message);
   const { id: slug } = useParams();
@@ -89,14 +91,30 @@ const LastAnswer = ({
             <Image
               src={profileImage}
               alt="Profile"
-              className="h-7 w-7 md:h-8 md:w-8 rounded-full"
+              className="h-7 w-7 md:h-8 md:w-8 rounded-full mt-1"
               width={50}
               height={50}
             />
             <div className="w-full text-heading">
-              <h6 className="mb-1 mt-1 font-black text-lg">
-                {chatbotData?.data.data.name}
-              </h6>
+              <div className="w-full flex">
+                {/* <h6 className="mb-1 mt-1 font-black text-lg"> */}
+                <h6 className="mb-1 text-sm">
+                  {chatbotData?.data.data.name}
+                </h6>
+                <h6 className="mb-1 text-sm text-[#94A3B8] mx-1">
+                  {created ? new Date(created).toLocaleTimeString("en-US", {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true,
+                  }) : 
+                  new Date(Date.now()).toLocaleTimeString("en-US", {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true,
+                    timeZone: "UTC"
+                  })}
+                </h6>
+              </div>
               <p className="text-sm whitespace-break-spaces break-words">
                 {isStream ? message.slice(0, -2).join("") : trimQuotationMarks(message)}
                 {/* {sender === "bot" && sources.length > 0 && (
@@ -104,7 +122,7 @@ const LastAnswer = ({
                 )} */}
                 {sources.map((source: string, index: number) => (
                   <p key={index}>
-                    <a href={source} className="text-xs sm:text-sm hover:underline" target="_blank" rel="noreferrer">{source}</a>
+                    <a href={source} className="text-xs sm:text-sm hover:underline mt-3" target="_blank" rel="noreferrer">{source}</a>
                   </p>
                 ))}
               </p>

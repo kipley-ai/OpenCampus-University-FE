@@ -211,12 +211,13 @@ const MessageList = ({
         chatbotData={chatbotData?.data.data}
       />
       <div className="flex grow h-auto flex-col gap-4 overflow-y-auto">
+        {messageHistory.length <= 0 ?
         <FirstAnswer
           profileImage={chatbotData?.data.data.profile_image}
           sender={"bot"}
           message={chatbotData?.data.data.example_conversation as string}
           isGenerating={replyStatus == "answering"}
-        />
+        /> : <></> }
         {messageHistory.map((message, index) => {
           return index < messageHistory.length - 1 ||
             message.sender == "user" ? (
@@ -233,6 +234,7 @@ const MessageList = ({
               message={message.message}
               chunks={message.chunks}
               isGenerating={replyStatus == "answering"}
+              created={message.created}
             />
           );
         })}

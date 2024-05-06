@@ -34,6 +34,8 @@ export default function Onboarding() {
 
   if (isLoading) return null;
 
+  return redirect("/dashboard");
+
   if (status === "connected" && (sign || verifStatus === "authenticated")) {
     if (
       userDetail?.data?.status !== "error" &&

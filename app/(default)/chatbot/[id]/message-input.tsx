@@ -18,8 +18,10 @@ import Image from "next/image";
 import Avatar from "public/images/avatar-gradient-icon.svg";
 import EnterIcon from "public/images/arrow-right.svg";
 import { HiOutlineArrowRight } from "react-icons/hi";
+import { HiChevronRight } from "react-icons/hi";
 import { useDefaultValue } from "@/hooks/api/default_value";
 import { chatbotIdFromSlug } from "@/utils/utils";
+import Button from "@/components/button";
 
 const MessageInput = () => {
   const { id: slug } = useParams();
@@ -32,6 +34,7 @@ const MessageInput = () => {
 
     // WS
     sendValidatedMessage,
+    messageHistory,
     setMessageHistory,
 
     // Loading
@@ -70,6 +73,7 @@ const MessageInput = () => {
   const [presencePenalty, setPresencePenalty] = useState(0);
   const [topDocs, setTopDocs] = useState(10);
   const [maxTokens, setMaxTokens] = useState(250);
+  const suggestionChat = chatbotData?.data.data.suggestion_chat ? JSON.parse(chatbotData?.data.data.suggestion_chat) : [];
 
   useEffect(() => {
     console.log(!chatSession.data?.data.data?.session_id);
@@ -204,55 +208,74 @@ const MessageInput = () => {
   };
 
   return (
-    <div className="sticky inset-x-0 bottom-4 mt-6 flex items-center gap-4">
-      <button
-        className="rounded-full border-2 border-[#3A3A3A] px-2 text-sm text-[#6C7275] hover:brightness-150 w-28 h-full"
-        onClick={handleClearChat}
-      >
-        Clear Chat
-      </button>
-      <form
-        onSubmit={handleSendMessage}
-        className="flex grow items-center justify-between rounded-full border-2 border-[#3A3A3A] bg-container py-1 pl-1 focus-within:border-primary lg:bottom-0 lg:w-full"
-      >
-        {/* Profile picture placeholder */}
-        {/* <Image src={Avatar} alt="Profile" className="w-8 h-8 rounded-full mr-4" /> */}
-        {/* Input Field */}
-        <textarea
-          ref={inputRef}
-          placeholder="Ask me anything"
-          className="grow resize-none border-0 bg-container rounded-full text-heading placeholder-[#6C7275] caret-primary outline-none focus:ring-0"
-          value={newQuestion}
-          onChange={(e) => {
-            let lengthOfText = e.target.value.match(/\n/g)?.length;
-            if (!lengthOfText) {
-              setInputRows(1);
-            }
-            if (lengthOfText && lengthOfText < 2) {
-              setInputRows(lengthOfText + 1);
-            }
-            setNewQuestion(e.target.value);
-          }}
-          disabled={replyStatus === "answering"}
-          rows={inputRows}
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.code === "Enter" && !e.shiftKey) {
-              handleSendMessage(e);
-            }
-          }}
-        />
-        {/* Icons or buttons */}
-        <div className="mx-4">
-          <button
-            className="text-light-blue text-primary"
+    <>
+      <div className=" mb-4 grid grid-cols-2 gap-x-4 gap-y-2">
+        { messageHistory.length <= 0 ? 
+          suggestionChat.length > 0 ?
+          suggestionChat.map((suggestion: string, index: number) => (
+            <Button
+              key={index}
+              className="mt-2 rounded-lg text-heading border-sidebar py-2"
+              onClick={() => {
+                setNewQuestion(suggestion);
+              }}
+            >
+              {suggestion}
+            </Button>
+          )) 
+        : <></> : <></>}
+      </div>
+      <div className="sticky inset-x-0 bottom-4 mt-6 flex items-center gap-4">
+        <button
+          className="px-2 text-sm text-primary hover:brightness-150 w-28 h-full underline underline-offset-1"
+          onClick={handleClearChat}
+        >
+          Clear Chat
+        </button>
+        <form
+          onSubmit={handleSendMessage}
+          className="flex grow items-center justify-between rounded-lg border-2 border-[#3A3A3A] bg-container py-1 pl-1 border-primary focus-within:border-primary lg:bottom-0 lg:w-full"
+        >
+          {/* Profile picture placeholder */}
+          {/* <Image src={Avatar} alt="Profile" className="w-8 h-8 rounded-full mr-4" /> */}
+          {/* Input Field */}
+          <textarea
+            ref={inputRef}
+            placeholder="Ask me anything"
+            className="grow resize-none border-0 bg-container rounded-lg text-heading placeholder-[#94A3B8] caret-primary outline-none focus:ring-0"
+            value={newQuestion}
+            onChange={(e) => {
+              let lengthOfText = e.target.value.match(/\n/g)?.length;
+              if (!lengthOfText) {
+                setInputRows(1);
+              }
+              if (lengthOfText && lengthOfText < 2) {
+                setInputRows(lengthOfText + 1);
+              }
+              setNewQuestion(e.target.value);
+            }}
             disabled={replyStatus === "answering"}
-          >
-            <HiOutlineArrowRight className="size-[21px]" />
-          </button>
-        </div>
-      </form>
-    </div>
+            rows={inputRows}
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.code === "Enter" && !e.shiftKey) {
+                handleSendMessage(e);
+              }
+            }}
+          />
+          {/* Icons or buttons */}
+          <div className="mx-4">
+            <button
+              className="text-light-blue text-primary"
+              disabled={replyStatus === "answering"}
+            >
+              {/* <HiOutlineArrowRight className="size-[21px]" /> */}
+              <HiChevronRight className="size-[24px] inline" />
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

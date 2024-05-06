@@ -136,9 +136,14 @@ export default function Header() {
             </Link>
             {/* <ThemeSwitcher /> */}
             {/* Profile Picture */}
-            {isConnected_ && (
+            {isConnected_ ? (
               <AvatarWithStatus image={profileImage} status="away" />
-            )}
+            ) : <GetInvolvedButton
+              buttonStyle="button bg-container rounded-md py-1 px-3.5 border-2"
+              content={
+                <span className="text-sm font-medium">Login</span>
+              }
+            />}
           </div>
         </div>
       </div>

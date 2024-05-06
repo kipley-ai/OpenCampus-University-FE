@@ -43,22 +43,48 @@ const FirstAnswer = ({
 				)} */}
         {/* Message bubble */}
           {/* Message bubble */}
-          <div className="relative flex items-start space-x-4">
+          {/* <div className="relative flex items-start space-x-4"> */}
+          <div className="flex flex-col justify-center items-center">
+            <div className="">
+              <Image
+                src={profileImage}
+                alt="Profile"
+                className="h-24 w-24 md:h-24 md:w-24 rounded-full"
+                width={100}
+                height={100}
+              />
+            </div>
+            {/* <div className="w-full text-heading"> */}
+            <div className="text-heading">
+              {/* <h6 className="mb-1 mt-1 font-black text-lg"> */}
+              <div className="w-full flex justify-center">
+                <h6 className="mb-1 mt-2 font-medium">
+                  {chatbotData?.data.data.name}
+                </h6>
+              </div>
+              {/* <p className="text-sm mt-3">{isStream ? message.slice(0, -2).join("") : message}</p> */}
+              <p className="text-2xl mt-4 font-medium">{isStream ? message.slice(0, -2).join("") : message}</p>
+            </div>
+            {showCopy && !isStream ? <CopyButton message={message} /> : <></>}
+          </div>
+          {/* <div className="relative flex items-start space-x-4">
             <Image
               src={profileImage}
               alt="Profile"
-              className="h-7 w-7 md:h-8 md:w-8 rounded-full"
+              className="h-7 w-7 md:h-8 md:w-8 rounded-full mt-1"
               width={50}
               height={50}
             />
             <div className="w-full text-heading">
-              <h6 className="mb-1 mt-1 font-black text-lg">
-                {chatbotData?.data.data.name}
-              </h6>
-              <p className="text-sm">{isStream ? message.slice(0, -2).join("") : message}</p>
+              <div className="w-full text-heading flex">
+                <h6 className="mb-1 text-sm">
+                  {chatbotData?.data.data.name}
+                </h6>
+              </div>
+              <p className="text-sm mt-3">{isStream ? message.slice(0, -2).join("") : message}</p>
             </div>
             {showCopy && !isStream ? <CopyButton message={message} /> : <></>}
-          </div>
+          </div> */}
       </div>
     </>
   );

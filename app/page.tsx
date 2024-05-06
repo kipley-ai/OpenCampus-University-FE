@@ -53,5 +53,5 @@ export default function Home() {
     );
   }
 
-  redirect("/onboarding");
+  redirect("/dashboard");
 }

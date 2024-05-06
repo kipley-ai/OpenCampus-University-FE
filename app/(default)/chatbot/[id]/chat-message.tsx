@@ -34,15 +34,31 @@ const ChatMessage = ({
         <Image
           src={message.sender == "bot" ? chatbotData?.data.data.profile_image : AvatarDummy}
           alt="User avatar"
-          className="h-7 w-7 md:h-8 md:w-8 rounded-full"
+          className="h-7 w-7 md:h-8 md:w-8 rounded-full mt-1"
           width={50}
           height={50}
         />
         <div className="text-heading">
-          <h6 className="mb-1 mt-1 font-black text-lg">
-            {message.sender == "bot" ? chatbotData?.data.data.name : "You"}
-          </h6>
-          <p className="whitespace-break-spaces text-sm">{trimQuotationMarks(message.message)}</p>
+          <div className="w-full flex">
+            <h6 className="mb-1 text-sm">
+              {message.sender == "bot" ? chatbotData?.data.data.name : "You"}
+            </h6>
+            <h6 className="mb-1 text-sm text-[#94A3B8] mx-1">
+              {message.created ? new Date(message.created).toLocaleTimeString("en-US", {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  hour12: true,
+                }) : 
+                new Date(Date.now()).toLocaleTimeString("en-US", {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  hour12: true,
+                  timeZone: "UTC"
+                })}
+            </h6>
+          </div>
+          {/* <h6 className="mb-1 mt-1 font-black text-lg"> */}
+          <p className="whitespace-break-spaces text-sm mt-3">{trimQuotationMarks(message.message)}</p>
           {/* {message.sender === "bot" && sources.length > 0 && (
             <TweetAnswer chunks={sources} />
           )} */}

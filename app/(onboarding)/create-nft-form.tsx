@@ -539,7 +539,7 @@ export default function NFT() {
 
         <div className="my-8 flex items-center justify-between border-t-2 pt-4">
           <button
-            className="flex items-center justify-center gap-2"
+            className="flex items-center justify-center gap-2 hover:underline"
             type="submit"
             onClick={() => {
               setStep("data_source");
@@ -561,7 +561,7 @@ export default function NFT() {
             <p>Back</p>
           </button>
           <button
-            className="flex items-center justify-center gap-2"
+            className="flex items-center justify-center gap-2 hover:underline"
             onClick={handleGenerateSFT}
             // onClick={() => setStep("create_chatbot")}
             type="button"

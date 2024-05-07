@@ -22,7 +22,7 @@ export default function Profile() {
     chatbot_id: id as string,
   });
 
-  console.log(chatbotData?.data.data);
+  console.log(chatbotData?.data.data); // For debugging purpose
 
   return (
     <div className="px-3 py-8 md:px-6 xl:px-16">
@@ -44,9 +44,10 @@ export default function Profile() {
               alt="Chatbot Profile Image"
               className="rounded-full border-4 border-border"
             />
-            <button className="absolute bottom-0 right-2 size-6 rounded-full bg-primary text-white hover:bg-secondary">
+            {/* Pencil Button */}
+            {/* <button className="absolute bottom-0 right-2 size-6 rounded-full bg-primary text-white hover:bg-secondary">
               <BiPencil className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform" />
-            </button>
+            </button> */}
           </div>
           <h2 className="text-2xl font-semibold leading-none text-primary">
             {chatbotData?.data.data.name}
@@ -121,21 +122,50 @@ export default function Profile() {
 }
 
 const KnowledgeAssets = () => {
+  const { id: slug } = useParams();
+  const id = chatbotIdFromSlug(slug.toString());
+
+  const { data: chatbotData } = useChatbotDetail({
+    chatbot_id: id as string,
+  });
+
+  const { data: sftData } = useNftDetail({
+    sft_id: chatbotData?.data.data.sft_id as string,
+  });
+
+  const sftID = sftData?.data.data.sft_id as string;
+
+  console.log(sftData?.data.data); // For debugging purpose
+
+
   return (
     <div className="mt-4 flex flex-wrap gap-8">
-      {[1, 2, 3].map((item) => (
-        <ProfileItem key={item} name={`Knowledge Asset ${item}`} />
-      ))}
+      <Link href={`/nft/${sftID}`}>
+        {[sftData?.data.data].map((item: any) => (
+          <ProfileItem key={item} name={sftData?.data.data.name as string} />
+        ))}
+      </Link>
     </div>
   );
 };
 
 const Apps = () => {
+  const { id: slug } = useParams();
+  const id = chatbotIdFromSlug(slug.toString());
+
+  const { data: chatbotData } = useChatbotDetail({
+    chatbot_id: id as string,
+  });
+
+  const appID = chatbotData?.data.data.chatbot_id
+
   return (
     <div className="mt-4 flex flex-wrap gap-8">
-      {[1, 2, 3].map((item) => (
-        <ProfileItem key={item} name={`App ${item}`} />
-      ))}
+      <Link href={`/chatbot/${appID}`}>
+        {[chatbotData?.data.data].map((item: any) => (
+          <ProfileItem key={item} name={chatbotData?.data.data.name as string} />
+        ))}
+      </Link>
     </div>
   );
 };

@@ -39,7 +39,7 @@ export default function OnboardingSuccess() {
         <p className="text-sm">Your chatbot has been created successfully!</p>
         <div className="my-8 flex w-full items-center justify-center border-t-2 pt-4">
           <button
-            className="flex items-center justify-center gap-2"
+            className="flex items-center justify-center gap-2 hover:underline"
             type="submit"
             onClick={() => router.push("/dashboard")}
           >

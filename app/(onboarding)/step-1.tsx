@@ -24,7 +24,7 @@ const ButtonItem = ({
 }) => {
   return (
     <button
-      className={` relative flex flex-col items-center gap-2 border-2 bg-container py-4 ${isSelected ? "border-primary" : "border-transparent"} justify-end rounded-xl`}
+      className={` relative flex flex-col items-center gap-2 border-2 bg-container py-4 ${isSelected ? "border-primary" : "border-transparent"} justify-end rounded-xl hover:bg-secondary`}
       onClick={onClick}
     >
       <Image

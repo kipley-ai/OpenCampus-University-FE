@@ -117,7 +117,7 @@ export default function ModalMintConfirmation({
               <div className="flex items-center justify-end gap-4">
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="text-primary underline"
+                  className="text-primary underline hover:text-secondary"
                 >
                   Cancel
                 </button>

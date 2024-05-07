@@ -44,7 +44,7 @@ export function ChooseApp() {
         <div className="grid grid-cols-6 gap-4">
           {apps.map((app) => (
             <button
-              className={`flex flex-col items-center justify-center gap-4 rounded-2xl bg-container py-6 text-primary ${chosenApp === app.step ? "border-2 border-primary" : ""}`}
+              className={`flex flex-col items-center justify-center gap-4 rounded-2xl bg-container py-6 border-2 text-primary hover:bg-secondary ${chosenApp === app.step ? "border-primary" : "border-transparent"}`}
               onClick={() => setChosenApp(app.step)}
             >
               {app.step !== "" && <Image src={app.icon} alt={app.name} />}
@@ -53,7 +53,7 @@ export function ChooseApp() {
           ))}
         </div>
         <div className="my-8 mt-28 flex items-center justify-between border-t-2 pt-4">
-          <button className="flex items-center justify-center gap-2">
+          <button className="flex items-center justify-center gap-2 hover:underline">
             <svg
               width="8"
               height="13"
@@ -70,7 +70,7 @@ export function ChooseApp() {
             <p>Back</p>
           </button>
           <button
-            className="flex items-center justify-center gap-2"
+            className="flex items-center justify-center gap-2 hover:underline"
             onClick={handleCreateApp}
           >
             <p>Next</p>

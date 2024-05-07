@@ -603,7 +603,7 @@ const ChatBotForm = () => {
 
         <div className="my-8 flex items-center justify-between border-t-2 pt-4">
           <button
-            className="flex items-center justify-center gap-2"
+            className="flex items-center justify-center gap-2 hover:underline"
             type="button"
             onClick={() => {
               setStep("choose_app");
@@ -625,7 +625,7 @@ const ChatBotForm = () => {
             <p>Back</p>
           </button>
           <button
-            className="flex items-center justify-center gap-2"
+            className="flex items-center justify-center gap-2 hover:underline"
             type="submit"
           >
             <p>Next</p>

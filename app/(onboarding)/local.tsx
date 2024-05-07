@@ -262,7 +262,7 @@ export default function Local({
         </h1>
         <div className="">
           <div
-            className="font-inter mb-4 mt-5 flex cursor-pointer flex-col items-center rounded-md border-2 border-dashed bg-container px-20 py-12 text-center text-heading "
+            className="font-inter mb-4 mt-5 flex cursor-pointer flex-col items-center rounded-md border-2 border-dashed bg-container hover:bg-secondary px-20 py-12 text-center text-heading "
             onDragEnter={handleDrag}
             onDragOver={handleDrag}
             onDragLeave={handleDrag}
@@ -310,7 +310,7 @@ export default function Local({
                     </div>
                   </div>
                   <button
-                    className="font-semibold text-primary underline"
+                    className="font-semibold text-primary underline hover:text-secondary"
                     onClick={async () => {
                       const filename = files[index].filename;
 
@@ -336,7 +336,7 @@ export default function Local({
         </div>
         <div className="my-8 flex items-center justify-between border-t-2 pt-4">
           <button
-            className="flex items-center justify-center gap-2"
+            className="flex items-center justify-center gap-2 hover:underline"
             type="submit"
             onClick={() => {
               setStep("data_source");
@@ -358,7 +358,7 @@ export default function Local({
             <p>Back</p>
           </button>
           <button
-            className="flex items-center justify-center gap-2 disabled:opacity-50"
+            className="flex items-center justify-center gap-2 enabled:hover:underline disabled:opacity-50"
             type="submit"
             disabled={files.length === 0 || fileLimitExceeded}
             onClick={(e: React.MouseEvent<HTMLButtonElement>) => {

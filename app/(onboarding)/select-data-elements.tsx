@@ -116,7 +116,7 @@ export default function SelectDataElements() {
               setSelectedButton={setSelectedButton}
             />
             <div className="my-8 mt-28 flex items-center justify-between border-t-2 pt-4">
-              <button className="flex items-center justify-center gap-2">
+              <button className="flex items-center justify-center gap-2 hover:underline">
                 <svg
                   width="8"
                   height="13"
@@ -133,7 +133,7 @@ export default function SelectDataElements() {
                 <p>Back</p>
               </button>
               <button
-                className="flex items-center justify-center gap-2"
+                className="flex items-center justify-center gap-2 hover:underline"
                 onClick={handleContinue}
               >
                 <p>Next</p>

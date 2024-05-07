@@ -12,7 +12,8 @@ import { useCreditBalance } from "@/hooks/api/credit";
 import { useRechargeStatus } from "@/hooks/api/user";
 import { useAppProvider } from "@/providers/app-provider";
 import { useState, useEffect } from "react";
-import { useTheme } from 'next-themes';
+import { useTheme } from "next-themes";
+import { FaArrowRight } from "react-icons/fa6";
 
 export default function CreditBalance() {
   const [topUpStatus, setTopUpStatus] = useState<string>("");
@@ -59,14 +60,39 @@ export default function CreditBalance() {
   }, [data, topUpStatus]);
 
   return (
-    <div className="flex w-full flex-col justify-start gap-2 px-5 py-4">
+    <div className="flex w-full flex-col justify-start gap-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
+          <h2 className="text-secondary-text text-xs">CREDIT BALANCE</h2>
+        </div>
+        <button
+          className="self-end rounded-full hover:text-primary"
+          onClick={() => setRefetch(true)}
+        >
+          <div className="rounded-full border-border font-semibold">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="-2 -2 16 16"
+              fill="none"
+              className="stroke-secondary-text hover:stroke-primary"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5.5 1 7 2.5m0 0L5.5 4M7 2.5H3.4c-.84 0-1.26 0-1.581.163a1.5 1.5 0 0 0-.656.656C1 3.639 1 4.059 1 4.9v2.85c0 .232 0 .348.013.446a1.5 1.5 0 0 0 1.291 1.291c.098.013.214.013.446.013M5 9.5h3.6c.84 0 1.26 0 1.581-.163a1.5 1.5 0 0 0 .655-.656C11 8.361 11 7.941 11 7.1V4.25c0-.232 0-.348-.013-.446a1.5 1.5 0 0 0-1.291-1.291C9.598 2.5 9.482 2.5 9.25 2.5M5 9.5 6.5 11M5 9.5 6.5 8"
+              />
+            </svg>
+          </div>
+        </button>
+      </div>
+      <div className="text-secondary-text mx-2 mb-2 flex items-center gap-3">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width={18}
           height={18}
-          className="fill-primary"
+          className="fill-current"
         >
           <path
             fillRule="evenodd"
@@ -74,36 +100,12 @@ export default function CreditBalance() {
             clipRule="evenodd"
           />
         </svg>
-          <h6 className="text-lg font-semibold tracking-tight">Credit Balance</h6>
-        </div>
-        <button
-          className="self-end rounded-full hover:text-primary"
-          onClick={() => setRefetch(true)}
-        >
-          <div className="rounded-full border-border p-1 font-semibold">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="-2 -2 16 16"
-            stroke={theme === "dark" ? "#A4AEB4" : "#000000"}
-            fill="none"
-            className="hover:stroke-primary"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M5.5 1 7 2.5m0 0L5.5 4M7 2.5H3.4c-.84 0-1.26 0-1.581.163a1.5 1.5 0 0 0-.656.656C1 3.639 1 4.059 1 4.9v2.85c0 .232 0 .348.013.446a1.5 1.5 0 0 0 1.291 1.291c.098.013.214.013.446.013M5 9.5h3.6c.84 0 1.26 0 1.581-.163a1.5 1.5 0 0 0 .655-.656C11 8.361 11 7.941 11 7.1V4.25c0-.232 0-.348-.013-.446a1.5 1.5 0 0 0-1.291-1.291C9.598 2.5 9.482 2.5 9.25 2.5M5 9.5 6.5 11M5 9.5 6.5 8"
-            />
-          </svg>
-          </div>
-        </button>
+        <p>
+          <span className="lg:text-md text-sm font-medium">
+            {creditBalance} Credits
+          </span>
+        </p>
       </div>
-      <p>
-        <span className="lg:text-md text-sm font-medium">
-          {creditBalance} Credits
-        </span>
-      </p>
       {topUpStatus === "processing" && (
         <div className="flex items-center">
           <FaSpinner className="animate-spin" />
@@ -111,11 +113,11 @@ export default function CreditBalance() {
         </div>
       )}
       <Button
-        // className="mt-2"
         onClick={() => setModalTopUp(true)}
         disabled={topUpStatus === "processing"}
       >
-        Top Up Credits
+        <p>Top up credit</p>
+        <FaArrowRight />
       </Button>
       <ModalTopUpSuccessful
         isOpen={modalTopUpSuccessful}

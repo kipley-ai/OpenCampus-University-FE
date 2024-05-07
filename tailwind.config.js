@@ -26,6 +26,7 @@ module.exports = {
         sidebar: "var(--color-sidebar)",
         border: "var(--color-border)",
         box: "var(--color-box)",
+        "secondary-text": "#9497ED",
         gray: {
           700: '#393E44'
         },

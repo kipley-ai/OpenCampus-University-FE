@@ -1,14 +1,19 @@
 import Image from "next/image";
-import OpenCampusLogo from "@/components/logo/open-campus-logo.svg"
+import OpenCampusLogo from "@/components/logo/OC Logo.svg";
 
 export default function Logo() {
   return (
-    <Image
-      className="w-[170px] h-[30px] lg:w-[282px] lg:h-[50px]"
-      src={OpenCampusLogo}
-      width={282}
-      height={50}
-      alt="open-campus-logo"
-    />
+    <div className="flex items-center justify-center gap-3">
+      <Image
+        className=""
+        src={OpenCampusLogo}
+        width={40}
+        height={40}
+        alt="open-campus-logo"
+      />
+      <h1 className="font-mikado text-xl font-bold text-primary">
+        Open Campus
+      </h1>
+    </div>
   );
 }

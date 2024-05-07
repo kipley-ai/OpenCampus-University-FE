@@ -102,10 +102,12 @@ const MessageInput = () => {
     }
   }, [replyStatus]);
 
-  const handleSendMessage = async (e: any) => {
+  const handleSendMessage = async (e: any, question: string = "") => {
     e.preventDefault();
 
-    if (!newQuestion || newQuestion === "" || newQuestion.trim() === "") return;
+    let newQ = question || newQuestion;
+
+    if ((!newQ || newQ === "" || newQ.trim() === "")) return;
 
     if (!chatSession.data?.data.data?.session_id) {
       newSession.mutate(
@@ -115,7 +117,7 @@ const MessageInput = () => {
             console.log(data);
             chatSession.refetch();
             sendValidatedMessage({
-              question: newQuestion,
+              question: newQ,
               chatbot_id: id as string,
               session_id: data?.data.session_id as string,
               kb_id: chatbotData?.data.data.kb_id as string,
@@ -142,18 +144,18 @@ const MessageInput = () => {
             });
             setMessageHistory((prevHistory) => [
               ...prevHistory,
-              { sender: "user", message: newQuestion },
+              { sender: "user", message: newQ },
             ]);
             setNewQuestion("");
             setReplyStatus("answering");
-            setLastQuestion(newQuestion);
+            setLastQuestion(newQ);
             setInputRows(1);
           },
         },
       );
     } else {
       sendValidatedMessage({
-        question: newQuestion,
+        question: newQ,
         chatbot_id: id as string,
         session_id: chatSession.data?.data.data.session_id as string,
         kb_id: chatbotData?.data.data.kb_id as string,
@@ -180,11 +182,11 @@ const MessageInput = () => {
       });
       setMessageHistory((prevHistory) => [
         ...prevHistory,
-        { sender: "user", message: newQuestion },
+        { sender: "user", message: newQ },
       ]);
       setNewQuestion("");
       setReplyStatus("answering");
-      setLastQuestion(newQuestion);
+      setLastQuestion(newQ);
       setInputRows(1);
     }
   };
@@ -213,15 +215,15 @@ const MessageInput = () => {
         { messageHistory.length <= 0 ? 
           suggestionChat.length > 0 ?
           suggestionChat.map((suggestion: string, index: number) => (
-            <Button
+            <button
               key={index}
-              className="mt-2 rounded-lg text-heading border-sidebar py-2"
-              onClick={() => {
-                setNewQuestion(suggestion);
+              className="mt-2 rounded-lg bg-sidebar text-heading border border-[#D1D5DB] border-2 py-2.5 px-8 text-start font-medium text-sm hover:bg-secondary"
+              onClick={(e: any) => {
+                handleSendMessage(e, suggestion)
               }}
             >
               {suggestion}
-            </Button>
+            </button>
           )) 
         : <></> : <></>}
       </div>

@@ -1,14 +1,11 @@
 import Image from "next/image";
-import CheckIcon from "public/images/check-icon.svg";
-// import CrossIcon from "public/images/cross-icon.svg";
-import CrossIcon from "public/images/cross-icon-2.png";
 import SFTIcon from "public/images/success-sft.png";
 import ModalBlank from "@/components/modal-blank-3";
 import { useEffect, useState } from "react";
 import { useCreateChatbotContext } from "./create-knowledge-context";
 import { useMintNFTStatus } from "@/hooks/api/kb";
-import { useRouter } from "next/navigation";
 import { useNftDetail } from "@/hooks/api/nft";
+import Button from "@/components/button";
 
 interface ToastProps {
   children: React.ReactNode;
@@ -30,8 +27,6 @@ export default function SuccessFailModal({
   const [isNftMinted, setIsNftMinted] = useState(false);
 
   const { setStep } = useCreateChatbotContext();
-
-  const router = useRouter();
 
   const {
     data: nftData,
@@ -85,7 +80,7 @@ export default function SuccessFailModal({
         </div>
         <div className="flex justify-between">
           <button
-            className="text-xs text-primary underline"
+            className="text-xs text-primary underline enabled:hover:text-secondary"
             disabled={!isNftMinted || nftIsPending}
             onClick={() => {
               window.open(nftOpenSeaLink, "_blank");
@@ -95,12 +90,11 @@ export default function SuccessFailModal({
               ? "View on OpenSea"
               : "Adding to OpenSea..."}
           </button>
-          <button
+          <Button
             onClick={() => setStep("choose_app")}
-            className="rounded-md bg-primary px-5 py-2 text-white"
           >
             Create app
-          </button>
+          </Button>
         </div>
       </div>
     </ModalBlank>

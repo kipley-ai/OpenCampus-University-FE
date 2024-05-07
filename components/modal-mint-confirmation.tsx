@@ -31,12 +31,12 @@ export default function ModalMintConfirmation({
 
   return (
     <ModalBlank isOpen={isOpen} setIsOpen={setIsOpen}>
-      <div className="flex flex-col items-center justify-between rounded-lg p-4 shadow-md">
-        <div className="inline-flex items-center justify-between self-stretch p-5">
-          <div className="w-80 text-[32px] font-semibold leading-10">
+      <div className="flex flex-col rounded-lg bg-box p-10 shadow-md">
+        <div className="self-stretch border-b-2 py-5">
+          <div className="text-lg font-semibold text-primary">
             <span>Mint your SFT</span>
           </div>
-          <button
+          {/* <button
             className="text-[#FCFCFD] hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400"
             onClick={(e) => {
               e.stopPropagation();
@@ -67,38 +67,32 @@ export default function ModalMintConfirmation({
                 fill="var(--color-heading)"
               />
             </svg>
-          </button>
+          </button> */}
         </div>
-        <div className="my-4">
+        <div className="my-4 flex items-center gap-8">
           <Image
             src={nftImage}
             alt="NFT Image"
-            width={150}
-            height={150}
+            width={125}
+            height={125}
             className="rounded-lg"
           />
-        </div>
-        <div className="text-md inline-flex items-end justify-between self-stretch p-5 pt-2 text-heading">
-          <div className="">
-            <span>Price:</span>
-          </div>
-          <div className="inline-flex w-1/2 items-end justify-end gap-2">
-            <span className="text-2xl font-extrabold leading-tight text-primary">
+          <span>Price:</span>
+          <div className="flex items-center gap-2">
+            <span className="line-through">50$EDU</span>
+            <span className="text-2xl font-extrabold leading-tight text-[#00BF99]">
               FREE
             </span>
-            <span className="line-through">50$EDU</span>
           </div>
         </div>
-        <span className="text-lg italic text-primary">
+        <span className="text-sm">
           🔥 Limited-Time Promotion: Zero Platform Fee
         </span>
-        <div className="inline-flex items-center justify-between self-stretch p-5">
+        <div className="my-4 inline-flex items-center justify-between self-stretch">
           <div className="grid w-full grid-cols-1 font-bold text-heading">
             {/* Start the conditional rendering here */}
             {!isTargetNetworkActive ? (
-              <Button
-                onClick={switchToTargetNetwork}
-              >
+              <Button onClick={switchToTargetNetwork}>
                 <span className="font-semibold text-black">
                   Change Network to {targetNetworkName}
                 </span>
@@ -120,12 +114,21 @@ export default function ModalMintConfirmation({
                 </svg>
               </Button>
             ) : (
-              <Button
-                onClick={handleMintNFT}
-                disabled={isMinting}
-              >
-                {isMinting ? "Minting..." : "Mint Now"}
-              </Button>
+              <div className="flex items-center justify-end gap-4">
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="text-primary underline"
+                >
+                  Cancel
+                </button>
+                <Button
+                  onClick={handleMintNFT}
+                  disabled={isMinting}
+                  className="rounded-md bg-primary px-6 py-2 text-white"
+                >
+                  {isMinting ? "Minting..." : "Confirm"}
+                </Button>
+              </div>
             )}
           </div>
         </div>

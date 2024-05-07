@@ -63,7 +63,7 @@ export default function NFT() {
     shareSupply: "10000",
     comissionRate: 1,
   });
-  const [selectedFile, setSelectedFile] = useState<string>(DEFAULT_COVER_IMAGE);
+  const [selectedFile, setSelectedFile] = useState<string>("");
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [nftIdCreated, setNftIdCreated] = useState("");
   const [kbIdCreated, setKbIdCreated] = useState("");
@@ -86,10 +86,9 @@ export default function NFT() {
       .min(1, "Description is required")
       .max(1000, noMoreThanCharacters(1000)),
 
-    category: z
-      .string({
-        required_error: "Category is required",
-      }),
+    category: z.string({
+      required_error: "Category is required",
+    }),
 
     symbol: z
       .string({
@@ -121,7 +120,6 @@ export default function NFT() {
 
   const handleMintNFT = async () => {
     try {
-      setIsMinting(true);
       console.log(createKb.type, twitterSession?.user);
       let assetUrl;
 
@@ -244,7 +242,7 @@ export default function NFT() {
         isMinting={isMinting}
       />
       <MintNFTModal
-        children={"Your Knowledge Asset is created successfully"}
+        children={"Your SFT is created successfully!"}
         open={showModal}
         setOpen={setShowModal}
         kbIdCreated={kbIdCreated}
@@ -255,141 +253,136 @@ export default function NFT() {
         open={showFailModal}
         setOpen={setShowFailModal}
       />
-      <div className="flex flex-col px-6 py-4 pb-14 lg:px-8 xl:px-32">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <div
-              className="h-full cursor-pointer"
-              onClick={() => setStep("data_source")}
-            >
-              <Image
-                src={CornerUpLeft}
-                alt="icon"
-                width={24}
-                height={24}
-              />
-            </div>
-            <h1 className="text-2xl font-semibold text-heading">MINT SFT</h1>
-          </div>
-          <div className="flex w-60">
-            {createKb.type == "twitter" ? (
-              <TwitterScrapingStatus setShowFailModal={setShowFailModal} />
-            ) : (
-              ""
-            )}
-          </div>
+      <div className="flex items-center justify-between">
+        <h1 className="mb-8 text-2xl font-semibold text-primary">Mint SFT</h1>
+        <div className="flex w-60">
+          {createKb.type == "twitter" ? (
+            <TwitterScrapingStatus setShowFailModal={setShowFailModal} />
+          ) : (
+            ""
+          )}
         </div>
-        <hr className="my-4 border border-border" />
-        <form>
-          <div className="flex flex-col gap-8 md:flex-row">
-            <ImageInput
-              selectedFile={selectedFile}
-              setSelectedFile={setSelectedFile}
-              setUploadedFile={setUploadedFile}
-            />
-            <div className="flex w-full flex-col gap-2">
-              <div className="flex flex-col gap-1">
-                <label className="text-xs font-semibold text-heading lg:text-sm">
-                  Name
+      </div>
+      <form>
+        <div className="flex flex-col gap-8">
+          <ImageInput
+            selectedFile={selectedFile}
+            setSelectedFile={setSelectedFile}
+            setUploadedFile={setUploadedFile}
+          />
+          <div className="flex w-full flex-col gap-2">
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-heading lg:text-sm">
+                Name*
+              </label>
+              <input
+                className="rounded-xl bg-transparent text-xs lg:text-sm"
+                type="text"
+                name="name"
+                placeholder="Name your Knowledge SFT"
+                value={form?.name}
+                onChange={(e) => handleFormChange("name", e.target.value)}
+                maxLength={100}
+              />
+              {errorMessage && errorMessage.name ? (
+                <div className=" text-xs text-red-400">{errorMessage.name}</div>
+              ) : (
+                <div className="text-xs opacity-0 lg:text-sm">a</div>
+              )}
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-heading lg:text-sm">
+                Description
+              </label>
+              <textarea
+                className="placeholder-text-[#7C878E] rounded-xl bg-transparent text-xs lg:text-sm"
+                name="description"
+                placeholder="Describe your Knowledge SFT"
+                rows={4}
+                onChange={(e) =>
+                  handleFormChange("description", e.target.value)
+                }
+                maxLength={1000}
+              />
+              {errorMessage && errorMessage.description ? (
+                <div className=" text-xs text-red-400">
+                  {errorMessage.description}
+                </div>
+              ) : (
+                <div className="text-xs opacity-0 lg:text-sm">a</div>
+              )}
+            </div>
+
+            <div className="">
+              <label
+                className="flex w-1/3 flex-col text-sm font-semibold"
+                htmlFor="category"
+              >
+                Category
+              </label>
+              <select
+                id="category"
+                value={form.category}
+                className="mt-2 w-full rounded-xl bg-transparent text-xs lg:text-sm"
+                onChange={(e) => handleFormChange("category", e.target.value)}
+              >
+                <option
+                  className="bg-sidebar text-body"
+                  selected
+                  disabled
+                  hidden
+                  value=""
+                >
+                  Select a category
+                </option>
+                {categories.map((cat) => (
+                  <option
+                    className="bg-sidebar text-body"
+                    key={cat.category_id}
+                    value={cat.category_id}
+                  >
+                    {cat.title}
+                  </option>
+                ))}
+              </select>
+              {errorMessage && errorMessage.category ? (
+                <div className=" text-xs text-red-400">
+                  {errorMessage.category}
+                </div>
+              ) : (
+                <div className="text-xs opacity-0 lg:text-sm">a</div>
+              )}
+            </div>
+
+            <div className="flex flex-row flex-wrap">
+              <div className="flex w-1/3 flex-col gap-1">
+                <label className="text-wrap text-xs font-semibold text-heading lg:text-sm">
+                  Token Symbol
                 </label>
                 <input
-                  className="rounded-xl bg-transparent text-xs lg:text-sm"
+                  className="placeholder-text-[#7C878E] w-11/12 rounded-xl bg-transparent text-xs lg:text-sm"
                   type="text"
-                  name="name"
-                  placeholder="Name your Knowledge SFT"
-                  value={form?.name}
-                  onChange={(e) => handleFormChange("name", e.target.value)}
-                  maxLength={100}
-                />
-                {errorMessage && errorMessage.name ? (
-                  <div className=" text-xs text-red-400">
-                    {errorMessage.name}
-                  </div>
-                ) : (
-                  <div className="text-xs opacity-0 lg:text-sm">a</div>
-                )}
-              </div>
-
-              <div className="flex flex-col gap-1">
-                <label className="text-xs font-semibold text-heading lg:text-sm">
-                  Description
-                </label>
-                <textarea
-                  className="placeholder-text-[#7C878E] rounded-xl bg-transparent text-xs lg:text-sm"
-                  name="description"
-                  placeholder="Describe your Knowledge SFT"
-                  rows={4}
-                  onChange={(e) =>
-                    handleFormChange("description", e.target.value)
+                  name="tokenSymbol"
+                  placeholder={
+                    form.name
+                      ? "e.g. " +
+                        form.name?.replace(" ", "").slice(0, 4).toUpperCase()
+                      : "Enter NFT Token Symbol"
                   }
-                  maxLength={1000}
+                  value={form?.symbol}
+                  onChange={(e) => handleFormChange("symbol", e.target.value)}
+                  maxLength={10}
                 />
-                {errorMessage && errorMessage.description ? (
+                {errorMessage && errorMessage.symbol ? (
                   <div className=" text-xs text-red-400">
-                    {errorMessage.description}
+                    {errorMessage.symbol}
                   </div>
                 ) : (
                   <div className="text-xs opacity-0 lg:text-sm">a</div>
                 )}
               </div>
-
-              <div className="">
-                <label
-                  className="flex flex-col text-sm font-semibold w-1/3"
-                  htmlFor="category"
-                >
-                  Category
-                </label>
-                <select
-                  id="category"
-                  value={form.category}
-                  className="mt-2 w-full rounded-xl bg-transparent text-xs lg:text-sm"
-                  onChange={(e) => handleFormChange("category", e.target.value)}
-                >
-                  <option className="bg-sidebar text-body" selected disabled hidden value="">Select a category</option>
-                  {categories.map((cat) => (
-                    <option className="bg-sidebar text-body" key={cat.category_id} value={cat.category_id}>
-                      {cat.title}
-                    </option>
-                  ))}
-                </select>
-                {errorMessage && errorMessage.category ? (
-                  <div className=" text-xs text-red-400">
-                    {errorMessage.category}
-                  </div>
-                ) : (
-                  <div className="text-xs opacity-0 lg:text-sm">a</div>
-                )}
-              </div>
-
-              <div className="flex flex-row flex-wrap">
-                <div className="flex w-1/3 flex-col gap-1">
-                  <label className="text-wrap text-xs font-semibold text-heading lg:text-sm">
-                    Token Symbol
-                  </label>
-                  <input
-                    className="placeholder-text-[#7C878E] w-11/12 rounded-xl bg-transparent text-xs lg:text-sm"
-                    type="text"
-                    name="tokenSymbol"
-                    placeholder={
-                      form.name
-                        ? "e.g. " +
-                          form.name?.replace(" ", "").slice(0, 4).toUpperCase()
-                        : "Enter NFT Token Symbol"
-                    }
-                    value={form?.symbol}
-                    onChange={(e) => handleFormChange("symbol", e.target.value)}
-                    maxLength={10}
-                  />
-                  {errorMessage && errorMessage.symbol ? (
-                    <div className=" text-xs text-red-400">
-                      {errorMessage.symbol}
-                    </div>
-                  ) : (
-                    <div className="text-xs opacity-0 lg:text-sm">a</div>
-                  )}
-                </div>
-                {/* <div className="flex w-1/3 flex-col gap-1">
+              {/* <div className="flex w-1/3 flex-col gap-1">
                   <label className="text-wrap text-xs font-semibold text-[#DDD] lg:text-sm">
                     Shares Supply
                   </label>
@@ -437,41 +430,41 @@ export default function NFT() {
                     <div className="ml-2 block w-fit text-[#DDD]">%</div>
                   </div>
                 </div> */}
-                <div className="flex w-2/3 flex-col gap-1">
-                  <label className="flex flex-row items-center space-x-3 text-wrap text-xs font-semibold text-heading lg:text-sm">
-                    <span>Price Per Query (in $EDU)</span>
-                    <Tooltip bg="dark" position="right" size="md">
-                      Set your price per query on your knowledge asset and get
-                      paid in $EDU.
-                    </Tooltip>
-                  </label>
-                  <div className="flex w-full flex-col">
-                    <input
-                      // className="rounded-xl bg-transparent w-11/12"
-                      className="placeholder-text-[#7C878E] w-full rounded-xl bg-transparent text-xs lg:text-sm"
-                      type="number"
-                      name="pricePerQuery"
-                      placeholder="e.g. 1"
-                      onChange={(e) => {
-                        if (parseFloat(e.target.value) < 0)
-                          handleFormChange("pricePerQuery", 0);
-                        else handleFormChange("pricePerQuery", e.target.value);
-                      }}
-                      value={form?.pricePerQuery}
-                    />
-                    {errorMessage && errorMessage.pricePerQuery ? (
-                      <div className=" text-xs text-red-400">
-                        {errorMessage.pricePerQuery}
-                      </div>
-                    ) : (
-                      <div className="text-xs opacity-0 lg:text-sm">a</div>
-                    )}
-                  </div>
+              <div className="flex w-2/3 flex-col gap-1">
+                <label className="flex flex-row items-center space-x-3 text-wrap text-xs font-semibold text-heading lg:text-sm">
+                  <span>Price Per Query (in OC Points)</span>
+                  <Tooltip bg="dark" position="right" size="md">
+                    Set your price per query on your knowledge asset and get
+                    paid in $EDU.
+                  </Tooltip>
+                </label>
+                <div className="flex w-full flex-col">
+                  <input
+                    // className="rounded-xl bg-transparent w-11/12"
+                    className="placeholder-text-[#7C878E] w-full rounded-xl bg-transparent text-xs lg:text-sm"
+                    type="number"
+                    name="pricePerQuery"
+                    placeholder="e.g. 100"
+                    onChange={(e) => {
+                      if (parseFloat(e.target.value) < 0)
+                        handleFormChange("pricePerQuery", 0);
+                      else handleFormChange("pricePerQuery", e.target.value);
+                    }}
+                    value={form?.pricePerQuery}
+                  />
+                  {errorMessage && errorMessage.pricePerQuery ? (
+                    <div className=" text-xs text-red-400">
+                      {errorMessage.pricePerQuery}
+                    </div>
+                  ) : (
+                    <div className="text-xs opacity-0 lg:text-sm">a</div>
+                  )}
                 </div>
               </div>
             </div>
           </div>
-          {/* <div className="flex flex-row">
+        </div>
+        {/* <div className="flex flex-row">
 					<div className="flex flex-col gap-1 w-1/3">
 						<label className="font-semibold text-[#DDD]">Price Per Query</label>
 						<input
@@ -506,7 +499,7 @@ export default function NFT() {
 						/>
 					</div>
 				</div> */}
-          {/* <div className="flex justify-between">
+        {/* <div className="flex justify-between">
               <button
                 className="flex flex-row items-center justify-between  rounded-3xl p-2 px-5 border-2 border-[#50575F]"
                 type="submit"
@@ -543,33 +536,52 @@ export default function NFT() {
                 </svg>
               </button>
             </div> */}
-          <div className="mt-8 flex justify-between">
-            <button
-              className="flex flex-row items-center justify-between  rounded-3xl border-2 border-[#50575F] p-2 px-5 hover:opacity-75"
-              type="submit"
-              onClick={() => {
-                setStep("data_source");
-              }}
+
+        <div className="my-8 flex items-center justify-between border-t-2 pt-4">
+          <button
+            className="flex items-center justify-center gap-2"
+            type="submit"
+            onClick={() => {
+              setStep("data_source");
+            }}
+          >
+            <svg
+              width="8"
+              height="13"
+              viewBox="0 0 8 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <h5 className="text-xs lg:text-sm">BACK</h5>
-            </button>
-            <button
-              className="button flex w-32 flex-row items-center justify-between"
-              onClick={handleGenerateSFT}
-              // onClick={() => setStep("create_chatbot")}
-              type="button"
-            >
-              <h5>MINT SFT</h5>
-              <Image
-                width={24}
-                height={24}
-                src={ArrowRight}
-                alt="Arrow Right Icon"
+              <path
+                d="M7.41 2.29965L6 0.889648L0 6.88965L6 12.8896L7.41 11.4796L2.83 6.88965L7.41 2.29965Z"
+                fill="#141BEB"
               />
-            </button>
-          </div>
-        </form>
-      </div>
+            </svg>
+
+            <p>Back</p>
+          </button>
+          <button
+            className="flex items-center justify-center gap-2"
+            onClick={handleGenerateSFT}
+            // onClick={() => setStep("create_chatbot")}
+            type="button"
+          >
+            <p>Next</p>
+            <svg
+              width="8"
+              height="13"
+              viewBox="0 0 8 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 0.889648L0.589996 2.29965L5.17 6.88965L0.589996 11.4796L2 12.8896L8 6.88965L2 0.889648Z"
+                fill="#141BEB"
+              />
+            </svg>
+          </button>
+        </div>
+      </form>
     </>
   );
 }

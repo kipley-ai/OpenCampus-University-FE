@@ -1,5 +1,4 @@
 "use client";
-import { useEffect, useState } from "react";
 
 type SwitcherProps = {
   texts: string[];
@@ -38,7 +37,7 @@ const Switcher = ({
         {/* <span aria-hidden="true" className={`${mode== 1 ? "left-[50%]": "left-0"} absolute h-full w-1/2 bg-stone-600 transition-all rounded-lg`}></span> */}
         <span
           aria-hidden="true"
-          className={`${mode != 0 ? `left-[${(mode * 100) / texts.length}%]` : "left-0"} absolute h-full w-1/${texts.length} rounded-lg bg-container transition-all`}
+          className={`${mode != 0 ? `left-[${(mode * 100) / texts.length}%]` : "left-0"} absolute h-full w-1/${texts.length} rounded-lg bg-[#ECECFF] transition-all`}
         ></span>
       </div>
       {/* <div className="flex flex-row flex-wrap w-full relative">

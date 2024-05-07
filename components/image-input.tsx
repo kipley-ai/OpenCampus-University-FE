@@ -6,6 +6,7 @@ import ModalImageGallery from "@/components/modal-image-gallery";
 import Button from "@/components/button";
 import GalleryImages from "@/public/json/image-gallery-app.json";
 import LoadingIcon from "public/images/loading-icon.svg";
+import NoCover from "public/images/no-cover.png";
 
 type ImageInputProps = {
   selectedFile: string;
@@ -63,12 +64,14 @@ const ImageInput = ({
     setUploadedFile(null);
   };
 
+  const handleRemoveCover = () => {
+    setSelectedFile("");
+    setUploadedFile(null);
+  };
+
   return (
-    <div className="flex md:flex-col justify-center md:justify-start gap-2">
+    <div className="flex gap-8">
       <div>
-        <label className="text-xs font-semibold lg:text-sm">
-          Cover Image
-        </label>
         <Dropzone
           onDrop={handleFileDrop}
           accept={{ "image/*": [] }}
@@ -92,12 +95,21 @@ const ImageInput = ({
                   src={LoadingIcon}
                   alt="Loading Icon"
                 />
-              ) : (
+              ) : selectedFile ? (
                 <Image
                   src={selectedFile}
                   alt="Edit Preview"
-                  width={250}
-                  height={250}
+                  width={125}
+                  height={125}
+                  className="rounded-2xl object-cover"
+                  priority
+                />
+              ) : (
+                <Image
+                  src={NoCover}
+                  alt="no cover"
+                  width={125}
+                  height={125}
                   className="rounded-2xl object-cover"
                   priority
                 />
@@ -106,25 +118,37 @@ const ImageInput = ({
           )}
         </Dropzone>
       </div>
-      <div className="flex flex-col pt-6 md:pt-0 gap-2">
-        <Button
-          onClick={handleGalleryCover}
-          className="rounded-xl"
-        >
-          Choose Image From Gallery
-        </Button>
-        <Button
-          onClick={handleDeviceCover}
-          className="rounded-xl"
-        >
-          Choose Image From Device
-        </Button>
-        <div
-          onClick={handleRandomCover}
-          // className="w-full cursor-pointer rounded-xl border-2 border-border py-1 text-center text-xs text-gray-400 hover:brightness-75 lg:text-sm"
-          className="w-full cursor-pointer rounded-xl border-2 border-2 border-[#50575F] hover:opacity-75 py-1 text-center text-xs lg:text-sm"
-        >
-          Random
+      <div className="flex flex-col gap-2 pt-6 md:pt-0">
+        <div className="flex gap-2">
+          <Button
+            onClick={handleDeviceCover}
+            className="rounded-lg bg-primary text-white"
+          >
+            Upload Image
+          </Button>
+          <Button onClick={handleGalleryCover} className="rounded-lg">
+            Choose From Gallery
+          </Button>
+        </div>
+        <p className="w-2/3 text-xs text-gray-400">
+          Please upload JPG, GIF or PNG only. Maximum size of 800KB, minimum
+          dimension of 200 x 200px
+        </p>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            onClick={handleRandomCover}
+            className="text-xs text-primary underline"
+          >
+            Random
+          </button>
+          <button
+            onClick={handleRemoveCover}
+            className="text-xs text-red-700"
+            type="button"
+          >
+            Remove image
+          </button>
         </div>
       </div>
       <ModalImageGallery

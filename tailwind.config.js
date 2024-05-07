@@ -18,6 +18,7 @@ module.exports = {
       },
       colors: {
         primary: "var(--color-primary)",
+        primary_50: "#9498ED",
         secondary: "var(--color-secondary)",
         heading: "var(--color-heading)",
         body: "var(--color-body)",

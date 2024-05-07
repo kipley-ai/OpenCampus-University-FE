@@ -11,6 +11,9 @@ import { chatbotSlug } from "@/utils/utils";
 import { useChatbotExplore } from "@/hooks/api/chatbot";
 import { ChatbotData } from "@/lib/types";
 import { LoadMoreSpinner } from "@/components/load-more";
+import { useUserDetail } from "@/hooks/api/user";
+import { useAccount } from "wagmi";
+import { redirect } from "next/navigation";
 
 export default function Dashboard() {
   const { setHeaderTitle } = useAppProvider();
@@ -18,6 +21,19 @@ export default function Dashboard() {
   const [breakpoint, setBreakpoint] = useState(getBreakpoint());
   const [pageSize, setPageSize] = useState(20);
   const loadMoreRef = useRef(null);
+  const sign = localStorage.getItem("kip-protocol-signature");
+  const { data: userDetail, isLoading } = useUserDetail();
+  const { address, status } = useAccount();
+  const { verifStatus } = useAppProvider();
+
+  if (status === "connected" && (sign || verifStatus === "authenticated")) {
+    if (
+      userDetail?.data?.status !== "error" &&
+      !userDetail?.data?.data.onboarding
+    ) {
+      return redirect("/onboarding");
+    }
+  }
 
   const botsQuery = useChatbotExplore(
     {

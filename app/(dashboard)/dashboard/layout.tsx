@@ -26,35 +26,35 @@ export default function DefaultLayout({
   if (isLoading) return null;
 
   // switch (status) {
-    // case "connected":
-      // if (
-      //   userDetail?.data?.status !== "error" &&
-      //   !userDetail?.data?.data.onboarding
-      // ) {
-      //   return redirect("/onboarding");
-      // }
+  // case "connected":
+  // if (
+  //   userDetail?.data?.status !== "error" &&
+  //   !userDetail?.data?.data.onboarding
+  // ) {
+  //   return redirect("/onboarding");
+  // }
 
-      return (
-        <div className="flex h-[100dvh] overflow-hidden bg-sidebar text-heading">
-          {/* Sidebar */}
-          <Sidebar />
+  return (
+    <div className="flex h-[100dvh] overflow-hidden bg-sidebar text-heading">
+      {/* Sidebar */}
+      <Sidebar />
 
-          {/* Content area */}
-          <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden rounded-lg bg-container p-0 pl-0 lg:m-6 lg:ml-0 pb-8">
-            <div className="rounded-t-lg border-t border-x border-border">
-              {/*  Site header */}
-              <Header />
+      {/* Content area */}
+      <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden rounded-lg bg-container p-0 pb-8 pl-0 lg:m-6 lg:ml-0">
+        <div className="rounded-t-lg border-x border-t border-border">
+          {/*  Site header */}
+          <Header />
 
-              <main className="h-[calc(100dvh-114px)] grow [&>*:first-child]:scroll-mt-16">
-                {children}
-              </main>
-            </div>
-          </div>
+          <main className="h-[calc(100dvh-114px)] grow [&>*:first-child]:scroll-mt-16">
+            {children}
+          </main>
         </div>
-      );
-    // case "disconnected":
-    //   return redirect(`/?next=${pathname}`);
-    // default:
-    //   break;
+      </div>
+    </div>
+  );
+  // case "disconnected":
+  //   return redirect(`/?next=${pathname}`);
+  // default:
+  //   break;
   // }
 }

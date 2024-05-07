@@ -16,6 +16,7 @@ import KipProtocolVideo from "../kip-protocol-video";
 import FreeKFI from "../free-kfi-token";
 import { useEffect } from "react";
 import { SUBDOMAINS } from "@/utils/constants";
+import { ChooseApp } from "../choose-app";
 
 export default function Onboarding() {
   const sign = localStorage.getItem("kip-protocol-signature");
@@ -34,13 +35,11 @@ export default function Onboarding() {
 
   if (isLoading) return null;
 
-  return redirect("/dashboard");
-
   if (status === "connected" && (sign || verifStatus === "authenticated")) {
     if (
       userDetail?.data?.status !== "error" &&
-      userDetail?.data?.data.onboarding
-      && (process.env.NEXT_PUBLIC_ENV_DEV != "1") // Dont skip onboarding in dev
+      userDetail?.data?.data.onboarding &&
+      process.env.NEXT_PUBLIC_ENV_DEV != "1" // Dont skip onboarding in dev
     ) {
       return redirect("/dashboard");
     }
@@ -53,13 +52,14 @@ export default function Onboarding() {
           <SelectDataElements />
         ) : step == "mint_nft" ? (
           <MintNFT />
+        ) : step == "choose_app" ? (
+          <ChooseApp />
         ) : step == "create_chatbot" ? (
           <CreateChatbot />
-        ) 
-        // : step == "free_kfi" ? (
+        ) : // : step == "free_kfi" ? (
         //   <FreeKFI />
-        // ) 
-        : step == "onboarding_success" ? (
+        // )
+        step == "onboarding_success" ? (
           <OnboardingSuccess />
         ) : (
           <InviteCode address={address} />
@@ -74,6 +74,6 @@ export default function Onboarding() {
   // }
 
   if (status === "disconnected") {
-    return <LandingPage />;
+    return redirect("/dashboard");
   }
 }

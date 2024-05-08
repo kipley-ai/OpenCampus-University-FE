@@ -60,7 +60,8 @@ export default function DataSource({
   const { modalLogin: showTwitterLogin, setModalLogin: setShowTwitterLogin } =
     useAppProvider();
 
-  const { isComingSoon, step, setStep } = useCreateChatbotContext();
+  const { isComingSoon, step, setStep, handleChangeKb } =
+    useCreateChatbotContext();
 
   const comingSoon: PossibleOption[] = ["notion"];
 
@@ -85,6 +86,7 @@ export default function DataSource({
 
   if (mintNFTRedirect === "true" && twitterStatus == "authenticated") {
     setStep("mint_nft");
+    handleChangeKb("type", "twitter");
     sessionStorage.removeItem("mintNFTRedirect");
   }
 

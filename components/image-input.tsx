@@ -101,7 +101,7 @@ const ImageInput = ({
                   alt="Edit Preview"
                   width={125}
                   height={125}
-                  className="rounded-2xl object-cover"
+                  className="rounded-lg object-cover"
                   priority
                 />
               ) : (
@@ -110,7 +110,7 @@ const ImageInput = ({
                   alt="no cover"
                   width={125}
                   height={125}
-                  className="rounded-2xl object-cover"
+                  className="rounded-lg object-cover"
                   priority
                 />
               )}
@@ -126,11 +126,11 @@ const ImageInput = ({
           >
             Upload Image
           </Button>
-          <Button onClick={handleGalleryCover} className="rounded-lg">
+          <Button onClick={handleGalleryCover} className="bg-sidebar text-primary rounded-lg border border-primary border-2">
             Choose From Gallery
           </Button>
         </div>
-        <p className="w-2/3 text-xs text-gray-400">
+        <p className="w-3/5 text-xs text-gray-400 my-0.5">
           Please upload JPG, GIF or PNG only. Maximum size of 800KB, minimum
           dimension of 200 x 200px
         </p>

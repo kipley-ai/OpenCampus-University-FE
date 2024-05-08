@@ -59,7 +59,7 @@ export default function NFT() {
     shareSupply: "10000",
     comissionRate: 1,
   });
-  const [selectedFile, setSelectedFile] = useState<string>(DEFAULT_COVER_IMAGE);
+  const [selectedFile, setSelectedFile] = useState<string>("");
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [nftIdCreated, setNftIdCreated] = useState("");
   const [kbIdCreated, setKbIdCreated] = useState("");
@@ -250,7 +250,7 @@ export default function NFT() {
         isMinting={isMinting}
       />
       <MintNFTModal
-        children={"Your Knowledge Asset SFT is created successfully!"}
+        children={"Your SFT is created successfully!"}
         open={showModal}
         setOpen={setShowModal}
         nftIdCreated={nftIdCreated}
@@ -261,10 +261,12 @@ export default function NFT() {
         open={showFailModal}
         setOpen={setShowFailModal}
       />
-      <div className="flex flex-col px-6 py-8 pb-14 lg:px-8 xl:px-32">
+      <div className="flex flex-col px-6 py-9 pb-0 lg:px-8 xl:px-14 bg-sidebar">
         <div>
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-semibold text-heading">Mint SFT </h1>
+            <h1 className="text-lg font-semibold text-primary">
+              Mint SFT
+            </h1>
             <div>
               {isTwitter ? (
                 <TwitterScrapingStatus setShowFailModal={setShowFailModal} />
@@ -273,22 +275,21 @@ export default function NFT() {
               )}
             </div>
           </div>
-          <hr className="my-4 border border-border" />
         </div>
         <form>
-          <div className="mt-4 flex flex-col gap-8 md:flex-row">
+          <div className="mt-4 flex flex-col gap-8">
             <ImageInput
               selectedFile={selectedFile}
               setSelectedFile={setSelectedFile}
               setUploadedFile={setUploadedFile}
             />
-            <div className="flex w-full flex-col gap-2">
+            <div className="flex w-full flex-col gap-0">
               <div className="flex flex-col gap-1">
                 <label className="text-xs font-semibold text-heading lg:text-sm">
-                  Name
+                  Name*
                 </label>
                 <input
-                  className="rounded-xl bg-transparent text-xs text-heading lg:text-sm"
+                  className="rounded-lg border-[#D1D5DB] bg-transparent text-xs text-heading lg:text-sm"
                   type="text"
                   name="name"
                   placeholder="Name your Knowledge SFT"
@@ -310,7 +311,7 @@ export default function NFT() {
                   Description
                 </label>
                 <textarea
-                  className="placeholder-text-[#7C878E] rounded-xl bg-transparent text-xs text-heading lg:text-sm"
+                  className="placeholder-text-[#6B7280] rounded-lg border-[#D1D5DB] bg-transparent text-xs text-heading lg:text-sm"
                   name="description"
                   placeholder="Describe your Knowledge SFT"
                   rows={4}
@@ -328,9 +329,9 @@ export default function NFT() {
                 )}
               </div>
 
-              <div className="">
+              <div className="flex flex-col gap-1">
                 <label
-                  className="flex flex-col text-sm font-semibold w-1/3"
+                  className="text-xs font-semibold text-heading lg:text-sm"
                   htmlFor="category"
                 >
                   Category
@@ -338,10 +339,10 @@ export default function NFT() {
                 <select
                   id="category"
                   value={form.category}
-                  className="mt-2 w-full rounded-xl bg-transparent"
+                  className="w-full rounded-lg border-[#D1D5DB] bg-transparent text-xs text-heading lg:text-sm"
                   onChange={(e) => handleFormChange("category", e.target.value)}
                 >
-                  <option className="bg-sidebar text-body" selected disabled hidden value="">Select a category</option>
+                  <option className="bg-sidebar text-[#6B7280]" selected disabled hidden value="">Select a category</option>
                   {categories.map((cat) => (
                     <option className="bg-sidebar text-body" key={cat.category_id} value={cat.category_id}>
                       {cat.title}
@@ -360,17 +361,17 @@ export default function NFT() {
               <div className="flex flex-row flex-wrap">
                 <div className="flex w-1/3 flex-col gap-1">
                   <label className="text-wrap text-xs font-semibold text-heading lg:text-sm">
-                    Token Symbol
+                    Token Symbol*
                   </label>
                   <input
-                    className="placeholder-text-[#7C878E] w-11/12 rounded-xl bg-transparent text-xs text-heading lg:text-sm"
+                    className="placeholder-text-[#6B7280] w-11/12 rounded-lg border-[#D1D5DB] bg-transparent text-xs text-heading lg:text-sm"
                     type="text"
                     name="tokenSymbol"
                     placeholder={
                       form.name
                         ? "e.g. " +
                         form.name?.replace(" ", "").slice(0, 4).toUpperCase()
-                        : "Enter NFT Token Symbol"
+                        : "Name NFT Token Symbol"
                     }
                     // placeholder={"Enter NFT Token Symbol"}
                     value={form?.symbol}
@@ -396,16 +397,16 @@ export default function NFT() {
                       handleFormChange("shareSupply", e.target.value)
                     }
                   >
-                    <option className="text-[#7C878E]" value="5000">
+                    <option className="text-[#6B7280]" value="5000">
                       5000
                     </option>
-                    <option className="text-[#7C878E]" value="10000">
+                    <option className="text-[#6B7280]" value="10000">
                       10000
                     </option>
-                    <option className="text-[#7C878E]" value="50000">
+                    <option className="text-[#6B7280]" value="50000">
                       50000
                     </option>
-                    <option className="text-[#7C878E]" value="100000">
+                    <option className="text-[#6B7280]" value="100000">
                       100000
                     </option>
                   </select>
@@ -416,7 +417,7 @@ export default function NFT() {
                   </label>
                   <div className="flex w-full items-center">
                     <input
-                      className="placeholder-text-[#7C878E] w-full rounded-xl bg-transparent text-xs text-heading lg:text-sm"
+                      className="placeholder-text-[#6B7280] w-full rounded-xl bg-transparent text-xs text-heading lg:text-sm"
                       type="number"
                       name="comissionRate"
                       placeholder="e.g. 5"
@@ -435,19 +436,19 @@ export default function NFT() {
                 </div> */}
                 <div className="flex w-2/3 flex-col gap-1">
                   <label className="flex flex-row items-center space-x-3 text-wrap text-xs font-semibold text-heading lg:text-sm">
-                    <span>Price Per Query (in $CREDIT)</span>
-                    <Tooltip bg="dark" position="right" size="md">
+                    <span>Price Per Query (in OC Points)</span>
+                    {/* <Tooltip bg="dark" position="right" size="md">
                       Set your price per query on your knowledge asset and get
                       paid in $CREDIT.
-                    </Tooltip>
+                    </Tooltip> */}
                   </label>
                   <div className="flex w-full flex-col">
                     <input
                       // className="rounded-xl bg-transparent w-11/12"
-                      className="placeholder-text-[#7C878E] w-full rounded-xl bg-transparent text-xs text-heading lg:text-sm"
+                      className="placeholder-text-[#6B7280] w-full rounded-lg border-[#D1D5DB] bg-transparent text-xs text-heading lg:text-sm"
                       type="number"
                       name="pricePerQuery"
-                      placeholder="e.g. 1"
+                      placeholder="e.g. 100"
                       onChange={(e) => {
                         if (parseFloat(e.target.value) < 0)
                           handleFormChange("pricePerQuery", 0);
@@ -481,7 +482,7 @@ export default function NFT() {
 					<div className="flex flex-col gap-1 w-1/3">
 						<label className="font-semibold text-heading">Query Royalties</label>
 						<select
-							className="rounded-xl bg-transparent text-[#7C878E] w-11/12"
+							className="rounded-xl bg-transparent text-[#6B7280] w-11/12"
 							value={queryRoyalties}
 							onChange={(e) => setQueryRoyalties(e.target.value)}
 						>
@@ -539,7 +540,7 @@ export default function NFT() {
                 </svg>
               </button>
             </div> */}
-          <div className="mt-8 flex justify-between">
+          {/* <div className="mt-8 flex justify-between">
             <button
               className="flex flex-row items-center justify-between  rounded-3xl border-2 border-[#50575F] p-2 px-5 hover:opacity-75"
               type="submit"
@@ -560,7 +561,50 @@ export default function NFT() {
                 Mint SFT
               </h5>
             </button>
-          </div>
+          </div> */}
+          <div className="my-8 mt-2 flex items-center justify-between border-t-2 pt-4">
+              <button 
+                className="flex items-center justify-center gap-2 hover:underline"
+                type="submit"
+                onClick={() => {
+                  setStep("data_source");
+                }}
+              >
+                <svg
+                  width="8"
+                  height="13"
+                  viewBox="0 0 8 13"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7.41 2.29965L6 0.889648L0 6.88965L6 12.8896L7.41 11.4796L2.83 6.88965L7.41 2.29965Z"
+                    fill="#141BEB"
+                  />
+                </svg>
+
+                <p>Back</p>
+              </button>
+              <button
+                className="flex items-center justify-center gap-2 hover:underline"
+                onClick={handleGenerateSFT}
+                type="button"
+              >
+                <p>NEXT</p>
+                <svg
+                  width="8"
+                  height="13"
+                  viewBox="0 0 8 13"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2 0.889648L0.589996 2.29965L5.17 6.88965L0.589996 11.4796L2 12.8896L8 6.88965L2 0.889648Z"
+                    fill="#141BEB"
+                  />
+                </svg>
+              </button>
+            </div>
         </form>
       </div>
     </>

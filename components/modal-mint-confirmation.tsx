@@ -5,6 +5,7 @@ import ModalBlank from "@/components/modal-blank-3";
 import Image from "next/image";
 import Button from "@/components/button";
 import { useSwitchToSepolia, useSwitchToBase } from "@/hooks/useSwitchNetwork";
+import NoCover from "public/images/no-cover.png";
 
 export default function ModalMintConfirmation({
   isOpen,
@@ -31,7 +32,7 @@ export default function ModalMintConfirmation({
 
   return (
     <ModalBlank isOpen={isOpen} setIsOpen={setIsOpen}>
-      <div className="flex flex-col rounded-lg bg-box p-10 shadow-md">
+      <div className="flex flex-col rounded-2xl bg-box px-10 py-2 shadow-md border border-[#DDDDEB]">
         <div className="self-stretch border-b-2 py-5">
           <div className="text-lg font-semibold text-primary">
             <span>Mint your SFT</span>
@@ -69,9 +70,9 @@ export default function ModalMintConfirmation({
             </svg>
           </button> */}
         </div>
-        <div className="my-4 flex items-center gap-8">
+        <div className="my-5 flex items-center gap-8">
           <Image
-            src={nftImage}
+            src={nftImage ? nftImage : NoCover}
             alt="NFT Image"
             width={125}
             height={125}

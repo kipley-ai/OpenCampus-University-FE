@@ -196,9 +196,23 @@ export default function Local({
     switch (state) {
       case "uploading":
         return (
-          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-heading-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle className="opacity-25 stroke-container" cx="12" cy="12" r="10" strokeWidth="4"/>
-            <path className="opacity-75 fill-primary" d="M4 12c0-4.418 3.582-8 8-8v8h8c0 4.418-3.582 8-8 8s-8-3.582-8-8z"/>
+          <svg
+            className="text-heading-0 mt-2 w-6 h-6 animate-spin"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="stroke-container opacity-25"
+              cx="24"
+              cy="24"
+              r="24"
+              strokeWidth="4"
+            />
+            <path
+              className="fill-primary opacity-75"
+              d="M4 12c0-4.418 3.582-8 8-8v8h8c0 4.418-3.582 8-8 8s-8-3.582-8-8z"
+            />
           </svg>
         );
       case "failed":
@@ -207,9 +221,21 @@ export default function Local({
         );
       case "success":
         return (
-          <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
-            <rect className="fill-primary" width="30" height="30" rx="15"/>
-            <path className="fill-container" fillRule="evenodd" clipRule="evenodd" d="M21.7071 10.2929C22.0976 10.6834 22.0976 11.3166 21.7071 11.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071L8.29289 15.7071C7.90237 15.3166 7.90237 14.6834 8.29289 14.2929C8.68342 13.9024 9.31658 13.9024 9.70711 14.2929L13 17.5858L20.2929 10.2929C20.6834 9.90237 21.3166 9.90237 21.7071 10.2929Z"/>
+          <svg
+            width="22"
+            height="24"
+            viewBox="0 0 22 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="mt-2"
+          >
+            <path
+              d="M5.73907 10.1136V4.85273C5.73907 4.06032 6.38145 3.41795 7.17386 3.41795C7.96626 3.41795 8.60864 4.06032 8.60864 4.85273V10.1136C8.60864 11.6984 7.32389 12.9832 5.73907 12.9832C4.15426 12.9832 2.86951 11.6984 2.86951 10.1136V6.28751M11.9565 2.46143H14.5391C16.1462 2.46143 16.9497 2.46143 17.5636 2.77419C18.1035 3.0493 18.5425 3.48829 18.8176 4.02824C19.1304 4.64207 19.1304 5.44562 19.1304 7.05273V17.0006C19.1304 18.6077 19.1304 19.4112 18.8176 20.0251C18.5425 20.565 18.1035 21.004 17.5636 21.2791C16.9497 21.5919 16.1462 21.5919 14.5391 21.5919H8.41733C6.81023 21.5919 6.00667 21.5919 5.39284 21.2791C4.8529 21.004 4.41391 20.565 4.13879 20.0251C3.82603 19.4112 3.82603 18.6077 3.82603 17.0006V16.331"
+              stroke="#141BEB"
+              stroke-width="1.91304"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         );
     }
@@ -225,7 +251,7 @@ export default function Local({
   }, [files, toast]);
 
   return (
-    <div className="flex flex-col px-6 py-10 pb-20 lg:px-8 xl:px-32 bg-container">
+    <div className="flex flex-col px-6 py-9 pb-0 lg:px-8 xl:px-14 bg-sidebar">
       <Toast
         children={"KB creation successful"}
         open={toast}
@@ -233,14 +259,13 @@ export default function Local({
         className="mx-auto"
       />
       <div className="">
-        <h1 className="text-2xl font-semibold text-heading">
+        <h1 className="text-lg font-semibold text-primary">
           Upload Knowledge Files
         </h1>
-        <hr className="my-4 border border-border" />
       </div>
-      <div className="">
+      <div className="mt-4">
         <div
-          className="mb-4 mt-5 flex cursor-pointer flex-col items-center rounded-3xl border-2 border-dashed border-heading px-20 py-12 bg-box text-center font-inter text-heading "
+          className="mb-4 mt-1 flex cursor-pointer flex-col items-center rounded-3xl border-2 border-dashed border-[#E1E1ED] px-20 py-14 bg-box text-center font-inter text-heading bg-container"
           onDragEnter={handleDrag}
           onDragOver={handleDrag}
           onDragLeave={handleDrag}
@@ -255,22 +280,15 @@ export default function Local({
             onChange={handleChange}
             style={{ display: "none" }}
           />
-          <div className="mb-8 h-14 w-14 shrink-0 grow-0 rounded-full bg-container p-4">
+          {/* <div className="mb-8 h-14 w-14 shrink-0 grow-0 rounded-full bg-container p-4">
             <svg width="24" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" className="stroke-heading">
               <path d="M4.33329 18.6563C2.72531 17.58 1.66663 15.7469 1.66663 13.6667C1.66663 10.5419 4.0553 7.97506 7.10628 7.69249C7.73038 3.89618 11.027 1 15 1C18.973 1 22.2695 3.89618 22.8936 7.69249C25.9446 7.97506 28.3333 10.5419 28.3333 13.6667C28.3333 15.7469 27.2746 17.58 25.6666 18.6563M9.66663 18.3333L15 13M15 13L20.3333 18.3333M15 13V25" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </div>
-          <label className="text-md mb-3 cursor-pointer font-semibold">
-            Drop your files here OR{" "}
-            <span className="text-primary">Click here to browse</span>
+          </div> */}
+          <label className="text-md cursor-pointer font-medium">
+            Drag & drop or{" "}
+            <span className="text-primary">click to select file</span>
           </label>
-          <p className="text-xs">
-            Supported file formats: .pdf, .csv, .txt, .json, .pptx, .xlsx,
-            .docx.
-          </p>
-          <p className="text-xs">
-            Maximum number of files allowed: 10
-          </p>
         </div>
         {/* Warning if file exceeded */}
         <div>
@@ -281,20 +299,26 @@ export default function Local({
           )}
         </div>
         <div>
+          <p className="text-xs mb-2">
+              Supported file formats: .pdf, .csv, .txt, .json, .pptx, .xlsx,
+              .docx. Maximum number of files allowed: 10
+          </p>
+        </div>
+        <div>
           {files.map((file, index) => {
             return (
               <div
                 key={file.bucketPath}
-                className="my-5 flex justify-between rounded-3xl border-2 border-border bg-box px-8 py-5 text-heading"
+                className="my-5 flex justify-between bg-sidebar px-8 py-2 text-heading"
               >
                 <div className="flex flex-row">
                   {showStateIcon(file.status)}
-                  <div className="ml-8 flex flex-col">
-                    <h3 className="font-semibold">{file.filename}</h3>
-                    <p className="text-xs">{formatBytes(file.size)}</p>
+                  <div className="ml-6 flex flex-col">
+                    <h3 className="font-medium text-primary text-sm">{file.filename}</h3>
+                    <p className="text-sm">{formatBytes(file.size)}</p>
                   </div>
                 </div>
-                <button onClick={async () => {
+                {/* <button onClick={async () => {
                   const filename = files[index].filename;
 
                   files[index].aborter?.abort();
@@ -333,13 +357,33 @@ export default function Local({
                       fill="var(--color-heading)"
                     />
                   </svg>
+                </button> */}
+                <button
+                    className="font-medium text-primary underline text-sm hover:text-secondary"
+                    onClick={async () => {
+                      const filename = files[index].filename;
+
+                      files[index].aborter?.abort();
+
+                      setFiles((prevFiles: UIFile[]) => {
+                        return prevFiles.filter((_, i) => {
+                          return index !== i;
+                        });
+                      });
+
+                      await deleteFileS3(files[index].bucketPath);
+
+                      console.log("Deleted the item: " + filename);
+                    }}
+                  >
+                    Remove
                 </button>
               </div>
             );
           })}
         </div>
       </div>
-      <div className="flex justify-between">
+      {/* <div className="flex justify-between">
         <button
           className="mt-8 flex flex-row items-center justify-between rounded-3xl border-2 border-[#50575F] p-2 px-5 hover:opacity-75"
           type="submit"
@@ -372,6 +416,63 @@ export default function Local({
           <h5>
             Continue
           </h5>
+        </button>
+      </div> */}
+      <div className="my-8 mt-16 flex items-center justify-between border-t-2 pt-4">
+        <button 
+          className="flex items-center justify-center gap-2 hover:underline"
+          onClick={() => {
+            setStep("data_source");
+          }}
+        >
+          <svg
+            width="8"
+            height="13"
+            viewBox="0 0 8 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7.41 2.29965L6 0.889648L0 6.88965L6 12.8896L7.41 11.4796L2.83 6.88965L7.41 2.29965Z"
+              fill="#141BEB"
+            />
+          </svg>
+          <p>Back</p>
+        </button>
+        <button
+          className="flex items-center justify-center gap-2 hover:underline"
+          type="submit"
+          disabled={files.length === 0 || fileLimitExceeded}
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+            console.log(files)
+            if (!fileLimitExceeded && files.length > 0) {
+              handleChangeKb(
+                "kb_data",
+                files.map((file) => {
+                  return {
+                    type: "file",
+                    name: file.filename,
+                    file: file.bucketPath,
+                  };
+                }),
+              );
+              setStep("mint_nft");
+            }
+          }}
+        >
+          <p>NEXT</p>
+          <svg
+            width="8"
+            height="13"
+            viewBox="0 0 8 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2 0.889648L0.589996 2.29965L5.17 6.88965L0.589996 11.4796L2 12.8896L8 6.88965L2 0.889648Z"
+              fill="#141BEB"
+            />
+          </svg>
         </button>
       </div>
     </div>

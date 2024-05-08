@@ -100,7 +100,7 @@ export default function DataSource({
       <div className="h-full flex-col px-4 md:flex-row md:pl-10 justify-start bg-container md:w-5/6">
         <h1 className="text-heading text-lg font-semibold py-3">Create Knowledge Asset</h1>
         {step == "data_source" ? (
-          <div className="flex flex-col px-6 py-9 pb-0 lg:px-8 xl:px-14 bg-sidebar">
+          <div className="flex flex-col px-6 py-9 pb-0 lg:px-8 xl:px-14 bg-sidebar border border-[#DDDDEB] rounded-2xl">
               <h1 className="text-lg font-semibold text-primary">
                 Add Data Elements to your SFT
               </h1>

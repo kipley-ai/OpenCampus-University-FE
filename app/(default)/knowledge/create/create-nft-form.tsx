@@ -261,7 +261,7 @@ export default function NFT() {
         open={showFailModal}
         setOpen={setShowFailModal}
       />
-      <div className="flex flex-col px-6 py-9 pb-0 lg:px-8 xl:px-14 bg-sidebar">
+      <div className="flex flex-col px-6 py-9 pb-0 lg:px-8 xl:px-14 bg-sidebar border border-[#DDDDEB] rounded-2xl">
         <div>
           <div className="flex items-center justify-between">
             <h1 className="text-lg font-semibold text-primary">

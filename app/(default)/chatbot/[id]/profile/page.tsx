@@ -135,14 +135,15 @@ const KnowledgeAssets = () => {
 
   const sftID = sftData?.data.data.sft_id as string;
 
-  console.log(sftData?.data.data); // For debugging purpose
-
-
   return (
     <div className="mt-4 flex flex-wrap gap-8">
       <Link href={`/nft/${sftID}`}>
         {[sftData?.data.data].map((item: any) => (
-          <ProfileItem key={item} name={sftData?.data.data.name as string} />
+          <ProfileItem
+            key={item}
+            name={sftData?.data.data.name as string}
+            profileImage={sftData?.data.data.profile_image as string}
+          />
         ))}
       </Link>
     </div>
@@ -157,24 +158,34 @@ const Apps = () => {
     chatbot_id: id as string,
   });
 
-  const appID = chatbotData?.data.data.chatbot_id
+  const appID = chatbotData?.data.data.chatbot_id;
 
   return (
     <div className="mt-4 flex flex-wrap gap-8">
       <Link href={`/chatbot/${appID}`}>
         {[chatbotData?.data.data].map((item: any) => (
-          <ProfileItem key={item} name={chatbotData?.data.data.name as string} />
+          <ProfileItem
+            key={item}
+            name={chatbotData?.data.data.name as string}
+            profileImage={chatbotData?.data.data.profile_image as string}
+          />
         ))}
       </Link>
     </div>
   );
 };
 
-const ProfileItem = ({ name }: { name: string }) => {
+const ProfileItem = ({
+  name,
+  profileImage,
+}: {
+  name: string;
+  profileImage: string;
+}) => {
   return (
     <div className="flex w-fit flex-col gap-2 md:w-max">
       <Image
-        src="/images/product-img.png"
+        src={profileImage}
         alt="Profile Image"
         className="rounded-lg max-sm:w-[110px]"
         width={200}

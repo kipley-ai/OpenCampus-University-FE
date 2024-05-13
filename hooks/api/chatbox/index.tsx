@@ -6,7 +6,7 @@ import { IChatBoxParams, IChatBoxHistoryParams } from "../interfaces";
 import useWebSocket from "react-use-websocket";
 // import { useAuthorizer } from "@authorizerdev/authorizer-react";
 import { useAccount } from "wagmi";
-import { chatPayloadSchema, ChatPayload, LastMessagePayload } from "./schema";
+import { chatPayloadSchema, ChatPayload, ChatRoomPayload, LastMessagePayload } from "./schema";
 import axios from "axios";
 
 export const useChatSession = (params: IChatBoxParams) => {
@@ -38,6 +38,23 @@ export const useChatboxWS = (socketUrl: string) => {
 		useWebSocket<LastMessagePayload>(socketUrl);
 
 	const sendValidatedMessage = (message: ChatPayload) => {
+		try {
+			// chatPayloadSchema.parse(message);
+
+			sendMessage(JSON.stringify(message));
+		} catch (error) {
+			console.error("Validation failed", error);
+		}
+	};
+
+	return { sendValidatedMessage, lastJsonMessage, readyState };
+};
+
+export const useChatroomWS = (socketUrl: string) => {
+	const { sendMessage, lastJsonMessage, readyState } =
+		useWebSocket<LastMessagePayload>(socketUrl);
+
+	const sendValidatedMessage = (message: ChatRoomPayload) => {
 		try {
 			// chatPayloadSchema.parse(message);
 

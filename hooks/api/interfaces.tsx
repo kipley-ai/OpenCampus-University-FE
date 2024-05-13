@@ -114,3 +114,14 @@ export interface IChatbotExplore {
   page_size: number;
   explore_name: string;
 }
+
+export interface IChatroomParams {
+  room_id: string;
+}
+
+export interface IChatroomHistoryParams {
+  user_id?: string;
+  session_id?: string | undefined | null;
+  page_num: number;
+  page_size: number;
+}

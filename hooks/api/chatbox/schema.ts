@@ -26,6 +26,15 @@ export const chatPayloadSchema = z.object({
 	}),
 });
 
+export const chatRoomPayloadSchema = z.object({
+	question: z.string(),
+	room_id: z.string(),
+	// username: z.string(),
+	session_id: z.string(),
+	// type: z.string(),
+	user_id: z.string()
+});
+
 export const lastMessageSchema = z.object({
 	sender: z.string(),
 	message: z.string(),
@@ -38,4 +47,5 @@ export const lastMessageSchema = z.object({
 });
 
 export type ChatPayload = z.infer<typeof chatPayloadSchema>;
+export type ChatRoomPayload = z.infer<typeof chatRoomPayloadSchema>;
 export type LastMessagePayload = z.infer<typeof lastMessageSchema>;

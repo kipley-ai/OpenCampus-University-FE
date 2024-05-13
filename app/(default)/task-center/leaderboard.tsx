@@ -54,7 +54,10 @@ export const Leaderboard = () => {
     <div className="flex flex-col">
       <div className="flex flex-row mb-5 justify-between space-x-10">
         <div className="flex flex-col items-center justify-center py-8 border-2 rounded-xl font-medium bg-container w-1/3 text-center">
-          <Image src={profileImage} width={55} height={55} alt="Avatar" className="rounded-full" />
+          <div className="flex flex-row items-end">
+            <Image src={profileImage} width={55} height={55} alt="Avatar" className="rounded-full" />
+            <Oval className="-ml-4" color={"gold"}/>
+          </div>
           <p className="text-primary text-lg font-semibold my-2">{twitterSession?.user?.name}</p>
           <p>Your weekly rank: 1st</p>
           <p>Total OC points: 1,000</p>
@@ -64,7 +67,7 @@ export const Leaderboard = () => {
           {
             ["gold", "silver", "bronze"].map((color, index) => (
               <div key={index} className="flex flex-row items-center space-x-3 w-full">
-                <Oval color={color}/>
+                <Oval className="" color={color}/>
                 <span className="text-primary">{color === "gold" ? "Top 100" : color === "silver" ? "Top 101-499" : color === "bronze" ? "Top 500-1,000" : ""}</span>
               </div>
             ))

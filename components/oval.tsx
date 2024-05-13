@@ -1,7 +1,6 @@
-export const Oval = ({ color }: { color: string }) => {
-    console.log( color == "gold" ? "FFD21B" : color == "silver" ? "D6D6D6" : color == "bronze" ? "846A00" : "" )
+export const Oval = ({ color, className }: { color: string, className: string }) => {
     return (
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg className={className} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="10" cy="10" r="10" fill={ color == "gold" ? "#FBC901" : color == "silver" ? "#CDCDCD" : color == "bronze" ? "#836900" : "" }/>
             <path fill-rule="evenodd" clip-rule="evenodd" d="M10.0363 19.1741C14.9708 19.1741 18.971 15.1739 18.971 10.2394C18.971 5.3049 14.9708 1.30469 10.0363 1.30469C5.10177 1.30469 1.10156 5.3049 1.10156 10.2394C1.10156 15.1739 5.10177 19.1741 10.0363 19.1741Z" fill={ color == "gold" ? "#FFD21B" : color == "silver" ? "#D6D6D6" : color == "bronze" ? "#846A00" : "" }/>
             <path fill-rule="evenodd" clip-rule="evenodd" d="M10.0363 19.1741C14.9708 19.1741 18.971 15.1739 18.971 10.2394C18.971 5.3049 14.9708 1.30469 10.0363 1.30469C5.10177 1.30469 1.10156 5.3049 1.10156 10.2394C1.10156 15.1739 5.10177 19.1741 10.0363 19.1741Z" fill="url(#paint0_linear_400_4733)" fill-opacity="0.3"/>

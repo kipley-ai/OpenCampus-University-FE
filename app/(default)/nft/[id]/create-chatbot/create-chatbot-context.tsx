@@ -7,64 +7,55 @@ import { ChatPayload, LastMessagePayload } from "@/hooks/api/chatbox/schema";
 import { useNftDetail } from "@/hooks/api/nft";
 
 interface CreateChatbotContextProps {
-	createChatbot: any;
-	handleChangeChatbot: any;
-	
+  createChatbot: any;
+  handleChangeChatbot: any;
 }
 
 const CreateChatbotContext = createContext<
-	CreateChatbotContextProps | undefined
+  CreateChatbotContextProps | undefined
 >(undefined);
 
 export const CreateChatbotProvider = ({
-	children,
+  children,
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) => {
-	const [createChatbot, setCreateChatbot] = useState({
-		type: "",
-		kb_data: [],
-		username:""
-	});
+  const [createChatbot, setCreateChatbot] = useState({
+    type: "",
+    kb_data: [],
+    username: "",
+  });
+  const [step, setStep] = useState("choose_app");
 
+  const handleChangeChatbot = (name: string, value: any) => {
+    setCreateChatbot((prevData: any) => {
+      return {
+        ...prevData,
+        [name]: value,
+      };
+    });
+  };
 
-
-	const [step, setStep] = useState("data_source");
-	
-
-	// const nftDetail = useNftDetail({
-	// 	sft_id: "SFTID11",
-	// });
-
-	const handleChangeChatbot = (name: string, value: any) => {
-		setCreateChatbot((prevData:any) => {
-			return {
-				...prevData,
-				[name]: value,
-			};
-		});
-	};
-
-	return (
-		<CreateChatbotContext.Provider
-			value={{
-				createChatbot,
-				handleChangeChatbot,
-				
-				
-			}}
-		>
-			{children}
-		</CreateChatbotContext.Provider>
-	);
+  return (
+    <CreateChatbotContext.Provider
+      value={{
+        createChatbot,
+        handleChangeChatbot,
+        step,
+        setStep,
+      }}
+    >
+      {children}
+    </CreateChatbotContext.Provider>
+  );
 };
 
 export const useCreateChatbotContext = () => {
-	const context = useContext(CreateChatbotContext);
-	if (!context) {
-		throw new Error(
-			"useCreateChatbotContext must be used within a CreateChatbotProvider"
-		);
-	}
-	return context;
+  const context = useContext(CreateChatbotContext);
+  if (!context) {
+    throw new Error(
+      "useCreateChatbotContext must be used within a CreateChatbotProvider",
+    );
+  }
+  return context;
 };

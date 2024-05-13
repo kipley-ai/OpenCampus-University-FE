@@ -9,7 +9,6 @@ import { useSession } from "next-auth/react";
 import CreateChatbotModal from "@/components/toast-4";
 import { useSuperAdmin } from "@/hooks/api/access";
 import { useNftDetail } from "@/hooks/api/nft";
-// import LoadingIcon from "public/images/loading-icon.svg";
 import ImageInput from "@/components/image-input-2";
 import { ZodError, number, string, z } from "zod";
 import Switcher from "@/components/switcher";
@@ -21,6 +20,7 @@ import SpinnerIcon from "@/public/images/spinner-icon.svg";
 import SpinnerCheckIcon from "@/public/images/spinner-check-icon.svg";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { FormInput, FormTextarea } from "@/components/form-input";
 
 interface Category {
   title: string;
@@ -36,7 +36,7 @@ interface Form {
   pricePerQuery?: number;
 }
 
-const ChatBotForm = () => {
+export const ChatBotForm = () => {
   useEffect(() => {
     setHeaderTitle("");
   }, []);
@@ -56,7 +56,7 @@ const ChatBotForm = () => {
   const [example, setExample] = useState("");
   const router = useRouter();
   const createChatbot = useCreateChatbotAPI();
-  const { createChatbot: chatbot } = useCreateChatbotContext();
+  const { createChatbot: chatbot, setStep } = useCreateChatbotContext();
   const { id } = useParams();
   const superAdmin = useSuperAdmin();
   const { data: nftData } = useNftDetail({ sft_id: id as string });
@@ -87,10 +87,9 @@ const ChatBotForm = () => {
       .min(1, "Name is required")
       .max(100, noMoreThanCharacters(100)),
 
-    category_id: z
-      .string({
-        required_error: "Category is required",
-      }),
+    category_id: z.string({
+      required_error: "Category is required",
+    }),
 
     pricePerQuery: z
       .string({
@@ -119,17 +118,6 @@ const ChatBotForm = () => {
     twitterSession?.user?.username;
   }
 
-  // ... other form states for different inputs
-
-  const handleImageChange = (event: any) => {
-    const file = event.target.files[0];
-    if (file) {
-      setProfileImage(file);
-      // Create a URL for the image to show a preview
-      setProfileImageUrl(URL.createObjectURL(file));
-    }
-  };
-
   const handleSubmit = (event: any) => {
     event.preventDefault();
 
@@ -156,33 +144,6 @@ const ChatBotForm = () => {
       },
     );
   };
-
-  const handleCancel = () => {
-    router.push(`/nft/${id}`);
-  };
-
-  const examplePlaceholder = [
-    "e.g. User: Hi Sam! What excites you most about AI right now?\n",
-    "\n",
-    "Sam Altman: Hey! AI in healthcare is thrilling—improving imaging, drug discovery, and personalized medicine\n",
-    "\n",
-    "User: Cool! How about AI ethics? How can bias be tackled?\n",
-    "\n",
-    "Sam Altman: Ethics is vital. We're committed to fairness, accountability, and transparency. It's a challenge, but we're working on it collaboratively.\n",
-    "\n",
-    "User: Got it. And government's role in AI regulation?\n",
-  ].join("");
-
-  // 	const examplePlaceholder = `e.g. User: Hi Sam! What excites you most about AI right now?
-
-  // Sam Altman: Hey! AI in healthcare is thrilling—improving imaging, drug discovery, and personalized medicine.
-
-  // User: Cool! How about AI ethics? How can bias be tackled?
-
-  // Sam Altman: Ethics is vital. We're committed to fairness, accountability, and transparency. It's a challenge, but we're working on it collaboratively.
-
-  // User: Got it. And government's role in AI regulation?
-  // `;
 
   useEffect(() => {
     const title = KF_TITLE + "Create Chatbot";
@@ -280,172 +241,149 @@ const ChatBotForm = () => {
         open={showModal}
         setOpen={setShowModal}
       />
-      {/* <div className="flex flex-col bg-[#292D32] py-8 sm:px-6 lg:px-0"> */}
-      <div className="flex flex-col bg-container py-8 sm:px-6 lg:px-0">
-        <div className="mx-5 md:mx-32">
-          <div className="flex justify-between">
-            <div className="">
-              <h1 className="text-2xl font-semibold text-heading">
-                Create Chatbot
-              </h1>
-            </div>
-            <div className="flex w-60">
-              {chatbotPKLStatus ? (
-                <>
-                  <svg className="size-[40px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="var(--color-primary)" viewBox="0 0 20 20">
-                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-                  </svg>
-                  <span className="text-wrap text-sm font-light text-heading">
-                    Your Knowledge Asset are ready!
-                  </span>
-                </>
-              ) : (
-                <>
-                  <svg aria-hidden="true" role="status" className="mr-3 animate-spin w-10 h-10" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="var(--color-primary)"/>
-                  </svg>
-                  <span className="text-wrap text-sm font-light text-heading">
-                    Your Knowledge Asset are vectorising…
-                  </span>
-                </>
-              )}
-            </div>
-          </div>
-          {/* <h5 className="text-md text-[#7C878E]">
-					Give some general information about your character.
-				</h5> */}
-          <hr className="my-4 border border-border" />
-        </div>
-        <form className="mx-5 flex flex-col md:mx-32" onSubmit={handleSubmit}>
-          <div className="flex">
-            <div className="flex justify-center">
-              <ImageInput
-                selectedFile={selectedFile}
-                setSelectedFile={setSelectedFile}
-              />
-            </div>
-
-            <div className="w-full space-y-5 px-8">
-              <div>
-                <label
-                  htmlFor="characterName"
-                  className="block text-xs font-semibold text-heading lg:text-sm"
+      <div className="flex flex-col sm:px-6 lg:px-0">
+        <div className="flex items-center justify-between">
+          <h1 className="mb-8 text-lg font-semibold text-primary">Chatbot</h1>
+          <div className="flex w-60">
+            {chatbotPKLStatus ? (
+              <>
+                <svg
+                  width="44"
+                  height="48"
+                  viewBox="0 0 22 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="mr-2"
                 >
-                  Name
-                </label>
-                <div className="mt-1">
-                  <input
-                    id="characterName"
-                    type="text"
-                    value={form.name}
-                    onChange={(e) => handleFormChange("name", e.target.value)}
-                    className="mt-2 w-full rounded-xl border-2 bg-transparent text-xs text-heading lg:text-base"
-                    placeholder="Name your Chatbot"
-                    maxLength={100}
+                  <circle
+                    cx="11.2809"
+                    cy="12.149"
+                    r="8.15"
+                    stroke="#141BEB"
+                    stroke-width="2"
                   />
-                  {errorMessage && errorMessage.name ? (
-                    <div className=" text-xs text-red-400">
-                      {errorMessage.name}
-                    </div>
-                  ) : (
-                    <div className="text-xs opacity-0 lg:text-sm">a</div>
+                  <path
+                    d="M15.1997 9.93743L15.1261 9.86197H15.1103C14.8661 9.6889 14.5273 9.71525 14.3106 9.93743L14.4896 10.112L14.3106 9.93743L10.6295 13.7125L8.95048 11.9906C8.95031 11.9904 8.95013 11.9903 8.94996 11.9901C8.7046 11.7363 8.30576 11.7423 8.06294 11.9887C7.81966 12.2355 7.82099 12.6347 8.062 12.8818L8.06206 12.8819L10.1872 15.0597C10.1874 15.0599 10.1875 15.0601 10.1877 15.0603C10.4319 15.3127 10.8314 15.3111 11.0756 15.0606L11.0757 15.0606L15.1988 10.8306C15.199 10.8304 15.1992 10.8302 15.1994 10.83C15.4421 10.5831 15.4405 10.1844 15.1997 9.93743Z"
+                    fill="#141BEB"
+                    stroke="#141BEB"
+                    stroke-width="0.5"
+                  />
+                </svg>
+
+                <span className="text-wrap text-sm font-light text-heading">
+                  Your Knowledge Asset is ready!
+                </span>
+              </>
+            ) : (
+              <>
+                <svg
+                  aria-hidden="true"
+                  role="status"
+                  className="mr-3 h-10 w-10 animate-spin"
+                  viewBox="0 0 100 101"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                    fill="var(--color-primary)"
+                  />
+                </svg>
+                <span className="text-wrap text-sm font-light text-heading">
+                  Your Knowledge Asset is vectorising…
+                </span>
+              </>
+            )}
+          </div>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="flex flex-col gap-8">
+            <ImageInput
+              selectedFile={selectedFile}
+              setSelectedFile={setSelectedFile}
+              useDefaultImage={false}
+            />
+
+            <div className="w-full space-y-5">
+              <FormInput
+                id="name"
+                label="Name"
+                type="text"
+                value={form.name || ""}
+                onChange={(e) => handleFormChange("name", e.target.value)}
+                placeholder="Name your Chatbot"
+                maxLength={100}
+                errorMessage={errorMessage.name}
+              />
+              <FormTextarea
+                id="description"
+                label="Description"
+                value={description.value}
+                onChange={(e) =>
+                  setDescription({
+                    tmp: false,
+                    value: e.target.value,
+                  })
+                }
+                placeholder="Describe your Chatbot"
+                rows={3}
+                maxLength={1000}
+              />
+              <div className="flex gap-4 text-xs lg:text-sm">
+                <div className="w-full">
+                  <label
+                    className="flex w-full flex-col text-sm font-semibold"
+                    htmlFor="category"
+                  >
+                    Category*
+                  </label>
+                  <select
+                    id="category"
+                    value={form.category_id}
+                    className="my-1 w-full rounded-lg border-2 border-border bg-transparent"
+                    onChange={(e) =>
+                      handleFormChange("category_id", e.target.value)
+                    }
+                  >
+                    <option
+                      className="bg-sidebar text-body"
+                      selected
+                      disabled
+                      hidden
+                      value=""
+                    >
+                      Select a category
+                    </option>
+                    {categories.map((cat) => (
+                      <option
+                        className="rounded-md border-transparent bg-sidebar text-body hover:bg-secondary hover:text-heading"
+                        key={cat.category_id}
+                        value={cat.category_id}
+                      >
+                        {cat.title}
+                      </option>
+                    ))}
+                  </select>
+                  {errorMessage && errorMessage.category_id && (
+                    <p className="text-xs text-red-400">
+                      {errorMessage.category_id}
+                    </p>
                   )}
                 </div>
-                {/* <p className="mt-2 text-xs text-gray-400">
-                The name of your AI character.
-              </p> */}
-              </div>
-              <div>
-                <label
-                  htmlFor="description"
-                  className="block text-xs font-semibold text-heading lg:text-sm"
-                >
-                  Description
-                </label>
-                <div className="mt-1">
-                  <textarea
-                    id="description"
-                    value={description.value}
-                    onChange={(e) =>
-                      setDescription({ tmp: false, value: e.target.value })
-                    }
-                    placeholder={"Describe your Chatbot"}
-                    className="mt-2 w-full rounded-xl border-2 bg-transparent text-heading"
-                    rows={3}
-                    maxLength={1000}
-                  />
-                </div>
-              </div>
-              <div>
-                <label
-                  className="flex w-1/3 flex-col text-sm font-semibold text-heading"
-                  htmlFor="category"
-                >
-                  Category
-                </label>
-                <select
-                  id="category"
-                  value={form.category_id}
-                  className="mt-2 w-full rounded-xl border-2 bg-transparent"
-                  onChange={(e) => handleFormChange("category_id", e.target.value)}
-                >
-                  <option className="bg-sidebar text-body" selected disabled hidden value="">Select a category</option>
-                  {categories.map((cat) => (
-                    <option className="bg-sidebar text-body" key={cat.category_id} value={cat.category_id}>
-                      {cat.title}
-                    </option>
-                  ))}
-                </select>
-                {errorMessage && errorMessage.category_id ? (
-                  <div className=" text-xs text-red-400">
-                    {errorMessage.category_id}
-                  </div>
-                ) : (
-                  <div className="text-xs opacity-0 lg:text-sm">a</div>
-                )}
-              </div>
-              <div>
-                <label
-                  htmlFor="tone"
-                  className="block text-xs font-semibold text-heading lg:text-sm "
-                >
-                  Tone
-                </label>
-                <div className="mt-3">
-                  <Switcher
-                    texts={["1st Person Tone", "3rd Person Tone"]}
-                    mode={mode}
-                    setWhich={setMode}
-                  />
-                </div>
-              </div>
-              <div>
-                <label
-                  htmlFor="personality"
-                  className="block text-xs font-semibold text-heading lg:text-sm"
-                >
-                  Personality
-                </label>
-                <div className="mt-3">
-                  <Switcher
-                    texts={["More Focused", "More Creative"]}
-                    mode={personality}
-                    setWhich={setPersonality}
-                  />
-                </div>
-              </div>
-              <div>
-                <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold lg:text-sm">
-                  <span>Price Per Query (in $EDU)</span>
-                  <Tooltip bg="dark" position="right" size="md">
-                    Set your price per query on your chatbot app and
-                    get paid in $EDU.
-                  </Tooltip>
-                </label>
-                <div className="mt-3">
+                <div className="w-full">
+                  <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold lg:text-sm">
+                    <span>Price Per Query (in OC Points)*</span>
+                    <Tooltip bg="dark" position="right" size="md">
+                      Set your price per query on your chatbot app and get paid
+                      in OC Points.
+                    </Tooltip>
+                  </label>
                   <input
-                    className="placeholder-text-[#7C878E] w-full rounded-xl bg-transparent text-xs lg:text-sm"
+                    className="my-1 w-full rounded-lg border-2 border-border bg-transparent text-xs lg:text-sm"
                     type="number"
                     name="pricePerQuery"
                     placeholder="e.g. 1"
@@ -456,116 +394,88 @@ const ChatBotForm = () => {
                     }}
                     value={form.pricePerQuery}
                   />
-                  {errorMessage && errorMessage.pricePerQuery ? (
-                    <div className=" text-xs text-red-400">
+                  {errorMessage && errorMessage.pricePerQuery && (
+                    <p className="text-xs text-red-400">
                       {errorMessage.pricePerQuery}
-                    </div>
-                  ) : (
-                    <div className="text-xs opacity-0 lg:text-sm">a</div>
+                    </p>
                   )}
                 </div>
               </div>
+              <div className="flex gap-4">
+                <div className="w-full">
+                  <label
+                    htmlFor="tone"
+                    className="block text-xs font-semibold text-heading lg:text-sm "
+                  >
+                    Tone
+                  </label>
+                  <div className="mt-1 w-full">
+                    <Switcher
+                      texts={["1st Person Tone", "3rd Person Tone"]}
+                      mode={mode}
+                      setWhich={setMode}
+                      fullWidth={true}
+                    />
+                  </div>
+                </div>
+                <div className="w-full">
+                  <label
+                    htmlFor="personality"
+                    className="block text-xs font-semibold text-heading lg:text-sm"
+                  >
+                    Personality
+                  </label>
+                  <div className="mt-1 w-full">
+                    <Switcher
+                      texts={["More Focused", "More Creative"]}
+                      mode={personality}
+                      setWhich={setPersonality}
+                      fullWidth={true}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-            {/* <div className="mx-64 mt-10">
-              <h1 className="text-2xl font-semibold text-heading">
-                Chatbot Configuration
-              </h1> */}
-
-            {/* <h5 className="text-md text-[#7C878E]">
-              Configuration defining AI behavior.
-            </h5> */}
-
-            {/* <hr className="my-4 border border-border" />
-            </div>
-            <div className="mx-64">
-              <label
-                className="mt-4 flex flex-col font-semibold text-heading"
-                htmlFor="instructions"
-              >
-                Instructions
-              </label>
-              <textarea
-                id="instructions"
-                value={instructions}
-                onChange={(e) => setInstructions(e.target.value)}
-                placeholder="Give Instructions and Personality to your Chatbot"
-                className="mt-2 w-full rounded-xl border-2 bg-transparent text-heading"
-                rows={5}
-                maxLength={1000}
-              /> */}
-
-            {/* <div className="flex flex-row justify-between">
-              <p className="mt-2 text-xs text-gray-400">
-                Describe your AI character.
-              </p>
-              <p className="mt-2 text-xs text-gray-400">
-                Enter at least 200 more characters.
-              </p>
-            </div> */}
-
-            {/* </div>
-            <div className="mx-64">
-              <label
-                className="mt-4 flex flex-col font-semibold text-heading"
-                htmlFor="example"
-              >
-                Conversation Starters
-              </label>
-              <textarea
-                id="example"
-                value={example}
-                onChange={(e) => setExample(e.target.value)}
-                placeholder={"Examples for users to start the conversation"}
-                className="mt-2 w-full rounded-xl border-2 bg-transparent text-heading"
-                rows={5}
-                maxLength={1000}
-              /> */}
-
-            {/* <div className="flex flex-row justify-between">
-              <p className="mt-2 text-xs text-gray-400">
-                Give an example of your conversation with your AI.
-              </p>
-              <p className="mt-2 text-xs text-gray-400">
-                Enter at least 200 more characters.
-              </p>
-            </div> */}
-
-            {/* </div> */}
           </div>
 
-          <div className="form-actions flex flex-row justify-between space-x-2">
+          <div className="my-8 flex items-center justify-between border-t-2 pt-4">
             <button
-              className="mt-8 flex items-center justify-center rounded-3xl p-2 px-5 ring-2 ring-gray-600"
+              className="flex items-center justify-center gap-2 hover:underline"
               type="button"
+              onClick={() => {
+                setStep("choose_app");
+              }}
             >
-              <h5 className="text-xs font-semibold text-heading lg:text-sm" onClick={handleCancel}>
-                Cancel
-              </h5>
-            </button>
-            <button
-              className="mt-8 flex items-baseline justify-center rounded-3xl p-2 px-5 button"
-              type="submit"
-              onMouseEnter={() => setIsSvgHovered(true)}
-              onMouseLeave={() => setIsSvgHovered(false)}
-            >
-              <h5 className="text-xs font-semibold lg:text-sm">
-                Bring my chatbot to life
-              </h5>
               <svg
-                width="20"
-                height="10"
-                viewBox="0 0 20 10"
+                width="8"
+                height="13"
+                viewBox="0 0 8 13"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className={`ml-2`}
               >
                 <path
-                  d="M17.98 5.7901C18.8936 5.7901 19.6343 6.53075 19.6343 7.44439V7.44439C19.6343 8.35803 18.8936 9.09868 17.98 9.09868L1.65435 9.09868C0.74071 9.09868 5.90253e-05 8.35803 5.90618e-05 7.44439V7.44439C5.90983e-05 6.53075 0.740711 5.7901 1.65435 5.7901L17.98 5.7901Z"
-                  fill={isSvgHovered ? "var(--color-sidebar)" : (theme === "dark" ? "var(--color-heading)" : "var(--color-primary)")}
+                  d="M7.41 2.29965L6 0.889648L0 6.88965L6 12.8896L7.41 11.4796L2.83 6.88965L7.41 2.29965Z"
+                  fill="#141BEB"
                 />
+              </svg>
+
+              <p>Back</p>
+            </button>
+            <button
+              className="flex items-center justify-center gap-2 hover:underline"
+              type="submit"
+            >
+              <p>Next</p>
+              <svg
+                width="8"
+                height="13"
+                viewBox="0 0 8 13"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 <path
-                  d="M18.932 5.9907C19.5219 6.63674 19.5219 7.68418 18.932 8.33022C18.3422 8.97626 17.3859 8.97626 16.7961 8.33022L12.3947 3.50927C11.8049 2.86322 11.8049 1.81578 12.3947 1.16974C12.9845 0.523702 13.9408 0.523702 14.5306 1.16974L18.932 5.9907Z"
-                  fill={isSvgHovered ? "var(--color-sidebar)" : (theme === "dark" ? "var(--color-heading)" : "var(--color-primary)")}
+                  d="M2 0.889648L0.589996 2.29965L5.17 6.88965L0.589996 11.4796L2 12.8896L8 6.88965L2 0.889648Z"
+                  fill="#141BEB"
                 />
               </svg>
             </button>
@@ -575,5 +485,3 @@ const ChatBotForm = () => {
     </>
   );
 };
-
-export default ChatBotForm;

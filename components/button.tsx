@@ -42,3 +42,26 @@ const Button = ({ children, className, disabled, ...props }: ButtonProps) => {
 };
 
 export default Button;
+
+interface SecondaryButtonProps {
+  children: React.ReactNode;
+  className?: string;
+  onClick?: any;
+  disabled?: boolean;
+  type?: "button" | "submit" | "reset";
+}
+
+export const SecondaryButton = ({
+  children,
+  className,
+  ...props
+}: SecondaryButtonProps) => {
+  return (
+    <button
+      className={`flex items-center justify-center gap-2 rounded-md border border-primary bg-white px-3 py-1 text-xs font-medium text-primary hover:bg-slate-200 disabled:border-0 disabled:bg-[#B8BABE] disabled:text-[#909295] xl:text-sm ${className}`}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};

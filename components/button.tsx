@@ -30,7 +30,7 @@ const Button = ({ children, className, disabled, ...props }: ButtonProps) => {
   return (
     <button
       className={cn(
-        "flex items-center justify-center gap-2 rounded-md bg-primary px-3 py-1 text-xs font-medium text-white hover:bg-[#2338F7] disabled:border-0 disabled:bg-[#B8BABE] disabled:text-[#909295] xl:text-sm",
+        "flex items-center justify-center gap-2 rounded-md bg-primary px-3 py-1 text-xs font-medium text-white hover:bg-[#1016BC] disabled:border-0 disabled:bg-[#B8BABE] disabled:text-[#909295] xl:text-sm",
         className,
       )}
       disabled={disabled}

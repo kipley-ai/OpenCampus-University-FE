@@ -25,7 +25,7 @@ export default function ModalBlank({
           aria-hidden="true"
         />
         <Transition.Child
-          className="fixed inset-0 z-50 overflow-hidden flex items-start pt-16 my-4 justify-center px-4 sm:px-6"
+          className="fixed inset-0 z-50 overflow-hidden flex items-start pt-20 my-4 justify-center px-4 sm:px-6"
           enter="transition ease-in-out duration-200"
           enterFrom="opacity-0 translate-y-4"
           enterTo="opacity-100 translate-y-0"
@@ -33,7 +33,7 @@ export default function ModalBlank({
           leaveFrom="opacity-100 translate-y-0"
           leaveTo="opacity-0 translate-y-4"
         >
-          <Dialog.Panel className="bg-container rounded-2xl shadow-lg overflow-auto max-h-full text-heading">
+          <Dialog.Panel className="bg-box rounded-2xl shadow-xl overflow-auto max-h-full text-heading">
             {children}
           </Dialog.Panel>
         </Transition.Child>

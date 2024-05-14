@@ -21,6 +21,7 @@ import SpinnerCheckIcon from "@/public/images/spinner-check-icon.svg";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { FormInput, FormTextarea } from "@/components/form-input";
+import { ModalSuccessBasic } from "@/components/modal-success-basic";
 
 interface Category {
   title: string;
@@ -51,7 +52,7 @@ export const ChatBotForm = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [profileImage, setProfileImage] = useState("");
   const [profileImageUrl, setProfileImageUrl] = useState("");
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const [instructions, setInstructions] = useState("");
   const [example, setExample] = useState("");
   const router = useRouter();
@@ -236,8 +237,9 @@ export const ChatBotForm = () => {
 
   return (
     <>
-      <CreateChatbotModal
-        children={"Your chatbot has been created successfully!"}
+      <ModalSuccessBasic
+        message="Your chatbot has been created successfully!"
+        imagePath="/images/create-chatbot-success.svg"
         open={showModal}
         setOpen={setShowModal}
       />

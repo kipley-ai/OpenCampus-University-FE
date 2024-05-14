@@ -128,3 +128,14 @@ export interface IChatroomHistoryParams {
   page_num: number;
   page_size: number;
 }
+
+export interface ICreateQuizParams {
+  profile_image: string;
+  name: string;
+  description: string;
+  difficulty: string;
+  no_of_questions: string | undefined;
+  price_per_query: number;
+  sft_id: string;
+  kb_id: string;
+}

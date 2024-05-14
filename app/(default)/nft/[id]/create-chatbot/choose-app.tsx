@@ -38,13 +38,13 @@ export function ChooseApp() {
 
   return (
     <>
-      <div className="mb-24 flex flex-col gap-8">
+      <div className="mb-16 flex flex-col gap-8 md:mb-24">
         <h1 className="text-lg font-semibold text-primary">Select App</h1>
-        <div className="grid grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-6">
           {apps.map((app) => (
             <button
               key={app.name}
-              className={`flex flex-col items-center justify-center gap-6 rounded-2xl border-2 bg-container px-4 py-6 text-xl font-medium ${app.step === "" ? "disabled text-secondary-text" : "text-primary"} enabled:hover:bg-secondary ${chosenApp === app.step ? "border-primary" : "border-border"}`}
+              className={`flex h-36 flex-col items-center justify-center gap-6 rounded-2xl border-2 bg-container px-4 py-6 text-xl font-medium ${app.step === "" ? "disabled text-secondary-text" : "text-primary"} enabled:hover:bg-secondary ${chosenApp === app.step ? "border-primary" : "border-border"}`}
               onClick={() => setChosenApp(app.step)}
             >
               {app.step !== "" && <Image src={app.icon} alt={app.name} />}

@@ -242,9 +242,9 @@ export const ChatBotForm = () => {
         setOpen={setShowModal}
       />
       <div className="flex flex-col sm:px-6 lg:px-0">
-        <div className="flex items-center justify-between">
-          <h1 className="mb-8 text-lg font-semibold text-primary">Chatbot</h1>
-          <div className="flex w-60">
+        <div className="mb-8 flex items-center justify-between">
+          <h1 className="text-lg font-semibold text-primary">Chatbot</h1>
+          <div className="flex w-32 items-center xs:w-60">
             {chatbotPKLStatus ? (
               <>
                 <svg
@@ -253,7 +253,7 @@ export const ChatBotForm = () => {
                   viewBox="0 0 22 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="mr-2"
+                  className="mr-2 size-8 xs:size-10 md:size-12"
                 >
                   <circle
                     cx="11.2809"
@@ -270,7 +270,7 @@ export const ChatBotForm = () => {
                   />
                 </svg>
 
-                <span className="text-wrap text-sm font-light text-heading">
+                <span className="text-wrap text-xs font-light text-heading md:text-sm">
                   Your Knowledge Asset is ready!
                 </span>
               </>
@@ -279,7 +279,7 @@ export const ChatBotForm = () => {
                 <svg
                   aria-hidden="true"
                   role="status"
-                  className="mr-3 h-10 w-10 animate-spin"
+                  className="mr-3 size-10 animate-spin"
                   viewBox="0 0 100 101"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -293,7 +293,7 @@ export const ChatBotForm = () => {
                     fill="var(--color-primary)"
                   />
                 </svg>
-                <span className="text-wrap text-sm font-light text-heading">
+                <span className="text-wrap text-xs font-light text-heading md:text-sm">
                   Your Knowledge Asset is vectorising…
                 </span>
               </>
@@ -317,6 +317,7 @@ export const ChatBotForm = () => {
                 onChange={(e) => handleFormChange("name", e.target.value)}
                 placeholder="Name your Chatbot"
                 maxLength={100}
+                isRequired
                 errorMessage={errorMessage.name}
               />
               <FormTextarea
@@ -333,10 +334,10 @@ export const ChatBotForm = () => {
                 rows={3}
                 maxLength={1000}
               />
-              <div className="flex gap-4 text-xs lg:text-sm">
+              <div className="flex items-end gap-4">
                 <div className="w-full">
                   <label
-                    className="flex w-full flex-col text-sm font-semibold"
+                    className="flex w-full flex-col text-xs font-semibold lg:text-sm"
                     htmlFor="category"
                   >
                     Category*
@@ -344,7 +345,7 @@ export const ChatBotForm = () => {
                   <select
                     id="category"
                     value={form.category_id}
-                    className="my-1 w-full rounded-lg border-2 border-border bg-transparent"
+                    className="my-1 w-full rounded-lg border-2 border-border bg-transparent text-xs lg:text-sm"
                     onChange={(e) =>
                       handleFormChange("category_id", e.target.value)
                     }

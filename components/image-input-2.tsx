@@ -82,7 +82,7 @@ const ImageInput = ({ selectedFile, setSelectedFile }: any) => {
         multiple={false}
       >
         {({ getRootProps, getInputProps }) => (
-          <div className="dropzone cursor-pointer " {...getRootProps()}>
+          <div className="dropzone shrink-0 cursor-pointer" {...getRootProps()}>
             <input
               {...getInputProps()}
               onChange={handleCoverChange}
@@ -128,8 +128,8 @@ const ImageInput = ({ selectedFile, setSelectedFile }: any) => {
           </div>
         )}
       </Dropzone>
-      <div className="flex flex-col gap-2 pt-6 md:pt-0">
-        <div className="flex gap-2">
+      <div className="flex flex-col gap-2 sm:w-2/5">
+        <div className="flex gap-2 max-xs:flex-col">
           <Button
             onClick={handleChangeImage}
             className="bg-primary text-white hover:brightness-125"
@@ -145,25 +145,27 @@ const ImageInput = ({ selectedFile, setSelectedFile }: any) => {
             Choose From Gallery
           </SecondaryButton>
         </div>
-        <p className="w-2/3 text-xs text-gray-400">
-          Please upload JPG, GIF or PNG only. Maximum size of 800KB, minimum
-          dimension of 200 x 200px
-        </p>
-        <div className="flex gap-2">
-          <button
-            type="button"
-            onClick={handleRandomCover}
-            className="text-xs text-primary underline"
-          >
-            Random
-          </button>
-          <button
-            onClick={handleRemoveCover}
-            className="text-xs text-red-700"
-            type="button"
-          >
-            Remove image
-          </button>
+        <div className="flex flex-col gap-2">
+          <p className="text-xs text-gray-400">
+            Please upload JPG, GIF or PNG only. Maximum size of 800KB, minimum
+            dimension of 200 x 200px
+          </p>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={handleRandomCover}
+              className="text-xs text-primary underline"
+            >
+              Random
+            </button>
+            <button
+              onClick={handleRemoveCover}
+              className="text-xs text-red-700"
+              type="button"
+            >
+              Remove image
+            </button>
+          </div>
         </div>
       </div>
       <ModalImageGallery

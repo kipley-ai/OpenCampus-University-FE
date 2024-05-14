@@ -144,58 +144,54 @@ const ChatbotSettings = () => {
         open={showModal}
         setOpen={setShowModal}
       />
-      <div className="flex flex-col bg-container py-8 sm:px-6 lg:px-0">
-        <form className="flex flex-col gap-4 space-y-4">
-          <div className="flex flex-row justify-between gap-8">
-            <div className="w-60">
-              <ImageInput
-                selectedFile={selectedFile}
-                setSelectedFile={setSelectedFile}
-              />
-            </div>
+      <div>
+        <div className="flex items-center justify-between">
+          <h1 className="text-lg font-semibold text-primary">
+            Chatbot Settings
+          </h1>
+        </div>
+      </div>
+      <form className="mt-4 flex flex-col gap-8">
+        <ImageInput
+          selectedFile={selectedFile}
+          setSelectedFile={setSelectedFile}
+        />
 
-            <div className="flex w-full flex-col gap-6">
-              <div className="">
-                <label
-                  htmlFor="characterName"
-                  className="block text-sm font-semibold text-heading "
-                >
-                  Name
-                </label>
-                <div className="mt-1">
-                  <input
-                    id="characterName"
-                    type="text"
-                    value={form.name}
-                    className="mt-2 w-full rounded-xl border-2 border-[#50575F] bg-transparent text-heading"
-                    placeholder="Name your Chatbot"
-                    onChange={(e) => handleFormChange("name", e.target.value)}
-                    maxLength={100}
-                  />
-                </div>
-              </div>
+        <div className="flex w-full flex-col gap-0">
+          <div className="flex flex-col gap-1">
+            <label htmlFor="characterName" className="text-xs font-semibold text-heading lg:text-sm">
+              Name*
+            </label>
+            <input
+              id="characterName"
+              type="text"
+              value={form.name}
+              className="rounded-lg border-[#D1D5DB] bg-transparent text-xs text-heading lg:text-sm"
+              placeholder="Name your Chatbot"
+              onChange={(e) => handleFormChange("name", e.target.value)}
+              maxLength={100}
+            />
+          </div>
 
-              <div className="">
-                <label
-                  htmlFor="description"
-                  className="block text-sm font-semibold text-heading"
-                >
-                  Description
-                </label>
-                <div className="mt-1">
-                  <textarea
-                    id="description"
-                    value={form.description}
-                    className="mt-2 w-full rounded-xl border-2 border-[#50575F] bg-transparent text-heading"
-                    placeholder="Describe your Chatbot"
-                    onChange={(e) =>
-                      handleFormChange("description", e.target.value)
-                    }
-                    rows={3}
-                    maxLength={1000}
-                  />
-                </div>
-              </div>
+          <div className="flex flex-col gap-1 mt-7">
+            <label
+              htmlFor="description"
+              className="text-xs font-semibold text-heading lg:text-sm"
+            >
+              Description
+            </label>
+            <textarea
+              id="description"
+              value={form.description}
+              className="placeholder-text-[#6B7280] rounded-lg border-[#D1D5DB] bg-transparent text-xs text-heading lg:text-sm"
+              placeholder="Describe your Chatbot"
+              onChange={(e) =>
+                handleFormChange("description", e.target.value)
+              }
+              rows={3}
+              maxLength={1000}
+            />
+          </div>
 
               <div className="">
                 <label
@@ -233,37 +229,35 @@ const ChatbotSettings = () => {
                 </select>
               </div>
 
-              <div>
-                <label
-                  htmlFor="tone"
-                  className="block text-xs font-semibold text-heading lg:text-sm "
-                >
-                  Tone
-                </label>
-                <div className="mt-3">
-                  <Switcher
-                    texts={["1st Person Tone", "3rd Person Tone"]}
-                    mode={mode}
-                    setWhich={setMode}
-                  />
-                </div>
-              </div>
+          <div className="grid grid-cols-12 gap-4">
+            <div className="flex flex-col col-span-6 gap-1 mt-7">
+              <label
+                htmlFor="tone"
+                className="w-full rounded-lg border-[#D1D5DB] bg-transparent text-xs text-heading lg:text-sm"
+              >
+                Tone
+              </label>
+              <Switcher
+                texts={["1st Person Tone", "3rd Person Tone"]}
+                mode={mode}
+                setWhich={setMode}
+              />
+            </div>
 
-              <div>
-                <label
-                  htmlFor="personality"
-                  className="block text-xs font-semibold text-heading lg:text-sm"
-                >
-                  Personality
-                </label>
-                <div className="mt-3">
-                  <Switcher
-                    texts={["More Focused", "More Creative"]}
-                    mode={personality}
-                    setWhich={setPersonality}
-                  />
-                </div>
-              </div>
+            <div className="flex flex-col col-span-6  gap-1 mt-7">
+              <label
+                htmlFor="personality"
+                className="w-full rounded-lg border-[#D1D5DB] bg-transparent text-xs text-heading lg:text-sm"
+              >
+                Personality
+              </label>
+              <Switcher
+                texts={["More Focused", "More Creative"]}
+                mode={personality}
+                setWhich={setPersonality}
+              />
+            </div>
+          </div>
 
               <div>
                 <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold lg:text-sm">

@@ -96,6 +96,8 @@ export interface IChatbotList {
   page: number;
   page_size: number;
   sort_by: string;
+  sft_id?: string | undefined | null;
+  explore_name?: string | undefined | null;
 }
 
 // Used by hooks/api/nft/index.ts
@@ -103,6 +105,7 @@ export interface INftList {
   page: number;
   page_size: number;
   sort_by: string;
+  chatbot_id?: string | undefined | null;
 }
 
 export interface IUpdateUserParams {

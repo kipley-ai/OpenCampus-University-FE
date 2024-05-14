@@ -7,7 +7,7 @@ import { useAppProvider } from "@/providers/app-provider";
 import { useEffect } from "react";
 import link_nft_chatbot from "@/public/images/link-nft-chatbot.png";
 import { useCallback, useState } from "react";
-import { useNftDetail } from "@/hooks/api/nft";
+import { useNFTList, useNftDetail } from "@/hooks/api/nft";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
@@ -15,9 +15,8 @@ import { useKBDetail } from "@/hooks/api/kb";
 import { useCreditBalance } from "@/hooks/api/credit";
 import defaultAvatar from "@/public/images/avatar-default-02.svg";
 import { FaSpinner } from "react-icons/fa6";
+import { id } from "ethers";
 import { ChatbotData, NftData } from "@/lib/types";
-import { chatbotSlug } from "@/utils/utils";
-import { useChatbotList } from "@/hooks/api/chatbot";
 import { keepPreviousData } from "@tanstack/react-query";
 import { PaginationController } from "@/components/pagination-2/controller";
 import Money from "public/images/money.svg";
@@ -41,7 +40,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
   const nftOpenSeaLink = `${process.env.NEXT_PUBLIC_OPENSEA_URL}/${nftDetail.sft_address}`;
 
   return (
-    <div className="grid grid-cols-1 gap-4 text-heading md:grid-cols-3">
+    <div className="grid grid-cols-1 gap-4 pb-4 text-heading md:grid-cols-3 md:pb-12">
       <div className="w-2/5 md:w-full">
         <Image
           className="rounded-2xl"
@@ -51,7 +50,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
           height={325}
         />
       </div>
-      <div className="md:col-span-2 pl-7 pb-3">
+      <div className="md:col-span-2 pl-7 pb-10">
         <h1 className="text-center text-3xl font-semibold md:text-left md:text-4xl">
           {nftDetail.name}
         </h1>
@@ -127,7 +126,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
             </button>
           </Link>
         </div>
-        {/* <div className="mt-2 rounded rounded-md bg-box px-5 py-2 border border-[#DDDDEB]">
+        <div className="mt-2 rounded rounded-md bg-box px-5 py-2 border border-[#DDDDEB]">
           <div className="flex flex-grow justify-between">
             <span className="block text-sm text-[#94A3B8] font-medium">
               Data Types
@@ -136,7 +135,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
               {nftDetail.type}
             </span>
           </div>
-        </div> */}
+        </div>
         <div className="mt-2 rounded rounded-md bg-box px-5 py-2 border border-[#DDDDEB]">
           <div className="flex flex-grow justify-between">
             <span className="block text-sm text-[#94A3B8] font-medium">
@@ -160,24 +159,53 @@ const ChatbotSection = ({
   kbDetail: any;
 }) => {
   return (
-    <div className="grid grid-cols-1 gap-x-12 gap-y-8 pt-4 text-heading md:grid-cols-2 md:gap-y-4 md:pt-10 xl:gap-x-20">
-      <div className="flex items-center justify-between gap-4 md:col-span-2">
-        <div className="flex items-center">
-          <Image
-            className="mr-4 rounded-lg object-cover"
-            width={85}
-            height={85}
-            src={chatbotDetail.profile_image}
-            alt="chatbot image"
-          />
-          <h1 className="text-6xl font-semibold md:text-4xl">
-            {chatbotDetail.name}
-            {/* {console.log(chatbotDetail)} */}
-          </h1>
+    <div className="grid grid-cols-1 gap-4 text-heading md:grid-cols-3">
+      <div className="w-2/5 md:w-full">
+        <Image
+          className="rounded-2xl"
+          src={chatbotDetail.profile_image}
+          alt="nft image"
+          width={325}
+          height={325}
+        />
+      </div>
+      <div className="md:col-span-2 pl-7 pb-3">
+        <h1 className="text-center text-3xl font-semibold md:text-left md:text-4xl">
+          {chatbotDetail.name}
+        </h1>
+        <div className="my-4 border-t-2 border-border mb-5"></div>
+        <div className="flex flex-row">
+          <p className="text-center text-sm text-heading md:text-left font-medium">
+            {chatbotDetail.description}
+          </p>
         </div>
-        <div>
+        <div className="flex flex-row mt-3">
+          <p className="mr-2 text-center text-sm text-[#94A3B8] md:text-left font-medium">
+            Chatbot Owner
+          </p>
+          <p className="text-center text-sm text-heading md:text-left font-medium">
+            {chatbotDetail.wallet_addr!.substring(0, 6) +
+              "..." +
+              chatbotDetail.wallet_addr!.substring(
+                chatbotDetail.wallet_addr!.length - 6,
+              )}
+          </p>
+        </div>
+        <div className="flex flex-row mt-3">
+          <p className="mr-2 text-center text-sm text-[#94A3B8] md:text-left font-medium">
+            Created Time
+          </p>
+          <p className="text-center text-sm text-heading md:text-left font-medium">
+            {formatTimestamp(chatbotDetail.created_at)}
+          </p>
+        </div>
+        {/* <div className="my-4 border-t-2 border-border"></div> */}
+        <div className="mb-2 flex flex-grow justify-between items-center mt-11">
+          <h3 className="text-center text-sm font-semibold md:text-left uppercase">
+            More Info
+          </h3>
           <Link href={"/chatbot/" + chatbotDetail.chatbot_id + "/edit"}>
-            <button className="group button inline-flex gap-2">
+            <button className="group button inline-flex items-center gap-2 rounded-md">
               <svg
                 width="20"
                 height="20"
@@ -191,45 +219,26 @@ const ChatbotSection = ({
                   d="M14.8 2H13.2L13.2 3.6H11.6V5.2H10V6.8H8.4V8.4H6.8V10H5.2V11.6H3.6V13.2L2 13.2V16.4V18H3.6H6.8V16.4L8.4 16.4V14.8H10V13.2L11.6 13.2V11.6H13.2V10H14.8V8.4H16.4V6.8H18V5.2H16.4L16.4 3.6H14.8V2ZM14.8 8.4H13.2L13.2 10H11.6V11.6H10V13.2H8.4V14.8H6.8V13.2L5.2 13.2V11.6H6.8V10H8.4V8.4H10V6.8H11.6V5.2H13.2L13.2 6.8H14.8V8.4ZM5.2 13.2H3.6V16.4H6.8V14.8H5.2V13.2Z"
                 />
               </svg>
-              <span>Manage Chatbot</span>
+              <span className="text-sm font-medium">Manage Chatbot</span>
             </button>
           </Link>
         </div>
-      </div>
-      <div className="col-span-1 font-poppins text-sm text-body">
-        <p className="mb-4">{chatbotDetail.description}</p>
-      </div>
-      <div className="text-sm font-semibold">
-        <div className="mt-2 rounded bg-box px-4 py-2">
+        {/* <div className="mt-2 rounded rounded-md bg-box px-5 py-2 border border-[#DDDDEB]">
           <div className="flex flex-grow justify-between">
-            <span className="block text-sm font-bold text-[#7C878E]">
-              Chatbot Owner
+            <span className="block text-sm text-[#94A3B8] font-medium">
+              Data Types
             </span>
-            <span className="block text-sm text-heading">
-              {chatbotDetail.wallet_addr!.substring(0, 6) +
-                "..." +
-                chatbotDetail.wallet_addr!.substring(
-                  chatbotDetail.wallet_addr!.length - 6,
-                )}
+            <span className="block text-sm capitalize text-heading font-medium">
+              {kbDetail?.type!}
             </span>
           </div>
-        </div>
-        <div className="mt-2 rounded bg-box px-4 py-2">
+        </div> */}
+        <div className="mt-2 rounded rounded-md bg-box px-5 py-2 border border-[#DDDDEB]">
           <div className="flex flex-grow justify-between">
-            <span className="block text-sm font-bold text-[#7C878E]">
-              Created At
+            <span className="block text-sm text-[#94A3B8] font-medium">
+              Last Updated at
             </span>
-            <span className="block text-sm text-heading">
-              {formatTimestamp(chatbotDetail.created_at)}
-            </span>
-          </div>
-        </div>
-        <div className="mt-2 rounded bg-box px-4 py-2">
-          <div className="flex flex-grow justify-between">
-            <span className="block text-sm font-bold text-[#7C878E]">
-              Last Updated At
-            </span>
-            <span className="block text-sm">
+            <span className="block text-sm capitalize text-heading font-medium">
               {formatTimestamp(chatbotDetail.last_updated)}
             </span>
           </div>
@@ -237,108 +246,6 @@ const ChatbotSection = ({
       </div>
     </div>
   );
-};
-
-type BotCardProps = {
-  bot: ChatbotData;
-};
-
-const BotCard = ({ bot }: BotCardProps) => {
-  return (
-    <div className="group relative flex flex-col rounded-3xl bg-box">
-      <Image
-        src={bot.profile_image || "/images/bot-default-thumb.png"}
-        className="mx-auto h-full rounded-2xl object-cover p-1 pb-0"
-        width={300}
-        height={300}
-        alt={"Bot Card"}
-      />
-      <div className="flex flex-col gap-1 px-4 pt-4">
-        <p className="line-clamp-1 text-primary font-semibold">{bot.name}</p>
-        {/* <p className="line-clamp-1 text-xs text-gray-400">
-          {bot.category_name || "Uncategorised"}
-        </p> */}
-      </div>
-      <div className="absolute bottom-0 hidden h-12 w-full divide-x-2 divide-primary rounded-b-2xl border border-2 border-primary bg-box text-primary group-hover:flex">
-        <Link
-          className="flex flex-1 items-center justify-center rounded-bl-xl px-1 hover:bg-primary hover:text-container"
-          href={`/app/${bot.chatbot_id}`}
-        >
-          <p className="text-center text-sm font-semibold">View Details</p>
-        </Link>
-        <Link
-          className="flex flex-1 items-center justify-center rounded-br-xl hover:bg-primary hover:text-container"
-          href={`/chatbot/` + chatbotSlug(bot)}
-        >
-          <p className="text-center text-sm font-semibold">Chat</p>
-        </Link>
-      </div>
-    </div>
-  );
-};
-
-const BotList = ({ id }: { id: any }) => {
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(3);
-
-  const { isPending, isError, error, data, isFetching } = useChatbotList(
-    {
-      page: currentPage,
-      page_size: pageSize,
-      sort_by: "created_at",
-      sft_id: id!,
-      explore_name: "",
-    },
-    keepPreviousData,
-  );
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
-
-  if (isPending) {
-    return (
-      <div className="flex h-32 w-full items-center justify-center gap-4">
-        <FaSpinner size={20} className="animate-spin" />
-        <p className="text-md text-heading">Loading</p>
-      </div>
-    );
-  }
-
-  if (isError) {
-    return <div>Error: {error.message}</div>;
-  }
-
-  const { chatbot_data: botsData, chatbot_count: botCount } = data.data.data;
-
-  if (botCount > 0) {
-    const totalPages = Math.ceil(botCount / pageSize);
-
-    return (
-      <>
-        <div className="grid grid-cols-2 gap-x-4 gap-y-4 md:grid-cols-3 md:gap-x-6 md:gap-y-6 lg:gap-y-6">
-          {botsData.map((bot: ChatbotData) => (
-            <BotCard bot={bot} key={bot.chatbot_id} />
-          ))}
-        </div>
-        <div className="flex flex-col items-center pb-4">
-          <div
-            className={`${!isFetching && "invisible"} flex w-full items-center justify-center gap-4`}
-          >
-            <FaSpinner size={20} className="animate-spin" />
-            <p className="text-md text-heading">Loading</p>
-          </div>
-          <PaginationController
-            currentPage={currentPage}
-            onPageChange={handlePageChange}
-            totalPages={totalPages}
-          />
-        </div>
-      </>
-    );
-  }
-  
-  return <NoData />;
 };
 
 const NoNFT = () => {
@@ -410,6 +317,43 @@ const NoChatbot = () => {
   );
 };
 
+type NFTCardProps = {
+  nft: NftData;
+};
+
+const NFTCard = ({ nft }: NFTCardProps) => {
+  return (
+    <div className="group relative flex flex-col rounded-3xl bg-box">
+      <Image
+        src={nft.profile_image || "/images/nft-default-thumb.png"}
+        className="mx-auto h-full rounded-2xl object-cover p-1 pb-0"
+        width={300}
+        height={300}
+        alt={"NFT Card"}
+      />
+      <div className="flex flex-col gap-1 px-4 pt-4">
+        {/* <Link href={`/nft/${nft.sft_id}`}> */}
+          <p className="line-clamp-1 text-primary font-semibold">{nft.name}</p>
+        {/* </Link> */}
+      </div>
+        
+        {/* <p className="line-clamp-1 text-sm text-heading">
+          {nft.price_per_query} {nft.token_symbol}
+        </p> */}
+        {/* <p className="line-clamp-1 text-[12px] text-gray-400">
+          {nft.category || "Uncategorised"}
+        </p> */}
+      <Link href={`/nft/${nft.sft_id}`}>
+        <div className="absolute bottom-0 hidden h-12 w-full items-center justify-center rounded-b-2xl bg-primary group-hover:flex">
+          <p className="text-center text-sm font-semibold text-container">
+            View More
+          </p>
+        </div>
+      </Link>
+    </div>
+  );
+};
+
 const NoData = () => {
   return (
     <div className="flex flex-col items-center justify-center gap-4 my-6">
@@ -436,7 +380,70 @@ const NoData = () => {
   );
 };
 
-const NFTDetail = ({ params }: { params: any }) => {
+const NFTList = ({ id }: { id: any }) => {
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [pageSize, setPageSize] = useState<number>(3);
+  
+  const { isPending, isError, error, data, isFetching } = useNFTList(
+    {
+      page: currentPage,
+      page_size: pageSize,
+      sort_by: "created",
+      chatbot_id: id!,
+    },
+    keepPreviousData,
+  );
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  if (isPending) {
+    return (
+      <div className="flex h-32 w-full items-center justify-center gap-4">
+        <FaSpinner size={20} className="animate-spin" />
+        <p className="text-md text-heading">Loading</p>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  const { nft_data: nftsData, nft_count: nftCount } = data.data.data;
+
+  if (nftCount > 0) {
+    const totalPages = Math.ceil(nftCount / pageSize);
+
+    return (
+      <>
+        <div className="grid grid-cols-2 gap-x-4 gap-y-4 md:grid-cols-3 md:gap-x-6 md:gap-y-6 lg:gap-y-6">
+          {nftsData.map((nft: NftData) => (
+            <NFTCard nft={nft} key={nft.sft_id} />
+          ))}
+        </div>
+        <div className="flex flex-col items-center pb-4">
+          <div
+            className={`${!isFetching && "invisible"} flex w-full items-center justify-center gap-4`}
+          >
+            <FaSpinner size={20} className="animate-spin" />
+            <p className="text-md text-heading">Loading</p>
+          </div>
+          <PaginationController
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+            totalPages={totalPages}
+          />
+        </div>
+      </>
+    );
+  }
+
+  return <NoData />;
+};
+
+const BotDetail = ({ params }: { params: any }) => {
   const { setHeaderTitle } = useAppProvider();
   useEffect(() => {
     setHeaderTitle("My SFT");
@@ -444,30 +451,41 @@ const NFTDetail = ({ params }: { params: any }) => {
   const { id } = params;
   const router = useRouter();
 
-  const nftQuery = useNftDetail({ sft_id: id });
+  // const nftQuery = useChatbotDetail({ chatbot_id: id });
+  
+  const chatbotQuery = useChatbotDetail({
+    chatbot_id: id
+  });
+
+  const { data: kbDetail } = useKBDetail({
+    kb_id: chatbotQuery.data?.data.data.kb_id as string,
+  });
 
   return (
     <div className="h-full flex-col px-4 md:flex-row md:pl-10 justify-start bg-container md:w-5/6">
-      <h1 className="text-heading text-lg font-semibold py-3">Knowledge Asset SFT Details</h1>
+      <h1 className="text-heading text-lg font-semibold py-3">Chatbot Details</h1>
       <div className="flex flex-col px-6 py-9 pb-0 lg:px-8 xl:px-10 bg-sidebar border border-[#DDDDEB] rounded-2xl">
         <div>
-          {nftQuery.isPending ? (
-            <div className="flex h-[45vh] w-full items-center justify-center gap-4">
+          {chatbotQuery.isLoading ? (
+            <div className="flex h-[50vh] w-full items-center justify-center gap-4">
               <FaSpinner size={20} className="animate-spin" />
               <p className="text-md text-heading">Loading</p>
             </div>
-          ) : nftQuery.isError ? (
-            <div>Error: {nftQuery.error.message}</div>
-          ) : nftQuery.data ? (
-            <NFTSection nftDetail={nftQuery.data?.data.data} />
+          ) : chatbotQuery.isError ? (
+            <div>Error: {chatbotQuery.error.message}</div>
+          ) : chatbotQuery.data?.data?.data ? (
+            <ChatbotSection
+              chatbotDetail={chatbotQuery.data?.data.data}
+              kbDetail={kbDetail?.data.data}
+            />
           ) : (
-            // <NoNFT />
+            // <NoChatbot />
             null
           )}
         </div>
-        <span className="text-lg text-primary font-semibold md:pt-3">App</span>
+        <span className="text-lg text-primary font-semibold md:pt-3">Knowledge Assets</span>
         <div className="pt-3">
-          <BotList id={id} />
+          <NFTList id={id} />
         </div>
         <div className="my-8 mt-4 flex items-center justify-between">
           <button 
@@ -497,4 +515,4 @@ const NFTDetail = ({ params }: { params: any }) => {
     </div>
   );
 };
-export default NFTDetail;
+export default BotDetail;

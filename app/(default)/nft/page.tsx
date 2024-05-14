@@ -11,6 +11,7 @@ import { useMyChatbotList } from "@/hooks/api/chatbot";
 import { ChatbotData, NftData } from "@/lib/types";
 import { LoadMore, LoadMoreSpinner } from "@/components/load-more";
 import { PaginationController } from "@/components/pagination-2/controller";
+import Money from "public/images/money.svg";
 
 import { useRouter } from "next/navigation";
 import { useUserDetail } from "@/hooks/api/user";
@@ -24,17 +25,17 @@ type NoDataProps = {
 
 const NoData = ({ item, url }: NoDataProps) => {
   return (
-    <div className="flex flex-col items-center justify-center gap-4">
+    <div className="flex flex-col items-center justify-center gap-4 mt-1 mb-16">
       <Image
-        src="/images/no-data.png"
-        width={167}
-        height={115}
+        src={Money}
+        width={77}
+        height={77}
         alt={"No Data"}
       />
-      <p className="text-lg font-semibold text-heading">No data yet</p>
+      <p className="text-primary font-semibold lowercase">No data yet</p>
 
       {/* Create new Item */}
-      {item == "SFT" ? (
+      {/* {item == "SFT" ? (
         <Link href={url}>
           <div className="flex items-center gap-2 hover:brightness-75 text-primary">
             <FaPlus />
@@ -43,7 +44,7 @@ const NoData = ({ item, url }: NoDataProps) => {
         </Link>
       ) : (
         <></>
-      )}
+      )} */}
     </div>
   );
 };
@@ -57,20 +58,23 @@ const NFTCard = ({ nft }: NFTCardProps) => {
     <div className="group relative flex flex-col rounded-3xl bg-box">
       <Image
         src={nft.profile_image || "/images/nft-default-thumb.png"}
-        className="mx-auto h-full rounded-t-3xl object-cover p-1 pb-0"
+        className="mx-auto h-full rounded-2xl object-cover p-1 pb-0"
         width={300}
         height={300}
         alt={"NFT Card"}
       />
-      <div className="flex flex-col gap-1 px-4 py-4">
-        <p className="line-clamp-1 text-sm text-heading">{nft.name}</p>
-        <p className="line-clamp-1 text-sm text-heading">
+      <div className="flex flex-col gap-1 px-4 pt-4">
+        {/* <Link href={`/nft/${nft.sft_id}`}> */}
+          <p className="line-clamp-1 text-primary font-semibold">{nft.name}</p>
+        {/* </Link> */}
+      </div>
+        
+        {/* <p className="line-clamp-1 text-sm text-heading">
           {nft.price_per_query} {nft.token_symbol}
-        </p>
+        </p> */}
         {/* <p className="line-clamp-1 text-[12px] text-gray-400">
           {nft.category || "Uncategorised"}
         </p> */}
-      </div>
       <Link href={`/nft/${nft.sft_id}`}>
         <div className="absolute bottom-0 hidden h-12 w-full items-center justify-center rounded-b-2xl bg-primary group-hover:flex">
           <p className="text-center text-sm font-semibold text-container">
@@ -84,7 +88,7 @@ const NFTCard = ({ nft }: NFTCardProps) => {
 
 const NFTList = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(8);
+  const [pageSize, setPageSize] = useState<number>(6);
 
   const { isPending, isError, error, data, isFetching } = useMyNFTs(
     {
@@ -119,12 +123,12 @@ const NFTList = () => {
 
     return (
       <>
-        <div className="grid grid-cols-2 gap-x-4 gap-y-4 md:grid-cols-4 md:gap-x-6 md:gap-y-8 lg:gap-y-12">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-4 md:grid-cols-3 md:gap-x-6 md:gap-y-6 lg:gap-y-6">
           {nftsData.map((nft: NftData) => (
             <NFTCard nft={nft} key={nft.sft_id} />
           ))}
         </div>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center pb-4">
           <div
             className={`${!isFetching && "invisible"} flex w-full items-center justify-center gap-4`}
           >
@@ -153,13 +157,13 @@ const BotCard = ({ bot }: BotCardProps) => {
     <div className="group relative flex flex-col rounded-3xl bg-box">
       <Image
         src={bot.profile_image || "/images/bot-default-thumb.png"}
-        className="mx-auto h-4/5 rounded-t-3xl object-cover p-1 pb-0"
+        className="mx-auto h-full rounded-2xl object-cover p-1 pb-0"
         width={300}
         height={300}
         alt={"Bot Card"}
       />
-      <div className="flex flex-col gap-1 px-4 py-4 pb-6">
-        <p className="text-md line-clamp-1 text-heading">{bot.name}</p>
+      <div className="flex flex-col gap-1 px-4 pt-4">
+        <p className="line-clamp-1 text-primary font-semibold">{bot.name}</p>
         {/* <p className="line-clamp-1 text-xs text-gray-400">
           {bot.category_name || "Uncategorised"}
         </p> */}
@@ -167,7 +171,7 @@ const BotCard = ({ bot }: BotCardProps) => {
       <div className="absolute bottom-0 hidden h-12 w-full divide-x-2 divide-primary rounded-b-2xl border border-2 border-primary bg-box text-primary group-hover:flex">
         <Link
           className="flex flex-1 items-center justify-center rounded-bl-xl px-1 hover:bg-primary hover:text-container"
-          href={`/nft/${bot.sft_id}`}
+          href={`/app/${bot.chatbot_id}`}
         >
           <p className="text-center text-sm font-semibold">View Details</p>
         </Link>
@@ -184,7 +188,7 @@ const BotCard = ({ bot }: BotCardProps) => {
 
 const BotList = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(8);
+  const [pageSize, setPageSize] = useState<number>(6);
 
   const { isPending, isError, error, data, isFetching } = useMyChatbotList(
     {
@@ -219,12 +223,12 @@ const BotList = () => {
 
     return (
       <>
-        <div className="grid grid-cols-2 gap-x-4 gap-y-4 md:grid-cols-4 md:gap-x-6 md:gap-y-8 lg:gap-y-12">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-4 md:grid-cols-3 md:gap-x-6 md:gap-y-6 lg:gap-y-6">
           {botsData.map((bot: ChatbotData) => (
             <BotCard bot={bot} key={bot.chatbot_id} />
           ))}
         </div>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center pb-4">
           <div
             className={`${!isFetching && "invisible"} flex w-full items-center justify-center gap-4`}
           >
@@ -247,6 +251,7 @@ const BotList = () => {
 export default function NFT() {
   const title = "My Assets";
   const { setHeaderTitle } = useAppProvider();
+  const [tab, setTab] = useState<string>("knowledge-assets"); // knowledge-assets, apps
 
   const handleLoadMore = () => {
     console.log("Load More");
@@ -260,8 +265,23 @@ export default function NFT() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-12 px-4 pb-32 pt-8 md:px-6 lg:px-8">
-      <div className="flex flex-col gap-2 lg:gap-8">
+    <div className="h-full flex-col px-4 md:flex-row md:pl-10 justify-start bg-container md:w-5/6 mb-6">
+      <h1 className="text-heading text-lg font-semibold py-3">My Assets</h1>
+      <div className="flex flex-col px-6 py-7 pb-0 lg:px-8 xl:px-14 bg-sidebar border border-[#DDDDEB] rounded-2xl">
+          <div className="flex items-center mt-0 mb-8 space-x-10 border-b-2 text-primary font-semibold text-sm">
+            <button className={`${tab == "knowledge-assets" ? "underline underline-offset-8" : "opacity-50"}`} onClick={() => setTab("knowledge-assets")}>Knowledge Assets</button>
+            <button className={`${tab == "apps" ? "underline underline-offset-8" : "opacity-50"}`} onClick={() => setTab("apps")}>Apps</button>
+          </div>
+
+          {
+            tab == "knowledge-assets" ? 
+              <NFTList />
+            : tab == "apps" ?
+              <BotList />
+            : null
+          }
+      </div>
+      {/* <div className="flex flex-col gap-2 lg:gap-8">
         <div className="flex flex-col">
           <h1 className="text-2xl font-semibold text-heading">My SFTs</h1>
           <hr className="my-4 border border-border" />
@@ -274,7 +294,7 @@ export default function NFT() {
           <hr className="my-4 border border-border" />
         </div>
         <BotList />
-      </div>
+      </div> */}
     </div>
   );
 }

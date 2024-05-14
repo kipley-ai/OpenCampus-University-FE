@@ -204,6 +204,7 @@ const MessageInput = () => {
           chatSession.refetch();
           chatHistoryAPI.refetch();
           setButtonSession((prev: boolean) => !prev);
+          setMessageHistory([]);
         },
       },
     );

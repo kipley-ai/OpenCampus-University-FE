@@ -36,7 +36,7 @@ const MessageList = ({
   setIsOpen: (isOpen: boolean) => void;
 }) => {
   const [answersStream, setAnswersStream] = useState<{chatbot_id:string,answerStream:string[]}[]>([]);
-  const [chunks, setChunks] = useState<string>("");
+  const [chunks, setChunks] = useState<{chatbot_id:string,chunks:string}[]>([]);
   const fieldRef = useRef<HTMLDivElement>(null);
   const [profileImage, setProfileImage] = useState<StaticImageData | string>(
     "",
@@ -96,6 +96,7 @@ const MessageList = ({
   const { setCreditBalance } = useCreditBalanceContext();
   const { setModalTopUp } = useAppProvider();
   const [chatbotIds,setChatbotIds] = useState([])
+  const [ends,setEnds] = useState<{chatbot_id:string,end:boolean}[]>([])
 
   const { data: chatroomResult, isSuccess: chatroomIsSuccess } = useChatRoomChatbotId({room_id:id})
   const getChatbotDetails = useChatbotDetailQueries(chatbotIds?chatbotIds:[])
@@ -120,7 +121,8 @@ const MessageList = ({
         console.log(chatHistoryAPI.data?.data);
         setMessageHistory(chatHistoryAPI.data?.data.reverse());
       }
-      setAnswersStream([]);
+      if(replyStatus == "idle")
+        setAnswersStream([]);
     }
   }, [
     chatbotDetailIsSuccess,
@@ -128,6 +130,32 @@ const MessageList = ({
     chatHistoryAPI.data?.data,
     buttonSession,
   ]);
+
+  useEffect(()=> {
+    const end_value = false
+    if (chatbotIds.length > 0 && ends.length > 0){
+      const isEndAllChatbotIds = chatbotIds.map((chatbotId)=> {
+        return ends.filter((end)=> {
+          if (chatbotId == end.chatbot_id && end.end)
+            return true
+          else
+            return false
+        }).length > 0
+
+      }).reduce((a,b)=>a && b,true) 
+      if( isEndAllChatbotIds ) {
+        console.log('end:>>',chatbotIds,ends)
+        setAnswersStream([]);
+          setReplyStatus("idle");
+          setChunks([]);
+          setEnds([])
+      }
+    }
+  },[ends])
+
+  useEffect(()=> {
+    console.log("answersStream:>>",answersStream.length,answersStream)
+  },[answersStream])
 
   useEffect(() => {
     fieldRef.current?.scrollIntoView();
@@ -168,7 +196,7 @@ const MessageList = ({
 
         setMessageHistory((prevHistory) => [
           ...prevHistory,
-          { sender: "bot", message: fullBotAnswer, chunks, chatbot_id:lastJsonMessage.chatbot_id },
+          { sender: "bot", message: fullBotAnswer, chunks:chunks.filter(chunk=>chunk.chatbot_id==lastJsonMessage.chatbot_id)[0].chunks, chatbot_id:lastJsonMessage.chatbot_id },
         ]);
 
         setAnswersStream((prevAnswersStream)=>{
@@ -176,8 +204,15 @@ const MessageList = ({
             return answerStream.chatbot_id !== lastJsonMessage.chatbot_id
           })
         });
-        setReplyStatus("idle");
-        setChunks("");
+        // setReplyStatus("idle");
+        setChunks((prevChunk)=> {
+          return prevChunk.filter((chunk=> {
+            return chunk.chatbot_id !== lastJsonMessage.chatbot_id
+          }))
+        });
+        setEnds((prevEnds)=> {
+          return [...prevEnds, {chatbot_id:lastJsonMessage.chatbot_id,end:true}]
+        })
 
         console.log("Message history");
         console.log(messageHistory);
@@ -202,12 +237,22 @@ const MessageList = ({
       } else if ("chunks" in lastJsonMessage) {
         const chunksObject = { chunks: lastJsonMessage.chunks };
         const chunksString = JSON.stringify(chunksObject);
-        setChunks(chunksString);
+        setChunks((prevChunk)=> {
+          return prevChunk.map((chunk)=> {
+            if (chunk.chatbot_id == lastJsonMessage.chatbot_id){
+              return {chatbot_id:chunk.chatbot_id, chunks:chunksString}
+            } return chunk
+          })
+        });
+        
       } else if (lastJsonMessage.type === "start") {
         setCheckFirstQuotation(true);
         setAnswersStream((prevAnswersStream)=> {
           return [...prevAnswersStream, {chatbot_id:lastJsonMessage.chatbot_id,answerStream:[]}]
         })
+        setChunks((prevChunk)=> {
+          return [...prevChunk, {chatbot_id:lastJsonMessage.chatbot_id,chunks:""}]
+        });
       }
 
       setAnswersStream((prevAnswersStream) => {
@@ -222,12 +267,15 @@ const MessageList = ({
           setCheckFirstQuotation(false);
           return prevAnswersStream.map(answerStream => {
             if (answerStream.chatbot_id == lastJsonMessage.chatbot_id){
-              answerStream.answerStream =  [
-                ...answerStream.answerStream,
-                lastJsonMessage.message.slice(1, lastJsonMessage.message.length),
-              ];
-              console.log("checkquotation answerStream:>> ",answerStream)
-              return answerStream
+              // console.log("checkquotation answerStream:>> ",answerStream)
+              return {
+                chatbot_id :answerStream.chatbot_id,
+                answerStream: [
+                  ...answerStream.answerStream,
+                  lastJsonMessage.message.slice(1, lastJsonMessage.message.length),
+                ]
+              }
+              
             }
             else
               return answerStream
@@ -235,12 +283,16 @@ const MessageList = ({
         } else {
           return prevAnswersStream.map(answerStream => {
             if (answerStream.chatbot_id == lastJsonMessage.chatbot_id){
-              answerStream.answerStream =  [
-                ...answerStream.answerStream,
-                lastJsonMessage.message,
-              ];
-              console.log("else answerStream:>> ",answerStream, lastJsonMessage.message)
-              return answerStream
+              // console.log("else answerStream:>> ",answerStream, lastJsonMessage.message,prevAnswersStream)
+              return {
+                "chatbot_id" :answerStream.chatbot_id,
+                "answerStream":[
+                  ...answerStream.answerStream,
+                  lastJsonMessage.message,
+                ]
+              }
+
+              
             }
             else
               return answerStream
@@ -283,6 +335,7 @@ const MessageList = ({
           isGenerating={replyStatus == "answering"}
         /> : <></> } */}
         {messageHistory.map((message, index) => {
+          // console.log(message)
           return index < messageHistory.length - 1 ||
             message.sender == "user" ? (
             <ChatMessage
@@ -306,17 +359,24 @@ const MessageList = ({
             />
           );
         })}
-        {/* {replyStatus == "idle" ? (
+        {replyStatus == "idle" ? (
           <></>
-        ) : (
-          <LastMessage
-            profileImage={chatbotData?.data.data.profile_image}
-            sender={"bot"}
-            message={answersStream}
-            chunks={chunks}
-            isGenerating={replyStatus == "answering"}
-          />
-        )} */}
+        ) : <>
+          {
+            answersStream.map((answerStream)=> {
+              // console.log(chunks.filter((chunk)=> chunk.chatbot_id == answerStream.chatbot_id)[0].chunks)
+                return <LastMessage
+                  profileImage={""}
+                  sender={"bot"}
+                  messageObj={answerStream}
+                  message={answerStream.answerStream}
+                  chunks={chunks.filter((chunk)=> chunk.chatbot_id == answerStream.chatbot_id)[0].chunks}
+                  isGenerating={replyStatus == "answering"}
+                />
+              })
+          }
+          </>
+        }
         <div ref={fieldRef}></div>
       </div>
     </>

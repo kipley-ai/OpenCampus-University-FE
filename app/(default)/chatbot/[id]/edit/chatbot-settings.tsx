@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { useAccount } from "wagmi";
-import {
-  useChatbotDetail,
-  useUpdateChatbotAPI,
+import { 
+  useChatbotDetail, 
+  useUpdateChatbotAPI, 
   useGetCategory,
 } from "@/hooks/api/chatbot";
 import { useSuperAdmin } from "@/hooks/api/access";
@@ -193,41 +193,40 @@ const ChatbotSettings = () => {
             />
           </div>
 
-              <div className="">
-                <label
-                  className="flex w-1/3 flex-col text-sm font-semibold"
-                  htmlFor="category"
-                >
-                  Category
-                </label>
-                <select
-                  id="category"
-                  value={form.category_id}
-                  className="mt-2 w-full rounded-xl border-2 bg-transparent"
-                  onChange={(e) =>
-                    handleFormChange("category_id", e.target.value)
-                  }
-                >
-                  <option
-                    className="bg-sidebar text-body"
-                    selected
-                    disabled
-                    hidden
-                    value=""
-                  >
-                    Select a category
-                  </option>
-                  {categories.map((cat) => (
-                    <option
-                      className="bg-sidebar text-body"
-                      key={cat.category_id}
-                      value={cat.category_id}
-                    >
-                      {cat.title}
-                    </option>
-                  ))}
-                </select>
-              </div>
+          <div className="flex flex-col gap-1 mt-7">
+            <label
+              className="text-xs font-semibold text-heading lg:text-sm"
+              htmlFor="category"
+            >
+              Category
+            </label>
+            <select
+              id="category"
+              value={form.category_id}
+              className="w-full rounded-lg border-[#D1D5DB] bg-transparent text-xs text-heading lg:text-sm"
+              onChange={(e) => 
+                handleFormChange("category_id", e.target.value)
+              }
+            >
+              <option 
+                className="bg-sidebar text-[#6B7280]" 
+                selected 
+                disabled 
+                hidden 
+                value=""
+              >
+                Select a category
+              </option>
+              {categories.map((cat) => (
+                <option 
+                  className="bg-sidebar text-body" 
+                  key={cat.category_id} 
+                  value={cat.category_id}>
+                  {cat.title}
+                </option>
+              ))}
+            </select>
+          </div>
 
           <div className="grid grid-cols-12 gap-4">
             <div className="flex flex-col col-span-6 gap-1 mt-7">
@@ -259,67 +258,111 @@ const ChatbotSettings = () => {
             </div>
           </div>
 
-              <div>
-                <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold lg:text-sm">
-                  <span>Price Per Query (in OC Points)</span>
-                  <Tooltip bg="dark" position="right" size="md">
-                    Set your price per query on your chatbot app and get paid in
-                    OC Points.
-                  </Tooltip>
-                </label>
-                <div className="mt-3">
-                  <input
-                    className="placeholder-text-[#7C878E] w-full rounded-xl border-2 bg-transparent text-xs lg:text-sm"
-                    type="number"
-                    name="pricePerQuery"
-                    placeholder="e.g. 1"
-                    onChange={(e) => {
-                      if (parseFloat(e.target.value) < 0)
-                        handleFormChange("chatbot_price_per_query", 0);
-                      else
-                        handleFormChange(
-                          "chatbot_price_per_query",
-                          Number(e.target.value),
-                        );
-                    }}
-                    value={form.chatbot_price_per_query}
-                  />
-                  {errorMessage && errorMessage.pricePerQuery ? (
-                    <div className=" text-xs text-red-400">
-                      {errorMessage.pricePerQuery}
-                    </div>
-                  ) : (
-                    <div className="text-xs opacity-0 lg:text-sm">a</div>
-                  )}
-                </div>
+          <div className="flex flex-col gap-1 mt-7">
+            <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold lg:text-sm">
+              <span>Price Per Query (in OC Points)</span>
+              {/* <Tooltip bg="dark" position="right" size="md">
+                Set your price per query on your chatbot app and get paid in
+                OC Points.
+              </Tooltip> */}
+            </label>
+            <input
+              className="rounded-lg border-[#D1D5DB] bg-transparent text-xs text-heading lg:text-sm"
+              type="number"
+              name="pricePerQuery"
+              placeholder="e.g. 1"
+              onChange={(e) => {
+                if (parseFloat(e.target.value) < 0)
+                  handleFormChange("chatbot_price_per_query", 0);
+                else
+                  handleFormChange(
+                    "chatbot_price_per_query",
+                    Number(e.target.value),
+                  );
+              }}
+              value={form.chatbot_price_per_query}
+            />
+            {errorMessage && errorMessage.pricePerQuery ? (
+              <div className=" text-xs text-red-400">
+                {errorMessage.pricePerQuery}
               </div>
-            </div>
+            ) : (
+              <div className="text-xs opacity-0 lg:text-sm">a</div>
+            )}
           </div>
+        </div>
 
-          {/* Cancel and Save Changes Button */}
-          <div className="form-action flex flex-row justify-between">
-            <button
-              className="mt-8 flex items-center justify-center rounded-3xl p-2 px-5 ring-2 ring-gray-600 hover:opacity-75"
-              type="button"
-              onClick={() => {
-                router.push(`/nft/${chatbotDetail.data?.data.data.sft_id}`);
-              }}
+        {/* Cancel and Save Changes Button */}
+        {/* <div className="form-action flex flex-row justify-between">
+          <button
+            className="mt-8 flex items-center justify-center rounded-3xl p-2 px-5 ring-2 ring-gray-600 hover:opacity-75"
+            type="button"
+            onClick={() => {
+              router.push(`/app/${chatbotDetail.data?.data.data.chatbot_id}`);
+            }}
+          >
+            <h5 className="text-sm">Cancel</h5>
+          </button>
+          <button
+            className="mt-8 button w-32"
+            type="submit"
+            onClick={(e) => {
+              e.preventDefault();
+              handleUpdateChatbot();
+            }}
+          >
+            <h5>
+              Save Changes
+            </h5>
+          </button>
+        </div> */}
+        <div className="my-8 mt-0 flex items-center justify-between">
+          <button 
+            className="flex items-center justify-center gap-2 hover:underline"
+            type="button"
+            onClick={() => {
+              router.push(`/app/${chatbotDetail.data?.data.data.chatbot_id}`);
+            }}
+          >
+            <svg
+              width="8"
+              height="13"
+              viewBox="0 0 8 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <h5 className="text-sm">Cancel</h5>
-            </button>
-            <button
-              className="button mt-8 w-32"
-              type="submit"
-              onClick={(e) => {
-                e.preventDefault();
-                handleUpdateChatbot();
-              }}
+              <path
+                d="M7.41 2.29965L6 0.889648L0 6.88965L6 12.8896L7.41 11.4796L2.83 6.88965L7.41 2.29965Z"
+                fill="#141BEB"
+              />
+            </svg>
+
+            <p className="uppercase font-medium text-sm ml-2">Cancel</p>
+          </button>
+          <button
+            className="flex items-center justify-center gap-2 hover:underline"
+            onClick={(e) => {
+              e.preventDefault();
+              handleUpdateChatbot();
+            }}
+            type="button"
+          >
+            <p className="uppercase font-medium text-sm mr-2">Save Changes</p>
+            <svg
+              width="8"
+              height="13"
+              viewBox="0 0 8 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <h5>Save Changes</h5>
-            </button>
-          </div>
-        </form>
-      </div>
+              <path
+                d="M2 0.889648L0.589996 2.29965L5.17 6.88965L0.589996 11.4796L2 12.8896L8 6.88965L2 0.889648Z"
+                fill="#141BEB"
+              />
+            </svg>
+          </button>
+        </div>
+      </form>
     </>
   );
 };

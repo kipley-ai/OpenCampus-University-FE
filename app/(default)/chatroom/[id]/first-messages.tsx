@@ -12,6 +12,7 @@ interface Message {
     message: string;
     chunks?: string;
     created?: any;
+    chatbot_id?: string;
   }
 
 const FirstAnswers = ({messageHistory,replyStatus}:{messageHistory:Message[],replyStatus:string}) => {

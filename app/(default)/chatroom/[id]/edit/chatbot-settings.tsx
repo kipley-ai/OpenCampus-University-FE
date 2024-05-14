@@ -1,7 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { useAccount } from "wagmi";
-import { useChatbotDetail, useUpdateChatbotAPI, useGetCategory } from "@/hooks/api/chatbot";
+import {
+  useChatbotDetail,
+  useUpdateChatbotAPI,
+  useGetCategory,
+} from "@/hooks/api/chatbot";
 import { useSuperAdmin } from "@/hooks/api/access";
 import defaulUserAvatar from "public/images/chatbot-avatar.png";
 import { useParams, redirect, useRouter } from "next/navigation";
@@ -195,7 +199,7 @@ const ChatbotSettings = () => {
 
               <div className="">
                 <label
-                  className="flex flex-col text-sm font-semibold w-1/3"
+                  className="flex w-1/3 flex-col text-sm font-semibold"
                   htmlFor="category"
                 >
                   Category
@@ -204,11 +208,25 @@ const ChatbotSettings = () => {
                   id="category"
                   value={form.category_id}
                   className="mt-2 w-full rounded-xl border-2 bg-transparent"
-                  onChange={(e) => handleFormChange("category_id", e.target.value)}
+                  onChange={(e) =>
+                    handleFormChange("category_id", e.target.value)
+                  }
                 >
-                  <option className="bg-sidebar text-body" selected disabled hidden value="">Select a category</option>
+                  <option
+                    className="bg-sidebar text-body"
+                    selected
+                    disabled
+                    hidden
+                    value=""
+                  >
+                    Select a category
+                  </option>
                   {categories.map((cat) => (
-                    <option className="bg-sidebar text-body" key={cat.category_id} value={cat.category_id}>
+                    <option
+                      className="bg-sidebar text-body"
+                      key={cat.category_id}
+                      value={cat.category_id}
+                    >
                       {cat.title}
                     </option>
                   ))}
@@ -249,15 +267,15 @@ const ChatbotSettings = () => {
 
               <div>
                 <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold lg:text-sm">
-                  <span>Price Per Query (in $CREDIT)</span>
+                  <span>Price Per Query (in OC Points)</span>
                   <Tooltip bg="dark" position="right" size="md">
                     Set your price per query on your chatbot app and get paid in
-                    $CREDIT.
+                    OC Points.
                   </Tooltip>
                 </label>
                 <div className="mt-3">
                   <input
-                    className="placeholder-text-[#7C878E] w-full rounded-xl bg-transparent border-2 text-xs lg:text-sm"
+                    className="placeholder-text-[#7C878E] w-full rounded-xl border-2 bg-transparent text-xs lg:text-sm"
                     type="number"
                     name="pricePerQuery"
                     placeholder="e.g. 1"
@@ -296,16 +314,14 @@ const ChatbotSettings = () => {
               <h5 className="text-sm">Cancel</h5>
             </button>
             <button
-              className="mt-8 button w-32"
+              className="button mt-8 w-32"
               type="submit"
               onClick={(e) => {
                 e.preventDefault();
                 handleUpdateChatbot();
               }}
             >
-              <h5>
-                Save Changes
-              </h5>
+              <h5>Save Changes</h5>
             </button>
           </div>
         </form>

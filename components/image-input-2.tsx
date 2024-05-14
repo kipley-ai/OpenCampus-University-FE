@@ -160,7 +160,7 @@ const ImageInput = ({ selectedFile, setSelectedFile }: any) => {
             </button>
             <button
               onClick={handleRemoveCover}
-              className="text-xs text-red-700"
+              className="text-xs text-red-700 underline"
               type="button"
             >
               Remove image

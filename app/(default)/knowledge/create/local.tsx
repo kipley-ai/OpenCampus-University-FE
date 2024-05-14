@@ -195,26 +195,35 @@ export default function Local({
   const showStateIcon = (state: "uploading" | "success" | "failed") => {
     switch (state) {
       case "uploading":
+        // return (
+        //   <svg
+        //     className="text-heading-0 mt-2 w-6 h-6 animate-spin"
+        //     xmlns="http://www.w3.org/2000/svg"
+        //     fill="none"
+        //     viewBox="0 0 24 24"
+        //   >
+        //     <circle
+        //       className="stroke-container opacity-25"
+        //       cx="24"
+        //       cy="24"
+        //       r="24"
+        //       strokeWidth="4"
+        //     />
+        //     <path
+        //       className="fill-primary opacity-75"
+        //       d="M4 12c0-4.418 3.582-8 8-8v8h8c0 4.418-3.582 8-8 8s-8-3.582-8-8z"
+        //     />
+        //   </svg>
+        // );
         return (
-          <svg
-            className="text-heading-0 mt-2 w-6 h-6 animate-spin"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <circle
-              className="stroke-container opacity-25"
-              cx="24"
-              cy="24"
-              r="24"
-              strokeWidth="4"
-            />
-            <path
-              className="fill-primary opacity-75"
-              d="M4 12c0-4.418 3.582-8 8-8v8h8c0 4.418-3.582 8-8 8s-8-3.582-8-8z"
-            />
-          </svg>
-        );
+					<Image
+						width={30}
+						height={30}
+						className={"animate-spin"}
+						src={UploadingIcon}
+						alt="Loading Icon"
+					/>
+				);
       case "failed":
         return (
           <Image width={30} height={30} src={FailedIcon} alt="Failed Icon" />
@@ -309,13 +318,13 @@ export default function Local({
             return (
               <div
                 key={file.bucketPath}
-                className="my-5 flex justify-between bg-sidebar px-8 py-2 text-heading"
+                className="flex py-5 px-8 my-5 rounded-3xl text-heading bg-container justify-between"
               >
                 <div className="flex flex-row">
                   {showStateIcon(file.status)}
-                  <div className="ml-6 flex flex-col">
-                    <h3 className="font-medium text-primary text-sm">{file.filename}</h3>
-                    <p className="text-sm">{formatBytes(file.size)}</p>
+                  <div className="flex flex-col ml-8">
+                    <h3 className="font-semibold">{file.filename}</h3>
+                    <p className="text-xs">{formatBytes(file.size)}</p>
                   </div>
                 </div>
                 {/* <button onClick={async () => {

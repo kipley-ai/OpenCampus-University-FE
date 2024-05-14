@@ -126,7 +126,7 @@ const ImageInput = ({
           >
             Upload Image
           </Button>
-          <Button onClick={handleGalleryCover} className="bg-sidebar text-primary rounded-lg border border-primary border-2">
+          <Button onClick={handleGalleryCover} className="bg-sidebar text-primary rounded-lg border border-primary border-2 hover:bg-sidebar">
             Choose From Gallery
           </Button>
         </div>
@@ -144,7 +144,7 @@ const ImageInput = ({
           </button>
           <button
             onClick={handleRemoveCover}
-            className="text-xs text-red-700"
+            className="text-xs text-red-700 underline"
             type="button"
           >
             Remove image

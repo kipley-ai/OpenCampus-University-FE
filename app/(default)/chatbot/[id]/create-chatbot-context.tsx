@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState } from "react";
 import { ReactSetter } from "@/lib/aliases";
+import { useGetSession } from "@/hooks/api/chatbot";
 import {
   useChatHistory,
   useChatSession,
@@ -31,6 +32,10 @@ interface CreateChatbotContextProps {
 
   buttonSession: any;
   setButtonSession: any;
+
+  setChatbotId: ReactSetter<string>;
+  chatSession: any;
+  chatHistoryAPI: any;
 }
 
 interface Message {
@@ -69,9 +74,16 @@ export const CreateChatbotProvider = ({
   );
   const [replyStatus, setReplyStatus] = useState<"idle" | "answering">("idle"); 
 
-  // const nftDetail = useNftDetail({
-  // 	sft_id: "SFTID11",
-  // });
+  const [chatbotId, setChatbotId] = useState<string>("");
+
+  const chatSession = useGetSession({ chatbot_id: chatbotId });
+
+  const chatHistoryAPI = useChatHistory({
+    session_id: chatSession.data?.data.data?.session_id,
+    app_id: chatbotId as string,
+    page_num: 1,
+    page_size: 10,
+  });
 
   const handleChange = (name: string, value: any) => {
     setCreateChatbot((prevData) => {
@@ -109,6 +121,10 @@ export const CreateChatbotProvider = ({
 
         buttonSession,
         setButtonSession,
+
+        setChatbotId,
+        chatSession,
+        chatHistoryAPI,
       }}
     >
       {children}

@@ -64,6 +64,9 @@ const MessageList = ({
     setMessageHistory,
 
     buttonSession,
+
+    chatSession,
+    chatHistoryAPI,
   } = useCreateChatbotContext();
 
   const { id: slug } = useParams();
@@ -73,17 +76,7 @@ const MessageList = ({
     useChatbotDetail({
       chatbot_id: id as string,
     });
-  const chatSession = useGetSession({ chatbot_id: id as string });
 
-  const chatHistoryAPI = useChatHistory({
-    session_id: chatSession.data?.data.data?.session_id,
-    app_id: id as string,
-    page_num: 1,
-    page_size: 10,
-    // request_url:
-    //   appDetail?.data?.data.data.app_info.plugin_meta_data.chat_history_api
-    //     .request_url,
-  });
   const creditBalance = useCreditBalance();
   const creditDeduction = useCreditDeduction();
 

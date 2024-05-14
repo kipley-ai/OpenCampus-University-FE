@@ -1,9 +1,4 @@
-import {
-  useParams,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
+import { useParams } from "next/navigation";
 import { useCreateChatbotContext } from "./create-chatbot-context";
 import { uuid } from "uuidv4";
 import { useAccount } from "wagmi";
@@ -42,12 +37,15 @@ const MessageInput = () => {
     setReplyStatus,
 
     setButtonSession,
+
+    setChatbotId,
+    chatSession,
+    chatHistoryAPI,
   } = useCreateChatbotContext();
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [inputRows, setInputRows] = useState(1);
   const { address } = useAccount();
-  const chatSession = useGetSession({ chatbot_id: id as string });
   const newSession = useNewSession();
 
   const { data: chatbotData, isSuccess } = useChatbotDetail({
@@ -55,12 +53,6 @@ const MessageInput = () => {
   });
   const pluginConfig = useDefaultValue({
     key: chatbotData?.data.data.personality as string,
-  });
-  const chatHistoryAPI = useChatHistory({
-    session_id: chatSession.data?.data.data?.session_id,
-    app_id: id as string,
-    page_num: 1,
-    page_size: 10,
   });
 
   const [model, setModel] = useState("gpt-3.5-turbo");
@@ -101,6 +93,10 @@ const MessageInput = () => {
       inputRef.current?.focus();
     }
   }, [replyStatus]);
+
+  useEffect(() => {
+    setChatbotId(id as string);
+  }, [id]);
 
   const handleSendMessage = async (e: any, question: string = "") => {
     e.preventDefault();
@@ -202,13 +198,10 @@ const MessageInput = () => {
       {
         onSuccess(data, variables, context) {
           chatSession.refetch();
-          chatHistoryAPI.refetch();
-          setButtonSession((prev: boolean) => !prev);
           setMessageHistory([]);
         },
       },
     );
-    setMessageHistory([]);
   };
 
   return (

@@ -208,6 +208,7 @@ const MessageInput = () => {
         },
       },
     );
+    setMessageHistory([]);
   };
 
   return (

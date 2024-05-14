@@ -9,6 +9,8 @@ import { useNftDetail } from "@/hooks/api/nft";
 interface CreateChatbotContextProps {
   createChatbot: any;
   handleChangeChatbot: any;
+  step: string;
+  setStep: ReactSetter<string>;
 }
 
 const CreateChatbotContext = createContext<

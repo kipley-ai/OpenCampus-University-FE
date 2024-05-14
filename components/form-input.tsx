@@ -53,7 +53,7 @@ interface FormTextareaProps {
   id: string;
   label: string;
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   placeholder: string;
   rows?: number;
   maxLength?: number;

@@ -209,9 +209,7 @@ export default function AccountSettings() {
   return (
     <div className="flex w-5/6 flex-col px-10 py-8">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-semibold">
-          Account Information
-        </h1>
+        <h1 className="text-3xl font-semibold">Account Information</h1>
         {/* <DateFilterComponent /> */}
       </div>
       <hr className="my-4 border border-border" />
@@ -322,7 +320,13 @@ export default function AccountSettings() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <rect y="0.5" width="16" height="32" rx="4" fill="var(--color-primary)" />
+              <rect
+                y="0.5"
+                width="16"
+                height="32"
+                rx="4"
+                fill="var(--color-primary)"
+              />
             </svg>
             <h4 className="ml-4 text-2xl font-semibold text-white">
               User Overview
@@ -397,7 +401,7 @@ export default function AccountSettings() {
             </div>
             <div className="flex items-center">
               <h4 className="mr-1 text-[16px] font-semibold">
-                Credit Balance
+                OC Points Balance
               </h4>
               <svg
                 width="14"

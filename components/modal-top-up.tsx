@@ -143,13 +143,13 @@ export default function ModalTopUp({
         action={false}
       >
         <p className="font-semibold">
-          Insufficient $CREDIT balance. Please get more $CREDIT token.
+          Insufficient OC Points balance. Please get more OC Points token.
         </p>
       </Notification>
       <div className="flex flex-col items-center justify-between rounded-lg p-4 shadow-md">
         <div className="inline-flex items-center justify-between self-stretch p-5">
           <div className="w-80 text-[32px] font-black leading-10">
-            <span>Top up credits</span>
+            <span>Top up OC Points</span>
           </div>
           <button
             className="text-heading hover:text-secondary"
@@ -188,7 +188,7 @@ export default function ModalTopUp({
         </div>
         <div className="inline-flex items-center justify-between self-stretch pl-5 pr-5">
           <div className="w-full text-base font-semibold leading-10">
-            <span>Get Credits by Paying </span>
+            <span>Get OC Points by Paying </span>
             <span className="text-primary">$EDU </span>
             <span>token</span>
           </div>
@@ -223,7 +223,7 @@ export default function ModalTopUp({
               className="placeholder-text-[#7C878E] w-full rounded-xl bg-transparent px-4 py-3 text-sm leading-6 placeholder-[#777E90]"
               type="number"
               name="amount"
-              placeholder="Enter your credit amount here"
+              placeholder="Enter your OC Points amount here"
               onChange={(e) => {
                 handleFormChange("amount", e.target.value);
               }}

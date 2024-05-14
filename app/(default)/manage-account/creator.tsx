@@ -89,7 +89,9 @@ const WithdrawConfirm = ({
           height={130}
           alt={"NFT Card"}
         />
-        <h6 className="text-base font-semibold text-heading">{nftData?.name}</h6>
+        <h6 className="text-base font-semibold text-heading">
+          {nftData?.name}
+        </h6>
       </div>
       <div className="mb-5 mt-16 flex flex-row items-center justify-between text-xs text-gray-50 lg:text-sm">
         <span>0</span>
@@ -103,7 +105,7 @@ const WithdrawConfirm = ({
             setValues={setValues}
           />
         </div>
-        <span>1000 $CREDIT</span>
+        <span>1000 OC Points</span>
       </div>
       <div className="flex flex-row justify-between">
         <button
@@ -137,10 +139,7 @@ const WithdrawConfirm = ({
           Max
         </button>
       </div>
-      <Button
-        onClick={handleWithdraw}
-        className="mt-8 w-full"
-      >
+      <Button onClick={handleWithdraw} className="mt-8 w-full">
         <p>Continue</p>
       </Button>
     </>
@@ -181,7 +180,9 @@ const NFTCard = ({
         </p> */}
       </div>
       <div className="absolute bottom-0 hidden h-12 w-full items-center justify-center space-x-2 rounded-b-2xl bg-primary group-hover:flex">
-        <p className="text-center text-sm font-semibold text-container">Withdraw</p>
+        <p className="text-center text-sm font-semibold text-container">
+          Withdraw
+        </p>
       </div>
     </div>
   );
@@ -359,21 +360,22 @@ export default function CreatorOverview() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <rect y="0.5" width="16" height="32" rx="4" fill="var(--color-primary)" />
+                <rect
+                  y="0.5"
+                  width="16"
+                  height="32"
+                  rx="4"
+                  fill="var(--color-primary)"
+                />
               </svg>
-              <h4 className="ml-4 text-2xl font-semibold ">
-                Creator Overview
-              </h4>
+              <h4 className="ml-4 text-2xl font-semibold ">Creator Overview</h4>
             </div>
-            <Button
-              onClick={() => setShowModal(true)}
-              className=""
-            >
+            <Button onClick={() => setShowModal(true)} className="">
               Withdraw your earnings
             </Button>
           </div>
           <div className="flex">
-            <div className="mr-3 w-1/2 rounded-xl p-8 border">
+            <div className="mr-3 w-1/2 rounded-xl border p-8">
               <div className="mb-4 w-fit rounded-full bg-white p-3">
                 <svg
                   width="24"
@@ -395,9 +397,7 @@ export default function CreatorOverview() {
                 </svg>
               </div>
               <div className="flex items-center">
-                <h4 className="mr-1 text-[16px] font-semibold ">
-                  Earnings
-                </h4>
+                <h4 className="mr-1 text-[16px] font-semibold ">Earnings</h4>
                 <svg
                   width="14"
                   height="14"
@@ -417,7 +417,7 @@ export default function CreatorOverview() {
                 {overviewData?.data.data.earnings}
               </h4>
             </div>
-            <div className="mr-3 w-1/2 rounded-xl p-8 border">
+            <div className="mr-3 w-1/2 rounded-xl border p-8">
               <div className="mb-4 w-fit rounded-full bg-white p-3">
                 <svg
                   width="24"
@@ -441,9 +441,7 @@ export default function CreatorOverview() {
                 </svg>
               </div>
               <div className="flex items-center">
-                <h4 className="mr-1 text-[16px] font-semibold ">
-                  Users
-                </h4>
+                <h4 className="mr-1 text-[16px] font-semibold ">Users</h4>
                 <svg
                   width="14"
                   height="14"

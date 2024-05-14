@@ -52,7 +52,7 @@ export const ChatBotForm = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [profileImage, setProfileImage] = useState("");
   const [profileImageUrl, setProfileImageUrl] = useState("");
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [instructions, setInstructions] = useState("");
   const [example, setExample] = useState("");
   const router = useRouter();

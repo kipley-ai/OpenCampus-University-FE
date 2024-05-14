@@ -7,7 +7,7 @@ import {
   useChatSession,
   useChatroomWS,
 } from "@/hooks/api/chatbox";
-import { ChatRoomPayload, LastMessagePayload } from "@/hooks/api/chatbox/schema";
+import { ChatRoomPayload, LastMessagePayload, LastChatRoomMessagePayload } from "@/hooks/api/chatbox/schema";
 import { useNftDetail } from "@/hooks/api/nft";
 
 interface CreateChatbotContextProps {
@@ -19,7 +19,7 @@ interface CreateChatbotContextProps {
   lastQuestion: string;
   setLastQuestion: ReactSetter<string>;
 
-  lastJsonMessage: LastMessagePayload;
+  lastJsonMessage: LastChatRoomMessagePayload;
   readyState: number;
   sendValidatedMessage: (message: ChatRoomPayload) => void;
 
@@ -38,6 +38,7 @@ interface Message {
   message: string;
   chunks?: string;
   created?: any;
+  chatbot_id?: string;
 }
 
 const CreateChatbotContext = createContext<

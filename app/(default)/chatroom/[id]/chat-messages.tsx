@@ -35,7 +35,7 @@ const MessageList = ({
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }) => {
-  const [answersStream, setAnswersStream] = useState<string[]>([]);
+  const [answersStream, setAnswersStream] = useState<{chatbot_id:string,answerStream:string[]}[]>([]);
   const [chunks, setChunks] = useState<string>("");
   const fieldRef = useRef<HTMLDivElement>(null);
   const [profileImage, setProfileImage] = useState<StaticImageData | string>(
@@ -89,6 +89,7 @@ const MessageList = ({
     //   appDetail?.data?.data.data.app_info.plugin_meta_data.chat_history_api
     //     .request_url,
   });
+  
   const creditBalance = useCreditBalance();
   const creditDeduction = useCreditDeduction();
 
@@ -133,14 +134,29 @@ const MessageList = ({
 
     // console.log("Answer Stream");
     // console.log(answersStream.slice(0, -2));
-    console.log("lastJsonMessage :>> ", lastJsonMessage);
+    // console.log("lastJsonMessage :>> ", lastJsonMessage);
 
     if (lastJsonMessage !== null && lastJsonMessage.type !== "error") {
       if (lastJsonMessage.type === "end") {
-        console.log("chunks :>> ", chunks);
+        // console.log("chunks :>> ", chunks);
 
-        const fullBotAnswer = answersStream
-          .slice(0, -2)
+        
+        const whichAnswerStream = answersStream
+          .filter((answerStream) => {
+            
+            if (answerStream.chatbot_id == lastJsonMessage.chatbot_id){
+              return true
+            } return false
+          })[0]
+          console.log(whichAnswerStream,answersStream
+            .filter((answerStream) => {
+              
+              if (answerStream.chatbot_id == lastJsonMessage.chatbot_id){
+                return true
+              } return false
+            }))
+
+        const fullBotAnswer = whichAnswerStream.answerStream.slice(0, -2)
           .map((message: string, idx: number) => {
             if (idx == 0 || message === undefined) return "";
             return message;
@@ -152,10 +168,14 @@ const MessageList = ({
 
         setMessageHistory((prevHistory) => [
           ...prevHistory,
-          { sender: "bot", message: fullBotAnswer, chunks },
+          { sender: "bot", message: fullBotAnswer, chunks, chatbot_id:lastJsonMessage.chatbot_id },
         ]);
 
-        setAnswersStream([]);
+        setAnswersStream((prevAnswersStream)=>{
+          return prevAnswersStream.filter((answerStream)=>{
+            return answerStream.chatbot_id !== lastJsonMessage.chatbot_id
+          })
+        });
         setReplyStatus("idle");
         setChunks("");
 
@@ -185,6 +205,9 @@ const MessageList = ({
         setChunks(chunksString);
       } else if (lastJsonMessage.type === "start") {
         setCheckFirstQuotation(true);
+        setAnswersStream((prevAnswersStream)=> {
+          return [...prevAnswersStream, {chatbot_id:lastJsonMessage.chatbot_id,answerStream:[]}]
+        })
       }
 
       setAnswersStream((prevAnswersStream) => {
@@ -197,12 +220,31 @@ const MessageList = ({
           lastJsonMessage.message.startsWith('"')
         ) {
           setCheckFirstQuotation(false);
-          return [
-            ...prevAnswersStream,
-            lastJsonMessage.message.slice(1, lastJsonMessage.message.length),
-          ];
+          return prevAnswersStream.map(answerStream => {
+            if (answerStream.chatbot_id == lastJsonMessage.chatbot_id){
+              answerStream.answerStream =  [
+                ...answerStream.answerStream,
+                lastJsonMessage.message.slice(1, lastJsonMessage.message.length),
+              ];
+              console.log("checkquotation answerStream:>> ",answerStream)
+              return answerStream
+            }
+            else
+              return answerStream
+          })
         } else {
-          return [...prevAnswersStream, lastJsonMessage.message];
+          return prevAnswersStream.map(answerStream => {
+            if (answerStream.chatbot_id == lastJsonMessage.chatbot_id){
+              answerStream.answerStream =  [
+                ...answerStream.answerStream,
+                lastJsonMessage.message,
+              ];
+              console.log("else answerStream:>> ",answerStream, lastJsonMessage.message)
+              return answerStream
+            }
+            else
+              return answerStream
+          })
         }
       });
     }
@@ -249,7 +291,8 @@ const MessageList = ({
               // chatbotData={null}
               message={message}
             />
-          ) : (
+          ) : 
+          (
             <LastMessage
               key={index}
               // profileImage={chatbotData?.data.data.profile_image}

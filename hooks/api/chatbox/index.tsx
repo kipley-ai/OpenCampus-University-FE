@@ -6,7 +6,7 @@ import { IChatBoxParams, IChatBoxHistoryParams } from "../interfaces";
 import useWebSocket from "react-use-websocket";
 // import { useAuthorizer } from "@authorizerdev/authorizer-react";
 import { useAccount } from "wagmi";
-import { chatPayloadSchema, ChatPayload, ChatRoomPayload, LastMessagePayload } from "./schema";
+import { chatPayloadSchema, ChatPayload, ChatRoomPayload, LastMessagePayload, LastChatRoomMessagePayload } from "./schema";
 import axios from "axios";
 
 export const useChatSession = (params: IChatBoxParams) => {
@@ -52,7 +52,7 @@ export const useChatboxWS = (socketUrl: string) => {
 
 export const useChatroomWS = (socketUrl: string) => {
 	const { sendMessage, lastJsonMessage, readyState } =
-		useWebSocket<LastMessagePayload>(socketUrl);
+		useWebSocket<LastChatRoomMessagePayload>(socketUrl);
 
 	const sendValidatedMessage = (message: ChatRoomPayload) => {
 		try {

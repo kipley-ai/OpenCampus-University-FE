@@ -46,6 +46,19 @@ export const lastMessageSchema = z.object({
 	]),
 });
 
+export const lastChatRoomMessageSchema = z.object({
+	sender: z.string(),
+	message: z.string(),
+	type: z.union([
+		z.literal("start"),
+		z.literal("stream"),
+		z.literal("end"),
+		z.literal("error"),
+	]),
+	chatbot_id: z.string()
+});
+
 export type ChatPayload = z.infer<typeof chatPayloadSchema>;
 export type ChatRoomPayload = z.infer<typeof chatRoomPayloadSchema>;
 export type LastMessagePayload = z.infer<typeof lastMessageSchema>;
+export type LastChatRoomMessagePayload = z.infer<typeof lastChatRoomMessageSchema>;

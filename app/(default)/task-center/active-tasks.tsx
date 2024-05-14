@@ -16,48 +16,48 @@ export const ActiveTasks = () => {
   ]
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-7">
       <div 
-        className="w-full h-52 bg-no-repeat bg-cover bg-center p-4 flex flex-row items-center justify-between text-white"
+        className="bg-no-repeat bg-center bg-cover py-6 pl-6 pr-10 flex flex-row items-center justify-between text-white rounded-xl"
         style={{ 
-          backgroundImage: `url(${Banner01.src})` 
+          backgroundImage: `url(${Banner01.src})`
         }}>
         <div className="flex flex-col space-y-5">
-          <Image src={OC100} alt="OC100" width={150}/>
-          <h1 className="text-2xl font-bold">Vote for your favorite creator on OC100 to earn daily OC Points!</h1>
+          <Image src={OC100} alt="OC100"/>
+          <h1 className="text-sm xl:text-xl font-bold">Vote for your favorite creator on OC100 to earn daily OC Points!</h1>
         </div>
-        <div className="flex flex-col items-center pr-4 space-y-3">
+        <div className="flex flex-col items-center space-y-3 w-1/5">
           <Button
             onClick={() => {}}
             disabled={false}
-            className="px-6 py-4 rounded-xl"
+            className="py-4 rounded-xl w-full"
           >
-            <p className="font-semibold text-lg">Vote for Cohort 1</p>
+            <p className="font-semibold text-sm xl:text-lg">Vote for Cohort 1</p>
           </Button>
-          <span>
+          <span className="text-sm xl:text-md">
             03 March 2024
           </span>
         </div>
       </div>
       <div 
-        className="w-full h-52 bg-no-repeat bg-cover bg-center flex flex-row px-10 items-center justify-between text-white"
+        className="bg-no-repeat bg-cover flex flex-row pl-10 pr-10 py-7 items-center justify-between text-white rounded-xl"
         style={{ 
-          backgroundImage: `url(${Banner02.src})` 
+          backgroundImage: `url(${Banner02.src})`
         }}>
           <div className="flex items-center space-x-3">
-            <Image src={OC100} alt="OC100" width={130}/>
-            <Image src={XIcon} alt="XIcon" width={70}/>
-            <h1 className="text-2xl">Like and retweet this tweet regarding OC 100</h1>
+            <Image src={OC100} alt="OC100" width={100}/>
+            <Image src={XIcon} alt="XIcon" width={50}/>
+            <h1 className="text-xl">Like and retweet this tweet regarding OC 100</h1>
           </div>
-          <div className="flex flex-col items-center space-y-3">
+          <div className="flex flex-col items-center space-y-3 w-1/5">
             <Button
               onClick={() => {}}
               disabled={false}
-              className="px-12 py-4 rounded-xl"
+              className="py-4 rounded-xl w-full"
             >
-              <p className="font-semibold text-lg">+10 Points</p>
+              <p className="font-semibold text-sm xl:text-lg">+10 Points</p>
             </Button>
-            <span>
+            <span className="text-sm xl:text-md text-center">
               29 February 2024
             </span>
           </div>

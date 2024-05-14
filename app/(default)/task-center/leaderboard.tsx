@@ -7,6 +7,7 @@ import Image from "next/image";
 import Oval from "@/components/oval";
 import Box from "@/public/images/box.svg";
 import BackgroundPattern from "@/components/background/grid-opencampus-3.svg";
+import AvatarDefault from "@/public/images/avatar-default-03.svg";
 
 export const Leaderboard = () => {
   // replace this array with the actual data later
@@ -55,14 +56,19 @@ export const Leaderboard = () => {
       <div className="flex flex-row mb-5 justify-between space-x-10">
         <div className="flex flex-col items-center justify-center py-8 border-2 rounded-xl font-medium bg-container w-1/3 text-center">
           <div className="flex flex-row items-end">
-            <Image src={profileImage} width={55} height={55} alt="Avatar" className="rounded-full" />
+            {
+              profileImage === "" ? 
+              <Image src={AvatarDefault} width={55} height={55} alt="Avatar" className="rounded-full" />
+              :
+              <Image src={profileImage} width={55} height={55} alt="Avatar" className="rounded-full" />
+            }
             <Oval className="-ml-4" color={"gold"}/>
           </div>
           <p className="text-primary text-lg font-semibold my-2">{twitterSession?.user?.name}</p>
           <p>Your weekly rank: 1st</p>
           <p>Total OC points: 1,000</p>
         </div>
-        <div className="flex flex-col justify-center py-8 pl-20 border rounded-xl bg-container w-1/3 font-semibold space-y-3">
+        <div className="flex flex-col justify-center py-8 pl-10 xl:pl-20 border rounded-xl bg-container w-1/3 font-semibold space-y-3">
           <p className="">Tiers</p>  
           {
             ["gold", "silver", "bronze"].map((color, index) => (
@@ -88,13 +94,12 @@ export const Leaderboard = () => {
             <div className="flex flex-row justify-between px-5 py-4 border-2 items-center rounded-xl font-semibold">
               <div className="flex flex-row space-x-8 items-center justify-center">
                 <span className="text-primary w-[30px]">{index + 1}{index === 0 ? "st" : index === 1 ? "nd" : index === 2 ? "rd" : "th"}</span>
-                <Image
-                    src={profileImage}
-                    width={55}
-                    height={55}
-                    alt="Avatar"
-                    className="rounded-full"
-                />
+                {
+                  profileImage === "" ? 
+                  <Image src={AvatarDefault} width={55} height={55} alt="Avatar" className="rounded-full" />
+                  :
+                  <Image src={profileImage} width={55} height={55} alt="Avatar" className="rounded-full" />
+                }
                 <span>{item.name}</span>
               </div>
               <span className="text-primary">{item.points} OC points</span>

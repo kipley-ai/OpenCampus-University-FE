@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { useParams, useRouter, redirect } from "next/navigation";
 import { useCreateChatbotAPI } from "@/hooks/api/chatbot";
-import { useCreateChatbotContext } from "./create-chatbot-context";
+import {
+  CreateChatbotProvider,
+  useCreateChatbotContext,
+} from "./create-chatbot-context";
 import { useGetCategory } from "@/hooks/api/chatbot";
 import { useChatbotPKLStatus } from "@/hooks/api/chatbot";
 import { useSession } from "next-auth/react";
@@ -22,6 +25,7 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { FormInput, FormTextarea } from "@/components/form-input";
 import { ModalSuccessBasic } from "@/components/modal-success-basic";
+import { useCreateAppContext } from "../create-app/create-app-context";
 
 interface Category {
   title: string;
@@ -57,7 +61,7 @@ export const ChatBotForm = () => {
   const [example, setExample] = useState("");
   const router = useRouter();
   const createChatbot = useCreateChatbotAPI();
-  const { createChatbot: chatbot, setStep } = useCreateChatbotContext();
+  const { setStep, plugin } = useCreateAppContext();
   const { id } = useParams();
   const superAdmin = useSuperAdmin();
   const { data: nftData } = useNftDetail({ sft_id: id as string });
@@ -137,6 +141,7 @@ export const ChatBotForm = () => {
         description: description.value,
         // instruction: instructions,
         // example_conversation: example,
+        plugin_id: plugin?.plugin_id,
       },
       {
         async onSuccess() {
@@ -446,7 +451,7 @@ export const ChatBotForm = () => {
               className="flex items-center justify-center gap-2 hover:underline"
               type="button"
               onClick={() => {
-                setStep("choose_app");
+                setStep("");
               }}
             >
               <svg
@@ -488,3 +493,11 @@ export const ChatBotForm = () => {
     </>
   );
 };
+
+export function CreateChatbotForm() {
+  return (
+    <CreateChatbotProvider>
+      <ChatBotForm />
+    </CreateChatbotProvider>
+  );
+}

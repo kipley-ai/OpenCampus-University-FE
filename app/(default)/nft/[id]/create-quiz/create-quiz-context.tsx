@@ -6,8 +6,6 @@ import { ReactSetter } from "@/lib/aliases";
 interface CreateQuizContextProps {
   createQuiz: any;
   handleChangeQuiz: any;
-  step: string;
-  setStep: ReactSetter<string>;
 }
 
 const CreateQuizContext = createContext<CreateQuizContextProps | undefined>(
@@ -24,7 +22,6 @@ export const CreateQuizProvider = ({
     kb_data: [],
     username: "",
   });
-  const [step, setStep] = useState("create_quiz");
 
   const handleChangeQuiz = (name: string, value: any) => {
     setCreateQuiz((prevData: any) => {
@@ -40,8 +37,6 @@ export const CreateQuizProvider = ({
       value={{
         createQuiz,
         handleChangeQuiz,
-        step,
-        setStep,
       }}
     >
       {children}

@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
-import { useParams, redirect } from "next/navigation";
-import { useCreateQuizContext } from "./create-quiz-context";
+import { useParams, redirect, useRouter } from "next/navigation";
+import {
+  CreateQuizProvider,
+  useCreateQuizContext,
+} from "./create-quiz-context";
 import { useSession } from "next-auth/react";
 import { useSuperAdmin } from "@/hooks/api/access";
 import { useNftDetail } from "@/hooks/api/nft";
@@ -16,6 +19,7 @@ import { FormInput, FormTextarea } from "@/components/form-input";
 import { ModalSuccessBasic } from "@/components/modal-success-basic";
 import { useCreateQuizAPI } from "@/hooks/api/quiz";
 import ModalBasic from "@/components/modal-basic";
+import { useCreateAppContext } from "../create-app/create-app-context";
 
 interface Form {
   name?: string;
@@ -24,6 +28,7 @@ interface Form {
 }
 
 export const QuizForm = () => {
+  const router = useRouter();
   const { setHeaderTitle } = useAppProvider();
   const [description, setDescription] = useState({
     tmp: true,
@@ -33,7 +38,7 @@ export const QuizForm = () => {
   const [showModal, setShowModal] = useState(false);
   const [showModalError, setShowModalError] = useState(false);
   const createQuizApp = useCreateQuizAPI();
-  const { setStep } = useCreateQuizContext();
+  const { setStep, plugin } = useCreateAppContext();
   const { id } = useParams();
   const superAdmin = useSuperAdmin();
   const { data: nftData } = useNftDetail({ sft_id: id as string });
@@ -86,6 +91,7 @@ export const QuizForm = () => {
         price_per_query: form.pricePerQuery as number,
         sft_id: id as string,
         kb_id: nftData?.data.data.kb_id as string,
+        plugin_id: plugin?.plugin_id,
       },
       {
         async onSuccess() {
@@ -310,7 +316,7 @@ export const QuizForm = () => {
               className="flex items-center justify-center gap-2 hover:underline"
               type="button"
               onClick={() => {
-                setStep("choose_app");
+                setStep("");
               }}
             >
               <svg
@@ -352,3 +358,11 @@ export const QuizForm = () => {
     </>
   );
 };
+
+export function CreateQuizForm() {
+  return (
+    <CreateQuizProvider>
+      <QuizForm />
+    </CreateQuizProvider>
+  );
+}

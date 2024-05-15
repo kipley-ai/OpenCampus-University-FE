@@ -9,8 +9,6 @@ import { useNftDetail } from "@/hooks/api/nft";
 interface CreateChatbotContextProps {
   createChatbot: any;
   handleChangeChatbot: any;
-  step: string;
-  setStep: ReactSetter<string>;
 }
 
 const CreateChatbotContext = createContext<
@@ -27,7 +25,6 @@ export const CreateChatbotProvider = ({
     kb_data: [],
     username: "",
   });
-  const [step, setStep] = useState("choose_app");
 
   const handleChangeChatbot = (name: string, value: any) => {
     setCreateChatbot((prevData: any) => {
@@ -43,8 +40,6 @@ export const CreateChatbotProvider = ({
       value={{
         createChatbot,
         handleChangeChatbot,
-        step,
-        setStep,
       }}
     >
       {children}

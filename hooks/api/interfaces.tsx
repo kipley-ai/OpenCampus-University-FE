@@ -26,6 +26,7 @@ export interface ICreateChatbotParams {
   description: string;
   // instruction: string;
   // example_conversation: string;
+  plugin_id: string | undefined;
 }
 
 export interface ICreateKBAndNFTParams {
@@ -137,4 +138,5 @@ export interface ICreateQuizParams {
   price_per_query: number;
   meta_data: string | undefined;
   description: string;
+  plugin_id: string | undefined;
 }

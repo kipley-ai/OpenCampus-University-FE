@@ -51,16 +51,16 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
           height={325}
         />
       </div>
-      <div className="md:col-span-2 pl-7 pb-3">
+      <div className="pb-3 pl-7 md:col-span-2">
         <h1 className="text-center text-3xl font-semibold md:text-left md:text-4xl">
           {nftDetail.name}
         </h1>
-        <div className="my-4 border-t-2 border-border mb-5"></div>
+        <div className="my-4 mb-5 border-t-2 border-border"></div>
         <div className="flex flex-row">
-          <p className="mr-2 text-center text-sm text-[#94A3B8] md:text-left font-medium">
+          <p className="mr-2 text-center text-sm font-medium text-[#94A3B8] md:text-left">
             SFT Owner
           </p>
-          <p className="text-center text-sm text-heading md:text-left font-medium">
+          <p className="text-center text-sm font-medium text-heading md:text-left">
             {nftDetail.wallet_addr!.substring(0, 6) +
               "..." +
               nftDetail.wallet_addr!.substring(
@@ -68,11 +68,11 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
               )}
           </p>
         </div>
-        <div className="flex flex-row mt-3">
-          <p className="mr-2 text-center text-sm text-[#94A3B8] md:text-left font-medium">
+        <div className="mt-3 flex flex-row">
+          <p className="mr-2 text-center text-sm font-medium text-[#94A3B8] md:text-left">
             Created Time
           </p>
-          <p className="text-center text-sm text-heading md:text-left font-medium">
+          <p className="text-center text-sm font-medium text-heading md:text-left">
             {formatTimestamp(nftDetail.created)}
           </p>
         </div>
@@ -96,20 +96,20 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
                 fill="#7C878E"
               />
             </svg>
-            <p className="ml-2 text-center text-sm text-primary md:text-left font-medium">
+            <p className="ml-2 text-center text-sm font-medium text-primary md:text-left">
               View on OpenSea
             </p>
           </a>
         </div>
         {/* <div className="my-4 border-t-2 border-border"></div> */}
-        <div className="mb-2 flex flex-grow justify-between items-center mt-11">
-          <h3 className="text-center text-sm font-semibold md:text-left uppercase">
+        <div className="mb-2 mt-11 flex flex-grow items-center justify-between">
+          <h3 className="text-center text-sm font-semibold uppercase md:text-left">
             More Info
           </h3>
           {/* <Link href={"/chatbot/" + nftDetail.chatbot_id + "/edit"}> */}
           {/* <Link href={"/nft/" + nftDetail.chatbot_id + "/edit"}> */}
           <Link href={"/nft/" + nftDetail.sft_id + "/edit"}>
-            <button className="group button inline-flex items-center gap-2 rounded-md">
+            <button className="button group inline-flex items-center gap-2 rounded-md">
               <svg
                 width="20"
                 height="20"
@@ -137,12 +137,12 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
             </span>
           </div>
         </div> */}
-        <div className="mt-2 rounded rounded-md bg-box px-5 py-2 border border-[#DDDDEB]">
+        <div className="mt-2 rounded rounded-md border border-[#DDDDEB] bg-box px-5 py-2">
           <div className="flex flex-grow justify-between">
-            <span className="block text-sm text-[#94A3B8] font-medium">
+            <span className="block text-sm font-medium text-[#94A3B8]">
               Last Updated at
             </span>
-            <span className="block text-sm text-heading font-medium">
+            <span className="block text-sm font-medium text-heading">
               {formatTimestamp(nftDetail.created)}
             </span>
           </div>
@@ -177,7 +177,7 @@ const ChatbotSection = ({
         </div>
         <div>
           <Link href={"/chatbot/" + chatbotDetail.chatbot_id + "/edit"}>
-            <button className="group button inline-flex gap-2">
+            <button className="button group inline-flex gap-2">
               <svg
                 width="20"
                 height="20"
@@ -254,7 +254,7 @@ const BotCard = ({ bot }: BotCardProps) => {
         alt={"Bot Card"}
       />
       <div className="flex flex-col gap-1 px-4 pt-4">
-        <p className="line-clamp-1 text-primary font-semibold">{bot.name}</p>
+        <p className="line-clamp-1 font-semibold text-primary">{bot.name}</p>
         {/* <p className="line-clamp-1 text-xs text-gray-400">
           {bot.category_name || "Uncategorised"}
         </p> */}
@@ -337,7 +337,7 @@ const BotList = ({ id }: { id: any }) => {
       </>
     );
   }
-  
+
   return <NoData />;
 };
 
@@ -412,14 +412,9 @@ const NoChatbot = () => {
 
 const NoData = () => {
   return (
-    <div className="flex flex-col items-center justify-center gap-4 my-6">
-      <Image
-        src={Money}
-        width={77}
-        height={77}
-        alt={"No Data"}
-      />
-      <p className="text-primary font-semibold lowercase">No data yet</p>
+    <div className="my-6 flex flex-col items-center justify-center gap-4">
+      <Image src={Money} width={77} height={77} alt={"No Data"} />
+      <p className="font-semibold lowercase text-primary">No data yet</p>
 
       {/* Create new Item */}
       {/* {item == "SFT" ? (
@@ -447,9 +442,11 @@ const NFTDetail = ({ params }: { params: any }) => {
   const nftQuery = useNftDetail({ sft_id: id });
 
   return (
-    <div className="h-full flex-col px-4 md:flex-row md:pl-10 justify-start bg-container md:w-5/6">
-      <h1 className="text-heading text-lg font-semibold py-3">Knowledge Asset SFT Details</h1>
-      <div className="flex flex-col px-6 py-9 pb-0 lg:px-8 xl:px-10 bg-sidebar border border-[#DDDDEB] rounded-2xl">
+    <div className="h-full flex-col justify-start bg-container px-4 md:w-5/6 md:flex-row md:pl-10">
+      <h1 className="py-3 text-lg font-semibold text-heading">
+        Knowledge Asset SFT Details
+      </h1>
+      <div className="flex flex-col rounded-2xl border border-[#DDDDEB] bg-sidebar px-6 py-9 pb-0 lg:px-8 xl:px-10">
         <div>
           {nftQuery.isPending ? (
             <div className="flex h-[45vh] w-full items-center justify-center gap-4">
@@ -460,17 +457,41 @@ const NFTDetail = ({ params }: { params: any }) => {
             <div>Error: {nftQuery.error.message}</div>
           ) : nftQuery.data ? (
             <NFTSection nftDetail={nftQuery.data?.data.data} />
-          ) : (
-            // <NoNFT />
-            null
-          )}
+          ) : // <NoNFT />
+          null}
         </div>
-        <span className="text-lg text-primary font-semibold md:pt-3">App</span>
+        <div className="flex items-center justify-between">
+          <span className="text-lg font-semibold text-primary md:pt-3">
+            App
+          </span>
+          <Link href={"/nft/" + id + "/create-app"}>
+            <button className="button group inline-flex items-center gap-2 rounded-md">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                xmlns="http://www.w3.org/2000/svg"
+                className="fill-primary group-hover:fill-container"
+              >
+                <g clip-path="url(#clip0_700_11496)">
+                  <path d="M13.125 6.99971C13.125 7.39135 12.8099 7.70644 12.4183 7.70644H7.70673V12.418C7.70673 12.8081 7.39018 13.125 7 13.125C6.60983 13.125 6.29327 12.8096 6.29327 12.418V7.70644H1.58173C1.19156 7.70644 0.875002 7.39017 0.875002 7C0.875002 6.611 1.19156 6.29297 1.58173 6.29297H6.29327V1.58144C6.29327 1.19126 6.60983 0.875 7 0.875C7.39018 0.875 7.70673 1.19126 7.70673 1.58144V6.29297H12.4183C12.8099 6.29297 13.125 6.611 13.125 6.99971Z" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_700_11496">
+                    <rect width="14" height="14" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+
+              <span className="text-sm font-medium">New App</span>
+            </button>
+          </Link>
+        </div>
         <div className="pt-3">
           <BotList id={id} />
         </div>
         <div className="my-8 mt-4 flex items-center justify-between">
-          <button 
+          <button
             className="flex items-center justify-center gap-2 hover:underline"
             type="submit"
             onClick={() => {
@@ -490,7 +511,7 @@ const NFTDetail = ({ params }: { params: any }) => {
               />
             </svg>
 
-            <p className="font-medium text-sm ml-2">Back</p>
+            <p className="ml-2 text-sm font-medium">Back</p>
           </button>
         </div>
       </div>

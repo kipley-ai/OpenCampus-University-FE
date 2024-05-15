@@ -148,6 +148,7 @@ const ChatBotForm = () => {
         description: description.value,
         // instruction: instructions,
         // example_conversation: example,
+        plugin_id: "",
       },
       {
         async onSuccess() {

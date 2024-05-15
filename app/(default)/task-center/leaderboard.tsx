@@ -3,6 +3,8 @@ import { useUserDetail } from "@/hooks/api/user";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useAccount } from "wagmi";
+import { useTaskBasePoint } from "@/hooks/api/task";
+import { useGetLeaderboard } from "@/hooks/api/leaderboard";
 import Image from "next/image";
 import Oval from "@/components/oval";
 import Box from "@/public/images/box.svg";
@@ -10,6 +12,8 @@ import BackgroundPattern from "@/components/background/grid-opencampus-3.svg";
 import AvatarDefault from "@/public/images/avatar-default-03.svg";
 
 export const Leaderboard = () => {
+  const { data: ocPoints, refetch: refetchBasePoints } = useTaskBasePoint();
+  const leaderboardData = useGetLeaderboard();
   // replace this array with the actual data later
   const myArray: { name: string, points: number }[] = [
     { name: "John", points: 1000 },
@@ -66,9 +70,9 @@ export const Leaderboard = () => {
           </div>
           <p className="text-primary text-lg font-semibold my-2">{twitterSession?.user?.name}</p>
           <p>Your weekly rank: 1st</p>
-          <p>Total OC points: 1,000</p>
+          <p>Total OC points: {ocPoints?.data?.base_point}</p>
         </div>
-        <div className="flex flex-col justify-center py-8 pl-10 xl:pl-20 border rounded-xl bg-container w-1/3 font-semibold space-y-3">
+        <div className="flex flex-col justify-center py-8 px-3 xl:px-0 xl:pl-20 border rounded-xl bg-container w-1/3 font-semibold space-y-3">
           <p className="">Tiers</p>  
           {
             ["gold", "silver", "bronze"].map((color, index) => (
@@ -89,18 +93,18 @@ export const Leaderboard = () => {
       <div className="flex flex-col">
         <p className="text-xs font-semibold mb-1">CURRENT WEEK'S RANK</p>
         <div className="flex flex-col space-y-10">
-          {
-            myArray.map((item, index) => (
+          { leaderboardData && 
+            leaderboardData.data?.leaderboard.map((item, index) => (
             <div className="flex flex-row justify-between px-5 py-4 border-2 items-center rounded-xl font-semibold">
               <div className="flex flex-row space-x-8 items-center justify-center">
-                <span className="text-primary w-[30px]">{index + 1}{index === 0 ? "st" : index === 1 ? "nd" : index === 2 ? "rd" : "th"}</span>
+                <span className="text-primary w-[30px]">{item.rank}{item.rank === 1 ? "st" : index === 2 ? "nd" : index === 3 ? "rd" : "th"}</span>
                 {
-                  profileImage === "" ? 
+                  item.profile_image === "" ? 
                   <Image src={AvatarDefault} width={55} height={55} alt="Avatar" className="rounded-full" />
                   :
-                  <Image src={profileImage} width={55} height={55} alt="Avatar" className="rounded-full" />
+                  <Image src={item.profile_image} width={55} height={55} alt="Avatar" className="rounded-full" />
                 }
-                <span>{item.name}</span>
+                <span>{`${item.wallet_address.substring(0, 7)}...${item.wallet_address.substring(item.wallet_address.length - 7)}`}</span>
               </div>
               <span className="text-primary">{item.points} OC points</span>
             </div>

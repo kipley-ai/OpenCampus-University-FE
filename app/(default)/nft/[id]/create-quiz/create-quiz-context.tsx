@@ -24,7 +24,7 @@ export const CreateQuizProvider = ({
     kb_data: [],
     username: "",
   });
-  const [step, setStep] = useState("choose_app");
+  const [step, setStep] = useState("create_quiz");
 
   const handleChangeQuiz = (name: string, value: any) => {
     setCreateQuiz((prevData: any) => {

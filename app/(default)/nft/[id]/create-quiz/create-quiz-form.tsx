@@ -19,7 +19,7 @@ import ModalBasic from "@/components/modal-basic";
 
 interface Form {
   name?: string;
-  no_of_questions?: string;
+  num_questions?: string;
   pricePerQuery?: number;
 }
 
@@ -40,7 +40,7 @@ export const QuizForm = () => {
   const [selectedFile, setSelectedFile] = useState<any>(DEFAULT_COVER_IMAGE);
   const [mode, setMode] = useState(0);
   const [difficultyData, setDifficultyData] = useState("");
-  const questions = [1, 2, 3];
+  const questions = [3, 5, 8];
 
   const [errorMessage, setErrorMessage] = useState<any>({});
   const [form, setForm] = useState<Form>({});
@@ -72,13 +72,17 @@ export const QuizForm = () => {
 
     if (!validateForm()) return;
 
+    const metaData = JSON.stringify({
+      difficulty: difficultyData,
+      num_questions: form.num_questions || "3",
+    });
+
     createQuizApp.mutate(
       {
         profile_image: selectedFile,
         name: form.name as string,
         description: description.value,
-        difficulty: difficultyData,
-        no_of_questions: form.no_of_questions,
+        meta_data: metaData,
         price_per_query: form.pricePerQuery as number,
         sft_id: id as string,
         kb_id: nftData?.data.data.kb_id as string,
@@ -102,10 +106,19 @@ export const QuizForm = () => {
   }, []);
 
   useEffect(() => {
+    if (form.name && description.tmp) {
+      setDescription({
+        tmp: true,
+        value: `This is the AI Quizapp of ${form.name}`,
+      });
+    }
+  }, [form.name]);
+
+  useEffect(() => {
     if (mode == 0) {
-      setDifficultyData("easy");
+      setDifficultyData("Easy");
     } else if (mode == 1) {
-      setDifficultyData("hard");
+      setDifficultyData("Hard");
     }
   }, [mode]);
 
@@ -227,11 +240,12 @@ export const QuizForm = () => {
                     No. of Questions
                   </label>
                   <select
-                    id="no_of_questions"
-                    value={form.no_of_questions}
+                    id="num_questions"
+                    defaultValue={""}
+                    value={form.num_questions}
                     className="my-1 w-full rounded-lg border-2 border-border bg-transparent text-xs lg:text-sm"
                     onChange={(e) =>
-                      handleFormChange("no_of_questions", e.target.value)
+                      handleFormChange("num_questions", e.target.value)
                     }
                   >
                     <option

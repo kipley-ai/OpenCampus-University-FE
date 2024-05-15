@@ -2,10 +2,10 @@
 
 import TestImage from "components/quiz-app/product img.png"
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuiz } from "../[id]/quiz-app-context";
-import { useGenerateQuizAPI, useGetLastGeneratedQuiz } from "@/hooks/api/quiz_app"
 import { useChatbotDetail } from "@/hooks/api/chatbot";
+import { useGenerateQuizAPI, useGetLastGeneratedQuiz } from "@/hooks/api/quiz_app"
 import Image from "next/image"
 import { useParams } from "next/navigation";
 
@@ -14,13 +14,26 @@ interface Form {
 }
 
 export default function QuizCover() {
-    const { step, setStep, topic, setTopic, chatbot_id, setChatbotId } = useQuiz();
-
     const { id } = useParams();
+    console.log("Chatbot ID:", id); //For debugging purpose
+    const chatbotDetail = useChatbotDetail({
+        chatbot_id: id as string,
+    });
+    console.log("Chatbot Detail:", chatbotDetail.data?.data?.data); //For debugging purpose
 
-    setStep("cover");
-    const handleFormChange = (value: string) => {
-        setTopic(value);
+    const generateQuiz = useGenerateQuizAPI();
+
+    const [step, setStep] = useState("cover");
+
+    const [form, setForm] = useState<Form>({
+        topic: "",
+    });
+
+    const handleFormChange = (name: string, value: string) => {
+        setForm({
+            ...form,
+            [name]: value,
+        });
     };
 
     const handleSubmit = (event: any) => {
@@ -47,13 +60,10 @@ export default function QuizCover() {
             </div>
             <div className="mx-4 mt-2 rounded-lg shadow-md p-6 space-x-4">
                 <div className="flex flex-col items-center">
-                    <Image src={TestImage} alt="" />
-                    <h1 className="text-2xl font-bold text-blue-600">Tech Innovations Quiz</h1>
+                    <Image src={chatbotDetail.data?.data?.data.profile_image as string} alt="" width={100} height={100} />
+                    <h1 className="text-2xl font-bold text-blue-600">{chatbotDetail.data?.data?.data.name}</h1>
                     <p className="text-sm">
-                        Any time is a good time for a quiz and even better if
-                    </p>
-                    <p className="text-sm">
-                        that happens to be a tech innovations quiz!
+                        {chatbotDetail.data?.data?.data.description}
                     </p>
                 </div>
             </div>

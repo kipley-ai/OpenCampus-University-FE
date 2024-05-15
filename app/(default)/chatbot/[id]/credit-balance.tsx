@@ -14,6 +14,8 @@ import { useAppProvider } from "@/providers/app-provider";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { FaArrowRight } from "react-icons/fa6";
+import { useAccount } from "wagmi";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 
 export default function CreditBalance() {
   const [topUpStatus, setTopUpStatus] = useState<string>("");
@@ -28,6 +30,8 @@ export default function CreditBalance() {
   const { data } = useRechargeStatus({ willRefetch });
 
   const { theme } = useTheme();
+  const { status } = useAccount();
+  const { openConnectModal } = useConnectModal();
 
   useEffect(() => {
     if (data) {
@@ -58,6 +62,14 @@ export default function CreditBalance() {
       }
     }
   }, [data, topUpStatus]);
+
+  const handleTopUp = () => {
+    if (status === "connected") {
+      setModalTopUp(true);
+    } else if (status === "disconnected" && openConnectModal) {
+      openConnectModal();
+    }
+  };
 
   return (
     <div className="flex w-full flex-col justify-start gap-3">
@@ -112,10 +124,7 @@ export default function CreditBalance() {
           <span className="ml-2 text-xs font-medium">Processing Top-Up...</span>
         </div>
       )}
-      <Button
-        onClick={() => setModalTopUp(true)}
-        disabled={topUpStatus === "processing"}
-      >
+      <Button onClick={handleTopUp} disabled={topUpStatus === "processing"}>
         <p>Top up OC Points</p>
         <FaArrowRight />
       </Button>

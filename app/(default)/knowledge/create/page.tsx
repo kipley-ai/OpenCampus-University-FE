@@ -11,7 +11,7 @@ import NFTForm from "./create-nft-form";
 import { createKB } from "@/app/api/kb/helper";
 import { useCreateChatbotContext } from "./create-knowledge-context";
 import Local from "./local";
-import Notion from "./notion";
+import URLInput from "./url-input";
 import ModalLoginTwitter from "@/components/modal-login-twitter";
 import { KF_TITLE } from "@/utils/constants";
 
@@ -23,6 +23,7 @@ export type PossibleOption =
   | "medium"
   | "mirror"
   | "api"
+  | "youtube"
   | "";
 
 export interface UIFile {
@@ -50,11 +51,7 @@ export default function DataSource({
   const [selectedButton, setSelectedButton] = useState<PossibleOption>("");
   const [localFiles, setLocalFiles] = useState<UIFile[]>([]);
 
-  const [isModalOpen, setIsModalOpen] = useState(true);
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { status: twitterStatus } = useSession();
   const { modalLogin: showTwitterLogin, setModalLogin: setShowTwitterLogin } =
@@ -75,10 +72,10 @@ export default function DataSource({
       } else {
         setStep("mint_nft");
       }
-    } else if (selectedButton == "notion") {
-      setStep("notion");
     } else if (selectedButton == "files") {
-      setStep("upload_files");
+        setStep("upload_files");
+    } else if (selectedButton == "youtube" || selectedButton == "medium" || selectedButton == "notion") {
+        setIsModalOpen(true);
     }
   };
 
@@ -97,6 +94,7 @@ export default function DataSource({
         setIsOpen={setShowTwitterLogin}
         redirectUrl={twitterRedirectUrl}
       />
+      <URLInput setIsOpen={setIsModalOpen} isOpen={isModalOpen} type={selectedButton} />
       <div className="h-full flex-col px-4 md:flex-row md:pl-10 justify-start bg-container md:w-5/6">
         <h1 className="text-heading text-lg font-semibold py-3">Create Knowledge Asset</h1>
         {step == "data_source" ? (
@@ -183,8 +181,6 @@ export default function DataSource({
           <Local files={localFiles} setFiles={setLocalFiles} />
         ) : step == "mint_nft" ? (
           <NFTForm />
-        ) : step == "notion" ? (
-          <Notion closeModal={closeModal} />
         ) : (
           <></>
         )}

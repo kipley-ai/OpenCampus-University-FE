@@ -8,6 +8,7 @@ import SubstackIcon from "public/images/knowledge-source/substack-icon.svg";
 import MediumIcon from "public/images/knowledge-source/medium.svg";
 import MediumLightIcon from "public/images/knowledge-source/medium-light.svg";
 import ApiIcon from "public/images/knowledge-source/api.png";
+import YoutubeIcon from "public/images/knowledge-source/youtube.svg";
 
 export const buttons = [
   {
@@ -41,9 +42,15 @@ export const buttons = [
     icon: MediumIcon,
     lightIcon: MediumLightIcon,
     text: "Medium",
-    comingSoon: true,
+    comingSoon: false,
   },
-
+  {
+    type: "youtube",
+    icon: YoutubeIcon,
+    lightIcon: YoutubeIcon,
+    text: "Youtube",
+    comingSoon: false,
+  },
   {
     type: "files",
     icon: FolderAddIcon,

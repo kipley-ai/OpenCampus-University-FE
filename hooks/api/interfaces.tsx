@@ -44,6 +44,8 @@ export interface ICreateKBAndNFTParams {
   token_amount: number;
   url: string;
   profile_image: string;
+  youtube_url: string | undefined | null;
+  medium_url: string | undefined | null;
 }
 
 // Used by hooks/api/nft/index.ts

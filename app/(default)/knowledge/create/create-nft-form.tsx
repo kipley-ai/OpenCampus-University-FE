@@ -153,6 +153,14 @@ export default function NFT() {
           token_amount: 1,
           url: "",
           profile_image: uploadedFile ? assetUrl : selectedFile,
+          youtube_url:
+            createKb.type == "youtube"
+              ? (createKb?.youtube_url as string)
+              : "",
+          medium_url:
+            createKb.type == "medium"
+              ? (createKb?.medium_url as string)
+              : "",
         },
         {
           async onSuccess(data, variables, context) {

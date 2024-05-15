@@ -132,7 +132,6 @@ const ImageInput = ({ selectedFile, setSelectedFile }: any) => {
         <div className="flex gap-2 max-xs:flex-col">
           <Button
             onClick={handleChangeImage}
-            className="bg-primary text-white hover:brightness-125"
           >
             Upload Image
           </Button>

@@ -2,7 +2,6 @@ export const GET_CHATBOX_HISTORY = ["chatbox-history"];
 export const GET_CHATBOX_SESSION = ["chatbox-session"];
 export const GET_NFT_DETAIL = ["nft-detail"];
 
-
 export const KIP_TOKEN_DECIMAL = 1e18;
 export const DEFAULT_COVER_IMAGE =
   "https://knowledgefi-assets-test.kip.pro/cover_image/nft/202402/19/default_cover_4mmsj6msas.jpeg";
@@ -18,3 +17,7 @@ export enum ONBOARDING_FLOW {
 }
 
 export const SUBDOMAINS = ["yat-siu", "yat-siu-beta"];
+
+export const CHATBOT_APP = "Chat With KB";
+export const QUIZ_APP = "Semantic Quiz Generation";
+export const VALID_APPS = [CHATBOT_APP, QUIZ_APP];

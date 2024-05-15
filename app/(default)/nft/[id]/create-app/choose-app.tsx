@@ -1,19 +1,23 @@
+"use client";
+
 import CreateChatbotImg from "@/public/images/create-chatbot.svg";
 import CreateQuizImg from "@/public/images/create-quiz.svg";
 import Image from "next/image";
-import { useCreateChatbotContext } from "./create-chatbot-context";
 import { useState } from "react";
 import { FormNav } from "./form-nav";
+import { CHATBOT_APP, QUIZ_APP, VALID_APPS } from "@/utils/constants";
+import { useCreateAppContext } from "./create-app-context";
+import { useGetPlugin } from "@/hooks/api/quiz";
 
 const apps = [
   {
     name: "Chatbot",
-    step: "create_chatbot",
+    step: CHATBOT_APP,
     icon: CreateChatbotImg,
   },
   {
     name: "Quiz",
-    step: "create_quiz",
+    step: QUIZ_APP,
     icon: CreateQuizImg,
   },
   {
@@ -23,17 +27,24 @@ const apps = [
   },
 ];
 
-const validApps = ["create_chatbot"];
-
-export function ChooseApp() {
-  const [chosenApp, setChosenApp] = useState("create_chatbot");
-  const { setStep } = useCreateChatbotContext();
+export default function ChooseApp() {
+  const [chosenApp, setChosenApp] = useState(CHATBOT_APP);
+  const { setStep, setPlugin } = useCreateAppContext();
+  const { data: pluginList, isLoading } = useGetPlugin();
+  if (isLoading) return null;
 
   const handleCreateApp = () => {
     if (chosenApp === "") return;
-    if (validApps.includes(chosenApp)) {
+    if (VALID_APPS.includes(chosenApp)) {
       setStep(chosenApp);
     }
+  };
+
+  const handleChosenApp = (app: string) => {
+    const { plugin_data } = pluginList?.data?.data;
+    const pl = plugin_data.filter((plg: any) => plg.title === app);
+    setPlugin(pl[0]);
+    setChosenApp(app);
   };
 
   return (
@@ -45,7 +56,7 @@ export function ChooseApp() {
             <button
               key={app.name}
               className={`flex h-36 flex-col items-center justify-center gap-6 rounded-2xl border-2 bg-container px-4 py-6 text-xl font-medium ${app.step === "" ? "disabled text-secondary-text" : "text-primary"} enabled:hover:bg-secondary ${chosenApp === app.step ? "border-primary" : "border-border"}`}
-              onClick={() => setChosenApp(app.step)}
+              onClick={() => handleChosenApp(app.step)}
             >
               {app.step !== "" && <Image src={app.icon} alt={app.name} />}
               <h1>{app.name}</h1>

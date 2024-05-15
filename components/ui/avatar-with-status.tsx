@@ -47,14 +47,15 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
 
   return (
     <div className="relative inline-block" ref={dropdownRef}>
-      <div onClick={toggleDropdown} className="group cursor-pointer flex gap-4 items-center">
+      <div
+        onClick={toggleDropdown}
+        className="group flex cursor-pointer items-center gap-1 xs:gap-2"
+      >
         {image === "" ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="33"
-            height="33"
             viewBox="0 0 338 338"
-            className="fill-[#181B1F] group-hover:fill-gray-500 dark:fill-heading dark:group-hover:brightness-50"
+            className="size-6 fill-[#181B1F] dark:fill-heading dark:group-hover:brightness-50 md:size-8"
           >
             <path d="m169,.5a169,169 0 1,0 2,0zm0,86a76,76 0 11-2,0zM57,287q27-35 67-35h92q40,0 67,35a164,164 0 0,1-226,0" />
           </svg>
@@ -67,20 +68,19 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
             className="rounded-full group-hover:brightness-50"
           />
         )}
-        <span className="text-sm font-medium flex items-center gap-2 group-hover:underline">
+        <span className="flex items-center gap-0 text-[9px] font-medium group-hover:underline xs:gap-1 sm:gap-2 sm:text-xs">
           {address && `${address.slice(0, 6)}...${address.slice(-6)}`}
           <IoMdArrowDropdown />
         </span>
       </div>
       {isDropdownOpen && (
-        <div className="absolute right-0 z-50 mt-2 w-48 rounded-md bg-container py-2 shadow-xl">
-          <div className="mx-4 border-t border-border"></div>
+        <div className="absolute right-0 z-50 mt-2 w-36 rounded-md bg-container py-2 shadow-xl sm:w-44 lg:w-48">
           <Link
             href="/manage-account"
-            className="mx-2 block flex rounded-md px-2 py-2 text-sm capitalize hover:bg-secondary"
+            className="mx-2 block flex rounded-md px-2 py-2 text-[9px] capitalize hover:bg-secondary sm:text-xs"
           >
             <svg
-              className="mr-2"
+              className="mr-2 size-3 sm:size-4"
               width="20"
               height="20"
               viewBox="0 0 20 20"
@@ -116,7 +116,7 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
           </Link>
           <div className="mx-4 border-t border-border"></div>
           <button
-            className="mx-2 block flex w-44 rounded-md px-2 py-2 text-sm capitalize hover:bg-secondary"
+            className="mx-2 block flex w-44 rounded-md px-2 py-2 text-[9px] capitalize hover:bg-secondary sm:text-xs"
             onClick={(e) => {
               e.preventDefault();
               localStorage.setItem("kip-protocol-signature", "");
@@ -125,7 +125,7 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
             }}
           >
             <svg
-              className="mr-2"
+              className="mr-2 size-3 sm:size-4"
               width="20"
               height="20"
               viewBox="0 0 20 20"

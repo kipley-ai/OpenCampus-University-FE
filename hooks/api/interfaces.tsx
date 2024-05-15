@@ -26,6 +26,7 @@ export interface ICreateChatbotParams {
   description: string;
   // instruction: string;
   // example_conversation: string;
+  plugin_id: string | undefined;
 }
 
 export interface ICreateKBAndNFTParams {
@@ -129,4 +130,15 @@ export interface IChatroomHistoryParams {
   session_id?: string | undefined | null;
   page_num: number;
   page_size: number;
+}
+
+export interface ICreateQuizParams {
+  name: string;
+  kb_id: string;
+  profile_image: string;
+  sft_id: string;
+  price_per_query: number;
+  meta_data: string | undefined;
+  description: string;
+  plugin_id: string | undefined;
 }

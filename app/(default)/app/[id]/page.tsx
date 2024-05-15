@@ -333,14 +333,14 @@ const NFTCard = ({ nft }: NFTCardProps) => {
       />
       <div className="flex flex-col gap-1 px-4 pt-4">
         {/* <Link href={`/nft/${nft.sft_id}`}> */}
-          <p className="line-clamp-1 text-primary font-semibold">{nft.name}</p>
+        <p className="line-clamp-1 text-primary font-semibold">{nft.name}</p>
         {/* </Link> */}
       </div>
-        
-        {/* <p className="line-clamp-1 text-sm text-heading">
+
+      {/* <p className="line-clamp-1 text-sm text-heading">
           {nft.price_per_query} {nft.token_symbol}
         </p> */}
-        {/* <p className="line-clamp-1 text-[12px] text-gray-400">
+      {/* <p className="line-clamp-1 text-[12px] text-gray-400">
           {nft.category || "Uncategorised"}
         </p> */}
       <Link href={`/nft/${nft.sft_id}`}>
@@ -383,7 +383,7 @@ const NoData = () => {
 const NFTList = ({ id }: { id: any }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(3);
-  
+
   const { isPending, isError, error, data, isFetching } = useNFTList(
     {
       page: currentPage,
@@ -452,13 +452,13 @@ const BotDetail = ({ params }: { params: any }) => {
   const router = useRouter();
 
   // const nftQuery = useChatbotDetail({ chatbot_id: id });
-  
+
   const chatbotQuery = useChatbotDetail({
     chatbot_id: id
   });
 
   const { data: kbDetail } = useKBDetail({
-    kb_id: chatbotQuery.data?.data.data.kb_id as string,
+    kb_id: chatbotQuery.data?.data?.data.kb_id as string,
   });
 
   return (
@@ -488,7 +488,7 @@ const BotDetail = ({ params }: { params: any }) => {
           <NFTList id={id} />
         </div>
         <div className="my-8 mt-4 flex items-center justify-between">
-          <button 
+          <button
             className="flex items-center justify-center gap-2 hover:underline"
             type="submit"
             onClick={() => {

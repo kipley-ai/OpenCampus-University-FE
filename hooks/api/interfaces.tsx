@@ -143,3 +143,12 @@ export interface ICreateQuizParams {
   description: string;
   plugin_id: string | undefined;
 }
+
+export interface IGenerateQuiz {
+  chatbot_id: string;
+  topic: string;
+}
+
+export interface IGetLasGeneratedQuiz {
+  chatbot_id: string;
+}

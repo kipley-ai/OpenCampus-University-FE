@@ -36,6 +36,8 @@ interface ICreateKb {
   type: string;
   kb_data: any[];
   username: string;
+  youtube_url: string;
+  medium_url: string;
 }
 
 interface ICreateNft {
@@ -64,6 +66,8 @@ export const CreateChatbotProvider = ({
     type: "",
     kb_data: [],
     username: "",
+    youtube_url: "",
+    medium_url: "",
   });
 
   const [createNft, setCreateNft] = useState<ICreateNft>({

@@ -140,3 +140,15 @@ export type TaskListResponse = {
     task_count: number;
   };
 };
+
+export type LeaderboardData = {
+  rank: number,
+  wallet_address: string,
+  points: number
+  profile_image: string
+}
+
+export type LeaderboardResponse = {
+  status: string,
+  leaderboard: LeaderboardData[]
+}

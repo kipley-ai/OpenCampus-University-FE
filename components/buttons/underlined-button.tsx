@@ -1,6 +1,7 @@
 interface UnderlinedButtonProps {
   children: React.ReactNode;
   className?: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const UnderlinedButton = ({

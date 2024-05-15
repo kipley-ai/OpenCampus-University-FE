@@ -112,7 +112,8 @@ export interface INftList {
 }
 
 export interface IUpdateUserParams {
-  profile_image: string;
+  profile_image?: string | undefined | null;
+  username?: string;
 }
 
 export interface IChatbotExplore {

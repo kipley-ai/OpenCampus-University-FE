@@ -183,15 +183,15 @@ export default function AccountSettings() {
       setProfileImage(userDetail.data.data.profile_image || AvatarDefault);
       if (
         twitterStatus == "authenticated" &&
-        userDetail.data.data.profile_image == ""
+        !userDetail.data.data.profile_image
       ) {
         setProfileImage(twitterSession?.user?.image);
+        updateProfileImage.mutate({
+          profile_image: twitterSession?.user?.image,
+          username: twitterSession?.user?.username,
+        });
       }
     }
-    // setShowTwitterLogin(walletConnected && twitterStatus !== "authenticated");
-    // setShowAccountButton(walletConnected && twitterStatus === "authenticated");
-
-    // console.log(twitterSession);
   }, [twitterStatus, userDetail]);
 
   const handleProfileImage = (event: any) => {

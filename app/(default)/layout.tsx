@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation";
 import { useUserDetail } from "@/hooks/api/user";
 import { useAppProvider } from "@/providers/app-provider";
 import { SUBDOMAINS } from "@/utils/constants";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 
 export default function DefaultLayout({
   children,
@@ -18,14 +19,12 @@ export default function DefaultLayout({
 }) {
   const { status } = useAccount();
   const pathname = usePathname();
-  const router = useRouter();
+  const { openConnectModal } = useConnectModal();
 
   const subdomain = window.location.origin.split("//")[1].split(".")[0];
   if (SUBDOMAINS.includes(subdomain) && pathname !== "/") {
     redirect(process.env.NEXT_PUBLIC_HOST + pathname);
   }
-
-  const { data: userDetail, isLoading, isSuccess } = useUserDetail();
 
   const {
     modalTopUpSuccessful,
@@ -34,45 +33,37 @@ export default function DefaultLayout({
     setModalTopUpFailed,
   } = useAppProvider();
 
-  if (isLoading) return null;
+  if (
+    status === "disconnected" &&
+    pathname !== "/dashboard" &&
+    openConnectModal
+  ) {
+    openConnectModal();
+    return redirect("/dashboard");
+  }
 
-  // switch (status) {
-    // case "connected":
-      // if (
-      //   userDetail?.data?.status !== "error" &&
-      //   !userDetail?.data?.data.onboarding &&
-      //   pathname !== "/knowledge/create/iframe"
-      // ) {
-      //   return redirect("/onboarding");
-      // }
+  return (
+    <div className="flex h-dvh divide-x-2 divide-border text-heading">
+      {/* Sidebar */}
+      {pathname === "/knowledge/create/iframe" ? null : <Sidebar />}
 
-      return (
-        <div className="flex h-dvh text-heading divide-x-2 divide-border">
-          {/* Sidebar */}
-          {pathname === "/knowledge/create/iframe" ? null : <Sidebar />}
+      {/* Content area */}
+      <ModalTopUpSuccessful
+        isOpen={modalTopUpSuccessful}
+        setIsOpen={setModalTopUpSuccessful}
+      />
+      <ModalTopUpFailed
+        isOpen={modalTopUpFailed}
+        setIsOpen={setModalTopUpFailed}
+      />
+      <div className="relative flex flex-1 flex-col overflow-y-auto">
+        <div className="h-[max(100vh, fit-content)] grow bg-container">
+          {/*  Site header */}
+          {pathname === "/knowledge/create/iframe" ? null : <Header />}
 
-          {/* Content area */}
-          <ModalTopUpSuccessful
-            isOpen={modalTopUpSuccessful}
-            setIsOpen={setModalTopUpSuccessful}
-          />
-          <ModalTopUpFailed
-            isOpen={modalTopUpFailed}
-            setIsOpen={setModalTopUpFailed}
-          />
-          <div className="relative flex flex-1 flex-col overflow-y-auto">
-            <div className="h-[max(100vh, fit-content)] grow bg-container">
-              {/*  Site header */}
-              {pathname === "/knowledge/create/iframe" ? null : <Header />}
-
-              <main className="grow">{children}</main>
-            </div>
-          </div>
+          <main className="grow">{children}</main>
         </div>
-      );
-    // case "disconnected":
-    //   return redirect(`/?next=${pathname}`);
-    // default:
-    //   break;
-  // }
+      </div>
+    </div>
+  );
 }

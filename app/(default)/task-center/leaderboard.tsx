@@ -14,14 +14,6 @@ import AvatarDefault from "@/public/images/avatar-default-03.svg";
 export const Leaderboard = () => {
   const { data: ocPoints, refetch: refetchBasePoints } = useTaskBasePoint();
   const leaderboardData = useGetLeaderboard();
-  // replace this array with the actual data later
-  const myArray: { name: string, points: number }[] = [
-    { name: "John", points: 1000 },
-    { name: "Alice", points: 750 },
-    { name: "Bob", points: 500 },
-    { name: "Charlie", points: 250 },
-    { name: "David", points: 100 }
-  ];
 
   const [profileImage, setProfileImage] = useState<StaticImageData | string>(
     "",
@@ -68,7 +60,7 @@ export const Leaderboard = () => {
             }
             <Oval className="-ml-4" color={"gold"}/>
           </div>
-          <p className="text-primary text-lg font-semibold my-2">{twitterSession?.user?.name}</p>
+          <p className="text-primary text-lg font-semibold my-2">{twitterSession?.user?.username}</p>
           <p>Your weekly rank: 1st</p>
           <p>Total OC points: {ocPoints?.data?.base_point}</p>
         </div>
@@ -104,7 +96,7 @@ export const Leaderboard = () => {
                   :
                   <Image src={item.profile_image} width={55} height={55} alt="Avatar" className="rounded-full" />
                 }
-                <span>{`${item.wallet_address.substring(0, 7)}...${item.wallet_address.substring(item.wallet_address.length - 7)}`}</span>
+                <span>{item.username}</span>
               </div>
               <span className="text-primary">{item.points} OC points</span>
             </div>

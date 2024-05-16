@@ -147,6 +147,7 @@ export type LeaderboardData = {
   wallet_address: string;
   points: number;
   profile_image: string;
+  username: string;
 };
 
 export type LeaderboardResponse = {

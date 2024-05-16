@@ -22,7 +22,7 @@ export const useTaskList = (
           "x-kf-user-id": address,
         },
       }),
-    placeholderData: placeholderData,
+    placeholderData: keepPreviousData,
     select: (data) => data.data.data,
   });
 };

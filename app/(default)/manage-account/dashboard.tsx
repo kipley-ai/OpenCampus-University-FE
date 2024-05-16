@@ -181,14 +181,18 @@ export default function AccountSettings() {
   useEffect(() => {
     if (userDetail?.data) {
       setProfileImage(userDetail.data.data.profile_image || AvatarDefault);
-      if (
-        twitterStatus == "authenticated" &&
-        !userDetail.data.data.profile_image
-      ) {
-        setProfileImage(twitterSession?.user?.image);
+      if (twitterStatus == "authenticated") {
+        let userProfileImage = userDetail.data.data.profile_image;
+
+        if (!userDetail.data.data.profile_image) {
+          setProfileImage(twitterSession?.user?.image);
+          userProfileImage = twitterSession?.user?.image;
+        }
+        
         updateProfileImage.mutate({
-          profile_image: twitterSession?.user?.image,
+          profile_image: userProfileImage,
           username: twitterSession?.user?.username,
+          twitter_link: twitterSession?.user?.username,
         });
       }
     }
@@ -278,10 +282,10 @@ export default function AccountSettings() {
               fill="white"
             />
           </svg>
-          {twitterStatus == "authenticated" ? (
+          {userDetail?.data.data.twitter_link ? (
             <span className="ml-4">
               <span className="text-heading">Twitter X</span> (@
-              {twitterSession.user?.username})
+              {userDetail?.data.data.twitter_link})
             </span>
           ) : (
             <button
@@ -296,10 +300,13 @@ export default function AccountSettings() {
             </button>
           )}
         </div>
-        {twitterStatus == "authenticated" ? (
+        {userDetail?.data.data.twitter_link ? (
           <button
             className="flex items-center rounded-full border border-border px-4 py-1 text-heading"
             onClick={() => {
+              updateProfileImage.mutate({
+                twitter_link: "",
+              });
               signOut();
             }}
           >

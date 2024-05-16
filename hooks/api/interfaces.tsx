@@ -114,6 +114,7 @@ export interface INftList {
 export interface IUpdateUserParams {
   profile_image?: string | undefined | null;
   username?: string;
+  twitter_link?: string;
 }
 
 export interface IChatbotExplore {

@@ -6,7 +6,7 @@ import ModalImageGallery from "@/components/modal-image-gallery";
 import Button from "@/components/button";
 import GalleryImages from "@/public/json/image-gallery-app.json";
 import LoadingIcon from "public/images/loading-icon.svg";
-import NoCover from "public/images/no-cover.png";
+import NoCover from "public/images/no-cover.svg";
 
 type ImageInputProps = {
   selectedFile: string;
@@ -108,8 +108,8 @@ const ImageInput = ({
                 <Image
                   src={NoCover}
                   alt="no cover"
-                  width={125}
-                  height={125}
+                  width={100}
+                  height={100}
                   className="rounded-lg object-cover"
                   priority
                 />
@@ -130,7 +130,7 @@ const ImageInput = ({
             Choose From Gallery
           </Button>
         </div>
-        <p className="w-3/5 text-xs text-gray-400 my-0.5">
+        <p className="w-3/5 text-xs text-gray-400 my-0.5 leading-4">
           Please upload JPG, GIF or PNG only. Maximum size of 800KB, minimum
           dimension of 200 x 200px
         </p>

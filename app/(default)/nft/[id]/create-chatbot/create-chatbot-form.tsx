@@ -16,7 +16,7 @@ import ImageInput from "@/components/image-input-2";
 import { ZodError, number, string, z } from "zod";
 import Switcher from "@/components/switcher";
 import { useAppProvider } from "@/providers/app-provider";
-import { DEFAULT_COVER_IMAGE, KF_TITLE } from "@/utils/constants";
+import { KF_TITLE } from "@/utils/constants";
 import Tooltip from "@/components/tooltip";
 import { noMoreThanCharacters } from "@/utils/utils";
 import SpinnerIcon from "@/public/images/spinner-icon.svg";
@@ -65,7 +65,7 @@ export const ChatBotForm = () => {
   const { id } = useParams();
   const superAdmin = useSuperAdmin();
   const { data: nftData } = useNftDetail({ sft_id: id as string });
-  const [selectedFile, setSelectedFile] = useState<any>(DEFAULT_COVER_IMAGE);
+  const [selectedFile, setSelectedFile] = useState<any>("");
   const [mode, setMode] = useState(0);
   const [toneData, setToneData] = useState("");
   const [personality, setPersonality] = useState(0);
@@ -249,7 +249,7 @@ export const ChatBotForm = () => {
         setOpen={setShowModal}
       />
       <div className="flex flex-col sm:px-6 lg:px-0">
-        <div className="mb-8 flex items-center justify-between">
+        <div className="max-lg:mb-4 flex items-center justify-between">
           <h1 className="text-lg font-semibold text-primary">Chatbot</h1>
           <div className="flex w-32 items-center xs:w-60">
             {chatbotPKLStatus ? (

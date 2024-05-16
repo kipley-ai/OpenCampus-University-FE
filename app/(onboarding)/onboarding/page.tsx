@@ -8,6 +8,7 @@ import InviteCode from "./invite-code";
 import SelectDataElements from "../select-data-elements";
 import MintNFT from "../mint-nft";
 import CreateChatbot from "../create-chatbot";
+import CreateQuiz from "../create-quiz";
 import OnboardingSuccess from "../onboarding-success";
 import { useAppProvider } from "@/providers/app-provider";
 import { useUserDetail } from "@/hooks/api/user";
@@ -56,10 +57,9 @@ export default function Onboarding() {
           <ChooseApp />
         ) : step == "create_chatbot" ? (
           <CreateChatbot />
-        ) : // : step == "free_kfi" ? (
-        //   <FreeKFI />
-        // )
-        step == "onboarding_success" ? (
+        ) : step === "create_quiz" ? (
+          <CreateQuiz />
+        ) : step == "onboarding_success" ? (
           <OnboardingSuccess />
         ) : (
           <InviteCode address={address} />

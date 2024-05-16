@@ -63,7 +63,7 @@ const ChatBotForm = () => {
   const [toneData, setToneData] = useState("");
   const [personality, setPersonality] = useState(0);
   const [personalityData, setPersonalityData] = useState("");
-  const { setStep, setSftId } = useCreateChatbotContext();
+  const { setStep, plugin } = useCreateChatbotContext();
 
   const [errorMessage, setErrorMessage] = useState<any>({});
   const [allowGenerate, setAllowGenerate] = useState(false);
@@ -148,7 +148,7 @@ const ChatBotForm = () => {
         description: description.value,
         // instruction: instructions,
         // example_conversation: example,
-        plugin_id: "",
+        plugin_id: plugin?.plugin_id,
       },
       {
         async onSuccess() {

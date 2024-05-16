@@ -5,7 +5,7 @@ import CreateQuizImg from "@/public/images/create-quiz.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { FormNav } from "./form-nav";
+import { FormNav } from "@/components/form-nav";
 import { CHATBOT_APP, QUIZ_APP, VALID_APPS } from "@/utils/constants";
 import { useCreateAppContext } from "./create-app-context";
 import { useGetPlugin } from "@/hooks/api/quiz";

@@ -1,4 +1,6 @@
 import axios from "axios";
+import { ChatbotData } from "@/lib/types";
+import { CHATBOT_PLUGIN_ID, QUIZAPP_PLUGIN_ID } from "./constants";
 
 export function hashUUIDToInteger(uuid: string) {
   let s = uuid.replaceAll("-", "");
@@ -51,4 +53,15 @@ export const chatbotSlug = (chatbot: any) => {
 
 export const chatbotIdFromSlug = (slug: string) => {
   return slug.slice(-36);
+};
+
+export const handleAppUrl = (bot: ChatbotData) => {
+  switch (bot.plugin_id) {
+    case CHATBOT_PLUGIN_ID:
+      return `/chatbot/` + chatbotSlug(bot);
+    case QUIZAPP_PLUGIN_ID:
+      return `/quiz-app/` + bot.chatbot_id;
+    default:
+      return `/chatbot/` + chatbotSlug(bot);
+  }
 };

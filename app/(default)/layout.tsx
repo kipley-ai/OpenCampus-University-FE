@@ -31,6 +31,7 @@ export default function DefaultLayout({
     setModalTopUpSuccessful,
     modalTopUpFailed,
     setModalTopUpFailed,
+    topUpAmount,
   } = useAppProvider();
 
   if (
@@ -49,6 +50,7 @@ export default function DefaultLayout({
 
       {/* Content area */}
       <ModalTopUpSuccessful
+        amount={topUpAmount}
         isOpen={modalTopUpSuccessful}
         setIsOpen={setModalTopUpSuccessful}
       />

@@ -24,6 +24,8 @@ interface ContextProps {
   setModalTopUpSuccessful: Dispatch<SetStateAction<boolean>>;
   modalTopUpFailed: boolean;
   setModalTopUpFailed: Dispatch<SetStateAction<boolean>>;
+  topUpAmount: number;
+  setTopUpAmount: Dispatch<SetStateAction<number>>;
   toast: any;
   setToast: Dispatch<SetStateAction<any>>;
   verifStatus: AuthenticationStatus;
@@ -45,6 +47,8 @@ const AppContext = createContext<ContextProps>({
   setModalTopUpSuccessful: () => false,
   modalTopUpFailed: false,
   setModalTopUpFailed: () => false,
+  topUpAmount: 0,
+  setTopUpAmount: () => 0,
   toast: {},
   setToast: () => {},
   verifStatus: "unauthenticated",
@@ -63,6 +67,7 @@ export default function AppProvider({
   const [topUpStatus, setTopUpStatus] = useState("UNDEFINED");
   const [modalTopUpSuccessful, setModalTopUpSuccessful] = useState(false);
   const [modalTopUpFailed, setModalTopUpFailed] = useState(false);
+  const [topUpAmount, setTopUpAmount] = useState(0);
   const [toast, setToast] = useState(false);
   const [verifStatus, setVerifStatus] =
     useState<AuthenticationStatus>("unauthenticated");
@@ -84,6 +89,8 @@ export default function AppProvider({
         setModalTopUpSuccessful,
         modalTopUpFailed,
         setModalTopUpFailed,
+        topUpAmount,
+        setTopUpAmount,
         toast,
         setToast,
         verifStatus,

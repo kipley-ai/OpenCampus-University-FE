@@ -65,7 +65,7 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
             width={33}
             height={33}
             alt="Avatar"
-            className="rounded-full group-hover:brightness-50"
+            className="size-6 rounded-full md:size-8"
           />
         )}
         <span className="flex items-center gap-0 text-[9px] font-medium group-hover:underline xs:gap-1 sm:gap-2 sm:text-xs">

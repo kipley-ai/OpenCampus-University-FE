@@ -10,10 +10,8 @@ import {
 } from "@/smart-contract/kip-token";
 import { KIP_TOKEN_DECIMAL } from "@/utils/constants";
 import { useState } from "react";
+import { useAppProvider } from "@/providers/app-provider";
 import Notification from "@/components/notification";
-import ModalTopUpSuccessful from "./modal-top-up-successful";
-import ModalTopUpFailed from "./modal-top-up-failed";
-import ModalTopUpPending from "./modal-top-up-pending";
 import Button from "@/components/button";
 import { UnderlinedButton } from "@/components/buttons/underlined-button";
 import { useSwitchToSepolia, useSwitchToBase } from "@/hooks/useSwitchNetwork";
@@ -56,6 +54,7 @@ export default function ModalTopUp({
   const targetNetworkName = isDevelopment ? "Sepolia" : "Base";
 
   const addRecharge = useAddRecharge();
+  const { setTopUpAmount } = useAppProvider();
 
   const handleFormChange = (name: string, value: any) => {
     setForm({
@@ -93,6 +92,7 @@ export default function ModalTopUp({
       });
 
       const rechargeTx = await recharge(form.amount!);
+      setTopUpAmount(form.amount!);
 
       addRecharge.mutate(
         {

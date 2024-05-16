@@ -17,6 +17,7 @@ export type ChatbotData = {
   tone: string;
   personality: string;
   suggestion_chat: string;
+  plugin_id: string;
 };
 
 export type ChatbotDataListResponse = {
@@ -142,13 +143,13 @@ export type TaskListResponse = {
 };
 
 export type LeaderboardData = {
-  rank: number,
-  wallet_address: string,
-  points: number
-  profile_image: string
-}
+  rank: number;
+  wallet_address: string;
+  points: number;
+  profile_image: string;
+};
 
 export type LeaderboardResponse = {
-  status: string,
-  leaderboard: LeaderboardData[]
-}
+  status: string;
+  leaderboard: LeaderboardData[];
+};

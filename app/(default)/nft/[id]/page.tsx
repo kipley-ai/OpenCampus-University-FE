@@ -16,7 +16,7 @@ import { useCreditBalance } from "@/hooks/api/credit";
 import defaultAvatar from "@/public/images/avatar-default-02.svg";
 import { FaSpinner } from "react-icons/fa6";
 import { ChatbotData, NftData } from "@/lib/types";
-import { chatbotSlug } from "@/utils/utils";
+import { chatbotSlug, handleAppUrl } from "@/utils/utils";
 import { useChatbotList } from "@/hooks/api/chatbot";
 import { keepPreviousData } from "@tanstack/react-query";
 import { PaginationController } from "@/components/pagination-2/controller";
@@ -268,9 +268,9 @@ const BotCard = ({ bot }: BotCardProps) => {
         </Link>
         <Link
           className="flex flex-1 items-center justify-center rounded-br-xl hover:bg-primary hover:text-container"
-          href={`/chatbot/` + chatbotSlug(bot)}
+          href={handleAppUrl(bot)}
         >
-          <p className="text-center text-sm font-semibold">Chat</p>
+          <p className="text-center text-sm font-semibold">Enter App</p>
         </Link>
       </div>
     </div>

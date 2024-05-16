@@ -15,8 +15,12 @@ import Money from "public/images/money.svg";
 
 import { useRouter } from "next/navigation";
 import { useUserDetail } from "@/hooks/api/user";
-import { KF_TITLE } from "@/utils/constants";
-import { chatbotSlug } from "@/utils/utils";
+import {
+  CHATBOT_PLUGIN_ID,
+  KF_TITLE,
+  QUIZAPP_PLUGIN_ID,
+} from "@/utils/constants";
+import { chatbotSlug, handleAppUrl } from "@/utils/utils";
 
 type NoDataProps = {
   item: string;
@@ -25,14 +29,9 @@ type NoDataProps = {
 
 const NoData = ({ item, url }: NoDataProps) => {
   return (
-    <div className="flex flex-col items-center justify-center gap-4 mt-1 mb-16">
-      <Image
-        src={Money}
-        width={77}
-        height={77}
-        alt={"No Data"}
-      />
-      <p className="text-primary font-semibold lowercase">No data yet</p>
+    <div className="mb-16 mt-1 flex flex-col items-center justify-center gap-4">
+      <Image src={Money} width={77} height={77} alt={"No Data"} />
+      <p className="font-semibold lowercase text-primary">No data yet</p>
 
       {/* Create new Item */}
       {/* {item == "SFT" ? (
@@ -65,14 +64,14 @@ const NFTCard = ({ nft }: NFTCardProps) => {
       />
       <div className="flex flex-col gap-1 px-4 pt-4">
         {/* <Link href={`/nft/${nft.sft_id}`}> */}
-          <p className="line-clamp-1 text-primary font-semibold">{nft.name}</p>
+        <p className="line-clamp-1 font-semibold text-primary">{nft.name}</p>
         {/* </Link> */}
       </div>
-        
-        {/* <p className="line-clamp-1 text-sm text-heading">
+
+      {/* <p className="line-clamp-1 text-sm text-heading">
           {nft.price_per_query} {nft.token_symbol}
         </p> */}
-        {/* <p className="line-clamp-1 text-[12px] text-gray-400">
+      {/* <p className="line-clamp-1 text-[12px] text-gray-400">
           {nft.category || "Uncategorised"}
         </p> */}
       <Link href={`/nft/${nft.sft_id}`}>
@@ -163,7 +162,7 @@ const BotCard = ({ bot }: BotCardProps) => {
         alt={"Bot Card"}
       />
       <div className="flex flex-col gap-1 px-4 pt-4">
-        <p className="line-clamp-1 text-primary font-semibold">{bot.name}</p>
+        <p className="line-clamp-1 font-semibold text-primary">{bot.name}</p>
         {/* <p className="line-clamp-1 text-xs text-gray-400">
           {bot.category_name || "Uncategorised"}
         </p> */}
@@ -177,9 +176,9 @@ const BotCard = ({ bot }: BotCardProps) => {
         </Link>
         <Link
           className="flex flex-1 items-center justify-center rounded-br-xl hover:bg-primary hover:text-container"
-          href={`/chatbot/` + chatbotSlug(bot)}
+          href={handleAppUrl(bot)}
         >
-          <p className="text-center text-sm font-semibold">Chat</p>
+          <p className="text-center text-sm font-semibold">Enter App</p>
         </Link>
       </div>
     </div>
@@ -265,21 +264,29 @@ export default function NFT() {
   }, []);
 
   return (
-    <div className="h-full flex-col px-4 md:flex-row md:pl-10 justify-start bg-container md:w-5/6 mb-6">
-      <h1 className="text-heading text-lg font-semibold py-3">My Assets</h1>
-      <div className="flex flex-col px-6 py-7 pb-0 lg:px-8 xl:px-14 bg-sidebar border border-[#DDDDEB] rounded-2xl">
-          <div className="flex items-center mt-0 mb-8 space-x-10 border-b-2 text-primary font-semibold text-sm">
-            <button className={`${tab == "knowledge-assets" ? "underline underline-offset-8" : "opacity-50"}`} onClick={() => setTab("knowledge-assets")}>Knowledge Assets</button>
-            <button className={`${tab == "apps" ? "underline underline-offset-8" : "opacity-50"}`} onClick={() => setTab("apps")}>Apps</button>
-          </div>
+    <div className="mb-6 h-full flex-col justify-start bg-container px-4 md:w-5/6 md:flex-row md:pl-10">
+      <h1 className="py-3 text-lg font-semibold text-heading">My Assets</h1>
+      <div className="flex flex-col rounded-2xl border border-[#DDDDEB] bg-sidebar px-6 py-7 pb-0 lg:px-8 xl:px-14">
+        <div className="mb-8 mt-0 flex items-center space-x-10 border-b-2 text-sm font-semibold text-primary">
+          <button
+            className={`${tab == "knowledge-assets" ? "underline underline-offset-8" : "opacity-50"}`}
+            onClick={() => setTab("knowledge-assets")}
+          >
+            Knowledge Assets
+          </button>
+          <button
+            className={`${tab == "apps" ? "underline underline-offset-8" : "opacity-50"}`}
+            onClick={() => setTab("apps")}
+          >
+            Apps
+          </button>
+        </div>
 
-          {
-            tab == "knowledge-assets" ? 
-              <NFTList />
-            : tab == "apps" ?
-              <BotList />
-            : null
-          }
+        {tab == "knowledge-assets" ? (
+          <NFTList />
+        ) : tab == "apps" ? (
+          <BotList />
+        ) : null}
       </div>
       {/* <div className="flex flex-col gap-2 lg:gap-8">
         <div className="flex flex-col">

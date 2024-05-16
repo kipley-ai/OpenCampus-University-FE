@@ -21,3 +21,6 @@ export const SUBDOMAINS = ["yat-siu", "yat-siu-beta"];
 export const CHATBOT_APP = "Chat With KB";
 export const QUIZ_APP = "Semantic Quiz Generation";
 export const VALID_APPS = [CHATBOT_APP, QUIZ_APP];
+
+export const CHATBOT_PLUGIN_ID = "c49f872e-82c9-4733-8e31-e21f764f75bf";
+export const QUIZAPP_PLUGIN_ID = "fea23ba8-4352-49a0-8871-a206248971ce";

@@ -5,7 +5,7 @@ import Dropzone from "react-dropzone";
 import ModalImageGallery from "@/components/modal-image-gallery";
 import GalleryImages from "@/public/json/image-gallery-app.json";
 import Button, { SecondaryButton } from "@/components/button";
-import NoCover from "public/images/no-cover.png";
+import NoCover from "public/images/no-cover.svg";
 
 const ImageInput = ({ selectedFile, setSelectedFile }: any) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -145,7 +145,7 @@ const ImageInput = ({ selectedFile, setSelectedFile }: any) => {
           </SecondaryButton>
         </div>
         <div className="flex flex-col gap-2">
-          <p className="text-xs text-gray-400">
+          <p className="text-xs text-gray-400 my-0.5 leading-4">
             Please upload JPG, GIF or PNG only. Maximum size of 800KB, minimum
             dimension of 200 x 200px
           </p>

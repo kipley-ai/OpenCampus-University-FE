@@ -6,6 +6,11 @@ import { useChatSession, useChatboxWS } from "@/hooks/api/chatbox";
 import { ChatPayload, LastMessagePayload } from "@/hooks/api/chatbox/schema";
 import { useNftDetail } from "@/hooks/api/nft";
 
+interface Plugin {
+  plugin_id: string;
+  name: string;
+}
+
 interface CreateChatbotContextProps {
   createKb: ICreateKb;
   handleChangeKb: (name: string, value: any) => void;
@@ -24,6 +29,9 @@ interface CreateChatbotContextProps {
 
   kbId: string;
   setKbId: ReactSetter<string>;
+
+  plugin: Plugin | undefined;
+  setPlugin: ReactSetter<Plugin | undefined>;
 
   createChatbot: any;
   handleChangeChatbot: any;
@@ -82,6 +90,8 @@ export const CreateChatbotProvider = ({
     query_royalties: "",
     url: "",
   });
+
+  const [plugin, setPlugin] = useState<Plugin | undefined>();
 
   const [createChatbot, setCreateChatbot] = useState({
     type: "",
@@ -149,6 +159,9 @@ export const CreateChatbotProvider = ({
 
         kbId,
         setKbId,
+
+        plugin,
+        setPlugin,
 
         welcomePage,
         setWelcomePage,

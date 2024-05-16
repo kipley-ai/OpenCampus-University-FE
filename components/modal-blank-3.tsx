@@ -33,7 +33,7 @@ export default function ModalBlank({
           leaveFrom="opacity-100 translate-y-0"
           leaveTo="opacity-0 translate-y-4"
         >
-          <Dialog.Panel className="bg-box rounded-2xl shadow-xl overflow-auto max-h-full text-heading">
+          <Dialog.Panel className="bg-box rounded-2xl drop-shadow-2xl overflow-auto max-h-full text-heading">
             {children}
           </Dialog.Panel>
         </Transition.Child>

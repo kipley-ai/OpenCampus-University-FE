@@ -5,7 +5,7 @@ import ModalBlank from "@/components/modal-blank-3";
 import Image from "next/image";
 import Button from "@/components/button";
 import { useSwitchToSepolia, useSwitchToBase } from "@/hooks/useSwitchNetwork";
-import NoCover from "public/images/no-cover.png";
+import NoCover from "public/images/no-cover.svg";
 
 export default function ModalMintConfirmation({
   isOpen,

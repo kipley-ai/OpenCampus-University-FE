@@ -3,8 +3,9 @@
 import CreateChatbotImg from "@/public/images/create-chatbot.svg";
 import CreateQuizImg from "@/public/images/create-quiz.svg";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { FormNav } from "./form-nav";
+import { FormNav } from "@/components/form-nav";
 import { CHATBOT_APP, QUIZ_APP, VALID_APPS } from "@/utils/constants";
 import { useCreateAppContext } from "./create-app-context";
 import { useGetPlugin } from "@/hooks/api/quiz";
@@ -29,6 +30,9 @@ const apps = [
 
 export default function ChooseApp() {
   const [chosenApp, setChosenApp] = useState(CHATBOT_APP);
+
+  const router = useRouter();
+  
   const { setStep, setPlugin } = useCreateAppContext();
   const { data: pluginList, isLoading } = useGetPlugin();
   if (isLoading) return null;
@@ -64,7 +68,7 @@ export default function ChooseApp() {
           ))}
         </div>
       </div>
-      <FormNav onNext={handleCreateApp} />
+      <FormNav onBack={() => router.back()} onNext={handleCreateApp} />
     </>
   );
 }

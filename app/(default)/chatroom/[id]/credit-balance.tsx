@@ -22,7 +22,7 @@ export default function CreditBalance() {
     useState<boolean>(false);
   const [modalTopUpFailed, setModalTopUpFailed] = useState<boolean>(false);
 
-  const { modalTopUp, setModalTopUp } = useAppProvider();
+  const { modalTopUp, setModalTopUp, topUpAmount } = useAppProvider();
   const { creditBalance, setRefetch } = useCreditBalanceContext();
 
   const { data } = useRechargeStatus({ willRefetch });
@@ -120,6 +120,7 @@ export default function CreditBalance() {
         <FaArrowRight />
       </Button>
       <ModalTopUpSuccessful
+        amount={topUpAmount}
         isOpen={modalTopUpSuccessful}
         setIsOpen={setModalTopUpSuccessful}
       />

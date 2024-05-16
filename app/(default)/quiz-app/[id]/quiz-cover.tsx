@@ -5,9 +5,9 @@ import TestImage from "components/quiz-app/product img.png"
 import React, { useEffect, useState } from "react";
 import { useQuiz } from "../[id]/quiz-app-context";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
-import { useGenerateQuizAPI, useGetLastGeneratedQuiz } from "@/hooks/api/quiz_app"
+import { useGenerateQuizAPI } from "@/hooks/api/quiz_app"
 import Image from "next/image"
-import { useParams } from "next/navigation";
+import { redirect, useParams } from "next/navigation";
 import { useRouter } from "next/router";
 
 interface Form {
@@ -15,9 +15,8 @@ interface Form {
 }
 
 export default function QuizCover() {
-    const { step, setStep, topic, setTopic, chatbot_id, setChatbotId } = useQuiz(); // Add this line to use the quiz context
+    const { step, setStep, topic, setTopic, chatbot_id, setChatbotId, questions, setQuestions } = useQuiz();
     const { id } = useParams();
-    setChatbotId(id as string);
     //console.log("Chatbot ID:", id); //For debugging purpose
 
     const chatbotDetail = useChatbotDetail({
@@ -26,9 +25,6 @@ export default function QuizCover() {
     //console.log("Chatbot Detail:", chatbotDetail.data?.data?.data); //For debugging purpose
 
     const generateQuiz = useGenerateQuizAPI();
-    setStep("cover");
-
-    let apiResponse;
 
     const [form, setForm] = useState<Form>({
         topic: "",
@@ -48,23 +44,27 @@ export default function QuizCover() {
                 chatbot_id: id as string,
                 topic: form.topic as string,
             },
-            {
-                async onSuccess(data) {
-                    console.log("Successfully created quiz!");
-                    apiResponse = data;
-                    console.log(apiResponse.data?.data);
-                    setStep("question");
-                }
-            },
         );
     };
+
+    useEffect(() => {
+        setChatbotId(id as string);
+        if (generateQuiz.isSuccess && generateQuiz.data) {
+            console.log("Successfully created quiz!", generateQuiz.data);
+            setQuestions(generateQuiz.data?.data)
+            setStep("question");
+            // console.log("Current step:", step); // For debugging purpose
+            // console.log("Chatbot id:", chatbot_id); // For debugging purpose
+            // console.log("Questions: ", questions); // For debugging purpose
+        }
+    }, [chatbot_id, setChatbotId, generateQuiz.isSuccess, generateQuiz.data, setStep]);
 
     return (
         <div className="w-full">
             <div className="ml-4 mt-2">
                 <span className="text-2xl font-bold">Quiz App</span>
             </div>
-            <div className="mx-4 mt-2 rounded-lg shadow-md p-6 space-x-4">
+            <div className="mt-2 rounded-lg shadow-md p-6 space-x-4">
                 <div className="flex flex-col items-center">
                     <Image src={chatbotDetail.data?.data?.data.profile_image as string} alt="" width={100} height={100} />
                     <h1 className="text-2xl font-bold text-blue-600">{chatbotDetail.data?.data?.data.name}</h1>
@@ -73,7 +73,7 @@ export default function QuizCover() {
                     </p>
                 </div>
             </div>
-            <div className="mx-4 mt-2 flex flex-row justify-between items-start space-y-0 space-x-6 p-6 rounded-lg shadow-md">
+            <div className="mt-2 flex flex-row justify-between items-start space-y-0 space-x-6 p-6 rounded-lg shadow-md">
                 <div className="flex flex-col w-2/3 space-y-4">
                     <h2 className="font-semibold text-lg mb-2 text-blue-600">Generate your own Topic</h2>
                     <textarea

@@ -4,6 +4,8 @@ import CreateQuizImg from "@/public/images/create-quiz.svg";
 import Image from "next/image";
 import { useCreateChatbotContext } from "./create-knowledge-context";
 import { useState } from "react";
+import { FormNav } from "@/components/form-nav";
+import { useGetPlugin } from "@/hooks/api/quiz";
 
 const apps = [
   {
@@ -23,11 +25,13 @@ const apps = [
   },
 ];
 
-const validApps = ["create_chatbot"];
+const validApps = ["create_chatbot", "create_quiz"];
 
 export function ChooseApp() {
   const [chosenApp, setChosenApp] = useState("create_chatbot");
-  const { setStep } = useCreateChatbotContext();
+  const { setStep, setPlugin } = useCreateChatbotContext();
+  const { data: pluginList, isLoading } = useGetPlugin();
+  if (isLoading) return null;
 
   const handleCreateApp = () => {
     if (chosenApp === "") return;
@@ -36,58 +40,31 @@ export function ChooseApp() {
     }
   };
 
+  const handleChosenApp = (app: string) => {
+    const { plugin_data } = pluginList?.data?.data;
+    const pl = plugin_data.filter((plg: any) => plg.title === app);
+    setPlugin(pl[0]);
+    setChosenApp(app);
+  };
+
   return (
     <div className="flex flex-col px-6 pb-20 lg:px-8 xl:px-32">
       <OnboardingProgress step={3} />
-      <div className="mt-8 rounded-3xl bg-box px-10 py-8">
-        <h1 className="mb-8 text-2xl font-semibold text-primary">Select App</h1>
-        <div className="grid grid-cols-6 gap-4">
+      <div className="mt-8 flex flex-col gap-8 rounded-3xl bg-box px-10 py-8">
+        <h1 className="text-lg font-semibold text-primary">Select App</h1>
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-6">
           {apps.map((app) => (
             <button
-              className={`flex flex-col items-center justify-center gap-4 rounded-2xl bg-container py-6 border-2 text-primary hover:bg-secondary ${chosenApp === app.step ? "border-primary" : "border-transparent"}`}
-              onClick={() => setChosenApp(app.step)}
+              key={app.name}
+              className={`flex h-36 flex-col items-center justify-center gap-6 rounded-2xl border-2 bg-container px-4 py-6 text-xl font-medium ${app.step === "" ? "disabled text-secondary-text" : "text-primary"} enabled:hover:bg-secondary ${chosenApp === app.step ? "border-primary" : "border-border"}`}
+              onClick={() => handleChosenApp(app.step)}
             >
               {app.step !== "" && <Image src={app.icon} alt={app.name} />}
               <h1>{app.name}</h1>
             </button>
           ))}
         </div>
-        <div className="my-8 mt-28 flex items-center justify-between border-t-2 pt-4">
-          <button className="flex items-center justify-center gap-2 hover:underline">
-            <svg
-              width="8"
-              height="13"
-              viewBox="0 0 8 13"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M7.41 2.29965L6 0.889648L0 6.88965L6 12.8896L7.41 11.4796L2.83 6.88965L7.41 2.29965Z"
-                fill="#141BEB"
-              />
-            </svg>
-
-            <p>Back</p>
-          </button>
-          <button
-            className="flex items-center justify-center gap-2 hover:underline"
-            onClick={handleCreateApp}
-          >
-            <p>Next</p>
-            <svg
-              width="8"
-              height="13"
-              viewBox="0 0 8 13"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M2 0.889648L0.589996 2.29965L5.17 6.88965L0.589996 11.4796L2 12.8896L8 6.88965L2 0.889648Z"
-                fill="#141BEB"
-              />
-            </svg>
-          </button>
-        </div>
+        <FormNav onNext={handleCreateApp} />
       </div>
     </div>
   );

@@ -26,14 +26,14 @@ export default function Dashboard() {
   const { address, status } = useAccount();
   const { verifStatus } = useAppProvider();
 
-  if (status === "connected" && (sign || verifStatus === "authenticated")) {
-    if (
-      userDetail?.data?.status !== "error" &&
-      !userDetail?.data?.data.onboarding
-    ) {
-      return redirect("/onboarding");
-    }
-  }
+  // if (status === "connected" && (sign || verifStatus === "authenticated")) {
+  //   if (
+  //     userDetail?.data?.status !== "error" &&
+  //     !userDetail?.data?.data.onboarding
+  //   ) {
+  //     return redirect("/onboarding");
+  //   }
+  // }
 
   const botsQuery = useChatbotExplore(
     {

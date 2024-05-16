@@ -182,18 +182,30 @@ export default function AccountSettings() {
     if (userDetail?.data) {
       setProfileImage(userDetail.data.data.profile_image || AvatarDefault);
       if (twitterStatus == "authenticated") {
-        let userProfileImage = userDetail.data.data.profile_image;
+        let userProfileImage = null;
+        let userUsername = null;
+        let userTwitterLink = null;
 
         if (!userDetail.data.data.profile_image) {
           setProfileImage(twitterSession?.user?.image);
           userProfileImage = twitterSession?.user?.image;
         }
+
+        if (!userDetail.data.data.username) {
+          userUsername = twitterSession?.user?.username;
+        }
+
+        if (!userDetail.data.data.twitter_link) {
+          userTwitterLink = twitterSession?.user?.username;
+        }
         
-        updateProfileImage.mutate({
-          profile_image: userProfileImage,
-          username: twitterSession?.user?.username,
-          twitter_link: twitterSession?.user?.username,
-        });
+        if (userTwitterLink) {
+          updateProfileImage.mutate({
+            profile_image: userProfileImage,
+            username: userUsername!,
+            twitter_link: userTwitterLink!,
+          });
+        }
       }
     }
   }, [twitterStatus, userDetail]);

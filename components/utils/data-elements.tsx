@@ -2,12 +2,12 @@ import XIcon from "public/images/X-icon.svg";
 import XLightIcon from "public/images/knowledge-source/twitter-light.svg";
 import NotionIcon from "public/images/notion.svg";
 import NotionLightIcon from "public/images/knowledge-source/notion-light.svg";
-import FolderAddIcon from "public/images/knowledge-source/file-upload.png";
-import MirrorIcon from "public/images/knowledge-source/mirror-icon.png";
+import UploadIcon from "public/images/knowledge-source/upload.svg";
+import MirrorIcon from "public/images/knowledge-source/mirror.svg";
 import SubstackIcon from "public/images/knowledge-source/substack-icon.svg";
 import MediumIcon from "public/images/knowledge-source/medium.svg";
 import MediumLightIcon from "public/images/knowledge-source/medium-light.svg";
-import ApiIcon from "public/images/knowledge-source/api.png";
+import ApiIcon from "public/images/knowledge-source/custom-api.svg";
 import YoutubeIcon from "public/images/knowledge-source/youtube.svg";
 
 export const buttons = [
@@ -53,7 +53,7 @@ export const buttons = [
   },
   {
     type: "files",
-    icon: FolderAddIcon,
+    icon: UploadIcon,
     text: "Upload",
     comingSoon: false,
   },
@@ -63,5 +63,4 @@ export const buttons = [
     text: "Custom API",
     comingSoon: true,
   },
-  // Add more buttons here...
 ];

@@ -67,7 +67,7 @@ const MessageInput = () => {
   const [promptTemplate2, setPromptTemplate2] = useState(
     "\n\nAct as the person described above, and utilize the available information below to answer the question.\nRemember, the user is looking for assistance, so keep your responses natural, concise, accurate, and informative. If you are uncertain about a query or if the user asked something which is unidentified by you, prompt the user to rephrase it.\nHere is the available information: \n{context}\n\nHere is user's question:\n{question}",
   );
-  const [temprature, setTemprature] = useState(0);
+  const [temperature, setTemperature] = useState(0);
   const [topP, setTopP] = useState(1);
   const [frequencyPenalty, setFrequencyPenalty] = useState(0);
   const [presencePenalty, setPresencePenalty] = useState(0);
@@ -88,7 +88,7 @@ const MessageInput = () => {
   //     console.log(plugin_config);
   //     setModel(plugin_config.model);
   //     setPromptTemplate2(plugin_config.prompt_template);
-  //     setTemprature(plugin_config.model_temprature);
+  //     setTemperature(plugin_config.model_temperature);
   //     setTopP(plugin_config.top_p);
   //     setFrequencyPenalty(plugin_config.frequency_penalty);
   //     setPresencePenalty(plugin_config.presence_penalty);

@@ -6,51 +6,39 @@ import LoadingIcon from "public/images/loading-icon.svg";
 import { useState } from "react";
 import { CopyButton } from "./last-message";
 import { chatbotIdFromSlug } from "@/utils/utils";
+import { UseQueryResult } from "@tanstack/react-query";
+import { AxiosResponse } from "axios";
+import { ChatbotDetailResponse } from "@/lib/types";
 
 const FirstAnswer = ({
-  chatbotName,
-  profileImage,
-  sender,
-  message,
-  isGenerating,
+  chatbots,
 }: {
-  chatbotName: any;
-  profileImage: any;
-  sender: string;
-  message: string[] | string;
-  isGenerating: boolean;
+  chatbots: UseQueryResult<AxiosResponse<ChatbotDetailResponse, any>, Error>[];
 }) => {
-  const isStream = Array.isArray(message);
-  const { id: slug } = useParams();
-  const id = chatbotIdFromSlug(slug.toString());
-
-  const [showCopy, setShowCopy] = useState(false);
   return (
     <>
-      <div
-        className="flex flex-col gap-8 items-center justify-center pt-5"
-        onMouseEnter={() => setShowCopy(true)}
-        onMouseLeave={() => setShowCopy(false)}
-      >
+      <div className="flex flex-col items-center justify-center gap-8 border-b-2 py-5">
         <div className="flex items-center gap-20">
-          {[...Array(3)].map((_, index) => (
-            <div className="flex flex-col items-center gap-2">
+          {chatbots.map((chatbot, idx) => (
+            <div className="flex flex-col items-center gap-2" key={idx}>
               <Image
-                src={profileImage}
+                src={chatbot.data?.data?.data?.profile_image!}
                 alt="Profile"
                 className="h-24 w-24 rounded-full md:h-24 md:w-24"
                 width={100}
                 height={100}
               />
-              <span className="text-lg text-sm font-medium">{chatbotName}</span>
+              <span className="text-lg text-sm font-medium">
+                {chatbot.data?.data?.data?.name}
+              </span>
             </div>
           ))}
         </div>
-        <div className="text-heading">
-          <p className="mt-4 text-2xl font-medium">
-            {isStream ? message.slice(0, -2).join("") : message}
-          </p>
-        </div>
+      </div>
+      <div className="text-center text-heading">
+        <p className="mt-2 text-2xl font-medium">
+          What would you like to know today?
+        </p>
       </div>
     </>
   );

@@ -1,8 +1,3 @@
-import {
-  useChatHistory,
-  useChatSession,
-  useChatboxWS,
-} from "@/hooks/api/chatbox";
 import { useEffect, useState, useRef } from "react";
 import { useCreateChatbotContext } from "./create-chatbot-context";
 import LastMessage, { CopyButton } from "./last-message";
@@ -10,14 +5,10 @@ import { useChatbotDetail, useGetSession } from "@/hooks/api/chatbot";
 import { useParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useAccount } from "wagmi";
-import Image from "next/image";
-import AvatarDummy from "public/images/avatar-bot-dummy.svg";
-import AvatarDummy2 from "public/images/avatar-user-dummy.svg";
 import { StaticImageData } from "next/image";
 import ChatMessage from "./chat-message";
 import { UserMessage } from "./user-message";
 import FirstAnswer from "./first-message";
-import FirstAnswers from "./first-messages";
 import { Header } from "./header";
 import { useCreditDeduction } from "@/hooks/api/credit";
 import { useAppProvider } from "@/providers/app-provider";
@@ -25,8 +16,6 @@ import { useCreditBalanceContext } from "./credit-balance-context";
 import { useCreditBalance } from "@/hooks/api/credit";
 import { chatbotIdFromSlug } from "@/utils/utils";
 import { useChatRoomChatHistory } from "@/hooks/api/chatroom";
-import ShareModal from "@/components/share-chat-modal";
-import TweetAnswer from "./tweet-answer";
 import {
   useChatRoomChatSession,
   useChatRoomChatbotId,
@@ -114,11 +103,6 @@ const MessageList = ({
   const getChatbotDetails = useChatbotDetailQueries(
     chatbotIds ? chatbotIds : [],
   );
-
-  // const { data: chatbotData, isSuccess: chatbotDetailIsSuccess } =
-  //     useChatbotDetail({
-  //         chatbot_id: id as string,
-  //     });
 
   useEffect(() => {
     setChatbotIds(chatroomResult?.data.chatbot_ids);
@@ -345,15 +329,9 @@ const MessageList = ({
     <>
       <div className="flex h-auto grow flex-col gap-4 overflow-y-auto">
         {messageHistory.length <= 0 ? (
-          <FirstAnswer
-            chatbotName={chatbotData?.data.data.name}
-            profileImage={chatbotData?.data.data.profile_image}
-            sender={"bot"}
-            message={chatbotData?.data.data.example_conversation as string}
-            isGenerating={replyStatus == "answering"}
-          />
+          <FirstAnswer chatbots={getChatbotDetails} />
         ) : (
-          <Header />
+          <Header chatbots={getChatbotDetails} />
         )}
         {messageHistory.map((message, index) => {
           return index < messageHistory.length - 1 ? (

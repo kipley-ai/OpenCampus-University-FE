@@ -153,3 +153,8 @@ export interface IGenerateQuiz {
 export interface IGetLasGeneratedQuiz {
   chatbot_id: string;
 }
+
+export interface IGetQuiz {
+  chatbot_id: string;
+  session_id: string;
+}

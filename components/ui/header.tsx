@@ -88,12 +88,12 @@ export default function Header() {
           </div>
 
           {/* Header: Right side */}
-          <div className="flex items-center gap-1.5 xs:gap-4">
+          <div className="flex items-center gap-2 text-[9px] xs:gap-4 xs:text-xs sm:text-[0.8rem] md:gap-6">
             {/* Create Chatbot Button */}
             <Link href="/knowledge/create">
               <div className="group flex items-center gap-1 text-primary">
                 <svg
-                  className="size-3 fill-primary sm:size-4"
+                  className="size-3 fill-primary xs:size-4 sm:size-5"
                   height="24"
                   viewBox="0 0 24 24"
                   width="24"
@@ -101,14 +101,14 @@ export default function Header() {
                 >
                   <path d="m17 13h-4v4h-2v-4h-4v-2h4v-4h2v4h4m-5-9a10 10 0 0 0 -10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10 10 10 0 0 0 -10-10z" />
                 </svg>
-                <p className="text-[9px] font-medium group-hover:underline max-xs:w-20 sm:text-xs">
+                <p className="font-medium group-hover:underline max-xs:w-20">
                   Create Knowledge Asset
                 </p>
               </div>
             </Link>
             {/* My Bot Button */}
             <Link href="/nft">
-              <p className="text-[9px] font-medium text-primary hover:underline max-xs:text-center sm:text-xs">
+              <p className="font-medium text-primary hover:underline max-xs:text-center">
                 My Assets
               </p>
             </Link>
@@ -118,7 +118,7 @@ export default function Header() {
               <AvatarWithStatus image={profileImage} status="away" />
             ) : (
               <GetInvolvedButton
-                buttonStyle="button text-[9px] sm:text-xs bg-container rounded-md py-1 px-2 sm:px-3.5 border-2"
+                buttonStyle="button bg-container rounded-md py-1 px-2 sm:px-3.5 border-2 text-[9px] xs:text-xs sm:text-[0.8rem]"
                 content={<span>Login</span>}
               />
             )}

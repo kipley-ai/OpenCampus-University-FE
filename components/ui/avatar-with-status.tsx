@@ -1,12 +1,9 @@
-import React from "react";
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { StaticImageData } from "next/image";
 import Image from "next/image";
 import { signOut } from "next-auth/react";
 import { useDisconnect, useAccount } from "wagmi";
-import { useAppProvider } from "@/providers/app-provider";
 import Link from "next/link";
-import { FaSpinner } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 
 type StatusType = "online" | "busy" | "away" | "offline";
@@ -16,7 +13,6 @@ interface AvatarWithStatusProps {
   status: StatusType;
 }
 
-// The AvatarWithStatus component accepts the avatar image and the status as props
 const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
   image,
   status,
@@ -26,12 +22,10 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
   const { disconnect } = useDisconnect();
   const { address } = useAccount();
 
-  // This function toggles the dropdown's visibility
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  // This will handle clicking outside the component to close the dropdown
   useEffect(() => {
     const handleClickOutside = (event: any) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -68,16 +62,16 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
             className="size-6 rounded-full md:size-8"
           />
         )}
-        <span className="flex items-center gap-0 text-[9px] font-medium group-hover:underline xs:gap-1 sm:gap-2 sm:text-xs">
+        <span className="flex items-center gap-0 text-[9px] font-medium group-hover:underline xs:gap-1 xs:text-xs sm:gap-2 sm:text-[0.8rem]">
           {address && `${address.slice(0, 6)}...${address.slice(-6)}`}
           <IoMdArrowDropdown />
         </span>
       </div>
       {isDropdownOpen && (
-        <div className="absolute right-0 z-50 mt-2 w-36 rounded-md bg-container py-2 shadow-xl sm:w-44 lg:w-48">
+        <div className="absolute right-0 z-50 mt-2 w-36 rounded-md bg-container py-2 text-[9px] shadow-xl xs:w-48 xs:text-xs sm:text-[0.8rem]">
           <Link
             href="/manage-account"
-            className="mx-2 block flex rounded-md px-2 py-2 text-[9px] capitalize hover:bg-secondary sm:text-xs"
+            className="mx-2 block flex rounded-md px-2 py-2 hover:bg-secondary"
           >
             <svg
               className="mr-2 size-3 sm:size-4"
@@ -116,7 +110,7 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
           </Link>
           <div className="mx-4 border-t border-border"></div>
           <button
-            className="mx-2 block flex w-44 rounded-md px-2 py-2 text-[9px] capitalize hover:bg-secondary sm:text-xs"
+            className="mx-2 block flex w-44 rounded-md px-2 py-2 hover:bg-secondary"
             onClick={(e) => {
               e.preventDefault();
               localStorage.setItem("kip-protocol-signature", "");

@@ -1,9 +1,8 @@
 "use client";
-import Header from "./header";
+import { Header } from "./header";
 import ChatbotInfo from "./chatbot-info";
 import MessageList from "./chat-messages";
 import MessageInput from "./message-input";
-import { useRouter } from "next/navigation";
 import { useUserDetail } from "@/hooks/api/user";
 import { useAppProvider } from "@/providers/app-provider";
 import { useEffect, useState } from "react";
@@ -20,50 +19,32 @@ import Description from "./description";
 import CreditBalance from "./credit-balance";
 import { CreditBalanceProvider } from "./credit-balance-context";
 import InaccessibleChat from "./inaccessible-shared-chat";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function ChatBotPage() {
-  // const router = useRouter();
-
-  // const { data: userDetail } = useUserDetail();
-
-  // const onboarding = userDetail?.data.data.onboarding;
-  // if (!onboarding) {
-  // 	router.push("/onboarding");
-  // }
-
   const [showShareModal, setShowShareModal] = useState(false);
   const { setHeaderTitle } = useAppProvider();
   const pathname = usePathname();
 
   useEffect(() => {
-    setHeaderTitle("AI CHAT"); // Set the title when the component is mounted
-    console.log(pathname.split("/").pop());
-
-    // Optional: Reset the title when the component is unmounted
     return () => setHeaderTitle("Default Title");
-  }, []); // Empty dependency array to run only once on mount
+  }, []);
 
   return (
-      <div className="h-full flex-col px-4 md:flex-row md:pl-10 justify-start bg-sidebar">
-        <h1 className="text-heading text-lg font-semibold py-3">Chatbot</h1>
-        <CreditBalanceProvider>
-          <div className="flex h-[calc(100vh-70px)] w-full flex-col py-4 px-10 md:w-5/6 lg:h-[calc(100vh-120px)] bg-white rounded-lg">
-            <CreateChatbotProvider>
-              {/* <Header /> */}
-              {/* <ChatbotInfo setIsOpen={setShowShareModal} /> */}
-              <MessageList isOpen={showShareModal} setIsOpen={setShowShareModal} />
-              <MessageInput />
-              {/* <InaccessibleChat /> */}
-            </CreateChatbotProvider>
+    <CreditBalanceProvider>
+      <CreateChatbotProvider>
+        <div className="h-full flex-col justify-start bg-container px-4 md:flex-row md:pl-10">
+          <h1 className="py-3 text-lg font-semibold text-heading">Chatbot</h1>
+          <div className="flex h-[calc(100vh-70px)] w-full flex-col rounded-xl border border-border bg-sidebar px-8 py-4 md:w-5/6 lg:h-[calc(100vh-140px)]">
+            <MessageList
+              isOpen={showShareModal}
+              setIsOpen={setShowShareModal}
+            />
+            <MessageInput />
           </div>
-          {/* <div className="hidden w-1/4 flex-col md:flex">
-            <div className="sticky top-0 flex h-fit w-full flex-col items-start divide-y-2 divide-[#393E44] lg:-top-8">
-              <Description />
-              <CreditBalance />
-            </div>
-            <div></div>
-          </div> */}
-        </CreditBalanceProvider>
-    </div>
+        </div>
+      </CreateChatbotProvider>
+    </CreditBalanceProvider>
   );
 }

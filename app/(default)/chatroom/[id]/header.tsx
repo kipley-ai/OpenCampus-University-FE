@@ -1,147 +1,37 @@
-import {
-  useChatbotDetail,
-  useGetSession,
-  useNewSession,
-} from "@/hooks/api/chatbot";
-import { useParams, useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
 import Image from "next/image";
-import ProfileImageDummy from "public/images/avatar-bot-dummy.svg";
-import Refresh from "public/images/refresh.png";
-import { Archivo } from "next/font/google";
-import { useChatHistory } from "@/hooks/api/chatbox";
-import { useNftDetail } from "@/hooks/api/nft";
-import { useCreateChatbotContext } from "./create-chatbot-context";
-import SidebarRight from "@/components/ui/sidebar-right";
-import Description from "./description";
-import CreditBalance from "./credit-balance";
-import { KF_TITLE } from "@/utils/constants";
-import { chatbotIdFromSlug } from "@/utils/utils";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-const archivo = Archivo({
-  weight: ["400", "600"],
-  subsets: ["latin"],
-});
-
-const Header = () => {
-  const { buttonSession, setButtonSession } = useCreateChatbotContext();
-
-  const newSession = useNewSession();
-  const { id: slug } = useParams();
-  const id = chatbotIdFromSlug(slug.toString());
-
+export const Header = () => {
   const router = useRouter();
 
-  const { data: chatbotData, isSuccess: chatbotDetailIsSuccess } =
-    useChatbotDetail({
-      chatbot_id: id as string,
-    });
-
-  const { data: nftData, isSuccess: nftDetailIsSuccess } = useNftDetail({
-    sft_id: chatbotData?.data.data.sft_id as string,
-  });
-
-  const title = KF_TITLE + chatbotData?.data.data.name + " - Chatbot";
-
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
-  const closeSidebar = () => {
-    setIsSidebarOpen(false);
-  };
-
-  useEffect(() => {
-    document.title = title;
-  }, [title]);
-
-  useEffect(() => {
-    console.log(chatbotData?.data.data.name);
-  }, [chatbotDetailIsSuccess]);
-
-  useEffect(() => {
-    console.log(nftData?.data.data);
-  }, [nftDetailIsSuccess]);
-
-  const chatSession = useGetSession({ chatbot_id: id as string });
-  const chatHistoryAPI = useChatHistory({
-    session_id: chatSession.data?.data.data?.session_id,
-    app_id: id as string,
-    page_num: 1,
-    page_size: 10,
-    // request_url:
-    //   appDetail?.data?.data.data.app_info.plugin_meta_data.chat_history_api
-    //     .request_url,
-  });
-
   return (
-    <div className="sticky top-0 z-10 flex items-center justify-between py-3 lg:-top-8 xl:py-4">
-      <div className="flex w-full flex-col gap-5">
-        <div className="flex items-start justify-between">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => router.back()}
-              className="text-2xl text-heading focus:outline-none"
-            >
-              <Image
-                src={"/images/corner-up-left.png"}
-                alt="icon"
-                width={24}
-                height={24}
-              />
-            </button>
-            <h1 className="font-semibold text-primary">
-              EXPLORE THE POSSIBILITIES OF AI CHAT
-            </h1>
+    <header className="flex items-center gap-8 border-b border-border py-3">
+      <svg
+        width="24"
+        height="28"
+        viewBox="0 0 20 24"
+        className="cursor-pointer fill-primary hover:fill-[#1016BC]"
+        xmlns="http://www.w3.org/2000/svg"
+        onClick={() => router.back()}
+      >
+        <path
+          d="M7.99935 3.33398L9.17435 4.50898L4.52435 9.16732H14.666V10.834H4.52435L9.17435 15.4923L7.99935 16.6673L1.33268 10.0007L7.99935 3.33398Z"
+        />
+      </svg>
+      {[...Array(3)].map((_, index) => (
+        <Link
+          className="group"
+          href="/chatbot/1d7a4ecf-bcf6-44da-bf05-92225aec8a03/profile"
+        >
+          <div className="flex flex-col items-center gap-2">
+            <Image src="/images/avatar-default-02.svg" width={40} height={40} alt="Chatbot Icon" />
+            <span className="text-sm font-medium group-hover:text-primary">
+              Yat Siu
+            </span>
           </div>
-          {/* <div>
-            <button
-              className="ml-3 self-end rounded-full text-gray-400 hover:text-blue-500"
-              onClick={() => {
-                newSession.mutate(
-                  { chatbot_id: id as string },
-                  {
-                    onSuccess(data, variables, context) {
-                      chatSession.refetch();
-                      chatHistoryAPI.refetch();
-                      setButtonSession((prev: boolean) => !prev);
-                    },
-                  },
-                );
-              }}
-            >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M14 0H12V2H14V4H2V6H0V11H2V6H14V8H12V10H14V8H16V6H18V4H16V2H14V0ZM4 18H6V20H8V18H6V16H18V14H20V9H18V14H6V12H8V10H6V12H4V14H2V16H4V18Z"
-                  fill="#6B7280"
-                />
-              </svg>
-            </button>
-            <button
-              className="ml-4 rounded-2xl border border-2 border-gray-500 px-3 text-base text-gray-400 md:hidden"
-              onClick={toggleSidebar}
-            >
-              Info
-            </button>
-          </div> */}
-        </div>
-      </div>
-      {/* <SidebarRight isOpen={isSidebarOpen} onClose={closeSidebar}>
-        <Description />
-        <CreditBalance />
-      </SidebarRight> */}
-    </div>
+        </Link>
+      ))}
+    </header>
   );
 };
-
-export default Header;

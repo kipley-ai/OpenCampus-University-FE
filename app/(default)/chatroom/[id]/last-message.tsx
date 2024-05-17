@@ -93,17 +93,17 @@ const LastAnswer = ({
             <Image
               src={chatbotData?.data.data.profile_image as string}
               alt="Profile"
-              className="h-7 w-7 md:h-8 md:w-8 rounded-full mt-1"
+              className="h-7 w-7 md:h-10 md:w-10 rounded-full"
               width={50}
               height={50}
             />
-            <div className="w-full text-heading">
-              <div className="w-full flex">
+            <div className="mt-2 w-full text-heading">
+              <div className="w-full flex gap-2 items-center">
                 {/* <h6 className="mb-1 mt-1 font-black text-lg"> */}
-                <h6 className="mb-1 text-sm">
+                <h6 className="mb-1 text-sm font-medium">
                   {chatbotData?.data?.data.name}
                 </h6>
-                <h6 className="mb-1 text-sm text-[#94A3B8] mx-1">
+                <h6 className="mb-1 text-xs text-[#94A3B8] mx-1">
                   {created ? new Date(created).toLocaleTimeString("en-US", {
                     hour: '2-digit',
                     minute: '2-digit',

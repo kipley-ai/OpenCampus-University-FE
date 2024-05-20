@@ -15,8 +15,9 @@ import Logo from "./logo";
 import { useChatbotChatList } from "@/hooks/api/chatbot";
 import { CreditBalanceProvider } from "../../app/(default)/chatbot/[id]/credit-balance-context";
 import CreditBalance from "../../app/(default)/chatbot/[id]/credit-balance";
-import { chatbotSlug } from "@/utils/utils";
+import { chatbotSlug, handleAppUrl } from "@/utils/utils";
 import { Home2, Flash, MessageText } from "iconsax-react";
+import { ChatbotData } from "@/lib/types";
 
 const ChatHistoryList = () => {
   const searchParams = useSearchParams();
@@ -29,15 +30,15 @@ const ChatHistoryList = () => {
     if (chatbotListData !== undefined && chatbotListData.length > 0) {
       return (
         <>
-          {chatbotListData.map((chatbot: any, index: number) => (
+          {chatbotListData.map((chatbot: ChatbotData, index: number) => (
             <li
               key={chatbot.chatbot_id}
               className={`mr-2 last:mb-0 ${
                 (segments.includes("home") || segments.includes("dashboard")) &&
                 "bg-transparent"
-              } ${pathname === `/chatbot/${chatbotSlug(chatbot)}` ? "" : ""}`}
+              } ${pathname === handleAppUrl(chatbot) ? "" : ""}`}
             >
-              <SidebarLink href={`/chatbot/${chatbotSlug(chatbot)}`}>
+              <SidebarLink href={handleAppUrl(chatbot)}>
                 <MessageText size="17" variant="Outline" />
                 <h3>{chatbot.name}</h3>
               </SidebarLink>
@@ -162,7 +163,7 @@ export default function Sidebar() {
                 (segments.length === 0 || segments.includes("dashboard")) && ""
               }`}
             >
-              <h2 className="text-secondary-text text-xs">MENU</h2>
+              <h2 className="text-xs text-secondary-text">MENU</h2>
               <SidebarLink href="/dashboard">
                 <Home2 size="17" variant="Outline" />
                 <h3>Explore</h3>
@@ -174,7 +175,7 @@ export default function Sidebar() {
             </section>
 
             <section>
-              <h2 className="text-secondary-text text-xs">CHATS</h2>
+              <h2 className="text-xs text-secondary-text">CHATS</h2>
               <ul className="pb-4">
                 <ul className="max-h-[15vh] overflow-y-auto lg:max-h-36">
                   <ChatHistoryList />
@@ -186,7 +187,7 @@ export default function Sidebar() {
               <CreditBalance />
             </section>
 
-            <footer className="text-secondary-text mt-auto text-xs">
+            <footer className="mt-auto text-xs text-secondary-text">
               POWERED BY KIP PROTOCOL&#39;S KNOWLEDGEFI FRAMEWORK
             </footer>
           </Transition>

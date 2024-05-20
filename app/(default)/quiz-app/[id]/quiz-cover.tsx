@@ -10,6 +10,7 @@ import Image from "next/image";
 import { redirect, useParams } from "next/navigation";
 import { useRouter } from "next/router";
 import ModalQuizLoading from "@/components/modal-quiz-loading";
+import Button from "@/components/button";
 import { delay } from "@/utils/utils";
 
 interface Form {
@@ -120,54 +121,55 @@ export default function QuizCover() {
   return (
     <>
       <ModalQuizLoading setIsOpen={setIsGenerating} isOpen={isGenerating} />
-      <div className="w-full">
-        <div className="ml-4 mt-2">
-          <span className="text-2xl font-bold">Quiz App</span>
+      <div className="mx-3 my-4 md:mx-8 lg:w-5/6">
+        <div className="ml-2">
+          <span className="text-xl font-semibold">Quiz App</span>
         </div>
-        <div className="mt-2 space-x-4 rounded-lg p-6 shadow-md">
-          <div className="flex flex-col items-center">
+        <div className="mt-4 space-x-4 rounded-lg rounded-xl border-2 border-border bg-box p-6">
+          <div className="flex flex-col items-center gap-2">
             <Image
               src={chatbotDetail.data?.data?.data.profile_image as string}
               alt=""
+              className="rounded-lg"
               width={100}
               height={100}
             />
-            <h1 className="text-2xl font-bold text-blue-600">
+            <h1 className="text-xl font-semibold text-primary">
               {chatbotDetail.data?.data?.data.name}
             </h1>
-            <p className="text-sm">
+            <p className="text-sm text-body">
               {chatbotDetail.data?.data?.data.description}
             </p>
           </div>
         </div>
-        <div className="mt-2 flex flex-row items-start justify-between space-x-6 space-y-0 rounded-lg p-6 shadow-md">
-          <div className="flex w-2/3 flex-col space-y-4">
-            <h2 className="mb-2 text-lg font-semibold text-blue-600">
+        <div className="mt-6 flex items-start justify-between gap-6 space-y-0 rounded-lg rounded-xl border-2 border-border bg-box p-6 max-md:flex-col">
+          <div className="flex w-full flex-col space-y-4 md:w-2/3">
+            <h2 className="mb-2 text-lg font-semibold text-primary">
               Generate your own Topic
             </h2>
             <textarea
               placeholder="Enter your topic here"
-              className="h-32 w-full resize-none rounded border border-gray-300 p-4"
+              className="h-32 w-full resize-none rounded-md border border-gray-300 p-4"
               value={form?.topic}
               onChange={(e) => handleFormChange("topic", e.target.value)}
             />
-            <button
-              className="mt-4 self-end rounded-xl bg-[#141BEB] px-4 py-3 text-white disabled:border-0 disabled:bg-[#B8BABE] disabled:text-[#909295]"
+            <Button
+              className="mt-4 self-end px-6 py-3"
               onClick={handleSubmit}
               disabled={isGenerating}
             >
               Start Quiz
-            </button>
+            </Button>
           </div>
-          <div className="flex w-1/3 flex-col space-y-2">
-            <h2 className="mb-4 text-lg font-semibold text-blue-600">
-              or Suggest for You
+          <div className="flex w-full flex-col space-y-2 md:w-1/3">
+            <h2 className="mb-4 text-lg font-semibold text-primary">
+              or Suggested for You
             </h2>
             <ul className="space-y-2">
               {presetTopics.map((topic: string) => (
                 <li
                   key={topic}
-                  className="flex cursor-pointer items-center justify-between rounded border p-4"
+                  className="flex cursor-pointer items-center justify-between rounded border p-4 font-medium text-body hover:bg-secondary"
                   onClick={() => handleChooseSuggestedTopic(topic)}
                 >
                   {topic}
@@ -195,100 +197,3 @@ export default function QuizCover() {
     </>
   );
 }
-
-// function Header() {
-//     return (
-//         <div className="mx-4 mt-2 rounded-lg shadow-md p-6 space-x-4">
-//             <div className="flex flex-col items-center">
-//                 <Image src={TestImage} alt="" />
-//                 <h1 className="text-2xl font-bold text-blue-600">Tech Innovations Quiz</h1>
-//                 <p className="text-sm">
-//                     Any time is a good time for a quiz and even better if
-//                 </p>
-//                 <p className="text-sm">
-//                     that happens to be a tech innovations quiz!
-//                 </p>
-//             </div>
-//         </div>
-//     )
-// }
-
-// function QuizForm() {
-//     const { id } = useParams();
-//     const generateQuiz = useGenerateQuizAPI();
-
-//     const [step, setStep] = useState("cover");
-
-//     const [form, setForm] = useState<Form>({
-//         topic: "",
-//     });
-
-//     const handleFormChange = (name: string, value: string) => {
-//         setForm({
-//             ...form,
-//             [name]: value,
-//         });
-//     };
-
-//     const handleSubmit = (event: any) => {
-//         event.preventDefault();
-//         generateQuiz.mutate(
-//             {
-//                 chatbot_id: id as string,
-//                 topic: form.topic as string,
-//             },
-//             {
-//                 async onSuccess() {
-//                     console.log("Successfully created quiz!");
-//                     console.log("Detail of Quiz App:", form);
-//                     setStep("question");
-//                 }
-//             },
-//         );
-//     };
-
-//     // console.log("Form content:", form); // For debugging purpose
-
-//     return (
-//         <div className="mx-4 mt-2 flex flex-row justify-between items-start space-y-0 space-x-6 p-6 rounded-lg shadow-md">
-//             <div className="flex flex-col w-2/3 space-y-4">
-//                 <h2 className="font-semibold text-lg mb-2 text-blue-600">Generate your own Topic</h2>
-//                 <textarea
-//                     placeholder="Enter your topic here"
-//                     className="border border-gray-300 p-4 rounded w-full h-32 resize-none"
-//                     value={form?.topic}
-//                     onChange={(e) => handleFormChange("topic", e.target.value)}
-//                 />
-//                 <button
-//                     className="mt-4 bg-[#141BEB] text-white py-3 px-4 rounded-xl self-end"
-//                     onClick={handleSubmit}
-//                 >
-//                     Start Quiz
-//                 </button>
-//             </div>
-//             <div className="flex flex-col w-1/3 space-y-2">
-//                 <h2 className="font-semibold text-lg mb-4 text-blue-600">or Suggest for You</h2>
-//                 <ul className="space-y-2">
-//                     <li className="border rounded p-4 flex justify-between items-center cursor-pointer">
-//                         Biology Brain Teasers
-//                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-//                             <path d="M9 18L15 12L9 6" stroke="#141BEB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-//                         </svg>
-//                     </li>
-//                     <li className="border rounded p-4 flex justify-between items-center cursor-pointer">
-//                         Biology Brain Teasers
-//                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-//                             <path d="M9 18L15 12L9 6" stroke="#141BEB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-//                         </svg>
-//                     </li>
-//                     <li className="border rounded p-4 flex justify-between items-center cursor-pointer">
-//                         Biology Brain Teasers
-//                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-//                             <path d="M9 18L15 12L9 6" stroke="#141BEB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-//                         </svg>
-//                     </li>
-//                 </ul>
-//             </div>
-//         </div>
-//     );
-// }

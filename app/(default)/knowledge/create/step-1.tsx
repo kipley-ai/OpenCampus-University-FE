@@ -1,11 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useCreateChatbotContext } from "./create-knowledge-context";
-import React, { useState } from "react";
-import { ImageSrc, ReactSetter } from "@/lib/aliases";
-import { PossibleOption } from "./page";
-import { useSession } from "next-auth/react";
-import { useAppProvider } from "@/providers/app-provider";
+import { ImageSrc } from "@/lib/aliases";
 import { useTheme } from "next-themes";
 import { buttons } from "@/components/utils/data-elements";
 
@@ -51,12 +47,7 @@ export default function Step1({
   selectedButton: string;
   setSelectedButton: Function;
 }) {
-  const { status: twitterStatus } = useSession();
-  const { modalLogin: showTwitterLogin, setModalLogin: setShowTwitterLogin } =
-    useAppProvider();
-
-  const { handleChangeKb, setIsComingSoon, setStep } =
-    useCreateChatbotContext();
+  const { handleChangeKb, setIsComingSoon } = useCreateChatbotContext();
 
   const { theme } = useTheme();
 
@@ -69,18 +60,6 @@ export default function Step1({
             handleChangeKb("type", button.type);
             setSelectedButton(button.type);
             setIsComingSoon(button.comingSoon);
-
-            // if (button.type == "twitter") {
-            //   sessionStorage.setItem("kbType", "twitter");
-            //   if (twitterStatus != "authenticated") {
-            //     setShowTwitterLogin(true);
-            //     sessionStorage.setItem("mintNFTRedirect", "true");
-            //   } else {
-            //     setStep("mint_nft");
-            //   }
-            // } else if (button.type == "files") {
-            //   setStep("upload_files");
-            // }
           }}
           isSelected={selectedButton == button.type}
           optionIcon={

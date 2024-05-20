@@ -1,62 +1,80 @@
-"use client"
-import XIcon from "public/images/X-icon.svg";
-import NotionIcon from "public/images/notion.svg";
-import FolderAddIcon from "public/images/folder-add.svg";
+"use client";
 import Image from "next/image";
 import { useCreateChatbotContext } from "./create-knowledge-context";
-import { useKBDetail } from "@/hooks/api/kb";
-import { useParams } from "next/navigation";
-import { useChatbotDetail } from "@/hooks/api/chatbot";
-import { useNftDetail } from "@/hooks/api/nft";
+import { ImageSrc } from "@/lib/aliases";
+import { useTheme } from "next-themes";
+import { buttons } from "@/components/utils/data-elements";
 
-export default function Step1({ selectedButton, setSelectedButton }: { selectedButton: string, setSelectedButton: Function }) {
-    const {handleChangeKb} = useCreateChatbotContext()
-    const {id} = useParams()
-    const nftDetail = useNftDetail({
-		sft_id:id as string
-	})
+const ButtonItem = ({
+  onClick,
+  isSelected,
+  optionIcon,
+  optionText,
+  isComingSoon,
+}: {
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  isSelected: boolean;
+  optionIcon: ImageSrc;
+  optionText: string;
+  isComingSoon: boolean;
+}) => {
+  return (
+    <button
+      className={`relative flex flex-col items-center gap-2 border-2 bg-container py-5 ${isSelected ? "border-primary" : "border-border"} justify-end rounded-xl hover:bg-secondary`}
+      onClick={onClick}
+    >
+      <Image
+        width={48}
+        height={48}
+        src={optionIcon}
+        className="object-fit size-8 grow"
+        alt={`${optionText} Icon`}
+      />
+      <h3 className="font-poppins font-medium text-primary">{optionText}</h3>
+      {isComingSoon && isSelected && (
+        <span className="absolute right-1 top-1 rounded-md bg-primary px-2 text-xs leading-4 text-sidebar">
+          COMING SOON
+        </span>
+      )}
+    </button>
+  );
+};
 
-	const kbDetail = useKBDetail({kb_id:nftDetail.data?.data.data.kb_id as string})
+export default function Step1({
+  selectedButton,
+  setSelectedButton,
+}: {
+  selectedButton: string;
+  setSelectedButton: Function;
+}) {
+  const { handleChangeKb, setIsComingSoon, twitterExist } =
+    useCreateChatbotContext();
 
-    if (kbDetail.isLoading)
-        return <>Loading...</>
+  const { theme } = useTheme();
 
-	
-    return (
-        <div className="grid grid-cols-4 gap-4 text-heading font-bold mt-10">
-            {
-                kbDetail.data?.data.data.type == 'twitter'?
-                <button className={`flex flex-col px-20 py-10 items-center border-2 bg-container text-primary ${selectedButton == 'twitter' ? 'border-primary' : 'border-[#D1D5DB]'} rounded-2xl`} 
-                    onClick={() => {
-                        handleChangeKb('type','twitter')
-                        setSelectedButton('twitter')
-                    }}>
-                    <Image width={48} height={48} src={XIcon} alt="X Icon" />
-                    <h3 className="pt-6">Connect Twitter</h3>
-                </button>
-                : kbDetail.data?.data.data.type == 'files' ? 
-                <button className={`flex flex-col px-20 py-10 items-center border-2 bg-container text-primary ${selectedButton == 'files' ? 'border-primary' : 'border-[#D1D5DB]'} rounded-2xl`} 
-                    onClick={() => {
-                        handleChangeKb('type','files')
-                        setSelectedButton('files')
-                    }}>
-                    <Image width={48} height={48} src={FolderAddIcon} alt="Folder Add Icon" />
-                    <h3 className="pt-6">Upload files</h3>
-                </button>
-                : kbDetail.data?.data.data.type == 'notion' ? 
-                
-                <button className={`flex flex-col px-20 py-10 items-center border-2 bg-container text-primary ${selectedButton == 'notion' ? 'border-primary bg-secondary' : 'border-[#D1D5DB]'} rounded-2xl`} 
-                    onClick={() => {
-                        handleChangeKb('type','notion')
-                        setSelectedButton('notion')
-                    }}>
-                    <Image width={48} height={48} src={NotionIcon} alt="Notion Icon" />
-                    <h3 className="pt-6">Connect Notion</h3>
-                </button>:<></>
+  return (
+    <div className="grid grid-cols-2 gap-5 pt-4 font-bold text-heading md:mt-4 md:grid-cols-5">
+      {buttons.map((button) => {
+        if (twitterExist && button.type === "twitter") {
+          return null;
+        }
+        return (
+          <ButtonItem
+            key={button.type}
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+              handleChangeKb("type", button.type);
+              setSelectedButton(button.type);
+              setIsComingSoon(button.comingSoon);
+            }}
+            isSelected={selectedButton == button.type}
+            optionIcon={
+              theme === "dark" ? button.icon : button.lightIcon || button.icon
             }
-            
-            
-            
-        </div>
-    )
+            optionText={button.text}
+            isComingSoon={button.comingSoon}
+          />
+        );
+      })}
+    </div>
+  );
 }

@@ -456,9 +456,9 @@ const NFTDetail = ({ params }: { params: any }) => {
           ) : nftQuery.isError ? (
             <div>Error: {nftQuery.error.message}</div>
           ) : nftQuery.data ? (
-            <NFTSection nftDetail={nftQuery.data?.data.data} />
+            <NFTSection nftDetail={nftQuery.data?.data?.data} />
           ) : // <NoNFT />
-            null}
+          null}
         </div>
         <div className="flex items-center justify-between">
           <span className="text-lg font-semibold text-primary md:pt-3">

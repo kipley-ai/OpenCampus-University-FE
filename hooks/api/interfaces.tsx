@@ -178,7 +178,6 @@ export interface PluginMetaData {
   plugin_config: PluginConfig[];
 }
 
-
 export interface Plugin {
   plugin_id: string;
   title: string;
@@ -193,4 +192,13 @@ export interface PluginResponse {
     plugin_data: Plugin[];
     plugin_count: number;
   };
+}
+
+export interface IKBAddItem {
+  kb_id: string;
+  kb_data: any | null;
+  type: string;
+  username: string | null;
+  medium_url: string | null;
+  youtube_url: string | null;
 }

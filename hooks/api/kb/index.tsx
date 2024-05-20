@@ -1,7 +1,12 @@
 import { useMutation, useQuery, keepPreviousData } from "@tanstack/react-query";
 import { useAccount } from "wagmi";
 import axios from "axios";
-import { ICreateKBAndNFTParams, IKBDetail, IKBItem } from "../interfaces";
+import {
+  ICreateKBAndNFTParams,
+  IKBAddItem,
+  IKBDetail,
+  IKBItem,
+} from "../interfaces";
 import { KBItemResponse } from "@/lib/types";
 import { useSession } from "next-auth/react";
 
@@ -37,11 +42,15 @@ export const useMintNFTStatus = (kbId: string, isNftMinted: boolean) => {
   return useQuery({
     queryKey: ["mint-nft-status", kbId],
     queryFn: () =>
-      axios.post("/api/kb/mint-nft-status", { kb_id: kbId }, {
-        headers: {
-          "x-kf-user-id": address,
+      axios.post(
+        "/api/kb/mint-nft-status",
+        { kb_id: kbId },
+        {
+          headers: {
+            "x-kf-user-id": address,
+          },
         },
-      }),
+      ),
     enabled: !isNftMinted,
     refetchInterval: 3000,
   });
@@ -51,7 +60,7 @@ export const useUpdateKB = () => {
   const { address } = useAccount();
 
   return useMutation({
-    mutationFn: (params: { kb_id: string; kb_data: any }) =>
+    mutationFn: (params: IKBAddItem) =>
       axios.post("/api/kb/update_kb", params, {
         headers: {
           "x-kf-user-id": address,

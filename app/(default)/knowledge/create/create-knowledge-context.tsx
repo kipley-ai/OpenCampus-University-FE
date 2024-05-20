@@ -2,9 +2,6 @@
 
 import { createContext, useContext, useState } from "react";
 import { ReactSetter } from "@/lib/aliases";
-import { useChatSession, useChatboxWS } from "@/hooks/api/chatbox";
-import { ChatPayload, LastMessagePayload } from "@/hooks/api/chatbox/schema";
-import { useNftDetail } from "@/hooks/api/nft";
 
 interface CreateChatbotContextProps {
   createKb: ICreateKb;

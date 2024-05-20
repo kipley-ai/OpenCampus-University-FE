@@ -19,7 +19,7 @@ const ManageDataSources = () => {
   const deleteItemAPI = useDeleteKBItem();
 
   const { id } = useParams();
-  
+
   const nftDetail = useNftDetail({
     sft_id: id as string,
   });
@@ -27,7 +27,15 @@ const ManageDataSources = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(8);
 
-  const { isPending, isError, error, data, isFetching, refetch: kbItemReftech, status } = useKBItem(
+  const {
+    isPending,
+    isError,
+    error,
+    data,
+    isFetching,
+    refetch: kbItemReftech,
+    status,
+  } = useKBItem(
     {
       kb_id: nftDetail.data?.data.data.kb_id as string,
       page: currentPage,
@@ -102,85 +110,92 @@ const ManageDataSources = () => {
     return <div>Error: {error.message}</div>;
   }
 
-  const { kb_item_data: kbItemData, kb_item_count: kbItemCount } = data.data.data;
+  const { kb_item_data: kbItemData, kb_item_count: kbItemCount } =
+    data.data.data;
 
   if (kbItemCount >= 0) {
     const totalPages = Math.ceil(kbItemCount / pageSize);
 
     return (
-      <div className="flex flex-col sm:px-6 lg:px-0 md:pb-12">
+      <div className="flex flex-col sm:px-6 md:pb-12 lg:px-0">
         <div className="mb-4 flex items-center justify-between">
-          <h1 className="text-lg font-semibold text-primary">Manage Data Sources</h1>
+          <h1 className="text-lg font-semibold text-primary">
+            Manage Data Sources
+          </h1>
           {/* Add New Button */}
-          {kbDetail.data?.data.data.type !== "twitter" && (
-            <Link href={"/nft/" + id + "/add"}>
-              <button
-                className="button flex items-center justify-center gap-2 rounded rounded-md py-1.5 px-4"
-                type="submit"
+          <Link href={"/nft/" + id + "/add"}>
+            <button
+              className="button flex items-center justify-center gap-2 rounded rounded-md px-4 py-1.5"
+              type="submit"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                className="stroke-current"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  className="stroke-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M10.0001 4.16602V15.8327M4.16675 9.99935H15.8334"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                <h5 className="text-sm leading-none">Add New</h5>
-              </button>
-            </Link>
-          )}
+                <path
+                  d="M10.0001 4.16602V15.8327M4.16675 9.99935H15.8334"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <h5 className="text-sm leading-none">Add New</h5>
+            </button>
+          </Link>
         </div>
 
         {/* Selected count and Delete Button */}
-          {checkRow.includes(true) ? (
-           <div className="mt-0 mb-4 flex items-center justify-end">
-              <div className="flex items-center">
-                <span className="mr-4 text-sm">
-                  {checkRow.filter((value) => value === true).length} selected
-                </span>
-                <button
-                  className="flex items-center justify-center rounded-md border-2 border-[#F85C72] bg-transparent py-1.5 px-4 hover:opacity-75"
-                  type="submit"
-                  onClick={handleDelete}
-                >
-                  <h5 className="flex-grow text-sm font-semibold text-[#F85C72]">
-                    Delete
-                  </h5>
-                </button>
-              </div>
+        {checkRow.includes(true) ? (
+          <div className="mb-4 mt-0 flex items-center justify-end">
+            <div className="flex items-center">
+              <span className="mr-4 text-sm">
+                {checkRow.filter((value) => value === true).length} selected
+              </span>
+              <button
+                className="flex items-center justify-center rounded-md border-2 border-[#F85C72] bg-transparent px-4 py-1.5 hover:opacity-75"
+                type="submit"
+                onClick={handleDelete}
+              >
+                <h5 className="flex-grow text-sm font-semibold text-[#F85C72]">
+                  Delete
+                </h5>
+              </button>
             </div>
-          ) : (
-            <></>
-            // <div className="flex items-center justify-end">
-              // <div>
-                // <button className="flex items-center justify-center rounded-md border-2 border-[#F85C72] bg-transparent py-1.5 px-4 opacity-0">
-                //   <h5 className="flex-grow text-sm font-semibold text-[#F85C72]">
-                //     Delete
-                //   </h5>
-                // </button>
-              // </div>
-            // </div>
-          )}
+          </div>
+        ) : (
+          <></>
+          // <div className="flex items-center justify-end">
+          // <div>
+          // <button className="flex items-center justify-center rounded-md border-2 border-[#F85C72] bg-transparent py-1.5 px-4 opacity-0">
+          //   <h5 className="flex-grow text-sm font-semibold text-[#F85C72]">
+          //     Delete
+          //   </h5>
+          // </button>
+          // </div>
+          // </div>
+        )}
 
         {/* Table */}
         <div className="overflow-x-auto">
           <table className="min-w-full table-auto border-b border-[#393E44]">
-            <thead className="text-left bg-container">
+            <thead className="bg-container text-left">
               <tr>
                 <th className="px-3 py-7">
                   <div
                     className={`rounded  ${checkHeader ? "bg-primary" : "border-2 border-[#D1D5DB] bg-transparent"} flex h-4 w-4 items-center justify-center`}
                     onClick={() => handleCheckAll()}
                   >
-                    <svg width="10" height="9" viewBox="0 0 10 9" className={`${checkHeader ? "fill-container" : "hidden"}`} xmlns="http://www.w3.org/2000/svg">
-                      <path d="M3.5 5.375L1.5 3.375L0 4.875L3.5 8.375L10 1.875L8.5 0.375L3.5 5.375Z"/>
+                    <svg
+                      width="10"
+                      height="9"
+                      viewBox="0 0 10 9"
+                      className={`${checkHeader ? "fill-container" : "hidden"}`}
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M3.5 5.375L1.5 3.375L0 4.875L3.5 8.375L10 1.875L8.5 0.375L3.5 5.375Z" />
                     </svg>
                   </div>
                 </th>{" "}
@@ -200,14 +215,24 @@ const ManageDataSources = () => {
                       className={`rounded  ${checkRow[index] ? "bg-primary" : "border-2 border-[#D1D5DB] bg-transparent"} flex h-4 w-4 items-center justify-center`}
                       onClick={() => handleCheckRow(index)}
                     >
-                      <svg width="10" height="9" viewBox="0 0 10 9" className={`${checkRow[index] ? "fill-container" : "hidden"}`} xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3.5 5.375L1.5 3.375L0 4.875L3.5 8.375L10 1.875L8.5 0.375L3.5 5.375Z"/>
+                      <svg
+                        width="10"
+                        height="9"
+                        viewBox="0 0 10 9"
+                        className={`${checkRow[index] ? "fill-container" : "hidden"}`}
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M3.5 5.375L1.5 3.375L0 4.875L3.5 8.375L10 1.875L8.5 0.375L3.5 5.375Z" />
                       </svg>
                     </div>
                   </td>{" "}
                   {/* Row Checkbox */}
-                  <td className="max-w-44 truncate pr-3 text-sm font-medium">{row.item_name}</td>
-                  <td className="text-sm font-medium capitalize">{row.item_type}</td>
+                  <td className="max-w-44 truncate pr-3 text-sm font-medium">
+                    {row.item_name}
+                  </td>
+                  <td className="text-sm font-medium capitalize">
+                    {row.item_type}
+                  </td>
                   <td className="text-sm font-medium">{row.size}</td>
                   <td className="text-sm font-medium">{row.created_at}</td>
                   <td className="text-sm font-medium">
@@ -215,7 +240,7 @@ const ManageDataSources = () => {
                       className={`inline-flex rounded-full text-left leading-5 ${row.status === "Completed" ? "text-[#BDFF9E]" : "text-[#F85C72]"}`}
                     > */}
                     <span
-                      className={`inline-flex rounded-full text-left leading-5 capitalize ${row.status === "completed" ? "text-[#00EDBE]" : "text-[#F85C72]"}`}
+                      className={`inline-flex rounded-full text-left capitalize leading-5 ${row.status === "completed" ? "text-[#00EDBE]" : "text-[#F85C72]"}`}
                     >
                       {row.status}
                     </span>
@@ -236,7 +261,10 @@ const ManageDataSources = () => {
               <>
                 {kbItemCount === 0 ? (
                   <div className="text-center">
-                    <p className="text-lg text-gray-500">Oh, it seems you got no data here. Why not try adding some?</p>
+                    <p className="text-lg text-gray-500">
+                      Oh, it seems you got no data here. Why not try adding
+                      some?
+                    </p>
                   </div>
                 ) : (
                   <PaginationController
@@ -249,7 +277,6 @@ const ManageDataSources = () => {
             )}
           </div>
         </div>
-
       </div>
     );
   }

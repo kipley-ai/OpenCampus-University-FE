@@ -1,46 +1,55 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import Sidebar from '@/components/ui/sidebar'
-import Header from '@/components/ui/header'
-import NotFoundImage from '@/public/images/404-illustration.svg'
-import NotFoundImageDark from '@/public/images/404-illustration-dark.svg'
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import Sidebar from "@/components/ui/sidebar";
+import Header from "@/components/ui/header";
+import Button from "@/components/button";
 
 export default function NotFound() {
   return (
-    <div className="flex h-[100dvh] overflow-hidden">
-
-      {/* Sidebar */}
+    <div className="flex h-dvh divide-x-2 divide-border text-heading">
       <Sidebar />
-
-      {/* Content area */}
-      <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-
-        {/*  Site header */}
-        <Header />
-
-        <main className="grow [&>*:first-child]:scroll-mt-16">
-          <div className="relative bg-white dark:bg-slate-900 h-full">
-            <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-[96rem] mx-auto">
-
-              <div className="max-w-2xl m-auto mt-16">
-
-                <div className="text-center px-4">
-                  <div className="inline-flex mb-8">
-                    <Image className="dark:hidden" src={NotFoundImage} width={176} height={176} alt="404 illustration" />
-                    <Image className="hidden dark:block" src={NotFoundImageDark} width={176} height={176} alt="404 illustration dark" />                 
-                  </div>
-                  <div className="mb-6">Hmm...this page doesn't exist. Try searching for something else!</div>
-                  <Link href="/" className="btn bg-indigo-500 hover:bg-indigo-600 text-heading">Back To Dashboard</Link>
-                </div>
-
+      <div className="relative flex flex-1 flex-col overflow-y-auto">
+        <div className="h-[max(100vh, fit-content)] grow bg-container">
+          <Header />
+          <main className="grow">
+            <div className="mx-3 my-8 flex flex-col items-center justify-center rounded-2xl border-2 border-border bg-sidebar px-4 py-20 xs:px-8 md:mx-6 lg:w-5/6">
+              <Image
+                src="/images/404.svg"
+                alt="Error 404"
+                width={960}
+                height={570}
+              />
+              <h1 className="mt-5 text-center font-semibold md:text-xl">
+                Sorry, the page you are looking for cannot be found or it does
+                not exist.
+              </h1>
+              <div className="mt-6">
+                <Link href="/dashboard">
+                  <Button className="rounded-lg px-6 py-3">
+                    <div className="flex items-center justify-center gap-2">
+                      <svg
+                        width="16"
+                        height="20"
+                        viewBox="0 0 16 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M7.99935 3.33398L9.17435 4.50898L4.52435 9.16732H14.666V10.834H4.52435L9.17435 15.4923L7.99935 16.6673L1.33268 10.0007L7.99935 3.33398Z"
+                          fill="white"
+                        />
+                      </svg>
+                      <span className="md:text-lg">Back to your Dashboard</span>
+                    </div>
+                  </Button>
+                </Link>
               </div>
-
             </div>
-          </div>
-        </main>        
-
+          </main>
+        </div>
       </div>
-
-    </div>    
-  )
+    </div>
+  );
 }

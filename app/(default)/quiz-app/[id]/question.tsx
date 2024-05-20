@@ -25,6 +25,8 @@ export default function QuizQuestion() {
   //console.log("Questions: ", questions); // For debugging purpose
   //console.log(totalQuestions); // For debugging purpose
 
+  const isDisabled = !selected_answer;
+
   const checkAnswer = () => {
     const correctIndex =
       questions.data?.questions?.questions[question_now - 1].answer; // Correct index of the answer
@@ -177,7 +179,7 @@ export default function QuizQuestion() {
             </svg>
             CANCEL
           </button>
-          <button className="flex flex-row text-blue-600" onClick={checkAnswer}>
+          <button className={`flex flex-row ${isDisabled ? 'text-slate-500' : 'text-blue-600'}`} disabled={isDisabled} onClick={checkAnswer}>
             CHECK
             <svg
               width="24"
@@ -188,7 +190,7 @@ export default function QuizQuestion() {
             >
               <path
                 d="M9 18L15 12L9 6"
-                stroke="#141BEB"
+                stroke={`${isDisabled ? '#475569' : '#141BEB'}`}
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"

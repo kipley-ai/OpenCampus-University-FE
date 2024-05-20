@@ -6,7 +6,7 @@ import { useChatbotDetail } from "@/hooks/api/chatbot";
 import { useGetLastGeneratedQuiz } from "@/hooks/api/quiz_app"
 
 export default function QuizFalse() {
-    const { step, setStep, chatbot_id, questions, answer_state, setAnswerState, total_right, setTotalRight, question_now, setQuestionNow, selected_answer } = useQuiz();
+    const { step, setStep, chatbot_id, questions, answer_state, setAnswerState, total_right, setTotalRight, question_now, setQuestionNow, selected_answer, setSelectedAnswer } = useQuiz();
 
     const totalQuestions = questions.data?.questions?.questions.length as number;
 
@@ -20,6 +20,7 @@ export default function QuizFalse() {
             setStep("result");
             console.log("Step: ", step);
         } else {
+            setSelectedAnswer("");
             setQuestionNow(question_now + 1);
             setStep("question");
             console.log("Step: ", step);

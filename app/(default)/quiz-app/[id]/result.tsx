@@ -10,7 +10,7 @@ import Image from "next/image"
 import ResultImage from "components/quiz-app/result.png"
 
 export default function QuizResult() {
-    const { step, setStep, total_right, setTotalRight, question_now, setQuestionNow, questions } = useQuiz();
+    const { step, setStep, total_right, setTotalRight, question_now, setQuestionNow, questions, setSelectedAnswer } = useQuiz();
 
     const totalQuestions = questions.data?.questions?.questions.length as number;
 
@@ -23,6 +23,7 @@ export default function QuizResult() {
     }
 
     const restartQuiz = () => {
+        setSelectedAnswer("");
         setTotalRight(0);
         setQuestionNow(1);
         setStep("question");

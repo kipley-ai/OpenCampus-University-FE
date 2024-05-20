@@ -1,5 +1,4 @@
 import DashboardCard05 from "@/app/(dashboard)/dashboard/dashboard-card-05";
-import { DateFilterComponent } from "./dashboard";
 import ModalBlank from "@/components/modal-blank-3";
 import Image from "next/image";
 import { useCreatorOverview } from "@/hooks/api/user";
@@ -347,7 +346,6 @@ export default function CreatorOverview() {
       <div className="flex w-5/6 flex-col px-10 py-8">
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-semibold">Dashboard</h1>
-          {/* <DateFilterComponent /> */}
         </div>
         <div className="my-8 flex flex-col gap-4 rounded-xl p-6 ">
           <div className="mb-8 flex items-center justify-between">

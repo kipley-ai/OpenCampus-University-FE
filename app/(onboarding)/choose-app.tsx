@@ -41,10 +41,12 @@ export function ChooseApp() {
   };
 
   const handleChosenApp = (app: string) => {
-    const { plugin_data } = pluginList?.data?.data;
-    const pl = plugin_data.filter((plg: any) => plg.title === app);
-    setPlugin(pl[0]);
-    setChosenApp(app);
+    if (pluginList) {
+      const pl = pluginList.filter((plg: any) => plg.title === app);
+      //@ts-ignore
+      setPlugin(pl[0]);
+      setChosenApp(app);
+    }
   };
 
   return (

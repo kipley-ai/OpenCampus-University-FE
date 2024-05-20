@@ -1,9 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import { useQuiz } from "../[id]/quiz-app-context";
-import { useChatbotDetail } from "@/hooks/api/chatbot";
-import { useGetLastGeneratedQuiz } from "@/hooks/api/quiz_app";
 
 export default function QuizQuestion() {
   const {
@@ -19,6 +16,7 @@ export default function QuizQuestion() {
     setQuestionNow,
     selected_answer,
     setSelectedAnswer,
+    cancel,
   } = useQuiz();
 
   const totalQuestions = questions.data?.questions?.questions.length as number;
@@ -161,7 +159,10 @@ export default function QuizQuestion() {
         </div>
         <div className="border-t border-gray-300"></div>
         <div className="mt-6 flex items-center justify-between">
-          <button className="z-[999] flex flex-row text-blue-600">
+          <button
+            className="z-[999] flex flex-row text-blue-600"
+            onClick={() => cancel()}
+          >
             <svg
               width="24"
               height="24"

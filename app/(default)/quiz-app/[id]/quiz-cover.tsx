@@ -102,6 +102,21 @@ export default function QuizCover() {
     }
   }, [isGenerating]);
 
+  if (chatbotDetail.isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  let metadata = JSON.parse(chatbotDetail.data?.data?.data.meta_data || "{}");
+  let presetTopics = metadata?.preset_topic || [];
+
+  const handleChooseSuggestedTopic = (topic: string) => {
+    setIsGenerating(true);
+    generateQuiz.mutate({
+      chatbot_id: id as string,
+      topic,
+    });
+  };
+
   return (
     <>
       <ModalQuizLoading setIsOpen={setIsGenerating} isOpen={isGenerating} />
@@ -149,60 +164,30 @@ export default function QuizCover() {
               or Suggest for You
             </h2>
             <ul className="space-y-2">
-              <li className="flex cursor-pointer items-center justify-between rounded border p-4">
-                Biology Brain Teasers
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+              {presetTopics.map((topic: string) => (
+                <li
+                  key={topic}
+                  className="flex cursor-pointer items-center justify-between rounded border p-4"
+                  onClick={() => handleChooseSuggestedTopic(topic)}
                 >
-                  <path
-                    d="M9 18L15 12L9 6"
-                    stroke="#141BEB"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </li>
-              <li className="flex cursor-pointer items-center justify-between rounded border p-4">
-                Biology Brain Teasers
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9 18L15 12L9 6"
-                    stroke="#141BEB"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </li>
-              <li className="flex cursor-pointer items-center justify-between rounded border p-4">
-                Biology Brain Teasers
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9 18L15 12L9 6"
-                    stroke="#141BEB"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </li>
+                  {topic}
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9 18L15 12L9 6"
+                      stroke="#141BEB"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

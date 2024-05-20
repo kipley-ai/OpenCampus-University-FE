@@ -18,6 +18,7 @@ export type ChatbotData = {
   personality: string;
   suggestion_chat: string;
   plugin_id: string;
+  meta_data: string;
 };
 
 export type ChatbotDataListResponse = {

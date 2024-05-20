@@ -158,3 +158,39 @@ export interface IGetQuiz {
   chatbot_id: string;
   session_id: string;
 }
+
+export interface PluginConfig {
+  require: string;
+  param_name: string;
+  type: string;
+  default_value: string | string[];
+  values?: string[];
+  name: string;
+  description: string;
+}
+
+export interface PluginMetaData {
+  plugin_id: string;
+  plugin_name: string;
+  plugin_type: string;
+  plugin_template: string;
+  suggest_question: string[];
+  plugin_config: PluginConfig[];
+}
+
+
+export interface Plugin {
+  plugin_id: string;
+  title: string;
+  meta_data: PluginMetaData;
+  created: string;
+  description: string;
+  is_deleted: number;
+}
+
+export interface PluginResponse {
+  data: {
+    plugin_data: Plugin[];
+    plugin_count: number;
+  };
+}

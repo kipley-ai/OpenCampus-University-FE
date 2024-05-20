@@ -14,7 +14,7 @@ import Tooltip from "@/components/tooltip";
 import { noMoreThanCharacters } from "@/utils/utils";
 import { FormInput, FormTextarea } from "@/components/form-input";
 import { ModalSuccessBasic } from "@/components/modal-success-basic";
-import { useCreateQuizAPI } from "@/hooks/api/quiz";
+import { useCreateQuizAPI } from "@/hooks/api/quiz_app";
 import ModalBasic from "@/components/modal-basic";
 
 interface Form {

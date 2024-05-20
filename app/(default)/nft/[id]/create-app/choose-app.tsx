@@ -8,7 +8,7 @@ import { useState } from "react";
 import { FormNav } from "@/components/form-nav";
 import { CHATBOT_APP, QUIZ_APP, VALID_APPS } from "@/utils/constants";
 import { useCreateAppContext } from "./create-app-context";
-import { useGetPlugin } from "@/hooks/api/quiz";
+import { useGetPlugin } from "@/hooks/api/quiz_app";
 
 const apps = [
   {
@@ -45,10 +45,12 @@ export default function ChooseApp() {
   };
 
   const handleChosenApp = (app: string) => {
-    const { plugin_data } = pluginList?.data?.data;
-    const pl = plugin_data.filter((plg: any) => plg.title === app);
-    setPlugin(pl[0]);
-    setChosenApp(app);
+    if (pluginList) {
+      const pl = pluginList.filter((plg: any) => plg.title === app);
+      //@ts-ignore
+      setPlugin(pl[0]);
+      setChosenApp(app);
+    }
   };
 
   return (

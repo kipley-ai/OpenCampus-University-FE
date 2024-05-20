@@ -17,14 +17,18 @@ import Tooltip from "@/components/tooltip";
 import { noMoreThanCharacters } from "@/utils/utils";
 import { FormInput, FormTextarea } from "@/components/form-input";
 import { ModalSuccessBasic } from "@/components/modal-success-basic";
-import { useCreateQuizAPI } from "@/hooks/api/quiz";
+import { useCreateQuizAPI, useGetPlugin } from "@/hooks/api/quiz_app";
 import ModalBasic from "@/components/modal-basic";
 import { useCreateAppContext } from "../create-app/create-app-context";
+import { PluginConfig, PluginMetaData } from "@/hooks/api/interfaces";
 
 interface Form {
   name?: string;
   num_questions?: string;
   pricePerQuery?: number;
+  preset_topic_topic1?: string;
+  preset_topic_topic2?: string;
+  preset_topic_topic3?: string;
 }
 
 export const QuizForm = () => {
@@ -51,6 +55,9 @@ export const QuizForm = () => {
   const [form, setForm] = useState<Form>({});
 
   const { data: twitterSession } = useSession();
+  const { data: pluginData } = useGetPlugin();
+
+  const [metaDataForm, setMetaDataForm] = useState<PluginMetaData | null>(null);
 
   const formValidation = z.object({
     name: z
@@ -77,9 +84,16 @@ export const QuizForm = () => {
 
     if (!validateForm()) return;
 
+    const presetTopics = [
+      form.preset_topic_topic1,
+      form.preset_topic_topic2,
+      form.preset_topic_topic3
+    ].filter(topic => topic !== null && topic !== undefined && topic !== "");
+
     const metaData = JSON.stringify({
       difficulty: difficultyData,
       num_questions: form.num_questions || "3",
+      preset_topic: presetTopics
     });
 
     createQuizApp.mutate(
@@ -162,6 +176,17 @@ export const QuizForm = () => {
     }
   }, [superAdmin.isSuccess, nftData]);
 
+  useEffect(() => {
+    if (pluginData) {
+      const plugin = pluginData.find(
+        (p) => p.title === "Semantic Quiz Generation",
+      );
+      if (plugin) {
+        setMetaDataForm(plugin.meta_data);
+      }
+    }
+  }, [pluginData]);
+
   return (
     <>
       <ModalSuccessBasic
@@ -222,91 +247,159 @@ export const QuizForm = () => {
                 maxLength={1000}
               />
               <div className="flex gap-4">
-                <div className="w-full">
-                  <label
-                    htmlFor="difficult"
-                    className="block text-xs font-semibold text-heading lg:text-sm "
-                  >
-                    Difficult
-                  </label>
-                  <div className="mt-1 w-full">
-                    <Switcher
-                      texts={["Easy", "Hard"]}
-                      mode={mode}
-                      setWhich={setMode}
-                      fullWidth={true}
+                {metaDataForm &&
+                  metaDataForm.plugin_config.map(
+                    (config: PluginConfig, index: number) => {
+                      if (
+                        config.type === "select" &&
+                        config.values &&
+                        config.values.length === 2
+                      ) {
+                        return (
+                          <div className="w-full" key={index}>
+                            <label
+                              htmlFor={config.param_name}
+                              className="block text-xs font-semibold text-heading lg:text-sm "
+                            >
+                              {config.name}
+                            </label>
+                            <div className="mt-1 w-full">
+                              <Switcher
+                                texts={config.values}
+                                mode={mode}
+                                setWhich={setMode}
+                                fullWidth={true}
+                              />
+                            </div>
+                          </div>
+                        );
+                      }
+
+                      if (
+                        config.type === "select" &&
+                        config.values &&
+                        config.values.length > 2
+                      ) {
+                        return (
+                          <div className="w-full" key={index}>
+                            <label
+                              className="flex w-full flex-col text-xs font-semibold lg:text-sm"
+                              htmlFor={config.param_name}
+                            >
+                              {config.name}
+                            </label>
+                            <select
+                              id={config.param_name}
+                              defaultValue={config.default_value as string}
+                              // @ts-ignore
+                              value={form[config.param_name]}
+                              className="my-1 w-full rounded-lg border-2 border-border bg-transparent text-xs lg:text-sm"
+                              onChange={(e) =>
+                                handleFormChange(
+                                  config.param_name,
+                                  e.target.value,
+                                )
+                              }
+                            >
+                              <option
+                                className="bg-sidebar text-body"
+                                selected
+                                disabled
+                                hidden
+                                value=""
+                              >
+                                Select
+                              </option>
+                              {config.values?.map((value, i) => (
+                                <option
+                                  className="rounded-md border-transparent bg-sidebar text-body hover:bg-secondary hover:text-heading"
+                                  key={i}
+                                  value={value}
+                                >
+                                  {value}
+                                </option>
+                              ))}
+                            </select>
+                            {errorMessage &&
+                              errorMessage[config.param_name] && (
+                                <p className="text-xs text-red-400">
+                                  {errorMessage[config.param_name]}
+                                </p>
+                              )}
+                          </div>
+                        );
+                      }
+                      return null;
+                    },
+                  )}
+                <div className="w-full space-y-5">
+                  <div className="w-full">
+                    <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold lg:text-sm">
+                      <span>Price Per Query (in OC Points)</span>
+                      <Tooltip bg="dark" position="right" size="md">
+                        Set your price per query on your chatbot app and get
+                        paid in OC Points.
+                      </Tooltip>
+                    </label>
+                    <input
+                      className="my-1 w-full rounded-lg border-2 border-border bg-transparent text-xs lg:text-sm"
+                      type="number"
+                      name="pricePerQuery"
+                      placeholder="e.g. 1"
+                      onChange={(e) => {
+                        if (parseFloat(e.target.value) < 0)
+                          handleFormChange("pricePerQuery", 0);
+                        else handleFormChange("pricePerQuery", e.target.value);
+                      }}
+                      value={form.pricePerQuery}
                     />
+                    {errorMessage && errorMessage.pricePerQuery && (
+                      <p className="text-xs text-red-400">
+                        {errorMessage.pricePerQuery}
+                      </p>
+                    )}
                   </div>
                 </div>
-                <div className="w-full">
-                  <label
-                    className="flex w-full flex-col text-xs font-semibold lg:text-sm"
-                    htmlFor="category"
-                  >
-                    No. of Questions
-                  </label>
-                  <select
-                    id="num_questions"
-                    defaultValue={""}
-                    value={form.num_questions}
-                    className="my-1 w-full rounded-lg border-2 border-border bg-transparent text-xs lg:text-sm"
-                    onChange={(e) =>
-                      handleFormChange("num_questions", e.target.value)
-                    }
-                  >
-                    <option
-                      className="bg-sidebar text-body"
-                      selected
-                      disabled
-                      hidden
-                      value=""
-                    >
-                      Select
-                    </option>
-                    {questions.map((num) => (
-                      <option
-                        className="rounded-md border-transparent bg-sidebar text-body hover:bg-secondary hover:text-heading"
-                        key={num}
-                        value={num}
-                      >
-                        {num}
-                      </option>
-                    ))}
-                  </select>
-                  {errorMessage && errorMessage.category_id && (
-                    <p className="text-xs text-red-400">
-                      {errorMessage.category_id}
-                    </p>
-                  )}
-                </div>
               </div>
-              <div className="w-full space-y-5">
-                <div className="w-full">
-                  <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold lg:text-sm">
-                    <span>Price Per Query (in OC Points)</span>
-                    <Tooltip bg="dark" position="right" size="md">
-                      Set your price per query on your chatbot app and get paid
-                      in OC Points.
-                    </Tooltip>
-                  </label>
-                  <input
-                    className="my-1 w-full rounded-lg border-2 border-border bg-transparent text-xs lg:text-sm"
-                    type="number"
-                    name="pricePerQuery"
-                    placeholder="e.g. 1"
-                    onChange={(e) => {
-                      if (parseFloat(e.target.value) < 0)
-                        handleFormChange("pricePerQuery", 0);
-                      else handleFormChange("pricePerQuery", e.target.value);
-                    }}
-                    value={form.pricePerQuery}
-                  />
-                  {errorMessage && errorMessage.pricePerQuery && (
-                    <p className="text-xs text-red-400">
-                      {errorMessage.pricePerQuery}
-                    </p>
+
+              <div className="w-full space-y-5 rounded-lg border p-8 bg-indigo-50 border-indigo-100">
+                {metaDataForm &&
+                  metaDataForm.plugin_config.map(
+                    (config: PluginConfig, index: number) => {
+                      if (config.type === "array") {
+                        return (
+                          <div key={index}>
+                            <h2 className="mb-4">{config.name}</h2>{" "}
+                            {/* Header title */}
+                            {[1, 2, 3].map((topicNumber) => (
+                              <FormInput
+                                className="mb-3"
+                                key={`${config.param_name}_topic${topicNumber}`}
+                                id={`${config.param_name}_topic${topicNumber}`}
+                                label={`Topic ${topicNumber}`}
+                                type="text"
+                                value={
+                                  //@ts-ignore
+                                  form[
+                                    `${config.param_name}_topic${topicNumber}`
+                                  ] || ""
+                                }
+                                onChange={(e) =>
+                                  handleFormChange(
+                                    `${config.param_name}_topic${topicNumber}`,
+                                    e.target.value,
+                                  )
+                                }
+                                placeholder={`Enter ${topicNumber == 1 ? "first" : topicNumber == 2 ? "second" : "third"} topic here`}
+                                maxLength={100}
+                                errorMessage={errorMessage[config.param_name]}
+                              />
+                            ))}
+                          </div>
+                        );
+                      }
+                    },
                   )}
-                </div>
               </div>
             </div>
           </div>

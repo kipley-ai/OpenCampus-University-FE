@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useCreateChatbotContext } from "./create-knowledge-context";
 import { useState } from "react";
 import { FormNav } from "@/components/form-nav";
-import { useGetPlugin } from "@/hooks/api/quiz";
+import { useGetPlugin } from "@/hooks/api/quiz_app";
 
 const apps = [
   {

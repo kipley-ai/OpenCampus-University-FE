@@ -75,11 +75,11 @@ const LastAnswer = ({
       >
         {/* Loading icon and generating text */}
         {isGenerating && (
-          <div className="mb-2 flex items-center gap-6 space-x-3 text-sm text-gray-400">
+          <div className={`mb-2 flex items-center gap-6 space-x-3 text-sm text-gray-400 ${chatbotData?.data.data.profile_image as string ? "" : "self-end"} mr-2`}>
             <Image
               src={LoadingIcon}
               alt="Profile"
-              className="ml-1 h-5 w-5 animate-spin text-heading"
+              className="h-5 w-5 animate-spin text-heading"
               width={50}
               height={50}
             />
@@ -87,9 +87,9 @@ const LastAnswer = ({
           </div>
         )}
         {/* Message bubble */}
-        <div className="flex flex-col space-y-2">
+        <div className={`flex flex-col space-y-2 ${chatbotData?.data.data.profile_image as string ? "" : "self-end"}`}>
           {/* Message bubble */}
-          <div className="relative flex items-start space-x-4">
+          <div className={`relative flex ${chatbotData?.data.data.profile_image as string ? "" : "flex-row-reverse"} space-x-4`}>
             <Image
               src={chatbotData?.data.data.profile_image as string}
               alt="Profile"
@@ -97,8 +97,8 @@ const LastAnswer = ({
               width={50}
               height={50}
             />
-            <div className="mt-2 w-full text-heading">
-              <div className="w-full flex gap-2 items-center">
+            <div className="mt-2 text-heading">
+              <div className={`flex gap-2 items-center ${chatbotData?.data.data.profile_image as string ? "" : "flex-row-reverse mr-2"}`}>
                 {/* <h6 className="mb-1 mt-1 font-black text-lg"> */}
                 <h6 className="mb-1 text-sm font-medium">
                   {chatbotData?.data?.data.name}
@@ -117,7 +117,7 @@ const LastAnswer = ({
                   })}
                 </h6>
               </div>
-              <p className="text-sm whitespace-break-spaces break-words">
+              <p className={`text-sm whitespace-break-spaces break-words ${chatbotData?.data.data.profile_image as string ? "" : "text-right mr-2"}`}>
                 {isStream ? message.slice(0, -2).join("") : trimQuotationMarks(message)}
                 {/* {sender === "bot" && sources.length > 0 && (
                   <TweetAnswer chunks={sources} />

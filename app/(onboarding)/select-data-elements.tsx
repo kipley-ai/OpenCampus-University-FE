@@ -115,23 +115,7 @@ export default function SelectDataElements() {
               selectedButton={selectedButton}
               setSelectedButton={setSelectedButton}
             />
-            <div className="my-8 mt-28 flex items-center justify-between border-t-2 pt-4">
-              <button className="flex items-center justify-center gap-2 hover:underline">
-                <svg
-                  width="8"
-                  height="13"
-                  viewBox="0 0 8 13"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M7.41 2.29965L6 0.889648L0 6.88965L6 12.8896L7.41 11.4796L2.83 6.88965L7.41 2.29965Z"
-                    fill="#141BEB"
-                  />
-                </svg>
-
-                <p>Back</p>
-              </button>
+            <div className="my-8 mt-28 flex items-center justify-end border-t-2 pt-4">
               <button
                 className="flex items-center justify-center gap-2 hover:underline"
                 onClick={handleContinue}

@@ -66,7 +66,7 @@ export function ChooseApp() {
             </button>
           ))}
         </div>
-        <FormNav onNext={handleCreateApp} />
+        <FormNav onNext={handleCreateApp} hideBack={true} />
       </div>
     </div>
   );

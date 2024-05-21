@@ -20,6 +20,9 @@ export default function DefaultLayout({
   const { status } = useAccount();
   const pathname = usePathname();
   const { openConnectModal } = useConnectModal();
+  const sign = localStorage.getItem("kip-protocol-signature");
+  const { verifStatus } = useAppProvider();
+  const { data: userDetail } = useUserDetail();
 
   const subdomain = window.location.origin.split("//")[1].split(".")[0];
   if (SUBDOMAINS.includes(subdomain) && pathname !== "/") {
@@ -33,6 +36,15 @@ export default function DefaultLayout({
     setModalTopUpFailed,
     topUpAmount,
   } = useAppProvider();
+
+  if (status === "connected" && (sign || verifStatus === "authenticated")) {
+    if (
+      userDetail?.data?.status !== "error" &&
+      !userDetail?.data?.data.onboarding
+    ) {
+      return redirect("/onboarding");
+    }
+  }
 
   if (
     status === "disconnected" &&

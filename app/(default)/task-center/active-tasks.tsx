@@ -37,6 +37,8 @@ const TaskCard = ({
       : "Go"
   );
 
+  // console.log(data.task_name, isCompleted, taskStatus)
+
   useEffect(() => {
     if (
       data.task_end_time !== null &&
@@ -48,16 +50,16 @@ const TaskCard = ({
     }
   }, [data.task_end_time])
 
-  console.log(isCompleted, taskStatus)
-  
   const { mutate: takeTask } = useTakeTask();
   const { mutate: completeTask } = useCompleteTask();
 
   const handleButton = () => {
     if (taskStatus?.toLowerCase() === "go") {
       takeTask({ task_id: data.task_id });
-      window.open(data.task_link, "_blank");
+      const url = window.location.origin + "/chatbot/" + data.task_link
+      window.open(url, '_blank')
       refetch();
+      setTaskStatus("Verify");
     } else if (taskStatus?.toLowerCase() === "verify") {
       completeTask(
         { taken_id: data.taken_id },
@@ -77,6 +79,7 @@ const TaskCard = ({
               }, 3000);
               refetch();
               refetchBasePoints();
+              setIsCompleted(true);
               setTaskStatus("Completed");
             }
           },

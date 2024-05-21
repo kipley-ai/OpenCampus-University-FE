@@ -39,6 +39,7 @@ export default function DefaultLayout({
 
   if (status === "connected" && (sign || verifStatus === "authenticated")) {
     if (
+      userDetail &&
       userDetail?.data?.status !== "error" &&
       !userDetail?.data?.data.onboarding
     ) {

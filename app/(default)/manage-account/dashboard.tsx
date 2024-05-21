@@ -1,6 +1,7 @@
 import DashboardCard05 from "@/app/(dashboard)/dashboard/dashboard-card-05";
 import { useState, useEffect, useRef } from "react";
 import { useDebouncedCallback } from "use-debounce";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 import ImageInput from "@/components/image-input-2";
@@ -10,6 +11,8 @@ import PersonIcon from "@/components/icon/person.svg";
 import ConvoIcon from "@/components/icon/convo.svg";
 import CodeIcon from "@/components/icon/code.svg";
 import TwitterIcon from "@/components/icon/twitter.svg";
+import ThemeSwitcher from "@/components/theme-switcher";
+import Switcher from "@/components/switcher";
 import AvatarDefault from "public/images/avatar-default-02.svg";
 import { chartColors } from "@/components/charts/chartjs-config";
 import SignOutIcon from "@/public/images/sign-out.svg";
@@ -35,6 +38,8 @@ export default function AccountSettings() {
   const { modalTopUp, setModalTopUp } = useAppProvider();
   const { data: userDetail, isLoading } = useUserDetail();
   const address = userDetail?.data?.data.wallet_addr;
+
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     if (userDetail?.data) {
@@ -216,12 +221,43 @@ export default function AccountSettings() {
         <h2 className="text-sm font-medium">User Overview</h2>
         <div className="flex gap-6">
           <div className="w-1/2 space-y-2 rounded-xl border border-border bg-container px-16 py-8">
-            <Image
-              src="/images/oc-points-balance.svg"
-              width={24}
-              height={24}
-              alt="OC Points Balance"
-            />
+            <svg
+              width="25"
+              height="24"
+              viewBox="0 0 25 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.23 19.7C8.05 18.82 9.3 18.89 10.02 19.85L11.03 21.2C11.84 22.27 13.15 22.27 13.96 21.2L14.97 19.85C15.69 18.89 16.94 18.82 17.76 19.7C19.54 21.6 20.99 20.97 20.99 18.31V7.04C21 3.01 20.06 2 16.28 2H8.72C4.94 2 4 3.01 4 7.04V18.3C4 20.97 5.46 21.59 7.23 19.7Z"
+                stroke="var(--color-primary)"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M9.5 13L15.5 7"
+                stroke="var(--color-primary)"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M15.4945 13H15.5035"
+                stroke="var(--color-primary)"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M9.49451 7.5H9.50349"
+                stroke="var(--color-primary)"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+
             <div className="flex items-center">
               <h4 className="mr-1 text-[16px] font-semibold">
                 OC Points Balance
@@ -234,8 +270,8 @@ export default function AccountSettings() {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M13.6668 6.99967C13.6668 10.6816 10.6821 13.6663 7.00016 13.6663C3.31826 13.6663 0.333496 10.6816 0.333496 6.99967C0.333496 3.31778 3.31826 0.333008 7.00016 0.333008C10.6821 0.333008 13.6668 3.31778 13.6668 6.99967ZM7.00016 6.33301C7.36835 6.33301 7.66683 6.63148 7.66683 6.99967V10.3336C7.66683 10.7018 7.36835 11.0003 7.00016 11.0003C6.63197 11.0003 6.3335 10.7018 6.3335 10.3336V6.99967C6.3335 6.63148 6.63197 6.33301 7.00016 6.33301ZM7.00016 4.99967C7.36835 4.99967 7.66683 4.7012 7.66683 4.33301C7.66683 3.96482 7.36835 3.66634 7.00016 3.66634C6.63197 3.66634 6.3335 3.96482 6.3335 4.33301C6.3335 4.7012 6.63197 4.99967 7.00016 4.99967Z"
                   fill="#EFEFEF"
                 />
@@ -245,6 +281,24 @@ export default function AccountSettings() {
               {userDetail?.data.data.credit_balance}
             </h4>
           </div>
+        </div>
+      </div>
+      <hr className="my-4 border border-border" />
+      <h2 className="mb-4 text-sm font-medium">Settings</h2>
+      <div className="flex items-center justify-between">
+        <div className="flex gap-4">
+          <ThemeSwitcher />
+          <h3 className="font-medium">Theme</h3>
+        </div>
+        <div className="w-48">
+          <Switcher
+            texts={["Light", "Dark"]}
+            mode={theme == "dark" ? 1 : 0}
+            setWhich={(index: number) => {
+              setTheme(index == 0 ? "light" : "dark");
+            }}
+            fullWidth
+          />
         </div>
       </div>
     </div>

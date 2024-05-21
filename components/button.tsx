@@ -58,7 +58,7 @@ export const SecondaryButton = ({
 }: SecondaryButtonProps) => {
   return (
     <button
-      className={`flex items-center justify-center gap-2 rounded-md border border-primary bg-white px-3 py-1 text-xs font-medium text-primary hover:bg-primary hover:text-box disabled:border-0 disabled:bg-[#B8BABE] disabled:text-[#909295] xl:text-sm ${className}`}
+      className={`flex items-center justify-center gap-2 rounded-md border border-primary bg-transparent px-3 py-1 text-xs font-medium text-primary hover:bg-primary hover:text-box disabled:border-0 disabled:bg-[#B8BABE] disabled:text-[#909295] xl:text-sm ${className}`}
       {...props}
     >
       {children}

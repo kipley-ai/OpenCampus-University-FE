@@ -26,14 +26,14 @@ export default function Dashboard() {
   const { address, status } = useAccount();
   const { verifStatus } = useAppProvider();
 
-  // if (status === "connected" && (sign || verifStatus === "authenticated")) {
-  //   if (
-  //     userDetail?.data?.status !== "error" &&
-  //     !userDetail?.data?.data.onboarding
-  //   ) {
-  //     return redirect("/onboarding");
-  //   }
-  // }
+  if (status === "connected" && (sign || verifStatus === "authenticated")) {
+    if (
+      userDetail?.data?.status !== "error" &&
+      !userDetail?.data?.data.onboarding
+    ) {
+      return redirect("/onboarding");
+    }
+  }
 
   const botsQuery = useChatbotExplore(
     {
@@ -82,7 +82,7 @@ export default function Dashboard() {
   }, [breakpoint, pageSize, botsQuery.isFetching]);
 
   return (
-    <div className="px-3 py-8 text-primary md:px-6 xl:px-16">
+    <div className="text-primary">
       <Image
         src="/images/explore-banner.svg"
         alt="Explore Banner"
@@ -91,7 +91,7 @@ export default function Dashboard() {
         height={264}
       />
       <div className="mt-12 rounded-xl border-2 border-border bg-sidebar p-3 lg:p-8">
-        <h1 className="text-xl font-semibold md:text-2xl">Featured Creators</h1>
+        <h1 className="text-lg font-semibold md:text-xl">Featured Creators</h1>
         <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
           {featuredBotsQuery.data?.data?.data &&
             featuredBotsQuery.data?.data.data.chatbot_data.map((botData) => (
@@ -103,7 +103,7 @@ export default function Dashboard() {
         {featuredBotsQuery.isFetching && <LoadMoreSpinner />}
       </div>
       <div className="mt-4 rounded-xl border-2 border-border bg-sidebar p-3 lg:p-8">
-        <h1 className="text-xl font-semibold md:text-2xl">Popular Creators</h1>
+        <h1 className="text-lg font-semibold md:text-xl">Popular Creators</h1>
         <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
           {botsQuery.data?.data.data &&
             botsQuery.data?.data.data.chatbot_data.map((botData) => (

@@ -63,7 +63,7 @@ export default function DefaultLayout({
           {/*  Site header */}
           {pathname === "/knowledge/create/iframe" ? null : <Header />}
 
-          <main className="grow">{children}</main>
+          <main className="grow p-3 md:p-6 xl:p-8 xl:w-5/6">{children}</main>
         </div>
       </div>
     </div>

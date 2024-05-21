@@ -215,7 +215,25 @@ export default function AccountSettings() {
           </SecondaryButton>
         ) : null}
       </div>
-      <hr className="mb-4 border border-border" />
+      <hr className="my-4 border border-border" />
+      <h2 className="mb-4 text-sm font-medium">Settings</h2>
+      <div className="flex items-center justify-between">
+        <div className="ml-3 flex gap-6">
+          <ThemeSwitcher />
+          <h3 className="font-medium">Theme</h3>
+        </div>
+        <div className="w-48">
+          <Switcher
+            texts={["Light", "Dark"]}
+            mode={theme == "dark" ? 1 : 0}
+            setWhich={(index: number) => {
+              setTheme(index == 0 ? "light" : "dark");
+            }}
+            fullWidth
+          />
+        </div>
+      </div>
+      <hr className="my-4 border border-border" />
       {/* User Overview */}
       <div className="flex flex-col gap-4">
         <h2 className="text-sm font-medium">User Overview</h2>
@@ -281,24 +299,6 @@ export default function AccountSettings() {
               {userDetail?.data.data.credit_balance}
             </h4>
           </div>
-        </div>
-      </div>
-      <hr className="my-4 border border-border" />
-      <h2 className="mb-4 text-sm font-medium">Settings</h2>
-      <div className="flex items-center justify-between">
-        <div className="flex gap-4">
-          <ThemeSwitcher />
-          <h3 className="font-medium">Theme</h3>
-        </div>
-        <div className="w-48">
-          <Switcher
-            texts={["Light", "Dark"]}
-            mode={theme == "dark" ? 1 : 0}
-            setWhich={(index: number) => {
-              setTheme(index == 0 ? "light" : "dark");
-            }}
-            fullWidth
-          />
         </div>
       </div>
     </div>

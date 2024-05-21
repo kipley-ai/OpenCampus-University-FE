@@ -340,18 +340,19 @@ const MessageList = ({
             ) : (
               <ChatMessage key={index} message={message} />
             )
-          ) : (
+          ) : message.sender == "user" ? (
             <LastMessage
               key={index}
-              // profileImage={chatbotData?.data.data.profile_image}
               profileImage={""}
-              sender={"bot"}
+              sender={message.sender}
               messageObj={message}
               message={message.message}
               chunks={message.chunks}
-              isGenerating={replyStatus == "answering"}
+              isGenerating={false}
               created={message.created}
             />
+          ) : (
+            <ChatMessage key={index} message={message} />
           );
         })}
         {replyStatus == "idle" ? (

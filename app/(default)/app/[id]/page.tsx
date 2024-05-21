@@ -4,7 +4,7 @@ import Image from "next/image";
 import user_avatar from "@/public/images/user-28-01.jpg";
 import keyboard from "@/public/images/applications-image-23.jpg";
 import { useAppProvider } from "@/providers/app-provider";
-import { useEffect } from "react";
+import { use, useEffect } from "react";
 import link_nft_chatbot from "@/public/images/link-nft-chatbot.png";
 import { useCallback, useState } from "react";
 import { useNFTList, useNftDetail } from "@/hooks/api/nft";
@@ -19,6 +19,7 @@ import { id } from "ethers";
 import { ChatbotData, NftData } from "@/lib/types";
 import { keepPreviousData } from "@tanstack/react-query";
 import { PaginationController } from "@/components/pagination-2/controller";
+import { useGetPlugin } from "@/hooks/api/quiz_app";
 import Money from "public/images/money.svg";
 
 const formatTimestamp = (timestamp: string): string => {
@@ -158,6 +159,22 @@ const ChatbotSection = ({
   chatbotDetail: any;
   kbDetail: any;
 }) => {
+
+  const { data: pluginData } = useGetPlugin();
+
+  const plugin = pluginData?.find((plugin) => plugin.plugin_id === chatbotDetail.plugin_id);
+  console.log("Plugin detail: ", plugin); // For debugging purpose
+
+  const [appType, setAppType] = useState("");
+
+  useEffect(() => {
+    if (plugin?.title === "Semantic Quiz Generation") {
+      setAppType("Quiz");
+    } else {
+      setAppType("Chatbot");
+    }
+  }, [appType, plugin?.title]);
+
   return (
     <div className="grid grid-cols-1 gap-4 text-heading md:grid-cols-3">
       <div className="w-2/5 md:w-full">
@@ -240,6 +257,16 @@ const ChatbotSection = ({
             </span>
             <span className="block text-sm capitalize text-heading font-medium">
               {formatTimestamp(chatbotDetail.last_updated)}
+            </span>
+          </div>
+        </div>
+        <div className="mt-2 rounded rounded-md bg-box px-5 py-2 border border-[#DDDDEB]">
+          <div className="flex flex-grow justify-between">
+            <span className="block text-sm text-[#94A3B8] font-medium">
+              App Type
+            </span>
+            <span className="block text-sm capitalize text-heading font-medium">
+              {appType}
             </span>
           </div>
         </div>

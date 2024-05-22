@@ -23,7 +23,7 @@ function KipProtocolVideo() {
             chainStyle="hidden"
             content={
               <span className="text-base font-bold text-black">
-                Create Your First AI Knowledge Asset
+                Create Your First AI Knowledge Key
               </span>
             }
           />

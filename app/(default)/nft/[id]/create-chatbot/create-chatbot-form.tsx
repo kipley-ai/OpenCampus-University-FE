@@ -249,7 +249,7 @@ export const ChatBotForm = () => {
         setOpen={setShowModal}
       />
       <div className="flex flex-col sm:px-6 lg:px-0">
-        <div className="max-lg:mb-4 flex items-center justify-between">
+        <div className="flex items-center justify-between max-lg:mb-4">
           <h1 className="text-lg font-semibold text-primary">Chatbot</h1>
           <div className="flex w-32 items-center xs:w-60">
             {chatbotPKLStatus ? (
@@ -278,7 +278,7 @@ export const ChatBotForm = () => {
                 </svg>
 
                 <span className="text-wrap text-xs font-light text-heading md:text-sm">
-                  Your Knowledge Asset is ready!
+                  Your Knowledge Key is ready!
                 </span>
               </>
             ) : (
@@ -301,7 +301,7 @@ export const ChatBotForm = () => {
                   />
                 </svg>
                 <span className="text-wrap text-xs font-light text-heading md:text-sm">
-                  Your Knowledge Asset is vectorising…
+                  Your Knowledge Key is vectorising…
                 </span>
               </>
             )}

@@ -63,7 +63,7 @@ export default function DataSource() {
   );
 
   useEffect(() => {
-    const title = KF_TITLE + "Add Knowledge Assets";
+    const title = KF_TITLE + "Add Knowledge Keys";
     document.title = title;
     return () => setHeaderTitle("");
   }, []);
@@ -178,7 +178,7 @@ export default function DataSource() {
       />
       <div className="h-full flex-col justify-start bg-container px-4 md:w-5/6 md:flex-row md:pl-10">
         <h1 className="py-3 text-lg font-semibold text-heading">
-          Add Knowledge Asset
+          Add Knowledge Key
         </h1>
         {step == "data_source" ? (
           <div className="flex flex-col rounded-2xl border border-[#DDDDEB] bg-sidebar px-6 py-9 pb-0 lg:px-8 xl:px-14">

@@ -21,7 +21,7 @@ interface Form {
 }
 
 export default function NFT() {
-  const title = KF_TITLE + "Create SFT";
+  const title = KF_TITLE + "Create Knowledge Key";
   const { setHeaderTitle } = useAppProvider();
 
   const [category, setCategory] = useState("");
@@ -49,9 +49,11 @@ export default function NFT() {
   return (
     <div className="flex flex-col bg-[#292D32] py-8 sm:px-6 lg:px-8">
       <div className="mx-56">
-        <h1 className="text-2xl font-semibold text-heading">Create SFT</h1>
+        <h1 className="text-2xl font-semibold text-heading">
+          Create Knowledge Key
+        </h1>
         <h5 className="text-md text-[#7C878E]">
-          Give some general information about your SFT.
+          Give some general information about your Knowledge Key.
         </h5>
         <hr className="my-4 border border-border" />
       </div>
@@ -117,7 +119,9 @@ export default function NFT() {
         </div>
         <div className="flex flex-row">
           <div className="flex w-1/3 flex-col gap-1">
-            <label className="font-semibold text-heading">Price Per Query</label>
+            <label className="font-semibold text-heading">
+              Price Per Query
+            </label>
             <input
               className="w-11/12 rounded-xl bg-transparent"
               type="number"
@@ -127,7 +131,9 @@ export default function NFT() {
           </div>
 
           <div className="flex w-1/3 flex-col gap-1">
-            <label className="font-semibold text-heading">Query Royalties</label>
+            <label className="font-semibold text-heading">
+              Query Royalties
+            </label>
             <select
               className="w-11/12 rounded-xl bg-transparent text-[#7C878E]"
               value={queryRoyalties}
@@ -141,7 +147,9 @@ export default function NFT() {
           </div>
 
           <div className="flex w-1/3 flex-col gap-1">
-            <label className="font-semibold text-heading">Price Per Query</label>
+            <label className="font-semibold text-heading">
+              Price Per Query
+            </label>
             <input
               className="rounded-xl bg-transparent"
               type="number"
@@ -156,7 +164,9 @@ export default function NFT() {
             className="mt-8 flex w-44 flex-row items-center justify-between rounded-3xl bg-primary p-2 px-5"
             type="button"
           >
-            <h5 className="text-sm font-semibold text-black">MINT SFT</h5>
+            <h5 className="text-sm font-semibold text-black">
+              MINT Knowledge Key
+            </h5>
             <svg
               width="20"
               height="10"

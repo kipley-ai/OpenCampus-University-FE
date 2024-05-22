@@ -51,16 +51,16 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
           height={325}
         />
       </div>
-      <div className="md:col-span-2 pl-7 pb-10">
+      <div className="pb-10 pl-7 md:col-span-2">
         <h1 className="text-center text-3xl font-semibold md:text-left md:text-4xl">
           {nftDetail.name}
         </h1>
-        <div className="my-4 border-t-2 border-border mb-5"></div>
+        <div className="my-4 mb-5 border-t-2 border-border"></div>
         <div className="flex flex-row">
-          <p className="mr-2 text-center text-sm text-[#94A3B8] md:text-left font-medium">
-            SFT Owner
+          <p className="mr-2 text-center text-sm font-medium text-[#94A3B8] md:text-left">
+            Knowledge Key Owner
           </p>
-          <p className="text-center text-sm text-heading md:text-left font-medium">
+          <p className="text-center text-sm font-medium text-heading md:text-left">
             {nftDetail.wallet_addr!.substring(0, 6) +
               "..." +
               nftDetail.wallet_addr!.substring(
@@ -68,11 +68,11 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
               )}
           </p>
         </div>
-        <div className="flex flex-row mt-3">
-          <p className="mr-2 text-center text-sm text-[#94A3B8] md:text-left font-medium">
+        <div className="mt-3 flex flex-row">
+          <p className="mr-2 text-center text-sm font-medium text-[#94A3B8] md:text-left">
             Created Time
           </p>
-          <p className="text-center text-sm text-heading md:text-left font-medium">
+          <p className="text-center text-sm font-medium text-heading md:text-left">
             {formatTimestamp(nftDetail.created)}
           </p>
         </div>
@@ -96,20 +96,20 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
                 fill="#7C878E"
               />
             </svg>
-            <p className="ml-2 text-center text-sm text-primary md:text-left font-medium">
+            <p className="ml-2 text-center text-sm font-medium text-primary md:text-left">
               View on OpenSea
             </p>
           </a>
         </div>
         {/* <div className="my-4 border-t-2 border-border"></div> */}
-        <div className="mb-2 flex flex-grow justify-between items-center mt-11">
-          <h3 className="text-center text-sm font-semibold md:text-left uppercase">
+        <div className="mb-2 mt-11 flex flex-grow items-center justify-between">
+          <h3 className="text-center text-sm font-semibold uppercase md:text-left">
             More Info
           </h3>
           {/* <Link href={"/chatbot/" + nftDetail.chatbot_id + "/edit"}> */}
           {/* <Link href={"/nft/" + nftDetail.chatbot_id + "/edit"}> */}
           <Link href={"/nft/" + nftDetail.sft_id + "/edit"}>
-            <button className="group button inline-flex items-center gap-2 rounded-md">
+            <button className="button group inline-flex items-center gap-2 rounded-md">
               <svg
                 width="20"
                 height="20"
@@ -127,22 +127,22 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
             </button>
           </Link>
         </div>
-        <div className="mt-2 rounded rounded-md bg-box px-5 py-2 border border-[#DDDDEB]">
+        <div className="mt-2 rounded rounded-md border border-[#DDDDEB] bg-box px-5 py-2">
           <div className="flex flex-grow justify-between">
-            <span className="block text-sm text-[#94A3B8] font-medium">
+            <span className="block text-sm font-medium text-[#94A3B8]">
               Data Types
             </span>
-            <span className="block text-sm capitalize text-heading font-medium">
+            <span className="block text-sm font-medium capitalize text-heading">
               {nftDetail.type}
             </span>
           </div>
         </div>
-        <div className="mt-2 rounded rounded-md bg-box px-5 py-2 border border-[#DDDDEB]">
+        <div className="mt-2 rounded rounded-md border border-[#DDDDEB] bg-box px-5 py-2">
           <div className="flex flex-grow justify-between">
-            <span className="block text-sm text-[#94A3B8] font-medium">
+            <span className="block text-sm font-medium text-[#94A3B8]">
               Last Updated at
             </span>
-            <span className="block text-sm text-heading font-medium">
+            <span className="block text-sm font-medium text-heading">
               {formatTimestamp(nftDetail.created)}
             </span>
           </div>
@@ -159,10 +159,11 @@ const ChatbotSection = ({
   chatbotDetail: any;
   kbDetail: any;
 }) => {
-
   const { data: pluginData } = useGetPlugin();
 
-  const plugin = pluginData?.find((plugin) => plugin.plugin_id === chatbotDetail.plugin_id);
+  const plugin = pluginData?.find(
+    (plugin) => plugin.plugin_id === chatbotDetail.plugin_id,
+  );
   console.log("Plugin detail: ", plugin); // For debugging purpose
 
   const [appType, setAppType] = useState("");
@@ -186,21 +187,21 @@ const ChatbotSection = ({
           height={325}
         />
       </div>
-      <div className="md:col-span-2 pl-7 pb-3">
+      <div className="pb-3 pl-7 md:col-span-2">
         <h1 className="text-center text-3xl font-semibold md:text-left md:text-4xl">
           {chatbotDetail.name}
         </h1>
-        <div className="my-4 border-t-2 border-border mb-5"></div>
+        <div className="my-4 mb-5 border-t-2 border-border"></div>
         <div className="flex flex-row">
-          <p className="text-center text-sm text-heading md:text-left font-medium">
+          <p className="text-center text-sm font-medium text-heading md:text-left">
             {chatbotDetail.description}
           </p>
         </div>
-        <div className="flex flex-row mt-3">
-          <p className="mr-2 text-center text-sm text-[#94A3B8] md:text-left font-medium">
+        <div className="mt-3 flex flex-row">
+          <p className="mr-2 text-center text-sm font-medium text-[#94A3B8] md:text-left">
             Chatbot Owner
           </p>
-          <p className="text-center text-sm text-heading md:text-left font-medium">
+          <p className="text-center text-sm font-medium text-heading md:text-left">
             {chatbotDetail.wallet_addr!.substring(0, 6) +
               "..." +
               chatbotDetail.wallet_addr!.substring(
@@ -208,21 +209,21 @@ const ChatbotSection = ({
               )}
           </p>
         </div>
-        <div className="flex flex-row mt-3">
-          <p className="mr-2 text-center text-sm text-[#94A3B8] md:text-left font-medium">
+        <div className="mt-3 flex flex-row">
+          <p className="mr-2 text-center text-sm font-medium text-[#94A3B8] md:text-left">
             Created Time
           </p>
-          <p className="text-center text-sm text-heading md:text-left font-medium">
+          <p className="text-center text-sm font-medium text-heading md:text-left">
             {formatTimestamp(chatbotDetail.created_at)}
           </p>
         </div>
         {/* <div className="my-4 border-t-2 border-border"></div> */}
-        <div className="mb-2 flex flex-grow justify-between items-center mt-11">
-          <h3 className="text-center text-sm font-semibold md:text-left uppercase">
+        <div className="mb-2 mt-11 flex flex-grow items-center justify-between">
+          <h3 className="text-center text-sm font-semibold uppercase md:text-left">
             More Info
           </h3>
           <Link href={"/chatbot/" + chatbotDetail.chatbot_id + "/edit"}>
-            <button className="group button inline-flex items-center gap-2 rounded-md">
+            <button className="button group inline-flex items-center gap-2 rounded-md">
               <svg
                 width="20"
                 height="20"
@@ -250,22 +251,22 @@ const ChatbotSection = ({
             </span>
           </div>
         </div> */}
-        <div className="mt-2 rounded rounded-md bg-box px-5 py-2 border border-[#DDDDEB]">
+        <div className="mt-2 rounded rounded-md border border-[#DDDDEB] bg-box px-5 py-2">
           <div className="flex flex-grow justify-between">
-            <span className="block text-sm text-[#94A3B8] font-medium">
+            <span className="block text-sm font-medium text-[#94A3B8]">
               Last Updated at
             </span>
-            <span className="block text-sm capitalize text-heading font-medium">
+            <span className="block text-sm font-medium capitalize text-heading">
               {formatTimestamp(chatbotDetail.last_updated)}
             </span>
           </div>
         </div>
-        <div className="mt-2 rounded rounded-md bg-box px-5 py-2 border border-[#DDDDEB]">
+        <div className="mt-2 rounded rounded-md border border-[#DDDDEB] bg-box px-5 py-2">
           <div className="flex flex-grow justify-between">
-            <span className="block text-sm text-[#94A3B8] font-medium">
+            <span className="block text-sm font-medium text-[#94A3B8]">
               App Type
             </span>
-            <span className="block text-sm capitalize text-heading font-medium">
+            <span className="block text-sm font-medium capitalize text-heading">
               {appType}
             </span>
           </div>
@@ -300,7 +301,7 @@ const NoNFT = () => {
             Meet our AI chat app revolutionizing conversations
           </h1>
           <h1 className="w-fit rounded-full bg-primary px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-base">
-            Mint your SFT
+            Mint your Knowledge Key
           </h1>
         </div>
       </div>
@@ -335,7 +336,7 @@ const NoChatbot = () => {
           <Link href={"/nft/" + id + "/create-chatbot"}>
             {/* <h1 className="w-fit rounded-full bg-primary px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-base"> */}
             <h1 className="w-fit rounded-md bg-primary px-8 py-1 text-xs font-semibold text-container md:py-3 md:text-2xl">
-              Link Your SFT to Chatbot
+              Link Your Knowledge Key to Chatbot
             </h1>
           </Link>
         </div>
@@ -360,7 +361,7 @@ const NFTCard = ({ nft }: NFTCardProps) => {
       />
       <div className="flex flex-col gap-1 px-4 pt-4">
         {/* <Link href={`/nft/${nft.sft_id}`}> */}
-        <p className="line-clamp-1 text-primary font-semibold">{nft.name}</p>
+        <p className="line-clamp-1 font-semibold text-primary">{nft.name}</p>
         {/* </Link> */}
       </div>
 
@@ -383,14 +384,9 @@ const NFTCard = ({ nft }: NFTCardProps) => {
 
 const NoData = () => {
   return (
-    <div className="flex flex-col items-center justify-center gap-4 my-6">
-      <Image
-        src={Money}
-        width={77}
-        height={77}
-        alt={"No Data"}
-      />
-      <p className="text-primary font-semibold lowercase">No data yet</p>
+    <div className="my-6 flex flex-col items-center justify-center gap-4">
+      <Image src={Money} width={77} height={77} alt={"No Data"} />
+      <p className="font-semibold lowercase text-primary">No data yet</p>
 
       {/* Create new Item */}
       {/* {item == "SFT" ? (
@@ -473,7 +469,7 @@ const NFTList = ({ id }: { id: any }) => {
 const BotDetail = ({ params }: { params: any }) => {
   const { setHeaderTitle } = useAppProvider();
   useEffect(() => {
-    setHeaderTitle("My SFT");
+    setHeaderTitle("My Knowledge Key");
   }, []);
   const { id } = params;
   const router = useRouter();
@@ -481,7 +477,7 @@ const BotDetail = ({ params }: { params: any }) => {
   // const nftQuery = useChatbotDetail({ chatbot_id: id });
 
   const chatbotQuery = useChatbotDetail({
-    chatbot_id: id
+    chatbot_id: id,
   });
 
   const { data: kbDetail } = useKBDetail({
@@ -489,9 +485,11 @@ const BotDetail = ({ params }: { params: any }) => {
   });
 
   return (
-    <div className="h-full flex-col px-4 md:flex-row md:pl-10 justify-start bg-container md:w-5/6">
-      <h1 className="text-heading text-lg font-semibold py-3">Chatbot Details</h1>
-      <div className="flex flex-col px-6 py-9 pb-0 lg:px-8 xl:px-10 bg-sidebar border border-[#DDDDEB] rounded-2xl">
+    <div className="h-full flex-col justify-start bg-container px-4 md:w-5/6 md:flex-row md:pl-10">
+      <h1 className="py-3 text-lg font-semibold text-heading">
+        Chatbot Details
+      </h1>
+      <div className="flex flex-col rounded-2xl border border-[#DDDDEB] bg-sidebar px-6 py-9 pb-0 lg:px-8 xl:px-10">
         <div>
           {chatbotQuery.isLoading ? (
             <div className="flex h-[50vh] w-full items-center justify-center gap-4">
@@ -505,12 +503,12 @@ const BotDetail = ({ params }: { params: any }) => {
               chatbotDetail={chatbotQuery.data?.data.data}
               kbDetail={kbDetail?.data.data}
             />
-          ) : (
-            // <NoChatbot />
-            null
-          )}
+          ) : // <NoChatbot />
+          null}
         </div>
-        <span className="text-lg text-primary font-semibold md:pt-3">Knowledge Assets</span>
+        <span className="text-lg font-semibold text-primary md:pt-3">
+          Knowledge Keys
+        </span>
         <div className="pt-3">
           <NFTList id={id} />
         </div>
@@ -535,7 +533,7 @@ const BotDetail = ({ params }: { params: any }) => {
               />
             </svg>
 
-            <p className="font-medium text-sm ml-2">Back</p>
+            <p className="ml-2 text-sm font-medium">Back</p>
           </button>
         </div>
       </div>

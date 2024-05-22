@@ -253,30 +253,6 @@ export default function Dashboard() {
           >
             Category
           </button>
-          <button
-            className={`${tab == "category" ? "underline underline-offset-8" : "opacity-50"}`}
-            onClick={() => setTab("category")}
-          >
-            Category
-          </button>
-          <button
-            className={`${tab == "category" ? "underline underline-offset-8" : "opacity-50"}`}
-            onClick={() => setTab("category")}
-          >
-            Category
-          </button>
-          <button
-            className={`${tab == "category" ? "underline underline-offset-8" : "opacity-50"}`}
-            onClick={() => setTab("category")}
-          >
-            Category
-          </button>
-          <button
-            className={`${tab == "category" ? "underline underline-offset-8" : "opacity-50"}`}
-            onClick={() => setTab("category")}
-          >
-            Category
-          </button>
         </div>
         <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
           {botsQuery.data?.data.data &&

@@ -15,6 +15,7 @@ import Notion from "./notion";
 import ModalLoginTwitter from "@/components/modal-login-twitter";
 import OnboardingProgress from "./onboarding-progress";
 import { KF_TITLE } from "@/utils/constants";
+import URLInput from "./url-input";
 
 export type PossibleOption =
   | "files"
@@ -24,6 +25,7 @@ export type PossibleOption =
   | "medium"
   | "mirror"
   | "api"
+  | "youtube"
   | "";
 
 export interface UIFile {
@@ -54,7 +56,7 @@ export default function SelectDataElements() {
   const [selectedButton, setSelectedButton] = useState<PossibleOption>("");
   const [localFiles, setLocalFiles] = useState<UIFile[]>([]);
 
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -79,10 +81,14 @@ export default function SelectDataElements() {
       } else {
         setStep("mint_nft");
       }
-    } else if (selectedButton == "notion") {
-      setStep("notion");
     } else if (selectedButton == "files") {
       setStep("upload_files");
+    } else if (
+      selectedButton == "youtube" ||
+      selectedButton == "medium" ||
+      selectedButton == "notion"
+    ) {
+      setIsModalOpen(true);
     }
   };
 
@@ -103,6 +109,11 @@ export default function SelectDataElements() {
         isOpen={showTwitterLogin}
         setIsOpen={setShowTwitterLogin}
         redirectUrl="/onboarding?nextStep=mint_nft&nextType=twitter"
+      />
+       <URLInput
+        setIsOpen={setIsModalOpen}
+        isOpen={isModalOpen}
+        type={selectedButton}
       />
       <div className="flex flex-col px-6 pb-20 lg:px-8 xl:px-32">
         <OnboardingProgress step={1} />

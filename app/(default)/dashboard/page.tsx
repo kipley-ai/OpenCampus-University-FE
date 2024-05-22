@@ -62,6 +62,22 @@ export default function Dashboard() {
 
   const [tab, setTab] = useState<string>("knowledge-assets");
 
+  const [currentImage, setCurrentImage] = useState(OC100Image);
+  const [fadeImage, setFadeImage] = useState(OC100Image);
+
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = (newImage: any) => {
+    setFadeImage(currentImage); // Set previous image
+    setCurrentImage(newImage); // Update to new image
+    setIsHovered(true); // Trigger transition to new image
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false); // Revert to original state
+    setCurrentImage(OC100Image);
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -163,17 +179,30 @@ export default function Dashboard() {
       {/* ОC 100 Sections */}
       <div className="mt-12 rounded-xl border-2 border-border bg-sidebar p-3 lg:p-8">
         <h1 className="text-xl font-semibold md:text-2xl">OC 100</h1>
-        <Image
-          src={OC100Image}
-          alt="OC 100 Image"
-          className="w-full rounded-xl mt-4 mb-4"
-          width={1030}
-          height={264}
-        />
+        <div className="relative w-full h-[264px] overflow-hidden mt-4 mb-4">
+          <Image
+            src={fadeImage}
+            alt="Previous OC 100 Image"
+            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1500 ease-linear ${isHovered ? 'opacity-0' : 'opacity-100'}`}
+            width={1030}
+            height={264}
+          />
+          <Image
+            src={currentImage}
+            alt="Current OC 100 Image"
+            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1500 ease-linear ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+            width={1030}
+            height={264}
+          />
+        </div>
         <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 justify-around">
           {featuredBotsQuery.data?.data?.data &&
             featuredBotsQuery.data?.data.data.chatbot_data.map((botData) => (
-              <BotItem key={botData.chatbot_id} botData={botData} />
+              <BotItemOC100
+                key={botData.chatbot_id}
+                botData={botData}
+                onMouseEnter={() => handleMouseEnter(botData.profile_image ?? OC100Image)}
+                onMouseLeave={handleMouseLeave} />
             ))}
         </div>
       </div>
@@ -210,7 +239,7 @@ export default function Dashboard() {
           <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
             {featuredBotsQuery.data?.data?.data &&
               featuredBotsQuery.data?.data.data.chatbot_data.map((botData) => (
-                <BotItem key={botData.chatbot_id} botData={botData} />
+                <BotItemFireside key={botData.chatbot_id} botData={botData} />
               ))}
           </div>
         </div>
@@ -222,36 +251,54 @@ export default function Dashboard() {
       {/* Popular Creators Section */}
       <div className="mt-4 rounded-xl border-2 border-border bg-sidebar p-3 lg:p-8">
         <h1 className="text-xl font-semibold md:text-2xl">Popular Creators</h1>
-        <div className="flex flex-row my-8 flex items-center space-x-10 border-b-2 text-sm font-semibold text-primary">
+        <div className="flex flex-row overflow-x-auto no-scrollbar my-8 flex items-center space-x-10 border-b-2 text-sm font-semibold text-primary">
           <button
-            className={`${tab == "knowledge-assets" ? "underline underline-offset-8" : "opacity-50"}`}
-            onClick={() => setTab("knowledge-assets")}
+            className={`${tab == "gaming" ? "underline underline-offset-8" : "opacity-50"}`}
+            onClick={() => setTab("gaming")}
           >
-            Knowledge Assets
+            Gaming
           </button>
           <button
-            className={`${tab == "category" ? "underline underline-offset-8" : "opacity-50"}`}
-            onClick={() => setTab("category")}
+            className={`${tab == "content-creation-storytelling" ? "underline underline-offset-8" : "opacity-50"}`}
+            onClick={() => setTab("content-creation-storytelling")}
           >
-            Category
+            Content Creation & Storytelling
           </button>
           <button
-            className={`${tab == "category" ? "underline underline-offset-8" : "opacity-50"}`}
-            onClick={() => setTab("category")}
+            className={`${tab == "technical-educators-developers" ? "underline underline-offset-8" : "opacity-50"}`}
+            onClick={() => setTab("technical-educators-developers")}
           >
-            Category
+            Technical Educators & Developers
           </button>
           <button
-            className={`${tab == "category" ? "underline underline-offset-8" : "opacity-50"}`}
-            onClick={() => setTab("category")}
+            className={`${tab == "community-builders-leaders" ? "underline underline-offset-8" : "opacity-50"}`}
+            onClick={() => setTab("community-builders-leaders")}
           >
-            Category
+            Community Builders & Leaders
           </button>
           <button
-            className={`${tab == "category" ? "underline underline-offset-8" : "opacity-50"}`}
-            onClick={() => setTab("category")}
+            className={`${tab == "enterpreneurship-innovation" ? "underline underline-offset-8" : "opacity-50"}`}
+            onClick={() => setTab("enterpreneurship-innovation")}
           >
-            Category
+            Enterpreneurships & Innovations
+          </button>
+          <button
+            className={`${tab == "investments-financial-insight" ? "underline underline-offset-8" : "opacity-50"}`}
+            onClick={() => setTab("investments-financial-insight")}
+          >
+            Investments & Financial Insights
+          </button>
+          <button
+            className={`${tab == "cultural-artistic-impact" ? "underline underline-offset-8" : "opacity-50"}`}
+            onClick={() => setTab("cultural-artistic-impact")}
+          >
+            Cultural & Artistic Impact
+          </button>
+          <button
+            className={`${tab == "social-impacts-ethics" ? "underline underline-offset-8" : "opacity-50"}`}
+            onClick={() => setTab("social-impacts-ethics")}
+          >
+            Social Impacts & Ethics
           </button>
         </div>
         <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
@@ -271,6 +318,48 @@ export default function Dashboard() {
 const BotItem = ({ botData }: { botData: ChatbotData }) => (
   <Link
     href={`/chatbot/${chatbotSlug(botData)}/profile`}
+    className="delay-50 group relative flex grow cursor-pointer flex-col transition ease-in-out"
+  >
+    <Image
+      src={botData.profile_image ?? ""}
+      height={260}
+      width={260}
+      className="rounded-xl group-hover:shadow-xl dark:group-hover:shadow-gray-700"
+      alt="Avatar"
+    />
+    <div className="mt-4 flex-grow">
+      <div className="break-words font-medium max-md:text-sm">
+        {botData.name}
+      </div>
+    </div>
+  </Link>
+);
+
+const BotItemOC100 = ({ botData, onMouseEnter, onMouseLeave }: { botData: ChatbotData, onMouseEnter: () => void, onMouseLeave: () => void }) => (
+  <Link
+    href={`/chatbot/${chatbotSlug(botData)}/profile`}
+    className="delay-50 group relative flex grow cursor-pointer flex-col transition ease-in-out"
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
+  >
+    <Image
+      src={botData.profile_image ?? ""}
+      height={260}
+      width={260}
+      className="rounded-xl group-hover:shadow-xl dark:group-hover:shadow-gray-700"
+      alt="Avatar"
+    />
+    <div className="mt-4 flex-grow">
+      <div className="break-words font-medium max-md:text-sm">
+        {botData.name}
+      </div>
+    </div>
+  </Link>
+);
+
+const BotItemFireside = ({ botData }: { botData: ChatbotData }) => (
+  <Link
+    href={`/chatbot/${chatbotSlug(botData)}/`}
     className="delay-50 group relative flex grow cursor-pointer flex-col transition ease-in-out"
   >
     <Image

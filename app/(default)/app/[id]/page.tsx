@@ -237,7 +237,7 @@ const ChatbotSection = ({
                   d="M14.8 2H13.2L13.2 3.6H11.6V5.2H10V6.8H8.4V8.4H6.8V10H5.2V11.6H3.6V13.2L2 13.2V16.4V18H3.6H6.8V16.4L8.4 16.4V14.8H10V13.2L11.6 13.2V11.6H13.2V10H14.8V8.4H16.4V6.8H18V5.2H16.4L16.4 3.6H14.8V2ZM14.8 8.4H13.2L13.2 10H11.6V11.6H10V13.2H8.4V14.8H6.8V13.2L5.2 13.2V11.6H6.8V10H8.4V8.4H10V6.8H11.6V5.2H13.2L13.2 6.8H14.8V8.4ZM5.2 13.2H3.6V16.4H6.8V14.8H5.2V13.2Z"
                 />
               </svg>
-              <span className="text-sm font-medium">Manage Chatbot</span>
+              <span className="text-sm font-medium">Manage {appType}</span>
             </button>
           </Link>
         </div>
@@ -484,10 +484,27 @@ const BotDetail = ({ params }: { params: any }) => {
     kb_id: chatbotQuery.data?.data?.data.kb_id as string,
   });
 
+  const { data: pluginData } = useGetPlugin();
+
+  const plugin = pluginData?.find(
+    (plugin) => plugin.plugin_id === chatbotQuery.data?.data?.data.plugin_id,
+  );
+  console.log("Plugin detail: ", plugin); // For debugging purpose
+
+  const [appType, setAppType] = useState("");
+
+  useEffect(() => {
+    if (plugin?.title === "Semantic Quiz Generation") {
+      setAppType("Quiz");
+    } else {
+      setAppType("Chatbot");
+    }
+  }, [appType, plugin?.title]);
+
   return (
     <div className="h-full flex-col justify-start bg-container px-4 md:w-5/6 md:flex-row md:pl-10">
       <h1 className="py-3 text-lg font-semibold text-heading">
-        Chatbot Details
+        {appType} Details
       </h1>
       <div className="flex flex-col rounded-2xl border border-[#DDDDEB] bg-sidebar px-6 py-9 pb-0 lg:px-8 xl:px-10">
         <div>
@@ -504,7 +521,7 @@ const BotDetail = ({ params }: { params: any }) => {
               kbDetail={kbDetail?.data.data}
             />
           ) : // <NoChatbot />
-          null}
+            null}
         </div>
         <span className="text-lg font-semibold text-primary md:pt-3">
           Knowledge Keys

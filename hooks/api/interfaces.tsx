@@ -202,3 +202,8 @@ export interface IKBAddItem {
   medium_url: string | null;
   youtube_url: string | null;
 }
+
+export interface IKBDeleteItem {
+  filename: string;
+  type: string;
+}

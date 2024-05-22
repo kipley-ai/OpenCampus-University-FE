@@ -62,7 +62,10 @@ const ManageDataSources = () => {
       return acc;
     }, []);
     const selectedItem = selectedIndexes.map(
-      (index) => data?.data.data.kb_item_data[index].item_name!!,
+      (index) => ({
+        filename: data?.data.data.kb_item_data[index].item_name!!,
+        type: data?.data.data.kb_item_data[index].item_type!!,
+      })
     );
 
     deleteItemAPI.mutate(

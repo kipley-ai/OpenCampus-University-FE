@@ -16,7 +16,7 @@ const Welcome = () => {
       <p className="text-center text-[#7C878E] ">
         It's great to have you here with us!
         <br />
-        We'll be guiding you through the Knowledge Assets and Chatbot creation
+        We'll be guiding you through the Knowledge Keys and Chatbot creation
         progress.
       </p>
       <GetInvolvedButton

@@ -112,7 +112,7 @@ export default function NFT() {
   };
 
   useEffect(() => {
-    const title = KF_TITLE + "Mint SFT";
+    const title = KF_TITLE + "Mint Knowledge Key";
     document.title = title;
 
     return () => setHeaderTitle("");
@@ -153,13 +153,9 @@ export default function NFT() {
           url: "",
           profile_image: uploadedFile ? assetUrl : selectedFile,
           youtube_url:
-            createKb.type == "youtube"
-              ? (createKb?.youtube_url as string)
-              : "",
+            createKb.type == "youtube" ? (createKb?.youtube_url as string) : "",
           medium_url:
-            createKb.type == "medium"
-              ? (createKb?.medium_url as string)
-              : "",
+            createKb.type == "medium" ? (createKb?.medium_url as string) : "",
         },
         {
           async onSuccess(data, variables, context) {
@@ -250,7 +246,7 @@ export default function NFT() {
         isMinting={isMinting}
       />
       <MintNFTModal
-        children={"Your SFT is created successfully!"}
+        children={"Your Knowledge Key is created successfully!"}
         open={showModal}
         setOpen={setShowModal}
         kbIdCreated={kbIdCreated}
@@ -287,7 +283,7 @@ export default function NFT() {
                 className="rounded-xl bg-transparent text-xs lg:text-sm"
                 type="text"
                 name="name"
-                placeholder="Name your Knowledge SFT"
+                placeholder="Name your Knowledge Key"
                 value={form?.name}
                 onChange={(e) => handleFormChange("name", e.target.value)}
                 maxLength={100}
@@ -306,7 +302,7 @@ export default function NFT() {
               <textarea
                 className="placeholder-text-[#7C878E] rounded-xl bg-transparent text-xs lg:text-sm"
                 name="description"
-                placeholder="Describe your Knowledge SFT"
+                placeholder="Describe your Knowledge Key"
                 rows={4}
                 onChange={(e) =>
                   handleFormChange("description", e.target.value)
@@ -442,8 +438,8 @@ export default function NFT() {
                 <label className="flex flex-row items-center space-x-3 text-wrap text-xs font-semibold text-heading lg:text-sm">
                   <span>Price Per Query (in OC Points)</span>
                   <Tooltip bg="dark" position="right" size="md">
-                    Set your price per query on your knowledge asset and get
-                    paid in $EDU.
+                    Set your price per query on your knowledge key and get paid
+                    in $EDU.
                   </Tooltip>
                 </label>
                 <div className="flex w-full flex-col">

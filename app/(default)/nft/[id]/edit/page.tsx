@@ -21,9 +21,11 @@ export default function EditChatbot() {
   }, [setHeaderTitle, title]);
 
   return (
-    <div className="h-full flex-col px-4 md:flex-row md:pl-10 justify-start bg-container md:w-5/6">
-      <h1 className="text-heading text-lg font-semibold py-3">Knowledge Asset SFT Details</h1>
-      <div className="flex flex-col px-6 py-9 pb-0 lg:px-8 xl:px-14 bg-sidebar border border-[#DDDDEB] rounded-2xl">
+    <div className="h-full flex-col justify-start bg-container px-4 md:w-5/6 md:flex-row md:pl-10">
+      <h1 className="py-3 text-lg font-semibold text-heading">
+        Knowledge Key Details
+      </h1>
+      <div className="flex flex-col rounded-2xl border border-[#DDDDEB] bg-sidebar px-6 py-9 pb-0 lg:px-8 xl:px-14">
         <ManageDataSources />
       </div>
     </div>

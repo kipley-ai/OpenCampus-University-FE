@@ -19,7 +19,7 @@ const CircleWithNumber: React.FC<BoxWithNumberProps> = ({
 }) => {
   return (
     <div
-      className={`flex h-6 w-6 items-center justify-center rounded-full border-2 border-primary bg-primary text-white ${isActive ? "" : "bg-primary_50 border-primary_50"}`}
+      className={`flex h-6 w-6 items-center justify-center rounded-full border-2 border-primary bg-primary text-white ${isActive ? "" : "border-primary_50 bg-primary_50"}`}
     >
       <span className="text-sm">{number}</span>
     </div>
@@ -66,7 +66,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
             Select Data Elements
           </ProgressItem>
           <ProgressItem number={2} isActive={step >= 2}>
-            Mint SFT
+            Mint Knowledge Key
           </ProgressItem>
           <ProgressItem number={3} isActive={step >= 3}>
             Create App

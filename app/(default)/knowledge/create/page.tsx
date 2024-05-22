@@ -38,7 +38,7 @@ export interface UIFile {
 export default function DataSource({
   twitterRedirectUrl = "/knowledge/create",
 }: any) {
-  const title = KF_TITLE + "Create Knowledge Assets";
+  const title = KF_TITLE + "Create Knowledge Keys";
   const { setHeaderTitle } = useAppProvider();
 
   useEffect(() => {
@@ -105,12 +105,12 @@ export default function DataSource({
       />
       <div className="h-full flex-col justify-start bg-container px-4 md:w-5/6 md:flex-row md:pl-10">
         <h1 className="py-3 text-lg font-semibold text-heading">
-          Create Knowledge Asset
+          Create Knowledge Keys
         </h1>
         {step == "data_source" ? (
           <div className="flex flex-col rounded-2xl border border-[#DDDDEB] bg-sidebar px-6 py-9 pb-0 lg:px-8 xl:px-14">
             <h1 className="text-lg font-semibold text-primary">
-              Add Data Elements to your SFT
+              Add Data Elements to your Knowledge Key
             </h1>
             <Step1
               selectedButton={selectedButton}

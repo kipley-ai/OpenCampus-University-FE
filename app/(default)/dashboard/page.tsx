@@ -17,7 +17,7 @@ import { redirect } from "next/navigation";
 
 import TrendingImage from "components/homepage/trending-projects-image.svg"
 import OC100Image from "components/homepage/oc-100-image.svg"
-import FiresideImage from "components/homepage/fireside-frame-with-text.svg"
+import FiresideImage from "components/homepage/fireside-frame-no-text.svg"
 
 export default function Dashboard() {
   const { setHeaderTitle } = useAppProvider();
@@ -62,21 +62,18 @@ export default function Dashboard() {
 
   const [tab, setTab] = useState<string>("knowledge-assets");
 
-  const [currentImage, setCurrentImage] = useState(OC100Image);
-  const [fadeImage, setFadeImage] = useState(OC100Image);
+  const [overlayImage, setOverlayImage] = useState(""); // Holds the image to show on hover
+  const [isHovered, setIsHovered] = useState(false); // Manages whether the overlay is visible
 
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseEnter = (newImage: any) => {
-    setFadeImage(currentImage); // Set previous image
-    setCurrentImage(newImage); // Update to new image
-    setIsHovered(true); // Trigger transition to new image
+  const handleMouseEnter = (imageSrc: any) => {
+    setOverlayImage(imageSrc); // Set the image to show
+    setIsHovered(true); // Display the overlay
   };
 
   const handleMouseLeave = () => {
-    setIsHovered(false); // Revert to original state
-    setCurrentImage(OC100Image);
+    setIsHovered(false); // Hide the overlay
   };
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -181,19 +178,23 @@ export default function Dashboard() {
         <h1 className="text-xl font-semibold md:text-2xl">OC 100</h1>
         <div className="relative w-full h-[264px] overflow-hidden mt-4 mb-4">
           <Image
-            src={fadeImage}
+            src={OC100Image}
             alt="Previous OC 100 Image"
             className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1500 ease-linear ${isHovered ? 'opacity-0' : 'opacity-100'}`}
             width={1030}
             height={264}
           />
-          <Image
-            src={currentImage}
-            alt="Current OC 100 Image"
-            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1500 ease-linear ${isHovered ? 'opacity-100' : 'opacity-0'}`}
-            width={1030}
-            height={264}
-          />
+          {isHovered && (
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+              <Image
+                src={overlayImage}
+                alt="Hovered Profile Image"
+                width={260}
+                height={260}
+                className="rounded-xl" // Apply any additional styles as needed
+              />
+            </div>
+          )}
         </div>
         <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 justify-around">
           {featuredBotsQuery.data?.data?.data &&
@@ -218,6 +219,25 @@ export default function Dashboard() {
           className="w-full rounded-xl z-10"
           width={1030}
         />
+        <div className="absolute top-10 right-4">
+          <Link
+            href={"/chatroom/acc24254-b9b9-436a-aed2-8882388cc4d7"}
+          >
+            <h1 className="text-xl font-semibold md:text-2xl text-white">Fireside Chat</h1>
+          </Link>
+          <div className="flex flex-col my-2">
+            <span className="text-sm text-white">$EDU is the native gas token for EDU Chain and the governance token</span>
+            <span className="text-sm text-white">for the Open Campus DAO.</span>
+          </div>
+          <div className="flex flex-col mb-3">
+            <span className="text-sm text-white">It powers the entire Open Campus ecosystem.</span>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-sm text-white">$EDU token genesis occurred on BNB Chain as a BEP-20 token on 28</span>
+            <span className="text-sm text-white">April 2023. It also exists on the Ethereum L1 Blockchain and will be</span>
+            <span className="text-sm text-white">bridged to the EDU Chain when the Mainnet goes live.</span>
+          </div>
+        </div>
         <div className="absolute bottom-12 right-0 rounded-xl border-2 border-border bg-sidebar p-3 lg:p-8">
           <div className="flex flex-row justify-between">
             <h1 className="text-xl font-semibold md:text-2xl">Featured Creators</h1>

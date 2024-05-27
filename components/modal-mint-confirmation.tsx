@@ -32,10 +32,10 @@ export default function ModalMintConfirmation({
 
   return (
     <ModalBlank isOpen={isOpen} setIsOpen={setIsOpen}>
-      <div className="flex flex-col rounded-2xl bg-box px-10 py-2 shadow-md border border-[#DDDDEB]">
+      <div className="flex flex-col rounded-2xl border border-[#DDDDEB] bg-box px-10 py-2 shadow-md">
         <div className="self-stretch border-b-2 py-5">
           <div className="text-lg font-semibold text-primary">
-            <span>Mint your SFT</span>
+            <span>Mint your Knowledge Key</span>
           </div>
           {/* <button
             className="text-[#FCFCFD] hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400"

@@ -26,7 +26,7 @@ const Landing = () => {
             </div>
             <div className="">
               Powered by KIP Protocol, Open Campus University unlocks true
-              digital property rights of educators’ Knowledge Assets, and
+              digital property rights of educators’ Knowledge Keys, and
               transforms education through blockchain + AI technology.
             </div>
           </div>

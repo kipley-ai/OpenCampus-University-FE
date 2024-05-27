@@ -58,7 +58,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
         <div className="my-4 mb-5 border-t-2 border-border"></div>
         <div className="flex flex-row">
           <p className="mr-2 text-center text-sm font-medium text-[#94A3B8] md:text-left">
-            SFT Owner
+            Knowledge Key Owner
           </p>
           <p className="text-center text-sm font-medium text-heading md:text-left">
             {nftDetail.wallet_addr!.substring(0, 6) +
@@ -314,6 +314,8 @@ const BotList = ({ id }: { id: any }) => {
   if (botCount > 0) {
     const totalPages = Math.ceil(botCount / pageSize);
 
+    //console.log(botsData); // For debugging purpose
+
     return (
       <>
         <div className="grid grid-cols-2 gap-x-4 gap-y-4 md:grid-cols-3 md:gap-x-6 md:gap-y-6 lg:gap-y-6">
@@ -366,7 +368,7 @@ const NoNFT = () => {
             Meet our AI chat app revolutionizing conversations
           </h1>
           <h1 className="w-fit rounded-full bg-primary px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-base">
-            Mint your SFT
+            Mint your Knowledge Key
           </h1>
         </div>
       </div>
@@ -401,7 +403,7 @@ const NoChatbot = () => {
           <Link href={"/nft/" + id + "/create-chatbot"}>
             {/* <h1 className="w-fit rounded-full bg-primary px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-base"> */}
             <h1 className="w-fit rounded-md bg-primary px-8 py-1 text-xs font-semibold text-container md:py-3 md:text-2xl">
-              Link Your SFT to Chatbot
+              Link Your Knowledge Key to Chatbot
             </h1>
           </Link>
         </div>
@@ -434,7 +436,7 @@ const NoData = () => {
 const NFTDetail = ({ params }: { params: any }) => {
   const { setHeaderTitle } = useAppProvider();
   useEffect(() => {
-    setHeaderTitle("My SFT");
+    setHeaderTitle("My Knowledge Key");
   }, []);
   const { id } = params;
   const router = useRouter();
@@ -444,7 +446,7 @@ const NFTDetail = ({ params }: { params: any }) => {
   return (
     <div className="h-full flex-col justify-start bg-container px-4 md:w-5/6 md:flex-row md:pl-10">
       <h1 className="py-3 text-lg font-semibold text-heading">
-        Knowledge Asset SFT Details
+        Knowledge Key Details
       </h1>
       <div className="flex flex-col rounded-2xl border border-[#DDDDEB] bg-sidebar px-6 py-9 pb-0 lg:px-8 xl:px-10">
         <div>
@@ -458,7 +460,7 @@ const NFTDetail = ({ params }: { params: any }) => {
           ) : nftQuery.data ? (
             <NFTSection nftDetail={nftQuery.data?.data?.data} />
           ) : // <NoNFT />
-          null}
+            null}
         </div>
         <div className="flex items-center justify-between">
           <span className="text-lg font-semibold text-primary md:pt-3">

@@ -30,7 +30,7 @@ export default function Header() {
 
   const { isConnected } = useAccount();
 
-  const { refetch: refetchUserDetail } = useUserDetail();
+  const { data: userData, refetch: refetchUserDetail } = useUserDetail();
 
   const { theme, setTheme } = useTheme();
 
@@ -58,6 +58,12 @@ export default function Header() {
       sub = false;
     };
   }, [isConnected, twitterStatus]);
+
+  useEffect(() => {
+    if (userData) {
+      setProfileImage(userData.data.data.profile_image || "");
+    }
+  }, [userData]);
 
   return (
     <header className="z-30 rounded-t-md border-b-2 border-border bg-sidebar">
@@ -102,7 +108,7 @@ export default function Header() {
                   <path d="m17 13h-4v4h-2v-4h-4v-2h4v-4h2v4h4m-5-9a10 10 0 0 0 -10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10 10 10 0 0 0 -10-10z" />
                 </svg>
                 <p className="font-medium group-hover:underline max-xs:w-20">
-                  Create Knowledge Asset
+                  Create Knowledge Key
                 </p>
               </div>
             </Link>

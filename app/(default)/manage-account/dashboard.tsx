@@ -26,9 +26,12 @@ import ModalTopUp from "@/components/modal-top-up";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { uploadFile } from "@/utils/utils";
 import { SecondaryButton } from "@/components/button";
+import { LoadMoreSpinner } from "@/components/load-more";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function AccountSettings() {
-  const updateProfileImage = useUpdateUserAPI();
+  const queryClient = useQueryClient()
+  const { mutate: mutateUpdateUser, isPending: isLoadingUpdateUser,  } = useUpdateUserAPI();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [profileImage, setProfileImage] = useState<any>(AvatarDefault);
@@ -63,10 +66,14 @@ export default function AccountSettings() {
         }
 
         if (userTwitterLink) {
-          updateProfileImage.mutate({
+          mutateUpdateUser({
             profile_image: userProfileImage,
             username: userUsername!,
             twitter_link: userTwitterLink!,
+          }, {
+            onSuccess: () => {
+              queryClient.invalidateQueries({ queryKey: ["user-detail"] });
+            }
           });
         }
       }
@@ -78,8 +85,12 @@ export default function AccountSettings() {
     if (file) {
       uploadFile(file, (uploadedFile: string) => {
         setProfileImage(uploadedFile);
-        updateProfileImage.mutate({
+        mutateUpdateUser({
           profile_image: uploadedFile,
+        }, {
+          onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["user-detail"] });
+          }
         });
       });
     }
@@ -153,6 +164,10 @@ export default function AccountSettings() {
           </SecondaryButton>
         </Link>
       </div>
+      {/* <div className="spinner-container"> */}
+      {isLoadingUpdateUser && <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 z-10">
+        <LoadMoreSpinner />
+      </div>}
       <hr className="mb-4 border border-border" />
       {/* Connected Account */}
       <h2 className="text-sm font-medium">Connected Account</h2>
@@ -196,8 +211,12 @@ export default function AccountSettings() {
         {userDetail?.data.data.twitter_link ? (
           <SecondaryButton
             onClick={() => {
-              updateProfileImage.mutate({
+              mutateUpdateUser({
                 twitter_link: "",
+              }, {
+                onSuccess: () => {
+                  queryClient.invalidateQueries({ queryKey: ["user-detail"] });
+                }
               });
               signOut();
             }}

@@ -39,7 +39,7 @@ export default function DataSource() {
   const { address: walletAddress } = useAccount();
 
   useEffect(() => {
-    const title = KF_TITLE + "Add Knowledge Assets";
+    const title = KF_TITLE + "Add Knowledge Keys";
     document.title = title;
     return () => setHeaderTitle("");
   }, []);
@@ -102,7 +102,7 @@ export default function DataSource() {
         <div className="flex flex-col bg-container py-8 sm:px-6 lg:px-8">
           <div className="mx-56">
             <h1 className="text-2xl font-semibold text-heading">
-              Add Knowledge Assets
+              Add Knowledge Keys
             </h1>
             <hr className="my-4 border border-border" />
           </div>
@@ -136,7 +136,7 @@ export default function DataSource() {
 						<h5 className="text-sm text-heading font-semibold">Back</h5>
 					</button> */}
             <button
-              className="mt-8 button"
+              className="button mt-8"
               type="submit"
               onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                 if (selectedButton == "twitter") {

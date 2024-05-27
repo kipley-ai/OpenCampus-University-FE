@@ -6,6 +6,7 @@ import {
   IKBAddItem,
   IKBDetail,
   IKBItem,
+  IKBDeleteItem,
 } from "../interfaces";
 import { KBItemResponse } from "@/lib/types";
 import { useSession } from "next-auth/react";
@@ -73,7 +74,7 @@ export const useDeleteKBItem = () => {
   const { address } = useAccount();
 
   return useMutation({
-    mutationFn: (params: { kb_id: string; items_name: string[] }) =>
+    mutationFn: (params: { kb_id: string; items_name: IKBDeleteItem[] }) =>
       axios.post("/api/kb/delete-item", params, {
         headers: {
           "x-kf-user-id": address,

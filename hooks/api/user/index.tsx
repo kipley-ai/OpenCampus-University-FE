@@ -164,6 +164,7 @@ export const useUserDetail = () => {
           },
         },
       ),
+    staleTime: 1000
   });
 };
 

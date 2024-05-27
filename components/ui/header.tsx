@@ -30,7 +30,7 @@ export default function Header() {
 
   const { isConnected } = useAccount();
 
-  const { refetch: refetchUserDetail } = useUserDetail();
+  const { data: userData, refetch: refetchUserDetail } = useUserDetail();
 
   const { theme, setTheme } = useTheme();
 
@@ -58,6 +58,12 @@ export default function Header() {
       sub = false;
     };
   }, [isConnected, twitterStatus]);
+
+  useEffect(() => {
+    if (userData) {
+      setProfileImage(userData.data.data.profile_image || "");
+    }
+  }, [userData]);
 
   return (
     <header className="z-30 rounded-t-md border-b-2 border-border bg-sidebar">

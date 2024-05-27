@@ -16,7 +16,11 @@ import { useAccount } from "wagmi";
 import { redirect } from "next/navigation";
 
 import TrendingImage from "components/homepage/trending-projects-image.svg"
-import OC100Image from "components/homepage/oc-100-image.svg"
+import OC100Image1st from "components/homepage/oc-100-image.svg"
+import OC100Image2nd from "components/homepage/oc-100-image-2nd.svg"
+import OC100Image3rd from "components/homepage/oc-100-image-3rd.svg"
+import OC100Image4th from "components/homepage/oc-100-image-4th.svg"
+import OC100Image5th from "components/homepage/oc-100-image-5th.svg"
 import FiresideImage from "components/homepage/fireside-frame-no-text.svg"
 
 export default function Dashboard() {
@@ -60,20 +64,11 @@ export default function Dashboard() {
     explore_name: "Featured Chatbots",
   });
 
-  const [tab, setTab] = useState<string>("knowledge-assets");
+  const [tab, setTab] = useState<string>("all");
 
-  const [overlayImage, setOverlayImage] = useState(""); // Holds the image to show on hover
-  const [isHovered, setIsHovered] = useState(false); // Manages whether the overlay is visible
-
-  const handleMouseEnter = (imageSrc: any) => {
-    setOverlayImage(imageSrc); // Set the image to show
-    setIsHovered(true); // Display the overlay
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false); // Hide the overlay
-  };
-
+  const images = [OC100Image1st, OC100Image2nd, OC100Image3rd, OC100Image4th, OC100Image5th];
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [fade, setFade] = useState(true);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -105,6 +100,18 @@ export default function Dashboard() {
       document.title = title;
     };
   }, [breakpoint, pageSize, botsQuery.isFetching]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false); // Start with fading out
+      setTimeout(() => {
+        setCurrentIndex((currentIndex + 1) % images.length); // Cycle through images
+        setFade(true); // Fade in the new image
+      }, 500); // Half second for fade out, change based on your Tailwind config
+    }, 10000); // Change image every 5 minutes
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, [currentIndex]);
 
   return (
     <div className="px-3 py-8 text-primary md:px-6 xl:px-16">
@@ -178,23 +185,12 @@ export default function Dashboard() {
         <h1 className="text-xl font-semibold md:text-2xl">OC 100</h1>
         <div className="relative w-full h-[264px] overflow-hidden mt-4 mb-4">
           <Image
-            src={OC100Image}
-            alt="Previous OC 100 Image"
-            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1500 ease-linear ${isHovered ? 'opacity-0' : 'opacity-100'}`}
+            src={images[currentIndex]}
+            alt="OC 100 Image"
+            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ease-in-out ${fade ? 'opacity-100' : 'opacity-0'}`}
             width={1030}
             height={264}
           />
-          {isHovered && (
-            <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-              <Image
-                src={overlayImage}
-                alt="Hovered Profile Image"
-                width={260}
-                height={260}
-                className="rounded-xl" // Apply any additional styles as needed
-              />
-            </div>
-          )}
         </div>
         <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 justify-around">
           {featuredBotsQuery.data?.data?.data &&
@@ -202,8 +198,7 @@ export default function Dashboard() {
               <BotItemOC100
                 key={botData.chatbot_id}
                 botData={botData}
-                onMouseEnter={() => handleMouseEnter(botData.profile_image ?? OC100Image)}
-                onMouseLeave={handleMouseLeave} />
+              />
             ))}
         </div>
       </div>
@@ -271,51 +266,57 @@ export default function Dashboard() {
       {/* Popular Creators Section */}
       <div className="mt-4 rounded-xl border-2 border-border bg-sidebar p-3 lg:p-8">
         <h1 className="text-xl font-semibold md:text-2xl">Popular Creators</h1>
-        <div className="flex flex-row overflow-x-auto no-scrollbar my-8 flex items-center space-x-10 border-b-2 text-sm font-semibold text-primary">
+        <div className="flex flex-wrap justify-start items-center gap-2 my-8 border-b-2 text-sm font-semibold text-primary">
           <button
-            className={`${tab == "gaming" ? "underline underline-offset-8" : "opacity-50"}`}
+            className={`px-4 py-1 rounded-full shadow ${tab === "all" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
+            onClick={() => setTab("all")}
+          >
+            All
+          </button>
+          <button
+            className={`px-4 py-1 rounded-full shadow ${tab === "gaming" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
             onClick={() => setTab("gaming")}
           >
             Gaming
           </button>
           <button
-            className={`${tab == "content-creation-storytelling" ? "underline underline-offset-8" : "opacity-50"}`}
+            className={`px-4 py-1 rounded-full shadow ${tab === "content-creation-storytelling" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
             onClick={() => setTab("content-creation-storytelling")}
           >
             Content Creation & Storytelling
           </button>
           <button
-            className={`${tab == "technical-educators-developers" ? "underline underline-offset-8" : "opacity-50"}`}
+            className={`px-4 py-1 rounded-full shadow ${tab === "technical-educators-developers" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
             onClick={() => setTab("technical-educators-developers")}
           >
             Technical Educators & Developers
           </button>
           <button
-            className={`${tab == "community-builders-leaders" ? "underline underline-offset-8" : "opacity-50"}`}
+            className={`px-4 py-1 rounded-full shadow ${tab === "community-builders-leaders" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
             onClick={() => setTab("community-builders-leaders")}
           >
             Community Builders & Leaders
           </button>
           <button
-            className={`${tab == "enterpreneurship-innovation" ? "underline underline-offset-8" : "opacity-50"}`}
+            className={`px-4 py-1 rounded-full shadow ${tab === "enterpreneurship-innovation" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
             onClick={() => setTab("enterpreneurship-innovation")}
           >
             Enterpreneurships & Innovations
           </button>
           <button
-            className={`${tab == "investments-financial-insight" ? "underline underline-offset-8" : "opacity-50"}`}
+            className={`px-4 py-1 rounded-full shadow ${tab === "investments-financial-insight" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
             onClick={() => setTab("investments-financial-insight")}
           >
             Investments & Financial Insights
           </button>
           <button
-            className={`${tab == "cultural-artistic-impact" ? "underline underline-offset-8" : "opacity-50"}`}
+            className={`px-4 py-1 rounded-full shadow ${tab === "cultural-artistic-impact" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
             onClick={() => setTab("cultural-artistic-impact")}
           >
             Cultural & Artistic Impact
           </button>
           <button
-            className={`${tab == "social-impacts-ethics" ? "underline underline-offset-8" : "opacity-50"}`}
+            className={`px-4 py-1 rounded-full shadow ${tab === "social-impacts-ethics" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
             onClick={() => setTab("social-impacts-ethics")}
           >
             Social Impacts & Ethics
@@ -355,12 +356,10 @@ const BotItem = ({ botData }: { botData: ChatbotData }) => (
   </Link>
 );
 
-const BotItemOC100 = ({ botData, onMouseEnter, onMouseLeave }: { botData: ChatbotData, onMouseEnter: () => void, onMouseLeave: () => void }) => (
+const BotItemOC100 = ({ botData }: { botData: ChatbotData }) => (
   <Link
     href={`/chatbot/${chatbotSlug(botData)}/profile`}
     className="delay-50 group relative flex grow cursor-pointer flex-col transition ease-in-out"
-    onMouseEnter={onMouseEnter}
-    onMouseLeave={onMouseLeave}
   >
     <Image
       src={botData.profile_image ?? ""}

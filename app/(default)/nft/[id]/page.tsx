@@ -314,6 +314,8 @@ const BotList = ({ id }: { id: any }) => {
   if (botCount > 0) {
     const totalPages = Math.ceil(botCount / pageSize);
 
+    //console.log(botsData); // For debugging purpose
+
     return (
       <>
         <div className="grid grid-cols-2 gap-x-4 gap-y-4 md:grid-cols-3 md:gap-x-6 md:gap-y-6 lg:gap-y-6">
@@ -458,7 +460,7 @@ const NFTDetail = ({ params }: { params: any }) => {
           ) : nftQuery.data ? (
             <NFTSection nftDetail={nftQuery.data?.data?.data} />
           ) : // <NoNFT />
-          null}
+            null}
         </div>
         <div className="flex items-center justify-between">
           <span className="text-lg font-semibold text-primary md:pt-3">

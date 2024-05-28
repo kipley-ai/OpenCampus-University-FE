@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
-import { useAccount } from "wagmi";
-import { useParams, redirect, useRouter } from "next/navigation";
 import { useCreateChatbotContext } from "./create-knowledge-context";
 import { useSession } from "next-auth/react";
-import { useSuperAdmin } from "@/hooks/api/access";
-import { useNftDetail } from "@/hooks/api/nft";
 import ImageInput from "@/components/image-input-2";
 import { ZodError, number, string, z } from "zod";
 import Switcher from "@/components/switcher";
 import { useAppProvider } from "@/providers/app-provider";
-import { DEFAULT_COVER_IMAGE, KF_TITLE } from "@/utils/constants";
+import { KF_TITLE } from "@/utils/constants";
 import Tooltip from "@/components/tooltip";
 import { noMoreThanCharacters } from "@/utils/utils";
 import { FormInput, FormTextarea } from "@/components/form-input";
@@ -24,20 +20,15 @@ interface Form {
 }
 
 export const QuizForm = () => {
-  const router = useRouter();
   const { setHeaderTitle } = useAppProvider();
   const [description, setDescription] = useState({
     tmp: true,
     value: "",
   });
-  const { address } = useAccount();
   const [showModal, setShowModal] = useState(false);
   const [showModalError, setShowModalError] = useState(false);
   const createQuizApp = useCreateQuizAPI();
-  const { setStep, plugin } = useCreateChatbotContext();
-  const { id } = useParams();
-  const superAdmin = useSuperAdmin();
-  const { data: nftData } = useNftDetail({ sft_id: id as string });
+  const { setStep, plugin, kbId, sftId } = useCreateChatbotContext();
   const [selectedFile, setSelectedFile] = useState<any>("");
   const [mode, setMode] = useState(0);
   const [difficultyData, setDifficultyData] = useState("");
@@ -85,8 +76,8 @@ export const QuizForm = () => {
         description: description.value,
         meta_data: metaData,
         price_per_query: form.pricePerQuery as number,
-        sft_id: id as string,
-        kb_id: nftData?.data.data.kb_id as string,
+        sft_id: sftId as string,
+        kb_id: kbId as string,
         plugin_id: plugin?.plugin_id,
       },
       {
@@ -147,16 +138,6 @@ export const QuizForm = () => {
     }
   };
 
-  useEffect(() => {
-    if (superAdmin.isSuccess && nftData) {
-      if (
-        superAdmin.data?.data.status === "failed" &&
-        nftData?.data?.data?.wallet_addr !== address
-      ) {
-        redirect(`/nft/${id}`);
-      }
-    }
-  }, [superAdmin.isSuccess, nftData]);
 
   return (
     <>

@@ -61,7 +61,25 @@ export default function Dashboard() {
   const trendingBotsQuery = useChatbotExplore({
     page: 1,
     page_size: 6,
-    explore_name: "Featured Chatbots",
+    explore_name: "Trending Projects",
+  });
+
+  const OC100BotsQuery = useChatbotExplore({
+    page: 1,
+    page_size: 6,
+    explore_name: "OC 100",
+  });
+
+  const firesideBotsQuery = useChatbotExplore({
+    page: 1,
+    page_size: 6,
+    explore_name: "Fireside Chat Featured Creators",
+  });
+
+  const popularCreatorsQuery = useChatbotExplore({
+    page: 1,
+    page_size: 6,
+    explore_name: "Popular Creators",
   });
 
   const [tab, setTab] = useState<string>("all");
@@ -108,7 +126,7 @@ export default function Dashboard() {
         setCurrentIndex((currentIndex + 1) % images.length); // Cycle through images
         setFade(true); // Fade in the new image
       }, 500); // Half second for fade out, change based on your Tailwind config
-    }, 10000); // Change image every 5 minutes
+    }, 300000); // Change image every 5 minutes, change based on your needs
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [currentIndex]);
@@ -150,9 +168,11 @@ export default function Dashboard() {
             ))}
         </div>
       </div>
-      <div ref={loadMoreRef} className="mb-12">
+      {/* Load More Spinner */}
+      {/* <div ref={loadMoreRef} className="mb-12">
         {featuredBotsQuery.isFetching && <LoadMoreSpinner />}
-      </div>
+      </div> */}
+      <div className="mb-12"></div>
 
       {/* Trending Projects Section */}
       <div className="flex flex-row w-full">
@@ -166,9 +186,10 @@ export default function Dashboard() {
                 ))}
             </div>
           </div>
-          <div ref={loadMoreRef} className="mb-12">
+          {/* <div ref={loadMoreRef} className="mb-12">
             {trendingBotsQuery.isFetching && <LoadMoreSpinner />}
-          </div>
+          </div> */}
+          <div className="mb-12"></div>
         </div>
         <div className="ml-3">
           <Image
@@ -193,8 +214,8 @@ export default function Dashboard() {
           />
         </div>
         <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 justify-around">
-          {featuredBotsQuery.data?.data?.data &&
-            featuredBotsQuery.data?.data.data.chatbot_data.map((botData) => (
+          {OC100BotsQuery.data?.data?.data &&
+            OC100BotsQuery.data?.data.data.chatbot_data.map((botData) => (
               <BotItemOC100
                 key={botData.chatbot_id}
                 botData={botData}
@@ -202,9 +223,11 @@ export default function Dashboard() {
             ))}
         </div>
       </div>
-      <div ref={loadMoreRef} className="mb-12">
-        {featuredBotsQuery.isFetching && <LoadMoreSpinner />}
-      </div>
+      {/* Load More Spinner */}
+      {/* <div ref={loadMoreRef} className="mb-12">
+        {OC100BotsQuery.isFetching && <LoadMoreSpinner />}
+      </div> */}
+      <div className="mb-12"></div>
 
       {/* Fireside Chat Sections */}
       <div className="relative w-full">
@@ -252,15 +275,17 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
-            {featuredBotsQuery.data?.data?.data &&
-              featuredBotsQuery.data?.data.data.chatbot_data.map((botData) => (
+            {firesideBotsQuery.data?.data?.data &&
+              firesideBotsQuery.data?.data.data.chatbot_data.map((botData) => (
                 <BotItemFireside key={botData.chatbot_id} botData={botData} />
               ))}
           </div>
         </div>
-        <div ref={loadMoreRef} className="mb-12">
-          {featuredBotsQuery.isFetching && <LoadMoreSpinner />}
-        </div>
+        {/* Load More Spinner */}
+        {/* <div ref={loadMoreRef} className="mb-12">
+          {firesideBotsQuery.isFetching && <LoadMoreSpinner />}
+        </div> */}
+        <div className="mb-12"></div>
       </div>
 
       {/* Popular Creators Section */}
@@ -323,14 +348,14 @@ export default function Dashboard() {
           </button>
         </div>
         <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
-          {botsQuery.data?.data.data &&
-            botsQuery.data?.data.data.chatbot_data.map((botData) => (
+          {popularCreatorsQuery.data?.data.data &&
+            popularCreatorsQuery.data?.data.data.chatbot_data.map((botData) => (
               <BotItem key={botData.chatbot_id} botData={botData} />
             ))}
         </div>
       </div>
       <div ref={loadMoreRef} className="mb-8">
-        {botsQuery.isFetching && <LoadMoreSpinner />}
+        {popularCreatorsQuery.isFetching && <LoadMoreSpinner />}
       </div>
     </div>
   );

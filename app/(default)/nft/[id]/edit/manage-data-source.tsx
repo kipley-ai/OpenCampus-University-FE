@@ -12,10 +12,12 @@ import { KBItem } from "@/lib/types";
 import { PaginationController } from "@/components/pagination-2/controller";
 import { keepPreviousData } from "@tanstack/react-query";
 import { FaSpinner } from "react-icons/fa6";
+import DeleteSuccessModal from "@/components/toast-4";
 
 const ManageDataSources = () => {
   const [checkHeader, setCheckHeader] = useState(false);
   const [checkRow, setCheckRow] = useState<boolean[]>([]);
+  const [deleteSuccessModal, setDeleteSuccessModal] = useState(false);
   const deleteItemAPI = useDeleteKBItem();
 
   const { id } = useParams();
@@ -86,6 +88,7 @@ const ManageDataSources = () => {
       {
         onSuccess: () => {
           kbItemReftech();
+          setDeleteSuccessModal(true);
         },
       },
     );
@@ -120,6 +123,14 @@ const ManageDataSources = () => {
     const totalPages = Math.ceil(kbItemCount / pageSize);
 
     return (
+      <>
+      <DeleteSuccessModal
+        children={"Your item has been deleted successfully!"}
+        open={deleteSuccessModal}
+        setOpen={setDeleteSuccessModal}
+        onDone={() => setDeleteSuccessModal(false)}
+        onClose={() => setDeleteSuccessModal(false)}
+      />
       <div className="flex flex-col sm:px-6 md:pb-12 lg:px-0">
         <div className="mb-4 flex items-center justify-between">
           <h1 className="text-lg font-semibold text-primary">
@@ -281,6 +292,7 @@ const ManageDataSources = () => {
           </div>
         </div>
       </div>
+      </>
     );
   }
 };

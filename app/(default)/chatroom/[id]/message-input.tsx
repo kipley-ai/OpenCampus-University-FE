@@ -23,10 +23,11 @@ import { useDefaultValue } from "@/hooks/api/default_value";
 import { chatbotIdFromSlug } from "@/utils/utils";
 import Button from "@/components/button";
 import { useGetChatRoomDetail } from "@/hooks/api/chatroom";
+import { FIRESIDE_CHAT_ID } from "@/utils/constants";
 
 const MessageInput = () => {
-  const { id: slug } = useParams();
-  const id = chatbotIdFromSlug(slug.toString());
+  const { id } = useParams();
+
   const {
     // Newly entered question
     newQuestion,
@@ -76,9 +77,18 @@ const MessageInput = () => {
   // const [presencePenalty, setPresencePenalty] = useState(0);
   // const [topDocs, setTopDocs] = useState(10);
   // const [maxTokens, setMaxTokens] = useState(250);
-  const suggestionChat = chatRoomDetail?.data?.data.suggestion_chat
-    ? JSON.parse(chatRoomDetail?.data?.data.suggestion_chat)
-    : [];
+  let suggestionChat: string[] = [];
+
+  if (id === FIRESIDE_CHAT_ID) {
+    suggestionChat = [
+      "How can web3 help creators protect their digital ownership?",
+      "Why do we need digital property rights?",
+    ]
+  } else {
+    suggestionChat = chatRoomDetail?.data?.data.suggestion_chat
+      ? JSON.parse(chatRoomDetail?.data?.data.suggestion_chat)
+      : [];
+  }
   // const suggestionChat = ["Why do we need digital property rights ?"];
 
   useEffect(() => {

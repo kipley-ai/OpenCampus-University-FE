@@ -26,3 +26,5 @@ export const CHATBOT_PLUGIN_ID = "c49f872e-82c9-4733-8e31-e21f764f75bf";
 export const QUIZAPP_PLUGIN_ID = "fea23ba8-4352-49a0-8871-a206248971ce";
 
 export const TWITTER_ITEM_TYPE = "twitter_id_external";
+
+export const FIRESIDE_CHAT_ID = "883f98d5-7b3b-4f09-8518-69c954e4cd10";

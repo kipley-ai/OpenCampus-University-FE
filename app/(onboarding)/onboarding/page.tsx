@@ -18,6 +18,7 @@ import FreeKFI from "../free-kfi-token";
 import { useEffect } from "react";
 import { SUBDOMAINS } from "@/utils/constants";
 import { ChooseApp } from "../choose-app";
+import { CHATBOT_APP, QUIZ_APP } from "@/utils/constants";
 
 export default function Onboarding() {
   const sign = localStorage.getItem("kip-protocol-signature");
@@ -55,9 +56,9 @@ export default function Onboarding() {
           <MintNFT />
         ) : step == "choose_app" ? (
           <ChooseApp />
-        ) : step == "create_chatbot" ? (
+        ) : step == CHATBOT_APP ? (
           <CreateChatbot />
-        ) : step === "create_quiz" ? (
+        ) : step == QUIZ_APP ? (
           <CreateQuiz />
         ) : step == "onboarding_success" ? (
           <OnboardingSuccess />

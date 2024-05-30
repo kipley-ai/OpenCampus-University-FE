@@ -6,16 +6,17 @@ import { useCreateChatbotContext } from "./create-knowledge-context";
 import { useState } from "react";
 import { FormNav } from "@/components/form-nav";
 import { useGetPlugin } from "@/hooks/api/quiz_app";
+import { CHATBOT_APP, QUIZ_APP, VALID_APPS } from "@/utils/constants";
 
 const apps = [
   {
     name: "Chatbot",
-    step: "create_chatbot",
+    step: CHATBOT_APP,
     icon: CreateChatbotImg,
   },
   {
     name: "Quiz",
-    step: "create_quiz",
+    step: QUIZ_APP,
     icon: CreateQuizImg,
   },
   {
@@ -25,8 +26,6 @@ const apps = [
   },
 ];
 
-const validApps = ["create_chatbot", "create_quiz"];
-
 export function ChooseApp() {
   const [chosenApp, setChosenApp] = useState("create_chatbot");
   const { setStep, setPlugin } = useCreateChatbotContext();
@@ -35,7 +34,7 @@ export function ChooseApp() {
 
   const handleCreateApp = () => {
     if (chosenApp === "") return;
-    if (validApps.includes(chosenApp)) {
+    if (VALID_APPS.includes(chosenApp)) {
       setStep(chosenApp);
     }
   };

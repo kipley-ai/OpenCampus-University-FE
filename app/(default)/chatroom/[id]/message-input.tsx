@@ -52,7 +52,9 @@ const MessageInput = () => {
   const chatSession = useGetSession({ chatbot_id: id as string });
   const newSession = useNewSession();
 
-  const { data: chatRoomDetail } = useGetChatRoomDetail({ room_id: id });
+  const { data: chatRoomDetail } = useGetChatRoomDetail({
+    room_id: id as string,
+  });
 
   // const { data: chatbotData, isSuccess } = useChatbotDetail({
   //   chatbot_id: id as string,
@@ -83,7 +85,7 @@ const MessageInput = () => {
     suggestionChat = [
       "How can web3 help creators protect their digital ownership?",
       "Why do we need digital property rights?",
-    ]
+    ];
   } else {
     suggestionChat = chatRoomDetail?.data?.data.suggestion_chat
       ? JSON.parse(chatRoomDetail?.data?.data.suggestion_chat)

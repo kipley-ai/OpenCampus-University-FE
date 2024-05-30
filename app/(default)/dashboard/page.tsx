@@ -239,22 +239,23 @@ export default function Dashboard() {
         />
         <div className="absolute top-10 right-4">
           <Link
-            href={"/chatroom/acc24254-b9b9-436a-aed2-8882388cc4d7"}
+            href={"/chatroom/883f98d5-7b3b-4f09-8518-69c954e4cd10"}
           >
             <h1 className="text-xl font-semibold md:text-2xl text-white">Fireside Chat</h1>
+            <div className="flex flex-col my-3">
+              <span className="text-sm text-white">Fireside Chat, hosted by Open Campus University, features some of</span>
+              <span className="text-sm text-white">the most influential OC 100 educators and creators from a diverse</span>
+              <span className="text-sm text-white">range of the Web3 space.</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-sm text-white">Engage in topic-specific discussions, ask questions, and gain</span>
+              <span className="text-sm text-white">well-rounded insights from specialists across various fields</span>
+              <span className="text-sm text-white">within the Web3 space.</span>
+            </div>
+            <div className="flex flex-row mt-3">
+              <span className="text-sm text-white"><b>Topic of Fireside Chat:</b> Digital Property Rights</span>
+            </div>
           </Link>
-          <div className="flex flex-col my-2">
-            <span className="text-sm text-white">$EDU is the native gas token for EDU Chain and the governance token</span>
-            <span className="text-sm text-white">for the Open Campus DAO.</span>
-          </div>
-          <div className="flex flex-col mb-3">
-            <span className="text-sm text-white">It powers the entire Open Campus ecosystem.</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-sm text-white">$EDU token genesis occurred on BNB Chain as a BEP-20 token on 28</span>
-            <span className="text-sm text-white">April 2023. It also exists on the Ethereum L1 Blockchain and will be</span>
-            <span className="text-sm text-white">bridged to the EDU Chain when the Mainnet goes live.</span>
-          </div>
         </div>
         <div className="absolute bottom-12 right-0 rounded-xl border-2 border-border bg-sidebar p-3 lg:p-8">
           <div className="flex flex-row justify-between">

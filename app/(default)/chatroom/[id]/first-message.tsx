@@ -5,16 +5,18 @@ import AvatarDummy from "public/images/avatar-bot-dummy.svg";
 import LoadingIcon from "public/images/loading-icon.svg";
 import { useState } from "react";
 import { CopyButton } from "./last-message";
-import { chatbotIdFromSlug } from "@/utils/utils";
 import { UseQueryResult } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
 import { ChatbotDetailResponse } from "@/lib/types";
+import { FIRESIDE_CHAT_ID } from "@/utils/constants";
 
 const FirstAnswer = ({
   chatbots,
 }: {
   chatbots: UseQueryResult<AxiosResponse<ChatbotDetailResponse, any>, Error>[];
 }) => {
+  const { id } = useParams();
+  
   return (
     <>
       <div className="flex flex-col items-center justify-center gap-8 border-b-2 py-5">
@@ -36,6 +38,11 @@ const FirstAnswer = ({
         </div>
       </div>
       <div className="text-center text-heading">
+        {id === FIRESIDE_CHAT_ID && (
+          <p className="mb-4 text-2xl font-medium">
+            Topic: Digital Property Rights
+          </p>
+        )}
         <p className="mt-2 text-2xl font-medium">
           What would you like to know today?
         </p>

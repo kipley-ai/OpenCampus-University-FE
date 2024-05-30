@@ -128,7 +128,7 @@ export default function Sidebar() {
             as="div"
             id="sidebar"
             ref={sidebar}
-            className="no-scrollbar absolute left-0 top-0 z-40 flex h-[100dvh] w-64 shrink-0 flex-col gap-3 overflow-y-scroll bg-sidebar px-6 py-4 pt-6 transition-all duration-200 ease-in-out lg:static lg:left-auto lg:top-auto lg:!flex lg:w-12 lg:translate-x-0 lg:overflow-y-auto lg:sidebar-expanded:!w-64 2xl:!w-64"
+            className="no-scrollbar absolute left-0 top-0 z-40 flex h-[100dvh] w-52 shrink-0 flex-col gap-3 overflow-y-scroll bg-sidebar px-6 py-4 pt-6 transition-all duration-200 ease-in-out lg:static lg:left-auto lg:top-auto lg:!flex lg:w-12 lg:translate-x-0 lg:overflow-y-auto lg:sidebar-expanded:!w-56 xl:sidebar-expanded:!w-60"
             enterFrom="-translate-x-full"
             enterTo="translate-x-0"
             leaveFrom="translate-x-0"

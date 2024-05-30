@@ -8,7 +8,7 @@ import { useAppProvider } from "@/providers/app-provider";
 import { getBreakpoint } from "@/components/utils/utils";
 import { KF_TITLE } from "@/utils/constants";
 import { chatbotSlug } from "@/utils/utils";
-import { useChatbotExplore } from "@/hooks/api/chatbot";
+import { useChatbotExplore, useGetCategory } from "@/hooks/api/chatbot";
 import { ChatbotData } from "@/lib/types";
 import { LoadMoreSpinner } from "@/components/load-more";
 import { useUserDetail } from "@/hooks/api/user";
@@ -29,6 +29,9 @@ export default function Dashboard() {
   // const [breakpoint, setBreakpoint] = useState(getBreakpoint());
   // const [pageSize, setPageSize] = useState(20);
   const loadMoreRef = useRef(null);
+  const { data: botCategories } = useGetCategory();
+  const [filteredBots, setFilteredBots] = useState<ChatbotData[] | undefined>();
+  const [tab, setTab] = useState({ title: "all", category_id: "" });
 
   // const botsQuery = useChatbotExplore(
   //   {
@@ -63,13 +66,30 @@ export default function Dashboard() {
     explore_name: "Fireside Chat Featured Creators",
   });
 
-  const popularCreatorsQuery = useChatbotExplore({
+  const { data: popularCreatorsQuery } = useChatbotExplore({
     page: 1,
     page_size: 6,
-    explore_name: "Popular Creators",
+    explore_name: "OC 100 Winners",
   });
 
-  const [tab, setTab] = useState<string>("all");
+  useEffect(() => {
+    if (popularCreatorsQuery?.data?.data) {
+      setFilteredBots(popularCreatorsQuery.data?.data.chatbot_data);
+    }
+  }, [popularCreatorsQuery]);
+
+  const handleChangeCategoryTab = (cat: any) => {
+    setTab(cat);
+    if (cat.category_id === "") {
+      setFilteredBots(popularCreatorsQuery?.data?.data.chatbot_data);
+      return;
+    }
+
+    const f = popularCreatorsQuery?.data?.data.chatbot_data.filter(
+      (c) => c.category_id === cat.category_id,
+    );
+    setFilteredBots(f);
+  };
 
   const images = [
     OC100Image1st,
@@ -360,72 +380,33 @@ export default function Dashboard() {
       {/* Popular Creators Section */}
       <div className="mt-4 rounded-xl border-2 border-border bg-sidebar p-3 lg:p-8">
         <h1 className="text-xl font-semibold md:text-2xl">Popular Creators</h1>
-        <div className="my-8 flex flex-wrap items-center justify-start gap-2 border-b-2 text-sm font-semibold text-primary">
+        <div className="my-8 flex flex-wrap items-center justify-start gap-2 border-b-2 pb-2 text-sm font-semibold text-primary">
           <button
-            className={`rounded-full px-4 py-1 shadow ${tab === "all" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
-            onClick={() => setTab("all")}
+            className={`rounded-full px-4 py-1 shadow ${tab.category_id === "" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
+            onClick={() =>
+              handleChangeCategoryTab({ title: "all", category_id: "" })
+            }
           >
             All
           </button>
-          <button
-            className={`rounded-full px-4 py-1 shadow ${tab === "gaming" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
-            onClick={() => setTab("gaming")}
-          >
-            Gaming
-          </button>
-          <button
-            className={`rounded-full px-4 py-1 shadow ${tab === "content-creation-storytelling" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
-            onClick={() => setTab("content-creation-storytelling")}
-          >
-            Content Creation & Storytelling
-          </button>
-          <button
-            className={`rounded-full px-4 py-1 shadow ${tab === "technical-educators-developers" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
-            onClick={() => setTab("technical-educators-developers")}
-          >
-            Technical Educators & Developers
-          </button>
-          <button
-            className={`rounded-full px-4 py-1 shadow ${tab === "community-builders-leaders" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
-            onClick={() => setTab("community-builders-leaders")}
-          >
-            Community Builders & Leaders
-          </button>
-          <button
-            className={`rounded-full px-4 py-1 shadow ${tab === "enterpreneurship-innovation" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
-            onClick={() => setTab("enterpreneurship-innovation")}
-          >
-            Enterpreneurships & Innovations
-          </button>
-          <button
-            className={`rounded-full px-4 py-1 shadow ${tab === "investments-financial-insight" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
-            onClick={() => setTab("investments-financial-insight")}
-          >
-            Investments & Financial Insights
-          </button>
-          <button
-            className={`rounded-full px-4 py-1 shadow ${tab === "cultural-artistic-impact" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
-            onClick={() => setTab("cultural-artistic-impact")}
-          >
-            Cultural & Artistic Impact
-          </button>
-          <button
-            className={`rounded-full px-4 py-1 shadow ${tab === "social-impacts-ethics" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
-            onClick={() => setTab("social-impacts-ethics")}
-          >
-            Social Impacts & Ethics
-          </button>
+          {botCategories?.data?.data?.map((cat: any) => (
+            <button
+              className={`rounded-full px-4 py-1 shadow ${tab.category_id === cat.category_id ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
+              onClick={() => handleChangeCategoryTab(cat)}
+            >
+              {cat.title}
+            </button>
+          ))}
         </div>
         <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
-          {popularCreatorsQuery.data?.data.data &&
-            popularCreatorsQuery.data?.data.data.chatbot_data.map((botData) => (
-              <BotItem key={botData.chatbot_id} botData={botData} />
-            ))}
+          {filteredBots?.map((botData) => (
+            <BotItem key={botData.chatbot_id} botData={botData} />
+          ))}
         </div>
       </div>
-      <div ref={loadMoreRef} className="mb-8">
+      {/* <div ref={loadMoreRef} className="mb-8">
         {popularCreatorsQuery.isFetching && <LoadMoreSpinner />}
-      </div>
+      </div> */}
     </div>
   );
 }

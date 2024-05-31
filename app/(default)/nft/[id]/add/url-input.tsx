@@ -1,6 +1,6 @@
 import ModalBlank from "@/components/modal-blank-3";
 import Button from "@/components/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCreateChatbotContext } from "./create-knowledge-context";
 
 export default function URLInput({
@@ -12,9 +12,16 @@ export default function URLInput({
   setIsOpen: any;
   type: string;
 }) {
-  const { handleChangeKb, kbDetail, addYoutubeItem, addMediumItem } =
+  const { handleChangeKb, kbDetail, addYoutubeItem, addMediumItem, errorMessage, successModal } =
     useCreateChatbotContext();
   const [url, setUrl] = useState("");
+
+  useEffect(() => {
+    if (successModal) {
+      setIsOpen(false);
+    }
+  
+  }, [successModal])
 
   return (
     <ModalBlank isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -37,6 +44,11 @@ export default function URLInput({
               setUrl(e.target.value);
             }}
           />
+        {
+          errorMessage ? 
+          <div className="text-red-500 text-sm mt-2 capitalize">{errorMessage}</div>
+          : null
+        }
         </div>
         <div className="flex w-80 items-center justify-end gap-4">
           <button
@@ -56,7 +68,6 @@ export default function URLInput({
               } else if (type === "medium") {
                 addMediumItem(kbDetail?.kb_id!, url);
               }
-              setIsOpen(false);
             }}
           >
             Submit

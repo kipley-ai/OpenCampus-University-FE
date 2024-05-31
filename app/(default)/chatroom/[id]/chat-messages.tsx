@@ -125,28 +125,28 @@ const MessageList = ({
     buttonSession,
   ]);
 
-  useEffect(() => {
-    const end_value = false;
-    if (chatbotIds.length > 0 && ends.length > 0) {
-      const isEndAllChatbotIds = chatbotIds
-        .map((chatbotId) => {
-          return (
-            ends.filter((end) => {
-              if (chatbotId == end.chatbot_id && end.end) return true;
-              else return false;
-            }).length > 0
-          );
-        })
-        .reduce((a, b) => a && b, true);
-      if (isEndAllChatbotIds) {
-        console.log("end:>>", chatbotIds, ends);
-        setAnswersStream([]);
-        setReplyStatus("idle");
-        setChunks([]);
-        setEnds([]);
-      }
-    }
-  }, [ends]);
+  // useEffect(() => {
+  //   const end_value = false;
+  //   if (chatbotIds.length > 0 && ends.length > 0) {
+  //     const isEndAllChatbotIds = chatbotIds
+  //       .map((chatbotId) => {
+  //         return (
+  //           ends.filter((end) => {
+  //             if (chatbotId == end.chatbot_id && end.end) return true;
+  //             else return false;
+  //           }).length > 0
+  //         );
+  //       })
+  //       .reduce((a, b) => a && b, true);
+  //     if (isEndAllChatbotIds) {
+  //       console.log("end:>>", chatbotIds, ends);
+  //       setAnswersStream([]);
+  //       setReplyStatus("idle");
+  //       setChunks([]);
+  //       setEnds([]);
+  //     }
+  //   }
+  // }, [ends]);
 
   useEffect(() => {
     console.log("answersStream:>>", answersStream.length, answersStream);
@@ -160,6 +160,12 @@ const MessageList = ({
     // console.log("lastJsonMessage :>> ", lastJsonMessage);
 
     if (lastJsonMessage !== null && lastJsonMessage.type !== "error") {
+      if (lastJsonMessage.type == 'end_universal'){
+          setAnswersStream([]);
+          setReplyStatus("idle");
+          setChunks([]);
+          setEnds([]);
+      }
       if (lastJsonMessage.type === "end") {
         // console.log("chunks :>> ", chunks);
 
@@ -213,12 +219,7 @@ const MessageList = ({
             return chunk.chatbot_id !== lastJsonMessage.chatbot_id;
           });
         });
-        setEnds((prevEnds) => {
-          return [
-            ...prevEnds,
-            { chatbot_id: lastJsonMessage.chatbot_id, end: true },
-          ];
-        });
+        
 
         console.log("Message history");
         console.log(messageHistory);

@@ -54,6 +54,8 @@ export const lastChatRoomMessageSchema = z.object({
 		z.literal("stream"),
 		z.literal("end"),
 		z.literal("error"),
+		z.literal("start_universal"),
+		z.literal("end_universal")
 	]),
 	chatbot_id: z.string()
 });

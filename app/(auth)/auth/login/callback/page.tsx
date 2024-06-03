@@ -26,11 +26,13 @@ import { use } from "react";
 //   }
 // }
 
-// export default function Callback() {
-//   const searchParams = useSearchParams();
-//   const code = searchParams.get("code");
+export default function Callback() {
+  // const searchParams = useSearchParams();
+  // const code = searchParams.get("code");
 
-//   const token = use(getToken(code));
-//   localStorage.setItem("token", token.access_token);
-//   redirect("/dashboard");
-// }
+  // const token = use(getToken(code));
+  // localStorage.setItem("token", token.access_token);
+  // redirect("/dashboard");
+
+  return <div>Redirecting...</div>;
+}

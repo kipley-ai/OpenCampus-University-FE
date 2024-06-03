@@ -2,6 +2,7 @@ import ModalBlank from "@/components/modal-blank-3";
 import Button from "@/components/button";
 import { useState } from "react";
 import { useCreateChatbotContext } from "./create-knowledge-context";
+import { useCheckLink } from "@/hooks/api/kb";
 
 export default function URLInput({
   isOpen,
@@ -14,6 +15,32 @@ export default function URLInput({
 }) {
   const { setStep, handleChangeKb } = useCreateChatbotContext();
   const [url, setUrl] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const checkUrlApi = useCheckLink();
+
+  const handleContinue = () => {
+      checkUrlApi.mutate({
+          type: type,
+          url: url
+      },
+      {
+          onSuccess: (data) => {
+              if(data.data.status === "failed"){
+                  setErrorMessage(data.data.msg);
+                  return;
+              }
+              setErrorMessage("");
+              if (type === 'youtube') {
+                  setStep("mint_nft");
+                  handleChangeKb("youtube_url", url);
+              } else if (type === 'medium') {
+                  setStep("mint_nft");
+                  handleChangeKb("medium_url", url);
+              }
+              setIsOpen(false);
+          }
+      }
+  )};
 
   return (
     <ModalBlank isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -37,11 +64,17 @@ export default function URLInput({
             }}
           />
         </div>
+        {
+          errorMessage ? 
+          <div className="w-80 text-red-500 text-sm capitalize">{errorMessage}</div>
+          : null
+        }
         <div className="flex w-80 items-center justify-end gap-4">
           <button
             className="text-sm font-medium text-primary underline hover:text-secondary"
             onClick={() => {
               setIsOpen(false);
+              setErrorMessage("");
             }}
           >
             Cancel
@@ -50,14 +83,7 @@ export default function URLInput({
             className="ml-1 rounded-md bg-primary px-5 py-2 font-medium text-white"
             type="button"
             onClick={() => {
-              if (type === "youtube") {
-                setStep("mint_nft");
-                handleChangeKb("youtube_url", url);
-              } else if (type === "medium") {
-                setStep("mint_nft");
-                handleChangeKb("medium_url", url);
-              }
-              setIsOpen(false);
+              handleContinue();
             }}
           >
             Submit

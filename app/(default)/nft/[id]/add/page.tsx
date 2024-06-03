@@ -14,7 +14,7 @@ import { useNftDetail } from "@/hooks/api/nft";
 import { useKBItem } from "@/hooks/api/kb";
 import { keepPreviousData } from "@tanstack/react-query";
 import ModalLoginTwitter from "@/components/modal-login-twitter";
-import CreateChatbotModal from "@/components/toast-4";
+import ManageDataModal from "@/components/toast-4";
 
 export interface UIFile {
   filename: string;
@@ -39,6 +39,10 @@ export default function DataSource() {
     kbDetail,
     successModal,
     setSuccessModal,
+    errorModal,
+    setErrorModal,
+    errorMessage,
+    setErrorMessage,
   } = useCreateChatbotContext();
 
   const { id } = useParams();
@@ -171,10 +175,12 @@ export default function DataSource() {
         isOpen={isModalOpen}
         type={selectedButton}
       />
-      <CreateChatbotModal
+      <ManageDataModal
         children={"Your data source has been updated successfully!"}
         open={successModal}
         setOpen={setSuccessModal}
+        onDone={() => router.push("/nft/" + id as string + "/edit")}
+        onClose={() => router.push("/nft/" + id as string + "/edit")}
       />
       <div className="h-full flex-col justify-start bg-container px-4 md:w-5/6 md:flex-row md:pl-10">
         <h1 className="py-3 text-lg font-semibold text-heading">

@@ -30,6 +30,12 @@ interface CreateChatbotContextProps {
 
   successModal: boolean;
   setSuccessModal: ReactSetter<boolean>;
+
+  errorModal: boolean;
+  setErrorModal: ReactSetter<boolean>;
+
+  errorMessage: string;
+  setErrorMessage: ReactSetter<string>;
 }
 
 interface ICreateKb {
@@ -88,6 +94,8 @@ export const CreateChatbotProvider = ({
   const [twitterExist, setTwitterExist] = useState(false);
   const [kbDetail, setKbDetail] = useState<IKBDetail | null>(null);
   const [successModal, setSuccessModal] = useState(false);
+  const [errorModal, setErrorModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   // const nftDetail = useNftDetail({
   // 	sft_id: "SFTID11",
   // });
@@ -141,7 +149,12 @@ export const CreateChatbotProvider = ({
         kb_data: null,
       },
       {
-        onSuccess() {
+        onSuccess(data) {
+          if(data.data.status === "failed"){
+            setErrorMessage(data.data.msg);
+            return;
+          }
+          setErrorMessage("");
           setSuccessModal(true);
         },
       },
@@ -159,7 +172,12 @@ export const CreateChatbotProvider = ({
         kb_data: null,
       },
       {
-        onSuccess() {
+        onSuccess(data) {
+          if(data.data.status === "failed"){
+            setErrorMessage(data.data.msg);
+            return;
+          }
+          setErrorMessage("");
           setSuccessModal(true);
         },
       },
@@ -193,6 +211,12 @@ export const CreateChatbotProvider = ({
 
         successModal,
         setSuccessModal,
+
+        errorModal,
+        setErrorModal,
+
+        errorMessage,
+        setErrorMessage,
       }}
     >
       {children}

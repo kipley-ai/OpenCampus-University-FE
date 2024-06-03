@@ -34,31 +34,31 @@ export default function Header() {
 
   const { theme, setTheme } = useTheme();
 
-  const handleLogin = async () => {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_TERMINAL3_URL}/authorize?`,
-        new URLSearchParams({
-          response_type: "code",
-          scope: "openid",
-          client_id: "3kG6UNvSppAH5uKpA3pLg6tqdLVMSK1B",
-          redirect_uri: process.env.NEXT_PUBLIC_TERMINAL3_REDIRECT_URI,
-        }),
-        {
-          method: "GET",
-          redirect: "follow",
-        },
-      );
+  // const handleLogin = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       `${process.env.NEXT_PUBLIC_TERMINAL3_URL}/authorize?` +
+  //         new URLSearchParams({
+  //           response_type: "code",
+  //           scope: "openid",
+  //           client_id: "3kG6UNvSppAH5uKpA3pLg6tqdLVMSK1B",
+  //           redirect_uri: process.env.NEXT_PUBLIC_TERMINAL3_REDIRECT_URI,
+  //         }),
+  //       {
+  //         method: "GET",
+  //         redirect: "follow",
+  //       },
+  //     );
 
-      if (response.redirected) {
-        window.location.href = response.url;
-      } else {
-        console.log("Unexpected response:", response);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+  //     if (response.redirected) {
+  //       window.location.href = response.url;
+  //     } else {
+  //       console.log("Unexpected response:", response);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //   }
+  // };
 
   useEffect(() => {
     let sub = true;
@@ -149,13 +149,13 @@ export default function Header() {
             {isConnected ? (
               <AvatarWithStatus image={profileImage} status="away" />
             ) : (
-              // <GetInvolvedButton
-              //   buttonStyle="button bg-container rounded-md py-1 px-2 sm:px-3.5 border-2 text-[9px] xs:text-xs sm:text-[0.8rem]"
-              //   content={<span>Login</span>}
-              // />
-              <button className="btn-secondary" onClick={handleLogin}>
-                Login
-              </button>
+              <GetInvolvedButton
+                buttonStyle="button bg-container rounded-md py-1 px-2 sm:px-3.5 border-2 text-[9px] xs:text-xs sm:text-[0.8rem]"
+                content={<span>Login</span>}
+              />
+              // <button className="btn-secondary" onClick={handleLogin}>
+              //   Login
+              // </button>
             )}
           </div>
         </div>

@@ -148,3 +148,16 @@ export const useScrapeTwitterStatus = (params: { username: string }) => {
     select: (data) => data.data,
   });
 };
+
+export const useCheckLink = () => {
+  const { address } = useAccount();
+
+  return useMutation({
+    mutationFn: (params: { type: string, url: string }) =>
+      axios.post("/api/kb/check-link", params, {
+        headers: {
+          "x-kf-user-id": address,
+        },
+      }),
+  });
+}

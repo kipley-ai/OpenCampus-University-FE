@@ -2,6 +2,7 @@ import ModalBlank from "@/components/modal-blank-3";
 import Button from "@/components/button";
 import { useState } from "react";
 import { useCreateChatbotContext } from "./create-knowledge-context";
+import { useCheckLink } from "@/hooks/api/kb";
 
 export default function URLInput({
     isOpen,
@@ -14,6 +15,32 @@ export default function URLInput({
 }) {
     const { setStep, handleChangeKb } = useCreateChatbotContext();
     const [url, setUrl] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+    const checkUrlApi = useCheckLink();
+
+    const handleContinue = () => {
+        checkUrlApi.mutate({
+            type: type,
+            url: url
+        },
+        {
+            onSuccess: (data) => {
+                if(data.data.status === "failed"){
+                    setErrorMessage(data.data.msg);
+                    return;
+                }
+                setErrorMessage("");
+                if (type === 'youtube') {
+                    setStep("mint_nft");
+                    handleChangeKb("youtube_url", url);
+                } else if (type === 'medium') {
+                    setStep("mint_nft");
+                    handleChangeKb("medium_url", url);
+                }
+                setIsOpen(false);
+            }
+        }
+    )};
 
     return (
         <ModalBlank isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -21,7 +48,7 @@ export default function URLInput({
                 <div className="inline-flex items-center justify-between self-stretch">
                     <div className="w-80 text-lg font-semibold leading-10 text-primary border-b border-[#DDDDEB] pb-2 mb-4">Import from <span className="capitalize">{type}</span></div>
                 </div>
-                <div className="w-80 mb-5">
+                <div className="w-80 mb-4">
                     <label htmlFor="url" className="block text-sm font-medium">
                         Copy and paste your <span className="capitalize">{type}</span> URL
                     </label>
@@ -35,12 +62,18 @@ export default function URLInput({
                         }}
                     />
                 </div>
+                {
+                    errorMessage ? 
+                    <div className="w-80 text-red-500 text-sm capitalize">{errorMessage}</div>
+                    : null
+                }
                 <div className="w-80 flex items-center justify-end gap-4">
                     <button
                         className="text-primary underline hover:text-secondary text-sm font-medium"
                         onClick={() => 
                             {
                                 setIsOpen(false);  
+                                setErrorMessage("");
                             }
                         }
                     >
@@ -50,14 +83,7 @@ export default function URLInput({
                         className="rounded-md bg-primary px-5 py-2 ml-1 text-white font-medium"
                         type="button"
                         onClick={() => {
-                            if (type === 'youtube') {
-                                setStep("mint_nft");
-                                handleChangeKb("youtube_url", url);
-                            } else if (type === 'medium') {
-                                setStep("mint_nft");
-                                handleChangeKb("medium_url", url);
-                            }
-                            setIsOpen(false);
+                            handleContinue();
                         }}
                     >
                             Submit

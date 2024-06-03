@@ -35,4 +35,8 @@
   .button {
     @apply max-md:text-xs text-sm text-primary dark:text-heading border-2 border-primary font-medium rounded-full px-2 md:px-3 py-1 hover:bg-primary hover:text-container dark:hover:text-sidebar disabled:bg-[#B8BABE] disabled:text-[#909295] disabled:border-0;
   }
+
+  .btn-secondary {
+    @apply flex items-center justify-center gap-2 rounded-md border border-primary bg-transparent px-3 py-1 text-xs font-medium text-primary hover:bg-primary hover:text-box disabled:border-0 disabled:bg-[#B8BABE] disabled:text-[#909295] xl:text-sm;
+  }
 }

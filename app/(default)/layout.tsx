@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { redirect, useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useUserDetail } from "@/hooks/api/user";
+import { useCheckToken } from "@/hooks/api/auth";
 import { useAppProvider } from "@/providers/app-provider";
 import { SUBDOMAINS } from "@/utils/constants";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
@@ -47,12 +48,10 @@ export default function DefaultLayout({
     }
   }
 
-  if (
-    status === "disconnected" &&
-    pathname !== "/dashboard" &&
-    openConnectModal
-  ) {
-    openConnectModal();
+  const token = localStorage.getItem("token");
+  const { data: checkTokenData, error: checkTokenError } = useCheckToken(token);
+
+  if (!token && pathname !== "/dashboard") {
     return redirect("/dashboard");
   }
 
@@ -76,7 +75,7 @@ export default function DefaultLayout({
           {/*  Site header */}
           {pathname === "/knowledge/create/iframe" ? null : <Header />}
 
-          <main className="grow p-3 md:p-6 xl:p-8 xl:w-5/6">{children}</main>
+          <main className="grow p-3 md:p-6 xl:w-5/6 xl:p-8">{children}</main>
         </div>
       </div>
     </div>

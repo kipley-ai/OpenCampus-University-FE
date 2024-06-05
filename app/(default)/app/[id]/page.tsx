@@ -533,14 +533,18 @@ const BotDetail = ({ params }: { params: any }) => {
           ) : // <NoChatbot />
             null}
         </div>
-        <span className="text-lg font-semibold text-primary md:pt-3">
-          Knowledge Keys
-        </span>
+        
         {
           chatbotQuery.isSuccess && sftId ? (
-            <div className="pt-3">
-              <NFTList id={sftId} />
-            </div>
+            <>
+              <span className="text-lg font-semibold text-primary md:pt-3">
+                Knowledge Keys
+              </span>
+              <div className="pt-3">
+                <NFTList id={sftId} />
+              </div>
+            </>
+            
           ) : null
         }
         <div className="my-8 mt-4 flex items-center justify-between">

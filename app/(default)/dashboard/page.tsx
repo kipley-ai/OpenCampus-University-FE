@@ -162,9 +162,9 @@ export default function Dashboard() {
       />
 
       {/* Featured Creators Section */}
-      <div className="mt-12 rounded-xl border-2 border-border bg-sidebar p-3 lg:px-10 lg:py-8">
+      <div className="mt-6 rounded-xl border-2 border-border bg-sidebar p-3 md:mt-12 lg:px-10 lg:py-8">
         <div className="flex flex-row justify-between">
-          <h1 className="text-xl font-semibold md:text-xl">
+          <h1 className="text-lg font-semibold md:text-xl">
             Featured Educators
           </h1>
           <div className="flex flex-row">
@@ -206,7 +206,7 @@ export default function Dashboard() {
             </button>
           </div>
         </div>
-        <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
+        <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-8 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {featuredBotsQuery.data?.data?.data &&
             featuredBotsQuery.data?.data.data.chatbot_data.map((botData) => (
               <BotItem key={botData.chatbot_id} botData={botData} />
@@ -220,12 +220,12 @@ export default function Dashboard() {
       <div className="mb-12"></div>
 
       {/* Trending Projects Section */}
-      <div className="flex w-full justify-between gap-12">
-        <div className="rounded-xl border-2 border-border bg-sidebar px-10 py-8">
-          <h1 className="text-xl font-semibold md:text-xl">
+      <div className="flex w-full items-start justify-between gap-12 max-sm:flex-col">
+        <div className="rounded-xl border-2 border-border bg-sidebar p-3 lg:px-10 lg:py-8">
+          <h1 className="text-lg font-semibold md:text-xl">
             Trending Projects
           </h1>
-          <div className="mt-4 grid grid-cols-3 items-start gap-x-8 gap-y-4">
+          <div className="mt-4 grid grid-cols-2 items-start gap-x-8 gap-y-4 xs:grid-cols-3 sm:grid-cols-2 lg:grid-cols-3">
             {trendingBotsQuery.data?.data?.data &&
               trendingBotsQuery.data?.data.data.chatbot_data.map((botData) => (
                 <BotItemTrending key={botData.chatbot_id} botData={botData} />
@@ -234,7 +234,7 @@ export default function Dashboard() {
         </div>
         <Image
           src={TrendingImage}
-          className="h-full"
+          className="h-full max-sm:hidden"
           alt="Trending Projects"
           width={330}
           height={747}
@@ -243,7 +243,7 @@ export default function Dashboard() {
 
       {/* ОC 100 Sections */}
       {/* <div className="mt-12 rounded-xl border-2 border-border bg-sidebar p-3 lg:px-10 lg:py-8">
-        <h1 className="text-xl font-semibold md:text-xl">OC 100</h1>
+        <h1 className="text-lg font-semibold md:text-xl">OC 100</h1>
         <div className="relative mb-4 mt-4 h-[264px] w-full overflow-hidden">
           <Image
             src={images[currentIndex]}
@@ -274,42 +274,37 @@ export default function Dashboard() {
           className="z-10 w-full rounded-xl"
           width={1030}
         />
-        <div className="absolute right-16 top-16">
+        <div className="absolute right-2 top-4 w-1/2 overflow-y-auto max-xs:h-1/5 sm:top-8 lg:right-16 xl:top-16">
           <Link href={"/chatroom/883f98d5-7b3b-4f09-8518-69c954e4cd10"}>
-            <h1 className="text-xl font-semibold text-white md:text-3xl">
+            <h1 className="font-semibold text-white xs:text-lg md:text-3xl">
               Fireside Chat
             </h1>
-            <div className="my-3 flex flex-col">
-              <span className="text-sm text-white">
+            <div className="my-1 flex flex-col md:my-3">
+              <span className="text-xs text-white md:text-sm">
                 Fireside Chat, hosted by Open Campus University, features some
-                of
-              </span>
-              <span className="text-sm text-white">
-                the most influential OC 100 educators from a diverse
-              </span>
-              <span className="text-sm text-white">
-                range of the Web3 space.
+                of the most influential OC 100 educators from a diverse range of
+                the Web3 space.
               </span>
             </div>
             <div className="flex flex-col">
-              <span className="text-sm text-white">
+              <span className="text-xs text-white md:text-sm">
                 Engage in topic-specific discussions, ask questions, and gain
-              </span>
-              <span className="text-sm text-white">
                 well-rounded insights from specialists across various fields
+                within the Web3 space.
               </span>
-              <span className="text-sm text-white">within the Web3 space.</span>
+              <span className="text-xs text-white md:text-sm"></span>
+              <span className="text-xs text-white md:text-sm"></span>
             </div>
             <div className="mt-3 flex flex-row">
-              <span className="text-sm text-white">
+              <span className="text-xs text-white md:text-sm">
                 <b>Topic of Fireside Chat:</b> Digital Property Rights
               </span>
             </div>
           </Link>
         </div>
-        <div className="absolute bottom-12 left-8 rounded-l-xl border-y-2 border-l-2 border-border bg-sidebar p-3 lg:px-10 lg:py-8 lg:pr-4">
+        <div className="rounded-l-xl border-y-2 border-l-2 border-border bg-sidebar p-3 max-sm:mt-4 sm:absolute sm:bottom-4 sm:left-8 lg:px-10 lg:py-8 lg:pr-4 xl:bottom-12">
           <div className="flex flex-row justify-between">
-            <h1 className="text-xl font-semibold md:text-xl">
+            <h1 className="text-lg font-semibold md:text-xl">
               Featured Educators
             </h1>
             <div className="flex flex-row">
@@ -351,7 +346,7 @@ export default function Dashboard() {
               </button>
             </div>
           </div>
-          <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
+          <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-8 xs:grid-cols-3 sm:grid-cols-5 xl:grid-cols-5">
             {firesideBotsQuery.data?.data?.data &&
               firesideBotsQuery.data?.data.data.chatbot_data.map((botData) => (
                 <BotItemFireside key={botData.chatbot_id} botData={botData} />
@@ -367,8 +362,8 @@ export default function Dashboard() {
 
       {/* Popular Creators Section */}
       <div className="mt-4 rounded-xl border-2 border-border bg-sidebar p-3 lg:px-10 lg:py-8">
-        <div className="flex flex-row items-center justify-between">
-          <h1 className="text-xl font-semibold md:text-xl">
+        <div className="flex justify-between gap-4 max-xs:flex-col xs:items-center">
+          <h1 className="text-lg font-semibold md:text-xl">
             Popular Educators
           </h1>
           <select
@@ -377,7 +372,7 @@ export default function Dashboard() {
             onChange={(e) =>
               handleChangeCategoryTab(JSON.parse(e.target.value))
             }
-            className="block w-2/6 rounded-lg border border-border px-4 py-2 text-sm text-heading placeholder-gray-500 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-gray-500"
+            className="block w-full rounded-lg border border-border px-4 py-2 text-sm text-heading placeholder-gray-500 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-gray-500 xs:w-1/2"
           >
             <option
               value={JSON.stringify({ title: "all", category_id: "" })}
@@ -403,7 +398,7 @@ export default function Dashboard() {
             ))}
           </select>
         </div>
-        <div className="mt-8 grid grow grid-cols-2 gap-x-8 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
+        <div className="mt-8 grid grow grid-cols-2 gap-x-8 gap-y-8 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {filteredBots?.map((botData) => (
             <BotItem key={botData.chatbot_id} botData={botData} />
           ))}

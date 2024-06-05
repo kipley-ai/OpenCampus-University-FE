@@ -42,7 +42,7 @@ export default function Header() {
             response_type: "code",
             scope: "openid",
             client_id: "3kG6UNvSppAH5uKpA3pLg6tqdLVMSK1B",
-            redirect_uri: "http://127.0.0.1:3000/login",
+            redirect_uri: `${NEXT_PUBLIC_APP_URL}/login`,
             state: "/",
           }),
         {

@@ -45,7 +45,7 @@ export default function Dashboard() {
   const featuredBotsQuery = useChatbotExplore({
     page: 1,
     page_size: 5,
-    explore_name: "Featured Creators",
+    explore_name: "Featured Educators",
   });
 
   const trendingBotsQuery = useChatbotExplore({
@@ -79,6 +79,7 @@ export default function Dashboard() {
   }, [popularCreatorsQuery]);
 
   const handleChangeCategoryTab = (cat: any) => {
+    console.log("cat :>> ", cat);
     setTab(cat);
     if (cat.category_id === "") {
       setFilteredBots(popularCreatorsQuery?.data?.data.chatbot_data);
@@ -150,7 +151,7 @@ export default function Dashboard() {
   }, [currentIndex]);
 
   return (
-    <div className="px-3 py-8 text-primary md:px-6 xl:px-16">
+    <div className="text-primary">
       {/* Explore Banner Section */}
       <Image
         src="/images/explore-banner.svg"
@@ -161,10 +162,10 @@ export default function Dashboard() {
       />
 
       {/* Featured Creators Section */}
-      <div className="mt-12 rounded-xl border-2 border-border bg-sidebar p-3 lg:p-8">
+      <div className="mt-12 rounded-xl border-2 border-border bg-sidebar p-3 lg:px-10 lg:py-8">
         <div className="flex flex-row justify-between">
-          <h1 className="text-xl font-semibold md:text-2xl">
-            Featured Creators
+          <h1 className="text-xl font-semibold md:text-xl">
+            Featured Educators
           </h1>
           <div className="flex flex-row">
             <button className="mr-2">
@@ -193,7 +194,7 @@ export default function Dashboard() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <rect width="30" height="30" rx="15" fill="#E4E5FB" />
+                <rect width="30" height="30" rx="15" fill="#F9F9FF" />
                 <path
                   d="M8.375 14.5H20.625M20.625 14.5L14.5 20.625M20.625 14.5L14.5 8.375"
                   stroke="#141BEB"
@@ -205,7 +206,7 @@ export default function Dashboard() {
             </button>
           </div>
         </div>
-        <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
+        <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
           {featuredBotsQuery.data?.data?.data &&
             featuredBotsQuery.data?.data.data.chatbot_data.map((botData) => (
               <BotItem key={botData.chatbot_id} botData={botData} />
@@ -219,42 +220,30 @@ export default function Dashboard() {
       <div className="mb-12"></div>
 
       {/* Trending Projects Section */}
-      <div className="flex w-full flex-row">
-        <div className="mr-3 flex-grow self-start">
-          <div className="rounded-xl border-2 border-border bg-sidebar p-8">
-            <h1 className="text-xl font-semibold md:text-2xl">
-              Trending Projects
-            </h1>
-            <div className="mt-4 grid grid-cols-3 gap-x-6 gap-y-8">
-              {trendingBotsQuery.data?.data?.data &&
-                trendingBotsQuery.data?.data.data.chatbot_data.map(
-                  (botData) => (
-                    <BotItemTrending
-                      key={botData.chatbot_id}
-                      botData={botData}
-                    />
-                  ),
-                )}
-            </div>
+      <div className="flex w-full justify-between gap-12">
+        <div className="rounded-xl border-2 border-border bg-sidebar px-10 py-8">
+          <h1 className="text-xl font-semibold md:text-xl">
+            Trending Projects
+          </h1>
+          <div className="mt-4 grid grid-cols-3 items-start gap-x-8 gap-y-4">
+            {trendingBotsQuery.data?.data?.data &&
+              trendingBotsQuery.data?.data.data.chatbot_data.map((botData) => (
+                <BotItemTrending key={botData.chatbot_id} botData={botData} />
+              ))}
           </div>
-          {/* <div ref={loadMoreRef} className="mb-12">
-            {trendingBotsQuery.isFetching && <LoadMoreSpinner />}
-          </div> */}
-          <div className="mb-12"></div>
         </div>
-        <div className="ml-3">
-          <Image
-            src={TrendingImage}
-            alt="Trending Projects"
-            width={330}
-            height={747}
-          />
-        </div>
+        <Image
+          src={TrendingImage}
+          className="h-full"
+          alt="Trending Projects"
+          width={330}
+          height={747}
+        />
       </div>
 
       {/* ОC 100 Sections */}
-      <div className="mt-12 rounded-xl border-2 border-border bg-sidebar p-3 lg:p-8">
-        <h1 className="text-xl font-semibold md:text-2xl">OC 100</h1>
+      {/* <div className="mt-12 rounded-xl border-2 border-border bg-sidebar p-3 lg:px-10 lg:py-8">
+        <h1 className="text-xl font-semibold md:text-xl">OC 100</h1>
         <div className="relative mb-4 mt-4 h-[264px] w-full overflow-hidden">
           <Image
             src={images[currentIndex]}
@@ -270,7 +259,7 @@ export default function Dashboard() {
               <BotItemOC100 key={botData.chatbot_id} botData={botData} />
             ))}
         </div>
-      </div>
+      </div> */}
       {/* Load More Spinner */}
       {/* <div ref={loadMoreRef} className="mb-12">
         {OC100BotsQuery.isFetching && <LoadMoreSpinner />}
@@ -285,9 +274,9 @@ export default function Dashboard() {
           className="z-10 w-full rounded-xl"
           width={1030}
         />
-        <div className="absolute right-4 top-10">
+        <div className="absolute right-16 top-16">
           <Link href={"/chatroom/883f98d5-7b3b-4f09-8518-69c954e4cd10"}>
-            <h1 className="text-xl font-semibold text-white md:text-2xl">
+            <h1 className="text-xl font-semibold text-white md:text-3xl">
               Fireside Chat
             </h1>
             <div className="my-3 flex flex-col">
@@ -296,8 +285,7 @@ export default function Dashboard() {
                 of
               </span>
               <span className="text-sm text-white">
-                the most influential OC 100 educators and creators from a
-                diverse
+                the most influential OC 100 educators from a diverse
               </span>
               <span className="text-sm text-white">
                 range of the Web3 space.
@@ -319,10 +307,10 @@ export default function Dashboard() {
             </div>
           </Link>
         </div>
-        <div className="absolute bottom-12 right-0 rounded-xl border-2 border-border bg-sidebar p-3 lg:p-8">
+        <div className="absolute bottom-12 left-8 rounded-l-xl border-y-2 border-l-2 border-border bg-sidebar p-3 lg:px-10 lg:py-8 lg:pr-4">
           <div className="flex flex-row justify-between">
-            <h1 className="text-xl font-semibold md:text-2xl">
-              Featured Creators
+            <h1 className="text-xl font-semibold md:text-xl">
+              Featured Educators
             </h1>
             <div className="flex flex-row">
               <button className="mr-2">
@@ -351,7 +339,7 @@ export default function Dashboard() {
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <rect width="30" height="30" rx="15" fill="#E4E5FB" />
+                  <rect width="30" height="30" rx="15" fill="#F9F9FF" />
                   <path
                     d="M8.375 14.5H20.625M20.625 14.5L14.5 20.625M20.625 14.5L14.5 8.375"
                     stroke="#141BEB"
@@ -363,7 +351,7 @@ export default function Dashboard() {
               </button>
             </div>
           </div>
-          <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
+          <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
             {firesideBotsQuery.data?.data?.data &&
               firesideBotsQuery.data?.data.data.chatbot_data.map((botData) => (
                 <BotItemFireside key={botData.chatbot_id} botData={botData} />
@@ -378,27 +366,38 @@ export default function Dashboard() {
       </div>
 
       {/* Popular Creators Section */}
-      <div className="mt-4 rounded-xl border-2 border-border bg-sidebar p-3 lg:p-8">
-        <h1 className="text-xl font-semibold md:text-2xl">Popular Creators</h1>
-        <div className="my-8 flex flex-wrap items-center justify-start gap-2 border-b-2 pb-2 text-sm font-semibold text-primary">
-          <button
-            className={`rounded-full px-4 py-1 shadow ${tab.category_id === "" ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
-            onClick={() =>
-              handleChangeCategoryTab({ title: "all", category_id: "" })
+      <div className="mt-4 rounded-xl border-2 border-border bg-sidebar p-3 lg:px-10 lg:py-8">
+        <div className="flex flex-row items-center justify-between">
+          <h1 className="text-xl font-semibold md:text-xl">
+            Popular Educators
+          </h1>
+          <select
+            name="categories"
+            id="categories"
+            onChange={(e) =>
+              handleChangeCategoryTab(JSON.parse(e.target.value))
             }
+            placeholder="Select Category"
+            className="block w-2/6 rounded-lg border border-border px-4 py-2 text-sm text-heading placeholder-gray-500 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-gray-500"
           >
-            All
-          </button>
-          {botCategories?.data?.data?.map((cat: any) => (
-            <button
-              className={`rounded-full px-4 py-1 shadow ${tab.category_id === cat.category_id ? "bg-white text-primary" : "bg-gray-200 text-black opacity-50"}`}
-              onClick={() => handleChangeCategoryTab(cat)}
+            <option
+              className="text-heading"
+              value={JSON.stringify({ title: "all", category_id: "" })}
             >
-              {cat.title}
-            </button>
-          ))}
+              All
+            </option>
+            {botCategories?.data?.data?.map((cat: any) => (
+              <option
+                className="text-heading"
+                key={cat.category_id}
+                value={JSON.stringify(cat)}
+              >
+                {cat.title}
+              </option>
+            ))}
+          </select>
         </div>
-        <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
+        <div className="mt-8 grid grow grid-cols-2 gap-x-8 gap-y-8 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
           {filteredBots?.map((botData) => (
             <BotItem key={botData.chatbot_id} botData={botData} />
           ))}
@@ -474,16 +473,16 @@ const BotItemFireside = ({ botData }: { botData: ChatbotData }) => (
 const BotItemTrending = ({ botData }: { botData: ChatbotData }) => (
   <Link
     href={`/chatbot/${chatbotSlug(botData)}/profile`}
-    className="delay-50 group relative flex grow cursor-pointer flex-col transition ease-in-out"
+    className="delay-50 group relative flex cursor-pointer flex-col transition ease-in-out"
   >
     <Image
       src={botData.profile_image ?? ""}
       height={160}
       width={160}
-      className="rounded-xl group-hover:shadow-xl dark:group-hover:shadow-gray-700"
+      className="w-full rounded-xl group-hover:shadow-xl dark:group-hover:shadow-gray-700"
       alt="Avatar"
     />
-    <div className="mt-4 flex-grow">
+    <div className="mt-4">
       <div className="break-words font-medium max-md:text-sm">
         {botData.name}
       </div>

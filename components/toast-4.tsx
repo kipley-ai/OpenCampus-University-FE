@@ -16,7 +16,7 @@ interface ToastProps {
 
 export default function SuccessFailModal({
   children,
-  type = "",
+  type = "success",
   open,
   setOpen,
   onDone,
@@ -30,7 +30,7 @@ export default function SuccessFailModal({
         className={`flex w-[360px] flex-col items-center justify-center rounded-2xl px-7 py-10 text-heading font-semibold`}
       >
         <div className="flex w-full flex-row items-center justify-between">
-          <h2 className="text-3xl">Success</h2>
+          <h2 className="text-3xl">{type === "success" ? "Success" : type === "error" ? "Error" : null}</h2>
           <Image
             className="h-[12px] w-[12px] cursor-pointer"
             src={CrossIcon}

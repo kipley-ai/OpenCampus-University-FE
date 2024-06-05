@@ -21,6 +21,7 @@ import { keepPreviousData } from "@tanstack/react-query";
 import { PaginationController } from "@/components/pagination-2/controller";
 import { useGetPlugin } from "@/hooks/api/quiz_app";
 import Money from "public/images/money.svg";
+import { handleAppUrlWithoutSlug } from "@/utils/utils";
 
 const formatTimestamp = (timestamp: string): string => {
   const padZero = (num: number): string => (num < 10 ? `0${num}` : `${num}`);
@@ -222,7 +223,7 @@ const ChatbotSection = ({
           <h3 className="text-center text-sm font-semibold uppercase md:text-left">
             More Info
           </h3>
-          <Link href={"/chatbot/" + chatbotDetail.chatbot_id + "/edit"}>
+          <Link href={handleAppUrlWithoutSlug(chatbotDetail) + "/edit"}>
             <button className="button group inline-flex items-center gap-2 rounded-md">
               <svg
                 width="20"

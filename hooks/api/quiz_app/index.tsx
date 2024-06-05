@@ -76,3 +76,16 @@ export const useCreateQuizAPI = () => {
         ).then(res => res.data.data.plugin_data),
     });
   }
+
+export const useUpdateQuizAPI = () => {
+  const { address } = useAccount();
+
+  return useMutation({
+      mutationFn: (params: ICreateQuizParams) =>
+        axios.post("/api/chatbot/edit", params, {
+          headers: {
+            "x-kf-user-id": address,
+          },
+      }),
+  });
+}

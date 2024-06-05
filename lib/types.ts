@@ -19,6 +19,7 @@ export type ChatbotData = {
   suggestion_chat: string;
   plugin_id: string;
   meta_data: string;
+  chatbot_price_per_query: number;
 };
 
 export type ChatbotDataListResponse = {

@@ -66,6 +66,17 @@ export const handleAppUrl = (bot: ChatbotData) => {
   }
 };
 
+export const handleAppUrlWithoutSlug = (bot: ChatbotData) => {
+  switch (bot.plugin_id) {
+    case CHATBOT_PLUGIN_ID:
+      return `/chatbot/` + bot.chatbot_id;
+    case QUIZAPP_PLUGIN_ID:
+      return `/quiz-app/` + bot.chatbot_id;
+    default:
+      return `/chatbot/` + bot.chatbot_id;
+  }
+};
+
 export const parseJWT = (token: string) => {
   var base64Url = token.split('.')[1];
   var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');

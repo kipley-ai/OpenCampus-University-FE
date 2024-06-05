@@ -39,7 +39,9 @@ const ChatHistoryList = () => {
               } ${pathname === handleAppUrl(chatbot) ? "" : ""}`}
             >
               <SidebarLink href={handleAppUrl(chatbot)}>
-                <MessageText size="17" variant="Outline" />
+                <div className="w-[17px]">
+                  <MessageText size="17" variant="Outline" />
+                </div>
                 <h3>{chatbot.name}</h3>
               </SidebarLink>
             </li>

@@ -143,6 +143,9 @@ const ChatbotSettings = () => {
         children={"Your chatbot has been updated successfully!"}
         open={showModal}
         setOpen={setShowModal}
+        onDone={() => {
+          router.push(`/app/${chatbotDetail.data?.data.data.chatbot_id}`);
+        }}
       />
       <div>
         <div className="flex items-center justify-between">

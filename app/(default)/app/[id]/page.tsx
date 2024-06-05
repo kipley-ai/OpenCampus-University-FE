@@ -21,6 +21,7 @@ import { keepPreviousData } from "@tanstack/react-query";
 import { PaginationController } from "@/components/pagination-2/controller";
 import { useGetPlugin } from "@/hooks/api/quiz_app";
 import Money from "public/images/money.svg";
+import { handleAppUrlWithoutSlug } from "@/utils/utils";
 
 const formatTimestamp = (timestamp: string): string => {
   const padZero = (num: number): string => (num < 10 ? `0${num}` : `${num}`);
@@ -164,7 +165,7 @@ const ChatbotSection = ({
   const plugin = pluginData?.find(
     (plugin) => plugin.plugin_id === chatbotDetail.plugin_id,
   );
-  console.log("Plugin detail: ", plugin); // For debugging purpose
+  // console.log("Plugin detail: ", plugin); // For debugging purpose
 
   const [appType, setAppType] = useState("");
 
@@ -222,7 +223,7 @@ const ChatbotSection = ({
           <h3 className="text-center text-sm font-semibold uppercase md:text-left">
             More Info
           </h3>
-          <Link href={"/chatbot/" + chatbotDetail.chatbot_id + "/edit"}>
+          <Link href={handleAppUrlWithoutSlug(chatbotDetail) + "/edit"}>
             <button className="button group inline-flex items-center gap-2 rounded-md">
               <svg
                 width="20"
@@ -407,12 +408,14 @@ const NFTList = ({ id }: { id: any }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(3);
 
-  const { isPending, isError, error, data, isFetching } = useNFTList(
+  // console.log(id)
+
+  const { isPending, isError, error, data, isFetching, isSuccess } = useNFTList(
     {
       page: currentPage,
       page_size: pageSize,
       sort_by: "created",
-      chatbot_id: id!,
+      sft_id: id,
     },
     keepPreviousData,
   );
@@ -472,6 +475,7 @@ const BotDetail = ({ params }: { params: any }) => {
     setHeaderTitle("My Knowledge Key");
   }, []);
   const { id } = params;
+  const [sftId, setSftId] = useState("");
   const router = useRouter();
 
   // const nftQuery = useChatbotDetail({ chatbot_id: id });
@@ -489,7 +493,7 @@ const BotDetail = ({ params }: { params: any }) => {
   const plugin = pluginData?.find(
     (plugin) => plugin.plugin_id === chatbotQuery.data?.data?.data.plugin_id,
   );
-  console.log("Plugin detail: ", plugin); // For debugging purpose
+  // console.log("Plugin detail: ", plugin); // For debugging purpose
 
   const [appType, setAppType] = useState("");
 
@@ -500,6 +504,12 @@ const BotDetail = ({ params }: { params: any }) => {
       setAppType("Chatbot");
     }
   }, [appType, plugin?.title]);
+
+  useEffect(() => {
+    if (chatbotQuery.isSuccess) {
+      setSftId(chatbotQuery.data?.data?.data.sft_id);
+    }
+  }, [chatbotQuery.isSuccess])
 
   return (
     <div className="h-full flex-col justify-start bg-container px-4 md:w-5/6 md:flex-row md:pl-10">
@@ -523,12 +533,20 @@ const BotDetail = ({ params }: { params: any }) => {
           ) : // <NoChatbot />
             null}
         </div>
-        <span className="text-lg font-semibold text-primary md:pt-3">
-          Knowledge Keys
-        </span>
-        <div className="pt-3">
-          <NFTList id={id} />
-        </div>
+        
+        {
+          chatbotQuery.isSuccess && sftId ? (
+            <>
+              <span className="text-lg font-semibold text-primary md:pt-3">
+                Knowledge Keys
+              </span>
+              <div className="pt-3">
+                <NFTList id={sftId} />
+              </div>
+            </>
+            
+          ) : null
+        }
         <div className="my-8 mt-4 flex items-center justify-between">
           <button
             className="flex items-center justify-center gap-2 hover:underline"

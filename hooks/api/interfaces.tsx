@@ -109,6 +109,7 @@ export interface INftList {
   page_size: number;
   sort_by: string;
   chatbot_id?: string | undefined | null;
+  sft_id?: string | undefined | null;
 }
 
 export interface IUpdateUserParams {

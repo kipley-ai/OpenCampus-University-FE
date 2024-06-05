@@ -5,6 +5,7 @@ import { signOut } from "next-auth/react";
 import { useDisconnect, useAccount } from "wagmi";
 import Link from "next/link";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { useAppProvider } from "@/providers/app-provider";
 
 type StatusType = "online" | "busy" | "away" | "offline";
 
@@ -21,6 +22,7 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { disconnect } = useDisconnect();
   const { address } = useAccount();
+  const { user } = useAppProvider();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -63,7 +65,7 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
           />
         )}
         <span className="flex items-center gap-0 text-[9px] font-medium group-hover:underline xs:gap-1 xs:text-xs sm:gap-2 sm:text-[0.8rem]">
-          {address && `${address.slice(0, 6)}...${address.slice(-6)}`}
+          {user.eth_address && `${user.eth_address.slice(0, 6)}...${user.eth_address.slice(-6)}`}
           <IoMdArrowDropdown />
         </span>
       </div>

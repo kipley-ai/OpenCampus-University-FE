@@ -377,9 +377,15 @@ export default function Dashboard() {
             onChange={(e) =>
               handleChangeCategoryTab(JSON.parse(e.target.value))
             }
-            placeholder="Select Category"
             className="block w-2/6 rounded-lg border border-border px-4 py-2 text-sm text-heading placeholder-gray-500 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-gray-500"
           >
+            <option
+              value={JSON.stringify({ title: "all", category_id: "" })}
+              disabled
+              selected
+            >
+              Select Category
+            </option>
             <option
               className="text-heading"
               value={JSON.stringify({ title: "all", category_id: "" })}

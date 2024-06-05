@@ -30,6 +30,8 @@ interface ContextProps {
   setToast: Dispatch<SetStateAction<any>>;
   verifStatus: AuthenticationStatus;
   setVerifStatus: any;
+  user: any;
+  setUser: any;
 }
 
 const AppContext = createContext<ContextProps>({
@@ -53,6 +55,8 @@ const AppContext = createContext<ContextProps>({
   setToast: () => {},
   verifStatus: "unauthenticated",
   setVerifStatus: () => "unauthenticated",
+  user: {},
+  setUser: () => {},
 });
 
 export default function AppProvider({
@@ -71,6 +75,7 @@ export default function AppProvider({
   const [toast, setToast] = useState(false);
   const [verifStatus, setVerifStatus] =
     useState<AuthenticationStatus>("unauthenticated");
+  const [user, setUser] = useState({});
 
   return (
     <AppContext.Provider
@@ -95,6 +100,8 @@ export default function AppProvider({
         setToast,
         verifStatus,
         setVerifStatus,
+        user,
+        setUser,
       }}
     >
       {children}

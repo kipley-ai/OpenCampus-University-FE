@@ -51,19 +51,8 @@ export const useUpdateProfpic = () => {
 };
 
 export const useCreateUser = () => {
-  // const { address } = useAccount();
-
   return useMutation({
-    mutationFn: (address: string) =>
-      axios.post(
-        "/api/user/create",
-        { wallet_addr: address },
-        {
-          headers: {
-            "x-kf-user-id": address,
-          },
-        },
-      ),
+    mutationFn: (params: any) => axios.post("/api/user/create", params),
   });
 };
 
@@ -164,7 +153,7 @@ export const useUserDetail = () => {
           },
         },
       ),
-    staleTime: 1000
+    staleTime: 1000,
   });
 };
 

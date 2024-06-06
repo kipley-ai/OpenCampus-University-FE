@@ -372,7 +372,7 @@ export default function Dashboard() {
             onChange={(e) =>
               handleChangeCategoryTab(JSON.parse(e.target.value))
             }
-            className="block w-full rounded-lg border border-border px-4 py-2 text-sm text-heading placeholder-gray-500 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-gray-500 xs:w-1/2"
+            className="block w-full rounded-lg border border-border px-4 py-2 text-sm text-heading placeholder-gray-500 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-gray-500 xs:w-1/2 md:w-2/5 xl:w-[35%]"
           >
             <option
               value={JSON.stringify({ title: "all", category_id: "" })}

@@ -17,7 +17,10 @@ module.exports = {
         xl: '0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.01)',
       },
       colors: {
-        primary: "var(--color-primary)",
+        primary: {
+          DEFAULT: "var(--color-primary)",
+          dark: "#1016BC",
+        },
         primary_50: "#9498ED",
         secondary: "var(--color-secondary)",
         heading: "var(--color-heading)",

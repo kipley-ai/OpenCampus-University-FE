@@ -38,121 +38,6 @@ const formatTimestamp = (timestamp: string): string => {
   return `${day} ${month} ${year} ${hours}:${minutes}`;
 };
 
-const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
-  const nftOpenSeaLink = `${process.env.NEXT_PUBLIC_OPENSEA_URL}/${nftDetail.sft_address}`;
-
-  return (
-    <div className="grid grid-cols-1 gap-4 pb-4 text-heading md:grid-cols-3 md:pb-12">
-      <div className="w-2/5 md:w-full">
-        <Image
-          className="rounded-2xl"
-          src={nftDetail.profile_image}
-          alt="nft image"
-          width={325}
-          height={325}
-        />
-      </div>
-      <div className="pb-10 pl-7 md:col-span-2">
-        <h1 className="text-center text-3xl font-semibold md:text-left md:text-4xl">
-          {nftDetail.name}
-        </h1>
-        <div className="my-4 mb-5 border-t-2 border-border"></div>
-        <div className="flex flex-row">
-          <p className="mr-2 text-center text-sm font-medium text-[#94A3B8] md:text-left">
-            Knowledge Key Owner
-          </p>
-          <p className="text-center text-sm font-medium text-heading md:text-left">
-            {nftDetail.wallet_addr!.substring(0, 6) +
-              "..." +
-              nftDetail.wallet_addr!.substring(
-                nftDetail.wallet_addr!.length - 6,
-              )}
-          </p>
-        </div>
-        <div className="mt-3 flex flex-row">
-          <p className="mr-2 text-center text-sm font-medium text-[#94A3B8] md:text-left">
-            Created Time
-          </p>
-          <p className="text-center text-sm font-medium text-heading md:text-left">
-            {formatTimestamp(nftDetail.created)}
-          </p>
-        </div>
-        <div className="mt-3">
-          <a
-            href={nftOpenSeaLink}
-            target="_blank"
-            rel="noreferrer"
-            className="flex flex-row hover:brightness-150"
-          >
-            <svg
-              width="23"
-              height="23"
-              viewBox="0 0 25 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M21.5 11V5V3H19.5H13.5V5H17.5V7H15.5V9H13.5V11H11.5V13H9.5V15H11.5V13H13.5V11H15.5V9H17.5V7H19.5V11H21.5ZM11.5 5H5.5H3.5V7V19V21H5.5H17.5H19.5V19V13H17.5V19H5.5V7H11.5V5Z"
-                fill="#7C878E"
-              />
-            </svg>
-            <p className="ml-2 text-center text-sm font-medium text-primary md:text-left">
-              View on OpenSea
-            </p>
-          </a>
-        </div>
-        {/* <div className="my-4 border-t-2 border-border"></div> */}
-        <div className="mb-2 mt-11 flex flex-grow items-center justify-between">
-          <h3 className="text-center text-sm font-semibold uppercase md:text-left">
-            More Info
-          </h3>
-          {/* <Link href={"/chatbot/" + nftDetail.chatbot_id + "/edit"}> */}
-          {/* <Link href={"/nft/" + nftDetail.chatbot_id + "/edit"}> */}
-          <Link href={"/nft/" + nftDetail.sft_id + "/edit"}>
-            <button className="button group inline-flex items-center gap-2 rounded-md">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                className="fill-primary group-hover:fill-container"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M14.8 2H13.2L13.2 3.6H11.6V5.2H10V6.8H8.4V8.4H6.8V10H5.2V11.6H3.6V13.2L2 13.2V16.4V18H3.6H6.8V16.4L8.4 16.4V14.8H10V13.2L11.6 13.2V11.6H13.2V10H14.8V8.4H16.4V6.8H18V5.2H16.4L16.4 3.6H14.8V2ZM14.8 8.4H13.2L13.2 10H11.6V11.6H10V13.2H8.4V14.8H6.8V13.2L5.2 13.2V11.6H6.8V10H8.4V8.4H10V6.8H11.6V5.2H13.2L13.2 6.8H14.8V8.4ZM5.2 13.2H3.6V16.4H6.8V14.8H5.2V13.2Z"
-                />
-              </svg>
-              <span className="text-sm font-medium">Manage</span>
-            </button>
-          </Link>
-        </div>
-        <div className="mt-2 rounded rounded-md border border-[#DDDDEB] bg-box px-5 py-2">
-          <div className="flex flex-grow justify-between">
-            <span className="block text-sm font-medium text-[#94A3B8]">
-              Data Types
-            </span>
-            <span className="block text-sm font-medium capitalize text-heading">
-              {nftDetail.type}
-            </span>
-          </div>
-        </div>
-        <div className="mt-2 rounded rounded-md border border-[#DDDDEB] bg-box px-5 py-2">
-          <div className="flex flex-grow justify-between">
-            <span className="block text-sm font-medium text-[#94A3B8]">
-              Last Updated at
-            </span>
-            <span className="block text-sm font-medium text-heading">
-              {formatTimestamp(nftDetail.created)}
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const ChatbotSection = ({
   chatbotDetail,
   kbDetail,
@@ -179,30 +64,30 @@ const ChatbotSection = ({
 
   return (
     <div className="grid grid-cols-1 gap-4 text-heading md:grid-cols-3">
-      <div className="w-2/5 md:w-full">
+      <div className="mx-auto w-1/2 md:w-full">
         <Image
-          className="rounded-2xl"
+          className="rounded-2xl max-md:mx-auto"
           src={chatbotDetail.profile_image}
           alt="nft image"
           width={325}
           height={325}
         />
       </div>
-      <div className="pb-3 pl-7 md:col-span-2">
-        <h1 className="text-center text-3xl font-semibold md:text-left md:text-4xl">
+      <div className="p-3 sm:pb-3 sm:pl-7 md:col-span-2 md:pt-0">
+        <h1 className="text-center text-2xl font-semibold md:text-left md:text-4xl">
           {chatbotDetail.name}
         </h1>
         <div className="my-4 mb-5 border-t-2 border-border"></div>
         <div className="flex flex-row">
-          <p className="text-center text-sm font-medium text-heading md:text-left">
+          <p className="text-left text-sm font-medium text-heading">
             {chatbotDetail.description}
           </p>
         </div>
         <div className="mt-3 flex flex-row">
-          <p className="mr-2 text-center text-sm font-medium text-[#94A3B8] md:text-left">
+          <p className="mr-2 text-sm font-medium text-[#94A3B8]">
             Chatbot Owner
           </p>
-          <p className="text-center text-sm font-medium text-heading md:text-left">
+          <p className="text-sm font-medium text-heading">
             {chatbotDetail.wallet_addr!.substring(0, 6) +
               "..." +
               chatbotDetail.wallet_addr!.substring(
@@ -210,68 +95,38 @@ const ChatbotSection = ({
               )}
           </p>
         </div>
+        <div className="mt-3 flex flex-row gap-2">
+          <span className="block text-sm font-medium text-[#94A3B8]">
+            Last Updated
+          </span>
+          <span className="block text-sm font-medium text-heading">
+            {formatTimestamp(chatbotDetail.last_updated)}
+          </span>
+        </div>
         <div className="mt-3 flex flex-row">
-          <p className="mr-2 text-center text-sm font-medium text-[#94A3B8] md:text-left">
-            Created Time
-          </p>
-          <p className="text-center text-sm font-medium text-heading md:text-left">
+          <p className="mr-2 text-sm font-medium text-[#94A3B8]">Created</p>
+          <p className="text-sm font-medium text-heading">
             {formatTimestamp(chatbotDetail.created_at)}
           </p>
         </div>
-        {/* <div className="my-4 border-t-2 border-border"></div> */}
-        <div className="mb-2 mt-11 flex flex-grow items-center justify-between">
-          <h3 className="text-center text-sm font-semibold uppercase md:text-left">
-            More Info
-          </h3>
-          <Link href={handleAppUrlWithoutSlug(chatbotDetail) + "/edit"}>
-            <button className="button group inline-flex items-center gap-2 rounded-md">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                className="fill-primary group-hover:fill-container"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M14.8 2H13.2L13.2 3.6H11.6V5.2H10V6.8H8.4V8.4H6.8V10H5.2V11.6H3.6V13.2L2 13.2V16.4V18H3.6H6.8V16.4L8.4 16.4V14.8H10V13.2L11.6 13.2V11.6H13.2V10H14.8V8.4H16.4V6.8H18V5.2H16.4L16.4 3.6H14.8V2ZM14.8 8.4H13.2L13.2 10H11.6V11.6H10V13.2H8.4V14.8H6.8V13.2L5.2 13.2V11.6H6.8V10H8.4V8.4H10V6.8H11.6V5.2H13.2L13.2 6.8H14.8V8.4ZM5.2 13.2H3.6V16.4H6.8V14.8H5.2V13.2Z"
-                />
-              </svg>
-              <span className="text-sm font-medium">Manage {appType}</span>
-            </button>
-          </Link>
-        </div>
-        {/* <div className="mt-2 rounded rounded-md bg-box px-5 py-2 border border-[#DDDDEB]">
-          <div className="flex flex-grow justify-between">
-            <span className="block text-sm text-[#94A3B8] font-medium">
-              Data Types
-            </span>
-            <span className="block text-sm capitalize text-heading font-medium">
-              {kbDetail?.type!}
-            </span>
-          </div>
-        </div> */}
-        <div className="mt-2 rounded rounded-md border border-[#DDDDEB] bg-box px-5 py-2">
-          <div className="flex flex-grow justify-between">
-            <span className="block text-sm font-medium text-[#94A3B8]">
-              Last Updated at
-            </span>
-            <span className="block text-sm font-medium capitalize text-heading">
-              {formatTimestamp(chatbotDetail.last_updated)}
-            </span>
-          </div>
-        </div>
-        <div className="mt-2 rounded rounded-md border border-[#DDDDEB] bg-box px-5 py-2">
-          <div className="flex flex-grow justify-between">
-            <span className="block text-sm font-medium text-[#94A3B8]">
-              App Type
-            </span>
-            <span className="block text-sm font-medium capitalize text-heading">
-              {appType}
-            </span>
-          </div>
-        </div>
+        <Link href={handleAppUrlWithoutSlug(chatbotDetail) + "/edit"}>
+          <button className="button group mt-4 inline-flex items-center gap-2 rounded-md">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              className="fill-primary group-hover:fill-container"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M14.8 2H13.2L13.2 3.6H11.6V5.2H10V6.8H8.4V8.4H6.8V10H5.2V11.6H3.6V13.2L2 13.2V16.4V18H3.6H6.8V16.4L8.4 16.4V14.8H10V13.2L11.6 13.2V11.6H13.2V10H14.8V8.4H16.4V6.8H18V5.2H16.4L16.4 3.6H14.8V2ZM14.8 8.4H13.2L13.2 10H11.6V11.6H10V13.2H8.4V14.8H6.8V13.2L5.2 13.2V11.6H6.8V10H8.4V8.4H10V6.8H11.6V5.2H13.2L13.2 6.8H14.8V8.4ZM5.2 13.2H3.6V16.4H6.8V14.8H5.2V13.2Z"
+              />
+            </svg>
+            <span className="text-sm font-medium">Manage</span>
+          </button>
+        </Link>
       </div>
     </div>
   );
@@ -355,12 +210,12 @@ const NFTCard = ({ nft }: NFTCardProps) => {
     <div className="group relative flex flex-col rounded-3xl bg-box">
       <Image
         src={nft.profile_image || "/images/nft-default-thumb.png"}
-        className="mx-auto h-full rounded-2xl object-cover p-1 pb-0"
+        className="mx-auto h-full rounded-2xl object-cover"
         width={300}
         height={300}
         alt={"NFT Card"}
       />
-      <div className="flex flex-col gap-1 px-4 pt-4">
+      <div className="flex flex-col gap-1 px-4 pt-6">
         {/* <Link href={`/nft/${nft.sft_id}`}> */}
         <p className="line-clamp-1 font-semibold text-primary">{nft.name}</p>
         {/* </Link> */}
@@ -373,7 +228,7 @@ const NFTCard = ({ nft }: NFTCardProps) => {
           {nft.category || "Uncategorised"}
         </p> */}
       <Link href={`/nft/${nft.sft_id}`}>
-        <div className="absolute bottom-0 hidden h-12 w-full items-center justify-center rounded-b-2xl bg-primary group-hover:flex">
+        <div className="hover:bg-primary-dark absolute bottom-8 hidden h-12 w-full items-center justify-center rounded-b-2xl bg-primary group-hover:flex">
           <p className="text-center text-sm font-semibold text-container">
             View More
           </p>
@@ -451,7 +306,7 @@ const NFTList = ({ id }: { id: any }) => {
         </div>
         <div className="flex flex-col items-center pb-4">
           <div
-            className={`${!isFetching && "invisible"} flex w-full items-center justify-center gap-4`}
+            className={`${!isFetching && "invisible"} my-4 flex w-full items-center justify-center gap-4`}
           >
             <FaSpinner size={20} className="animate-spin" />
             <p className="text-md text-heading">Loading</p>
@@ -509,14 +364,14 @@ const BotDetail = ({ params }: { params: any }) => {
     if (chatbotQuery.isSuccess) {
       setSftId(chatbotQuery.data?.data?.data.sft_id);
     }
-  }, [chatbotQuery.isSuccess])
+  }, [chatbotQuery.isSuccess]);
 
   return (
-    <div className="h-full flex-col justify-start bg-container px-4 md:w-5/6 md:flex-row md:pl-10">
-      <h1 className="py-3 text-lg font-semibold text-heading">
+    <div className="bg-container">
+      <h1 className="mb-4 text-lg font-semibold text-heading">
         {appType} Details
       </h1>
-      <div className="flex flex-col rounded-2xl border border-[#DDDDEB] bg-sidebar px-6 py-9 pb-0 lg:px-8 xl:px-10">
+      <div className="flex flex-col rounded-2xl border border-[#DDDDEB] bg-sidebar px-3 py-3 pb-0 sm:py-8 lg:px-8 xl:px-10">
         <div>
           {chatbotQuery.isLoading ? (
             <div className="flex h-[50vh] w-full items-center justify-center gap-4">
@@ -531,22 +386,42 @@ const BotDetail = ({ params }: { params: any }) => {
               kbDetail={kbDetail?.data.data}
             />
           ) : // <NoChatbot />
-            null}
+          null}
         </div>
-        
-        {
-          chatbotQuery.isSuccess && sftId ? (
-            <>
-              <span className="text-lg font-semibold text-primary md:pt-3">
+
+        <hr className="my-6 border-t-2 border-border" />
+
+        {chatbotQuery.isSuccess && sftId ? (
+          <>
+            <div className="flex items-start justify-between gap-2 max-xs:flex-col xs:items-center">
+              <span className="text-lg font-semibold text-primary">
                 Knowledge Keys
               </span>
-              <div className="pt-3">
-                <NFTList id={sftId} />
-              </div>
-            </>
-            
-          ) : null
-        }
+              <button className="button group inline-flex items-center gap-2 rounded-md">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="fill-primary group-hover:fill-container"
+                >
+                  <g clip-path="url(#clip0_700_11496)">
+                    <path d="M13.125 6.99971C13.125 7.39135 12.8099 7.70644 12.4183 7.70644H7.70673V12.418C7.70673 12.8081 7.39018 13.125 7 13.125C6.60983 13.125 6.29327 12.8096 6.29327 12.418V7.70644H1.58173C1.19156 7.70644 0.875002 7.39017 0.875002 7C0.875002 6.611 1.19156 6.29297 1.58173 6.29297H6.29327V1.58144C6.29327 1.19126 6.60983 0.875 7 0.875C7.39018 0.875 7.70673 1.19126 7.70673 1.58144V6.29297H12.4183C12.8099 6.29297 13.125 6.611 13.125 6.99971Z" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_700_11496">
+                      <rect width="14" height="14" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+                <span className="text-sm font-medium">New Knowledge Key</span>
+              </button>
+            </div>
+            <div className="pt-3">
+              <NFTList id={sftId} />
+            </div>
+          </>
+        ) : null}
         <div className="my-8 mt-4 flex items-center justify-between">
           <button
             className="flex items-center justify-center gap-2 hover:underline"

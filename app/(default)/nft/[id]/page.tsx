@@ -41,8 +41,8 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
   const nftOpenSeaLink = `${process.env.NEXT_PUBLIC_OPENSEA_URL}/${nftDetail.sft_address}`;
 
   return (
-    <div className="grid grid-cols-1 gap-4 text-heading md:grid-cols-3">
-      <div className="w-2/5 max-md:mx-auto md:w-full">
+    <div className="grid grid-cols-1 gap-4 text-heading md:grid-cols-3 md:pb-12">
+      <div className="mx-auto w-1/2 md:w-full">
         <Image
           className="rounded-2xl"
           src={nftDetail.profile_image}
@@ -52,7 +52,9 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
         />
       </div>
       <div className="p-3 sm:pb-3 sm:pl-7 md:col-span-2">
-        <h1 className="text-2xl font-semibold md:text-4xl">{nftDetail.name}</h1>
+        <h1 className="text-center text-2xl font-semibold md:text-left md:text-4xl">
+          {nftDetail.name}
+        </h1>
         <div className="my-4 mb-5 border-t-2 border-border"></div>
         <div className="flex flex-row gap-2">
           <p className="text-sm font-medium text-[#94A3B8]">

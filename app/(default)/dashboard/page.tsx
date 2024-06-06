@@ -33,18 +33,19 @@ export default function Dashboard() {
   const [filteredBots, setFilteredBots] = useState<ChatbotData[] | undefined>();
   const [tab, setTab] = useState({ title: "all", category_id: "" });
 
-  // const botsQuery = useChatbotExplore(
-  //   {
-  //     page: 1,
-  //     page_size: pageSize,
-  //     explore_name: "Chatbots",
-  //   },
-  //   keepPreviousData,
-  // );
+  const [featuredBotsPage, setFeaturedBotsPage] = useState<number>(1);
+  const [trendingBotsPage, setTrendingBotsPage] = useState<number>(1);
+  const [OC100BotsPage, setOC100BotsPage] = useState<number>(1);
+  const [firesideBotsPage, setFiresideBotsPage] = useState<number>(1);
+  const [popularCreatorsPage, setPopularCreatorsPage] = useState<number>(1);
+
+  const FEATURED_BOTS_PAGE_SIZE = 5;
+  const FIRESIDE_BOTS_PAGE_SIZE = 5;
+  const POPULAR_CREATORS_PAGE_SIZE = 10;
 
   const featuredBotsQuery = useChatbotExplore({
     page: 1,
-    page_size: 5,
+    page_size: FEATURED_BOTS_PAGE_SIZE,
     explore_name: "Featured Educators",
   });
 
@@ -62,34 +63,25 @@ export default function Dashboard() {
 
   const firesideBotsQuery = useChatbotExplore({
     page: 1,
-    page_size: 6,
-    explore_name: "Fireside Chat Featured Creators",
+    page_size: FIRESIDE_BOTS_PAGE_SIZE,
+    explore_name: "Fireside Chat Featured Educators",
   });
 
-  const { data: popularCreatorsQuery } = useChatbotExplore({
-    page: 1,
-    page_size: 6,
-    explore_name: "OC 100 Winners",
-  });
+  const { data: popularCreatorsQuery, refetch: refetchPopularCreators } =
+    useChatbotExplore({
+      page: popularCreatorsPage,
+      page_size: POPULAR_CREATORS_PAGE_SIZE,
+      explore_name: "Popular Educators",
+      category_id: tab.category_id,
+    });
 
-  useEffect(() => {
-    if (popularCreatorsQuery?.data?.data) {
-      setFilteredBots(popularCreatorsQuery.data?.data.chatbot_data);
-    }
-  }, [popularCreatorsQuery]);
+  console.log("tab :>> ", tab);
 
   const handleChangeCategoryTab = (cat: any) => {
     console.log("cat :>> ", cat);
     setTab(cat);
-    if (cat.category_id === "") {
-      setFilteredBots(popularCreatorsQuery?.data?.data.chatbot_data);
-      return;
-    }
-
-    const f = popularCreatorsQuery?.data?.data.chatbot_data.filter(
-      (c) => c.category_id === cat.category_id,
-    );
-    setFilteredBots(f);
+    setPopularCreatorsPage(1);
+    refetchPopularCreators();
   };
 
   const images = [
@@ -167,37 +159,57 @@ export default function Dashboard() {
           <h1 className="text-lg font-semibold md:text-xl">
             Featured Educators
           </h1>
-          <div className="flex flex-row">
-            <button className="mr-2">
+          <div className="mt-4 flex justify-end">
+            <button
+              className="mr-2"
+              onClick={() => setFeaturedBotsPage((prev) => prev - 1)}
+              disabled={featuredBotsPage === 1}
+            >
               <svg
                 width="30"
                 height="30"
                 viewBox="0 0 30 30"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                className="fill-[#F9F9FF] transition duration-200 ease-in-out hover:fill-[#E4E5FB]"
               >
-                <rect width="30" height="30" rx="15" fill="#F9F9FF" />
+                <rect width="30" height="30" rx="15" />
                 <path
                   d="M20.625 14.498H8.375M8.375 14.498L14.5 20.623M8.375 14.498L14.5 8.37305"
-                  stroke="#141BEB"
+                  stroke={featuredBotsPage === 1 ? "#B0B0B0" : "#141BEB"}
                   stroke-width="1.75"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />
               </svg>
             </button>
-            <button className="ml-2">
+            <button
+              className="ml-2"
+              onClick={() => setFeaturedBotsPage((prev) => prev + 1)}
+              disabled={
+                (featuredBotsQuery?.data?.data?.data.chatbot_count ?? 0) -
+                  featuredBotsPage * FEATURED_BOTS_PAGE_SIZE <=
+                0
+              }
+            >
               <svg
                 width="30"
                 height="30"
                 viewBox="0 0 30 30"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                className="fill-[#F9F9FF] transition duration-200 ease-in-out hover:fill-[#E4E5FB]"
               >
-                <rect width="30" height="30" rx="15" fill="#F9F9FF" />
+                <rect width="30" height="30" rx="15" />
                 <path
                   d="M8.375 14.5H20.625M20.625 14.5L14.5 20.625M20.625 14.5L14.5 8.375"
-                  stroke="#141BEB"
+                  stroke={
+                    (featuredBotsQuery?.data?.data?.data.chatbot_count ?? 0) -
+                      popularCreatorsPage * FEATURED_BOTS_PAGE_SIZE <=
+                    0
+                      ? "#B0B0B0"
+                      : "#141BEB"
+                  }
                   stroke-width="1.75"
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -307,37 +319,57 @@ export default function Dashboard() {
             <h1 className="text-lg font-semibold md:text-xl">
               Featured Educators
             </h1>
-            <div className="flex flex-row">
-              <button className="mr-2">
+            <div className="mt-4 flex justify-end">
+              <button
+                className="mr-2"
+                onClick={() => setFiresideBotsPage((prev) => prev - 1)}
+                disabled={firesideBotsPage === 1}
+              >
                 <svg
                   width="30"
                   height="30"
                   viewBox="0 0 30 30"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  className="fill-[#F9F9FF] transition duration-200 ease-in-out hover:fill-[#E4E5FB]"
                 >
-                  <rect width="30" height="30" rx="15" fill="#F9F9FF" />
+                  <rect width="30" height="30" rx="15" />
                   <path
                     d="M20.625 14.498H8.375M8.375 14.498L14.5 20.623M8.375 14.498L14.5 8.37305"
-                    stroke="#141BEB"
+                    stroke={firesideBotsPage === 1 ? "#B0B0B0" : "#141BEB"}
                     stroke-width="1.75"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   />
                 </svg>
               </button>
-              <button className="ml-2">
+              <button
+                className="ml-2"
+                onClick={() => setFiresideBotsPage((prev) => prev + 1)}
+                disabled={
+                  (firesideBotsQuery?.data?.data?.data?.chatbot_count ?? 0) -
+                    firesideBotsPage * FIRESIDE_BOTS_PAGE_SIZE <=
+                  0
+                }
+              >
                 <svg
                   width="30"
                   height="30"
                   viewBox="0 0 30 30"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  className="fill-[#F9F9FF] transition duration-200 ease-in-out hover:fill-[#E4E5FB]"
                 >
-                  <rect width="30" height="30" rx="15" fill="#F9F9FF" />
+                  <rect width="30" height="30" rx="15" />
                   <path
                     d="M8.375 14.5H20.625M20.625 14.5L14.5 20.625M20.625 14.5L14.5 8.375"
-                    stroke="#141BEB"
+                    stroke={
+                      (firesideBotsQuery?.data?.data?.data.chatbot_count ?? 0) -
+                        firesideBotsPage * FIRESIDE_BOTS_PAGE_SIZE <=
+                      0
+                        ? "#B0B0B0"
+                        : "#141BEB"
+                    }
                     stroke-width="1.75"
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -398,8 +430,66 @@ export default function Dashboard() {
             ))}
           </select>
         </div>
-        <div className="mt-8 grid grow grid-cols-2 gap-x-8 gap-y-8 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-          {filteredBots?.map((botData) => (
+        <div className="mt-4 flex justify-end">
+          <button
+            className="mr-2"
+            onClick={() => setPopularCreatorsPage((prev) => prev - 1)}
+            disabled={popularCreatorsPage === 1}
+          >
+            <svg
+              width="30"
+              height="30"
+              viewBox="0 0 30 30"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="fill-[#F9F9FF] transition duration-200 ease-in-out hover:fill-[#E4E5FB]"
+            >
+              <rect width="30" height="30" rx="15" />
+              <path
+                d="M20.625 14.498H8.375M8.375 14.498L14.5 20.623M8.375 14.498L14.5 8.37305"
+                stroke={popularCreatorsPage === 1 ? "#B0B0B0" : "#141BEB"}
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <button
+            className="ml-2"
+            onClick={() => setPopularCreatorsPage((prev) => prev + 1)}
+            disabled={
+              (popularCreatorsQuery?.data?.data?.chatbot_count ?? 0) -
+                popularCreatorsPage * POPULAR_CREATORS_PAGE_SIZE <=
+              0
+            }
+          >
+            <svg
+              width="30"
+              height="30"
+              viewBox="0 0 30 30"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="fill-[#F9F9FF] transition duration-200 ease-in-out hover:fill-[#E4E5FB]"
+            >
+              <rect width="30" height="30" rx="15" />
+              <path
+                d="M8.375 14.5H20.625M20.625 14.5L14.5 20.625M20.625 14.5L14.5 8.375"
+                stroke={
+                  (popularCreatorsQuery?.data?.data?.chatbot_count ?? 0) -
+                    popularCreatorsPage * POPULAR_CREATORS_PAGE_SIZE <=
+                  0
+                    ? "#B0B0B0"
+                    : "#141BEB"
+                }
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+        <div className="mt-4 grid grow grid-cols-2 gap-x-8 gap-y-8 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+          {popularCreatorsQuery?.data?.data.chatbot_data?.map((botData) => (
             <BotItem key={botData.chatbot_id} botData={botData} />
           ))}
         </div>

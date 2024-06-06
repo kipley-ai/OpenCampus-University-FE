@@ -122,6 +122,7 @@ export interface IChatbotExplore {
   page: number;
   page_size: number;
   explore_name: string;
+  category_id?: string | undefined | null;
 }
 
 export interface IChatroomParams {

@@ -1,3 +1,5 @@
+"use client";
+
 import { useParams } from "next/navigation";
 import { useCreateChatbotContext } from "./create-chatbot-context";
 import { uuid } from "uuidv4";

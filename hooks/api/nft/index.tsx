@@ -1,3 +1,5 @@
+"use client";
+
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useAccount } from "wagmi";
 import axios from "axios";

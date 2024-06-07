@@ -1,3 +1,5 @@
+"use client";
+
 import { keepPreviousData } from "@tanstack/react-query";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import axios from "axios";

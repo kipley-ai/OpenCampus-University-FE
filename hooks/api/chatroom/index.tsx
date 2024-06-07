@@ -1,3 +1,5 @@
+"use client";
+
 import { IChatroomParams, IChatroomHistoryParams } from "../interfaces";
 import { useAccount } from "wagmi";
 import { useMutation, useQuery, useQueries } from "@tanstack/react-query";

@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { useParams, useRouter, redirect } from "next/navigation";

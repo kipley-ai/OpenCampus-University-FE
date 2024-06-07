@@ -1,3 +1,5 @@
+"use client";
+
 import DashboardCard05 from "@/app/(dashboard)/dashboard/dashboard-card-05";
 import { useState, useEffect, useRef } from "react";
 import { useDebouncedCallback } from "use-debounce";

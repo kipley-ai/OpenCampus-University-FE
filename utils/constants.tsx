@@ -28,3 +28,6 @@ export const QUIZAPP_PLUGIN_ID = "fea23ba8-4352-49a0-8871-a206248971ce";
 export const TWITTER_ITEM_TYPE = "twitter_id_external";
 
 export const FIRESIDE_CHAT_ID = "883f98d5-7b3b-4f09-8518-69c954e4cd10";
+
+export const CREATOR_PATHS = ["/knowledge/create", "/nft"];
+export const CREATOR_ROLES = ["CREATOR", "SUPERADMIN"];

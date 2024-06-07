@@ -12,6 +12,7 @@ import { useCheckToken } from "@/hooks/api/auth";
 import { useAppProvider } from "@/providers/app-provider";
 import { SUBDOMAINS } from "@/utils/constants";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
+import { CREATOR_PATHS, CREATOR_ROLES } from "@/utils/constants";
 
 export default function DefaultLayout({
   children,
@@ -52,6 +53,13 @@ export default function DefaultLayout({
   const { data: checkTokenData, error: checkTokenError } = useCheckToken(token);
 
   if (!token && pathname !== "/dashboard") {
+    return redirect("/dashboard");
+  }
+
+  if (
+    CREATOR_PATHS.includes(pathname) &&
+    !CREATOR_ROLES.includes(userDetail?.data?.data?.role?.toUpperCase())
+  ) {
     return redirect("/dashboard");
   }
 

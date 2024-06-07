@@ -139,7 +139,7 @@ export const useCreditUsage = (
 };
 
 export const useUserDetail = () => {
-  const { address } = useAccount();
+  const address = localStorage.getItem("address");
 
   return useQuery({
     queryKey: ["user-detail"],

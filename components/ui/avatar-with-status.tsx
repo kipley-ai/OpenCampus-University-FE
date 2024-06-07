@@ -21,7 +21,7 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { disconnect } = useDisconnect();
-  const { address } = useAccount();
+  const address = localStorage.getItem("address");
   const { user } = useAppProvider();
 
   const toggleDropdown = () => {
@@ -65,7 +65,7 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
           />
         )}
         <span className="flex items-center gap-0 text-[9px] font-medium group-hover:underline xs:gap-1 xs:text-xs sm:gap-2 sm:text-[0.8rem]">
-          {user.eth_address && `${user.eth_address.slice(0, 6)}...${user.eth_address.slice(-6)}`}
+          {address && `${address.slice(0, 6)}...${address.slice(-6)}`}
           <IoMdArrowDropdown />
         </span>
       </div>

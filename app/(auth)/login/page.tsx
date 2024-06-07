@@ -56,6 +56,7 @@ export default function Login() {
         onSuccess: () => {
           console.log("User created");
           localStorage.setItem("token", access_token);
+          localStorage.setItem("address", user.eth_address);
         },
         onError: (error) => {
           console.error("Error:", error);

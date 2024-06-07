@@ -40,7 +40,7 @@ export default function AccountSettings() {
 
   const { modalTopUp, setModalTopUp, user } = useAppProvider();
   const { data: userDetail, isLoading } = useUserDetail();
-  const address = userDetail?.data?.data.wallet_addr;
+  const address = localStorage.getItem("address");
 
   const { theme, setTheme } = useTheme();
 
@@ -143,9 +143,9 @@ export default function AccountSettings() {
           />
           <div className="items-between ml-4">
             <p className="font-medium">
-              {user.eth_address?.substring(0, 11) +
+              {address?.substring(0, 11) +
                 "..." +
-                user.eth_address?.substring(user.eth_address.length - 11)}
+                address?.substring(address.length - 11)}
             </p>
           </div>
         </div>

@@ -117,6 +117,7 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
               e.preventDefault();
               localStorage.setItem("kip-protocol-signature", "");
               localStorage.setItem("token", "");
+              localStorage.setItem("address", "");
               signOut();
               disconnect();
             }}

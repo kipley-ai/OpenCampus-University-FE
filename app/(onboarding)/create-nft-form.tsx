@@ -436,7 +436,7 @@ export default function NFT() {
                 </div> */}
               <div className="flex w-2/3 flex-col gap-1">
                 <label className="flex flex-row items-center space-x-3 text-wrap text-xs font-semibold text-heading lg:text-sm">
-                  <span>Price Per Query (in OC Points)</span>
+                  <span>Price Per Query (in OCU Credits)</span>
                   <Tooltip bg="dark" position="right" size="md">
                     Set your price per query on your knowledge key and get paid
                     in $EDU.

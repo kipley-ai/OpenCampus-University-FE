@@ -384,10 +384,10 @@ export const ChatBotForm = () => {
                 </div>
                 <div className="w-full">
                   <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold lg:text-sm">
-                    <span>Price Per Query (in OC Points)*</span>
+                    <span>Price Per Query (in OCU Credits)*</span>
                     <Tooltip bg="dark" position="right" size="md">
                       Set your price per query on your chatbot app and get paid
-                      in OC Points.
+                      in OCU Credits.
                     </Tooltip>
                   </label>
                   <input

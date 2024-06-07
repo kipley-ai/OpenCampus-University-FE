@@ -175,7 +175,7 @@ export const ActiveTasks = () => {
         }}>
         <div className="flex flex-col space-y-5">
           <Image src={OC100} alt="OC100"/>
-          <h1 className="text-sm xl:text-xl font-bold">Vote for your favorite creator on OC100 to earn daily OC Points!</h1>
+          <h1 className="text-sm xl:text-xl font-bold">Vote for your favorite creator on OC100 to earn daily OCU Credits!</h1>
         </div>
         <div className="flex flex-col items-center space-y-3 w-1/5">
           <Button

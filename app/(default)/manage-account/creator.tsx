@@ -104,7 +104,7 @@ const WithdrawConfirm = ({
             setValues={setValues}
           />
         </div>
-        <span>1000 OC Points</span>
+        <span>1000 OCU Credits</span>
       </div>
       <div className="flex flex-row justify-between">
         <button

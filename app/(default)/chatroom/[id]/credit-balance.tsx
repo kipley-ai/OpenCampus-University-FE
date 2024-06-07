@@ -63,7 +63,7 @@ export default function CreditBalance() {
     <div className="flex w-full flex-col justify-start gap-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <h2 className="text-xs text-secondary-text">OC Points BALANCE</h2>
+          <h2 className="text-xs text-secondary-text">OCU Credits BALANCE</h2>
         </div>
         <button
           className="self-end rounded-full hover:text-primary"
@@ -102,7 +102,7 @@ export default function CreditBalance() {
         </svg>
         <p>
           <span className="lg:text-md text-sm font-medium">
-            {creditBalance} OC Points
+            {creditBalance} OCU Credits
           </span>
         </p>
       </div>
@@ -116,7 +116,7 @@ export default function CreditBalance() {
         onClick={() => setModalTopUp(true)}
         disabled={topUpStatus === "processing"}
       >
-        <p>Top up OC Points</p>
+        <p>Top up OCU Credits</p>
         <FaArrowRight />
       </Button>
       <ModalTopUpSuccessful

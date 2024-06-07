@@ -30,7 +30,7 @@ export default function FreeKFIToken() {
           Free Mint $EDU Token
         </h1>
         <p className="mb-8 w-2/3 text-lg text-heading">
-          Get free $EDU Token. You can use it to top up OC Points and interact
+          Get free $EDU Token. You can use it to top up OCU Credits and interact
           with any chatbots on KnowledgeFi.
         </p>
         <div className="flex flex-col items-center space-y-4">

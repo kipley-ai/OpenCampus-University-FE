@@ -78,7 +78,7 @@ export const Leaderboard = () => {
         <div className="flex flex-col items-center justify-center border rounded-xl w-1/3 py-5 px-10 text-center space-y-1 text-sm bg-primary text-white"
         style={{backgroundImage: `url(${BackgroundPattern.src})`, backgroundSize: "100% 100%"}}>
           <Image src={Box} alt="Box" />
-          <p className="font-semibold">Top 100 will share in a pool of 100,000 OC Points!</p>
+          <p className="font-semibold">Top 100 will share in a pool of 100,000 OCU Credits!</p>
           <p className="opacity-50">Next distribution will happen in 3 days, 8 hours, 17 minutes</p>
         </div>
       </div>

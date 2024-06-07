@@ -144,16 +144,16 @@ export default function ModalTopUp({
         action={false}
       >
         <p className="font-semibold">
-          Insufficient OC Points balance. Please get more OC Points token.
+          Insufficient OCU Credits balance. Please get more OCU Credits token.
         </p>
       </Notification>
       <div className="flex flex-col justify-between gap-4 rounded-lg p-8 shadow-md">
         <div className="flex flex-col gap-1">
           <h1 className="text-lg font-semibold text-primary">
-            Top Up OC Points
+            Top Up OCU Credits
           </h1>
           <h2 className="text-sm font-medium text-body">
-            Get OC Points by Paying
+            Get OCU Credits by Paying
             <span className="text-primary"> $EDU </span>
             token.
           </h2>

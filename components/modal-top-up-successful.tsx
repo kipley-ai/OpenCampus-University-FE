@@ -43,7 +43,7 @@ export default function ModalTopupSuccessful({
             </h1>
           </div>
           <h2 className="text-lg text-aqua-700 md:text-2xl">
-            {amount} OC Points
+            {amount} OCU Credits
           </h2>
         </div>
         <Button

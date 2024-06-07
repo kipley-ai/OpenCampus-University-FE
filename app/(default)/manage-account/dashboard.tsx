@@ -297,7 +297,7 @@ export default function AccountSettings() {
 
             <div className="flex items-center">
               <h4 className="mr-1 text-[16px] font-semibold">
-                OC Points Balance
+                OCU Credits Balance
               </h4>
               <svg
                 width="14"

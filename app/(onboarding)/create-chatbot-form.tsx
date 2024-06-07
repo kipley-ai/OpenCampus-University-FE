@@ -470,10 +470,10 @@ const ChatBotForm = () => {
             <div>
               {/* <label className="block text-xs font-semibold text-heading lg:text-sm "> */}
               <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold text-heading lg:text-sm">
-                <span>Price Per Query (in OC Points)</span>
+                <span>Price Per Query (in OCU Credits)</span>
                 <Tooltip bg="dark" position="right" size="md">
                   Set your price per query on your chatbot app and get paid in
-                  OC Points.
+                  OCU Credits.
                 </Tooltip>
               </label>
               <div className="mt-3">

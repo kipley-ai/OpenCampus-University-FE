@@ -85,7 +85,7 @@ export const Leaderboard = () => {
       <div className="flex flex-col">
         <p className="text-xs font-semibold mb-1">CURRENT WEEK'S RANK</p>
         <div className="flex flex-col space-y-10">
-          { leaderboardData && 
+          { leaderboardData.data?.leaderboard && 
             leaderboardData.data?.leaderboard.map((item, index) => (
             <div className="flex flex-row justify-between px-5 py-4 border-2 items-center rounded-xl font-semibold">
               <div className="flex flex-row space-x-8 items-center justify-center">

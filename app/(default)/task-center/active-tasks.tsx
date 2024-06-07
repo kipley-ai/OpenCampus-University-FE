@@ -225,7 +225,7 @@ export const ActiveTasks = () => {
           Verification failed. Please finish the task and try again.
         </Toast>
         { 
-          taskList.map((task, index) => (
+          taskList && taskList.map((task, index) => (
             <TaskCard
               key={index}
               data={task}

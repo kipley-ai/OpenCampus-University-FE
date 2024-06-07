@@ -230,7 +230,7 @@ export default function Dashboard() {
 
       {/* Trending Projects Section */}
       <div className="flex w-full gap-10">
-        <div className="rounded-xl border-2 border-border bg-sidebar p-3 lg:px-10 lg:py-8">
+        <div className="rounded-xl border-2 border-border bg-sidebar p-3 lg:px-10 lg:py-8 xl:grow">
           <h1 className="text-lg font-semibold md:text-xl">
             Trending Projects
           </h1>
@@ -243,7 +243,7 @@ export default function Dashboard() {
         </div>
         <Image
           src={TrendingImage}
-          className="hidden rounded-xl object-cover md:flex"
+          className="hidden rounded-xl object-cover md:flex xl:grow"
           alt="Trending Projects"
           width={330}
           height={747}
@@ -283,7 +283,7 @@ export default function Dashboard() {
           className="z-10 w-full rounded-xl"
           width={1030}
         />
-        <div className="absolute right-2 top-4 w-1/2 overflow-y-auto max-xs:h-1/5 sm:top-8 lg:right-16 xl:top-16">
+        <div className="absolute right-2 top-4 w-1/2 overflow-y-auto max-xs:h-1/5 sm:top-8 lg:right-16 xl:top-12 2xl:top-16">
           <Link href={"/chatroom/883f98d5-7b3b-4f09-8518-69c954e4cd10"}>
             <h1 className="font-semibold text-white xs:text-lg md:text-3xl">
               Fireside Chat
@@ -311,7 +311,7 @@ export default function Dashboard() {
             </div>
           </Link>
         </div>
-        <div className="rounded-l-xl border-y-2 border-l-2 border-border bg-sidebar p-3 max-sm:mt-4 sm:absolute sm:bottom-4 sm:left-8 lg:px-10 lg:py-8 lg:pr-4 xl:bottom-12">
+        <div className="rounded-l-xl border-y-2 border-l-2 border-border bg-sidebar p-3 max-sm:mt-4 sm:absolute sm:bottom-4 sm:left-8 lg:px-10 lg:py-8 lg:pr-4 xl:bottom-12 2xl:right-0">
           <div className="flex flex-row justify-between">
             <h1 className="text-lg font-semibold md:text-xl">
               Featured Educators
@@ -507,7 +507,7 @@ const BotItem = ({ botData }: { botData: ChatbotData }) => (
       src={botData.profile_image ?? ""}
       height={260}
       width={260}
-      className="rounded-xl group-hover:shadow-xl dark:group-hover:shadow-gray-700"
+      className="w-full rounded-xl group-hover:shadow-xl dark:group-hover:shadow-gray-700"
       alt="Avatar"
     />
     <div className="mt-4 flex-grow">
@@ -547,7 +547,7 @@ const BotItemFireside = ({ botData }: { botData: ChatbotData }) => (
       src={botData.profile_image ?? ""}
       height={260}
       width={260}
-      className="rounded-xl group-hover:shadow-xl dark:group-hover:shadow-gray-700"
+      className="w-full rounded-xl group-hover:shadow-xl dark:group-hover:shadow-gray-700"
       alt="Avatar"
     />
     <div className="mt-4 flex-grow">

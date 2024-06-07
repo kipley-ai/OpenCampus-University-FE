@@ -1,10 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { useAccount } from "wagmi";
 import axios from "axios";
 
-export const useSuperAdmin = () => {
-  const { address } = useAccount();
+const address = localStorage.getItem("address");
 
+export const useSuperAdmin = () => {
   return useQuery({
     queryKey: ["access"],
     queryFn: () =>

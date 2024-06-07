@@ -4,10 +4,9 @@ import axios from "axios";
 import { ICreateKBAndNFTParams, IKBDetail, IKBItem } from "../interfaces";
 import { KBItemResponse } from "@/lib/types";
 
+const address = localStorage.getItem("address");
 
 export const useDefaultValue = (params: {key:string}) => {
-	const { address } = useAccount();
-
 	return useQuery({
 		queryKey: ["default-value", params.key],
 		queryFn: () =>

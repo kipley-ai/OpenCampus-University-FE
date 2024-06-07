@@ -11,9 +11,9 @@ import {
 import { KBItemResponse } from "@/lib/types";
 import { useSession } from "next-auth/react";
 
-export const useCreateKBAndMintNFT = () => {
-  const { address } = useAccount();
+const address = localStorage.getItem("address");
 
+export const useCreateKBAndMintNFT = () => {
   return useMutation({
     mutationFn: (params: ICreateKBAndNFTParams) =>
       axios.post("/api/kb/create", params, {
@@ -25,8 +25,6 @@ export const useCreateKBAndMintNFT = () => {
 };
 
 export const useMintNFT = () => {
-  const { address } = useAccount();
-
   return useMutation({
     mutationFn: (params: { kb_id: string }) =>
       axios.post("/api/kb/mint_nft", params, {
@@ -38,8 +36,6 @@ export const useMintNFT = () => {
 };
 
 export const useMintNFTStatus = (kbId: string, isNftMinted: boolean) => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["mint-nft-status", kbId],
     queryFn: () =>
@@ -58,8 +54,6 @@ export const useMintNFTStatus = (kbId: string, isNftMinted: boolean) => {
 };
 
 export const useUpdateKB = () => {
-  const { address } = useAccount();
-
   return useMutation({
     mutationFn: (params: IKBAddItem) =>
       axios.post("/api/kb/update_kb", params, {
@@ -71,8 +65,6 @@ export const useUpdateKB = () => {
 };
 
 export const useDeleteKBItem = () => {
-  const { address } = useAccount();
-
   return useMutation({
     mutationFn: (params: { kb_id: string; items_name: IKBDeleteItem[] }) =>
       axios.post("/api/kb/delete-item", params, {
@@ -87,8 +79,6 @@ export const useKBItem = (
   params: IKBItem,
   placeholderData: typeof keepPreviousData | undefined = undefined,
 ) => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["kb-item", params.page],
     queryFn: () =>
@@ -102,8 +92,6 @@ export const useKBItem = (
 };
 
 export const useKBDetail = (params: IKBDetail) => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["kb-detail", params.kb_id],
     queryFn: () =>
@@ -117,8 +105,6 @@ export const useKBDetail = (params: IKBDetail) => {
 };
 
 export const useScrapeTwitter = () => {
-  const { address } = useAccount();
-
   return useMutation({
     mutationFn: (params: { username: string }) =>
       axios.post("/api/kb/scrape_twitter", params, {
@@ -130,8 +116,6 @@ export const useScrapeTwitter = () => {
 };
 
 export const useScrapeTwitterStatus = (params: { username: string }) => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["scrape-twitter-status", params.username],
     queryFn: () =>
@@ -150,8 +134,6 @@ export const useScrapeTwitterStatus = (params: { username: string }) => {
 };
 
 export const useCheckLink = () => {
-  const { address } = useAccount();
-
   return useMutation({
     mutationFn: (params: { type: string, url: string }) =>
       axios.post("/api/kb/check-link", params, {

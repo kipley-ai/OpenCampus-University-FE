@@ -15,6 +15,8 @@ import {
 } from "../interfaces";
 import { ChatbotDataListResponse, ChatbotDetailResponse } from "@/lib/types";
 
+const address = localStorage.getItem("address");
+
 export const useChatbotList = (
   params: IChatbotList,
   placeholderData: typeof keepPreviousData | undefined = undefined,
@@ -36,8 +38,6 @@ export const useChatbotList = (
 };
 
 export const useCreateChatbotAPI = () => {
-  const { address } = useAccount();
-
   return useMutation({
     mutationFn: (params: ICreateChatbotParams) =>
       axios.post("/api/chatbot/create", params, {
@@ -49,8 +49,6 @@ export const useCreateChatbotAPI = () => {
 };
 
 export const useChatbotDetail = (params: IChatbotDetailParams) => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["chatbot", params.chatbot_id],
     queryFn: () =>
@@ -64,8 +62,6 @@ export const useChatbotDetail = (params: IChatbotDetailParams) => {
 };
 
 export const useUpdateChatbotAPI = () => {
-  const { address } = useAccount();
-
   return useMutation({
     mutationFn: (params: IUpdateChatbotParams) =>
       axios.post("/api/chatbot/edit", params, {
@@ -77,8 +73,6 @@ export const useUpdateChatbotAPI = () => {
 };
 
 export const useNewSession = () => {
-  const { address } = useAccount();
-
   return useMutation({
     mutationFn: (params: IChatbotDetailParams) =>
       axios.post("/api/chatbot/new_session", params, {
@@ -90,8 +84,6 @@ export const useNewSession = () => {
 };
 
 export const useGetSession = (params: IChatbotDetailParams) => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["session", params.chatbot_id],
     queryFn: () =>
@@ -104,8 +96,6 @@ export const useGetSession = (params: IChatbotDetailParams) => {
 };
 
 export const useChatbotChatList = () => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["chatbot", "chat_list"],
     queryFn: () =>
@@ -122,8 +112,6 @@ export const useChatbotChatList = () => {
 };
 
 export const useGetCategory = () => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["chatbot", "category"],
     queryFn: () =>
@@ -143,8 +131,6 @@ export const useMyChatbotList = (
   params: IChatbotList,
   placeholderData: typeof keepPreviousData | undefined = undefined,
 ) => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["my-chatbots", params.page],
     queryFn: () =>
@@ -158,8 +144,6 @@ export const useMyChatbotList = (
 };
 
 export const useGetChatbotPrice = (params: IChatbotDetailParams) => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["chatbot", "price", params.chatbot_id],
     queryFn: () =>
@@ -172,8 +156,6 @@ export const useGetChatbotPrice = (params: IChatbotDetailParams) => {
 }
 
 export const useChatbotPKLStatus = (params: any) => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["chatbot", "pkl", params.kb_id],
     queryFn: () =>
@@ -188,8 +170,6 @@ export const useChatbotPKLStatus = (params: any) => {
 }
 
 export const useUpdateSharedChat = () => {
-  const { address } = useAccount();
-
   return useMutation({
     mutationFn: (params: any) =>
       axios.post("/api/chatbot/update_shared_chat", params, {
@@ -201,8 +181,6 @@ export const useUpdateSharedChat = () => {
 }
 
 export const useGetSharedChatId = (params: any) => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["chatbot", "shared_chat_id", params.chatbot_id],
     queryFn: () =>
@@ -215,8 +193,6 @@ export const useGetSharedChatId = (params: any) => {
 }
 
 export const useGetSharedChat = (params: any) => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["chatbot", "shared_chat", params.id],
     queryFn: () =>

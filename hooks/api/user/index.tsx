@@ -10,9 +10,9 @@ import axios from "axios";
 import { IPaginate } from "../interfaces";
 import { EarningReportResponse, UserDetailResponse } from "@/lib/types";
 
-export const useProfpic = () => {
-  const { address } = useAccount();
+const address = localStorage.getItem("address");
 
+export const useProfpic = () => {
   return useQuery({
     queryKey: ["user", "profpic", address],
     queryFn: () =>
@@ -31,7 +31,6 @@ export const useProfpic = () => {
 
 export const useUpdateProfpic = () => {
   const queryClient = useQueryClient();
-  const { address } = useAccount();
 
   return useMutation({
     mutationFn: (profilePicture: string) =>
@@ -60,8 +59,6 @@ export const useDepositHistory = (
   params: IPaginate,
   placeholderData: typeof keepPreviousData | undefined = undefined,
 ) => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["deposit", params.page],
     queryFn: () =>
@@ -77,8 +74,6 @@ export const useWithdrawHistory = (
   params: IPaginate,
   placeholderData: typeof keepPreviousData | undefined = undefined,
 ) => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["withdraw", params.page],
     queryFn: () =>
@@ -91,8 +86,6 @@ export const useWithdrawHistory = (
 };
 
 export const useUpdateUserAPI = () => {
-  const { address } = useAccount();
-
   return useMutation({
     mutationFn: (params: IUpdateUserParams) =>
       axios.post("/api/user/update", params, {
@@ -107,8 +100,6 @@ export const useEarningReport = (
   params: IPaginate,
   placeholderData: typeof keepPreviousData | undefined = undefined,
 ) => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["earning", params.page],
     queryFn: () =>
@@ -125,8 +116,6 @@ export const useCreditUsage = (
   params: IPaginate,
   placeholderData: typeof keepPreviousData | undefined = undefined,
 ) => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["credit", params.page],
     queryFn: () =>
@@ -158,8 +147,6 @@ export const useUserDetail = () => {
 };
 
 export const useCreatorOverview = () => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["creator-overview"],
     queryFn: () =>
@@ -176,8 +163,6 @@ export const useCreatorOverview = () => {
 };
 
 export const useIsWhitelisted = () => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["is-whitelisted"],
     queryFn: () =>
@@ -194,8 +179,6 @@ export const useIsWhitelisted = () => {
 };
 
 export const useAddRecharge = () => {
-  const { address } = useAccount();
-
   return useMutation({
     mutationFn: (params: { tx_id: string }) =>
       axios.post("/api/user/add-recharge", params, {
@@ -207,8 +190,6 @@ export const useAddRecharge = () => {
 };
 
 export const useRechargeStatus = (params: any) => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["recharge-status"],
     queryFn: () =>
@@ -227,8 +208,6 @@ export const useRechargeStatus = (params: any) => {
 };
 
 export const useTotalReferral = () => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: ["user", "total", "referral"],
     queryFn: () =>

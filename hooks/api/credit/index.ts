@@ -1,11 +1,10 @@
-import { useAccount } from "wagmi";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { ICreditDeductionParams } from "../interfaces";
 
-export const useCreditDeduction = () => {
-  const { address } = useAccount();
+const address = localStorage.getItem("address");
 
+export const useCreditDeduction = () => {
   return useMutation({
     mutationFn: (params: ICreditDeductionParams) =>
       axios.post("/api/credit/use-app", params, {
@@ -17,8 +16,6 @@ export const useCreditDeduction = () => {
 };
 
 export const useCreditBalance = () => {
-  const { address } = useAccount();
-
   return useQuery({
     queryKey: [],
     queryFn: () =>

@@ -9,9 +9,9 @@ import { useAccount } from "wagmi";
 import { chatPayloadSchema, ChatPayload, ChatRoomPayload, LastMessagePayload, LastChatRoomMessagePayload } from "./schema";
 import axios from "axios";
 
-export const useChatSession = (params: IChatBoxParams) => {
-	const { address } = useAccount();
+const address = localStorage.getItem("address");
 
+export const useChatSession = (params: IChatBoxParams) => {
 	return useQuery(
 		{
 			queryKey: [
@@ -68,8 +68,6 @@ export const useChatroomWS = (socketUrl: string) => {
 };
 
 export const useChatHistory = (params: IChatBoxParams) => {
-	const { address } = useAccount();
-
 	return useQuery({
 		queryKey: [...GET_CHATBOX_HISTORY, params.session_id],
 		queryFn: () =>
@@ -82,8 +80,6 @@ export const useChatHistory = (params: IChatBoxParams) => {
 };
 
 export const useDeleteChatHistory = () => {
-	const { address } = useAccount();
-
 	return useMutation({
 		mutationFn: (params: IChatBoxHistoryParams) =>
 			axios.post("/api/chatbox/delete_chat_history", params, {

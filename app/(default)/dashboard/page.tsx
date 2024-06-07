@@ -75,10 +75,7 @@ export default function Dashboard() {
       category_id: tab.category_id,
     });
 
-  console.log("tab :>> ", tab);
-
   const handleChangeCategoryTab = (cat: any) => {
-    console.log("cat :>> ", cat);
     setTab(cat);
     setPopularCreatorsPage(1);
     refetchPopularCreators();
@@ -232,12 +229,12 @@ export default function Dashboard() {
       <div className="mb-12"></div>
 
       {/* Trending Projects Section */}
-      <div className="flex w-full items-start justify-between gap-12 max-sm:flex-col">
+      <div className="flex w-full gap-10">
         <div className="rounded-xl border-2 border-border bg-sidebar p-3 lg:px-10 lg:py-8">
           <h1 className="text-lg font-semibold md:text-xl">
             Trending Projects
           </h1>
-          <div className="mt-4 grid grid-cols-2 items-start gap-x-8 gap-y-4 xs:grid-cols-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-4 grid grid-cols-2 items-start gap-x-8 gap-y-4 xs:grid-cols-3 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
             {trendingBotsQuery.data?.data?.data &&
               trendingBotsQuery.data?.data.data.chatbot_data.map((botData) => (
                 <BotItemTrending key={botData.chatbot_id} botData={botData} />
@@ -246,7 +243,7 @@ export default function Dashboard() {
         </div>
         <Image
           src={TrendingImage}
-          className="h-full max-sm:hidden"
+          className="hidden rounded-xl object-cover md:flex"
           alt="Trending Projects"
           width={330}
           height={747}

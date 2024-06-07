@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { ONBOARDING_FLOW } from "@/utils/constants";
 
 type InviteCodeProps = {
-  address: string | undefined;
+  address: string | undefined | null;
 };
 
 const InviteCode = ({ address }: InviteCodeProps) => {

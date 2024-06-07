@@ -36,7 +36,7 @@ interface Form {
 
 const ChatbotSettings = () => {
   const updateChatbot = useUpdateChatbotAPI();
-  const { address } = useAccount();
+  const address = localStorage.getItem("address");
 
   const { id } = useParams();
   const router = useRouter();

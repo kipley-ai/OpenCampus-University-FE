@@ -36,7 +36,7 @@ export default function DataSource() {
 
   const [kbId, setKbId] = useState("");
 
-  const { address: walletAddress } = useAccount();
+  const walletAddress = localStorage.getItem("address");
 
   useEffect(() => {
     const title = KF_TITLE + "Add Knowledge Keys";

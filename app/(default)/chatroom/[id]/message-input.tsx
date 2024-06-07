@@ -48,7 +48,7 @@ const MessageInput = () => {
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [inputRows, setInputRows] = useState(1);
-  const { address } = useAccount();
+  const address = localStorage.getItem("address");
   const chatSession = useGetSession({ chatbot_id: id as string });
   const newSession = useNewSession();
 

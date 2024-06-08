@@ -67,7 +67,7 @@ export default function CreditBalance() {
     if (status === "connected") {
       setModalTopUp(true);
     } else if (status === "disconnected" && openConnectModal) {
-      // openConnectModal();
+      openConnectModal();
     }
   };
 

@@ -3,9 +3,12 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const address = localStorage.getItem("address");
+import { useAppProvider } from "@/providers/app-provider";
 
 export const useSuperAdmin = () => {
+  const { session } = useAppProvider();
+  const { address } = session;
+
   return useQuery({
     queryKey: ["access"],
     queryFn: () =>

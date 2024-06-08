@@ -6,7 +6,7 @@ import axios from "axios";
 import { TaskListResponse } from "@/lib/types";
 import { useAccount } from "wagmi";
 
-const address = localStorage.getItem("address");
+import { useAppProvider } from "@/providers/app-provider";
 
 export const useTaskList = (
   params: {
@@ -16,6 +16,8 @@ export const useTaskList = (
   },
   placeholderData: typeof keepPreviousData | undefined = undefined,
 ) => {
+  const { session: { address } } = useAppProvider();
+  
   return useQuery({
     queryKey: ["task", "list", params.page, params.page_size, params.sort_by],
     queryFn: () =>
@@ -30,6 +32,8 @@ export const useTaskList = (
 };
 
 export const useTakeTask = () => {
+  const { session: { address } } = useAppProvider();
+  
   return useMutation({
     mutationFn: (params: { task_id: string }) =>
       axios.post("/api/task/take", params, {
@@ -41,6 +45,8 @@ export const useTakeTask = () => {
 };
 
 export const useCompleteTask = () => {
+  const { session: { address } } = useAppProvider();
+  
   return useMutation({
     mutationFn: (params: { taken_id: string | null }) =>
       axios.post("/api/task/complete", params, {
@@ -52,6 +58,8 @@ export const useCompleteTask = () => {
 };
 
 export const useTaskBasePoint = () => {
+  const { session: { address } } = useAppProvider();
+  
   return useQuery({
     queryKey: ["task-base-point"],
     queryFn: () =>

@@ -17,7 +17,7 @@ import {
 } from "../interfaces";
 import { ChatbotDataListResponse, ChatbotDetailResponse } from "@/lib/types";
 
-const address = localStorage.getItem("address");
+import { useAppProvider } from "@/providers/app-provider";
 
 export const useChatbotList = (
   params: IChatbotList,
@@ -40,6 +40,9 @@ export const useChatbotList = (
 };
 
 export const useCreateChatbotAPI = () => {
+  const { session } = useAppProvider();
+  const { address } = session;
+
   return useMutation({
     mutationFn: (params: ICreateChatbotParams) =>
       axios.post("/api/chatbot/create", params, {
@@ -51,6 +54,9 @@ export const useCreateChatbotAPI = () => {
 };
 
 export const useChatbotDetail = (params: IChatbotDetailParams) => {
+  const { session } = useAppProvider();
+  const { address } = session;
+
   return useQuery({
     queryKey: ["chatbot", params.chatbot_id],
     queryFn: () =>
@@ -64,6 +70,9 @@ export const useChatbotDetail = (params: IChatbotDetailParams) => {
 };
 
 export const useUpdateChatbotAPI = () => {
+  const { session } = useAppProvider();
+  const { address } = session;
+
   return useMutation({
     mutationFn: (params: IUpdateChatbotParams) =>
       axios.post("/api/chatbot/edit", params, {
@@ -75,6 +84,9 @@ export const useUpdateChatbotAPI = () => {
 };
 
 export const useNewSession = () => {
+  const { session } = useAppProvider();
+  const { address } = session;
+
   return useMutation({
     mutationFn: (params: IChatbotDetailParams) =>
       axios.post("/api/chatbot/new_session", params, {
@@ -86,6 +98,9 @@ export const useNewSession = () => {
 };
 
 export const useGetSession = (params: IChatbotDetailParams) => {
+  const { session } = useAppProvider();
+  const { address } = session;
+
   return useQuery({
     queryKey: ["session", params.chatbot_id],
     queryFn: () =>
@@ -98,6 +113,9 @@ export const useGetSession = (params: IChatbotDetailParams) => {
 };
 
 export const useChatbotChatList = () => {
+  const { session } = useAppProvider();
+  const { address } = session;
+
   return useQuery({
     queryKey: ["chatbot", "chat_list"],
     queryFn: () =>
@@ -114,6 +132,9 @@ export const useChatbotChatList = () => {
 };
 
 export const useGetCategory = () => {
+  const { session } = useAppProvider();
+  const { address } = session;
+
   return useQuery({
     queryKey: ["chatbot", "category"],
     queryFn: () =>
@@ -133,6 +154,9 @@ export const useMyChatbotList = (
   params: IChatbotList,
   placeholderData: typeof keepPreviousData | undefined = undefined,
 ) => {
+  const { session } = useAppProvider();
+  const { address } = session;
+
   return useQuery({
     queryKey: ["my-chatbots", params.page],
     queryFn: () =>
@@ -146,6 +170,9 @@ export const useMyChatbotList = (
 };
 
 export const useGetChatbotPrice = (params: IChatbotDetailParams) => {
+  const { session } = useAppProvider();
+  const { address } = session;
+
   return useQuery({
     queryKey: ["chatbot", "price", params.chatbot_id],
     queryFn: () =>
@@ -155,9 +182,12 @@ export const useGetChatbotPrice = (params: IChatbotDetailParams) => {
         },
       }),
   });
-}
+};
 
 export const useChatbotPKLStatus = (params: any) => {
+  const { session } = useAppProvider();
+  const { address } = session;
+
   return useQuery({
     queryKey: ["chatbot", "pkl", params.kb_id],
     queryFn: () =>
@@ -169,9 +199,12 @@ export const useChatbotPKLStatus = (params: any) => {
     refetchInterval: 3000,
     enabled: params.willRefetch,
   });
-}
+};
 
 export const useUpdateSharedChat = () => {
+  const { session } = useAppProvider();
+  const { address } = session;
+
   return useMutation({
     mutationFn: (params: any) =>
       axios.post("/api/chatbot/update_shared_chat", params, {
@@ -180,9 +213,12 @@ export const useUpdateSharedChat = () => {
         },
       }),
   });
-}
+};
 
 export const useGetSharedChatId = (params: any) => {
+  const { session } = useAppProvider();
+  const { address } = session;
+
   return useQuery({
     queryKey: ["chatbot", "shared_chat_id", params.chatbot_id],
     queryFn: () =>
@@ -192,9 +228,12 @@ export const useGetSharedChatId = (params: any) => {
         },
       }),
   });
-}
+};
 
 export const useGetSharedChat = (params: any) => {
+  const { session } = useAppProvider();
+  const { address } = session;
+
   return useQuery({
     queryKey: ["chatbot", "shared_chat", params.id],
     queryFn: () =>
@@ -204,7 +243,7 @@ export const useGetSharedChat = (params: any) => {
         },
       }),
   });
-}
+};
 
 export const useChatbotExplore = (
   params: IChatbotExplore,

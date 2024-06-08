@@ -23,8 +23,7 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { disconnect } = useDisconnect();
-  const address = localStorage.getItem("address");
-  const { user } = useAppProvider();
+  const { session: { address } } = useAppProvider();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -119,7 +118,7 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
               e.preventDefault();
               localStorage.setItem("kip-protocol-signature", "");
               localStorage.setItem("token", "");
-              localStorage.setItem("address", "");
+              localStorage.setItem("session", JSON.stringify({}));
               signOut();
               disconnect();
             }}

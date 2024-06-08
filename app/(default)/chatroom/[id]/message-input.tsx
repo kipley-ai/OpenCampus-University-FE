@@ -26,6 +26,7 @@ import { chatbotIdFromSlug } from "@/utils/utils";
 import Button from "@/components/button";
 import { useGetChatRoomDetail } from "@/hooks/api/chatroom";
 import { FIRESIDE_CHAT_ID } from "@/utils/constants";
+import { useAppProvider } from "@/providers/app-provider";
 
 const MessageInput = () => {
   const { id } = useParams();
@@ -50,7 +51,7 @@ const MessageInput = () => {
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [inputRows, setInputRows] = useState(1);
-  const address = localStorage.getItem("address");
+  const { session: { address } } = useAppProvider();
   const chatSession = useGetSession({ chatbot_id: id as string });
   const newSession = useNewSession();
 

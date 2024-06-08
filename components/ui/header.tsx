@@ -45,6 +45,7 @@ export default function Header() {
             client_id: "3kG6UNvSppAH5uKpA3pLg6tqdLVMSK1B",
             redirect_uri: `${process.env.NEXT_PUBLIC_APP_URL}/login`,
             state: "/",
+            new_session: "true",
           }),
         {
           method: "GET",

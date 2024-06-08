@@ -7,9 +7,11 @@ import axios from "axios";
 import { GET_CHATBOX_SESSION, GET_CHATBOX_HISTORY } from "@/utils/constants";
 import { ChatbotDataListResponse, ChatbotDetailResponse } from "@/lib/types";
 
-const address = localStorage.getItem("address");
+import { useAppProvider } from "@/providers/app-provider";
 
 export const useChatRoomChatbotId = (params: IChatroomParams) => {
+  const { session: { address } } = useAppProvider();
+
   return useQuery({
     queryKey: ["get-chatroom-chatbot", params.room_id],
     queryFn: () =>
@@ -22,6 +24,8 @@ export const useChatRoomChatbotId = (params: IChatroomParams) => {
 };
 
 export const useChatRoomChatHistory = (params: IChatroomHistoryParams) => {
+  const { session: { address } } = useAppProvider();
+
   return useQuery({
     queryKey: ["get-chatroom-history", params.session_id],
     queryFn: () =>
@@ -34,6 +38,8 @@ export const useChatRoomChatHistory = (params: IChatroomHistoryParams) => {
 };
 
 export const useChatRoomChatSession = (params: IChatroomParams) => {
+  const { session: { address } } = useAppProvider();
+
   return useQuery({
     queryKey: ["get-chatroom-session", params.room_id],
     queryFn: () =>
@@ -46,7 +52,9 @@ export const useChatRoomChatSession = (params: IChatroomParams) => {
 };
 
 export const useChatbotDetailQueries = (params: string[]) => {
-return useQueries({
+  const { session: { address } } = useAppProvider();
+
+  return useQueries({
     queries: params.map((chatbot_id) => {
       return {
         queryKey: ["chatbot", chatbot_id],
@@ -67,6 +75,8 @@ return useQueries({
 };
 
 export const useGetChatRoomDetail = (params: IChatroomParams) => {
+  const { session: { address } } = useAppProvider();
+
   return useQuery({
     queryKey: ["get-chatroom-detail", params.room_id],
     queryFn: () =>

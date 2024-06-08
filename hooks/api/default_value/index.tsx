@@ -6,9 +6,11 @@ import axios from "axios";
 import { ICreateKBAndNFTParams, IKBDetail, IKBItem } from "../interfaces";
 import { KBItemResponse } from "@/lib/types";
 
-const address = localStorage.getItem("address");
+import { useAppProvider } from "@/providers/app-provider";
 
 export const useDefaultValue = (params: {key:string}) => {
+	const { session: { address } } = useAppProvider();
+
 	return useQuery({
 		queryKey: ["default-value", params.key],
 		queryFn: () =>

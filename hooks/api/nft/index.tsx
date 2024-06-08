@@ -6,7 +6,7 @@ import axios from "axios";
 import { INFTDetailParams, INftList } from "../interfaces";
 import { NftData, NftDataListResponse, NftDetailResponse } from "@/lib/types";
 
-const address = localStorage.getItem("address");
+import { useAppProvider } from "@/providers/app-provider";
 
 export const useNFTList = (
   params: INftList,
@@ -22,6 +22,8 @@ export const useNFTList = (
 };
 
 export const useNftDetail = (params: INFTDetailParams) => {
+  const { session: { address } } = useAppProvider();
+
   return useQuery({
     queryKey: ["nft", address, params.sft_id],
     queryFn: () =>
@@ -38,6 +40,8 @@ export const useMyNFTs = (
   params: INftList,
   placeholderData: typeof keepPreviousData | undefined = undefined,
 ) => {
+  const { session: { address } } = useAppProvider();
+
   return useQuery({
     queryKey: ["my-nfts", params.page],
     queryFn: () =>

@@ -54,7 +54,7 @@ export const ChatBotForm = () => {
     tmp: true,
     value: "",
   });
-  const address = localStorage.getItem("address");
+  const { session: { address } } = useAppProvider();
   const [categories, setCategories] = useState<Category[]>([]);
   const [profileImage, setProfileImage] = useState("");
   const [profileImageUrl, setProfileImageUrl] = useState("");

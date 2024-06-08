@@ -7,6 +7,7 @@ import {
   SetStateAction,
   useContext,
   useState,
+  useEffect,
 } from "react";
 
 interface ContextProps {
@@ -30,8 +31,8 @@ interface ContextProps {
   setToast: Dispatch<SetStateAction<any>>;
   verifStatus: AuthenticationStatus;
   setVerifStatus: any;
-  user: any;
-  setUser: any;
+  session: any;
+  setSession: any;
 }
 
 const AppContext = createContext<ContextProps>({
@@ -55,8 +56,8 @@ const AppContext = createContext<ContextProps>({
   setToast: () => {},
   verifStatus: "unauthenticated",
   setVerifStatus: () => "unauthenticated",
-  user: {},
-  setUser: () => {},
+  session: {},
+  setSession: () => {},
 });
 
 export default function AppProvider({
@@ -75,7 +76,13 @@ export default function AppProvider({
   const [toast, setToast] = useState(false);
   const [verifStatus, setVerifStatus] =
     useState<AuthenticationStatus>("unauthenticated");
-  const [user, setUser] = useState({});
+  const [session, setSession] = useState({});
+
+  useEffect(() => {
+    const session = localStorage.getItem("session");
+    const initialState = session ? JSON.parse(session) : {};
+    setSession(initialState);
+  }, []);
 
   return (
     <AppContext.Provider
@@ -100,8 +107,8 @@ export default function AppProvider({
         setToast,
         verifStatus,
         setVerifStatus,
-        user,
-        setUser,
+        session,
+        setSession,
       }}
     >
       {children}

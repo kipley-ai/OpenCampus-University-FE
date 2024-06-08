@@ -19,6 +19,7 @@ import { HiChevronRight } from "react-icons/hi";
 import { useDefaultValue } from "@/hooks/api/default_value";
 import { chatbotIdFromSlug } from "@/utils/utils";
 import Button from "@/components/button";
+import { useAppProvider } from "@/providers/app-provider";
 
 const MessageInput = () => {
   const { id: slug } = useParams();
@@ -47,7 +48,7 @@ const MessageInput = () => {
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [inputRows, setInputRows] = useState(1);
-  const address = localStorage.getItem("address");
+  const { session: { address } } = useAppProvider();
   const newSession = useNewSession();
 
   const { data: chatbotData, isSuccess } = useChatbotDetail({

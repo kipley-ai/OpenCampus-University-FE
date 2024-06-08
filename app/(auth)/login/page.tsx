@@ -18,7 +18,7 @@ export default function Login() {
 
   const { mutate } = useCreateUser();
 
-  const { setUser } = useAppProvider();
+  const { setSession } = useAppProvider();
 
   useEffect(() => {
     if (isPending) {
@@ -50,13 +50,16 @@ export default function Login() {
     };
 
     if (user !== null && user !== undefined) {
-      setUser(user);
-      
+      if ("eth_address" in user) {
+        user["address"] = user["eth_address"];
+        delete user["eth_address"];
+      }
+
       mutate(backendUser, {
         onSuccess: () => {
-          console.log("User created");
           localStorage.setItem("token", access_token);
-          localStorage.setItem("address", user.eth_address);
+          localStorage.setItem("session", JSON.stringify(user));
+          setSession(user);
         },
         onError: (error) => {
           console.error("Error:", error);

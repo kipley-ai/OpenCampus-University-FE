@@ -40,9 +40,9 @@ export default function AccountSettings() {
 
   const { data: twitterSession, status: twitterStatus } = useSession();
 
-  const { modalTopUp, setModalTopUp, user } = useAppProvider();
+  const { modalTopUp, setModalTopUp } = useAppProvider();
   const { data: userDetail, isLoading } = useUserDetail();
-  const address = localStorage.getItem("address");
+  const { session: { address } } = useAppProvider();
 
   const { theme, setTheme } = useTheme();
 

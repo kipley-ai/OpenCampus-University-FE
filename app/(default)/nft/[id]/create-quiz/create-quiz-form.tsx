@@ -40,7 +40,7 @@ export const QuizForm = () => {
     tmp: true,
     value: "",
   });
-  const address = localStorage.getItem("address");
+  const { session: { address } } = useAppProvider();
   const [showModal, setShowModal] = useState(false);
   const [showModalError, setShowModalError] = useState(false);
   const createQuizApp = useCreateQuizAPI();

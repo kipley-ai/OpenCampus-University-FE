@@ -22,7 +22,7 @@ import { CHATBOT_APP, QUIZ_APP } from "@/utils/constants";
 
 export default function Onboarding() {
   const sign = localStorage.getItem("kip-protocol-signature");
-  const address = localStorage.getItem("address");
+  const { session: { address } } = useAppProvider();
   const { status } = useAccount();
   const { verifStatus } = useAppProvider();
   const pathname = usePathname();

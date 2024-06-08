@@ -12,9 +12,11 @@ import {
   Plugin,
 } from "../interfaces";
 
-const address = localStorage.getItem("address");
+import { useAppProvider } from "@/providers/app-provider";
 
 export const useGenerateQuizAPI = () => {
+  const { session: { address } } = useAppProvider();
+  
   return useMutation({
     mutationFn: (params: IGenerateQuiz) =>
       axios.post("/api/quiz_app/generate", params, {
@@ -26,6 +28,8 @@ export const useGenerateQuizAPI = () => {
 };
 
 export const useGetLastGeneratedQuiz = (params: IGetLasGeneratedQuiz) => {
+  const { session: { address } } = useAppProvider();
+  
   return useQuery({
     queryKey: ["chatbot", params.chatbot_id],
     queryFn: () =>
@@ -38,6 +42,8 @@ export const useGetLastGeneratedQuiz = (params: IGetLasGeneratedQuiz) => {
 };
 
 export const useGetQuiz = (params: IGetQuiz) => {
+  const { session: { address } } = useAppProvider();
+  
   return useQuery({
     queryKey: ["session", params.session_id],
     queryFn: () =>
@@ -50,6 +56,8 @@ export const useGetQuiz = (params: IGetQuiz) => {
 };
 
 export const useCreateQuizAPI = () => {
+  const { session: { address } } = useAppProvider();
+  
   return useMutation({
     mutationFn: (params: ICreateQuizParams) =>
       axios.post("/api/chatbot/create", params, {
@@ -61,6 +69,8 @@ export const useCreateQuizAPI = () => {
 };
 
 export const useGetPlugin = () => {
+  const { session: { address } } = useAppProvider();
+  
   return useQuery<Plugin[]>({
     queryKey: ["quiz", "plugin"],
     queryFn: () =>
@@ -79,6 +89,8 @@ export const useGetPlugin = () => {
 };
 
 export const useUpdateQuizAPI = () => {
+  const { session: { address } } = useAppProvider();
+  
   return useMutation({
     mutationFn: (params: ICreateQuizParams) =>
       axios.post("/api/chatbot/edit", params, {

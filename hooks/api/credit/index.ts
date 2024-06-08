@@ -4,9 +4,12 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { ICreditDeductionParams } from "../interfaces";
 
-const address = localStorage.getItem("address");
+import { useAppProvider } from "@/providers/app-provider";
 
 export const useCreditDeduction = () => {
+  const { session } = useAppProvider();
+  const { address } = session;
+
   return useMutation({
     mutationFn: (params: ICreditDeductionParams) =>
       axios.post("/api/credit/use-app", params, {
@@ -18,6 +21,9 @@ export const useCreditDeduction = () => {
 };
 
 export const useCreditBalance = () => {
+  const { session } = useAppProvider();
+  const { address } = session;
+
   return useQuery({
     queryKey: [],
     queryFn: () =>

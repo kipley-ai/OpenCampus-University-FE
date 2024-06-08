@@ -5,9 +5,11 @@ import { useAccount } from "wagmi";
 import axios from "axios";
 import { LeaderboardResponse } from "@/lib/types";
 
-const address = localStorage.getItem("address");
+import { useAppProvider } from "@/providers/app-provider";
 
 export const useGetLeaderboard = () => {
+  const { session: { address } } = useAppProvider();
+
   return useQuery({
     queryKey: ["leaderboard"],
     queryFn: () =>

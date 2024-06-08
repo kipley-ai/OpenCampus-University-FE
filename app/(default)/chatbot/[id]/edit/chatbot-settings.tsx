@@ -17,6 +17,7 @@ import LoadingIcon from "public/images/loading-icon.svg";
 import CreateChatbotModal from "@/components/toast-4";
 import Switcher from "@/components/switcher";
 import Tooltip from "@/components/tooltip";
+import { useAppProvider } from "@/providers/app-provider";
 
 interface Category {
   title: string;
@@ -38,7 +39,7 @@ interface Form {
 
 const ChatbotSettings = () => {
   const updateChatbot = useUpdateChatbotAPI();
-  const address = localStorage.getItem("address");
+  const { session: { address } } = useAppProvider();
 
   const { id } = useParams();
   const router = useRouter();

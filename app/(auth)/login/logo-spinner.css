@@ -1,0 +1,16 @@
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: rotate 1.5s linear infinite;
+  width: 112px;
+  height: 112px;
+  transform-origin: center;
+}

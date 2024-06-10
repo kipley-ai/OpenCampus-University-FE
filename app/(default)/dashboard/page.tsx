@@ -143,7 +143,7 @@ export default function Dashboard() {
     <div className="text-primary">
       {/* Explore Banner Section */}
       <Image
-        src="/images/explore-banner.svg"
+        src="/images/dashboard-banner.svg"
         alt="Explore Banner"
         className="w-full rounded-xl"
         width={1030}

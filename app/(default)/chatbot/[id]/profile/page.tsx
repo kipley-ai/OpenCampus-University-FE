@@ -29,8 +29,8 @@ export default function Profile() {
       <h1 className="font-semibold">Profile</h1>
       <section className="mt-4">
         <Image
-          src="/images/explore-banner.svg"
-          alt="Explore Banner"
+          src="/images/dashboard-banner.svg"
+          alt="Main Banner"
           className="w-full rounded-xl"
           width={1030}
           height={264}

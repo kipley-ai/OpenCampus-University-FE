@@ -36,8 +36,6 @@ import Link from "next/link";
 import { KF_TITLE } from "@/utils/constants";
 import { chatbotSlug } from "@/utils/utils";
 
-import ExploreBanner from "components/banner/explore-banner.svg";
-
 export default function Dashboard() {
   const title = KF_TITLE + "Dashboard";
 
@@ -133,13 +131,6 @@ export default function Dashboard() {
       <ModalLoginTwitter isOpen={modalLogin} setIsOpen={setModalLogin} />
 
       {/* Explore Banner */}
-      <Image 
-        src="/images/explore-banner.svg" 
-        alt="Explore Banner" 
-        className="w-full rounded-md"
-        width={1030}
-        height={264}
-      />
 
       {/* Featured Chatbot */}
       <div className="mt-8">

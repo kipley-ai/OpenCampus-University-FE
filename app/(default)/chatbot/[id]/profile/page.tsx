@@ -25,7 +25,7 @@ export default function Profile() {
   console.log(chatbotData?.data.data); // For debugging purpose
 
   return (
-    <div className="px-3 py-8 md:px-6 xl:px-16">
+    <div className="">
       <h1 className="font-semibold">Profile</h1>
       <section className="mt-4">
         <Image

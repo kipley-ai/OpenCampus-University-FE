@@ -29,7 +29,7 @@ export default function TaskCenter() {
     }, [data?.data?.base_point]);
 
     return (
-        <div className="my-12 mx-10 rounded-xl border-2 border-border bg-sidebar px-10 py-12 w-5/6 max-w-[1100px]">
+        <div className="rounded-2xl border-2 border-border bg-sidebar p-10 max-w-[1100px] mt-2 xl:mt-4">
             {/* <Header startPoints={startPoints} endPoints={endPoints} />
             <TaskSection refetchBasePoints={refetchBasePoints} /> */}
             <div>

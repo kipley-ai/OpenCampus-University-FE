@@ -22,7 +22,7 @@ export default function EditChatbot() {
   }, [setHeaderTitle, title]);
 
   return (
-    <div className="h-full flex-col px-4 md:flex-row md:pl-10 justify-start bg-container md:w-5/6">
+    <div className="h-full">
       <h1 className="text-heading text-lg font-semibold py-3">Chatbot Details</h1>
       <div className="flex flex-col px-6 py-9 pb-0 lg:px-8 xl:px-14 bg-sidebar border border-[#DDDDEB] rounded-2xl">
         <ChatBotSettings />

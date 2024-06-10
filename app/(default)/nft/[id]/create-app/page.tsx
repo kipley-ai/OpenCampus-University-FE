@@ -9,7 +9,7 @@ import { CreateAppProvider, useCreateAppContext } from "./create-app-context";
 function CreateApp() {
   const { step } = useCreateAppContext();
   return (
-    <div className="px-3 py-3 md:px-6 xl:px-16">
+    <div className="h-full">
       <h1 className="text-lg font-semibold">Create App</h1>
       <div className="mt-2 rounded-3xl border border-border bg-box px-5 py-8 md:px-10">
         {(() => {

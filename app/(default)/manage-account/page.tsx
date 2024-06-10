@@ -19,9 +19,9 @@ export default function ManageAccount() {
   }, []);
 
   return (
-    <div className="flex w-5/6 flex-col bg-container">
-      <div className="my-8 flex bg-container">
-        <div className="m-8 mt-0 flex h-min w-1/4 flex-col rounded-2xl border border-border bg-box px-4 py-6 font-medium">
+    <div className="flex flex-col bg-container">
+      <div className="flex bg-container mt-2 xl:mt-4">
+        <div className="mr-8 flex h-min w-1/4 flex-col rounded-2xl border border-border bg-box px-4 py-6 font-medium">
           {/* Account Information Section */}
           <div
             className={`flex cursor-pointer px-3 py-3 ${selectedPage == "dashboard" ? "text-primary" : "text-secondary-text hover:text-primary"}`}

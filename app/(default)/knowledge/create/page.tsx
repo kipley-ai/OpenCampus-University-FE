@@ -103,7 +103,7 @@ export default function DataSource({
         isOpen={isModalOpen}
         type={selectedButton}
       />
-      <div className="h-full flex-col justify-start bg-container px-4 md:w-5/6 md:flex-row md:pl-10">
+      <div className="h-full">
         <h1 className="py-3 text-lg font-semibold text-heading">
           Create Knowledge Keys
         </h1>

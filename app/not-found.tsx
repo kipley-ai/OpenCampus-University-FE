@@ -13,8 +13,8 @@ export default function NotFound() {
       <div className="relative flex flex-1 flex-col overflow-y-auto">
         <div className="h-[max(100vh, fit-content)] grow bg-container">
           <Header />
-          <main className="grow">
-            <div className="mx-3 my-8 flex flex-col items-center justify-center rounded-2xl border-2 border-border bg-sidebar px-4 py-20 xs:px-8 md:mx-6 lg:w-5/6">
+          <main className="h-[calc(100%-7rem)] grow">
+            <div className="h-full mx-3 my-4 xl:my-8 flex flex-col items-center justify-center rounded-2xl border-2 border-border bg-sidebar px-4 py-20 xs:px-8 md:mx-6 xl:w-5/6">
               <Image
                 src="/images/404.svg"
                 alt="Error 404"

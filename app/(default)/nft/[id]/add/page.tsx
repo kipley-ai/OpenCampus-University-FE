@@ -182,7 +182,7 @@ export default function DataSource() {
         onDone={() => router.push("/nft/" + id as string + "/edit")}
         onClose={() => router.push("/nft/" + id as string + "/edit")}
       />
-      <div className="h-full flex-col justify-start bg-container px-4 md:w-5/6 md:flex-row md:pl-10">
+      <div className="h-full">
         <h1 className="py-3 text-lg font-semibold text-heading">
           Add Knowledge Key
         </h1>

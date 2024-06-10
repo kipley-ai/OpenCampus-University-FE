@@ -264,7 +264,7 @@ export default function NFT() {
   }, []);
 
   return (
-    <div className="mb-6 h-full flex-col justify-start bg-container px-4 md:w-5/6 md:flex-row md:pl-10">
+    <div className="mb-6 h-full">
       <h1 className="py-3 text-lg font-semibold text-heading">My Assets</h1>
       <div className="flex flex-col rounded-2xl border border-[#DDDDEB] bg-sidebar px-6 py-7 pb-0 lg:px-8 xl:px-14">
         <div className="mb-8 mt-0 flex items-center space-x-10 border-b-2 text-sm font-semibold text-primary">

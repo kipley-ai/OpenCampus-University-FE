@@ -140,7 +140,7 @@ export default function Dashboard() {
   }, [currentIndex]);
 
   return (
-    <div className="text-primary">
+    <div className="text-primary mt-2 xl:mt-4">
       {/* Explore Banner Section */}
       <Image
         src="/images/dashboard-banner.svg"

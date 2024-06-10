@@ -107,7 +107,7 @@ const SharedChat = () => {
           className="button mx-auto mb-20 px-5 py-2"
           onClick={() => router.push("/onboarding")}
         >
-          Start to Explore Open Campus
+          Start to Explore OCU
         </button>
       </div>
     </div>

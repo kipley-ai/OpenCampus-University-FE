@@ -290,7 +290,7 @@ export default function Dashboard() {
             </h1>
             <div className="my-1 flex flex-col md:my-3">
               <span className="text-xs text-white md:text-sm">
-                Fireside Chat, hosted by Open Campus University, features some
+                Fireside Chat, hosted by OCU, features some
                 of the most influential OC 100 educators from a diverse range of
                 the Web3 space.
               </span>

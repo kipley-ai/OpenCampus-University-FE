@@ -16,16 +16,16 @@ const Landing = () => {
               className="w-[180px] self-center md:w-[266px]"
             />
             <h1 className="text-center text-2xl font-bold xs:text-3xl md:text-4xl lg:text-5xl">
-              Open Campus University
+              OCU
             </h1>
           </div>
           <div className="w-4/5 text-center text-sm font-medium xs:text-base">
             <div className="mb-6 md:mt-6">
-              Open Campus University represents the forefront of Web3 education
+              OCU represents the forefront of Web3 education
               and innovation.
             </div>
             <div className="">
-              Powered by KIP Protocol, Open Campus University unlocks true
+              Powered by KIP Protocol, OCU unlocks true
               digital property rights of educators’ Knowledge Keys, and
               transforms education through blockchain + AI technology.
             </div>

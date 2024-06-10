@@ -43,7 +43,7 @@ export default function OnboardingSuccess() {
             type="submit"
             onClick={() => router.push("/dashboard")}
           >
-            <p>Enter Open Campus University</p>
+            <p>Enter OCU</p>
             <svg
               width="8"
               height="13"

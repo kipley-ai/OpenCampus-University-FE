@@ -48,7 +48,7 @@ export default function DataSource({
     );
   }
 
-  const title = "Create Knowledge Keys";
+  const title = "Create KnowledgeKeys";
   const { setHeaderTitle } = useAppProvider();
 
   useEffect(() => {
@@ -117,7 +117,7 @@ export default function DataSource({
         <div className="flex flex-col bg-[#292D32] px-6 py-10 pb-20 lg:px-8 xl:px-32">
           <div>
             <h1 className="text-2xl font-semibold text-heading">
-              Select Data Elements for your Knowledge Key
+              Select Data Elements for your KnowledgeKey
             </h1>
             <hr className="my-4 border border-border" />
           </div>

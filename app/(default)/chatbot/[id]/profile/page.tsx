@@ -10,10 +10,10 @@ import { useNftDetail } from "@/hooks/api/nft";
 import { chatbotIdFromSlug } from "@/utils/utils";
 import { BiPencil } from "react-icons/bi";
 
-type Tabs = "Knowledge Keys" | "Apps";
+type Tabs = "KnowledgeKeys" | "Apps";
 
 export default function Profile() {
-  const [activeTab, setActiveTab] = useState<Tabs>("Knowledge Keys");
+  const [activeTab, setActiveTab] = useState<Tabs>("KnowledgeKeys");
 
   const { id: slug } = useParams();
   const id = chatbotIdFromSlug(slug.toString());
@@ -99,10 +99,10 @@ export default function Profile() {
           <section className="mt-8">
             <ul className="mb-8 flex w-full gap-12 border-b-2 border-secondary text-sm font-semibold dark:border-border">
               <li
-                onClick={() => setActiveTab("Knowledge Keys")}
-                className={`relative top-[1px] cursor-pointer ${activeTab === "Knowledge Keys" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
+                onClick={() => setActiveTab("KnowledgeKeys")}
+                className={`relative top-[1px] cursor-pointer ${activeTab === "KnowledgeKeys" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
               >
-                Knowledge Keys
+                KnowledgeKeys
               </li>
               <li
                 onClick={() => setActiveTab("Apps")}
@@ -113,7 +113,7 @@ export default function Profile() {
             </ul>
             {(() => {
               switch (activeTab) {
-                case "Knowledge Keys":
+                case "KnowledgeKeys":
                   return <KnowledgeAssets />;
                 case "Apps":
                   return <Apps />;
@@ -300,7 +300,7 @@ function SFTDetail() {
       <div className="mx-6 flex flex-col gap-2 rounded-xl bg-box p-6 text-heading">
         <div className="flex gap-4">
           <div className="w-4 rounded-md bg-primary"></div>
-          <h2 className="text-xl font-medium text-primary">Knowledge Keys</h2>
+          <h2 className="text-xl font-medium text-primary">KnowledgeKeys</h2>
         </div>
         <div className="flex flex-col-reverse justify-between md:flex-row">
           <div className="text-body md:pl-8">

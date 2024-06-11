@@ -159,7 +159,7 @@ export default function ModalTopUp({
           </h2>
         </div>
         <div className="w-full border border-border"></div>
-        <p className="text-sm font-medium">Enter your OC Point amount</p>
+        <p className="text-sm font-medium">Enter your OCU Credit amount</p>
         <div className="inline-flex items-center justify-between self-stretch">
           <div className="w-full text-lg leading-10">
             <input

@@ -66,7 +66,7 @@ export default function OnboardingProgress({ step = 1 }: { step?: number }) {
             Select Data Elements
           </ProgressItem>
           <ProgressItem number={2} isActive={step >= 2}>
-            Mint Knowledge Key
+            Mint KnowledgeKey
           </ProgressItem>
           <ProgressItem number={3} isActive={step >= 3}>
             Create App

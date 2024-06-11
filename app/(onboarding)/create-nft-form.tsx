@@ -112,7 +112,7 @@ export default function NFT() {
   };
 
   useEffect(() => {
-    const title = KF_TITLE + "Mint Knowledge Key";
+    const title = KF_TITLE + "Mint KnowledgeKey";
     document.title = title;
 
     return () => setHeaderTitle("");
@@ -246,7 +246,7 @@ export default function NFT() {
         isMinting={isMinting}
       />
       <MintNFTModal
-        children={"Your Knowledge Key is created successfully!"}
+        children={"Your KnowledgeKey is created successfully!"}
         open={showModal}
         setOpen={setShowModal}
         kbIdCreated={kbIdCreated}
@@ -283,7 +283,7 @@ export default function NFT() {
                 className="rounded-xl bg-transparent text-xs lg:text-sm"
                 type="text"
                 name="name"
-                placeholder="Name your Knowledge Key"
+                placeholder="Name your KnowledgeKey"
                 value={form?.name}
                 onChange={(e) => handleFormChange("name", e.target.value)}
                 maxLength={100}
@@ -302,7 +302,7 @@ export default function NFT() {
               <textarea
                 className="placeholder-text-[#7C878E] rounded-xl bg-transparent text-xs lg:text-sm"
                 name="description"
-                placeholder="Describe your Knowledge Key"
+                placeholder="Describe your KnowledgeKey"
                 rows={4}
                 onChange={(e) =>
                   handleFormChange("description", e.target.value)
@@ -438,7 +438,7 @@ export default function NFT() {
                 <label className="flex flex-row items-center space-x-3 text-wrap text-xs font-semibold text-heading lg:text-sm">
                   <span>Price Per Query (in OCU Credits)</span>
                   <Tooltip bg="dark" position="right" size="md">
-                    Set your price per query on your knowledge key and get paid
+                    Set your price per query on your KnowledgeKey and get paid
                     in $EDU.
                   </Tooltip>
                 </label>

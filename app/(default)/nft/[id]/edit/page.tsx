@@ -23,7 +23,7 @@ export default function EditChatbot() {
   return (
     <div className="h-full">
       <h1 className="py-3 text-lg font-semibold text-heading">
-        Knowledge Key Details
+        KnowledgeKey Details
       </h1>
       <div className="flex flex-col rounded-2xl border border-[#DDDDEB] bg-sidebar px-6 py-9 pb-0 lg:px-8 xl:px-14">
         <ManageDataSources />

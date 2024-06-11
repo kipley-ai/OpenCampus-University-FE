@@ -75,7 +75,7 @@ const ChatbotInfo = ({
                 />
                 <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center opacity-0 transition-opacity duration-300 hover:bg-gray-900/55 hover:opacity-100">
                   <p className="lg:text-md text-center text-sm font-bold text-white">
-                    View Knowledge Key on OpenSea
+                    View KnowledgeKey on OpenSea
                   </p>
                 </div>
               </a>

@@ -306,7 +306,7 @@ const ChatBotForm = () => {
               </svg>
 
               <span className="text-wrap text-sm font-light text-heading">
-                Your Knowledge Key are ready!
+                Your KnowledgeKey are ready!
               </span>
             </>
           ) : (
@@ -329,7 +329,7 @@ const ChatBotForm = () => {
                 />
               </svg>
               <span className="text-wrap text-sm font-light text-heading">
-                Your Knowledge Key are vectorising…
+                Your KnowledgeKey are vectorising…
               </span>
             </>
           )}

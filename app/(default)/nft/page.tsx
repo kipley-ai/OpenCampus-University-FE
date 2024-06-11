@@ -272,7 +272,7 @@ export default function NFT() {
             className={`${tab == "knowledge-assets" ? "underline underline-offset-8" : "opacity-50"}`}
             onClick={() => setTab("knowledge-assets")}
           >
-            Knowledge Keys
+            KnowledgeKeys
           </button>
           <button
             className={`${tab == "apps" ? "underline underline-offset-8" : "opacity-50"}`}

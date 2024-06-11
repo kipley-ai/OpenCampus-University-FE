@@ -21,7 +21,7 @@ interface Form {
 }
 
 export default function NFT() {
-  const title = KF_TITLE + "Create Knowledge Key";
+  const title = KF_TITLE + "Create KnowledgeKey";
   const { setHeaderTitle } = useAppProvider();
 
   const [category, setCategory] = useState("");
@@ -50,10 +50,10 @@ export default function NFT() {
     <div className="flex flex-col bg-[#292D32] py-8 sm:px-6 lg:px-8">
       <div className="mx-56">
         <h1 className="text-2xl font-semibold text-heading">
-          Create Knowledge Key
+          Create KnowledgeKey
         </h1>
         <h5 className="text-md text-[#7C878E]">
-          Give some general information about your Knowledge Key.
+          Give some general information about your KnowledgeKey.
         </h5>
         <hr className="my-4 border border-border" />
       </div>
@@ -165,7 +165,7 @@ export default function NFT() {
             type="button"
           >
             <h5 className="text-sm font-semibold text-black">
-              MINT Knowledge Key
+              MINT KnowledgeKey
             </h5>
             <svg
               width="20"

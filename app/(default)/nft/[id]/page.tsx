@@ -58,7 +58,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
         <div className="my-4 mb-5 border-t-2 border-border"></div>
         <div className="flex flex-row gap-2">
           <p className="text-sm font-medium text-[#94A3B8]">
-            Knowledge Key Owner
+            KnowledgeKey Owner
           </p>
           <p className="text-sm font-medium text-heading">
             {nftDetail.wallet_addr!.substring(0, 6) +
@@ -353,7 +353,7 @@ const NoNFT = () => {
             Meet our AI chat app revolutionizing conversations
           </h1>
           <h1 className="w-fit rounded-full bg-primary px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-base">
-            Mint your Knowledge Key
+            Mint your KnowledgeKey
           </h1>
         </div>
       </div>
@@ -388,7 +388,7 @@ const NoChatbot = () => {
           <Link href={"/nft/" + id + "/create-chatbot"}>
             {/* <h1 className="w-fit rounded-full bg-primary px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-base"> */}
             <h1 className="w-fit rounded-md bg-primary px-8 py-1 text-xs font-semibold text-container md:py-3 md:text-2xl">
-              Link Your Knowledge Key to Chatbot
+              Link Your KnowledgeKey to Chatbot
             </h1>
           </Link>
         </div>
@@ -421,7 +421,7 @@ const NoData = () => {
 const NFTDetail = ({ params }: { params: any }) => {
   const { setHeaderTitle } = useAppProvider();
   useEffect(() => {
-    setHeaderTitle("My Knowledge Key");
+    setHeaderTitle("My KnowledgeKey");
   }, []);
   const { id } = params;
   const router = useRouter();
@@ -431,7 +431,7 @@ const NFTDetail = ({ params }: { params: any }) => {
   return (
     <div className="bg-container">
       <h1 className="mb-4 text-lg font-semibold text-heading">
-        Knowledge Key Details
+        KnowledgeKey Details
       </h1>
       <div className="flex flex-col rounded-2xl border-2 border-border bg-sidebar px-3 py-3 pb-0 sm:py-8 lg:px-8 xl:px-10">
         <div>

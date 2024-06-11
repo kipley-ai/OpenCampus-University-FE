@@ -141,7 +141,7 @@ export default function Header() {
                       <path d="m17 13h-4v4h-2v-4h-4v-2h4v-4h2v4h4m-5-9a10 10 0 0 0 -10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10 10 10 0 0 0 -10-10z" />
                     </svg>
                     <p className="font-medium group-hover:underline max-xs:w-20">
-                      Create Knowledge Key
+                      Create KnowledgeKey
                     </p>
                   </div>
                 </Link>

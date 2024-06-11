@@ -43,7 +43,7 @@ export default function SelectDataElements() {
   const nextStep = searchParams.get("nextStep");
   const nextType = searchParams.get("nextType");
 
-  const title = KF_TITLE + "Create Knowledge Keys";
+  const title = KF_TITLE + "Create KnowledgeKeys";
   const { setHeaderTitle } = useAppProvider();
 
   useEffect(() => {
@@ -120,7 +120,7 @@ export default function SelectDataElements() {
         {step == "data_source" ? (
           <div className="mt-8 rounded-3xl bg-white px-10 pt-8">
             <h1 className="mb-8 text-2xl font-semibold text-primary">
-              Add Data Elements to your Knowledge Key
+              Add Data Elements to your KnowledgeKey
             </h1>
             <Step1
               selectedButton={selectedButton}

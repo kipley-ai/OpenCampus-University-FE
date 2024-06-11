@@ -275,11 +275,11 @@ const WithdrawModal = ({
         <div className="flex w-full flex-row items-center justify-between">
           {step === 1 ? (
             <h1 className="text-3xl font-bold leading-10 text-heading">
-              My Knowledge Keys
+              My KnowledgeKeys
             </h1>
           ) : step === 2 ? (
             <h1 className="text-3xl font-bold leading-10 text-heading">
-              Withdraw Knowledge Key
+              Withdraw KnowledgeKey
             </h1>
           ) : (
             <></>

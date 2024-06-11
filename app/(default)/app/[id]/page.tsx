@@ -157,7 +157,7 @@ const NoNFT = () => {
             Meet our AI chat app revolutionizing conversations
           </h1>
           <h1 className="w-fit rounded-full bg-primary px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-base">
-            Mint your Knowledge Key
+            Mint your KnowledgeKey
           </h1>
         </div>
       </div>
@@ -192,7 +192,7 @@ const NoChatbot = () => {
           <Link href={"/nft/" + id + "/create-chatbot"}>
             {/* <h1 className="w-fit rounded-full bg-primary px-8 py-1 text-xs font-semibold text-[#292D32] md:py-3 md:text-base"> */}
             <h1 className="w-fit rounded-md bg-primary px-8 py-1 text-xs font-semibold text-container md:py-3 md:text-2xl">
-              Link Your Knowledge Key to Chatbot
+              Link Your KnowledgeKey to Chatbot
             </h1>
           </Link>
         </div>
@@ -327,7 +327,7 @@ const NFTList = ({ id }: { id: any }) => {
 const BotDetail = ({ params }: { params: any }) => {
   const { setHeaderTitle } = useAppProvider();
   useEffect(() => {
-    setHeaderTitle("My Knowledge Key");
+    setHeaderTitle("My KnowledgeKey");
   }, []);
   const { id } = params;
   const [sftId, setSftId] = useState("");
@@ -395,7 +395,7 @@ const BotDetail = ({ params }: { params: any }) => {
           <>
             <div className="flex items-start justify-between gap-2 max-xs:flex-col xs:items-center">
               <span className="text-lg font-semibold text-primary">
-                Knowledge Keys
+                KnowledgeKeys
               </span>
               <button className="button group inline-flex items-center gap-2 rounded-md">
                 <svg
@@ -414,7 +414,7 @@ const BotDetail = ({ params }: { params: any }) => {
                     </clipPath>
                   </defs>
                 </svg>
-                <span className="text-sm font-medium">New Knowledge Key</span>
+                <span className="text-sm font-medium">New KnowledgeKey</span>
               </button>
             </div>
             <div className="pt-3">

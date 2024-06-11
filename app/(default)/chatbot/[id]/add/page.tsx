@@ -40,7 +40,7 @@ export default function DataSource() {
   const walletAddress = address;
 
   useEffect(() => {
-    const title = KF_TITLE + "Add Knowledge Keys";
+    const title = KF_TITLE + "Add KnowledgeKeys";
     document.title = title;
     return () => setHeaderTitle("");
   }, []);
@@ -103,7 +103,7 @@ export default function DataSource() {
         <div className="flex flex-col bg-container py-8 sm:px-6 lg:px-8">
           <div className="mx-56">
             <h1 className="text-2xl font-semibold text-heading">
-              Add Knowledge Keys
+              Add KnowledgeKeys
             </h1>
             <hr className="my-4 border border-border" />
           </div>

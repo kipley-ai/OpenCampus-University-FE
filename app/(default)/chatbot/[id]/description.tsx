@@ -52,7 +52,7 @@ export default function ChatbotDescription() {
           />
           <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center opacity-0 transition-opacity duration-300 hover:opacity-100">
             <p className="text-center text-sm font-bold text-heading lg:text-lg">
-              View Knowledge Key on OpenSea
+              View KnowledgeKey on OpenSea
             </p>
           </div>
         </a>

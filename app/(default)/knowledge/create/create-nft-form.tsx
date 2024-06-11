@@ -111,7 +111,7 @@ export default function NFT() {
   };
 
   useEffect(() => {
-    const title = KF_TITLE + "Mint Knowledge Key";
+    const title = KF_TITLE + "Mint KnowledgeKey";
     document.title = title;
 
     return () => setHeaderTitle("");
@@ -253,7 +253,7 @@ export default function NFT() {
         isMinting={isMinting}
       />
       <MintNFTModal
-        children={"Your Knowledge Key is created successfully!"}
+        children={"Your KnowledgeKey is created successfully!"}
         open={showModal}
         setOpen={setShowModal}
         nftIdCreated={nftIdCreated}
@@ -268,7 +268,7 @@ export default function NFT() {
         <div>
           <div className="flex items-center justify-between">
             <h1 className="text-lg font-semibold text-primary">
-              Mint Knowledge Key
+              Mint KnowledgeKey
             </h1>
             <div>
               {isTwitter ? (
@@ -295,7 +295,7 @@ export default function NFT() {
                   className="rounded-lg border-[#D1D5DB] bg-transparent text-xs text-heading lg:text-sm"
                   type="text"
                   name="name"
-                  placeholder="Name your Knowledge Knowledge Key"
+                  placeholder="Name your Knowledge KnowledgeKey"
                   value={form?.name}
                   onChange={(e) => handleFormChange("name", e.target.value)}
                   maxLength={100}
@@ -316,7 +316,7 @@ export default function NFT() {
                 <textarea
                   className="placeholder-text-[#6B7280] rounded-lg border-[#D1D5DB] bg-transparent text-xs text-heading lg:text-sm"
                   name="description"
-                  placeholder="Describe your Knowledge Knowledge Key"
+                  placeholder="Describe your Knowledge KnowledgeKey"
                   rows={4}
                   onChange={(e) =>
                     handleFormChange("description", e.target.value)

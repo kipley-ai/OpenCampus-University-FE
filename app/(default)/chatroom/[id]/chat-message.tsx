@@ -35,7 +35,7 @@ const ChatMessage = ({
       onMouseEnter={() => setShowCopy(true)}
       onMouseLeave={() => setShowCopy(false)}
     >
-      <div className="relative flex items-start gap-4">
+      <div className="relative flex items-start gap-3">
         <Image
           src={message.sender == "bot" ? chatbotData?.data.data.profile_image : AvatarDummy}
           alt="User avatar"
@@ -43,7 +43,7 @@ const ChatMessage = ({
           width={40}
           height={40}
         />
-        <div className="mt-3 flex flex-col gap-2">
+        <div className="mt-2 md:mt-3 flex flex-col gap-2">
           <div className="flex gap-2 items-center">
             <h6 className="text-sm font-medium">
               {message.sender == "bot" ? chatbotData?.data.data.name : "You"}

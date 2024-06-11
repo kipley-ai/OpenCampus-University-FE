@@ -44,26 +44,19 @@ export default function ChatBotPage() {
   }, []); // Empty dependency array to run only once on mount
 
   return (
-      <div className="h-full flex-col px-4 md:flex-row md:pl-10 justify-start bg-sidebar">
-        <h1 className="text-heading text-lg font-semibold py-3">Chatbot</h1>
-        <CreditBalanceProvider>
-          <div className="flex h-[calc(100vh-70px)] w-full flex-col py-4 px-10 md:w-5/6 lg:h-[calc(100vh-120px)] bg-white rounded-lg">
-            <CreateChatbotProvider>
-              {/* <Header /> */}
-              {/* <ChatbotInfo setIsOpen={setShowShareModal} /> */}
-              <MessageList isOpen={showShareModal} setIsOpen={setShowShareModal} />
-              <MessageInput />
-              {/* <InaccessibleChat /> */}
-            </CreateChatbotProvider>
-          </div>
-          {/* <div className="hidden w-1/4 flex-col md:flex">
-            <div className="sticky top-0 flex h-fit w-full flex-col items-start divide-y-2 divide-[#393E44] lg:-top-8">
-              <Description />
-              <CreditBalance />
-            </div>
-            <div></div>
-          </div> */}
-        </CreditBalanceProvider>
+    <div className="h-full">
+      <h1 className="pb-3 text-lg font-semibold text-heading">Chatbot</h1>
+      <CreditBalanceProvider>
+        <div className="flex h-[calc(100vh-7rem)] w-full flex-col rounded-2xl border-2 border-border bg-sidebar p-3 md:h-[calc(100vh-10rem)] xl:h-[calc(100vh-9rem)] md:p-8">
+          <CreateChatbotProvider>
+            <MessageList
+              isOpen={showShareModal}
+              setIsOpen={setShowShareModal}
+            />
+            <MessageInput />
+          </CreateChatbotProvider>
+        </div>
+      </CreditBalanceProvider>
     </div>
   );
 }

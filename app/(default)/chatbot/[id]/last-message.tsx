@@ -11,7 +11,7 @@ import Copy from "@/components/icon/copy.svg"
 export const CopyButton = ({ message }: { message: string }) => {
   return (
     <button
-      className="absolute top-0 right-0 z-20 text-gray-400 hover:brightness-150"
+      className="absolute top-0 right-0 z-20 text-gray-400 hover:brightness-50"
       onClick={() => {
         navigator.clipboard.writeText(message);
       }}
@@ -77,7 +77,7 @@ const LastAnswer = ({
             <Image
               src={LoadingIcon}
               alt="Profile"
-              className="ml-1 h-5 w-5 animate-spin text-heading"
+              className="ml-2 h-5 w-5 animate-spin text-heading"
               width={50}
               height={50}
             />
@@ -87,21 +87,20 @@ const LastAnswer = ({
         {/* Message bubble */}
         <div className="flex flex-col space-y-2">
           {/* Message bubble */}
-          <div className="relative flex items-start space-x-4">
+          <div className="relative flex items-start space-x-3">
             <Image
               src={profileImage}
               alt="Profile"
-              className="h-7 w-7 md:h-8 md:w-8 rounded-full mt-1"
+              className="h-7 w-7 md:h-10 md:w-10 rounded-full mt-1"
               width={50}
               height={50}
             />
-            <div className="w-full text-heading">
-              <div className="w-full flex">
-                {/* <h6 className="mb-1 mt-1 font-black text-lg"> */}
-                <h6 className="mb-1 text-sm">
+            <div className="mt-3 flex flex-col gap-2">
+              <div className="flex gap-2 items-center">
+                <h6 className="text-sm font-medium">
                   {chatbotData?.data.data.name}
                 </h6>
-                <h6 className="mb-1 text-sm text-[#94A3B8] mx-1">
+                <h6 className="text-xs text-[#94A3B8]">
                   {created ? new Date(created).toLocaleTimeString("en-US", {
                     hour: '2-digit',
                     minute: '2-digit',

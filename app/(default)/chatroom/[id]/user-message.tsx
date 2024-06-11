@@ -16,7 +16,7 @@ export const UserMessage = ({ message }: { message: any }) => {
   };
 
   return (
-    <div className="rounded-lg bg-container px-6 py-3 self-end">
+    <div className="max-w-[75%] self-end rounded-lg bg-container px-3 py-3 xs:px-6">
       <p className="whitespace-break-spaces text-sm">
         {trimQuotationMarks(message.message)}
       </p>

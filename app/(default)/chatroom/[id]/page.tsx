@@ -38,10 +38,10 @@ export default function ChatBotPage() {
     <CreditBalanceProvider>
       <CreateChatbotProvider>
         <div className="h-full">
-          <h1 className="py-3 text-lg font-semibold text-heading">
+          <h1 className="pb-3 text-lg font-semibold text-heading">
             {id === FIRESIDE_CHAT_ID ? "Fireside Chat" : "Chatbot"}
           </h1>
-          <div className="flex h-[calc(100vh-70px)] w-full flex-col rounded-xl border border-border bg-sidebar px-8 py-4 lg:h-[calc(100vh-140px)]">
+          <div className="flex h-[calc(100vh-7rem)] w-full flex-col rounded-2xl border-2 border-border bg-sidebar p-3 md:h-[calc(100vh-10rem)] xl:h-[calc(100vh-9rem)] md:p-8">
             <MessageList
               isOpen={showShareModal}
               setIsOpen={setShowShareModal}

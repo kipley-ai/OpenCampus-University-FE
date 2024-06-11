@@ -11,7 +11,7 @@ import Copy from "@/components/icon/copy.svg";
 export const CopyButton = ({ message }: { message: string }) => {
   return (
     <button
-      className="absolute right-0 top-0 z-20 text-gray-400 hover:brightness-150"
+      className="absolute right-0 top-0 z-20 text-gray-400 hover:brightness-50"
       onClick={() => {
         navigator.clipboard.writeText(message);
       }}

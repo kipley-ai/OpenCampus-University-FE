@@ -63,7 +63,7 @@ const FirstAnswer = ({
                 </h6>
               </div>
               {/* <p className="text-sm mt-3">{isStream ? message.slice(0, -2).join("") : message}</p> */}
-              <p className="text-2xl mt-4 font-medium">{isStream ? message.slice(0, -2).join("") : message}</p>
+              <p className="text-2xl mt-4 font-medium text-center">{isStream ? message.slice(0, -2).join("") : message}</p>
             </div>
             {/* {showCopy && !isStream ? <CopyButton message={message} /> : <></>} */}
           </div>

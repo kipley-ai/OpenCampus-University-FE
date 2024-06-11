@@ -227,7 +227,7 @@ const MessageInput = () => {
       </div>
       <div className="sticky inset-x-0 bottom-4 mt-6 flex items-center gap-4">
         <button
-          className="px-2 text-sm text-primary hover:brightness-150 w-28 h-full underline underline-offset-1"
+          className="px-2 text-sm text-primary w-28 h-full font-medium underline underline-offset-1 hover:underline-offset-4"
           onClick={handleClearChat}
         >
           Clear Chat

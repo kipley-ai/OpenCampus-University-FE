@@ -13,7 +13,7 @@ export const Header = ({
   const router = useRouter();
 
   return (
-    <header className="flex items-center gap-8 border-b border-border py-3">
+    <header className="flex items-center gap-3 md:gap-8 border-b border-border pb-3">
       <svg
         width="24"
         height="28"
@@ -26,18 +26,19 @@ export const Header = ({
       </svg>
       {chatbots.map((chatbot, idx) => (
         <Link
-          className="group"
+          className="h-full group"
           href={`/chatbot/${chatbot.data?.data?.data?.chatbot_id}/profile`}
           key={idx}
         >
-          <div className="flex flex-col items-center gap-2">
+          <div className="h-full flex flex-col items-center gap-2">
             <Image
               src={chatbot.data?.data?.data?.profile_image!}
               width={40}
               height={40}
               alt="Chatbot Icon"
+              className="h-8 w-8 md:h-10 md:w-10 rounded-full"
             />
-            <span className="text-sm font-medium group-hover:text-primary">
+            <span className="text-sm font-medium group-hover:text-primary text-center break-words">
               {chatbot.data?.data?.data?.name}
             </span>
           </div>

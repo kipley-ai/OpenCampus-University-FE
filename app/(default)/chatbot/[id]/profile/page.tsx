@@ -25,99 +25,106 @@ export default function Profile() {
   console.log(chatbotData?.data.data); // For debugging purpose
 
   return (
-    <div className="">
-      <h1 className="font-semibold">Profile</h1>
-      <section className="mt-4">
-        <Image
-          src="/images/dashboard-banner.svg"
-          alt="Main Banner"
-          className="w-full rounded-xl"
-          width={1030}
-          height={264}
-        />
-        <div className="relative bottom-16 flex w-full flex-col items-center gap-2">
-          <div className="relative">
-            <Image
-              src={chatbotData?.data.data.profile_image as string}
-              width={120}
-              height={120}
-              alt="Chatbot Profile Image"
-              className="rounded-full border-4 border-border"
-            />
-            {/* Pencil Button */}
-            {/* <button className="absolute bottom-0 right-2 size-6 rounded-full bg-primary text-white hover:bg-secondary">
+    <>
+      <h1 className="mb-4 text-lg font-semibold">Profile</h1>
+      <div className="rounded-2xl border-2 border-border bg-sidebar">
+        <section className="">
+          <Image
+            src="/images/dashboard-banner.svg"
+            alt="Main Banner"
+            className="w-full rounded-t-2xl"
+            width={1030}
+            height={264}
+          />
+          <div className="relative bottom-16 flex w-full flex-col items-center gap-2">
+            <div className="relative">
+              <Image
+                src={chatbotData?.data.data.profile_image as string}
+                width={120}
+                height={120}
+                alt="Chatbot Profile Image"
+                className="rounded-full border-4 border-border"
+              />
+              {/* Pencil Button */}
+              {/* <button className="absolute bottom-0 right-2 size-6 rounded-full bg-primary text-white hover:bg-secondary">
               <BiPencil className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform" />
             </button> */}
+            </div>
+            <h2 className="text-2xl font-semibold leading-none text-primary">
+              {chatbotData?.data.data.name}
+            </h2>
+            <h3 className="font-medium text-gray-500">
+              @{chatbotData?.data.data.name}
+            </h3>
           </div>
-          <h2 className="text-2xl font-semibold leading-none text-primary">
-            {chatbotData?.data.data.name}
-          </h2>
-          <h3 className="text-lg font-medium text-gray-500">
-            @{chatbotData?.data.data.name}
-          </h3>
+        </section>
+
+        <div className="px-3 pb-10 md:px-10">
+          <section>
+            <h2 className="mb-2 text-lg font-semibold text-primary">About</h2>
+            {id === "1d7a4ecf-bcf6-44da-bf05-92225aec8a03" ? (
+              <>
+                <p className="mb-4 text-sm text-body">
+                  Veteran technology entrepreneur/investor Yat Siu is the
+                  co-founder and executive chairman of Animoca Brands, a global
+                  leader in blockchain and gaming with the goal to provide
+                  property rights for virtual assets. Yat began his career at
+                  Atari Germany, then established Hong Kong
+                  Cybercity/Freenation, the first free web page and email
+                  provider in Asia. In 1998 he set up Outblaze, an award-winning
+                  pioneer of multilingual white label web services. After
+                  selling one of its business units to IBM, he pivoted Outblaze
+                  to incubate digital entertainment projects. One of those
+                  projects is Animoca Brands.
+                </p>
+                <p className="text-sm text-body">
+                  Yat has numerous accolades, including Global Leader of
+                  Tomorrow at the World Economic Forum, Young Entrepreneur of
+                  the Year at the DHL/SCMP Awards, and recognition as one of
+                  Cointelegraph's top 100 notable people in blockchain. A
+                  classically trained musician, Yat is a member of the advisory
+                  board of BAFTA (British Academy of Film and Television Arts)
+                  and a director of the Asian Youth Orchestra.
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="text-sm text-body">
+                  {chatbotData?.data.data.description}
+                </p>
+              </>
+            )}
+          </section>
+
+          <section className="mt-8">
+            <ul className="mb-8 flex w-full gap-12 border-b-2 border-secondary text-sm font-semibold dark:border-border">
+              <li
+                onClick={() => setActiveTab("Knowledge Keys")}
+                className={`relative top-[1px] cursor-pointer ${activeTab === "Knowledge Keys" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
+              >
+                Knowledge Keys
+              </li>
+              <li
+                onClick={() => setActiveTab("Apps")}
+                className={`relative top-[1px] cursor-pointer ${activeTab === "Apps" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
+              >
+                Apps
+              </li>
+            </ul>
+            {(() => {
+              switch (activeTab) {
+                case "Knowledge Keys":
+                  return <KnowledgeAssets />;
+                case "Apps":
+                  return <Apps />;
+                default:
+                  return null;
+              }
+            })()}
+          </section>
         </div>
-      </section>
-
-      <section>
-        <h2 className="font-semibold text-primary">About</h2>
-        {id === "1d7a4ecf-bcf6-44da-bf05-92225aec8a03" ? (
-          <>
-            <p className="mb-4 text-body">
-              Veteran technology entrepreneur/investor Yat Siu is the co-founder
-              and executive chairman of Animoca Brands, a global leader in
-              blockchain and gaming with the goal to provide property rights for
-              virtual assets. Yat began his career at Atari Germany, then
-              established Hong Kong Cybercity/Freenation, the first free web
-              page and email provider in Asia. In 1998 he set up Outblaze, an
-              award-winning pioneer of multilingual white label web services.
-              After selling one of its business units to IBM, he pivoted
-              Outblaze to incubate digital entertainment projects. One of those
-              projects is Animoca Brands.
-            </p>
-            <p className="text-body">
-              Yat has numerous accolades, including Global Leader of Tomorrow at
-              the World Economic Forum, Young Entrepreneur of the Year at the
-              DHL/SCMP Awards, and recognition as one of Cointelegraph's top 100
-              notable people in blockchain. A classically trained musician, Yat
-              is a member of the advisory board of BAFTA (British Academy of
-              Film and Television Arts) and a director of the Asian Youth
-              Orchestra.
-            </p>
-          </>
-        ) : (
-          <>
-            <p className="text-body">{chatbotData?.data.data.description}</p>
-          </>
-        )}
-      </section>
-
-      <section className="mt-8">
-        <ul className="flex w-full gap-12 border-b-2 border-secondary text-sm font-semibold dark:border-border">
-          <li
-            onClick={() => setActiveTab("Knowledge Keys")}
-            className={`relative top-[1px] cursor-pointer ${activeTab === "Knowledge Keys" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
-          >
-            Knowledge Keys
-          </li>
-          <li
-            onClick={() => setActiveTab("Apps")}
-            className={`relative top-[1px] cursor-pointer ${activeTab === "Apps" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
-          >
-            Apps
-          </li>
-        </ul>
-        {(() => {
-          switch (activeTab) {
-            case "Knowledge Keys":
-              return <KnowledgeAssets />;
-            case "Apps":
-              return <Apps />;
-            default:
-              return null;
-          }
-        })()}
-      </section>
-    </div>
+      </div>
+    </>
   );
 }
 
@@ -136,7 +143,7 @@ const KnowledgeAssets = () => {
   const sftID = sftData?.data.data.sft_id as string;
 
   return (
-    <div className="mt-4 flex flex-wrap gap-8">
+    <div className="flex flex-wrap gap-8">
       <Link href={`/nft/${sftID}`}>
         {[sftData?.data.data].map((item: any) => (
           <ProfileItem
@@ -161,7 +168,7 @@ const Apps = () => {
   const appID = chatbotData?.data.data.chatbot_id;
 
   return (
-    <div className="mt-4 flex flex-wrap gap-8">
+    <div className="flex flex-wrap gap-8">
       <Link href={`/chatbot/${appID}`}>
         {[chatbotData?.data.data].map((item: any) => (
           <ProfileItem
@@ -183,15 +190,15 @@ const ProfileItem = ({
   profileImage: string;
 }) => {
   return (
-    <div className="flex w-fit flex-col gap-2 md:w-max">
+    <div className="group flex w-fit flex-col gap-4 md:w-max">
       <Image
         src={profileImage}
         alt="Profile Image"
-        className="rounded-lg max-sm:w-[110px]"
+        className="rounded-lg group-hover:shadow-xl dark:group-hover:shadow-gray-700 max-sm:w-[110px]"
         width={200}
         height={200}
       />
-      <h2 className="font-medium text-primary">{name}</h2>
+      <h2 className="font-semibold text-primary">{name}</h2>
     </div>
   );
 };

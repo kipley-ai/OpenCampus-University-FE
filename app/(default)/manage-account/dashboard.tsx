@@ -120,7 +120,7 @@ export default function AccountSettings() {
               alt="Profile Image"
               className="rounded-full transition duration-300 ease-in-out"
             />
-            <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black bg-opacity-50 text-sm font-semibold text-heading opacity-0 transition duration-300 ease-in-out hover:opacity-100">
+            <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black bg-opacity-50 text-sm font-semibold opacity-0 transition duration-300 ease-in-out hover:opacity-100">
               <svg
                 width="17"
                 height="16"
@@ -133,7 +133,7 @@ export default function AccountSettings() {
                   fill="#00EDBE"
                 />
               </svg>
-              <p className="ml-1 text-primary">Edit</p>
+              <p className="ml-1 text-white">Edit</p>
             </div>
           </button>
           <input

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { CopyButton } from "./last-message";
 import { useState } from "react";
+import { useUserDetail } from "@/hooks/api/user";
 import AvatarDummy from "public/images/avatar-default-02.svg";
 import TweetAnswer from "./tweet-answer";
 
@@ -12,6 +13,8 @@ const ChatMessage = ({
   message: any;
 }) => {
   const [showCopy, setShowCopy] = useState(false);
+
+  const { data: userDetail } = useUserDetail();
 
   const sources: string[] = [];
   if (message.chunks) {
@@ -32,7 +35,11 @@ const ChatMessage = ({
     >
       <div className="relative flex items-start space-x-3">
         <Image
-          src={message.sender == "bot" ? chatbotData?.data.data.profile_image : AvatarDummy}
+          src={
+            message.sender == "bot" 
+              ? chatbotData?.data.data.profile_image 
+              : userDetail?.data?.data?.profile_image || AvatarDummy
+          }
           alt="User avatar"
           className="h-8 w-8 md:h-10 md:w-10 rounded-full mt-1"
           width={50}

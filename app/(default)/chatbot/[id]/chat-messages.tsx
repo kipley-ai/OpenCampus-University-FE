@@ -203,14 +203,77 @@ const MessageList = ({
         messageHistory={messageHistory}
         chatbotData={chatbotData?.data.data}
       />
-      <div className="flex grow h-auto flex-col gap-4 overflow-y-auto">
-        {messageHistory.length <= 0 ?
-        <FirstAnswer
-          profileImage={chatbotData?.data.data.profile_image}
-          sender={"bot"}
-          message={chatbotData?.data.data.example_conversation as string}
-          isGenerating={replyStatus == "answering"}
-        /> : <></> }
+      <div className="flex h-auto grow flex-col gap-4 overflow-y-auto">
+        {messageHistory.length <= 0 ? (
+          <FirstAnswer
+            profileImage={chatbotData?.data.data.profile_image}
+            sender={"bot"}
+            message={chatbotData?.data.data.example_conversation as string}
+            isGenerating={replyStatus == "answering"}
+          />
+        ) : (
+          <></>
+        )}
+        <button className="btn-plain mr-4 self-end" onClick={() => setIsOpen(true)}>
+          <div className="flex items-center gap-2">
+            <svg
+              width="16"
+              height="17"
+              viewBox="0 0 16 17"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clipPath="url(#clip0_1624_9009)">
+                <path
+                  d="M4 10.6787C5.10457 10.6787 6 9.78328 6 8.67871C6 7.57414 5.10457 6.67871 4 6.67871C2.89543 6.67871 2 7.57414 2 8.67871C2 9.78328 2.89543 10.6787 4 10.6787Z"
+                  stroke="#141BEB"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M12 6.67871C13.1046 6.67871 14 5.78328 14 4.67871C14 3.57414 13.1046 2.67871 12 2.67871C10.8954 2.67871 10 3.57414 10 4.67871C10 5.78328 10.8954 6.67871 12 6.67871Z"
+                  stroke="#141BEB"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M12 14.6787C13.1046 14.6787 14 13.7833 14 12.6787C14 11.5741 13.1046 10.6787 12 10.6787C10.8954 10.6787 10 11.5741 10 12.6787C10 13.7833 10.8954 14.6787 12 14.6787Z"
+                  stroke="#141BEB"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M5.80005 7.81208L10.2 5.54541"
+                  stroke="#141BEB"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M5.80005 9.54541L10.2 11.8121"
+                  stroke="#141BEB"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_1624_9009">
+                  <rect
+                    width="16"
+                    height="16"
+                    fill="white"
+                    transform="translate(0 0.678711)"
+                  />
+                </clipPath>
+              </defs>
+            </svg>
+            <p>Share</p>
+          </div>
+        </button>
         {messageHistory.map((message, index) => {
           return index < messageHistory.length - 1 ||
             message.sender == "user" ? (

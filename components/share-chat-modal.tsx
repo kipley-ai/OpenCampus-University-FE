@@ -21,61 +21,86 @@ const MessageHistory = ({
   botName?: string;
 }) => {
   return (
-    <div className="h-full bg-[#151414] text-heading scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-[#363434] scrollbar-track-[#151414] overflow-y-scroll">
+    <div className="scrollbar-thumb-rounded h-full overflow-y-scroll bg-container text-body">
       {messageHistory.map((message, index) => {
         return (
-          <div className="flex flex-row p-4 space-x-4" key={index}>
+          <div className="flex flex-row space-x-4 px-4 py-3" key={index}>
             <Image
               src={message.sender === "user" ? AvatarDummy : botImage}
-              className="w-8 h-8 rounded"
+              className="h-8 w-8 rounded-full"
               alt="Profile"
               width={50}
               height={50}
             />
-            <div className="flex flex-col space-y-4 pt-2  w-full text-sm font-light">
-              <p>{message.sender === "user" ? "You": botName}</p>
+            <div className="flex w-full flex-col gap-2 pt-2 text-sm">
+              <p>{message.sender === "user" ? "You" : botName}</p>
               <p className="whitespace-break-spaces">{message.message}</p>
             </div>
           </div>
         );
       })}
     </div>
-  )
-}
+  );
+};
 
-const ShareModal = ({ isOpen, setIsOpen, messageHistory, chatbotData }: ModalProps) => {
+const ShareModal = ({
+  isOpen,
+  setIsOpen,
+  messageHistory,
+  chatbotData,
+}: ModalProps) => {
   const [isFirstShare, setIsFirstShare] = useState(true);
   const [sharedChatId, setSharedChatId] = useState("");
   const [copyClipboard, setCopyClipboard] = useState(false);
-  const [lastSharedDate, setLastSharedDate] = useState(new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }));
-  const sharedIdAPI = useGetSharedChatId({ chatbot_id: chatbotData?.chatbot_id });
+  const [lastSharedDate, setLastSharedDate] = useState(
+    new Date().toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    }),
+  );
+  const sharedIdAPI = useGetSharedChatId({
+    chatbot_id: chatbotData?.chatbot_id,
+  });
   const updateSharedAPI = useUpdateSharedChat();
-  const BASE_URL = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
+  const BASE_URL =
+    window.location.protocol +
+    "//" +
+    window.location.hostname +
+    (window.location.port ? ":" + window.location.port : "");
 
   // console.log(sharedChatId)
 
   useEffect(() => {
-    if(sharedChatId){
+    if (sharedChatId) {
       setIsFirstShare(false);
     }
-  },[sharedChatId])
+  }, [sharedChatId]);
 
   useEffect(() => {
-    if(sharedIdAPI.isSuccess && sharedIdAPI.data.data.data){
+    if (sharedIdAPI.isSuccess && sharedIdAPI.data.data.data) {
       setSharedChatId(sharedIdAPI.data.data.data.share_id);
-      const formattedDate = new Date(sharedIdAPI.data.data.data.last_shared_time).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+      const formattedDate = new Date(
+        sharedIdAPI.data.data.data.last_shared_time,
+      ).toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      });
       setLastSharedDate(formattedDate);
 
-      if(!sharedIdAPI.isRefetching && copyClipboard){
+      if (!sharedIdAPI.isRefetching && copyClipboard) {
         // console.log(`${BASE_URL}/chat/${sharedIdAPI.data.data.data.share_id}`)
-        navigator.clipboard.writeText(`${BASE_URL}/share/${sharedIdAPI.data.data.data.share_id}`);
+        navigator.clipboard.writeText(
+          `${BASE_URL}/share/${sharedIdAPI.data.data.data.share_id}`,
+        );
         setTimeout(() => {
           setCopyClipboard(false);
         }, 3000);
       }
     }
-  }, [sharedIdAPI.isSuccess, sharedIdAPI.isRefetching])
-  
+  }, [sharedIdAPI.isSuccess, sharedIdAPI.isRefetching]);
+
   const handleUpdateSharedChat = () => {
     setCopyClipboard(true);
     updateSharedAPI.mutate(
@@ -83,69 +108,93 @@ const ShareModal = ({ isOpen, setIsOpen, messageHistory, chatbotData }: ModalPro
       {
         onSuccess(data, variables, context) {
           sharedIdAPI.refetch();
-        }
-      }
+        },
+      },
     );
-  }
+  };
 
   const firstShareText = () => {
     return (
-      <p className="text-sm text-heading font-light">
-        Anyone with the URL will be able to view the shared chat. Messages you send after creating your link won't be shared.
+      <p className="text-sm font-medium text-body">
+        Anyone with the URL will be able to view the shared chat. Messages you
+        send after creating your link won't be shared.
       </p>
-    )
-  }
+    );
+  };
 
   const updateShareText = () => {
     return (
-      <p className="text-sm text-heading font-light">
-        You have shared this chat before. If you want to update the shared chat content, please update and get a new shared link.
+      <p className="text-sm font-medium text-body">
+        You have shared this <span className="underline">chat</span> before. If
+        you want to update the shared chat content, please update and get a new
+        shared link.
       </p>
-    )
-  }
+    );
+  };
 
   return (
     <ModalBlank isOpen={isOpen} setIsOpen={setIsOpen}>
-      <div className="md:w-[650px] flex flex-col px-8 py-8 space-y-5 bg-[#080403]">
-        <div className="flex flex-row justify-between items-center">
-          <h1 className="text-[#7C878E] text-2xl">Share Your Chat</h1>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" type="button" className="cursor-pointer" onClick={() => setIsOpen(false)}>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H2V2H0V0ZM4 4H2V2H4V4ZM6 6H4V4H6V6ZM8 6H6V8H4V10H2V12H0V14H2V12H4V10H6V8H8V10H10V12H12V14H14V12H12V10H10V8H8V6ZM10 4V6H8V4H10ZM12 2V4H10V2H12ZM12 2V0H14V2H12Z" fill="#7C878E"/>
-          </svg>
-        </div>
-        {
-          isFirstShare ? firstShareText() : updateShareText()
-        }
-        <div className="flex flex-col h-[336px] border-2 border-[#1E1E1E] rounded">
-          <div className="flex flex-row h-[48px] bg-[#1E1E1E] py-2 px-4 justify-between items-center rounded rounded-b-none">
-            <p className="text-heading">{chatbotData?.name}</p>
-            <p className="text-[#7C878E]">| {lastSharedDate}</p>
+      <div className="flex flex-col gap-4 p-8 md:w-[650px]">
+        <h1 className="text-xl font-semibold leading-none text-primary">
+          Share Your Chat
+        </h1>
+        {isFirstShare ? firstShareText() : updateShareText()}
+        <div className="flex h-[336px] flex-col rounded-md border-2 border-border">
+          <div className="flex h-[48px] flex-row items-center justify-between divide-x-2 divide-border rounded rounded-b-none border-b-2 border-border bg-container px-4 py-2">
+            <p className="text-sm font-medium">{chatbotData?.name}</p>
+            <p className="pl-6 text-sm">{lastSharedDate}</p>
           </div>
-          <MessageHistory messageHistory={messageHistory} botImage={chatbotData?.profile_image} botName={chatbotData?.name}/>
+          <MessageHistory
+            messageHistory={messageHistory}
+            botImage={chatbotData?.profile_image}
+            botName={chatbotData?.name}
+          />
         </div>
-        <button
-          className="flex flex-row w-full bg-[#353945] items-center justify-center py-2 space-x-4 rounded" 
-          type="button"
-          onClick={handleUpdateSharedChat}
-        >
-          {
-            copyClipboard ?
-            <></> :
-            <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M18.5 8V2V0H16.5H10.5V2H14.5V4H12.5V6H10.5V8H8.5V10H6.5V12H8.5V10H10.5V8H12.5V6H14.5V4H16.5V8H18.5ZM8.5 2H2.5H0.5V4V16V18H2.5H14.5H16.5V16V10H14.5V16H2.5V4H8.5V2Z" fill="#00EDBE"/>
-            </svg>
-          }
-          <p className="text-primary">
-            {copyClipboard ? (
-              updateSharedAPI.isSuccess ? "COPIED!" : "COPYING..."
-            ) : (
-              isFirstShare ? "COPY LINK" : "UPDATE AND COPY LINK"
-            )}
-          </p>
-        </button>
+        <div className="flex justify-end gap-6">
+          <button
+            className="btn-underlined text-sm"
+            onClick={() => setIsOpen(false)}
+          >
+            Cancel
+          </button>
+          <button
+            className="btn-primary px-4 py-2 text-base font-normal"
+            type="button"
+            onClick={handleUpdateSharedChat}
+          >
+            <div className="flex items-center gap-2">
+              <p className="">
+                {copyClipboard
+                  ? updateSharedAPI.isSuccess
+                    ? "Copied!"
+                    : "Copying..."
+                  : isFirstShare
+                    ? "Copy link"
+                    : "Update and copy link"}
+              </p>
+              {!copyClipboard && (
+                <svg
+                  width="25"
+                  height="25"
+                  viewBox="0 2 25 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8.375 14.5H20.625M20.625 14.5L14.5 20.625M20.625 14.5L14.5 8.375"
+                    stroke="currentColor"
+                    strokeWidth="1.75"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              )}
+            </div>
+          </button>
+        </div>
       </div>
     </ModalBlank>
-  )
-}
+  );
+};
 
 export default ShareModal;

@@ -242,6 +242,7 @@ export const useGetSharedChat = (params: any) => {
           "x-kf-user-id": address,
         },
       }),
+    refetchOnWindowFocus: false,
   });
 };
 

@@ -37,25 +37,23 @@ const MessageHistory = ({
         }
 
         return (
-          <section className="flex flex-row space-x-4 lg:px-4" key={index}>
+          <section className="flex flex-row gap-4" key={index}>
             <Image
               src={message.sender === "user" ? AvatarDummy : botImage}
-              className="h-8 w-8 rounded"
+              className="h-8 w-8 rounded-full"
               alt="Profile"
               width={50}
               height={50}
             />
-            <div className="flex w-full flex-col gap-4 pt-2 text-sm">
-              <h3 className="font-black">
+            <div className="flex w-full flex-col gap-2 pt-2 text-sm">
+              <h3 className="font-medium">
                 {message.sender === "user" ? "Anonymous" : botName}
               </h3>
-              <p className="whitespace-break-spaces text-body">
-                {message.message}
-              </p>
+              <p className="whitespace-break-spaces">{message.message}</p>
               {sources.map((source: string, index: number) => (
                 <a
                   href={source}
-                  className="text-sm text-body hover:underline"
+                  className="text-sm hover:underline"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -86,29 +84,40 @@ const SharedChat = () => {
   const router = useRouter();
 
   return (
-    <div className="bg-container text-heading">
-      <div className="md:px-auto flex size-full flex-col items-center gap-6 px-4 pt-8 lg:mx-auto lg:w-1/2">
-        <Link href="/">
-          <Logo />
+    <div className="bg-container text-heading lg:py-16">
+      <div className="md:px-auto flex size-full max-w-[1440px] flex-col items-center gap-6 rounded-2xl border border border-2 bg-sidebar lg:mx-auto lg:w-8/12">
+        <Link href="/dashboard">
+          <Image
+            src="/images/dashboard-banner.svg"
+            alt="Main Banner"
+            className="w-full rounded-t-lg border-b-2 border-border lg:rounded-t-2xl"
+            width={1030}
+            height={264}
+          />
         </Link>
-        <div className="flex w-full flex-col space-y-2 overflow-x-auto border-b-2 border-border pb-4">
-          <h1 className="text-3xl">{chatbotDetail.data?.data.data.name}</h1>
-          <h2 className="text-sm text-body">
-            {sharedChat.isFetching ? "" : sharedDate}
-          </h2>
+        <div className="flex w-full flex-col gap-8 overflow-x-auto px-3 pb-16 pt-4 md:px-10">
+          <h1 className="text-center text-2xl font-semibold text-primary">
+            {chatbotDetail.data?.data.data.name}
+          </h1>
+          <div>
+            <h2 className="text-sm font-semibold text-primary">
+              {sharedChat.isFetching ? "" : sharedDate}
+            </h2>
+            <hr className="w-full border-t-2 border-border" />
+          </div>
+          <MessageHistory
+            messageHistory={sharedChat.data?.data.chat_history}
+            botImage={chatbotDetail.data?.data.data.profile_image}
+            botName={chatbotDetail.data?.data.data.name}
+          />
+          <button
+            type="button"
+            className="btn-primary self-center px-5 py-2 text-lg"
+            onClick={() => router.push("/dashboard")}
+          >
+            Start to explore Open Campus U!
+          </button>
         </div>
-        <MessageHistory
-          messageHistory={sharedChat.data?.data.chat_history}
-          botImage={chatbotDetail.data?.data.data.profile_image}
-          botName={chatbotDetail.data?.data.data.name}
-        />
-        <button
-          type="button"
-          className="button mx-auto mb-20 px-5 py-2"
-          onClick={() => router.push("/onboarding")}
-        >
-          Start to Explore OCU
-        </button>
       </div>
     </div>
   );

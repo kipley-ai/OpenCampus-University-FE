@@ -36,7 +36,19 @@
     @apply max-md:text-xs text-sm text-primary dark:text-heading border-2 border-primary font-medium rounded-full px-2 md:px-3 py-1 hover:bg-primary hover:text-container dark:hover:text-sidebar disabled:bg-[#B8BABE] disabled:text-[#909295] disabled:border-0;
   }
 
+  .btn-primary {
+    @apply rounded-md bg-primary px-3 py-1 text-xs font-medium text-white hover:bg-[#1016BC] disabled:border-0 disabled:bg-[#B8BABE] disabled:text-[#909295] xl:text-sm;
+  }
+
   .btn-secondary {
     @apply flex items-center justify-center gap-2 rounded-md border border-primary bg-transparent px-3 py-1 text-xs font-medium text-primary hover:bg-primary hover:text-box disabled:border-0 disabled:bg-[#B8BABE] disabled:text-[#909295] xl:text-sm;
+  }
+
+  .btn-plain {
+    @apply bg-transparent text-sm font-medium text-primary hover:underline disabled:text-[#909295];
+  }
+
+  .btn-underlined {
+    @apply text-xs font-medium text-primary underline underline-offset-2 transition-all hover:text-[#1016BC] hover:underline-offset-4 disabled:text-[#909295] xl:text-sm;
   }
 }

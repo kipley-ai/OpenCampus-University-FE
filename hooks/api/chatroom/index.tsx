@@ -87,3 +87,19 @@ export const useGetChatRoomDetail = (params: IChatroomParams) => {
       }),
   });
 };
+
+export const useGetSharedChatRoom = (params: any) => {
+  const { session } = useAppProvider();
+  const { address } = session;
+
+  return useQuery({
+    queryKey: ["chatbot", "share_chat", params.room_id],
+    queryFn: () =>
+      axios.post("/api/chatroom/share_chat", params, {
+        headers: {
+          "x-kf-user-id": address,
+        },
+      }),
+    refetchOnWindowFocus: false,
+  });
+};

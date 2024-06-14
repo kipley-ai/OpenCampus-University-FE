@@ -19,7 +19,7 @@ export default function Login() {
 
   const router = useRouter();
 
-  const { mutate } = useCreateUser();
+  const { mutate: createUserMutate } = useCreateUser();
 
   const { setSession } = useAppProvider();
 
@@ -58,11 +58,32 @@ export default function Login() {
         delete user["eth_address"];
       }
 
-      mutate(backendUser, {
-        onSuccess: () => {
-          localStorage.setItem("token", access_token);
-          localStorage.setItem("session", JSON.stringify(user));
-          setSession(user);
+      createUserMutate(backendUser, {
+        onSuccess: async () => {
+          localStorage.setItem("id_token", id_token);
+          
+          try {
+            const response = await fetch("/api/auth/login", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ access_token }),
+            });
+
+            if (!response.ok) {
+              const errorData = await response.json();
+              console.error("Error:", errorData.error);
+              return;
+            }
+
+            const responseData = await response.json();
+            if (responseData.success) {
+              setSession(user);
+            }
+          } catch (error) {
+            console.error("Error during login:", error);
+          }
         },
         onError: (error) => {
           console.error("Error:", error);
@@ -72,7 +93,7 @@ export default function Login() {
         },
       });
     }
-  }, [data, isPending, error, mutate, router]);
+  }, [data, isPending, error, createUserMutate, router]);
 
   return (
     <div className="flex h-dvh divide-x-2 divide-border text-heading">

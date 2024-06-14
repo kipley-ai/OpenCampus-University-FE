@@ -9,7 +9,7 @@
 }
 
 .animate-spin {
-  animation: rotate 1.5s linear infinite;
+  animation: rotate 1s linear infinite;
   width: 112px;
   height: 112px;
   transform-origin: center;

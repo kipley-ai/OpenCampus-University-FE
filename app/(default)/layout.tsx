@@ -49,12 +49,12 @@ export default function DefaultLayout({
     }
   }
 
-  const token = localStorage.getItem("token");
-  const { data: checkTokenData, error: checkTokenError } = useCheckToken(token);
+  // const token = localStorage.getItem("token");
+  // const { data: checkTokenData, error: checkTokenError } = useCheckToken(token);
 
-  if (!token && pathname !== "/dashboard") {
-    return redirect("/dashboard");
-  }
+  // if (!token && pathname !== "/dashboard") {
+  //   return redirect("/dashboard");
+  // }
 
   if (
     CREATOR_PATHS.includes(pathname) &&

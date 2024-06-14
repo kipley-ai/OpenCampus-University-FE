@@ -9,6 +9,7 @@ import {
   useState,
   useEffect,
 } from "react";
+import { parseJWT } from "@/utils/utils";
 
 interface ContextProps {
   sidebarOpen: boolean;
@@ -79,9 +80,17 @@ export default function AppProvider({
   const [session, setSession] = useState({});
 
   useEffect(() => {
-    const session = localStorage.getItem("session");
-    const initialState = session ? JSON.parse(session) : {};
-    setSession(initialState);
+    const idToken = localStorage.getItem("id_token");
+    if (idToken) {
+      const user = parseJWT(idToken);
+      if (user) {
+        if ("eth_address" in user) {
+          user["address"] = user["eth_address"];
+          delete user["eth_address"];
+        }
+        setSession(user);
+      }
+    }
   }, []);
 
   return (

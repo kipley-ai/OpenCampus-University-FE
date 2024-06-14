@@ -156,7 +156,7 @@ export default function Header() {
             {/* <ThemeSwitcher /> */}
             {/* Profile Picture */}
 
-            {localStorage.getItem("token") ? (
+            {localStorage.getItem("id_token") ? (
               <AvatarWithStatus image={profileImage} status="away" />
             ) : (
               // <GetInvolvedButton

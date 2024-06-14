@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { SUBDOMAINS } from "./utils/constants";
+import { isTokenExpired } from "./utils/utils";
+import { getToken } from "next-auth/jwt";
 
 const PUBLIC_FILE = /\.(.*)$/; // Files
 
@@ -25,4 +27,18 @@ export default async function middleware(req: NextRequest) {
     }
     return NextResponse.rewrite(url);
   }
+
+  const accessToken = req.cookies.get("access_token");
+
+  if (!accessToken) {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
+  }
+
+  return NextResponse.next();
 }
+
+export const config = {
+  matcher: [
+    "/((?!dashboard|login).*)",
+  ],
+};

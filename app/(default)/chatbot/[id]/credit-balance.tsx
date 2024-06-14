@@ -24,7 +24,7 @@ export default function CreditBalance() {
     useState<boolean>(false);
   const [modalTopUpFailed, setModalTopUpFailed] = useState<boolean>(false);
 
-  const { modalTopUp, setModalTopUp, topUpAmount } = useAppProvider();
+  const { modalTopUp, setModalTopUp, topUpAmount, session } = useAppProvider();
   const { creditBalance, setRefetch } = useCreditBalanceContext();
 
   const { data } = useRechargeStatus({ willRefetch });
@@ -64,10 +64,8 @@ export default function CreditBalance() {
   }, [data, topUpStatus]);
 
   const handleTopUp = () => {
-    if (status === "connected") {
+    if (session?.address) {
       setModalTopUp(true);
-    } else if (status === "disconnected" && openConnectModal) {
-      openConnectModal();
     }
   };
 

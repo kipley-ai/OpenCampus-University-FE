@@ -29,6 +29,27 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  const handleSignOut = async (e: any) => {
+    e.preventDefault();
+    localStorage.setItem("kip-protocol-signature", "");
+    localStorage.setItem("id_token", "");
+  
+    try {
+      const response = await fetch("/api/auth/logout", {
+        method: "POST",
+      });
+  
+      if (response.ok) {
+        signOut();
+        disconnect();
+      } else {
+        console.error("Failed to sign out");
+      }
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
+
   useEffect(() => {
     const handleClickOutside = (event: any) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -114,14 +135,7 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
           <div className="mx-4 border-t border-border"></div>
           <button
             className="mx-2 block flex w-44 rounded-md px-2 py-2 hover:bg-secondary"
-            onClick={(e) => {
-              e.preventDefault();
-              localStorage.setItem("kip-protocol-signature", "");
-              localStorage.setItem("token", "");
-              localStorage.setItem("session", JSON.stringify({}));
-              signOut();
-              disconnect();
-            }}
+            onClick={handleSignOut}
           >
             <svg
               className="mr-2 size-3 sm:size-4"

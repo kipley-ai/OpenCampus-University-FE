@@ -86,3 +86,19 @@ export const parseJWT = (token: string) => {
 
   return JSON.parse(jsonPayload);
 }
+
+export const isTokenExpired = (token: string) => {
+  if (!token) {
+    return true;
+  }
+
+  try {
+    const decodedToken = parseJWT(token);
+    const currentTime = Math.floor(Date.now() / 1000);
+
+    return decodedToken.exp < currentTime;
+  } catch (error) {
+    console.error("Error decoding token:", error);
+    return true;
+  }
+};

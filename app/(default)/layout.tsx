@@ -23,7 +23,7 @@ export default function DefaultLayout({
   const pathname = usePathname();
   const { openConnectModal } = useConnectModal();
   const sign = localStorage.getItem("kip-protocol-signature");
-  const { verifStatus } = useAppProvider();
+  const { verifStatus, session } = useAppProvider();
   const { data: userDetail } = useUserDetail();
 
   const subdomain = window.location.origin.split("//")[1].split(".")[0];
@@ -39,14 +39,8 @@ export default function DefaultLayout({
     topUpAmount,
   } = useAppProvider();
 
-  if (status === "connected" && (sign || verifStatus === "authenticated")) {
-    if (
-      userDetail &&
-      userDetail?.data?.status !== "error" &&
-      !userDetail?.data?.data.onboarding
-    ) {
-      return redirect("/onboarding");
-    }
+  if (session?.address && !userDetail?.data?.data?.is_whitelisted) {
+    redirect("/onboarding");
   }
 
   // const token = localStorage.getItem("token");

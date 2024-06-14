@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, redirect } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { useGetToken } from "@/hooks/api/auth";
 import { useCreateUser } from "@/hooks/api/user";
@@ -12,12 +12,16 @@ import Header from "@/components/ui/header";
 import "./logo-spinner.css";
 
 export default function Login() {
+  const router = useRouter();
+
   const searchParams = useSearchParams();
   const code = searchParams.get("code");
 
-  const { data, isPending, error } = useGetToken(code);
+  if (!code) {
+    redirect("/dashboard");
+  }
 
-  const router = useRouter();
+  const { data, isPending, error } = useGetToken(code);
 
   const { mutate: createUserMutate } = useCreateUser();
 
@@ -30,7 +34,7 @@ export default function Login() {
 
     if (error) {
       console.error("Error:", error);
-      return router.push("/dashboard");
+      redirect("/dashboard");
     }
 
     console.log("data :>> ", data);
@@ -39,7 +43,7 @@ export default function Login() {
 
     if (!access_token || !id_token) {
       console.error("No access token or id token");
-      return router.push("/dashboard");
+      redirect("/dashboard");
     }
 
     const user = parseJWT(id_token);

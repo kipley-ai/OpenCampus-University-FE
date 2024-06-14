@@ -22,7 +22,9 @@ import { CHATBOT_APP, QUIZ_APP } from "@/utils/constants";
 
 export default function Onboarding() {
   const sign = localStorage.getItem("kip-protocol-signature");
-  const { session: { address } } = useAppProvider();
+  const {
+    session: { address },
+  } = useAppProvider();
   const { status } = useAccount();
   const { verifStatus } = useAppProvider();
   const pathname = usePathname();
@@ -38,44 +40,31 @@ export default function Onboarding() {
 
   if (isLoading) return null;
 
-  if (status === "connected" && (sign || verifStatus === "authenticated")) {
-    if (
-      userDetail &&
-      userDetail?.data?.status !== "error" &&
-      userDetail?.data?.data.onboarding
-    ) {
-      return redirect("/dashboard");
-    }
-
-    return (
-      // <div className="flex flex-col py-10 pb-20 px-6 lg:px-8 xl:px-32">
-      <div className="flex flex-col gap-8">
-        <OnboardingHeader />
-        {step == "data_source" || step == "upload_files" || step == "notion" ? (
-          <SelectDataElements />
-        ) : step == "mint_nft" ? (
-          <MintNFT />
-        ) : step == "choose_app" ? (
-          <ChooseApp />
-        ) : step == CHATBOT_APP ? (
-          <CreateChatbot />
-        ) : step == QUIZ_APP ? (
-          <CreateQuiz />
-        ) : step == "onboarding_success" ? (
-          <OnboardingSuccess />
-        ) : (
-          <InviteCode address={address} />
-        )}
-      </div>
-      // </div>
-    );
+  if (
+    userDetail?.data?.msg === "user not found" ||
+    userDetail?.data?.data?.is_whitelisted
+  ) {
+    redirect("/dashboard");
   }
 
-  // if (welcomePage === "kip-video") {
-  //   return <KipProtocolVideo />;
-  // }
-
-  if (status === "disconnected") {
-    return redirect("/dashboard");
-  }
+  return (
+    <div className="flex flex-col gap-8">
+      <OnboardingHeader />
+      {step == "data_source" || step == "upload_files" || step == "notion" ? (
+        <SelectDataElements />
+      ) : step == "mint_nft" ? (
+        <MintNFT />
+      ) : step == "choose_app" ? (
+        <ChooseApp />
+      ) : step == CHATBOT_APP ? (
+        <CreateChatbot />
+      ) : step == QUIZ_APP ? (
+        <CreateQuiz />
+      ) : step == "onboarding_success" ? (
+        <OnboardingSuccess />
+      ) : (
+        <InviteCode address={address} />
+      )}
+    </div>
+  );
 }

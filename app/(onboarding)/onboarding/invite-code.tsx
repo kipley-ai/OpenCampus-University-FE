@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { useCreateChatbotContext } from "../create-knowledge-context";
 import { useIsWhitelisted } from "@/hooks/api/user";
-import { useRouter } from "next/navigation";
+import { useRouter, redirect } from "next/navigation";
 import { ONBOARDING_FLOW } from "@/utils/constants";
 
 type InviteCodeProps = {
@@ -19,13 +19,6 @@ const InviteCode = ({ address }: InviteCodeProps) => {
   const inputsRef = useRef<(HTMLInputElement | null)[]>([]);
 
   const { setStep } = useCreateChatbotContext();
-
-  // useEffect(() => {
-  // 	// Skip invite code step if on dev
-  //   if (process.env.NEXT_PUBLIC_ENV_DEV == "1") {
-  //     setStep("data_source");
-  //   }
-  // }, []);
 
   const { data: isWl, isLoading } = useIsWhitelisted();
 
@@ -131,15 +124,7 @@ const InviteCode = ({ address }: InviteCodeProps) => {
           setErrorMessage("");
         }, 2000);
       } else {
-        if (address) {
-          sessionStorage.setItem("address", address);
-        }
-
-        if (process.env.NEXT_PUBLIC_ONBOARDING_FLOW! === ONBOARDING_FLOW.KOL) {
-          window.location.href = "/dashboard";
-          return;
-        }
-        setStep("data_source");
+        redirect("/dashboard");
       }
     } catch (error) {
       setErrorMessage("Failed to verify invite code. Please try again.");
@@ -174,13 +159,13 @@ const InviteCode = ({ address }: InviteCodeProps) => {
 
   if (isLoading) return null;
 
-  if (isWl?.data && isWl?.data?.status !== "error") {
-    if (process.env.NEXT_PUBLIC_ONBOARDING_FLOW! === ONBOARDING_FLOW.KOL) {
-      window.location.href = "/dashboard";
-      return;
-    }
-    setStep("data_source");
-  }
+  // if (isWl?.data && isWl?.data?.status !== "error") {
+  //   if (process.env.NEXT_PUBLIC_ONBOARDING_FLOW! === ONBOARDING_FLOW.KOL) {
+  //     window.location.href = "/dashboard";
+  //     return;
+  //   }
+  //   setStep("data_source");
+  // }
 
   return (
     <div className="flex h-full flex-col items-center gap-6">

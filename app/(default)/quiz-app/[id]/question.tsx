@@ -19,7 +19,7 @@ export default function QuizQuestion() {
     cancel,
   } = useQuiz();
 
-  const totalQuestions = questions.data?.questions?.questions.length as number;
+  const totalQuestions = questions.data?.questions?.length as number;
 
   const progress = (question_now / totalQuestions) * 100;
   //console.log("Questions: ", questions); // For debugging purpose
@@ -28,13 +28,8 @@ export default function QuizQuestion() {
   const isDisabled = !selected_answer;
 
   const checkAnswer = () => {
-    const correctIndex =
-      questions.data?.questions?.questions[question_now - 1].answer; // Correct index of the answer
-    const correctAnswer =
-      questions.data?.questions?.questions[question_now - 1].choices[
-        correctIndex
-      ]; // Accessing the correct answer using the index
-    const isCorrect = selected_answer === correctAnswer;
+    const correctAnswer = questions.data?.questions[question_now - 1]?.answer
+    const isCorrect = selected_answer === questions.data?.questions[question_now - 1][correctAnswer];
 
     setAnswerState(isCorrect); // Update the answer state
     if (isCorrect) {
@@ -92,13 +87,14 @@ export default function QuizQuestion() {
           QUESTION {question_now} OF {totalQuestions}
         </div>
         <div className="mb-4 text-xl font-semibold">
-          {questions.data?.questions?.questions[question_now - 1].query}
+          {questions.data?.questions[question_now - 1]?.question}
         </div>
         <div className="mb-6 space-y-4">
-          {questions.data?.questions?.questions[question_now - 1].choices
-            ?.slice(0)
-            .map((choice: any, index: any) => (
-              <label
+          {questions.data?.questions && ["a", "b", "c", "d"]
+            .map((choices: any, index: any) => {
+              console.log(questions.data)
+              const choice = questions.data?.questions[question_now - 1][choices];
+              return ( <label
                 key={index}
                 className={`flex w-full flex-row rounded-lg border border-gray-300 px-4 py-3 text-left ${selected_answer === choice ? "bg-blue-100" : ""}`}
               >
@@ -157,7 +153,8 @@ export default function QuizQuestion() {
                 )}
                 {choice}
               </label>
-            ))}
+            );
+          })}
         </div>
         <div className="border-t border-gray-300"></div>
         <div className="mt-6 flex items-center justify-between">

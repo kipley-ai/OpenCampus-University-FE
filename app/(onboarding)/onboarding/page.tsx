@@ -36,9 +36,9 @@ export default function Onboarding() {
 
   const { step, welcomePage } = useCreateChatbotContext();
 
-  const { data: userDetail, isLoading } = useUserDetail();
+  const { data: userDetail, isPending } = useUserDetail();
 
-  if (isLoading) return null;
+  if (isPending) return null;
 
   if (
     userDetail?.data?.msg === "user not found" ||

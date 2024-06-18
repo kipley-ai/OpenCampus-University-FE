@@ -158,7 +158,7 @@ export const useUserDetail = () => {
           },
         },
       ),
-    staleTime: 1000,
+    staleTime: 300000,
   });
 };
 

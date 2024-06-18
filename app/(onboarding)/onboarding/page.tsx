@@ -49,7 +49,7 @@ export default function Onboarding() {
 
   return (
     <div className="flex flex-col gap-8">
-      <OnboardingHeader />
+      <OnboardingHeader profileImage={userDetail?.data?.data?.profile_image} />
       {step == "data_source" || step == "upload_files" || step == "notion" ? (
         <SelectDataElements />
       ) : step == "mint_nft" ? (

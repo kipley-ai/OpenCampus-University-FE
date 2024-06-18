@@ -22,7 +22,7 @@ export default function DefaultLayout({
   const { openConnectModal } = useConnectModal();
   const sign = localStorage.getItem("kip-protocol-signature");
   const { session } = useAppProvider();
-  const { data: userDetail, isPending, refetch } = useUserDetail();
+  const { data: userDetail, isFetching, refetch } = useUserDetail();
 
   const subdomain = window.location.origin.split("//")[1].split(".")[0];
   if (SUBDOMAINS.includes(subdomain) && pathname !== "/") {
@@ -37,12 +37,13 @@ export default function DefaultLayout({
     topUpAmount,
   } = useAppProvider();
 
-  if (isPending) {
+  if (isFetching) {
     return null;
   }
 
   if (session?.address && userDetail?.data?.msg === "user not found") {
     refetch();
+    return null;
   }
 
   if (session?.address && !userDetail?.data?.data?.onboarding) {

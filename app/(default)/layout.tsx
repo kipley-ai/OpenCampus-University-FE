@@ -39,7 +39,7 @@ export default function DefaultLayout({
     topUpAmount,
   } = useAppProvider();
 
-  if (session?.address && !userDetail?.data?.data?.is_whitelisted) {
+  if (session?.address && !userDetail?.data?.data?.onboarding) {
     redirect("/onboarding");
   }
 

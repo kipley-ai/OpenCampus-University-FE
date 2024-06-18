@@ -20,8 +20,6 @@ const InviteCode = ({ address }: InviteCodeProps) => {
 
   const { setStep } = useCreateChatbotContext();
 
-  const { data: isWl, isLoading } = useIsWhitelisted();
-
   const handleChange = (element: any, index: number) => {
     if (!/^[A-Za-z0-9]$/.test(element.value)) {
       return false;
@@ -156,16 +154,6 @@ const InviteCode = ({ address }: InviteCodeProps) => {
 
     cont();
   }, [otp]);
-
-  if (isLoading) return null;
-
-  // if (isWl?.data && isWl?.data?.status !== "error") {
-  //   if (process.env.NEXT_PUBLIC_ONBOARDING_FLOW! === ONBOARDING_FLOW.KOL) {
-  //     window.location.href = "/dashboard";
-  //     return;
-  //   }
-  //   setStep("data_source");
-  // }
 
   return (
     <div className="flex h-full flex-col items-center gap-6">

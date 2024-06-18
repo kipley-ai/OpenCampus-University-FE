@@ -42,7 +42,7 @@ export default function Onboarding() {
 
   if (
     userDetail?.data?.msg === "user not found" ||
-    userDetail?.data?.data?.is_whitelisted
+    userDetail?.data?.data?.onboarding
   ) {
     redirect("/dashboard");
   }

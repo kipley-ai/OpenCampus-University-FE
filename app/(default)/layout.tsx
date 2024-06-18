@@ -3,7 +3,6 @@ import Sidebar from "@/components/ui/sidebar";
 import Header from "@/components/ui/header";
 import ModalTopUpSuccessful from "@/components/modal-top-up-successful";
 import ModalTopUpFailed from "@/components/modal-top-up-failed";
-import { useAccount } from "wagmi";
 import { useEffect } from "react";
 import { redirect, useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
@@ -19,12 +18,11 @@ export default function DefaultLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { status } = useAccount();
   const pathname = usePathname();
   const { openConnectModal } = useConnectModal();
   const sign = localStorage.getItem("kip-protocol-signature");
-  const { verifStatus, session } = useAppProvider();
-  const { data: userDetail } = useUserDetail();
+  const { session } = useAppProvider();
+  const { data: userDetail, isPending } = useUserDetail();
 
   const subdomain = window.location.origin.split("//")[1].split(".")[0];
   if (SUBDOMAINS.includes(subdomain) && pathname !== "/") {
@@ -38,6 +36,10 @@ export default function DefaultLayout({
     setModalTopUpFailed,
     topUpAmount,
   } = useAppProvider();
+
+  if (isPending) {
+    return null;
+  }
 
   if (session?.address && !userDetail?.data?.data?.onboarding) {
     redirect("/onboarding");

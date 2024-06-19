@@ -33,6 +33,7 @@ const MessageList = ({
 }) => {
   const [answersStream, setAnswersStream] = useState<string[]>([]);
   const [chunks, setChunks] = useState<string>("");
+  const [recommendation, setRecommendation] = useState<any>([]);
   const fieldRef = useRef<HTMLDivElement>(null);
   const [profileImage, setProfileImage] = useState<StaticImageData | string>(
     "",
@@ -105,7 +106,7 @@ const MessageList = ({
 
     // console.log("Answer Stream");
     // console.log(answersStream.slice(0, -2));
-    console.log("lastJsonMessage :>> ", lastJsonMessage);
+    // console.log("lastJsonMessage :>> ", lastJsonMessage);
 
     if (lastJsonMessage !== null && lastJsonMessage.type !== "error") {
       if (lastJsonMessage.type === "end") {
@@ -124,7 +125,7 @@ const MessageList = ({
 
         setMessageHistory((prevHistory) => [
           ...prevHistory,
-          { sender: "bot", message: fullBotAnswer, chunks },
+          { sender: "bot", message: fullBotAnswer, chunks, recommendation },
         ]);
 
         setAnswersStream([]);
@@ -155,6 +156,8 @@ const MessageList = ({
         const chunksObject = { chunks: lastJsonMessage.chunks };
         const chunksString = JSON.stringify(chunksObject);
         setChunks(chunksString);
+      } else if ("chatbot_recommendation" in lastJsonMessage) {
+        setRecommendation(lastJsonMessage?.chatbot_recommendation);
       } else if (lastJsonMessage.type === "start") {
         setCheckFirstQuotation(true);
       }
@@ -289,6 +292,7 @@ const MessageList = ({
               sender={"bot"}
               message={message.message}
               chunks={message.chunks}
+              recommendation={message?.chatbot_recommendation}
               isGenerating={replyStatus == "answering"}
               created={message.created}
             />
@@ -302,6 +306,7 @@ const MessageList = ({
             sender={"bot"}
             message={answersStream}
             chunks={chunks}
+            recommendation={recommendation}
             isGenerating={replyStatus == "answering"}
           />
         )}

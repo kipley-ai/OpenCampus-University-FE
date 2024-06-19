@@ -42,6 +42,7 @@ interface Message {
   sender: "bot" | "user";
   message: string;
   chunks?: string;
+  chatbot_recommendation?: any[];
   created?: any;
 }
 
@@ -82,7 +83,7 @@ export const CreateChatbotProvider = ({
     session_id: chatSession.data?.data.data?.session_id,
     app_id: chatbotId as string,
     page_num: 1,
-    page_size: 10,
+    page_size: 20,
   });
 
   const handleChange = (name: string, value: any) => {

@@ -1,17 +1,18 @@
 import { useChatbotDetail } from "@/hooks/api/chatbot";
-import { chatbotIdFromSlug } from "@/utils/utils";
+import { chatbotIdFromSlug, chatbotSlug } from "@/utils/utils";
 import Image from "next/image";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import AvatarDummy from "public/images/avatar-bot-dummy.svg";
 import LoadingIcon from "public/images/loading-icon.svg";
 import { useState } from "react";
 import TweetAnswer from "./tweet-answer";
-import Copy from "@/components/icon/copy.svg"
+import Copy from "@/components/icon/copy.svg";
 
 export const CopyButton = ({ message }: { message: string }) => {
   return (
     <button
-      className="absolute top-0 right-0 z-20 text-gray-400 hover:brightness-50"
+      className="absolute right-0 top-0 z-20 text-gray-400 hover:brightness-50"
       onClick={() => {
         navigator.clipboard.writeText(message);
       }}
@@ -33,13 +34,15 @@ const LastAnswer = ({
   message,
   isGenerating,
   chunks = "",
-  created = ""
+  recommendation = [],
+  created = "",
 }: {
   profileImage: any;
   sender: string;
   message: string[] | string;
   isGenerating: boolean;
   chunks?: string;
+  recommendation?: any[];
   created?: string;
 }) => {
   const isStream = Array.isArray(message);
@@ -61,7 +64,7 @@ const LastAnswer = ({
   }
 
   const trimQuotationMarks = (str: string): string => {
-    return str.replace(/"/g, '');
+    return str.replace(/"/g, "");
   };
 
   return (
@@ -91,40 +94,76 @@ const LastAnswer = ({
             <Image
               src={profileImage}
               alt="Profile"
-              className="h-7 w-7 md:h-10 md:w-10 rounded-full mt-1"
+              className="mt-1 h-7 w-7 rounded-full md:h-10 md:w-10"
               width={50}
               height={50}
             />
             <div className="mt-3 flex flex-col gap-2">
-              <div className="flex gap-2 items-center">
+              <div className="flex items-center gap-2">
                 <h6 className="text-sm font-medium">
                   {chatbotData?.data.data.name}
                 </h6>
                 <h6 className="text-xs text-[#94A3B8]">
-                  {created ? new Date(created).toLocaleTimeString("en-US", {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: true,
-                  }) : 
-                  new Date(Date.now()).toLocaleTimeString("en-US", {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: true,
-                    timeZone: "UTC"
-                  })}
+                  {created
+                    ? new Date(created).toLocaleTimeString("en-US", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: true,
+                      })
+                    : new Date(Date.now()).toLocaleTimeString("en-US", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: true,
+                        timeZone: "UTC",
+                      })}
                 </h6>
               </div>
-              <p className="text-sm whitespace-break-spaces break-words">
-                {isStream ? message.slice(0, -2).join("") : trimQuotationMarks(message)}
-                {/* {sender === "bot" && sources.length > 0 && (
-                  <TweetAnswer chunks={sources} />
-                )} */}
-                {sources.map((source: string, index: number) => (
-                  <p key={index}>
-                    <a href={source} className="text-xs sm:text-sm hover:underline mt-3" target="_blank" rel="noreferrer">{source}</a>
-                  </p>
-                ))}
-              </p>
+              <div className="flex flex-col items-start gap-2">
+                <p className="whitespace-break-spaces break-words text-sm">
+                  {isStream
+                    ? message.slice(0, -2).join("")
+                    : trimQuotationMarks(message)}
+                  {/* {sender === "bot" && sources.length > 0 && (
+                    <TweetAnswer chunks={sources} />
+                  )} */}
+                  {sources.map((source: string, index: number) => (
+                    <p key={index}>
+                      <a
+                        href={source}
+                        className="mt-3 text-xs hover:underline sm:text-sm"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {source}
+                      </a>
+                    </p>
+                  ))}
+                </p>
+                {recommendation.length > 0 && (
+                  <div className="flex flex-wrap items-center gap-4 rounded-xl border-2 border-border bg-container p-4">
+                    {recommendation.map((chatbot: any, index: number) => (
+                      <a
+                        key={index}
+                        href={`/chatbot/${chatbotSlug(chatbot)}`}
+                        className="group flex w-20 flex-col items-center gap-2"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <Image
+                          src={chatbot.profile_image}
+                          alt="User avatar"
+                          className="w-full rounded-lg"
+                          width={50}
+                          height={50}
+                        />
+                        <p className="w-full overflow-hidden text-ellipsis text-sm font-semibold text-primary group-hover:underline">
+                          {chatbot.name}
+                        </p>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
             {showCopy && !isStream && <CopyButton message={message} />}
           </div>

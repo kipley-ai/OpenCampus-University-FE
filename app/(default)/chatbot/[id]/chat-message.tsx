@@ -25,7 +25,7 @@ const ChatMessage = ({
   }
 
   const trimQuotationMarks = (str: string): string => {
-    return str.replace(/"/g, '');
+    return str.replace(/"/g, "");
   };
 
   return (
@@ -36,44 +36,74 @@ const ChatMessage = ({
       <div className="relative flex items-start space-x-3">
         <Image
           src={
-            message.sender == "bot" 
-              ? chatbotData?.data.data.profile_image 
+            message.sender == "bot"
+              ? chatbotData?.data.data.profile_image
               : userDetail?.data?.data?.profile_image || AvatarDummy
           }
           alt="User avatar"
-          className="h-8 w-8 md:h-10 md:w-10 rounded-full mt-1"
+          className="mt-1 h-8 w-8 rounded-full md:h-10 md:w-10"
           width={50}
           height={50}
         />
-        <div className="mt-2 md:mt-3 flex flex-col gap-2">
-          <div className="flex gap-2 items-center">
+        <div className="mt-2 flex flex-col gap-2 md:mt-3">
+          <div className="flex items-center gap-2">
             <h6 className="text-sm font-medium">
               {message.sender == "bot" ? chatbotData?.data.data.name : "You"}
             </h6>
             <h6 className="text-xs text-[#94A3B8]">
-              {message.created ? new Date(message.created).toLocaleTimeString("en-US", {
-                  hour: '2-digit',
-                  minute: '2-digit',
-                  hour12: true,
-                }) : 
-                new Date(Date.now()).toLocaleTimeString("en-US", {
-                  hour: '2-digit',
-                  minute: '2-digit',
-                  hour12: true,
-                  timeZone: "UTC"
-                })}
+              {message.created
+                ? new Date(message.created).toLocaleTimeString("en-US", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true,
+                  })
+                : new Date(Date.now()).toLocaleTimeString("en-US", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true,
+                    timeZone: "UTC",
+                  })}
             </h6>
           </div>
           {/* <h6 className="mb-1 mt-1 font-black text-lg"> */}
-          <p className="whitespace-break-spaces text-sm">{trimQuotationMarks(message.message)}</p>
+          <p className="whitespace-break-spaces text-sm">
+            {trimQuotationMarks(message.message)}
+          </p>
           {/* {message.sender === "bot" && sources.length > 0 && (
             <TweetAnswer chunks={sources} />
           )} */}
           {sources.map((source: string, index: number) => (
             <p key={index}>
-              <a href={source} className="text-xs sm:text-sm hover:underline" target="_blank" rel="noreferrer">{source}</a>
+              <a
+                href={source}
+                className="text-xs hover:underline sm:text-sm"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {source}
+              </a>
             </p>
           ))}
+          {message?.chatbot_recommendation?.length > 0 && (
+            <div className="flex flex-wrap items-center gap-4 rounded-xl border-2 border-border bg-container p-4">
+              {message?.chatbot_recommendation.map(
+                (chatbot: any, index: number) => (
+                  <div key={index} className="flex flex-col gap-2">
+                    <Image
+                      src={chatbot.profile_image}
+                      alt="User avatar"
+                      className="size-12 rounded-lg"
+                      width={50}
+                      height={50}
+                    />
+                    <p className="text-sm font-semibold text-primary">
+                      {chatbot.name}
+                    </p>
+                  </div>
+                ),
+              )}
+            </div>
+          )}
         </div>
         {showCopy && <CopyButton message={message.message} />}
       </div>

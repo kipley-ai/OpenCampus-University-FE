@@ -9,7 +9,7 @@ import {
   mintToken,
 } from "@/smart-contract/kip-token";
 import { KIP_TOKEN_DECIMAL } from "@/utils/constants";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAppProvider } from "@/providers/app-provider";
 import Notification from "@/components/notification";
 import Button from "@/components/button";
@@ -33,10 +33,10 @@ export default function ModalTopUp({
   setIsOpen: any;
   setTopUpStatus?: any;
 }) {
-  const [form, setForm] = useState<Form>({});
+  const [form, setForm] = useState<Form>({ amount: 0 });
   const [continueBtn, setContinueBtn] = useState({
     disable: false,
-    text: "Continue",
+    text: "Top up",
   });
 
   const [toast3ErrorOpen, setToast3ErrorOpen] = useState<boolean>(false);
@@ -88,7 +88,7 @@ export default function ModalTopUp({
 
       setContinueBtn({
         disable: true,
-        text: "Confirming...",
+        text: "Topping up...",
       });
 
       const rechargeTx = await recharge(form.amount!);
@@ -104,7 +104,7 @@ export default function ModalTopUp({
             setIsOpen(false);
             setContinueBtn({
               disable: false,
-              text: "Continue",
+              text: "Top up",
             });
           },
           onError: (error) => {
@@ -114,10 +114,18 @@ export default function ModalTopUp({
       );
     } catch (error) {
       console.log(error);
-      setContinueBtn({
-        disable: false,
-        text: "Continue",
-      });
+      const allw = await allowance();
+      if (allw < form.amount! * KIP_TOKEN_DECIMAL) {
+        setContinueBtn({
+          disable: false,
+          text: "Approve",
+        });
+      } else {
+        setContinueBtn({
+          disable: false,
+          text: "Top up",
+        });
+      }
     }
   };
 
@@ -133,6 +141,20 @@ export default function ModalTopUp({
       setMinting(false);
     }
   };
+
+  useEffect(() => {
+    const checkAllowance = async () => {
+      const allw = await allowance();
+      if (allw < form.amount! * KIP_TOKEN_DECIMAL) {
+        setContinueBtn({
+          disable: false,
+          text: "Approve",
+        });
+      }
+    };
+
+    checkAllowance();
+  }, [form]);
 
   return (
     <ModalBlank isOpen={isOpen} setIsOpen={setIsOpen}>

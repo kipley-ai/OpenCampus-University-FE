@@ -5,7 +5,7 @@ import AvatarWithStatus from "@/components/ui/avatar-with-status";
 import { StaticImageData } from "next/image";
 
 interface HeaderProps {
-  profileImage?: StaticImageData | string;
+  profileImage: StaticImageData | string;
 }
 
 const Header = ({ profileImage }: HeaderProps) => {

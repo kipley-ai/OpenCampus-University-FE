@@ -12,8 +12,8 @@ import { useAppProvider } from "@/providers/app-provider";
 import { SUBDOMAINS } from "@/utils/constants";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { CREATOR_PATHS, CREATOR_ROLES } from "@/utils/constants";
-import { useAccount, useConnect } from 'wagmi';
-import { InjectedConnector } from 'wagmi/connectors/injected';
+import { useAccount, useConnect } from "wagmi";
+import { InjectedConnector } from "wagmi/connectors/injected";
 
 export default function DefaultLayout({
   children,
@@ -25,6 +25,8 @@ export default function DefaultLayout({
   const sign = localStorage.getItem("kip-protocol-signature");
   const { session } = useAppProvider();
   const { data: userDetail, isFetching, refetch } = useUserDetail();
+  const [hasRefetched, setHasRefetched] = useState(false);
+  const router = useRouter();
 
   const { address, isConnected } = useAccount();
   const { connect } = useConnect({
@@ -45,18 +47,30 @@ export default function DefaultLayout({
     topUpAmount,
   } = useAppProvider();
 
-  if (isFetching) {
-    return null;
-  }
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      if (session?.address && !hasRefetched) {
+        if (userDetail?.data?.msg === "user not found") {
+          await refetch();
+          setHasRefetched(true);
+        }
+      }
+    };
 
-  if (session?.address && userDetail?.data?.msg === "user not found") {
-    refetch();
-    return null;
-  }
+    fetchUserDetails();
+  }, [session?.address, userDetail?.data?.msg, hasRefetched, refetch]);
 
-  if (session?.address && !userDetail?.data?.data?.onboarding) {
-    redirect("/onboarding");
-  }
+  useEffect(() => {
+    const checkOnboarding = () => {
+      if (session?.address && userDetail?.data?.data?.onboarding === 0) {
+        router.push("/onboarding");
+      }
+    };
+
+    if (!isFetching) {
+      checkOnboarding();
+    }
+  }, [session?.address, userDetail, isFetching, router]);
 
   // const token = localStorage.getItem("token");
   // const { data: checkTokenData, error: checkTokenError } = useCheckToken(token);
@@ -77,10 +91,10 @@ export default function DefaultLayout({
       if (!isConnected && session?.address && !attemptedConnection) {
         try {
           await connect();
-          console.log('Wallet connected:', session.address);
+          console.log("Wallet connected:", session.address);
           setAttemptedConnection(true);
         } catch (error) {
-          console.error('Error connecting wallet:', error);
+          console.error("Error connecting wallet:", error);
         }
       }
     };

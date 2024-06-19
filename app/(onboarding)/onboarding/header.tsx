@@ -2,9 +2,10 @@
 
 import Logo from "@/components/ui/logo";
 import AvatarWithStatus from "@/components/ui/avatar-with-status";
+import { StaticImageData } from "next/image";
 
 interface HeaderProps {
-  profileImage?: string;
+  profileImage?: StaticImageData | string;
 }
 
 const Header = ({ profileImage }: HeaderProps) => {

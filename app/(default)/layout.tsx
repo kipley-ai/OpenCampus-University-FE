@@ -3,7 +3,7 @@ import Sidebar from "@/components/ui/sidebar";
 import Header from "@/components/ui/header";
 import ModalTopUpSuccessful from "@/components/modal-top-up-successful";
 import ModalTopUpFailed from "@/components/modal-top-up-failed";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { redirect, useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useUserDetail } from "@/hooks/api/user";
@@ -12,6 +12,8 @@ import { useAppProvider } from "@/providers/app-provider";
 import { SUBDOMAINS } from "@/utils/constants";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { CREATOR_PATHS, CREATOR_ROLES } from "@/utils/constants";
+import { useAccount, useConnect } from 'wagmi';
+import { InjectedConnector } from 'wagmi/connectors/injected';
 
 export default function DefaultLayout({
   children,
@@ -23,6 +25,12 @@ export default function DefaultLayout({
   const sign = localStorage.getItem("kip-protocol-signature");
   const { session } = useAppProvider();
   const { data: userDetail, isFetching, refetch } = useUserDetail();
+
+  const { address, isConnected } = useAccount();
+  const { connect } = useConnect({
+    connector: new InjectedConnector(),
+  });
+  const [attemptedConnection, setAttemptedConnection] = useState(false);
 
   const subdomain = window.location.origin.split("//")[1].split(".")[0];
   if (SUBDOMAINS.includes(subdomain) && pathname !== "/") {
@@ -63,6 +71,22 @@ export default function DefaultLayout({
   ) {
     return redirect("/dashboard");
   }
+
+  useEffect(() => {
+    const connectWallet = async () => {
+      if (!isConnected && session?.address && !attemptedConnection) {
+        try {
+          await connect();
+          console.log('Wallet connected:', session.address);
+          setAttemptedConnection(true);
+        } catch (error) {
+          console.error('Error connecting wallet:', error);
+        }
+      }
+    };
+
+    connectWallet();
+  }, [isConnected, session?.address, connect, attemptedConnection]);
 
   return (
     <div className="flex h-dvh divide-x-2 divide-border text-heading">

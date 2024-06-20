@@ -40,6 +40,7 @@ export default function ModalTopUp({
   });
 
   const [toast3ErrorOpen, setToast3ErrorOpen] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const [minting, setMinting] = useState(false);
   const [minted, setMinted] = useState(false);
 
@@ -64,7 +65,9 @@ export default function ModalTopUp({
   };
 
   const handleContinue = async () => {
-    if (!form.amount || form.amount == 0) {
+    if (!form.amount || form.amount <= 0 || isNaN(form.amount)) {
+      setToast3ErrorOpen(true);
+      setErrorMessage("Please enter a valid amount.");
       return;
     }
 
@@ -72,6 +75,9 @@ export default function ModalTopUp({
       const bal = await balanceOf();
       if (bal === 0) {
         setToast3ErrorOpen(true);
+        setErrorMessage(
+          "Insufficient OCU Credits balance. Please get more OCU Credits token.",
+        );
         return;
       }
 
@@ -112,8 +118,9 @@ export default function ModalTopUp({
           },
         },
       );
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      console.error(error);
+
       const allw = await allowance();
       if (allw < form.amount! * KIP_TOKEN_DECIMAL) {
         setContinueBtn({
@@ -126,6 +133,20 @@ export default function ModalTopUp({
           text: "Top up",
         });
       }
+
+      switch (error.code) {
+        case "ACTION_REJECTED":
+          setErrorMessage("Top up rejected.");
+          break;
+        case "CALL_EXCEPTION":
+          setErrorMessage(
+            "An internal error occurred. Please check your chain data and gas fee.",
+          );
+          break;
+        default:
+          setErrorMessage("An error occurred. Please try again.");
+      }
+      setToast3ErrorOpen(true);
     }
   };
 
@@ -165,9 +186,7 @@ export default function ModalTopUp({
         className="fixed inset-x-0 top-9 flex items-center justify-center"
         action={false}
       >
-        <p className="font-semibold">
-          Insufficient OCU Credits balance. Please get more OCU Credits token.
-        </p>
+        <p className="font-semibold">{errorMessage}</p>
       </Notification>
       <div className="flex flex-col justify-between gap-4 rounded-lg p-8 shadow-md">
         <div className="flex flex-col gap-1">

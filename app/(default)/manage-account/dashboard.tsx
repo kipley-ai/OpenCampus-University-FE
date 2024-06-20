@@ -99,7 +99,7 @@ export default function AccountSettings() {
   };
 
   return (
-    <div className="flex w-5/6 flex-col rounded-2xl border border-border bg-box px-10 py-8">
+    <div className="flex w-full xl:w-5/6 flex-col rounded-2xl border border-border bg-box px-4 md:px-10 py-8">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold text-primary">Account Information</h1>
         {/* <DateFilterComponent /> */}

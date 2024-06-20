@@ -20,8 +20,34 @@ export default function ManageAccount() {
 
   return (
     <div className="flex flex-col bg-container">
-      <div className="flex bg-container mt-2 xl:mt-4">
-        <div className="mr-8 flex h-min w-1/4 flex-col rounded-2xl border border-border bg-box px-4 py-6 font-medium">
+      <ul className="mb-8 flex xl:hidden w-full gap-6 xs:gap-12 border-b-2 border-secondary text-sm font-semibold dark:border-border">
+        <li
+          onClick={() => setSelectedPage("dashboard")}
+          className={`relative top-[1px] cursor-pointer ${selectedPage === "dashboard" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
+        >
+          Account
+        </li>
+        <li
+          onClick={() => setSelectedPage("creator")}
+          className={`relative top-[1px] cursor-pointer ${selectedPage === "creator" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
+        >
+          Creator
+        </li>
+        <li
+          onClick={() => setSelectedPage("deposit")}
+          className={`relative top-[1px] cursor-pointer ${selectedPage === "deposit" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
+        >
+          Deposit
+        </li>
+        <li
+          onClick={() => setSelectedPage("credit")}
+          className={`relative top-[1px] cursor-pointer ${selectedPage === "credit" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
+        >
+          Credit
+        </li>
+      </ul>
+      <div className="mt-2 flex bg-container xl:mt-4">
+        <div className="mr-8 hidden h-min w-1/4 flex-col rounded-2xl border border-border bg-box px-4 py-6 font-medium xl:flex">
           {/* Account Information Section */}
           <div
             className={`flex cursor-pointer px-3 py-3 ${selectedPage == "dashboard" ? "text-primary" : "text-secondary-text hover:text-primary"}`}

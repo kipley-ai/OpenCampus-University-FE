@@ -37,7 +37,7 @@ export const PaginationController = ({
             direction="left"
             isDisabled={currentPage <= 1}
           />
-          <ul className="inline-flex gap-0.5 -space-x-px text-sm font-medium shadow-sm">
+          <ul className="inline-flex gap-2 -space-x-px text-sm font-medium shadow-sm">
             {pages.map((page, index) => (
               <PaginationNumber
                 key={index}

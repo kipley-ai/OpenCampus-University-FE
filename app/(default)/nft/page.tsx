@@ -57,7 +57,7 @@ const NFTCard = ({ nft }: NFTCardProps) => {
     <div className="group relative flex flex-col rounded-3xl bg-box">
       <Image
         src={nft.profile_image || "/images/nft-default-thumb.png"}
-        className="mx-auto h-full rounded-2xl object-cover p-1 pb-0"
+        className="w-full rounded-2xl object-cover"
         width={300}
         height={300}
         alt={"NFT Card"}
@@ -75,7 +75,7 @@ const NFTCard = ({ nft }: NFTCardProps) => {
           {nft.category || "Uncategorised"}
         </p> */}
       <Link href={`/nft/${nft.sft_id}`}>
-        <div className="absolute bottom-0 hidden h-12 w-full items-center justify-center rounded-b-2xl bg-primary group-hover:flex">
+        <div className="absolute bottom-8 hidden h-12 w-full items-center justify-center rounded-b-2xl bg-primary group-hover:flex hover:bg-primary-dark">
           <p className="text-center text-sm font-semibold text-container">
             View More
           </p>
@@ -129,7 +129,7 @@ const NFTList = () => {
         </div>
         <div className="flex flex-col items-center pb-4">
           <div
-            className={`${!isFetching && "invisible"} flex w-full items-center justify-center gap-4`}
+            className={`${!isFetching && "invisible"} my-2 flex w-full items-center justify-center gap-4`}
           >
             <FaSpinner size={20} className="animate-spin" />
             <p className="text-md text-heading">Loading</p>
@@ -156,7 +156,7 @@ const BotCard = ({ bot }: BotCardProps) => {
     <div className="group relative flex flex-col rounded-3xl bg-box">
       <Image
         src={bot.profile_image || "/images/bot-default-thumb.png"}
-        className="mx-auto h-full rounded-2xl object-cover p-1 pb-0"
+        className="w-full rounded-2xl object-cover"
         width={300}
         height={300}
         alt={"Bot Card"}
@@ -167,7 +167,7 @@ const BotCard = ({ bot }: BotCardProps) => {
           {bot.category_name || "Uncategorised"}
         </p> */}
       </div>
-      <div className="absolute bottom-0 hidden h-12 w-full divide-x-2 divide-primary rounded-b-2xl border border-2 border-primary bg-box text-primary group-hover:flex">
+      <div className="absolute bottom-8 hidden h-12 w-full divide-x-2 divide-primary rounded-b-2xl border border-2 border-primary bg-box text-primary group-hover:flex">
         <Link
           className="flex flex-1 items-center justify-center rounded-bl-xl px-1 hover:bg-primary hover:text-container"
           href={`/app/${bot.chatbot_id}`}
@@ -229,7 +229,7 @@ const BotList = () => {
         </div>
         <div className="flex flex-col items-center pb-4">
           <div
-            className={`${!isFetching && "invisible"} flex w-full items-center justify-center gap-4`}
+            className={`${!isFetching && "invisible"} my-4 flex w-full items-center justify-center gap-4`}
           >
             <FaSpinner size={20} className="animate-spin" />
             <p className="text-md text-heading">Loading</p>
@@ -266,16 +266,16 @@ export default function NFT() {
   return (
     <div className="mb-6 h-full">
       <h1 className="py-3 text-lg font-semibold text-heading">My Assets</h1>
-      <div className="flex flex-col rounded-2xl border border-[#DDDDEB] bg-sidebar px-6 py-7 pb-0 lg:px-8 xl:px-14">
+      <div className="flex flex-col rounded-2xl border border-[#DDDDEB] bg-sidebar px-4 py-7 pb-0 lg:px-6 xl:px-8">
         <div className="mb-8 mt-0 flex items-center space-x-10 border-b-2 text-sm font-semibold text-primary">
           <button
-            className={`${tab == "knowledge-assets" ? "underline underline-offset-8" : "opacity-50"}`}
+            className={`relative top-[1px] ${tab == "knowledge-assets" ? "border-b-2 border-primary text-primary" : "opacity-50 hover:text-body"}`}
             onClick={() => setTab("knowledge-assets")}
           >
             KnowledgeKeys
           </button>
           <button
-            className={`${tab == "apps" ? "underline underline-offset-8" : "opacity-50"}`}
+            className={`relative top-[1px] ${tab == "apps" ? "border-b-2 border-primary text-primary" : "opacity-50 hover:text-body"}`}
             onClick={() => setTab("apps")}
           >
             Apps

@@ -19,6 +19,8 @@ import { useAddRecharge } from "@/hooks/api/user";
 import { IconContext } from "react-icons";
 import { FaPlus } from "react-icons/fa6";
 import { delay } from "@/utils/utils";
+import { useAccount, useConnect } from "wagmi";
+import { InjectedConnector } from "wagmi/connectors/injected";
 
 interface Form {
   amount?: number;
@@ -55,6 +57,10 @@ export default function ModalTopUp({
   const targetNetworkName = isDevelopment ? "Sepolia" : "Base";
 
   const addRecharge = useAddRecharge();
+  const { connect } = useConnect({
+    connector: new InjectedConnector(),
+  });
+  const { address, isConnected } = useAccount();
   const { setTopUpAmount } = useAppProvider();
 
   const handleFormChange = (name: string, value: any) => {
@@ -62,6 +68,19 @@ export default function ModalTopUp({
       ...form,
       [name]: value,
     });
+  };
+
+  const handleConnect = async () => {
+    try {
+      await connect();
+      console.log("Wallet address connected :>> ", address);
+    } catch (error) {
+      console.error("Error connecting wallet:", error);
+      setToast3ErrorOpen(true);
+      setErrorMessage(
+        "Error connecting wallet. Please make sure you have a wallet connected.",
+      );
+    }
   };
 
   const handleContinue = async () => {
@@ -163,19 +182,33 @@ export default function ModalTopUp({
     }
   };
 
-  useEffect(() => {
-    const checkAllowance = async () => {
-      const allw = await allowance();
-      if (allw < form.amount! * KIP_TOKEN_DECIMAL) {
-        setContinueBtn({
-          disable: false,
-          text: "Approve",
-        });
-      }
-    };
+  const checkAllowance = async () => {
+    const allw = await allowance();
+    console.log('allw :>> ', allw);
+    if (allw < form.amount! * KIP_TOKEN_DECIMAL) {
+      setContinueBtn({
+        disable: false,
+        text: "Approve",
+      });
+    } else {
+      setContinueBtn({
+        disable: false,
+        text: "Top up",
+      });
+    }
+  };
 
-    checkAllowance();
-  }, [form]);
+  useEffect(() => {
+    if (isConnected && isTargetNetworkActive) {
+      checkAllowance();
+    }
+  }, [form, isConnected, isTargetNetworkActive]);
+
+  useEffect(() => {
+    if (isConnected && isTargetNetworkActive) {
+      checkAllowance();
+    }
+  }, [address])
 
   return (
     <ModalBlank isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -297,7 +330,11 @@ export default function ModalTopUp({
           >
             Cancel
           </UnderlinedButton>
-          {!isTargetNetworkActive ? (
+          {!isConnected ? (
+            <Button onClick={handleConnect} className="px-6 py-2">
+              <h5>Connect Wallet</h5>
+            </Button>
+          ) : !isTargetNetworkActive ? (
             <Button onClick={switchToTargetNetwork} className="px-6 py-2">
               <h5>Change Network to {targetNetworkName}</h5>
             </Button>

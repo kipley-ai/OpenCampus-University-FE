@@ -72,35 +72,12 @@ export default function DefaultLayout({
     }
   }, [session?.address, userDetail, isFetching, router]);
 
-  // const token = localStorage.getItem("token");
-  // const { data: checkTokenData, error: checkTokenError } = useCheckToken(token);
-
-  // if (!token && pathname !== "/dashboard") {
-  //   return redirect("/dashboard");
-  // }
-
   if (
     CREATOR_PATHS.includes(pathname) &&
     !CREATOR_ROLES.includes(userDetail?.data?.data?.role?.toUpperCase())
   ) {
     return redirect("/dashboard");
   }
-
-  useEffect(() => {
-    const connectWallet = async () => {
-      if (!isConnected && session?.address && !attemptedConnection) {
-        try {
-          await connect();
-          console.log("Wallet connected:", session.address);
-          setAttemptedConnection(true);
-        } catch (error) {
-          console.error("Error connecting wallet:", error);
-        }
-      }
-    };
-
-    connectWallet();
-  }, [isConnected, session?.address, connect, attemptedConnection]);
 
   return (
     <div className="flex h-dvh divide-x-2 divide-border text-heading">

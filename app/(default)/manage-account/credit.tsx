@@ -3,10 +3,11 @@ import { FaSpinner } from "react-icons/fa";
 import { useCreditUsage } from "@/hooks/api/user";
 import { PaginationController } from "@/components/pagination-2/controller";
 import { keepPreviousData } from "@tanstack/react-query";
+import { NoData } from "./deposit";
 
-export default function Credit() {
+const CreditTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(10);
+  const [pageSize, setPageSize] = useState<number>(5);
 
   const { isPending, isError, error, data, isFetching } = useCreditUsage(
     {
@@ -38,53 +39,65 @@ export default function Credit() {
 
   const totalPages = Math.ceil(creditCount / pageSize);
 
-  return (
-    <div className="flex w-full xl:w-5/6 flex-col rounded-2xl border border-border bg-box px-4 md:px-10 py-8">
-      <h1 className="text-xl font-bold text-primary">Credit Usage</h1>
-      <table className="mx-3 my-4 w-full text-left">
-        <thead>
-          <tr className="border-b border-border text-sm text-body">
-            <th className="py-5 font-semibold">Title</th>
-            <th className="py-5 font-semibold">Credit</th>
-            <th className="py-5 font-semibold">Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {creditData.map((credit: any, index: number) => {
-            const isPositive = credit.credit_amount > 0;
-            return (
-              <tr key={index} className="text-md">
-                <td className="py-5 font-medium text-heading">
-                  {credit.product_name}
-                </td>
-                <td
-                  className={`${
-                    isPositive ? "!text-green-500" : "!text-red-400"
-                  } py-5 font-semibold`}
-                >
-                  {(isPositive ? "+" : "") + credit.credit_amount}
-                </td>
-                <td className="py-5 font-medium text-gray-500">
-                  {credit.created_at?.replace("T", " ")}
-                </td>
+  if (creditCount > 0) {
+    return (
+      <div className="flex flex-col">
+        <div className="w-full overflow-x-auto">
+          <table className="my-4 w-full text-left">
+            <thead>
+              <tr className="border-b border-border text-sm text-body">
+                <th className="py-5 font-semibold">Title</th>
+                <th className="px-2 py-5 font-semibold">Credit</th>
+                <th className="py-5 font-semibold">Date</th>
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <div className="flex flex-col items-center">
-        <div
-          className={`${!isFetching && "invisible"} flex w-full items-center justify-center gap-4`}
-        >
-          <FaSpinner size={20} className="animate-spin" />
-          <p className="text-md text-gray-300">Loading</p>
+            </thead>
+            <tbody>
+              {creditData.map((credit: any, index: number) => {
+                const isPositive = credit.credit_amount > 0;
+                return (
+                  <tr key={index} className="text-md">
+                    <td className="w-1/2 py-5 font-medium text-heading xs:w-3/5">
+                      {credit.product_name}
+                    </td>
+                    <td
+                      className={`${
+                        isPositive ? "!text-green-500" : "!text-red-400"
+                      } px-2 py-5 font-semibold`}
+                    >
+                      {(isPositive ? "+" : "") + credit.credit_amount}
+                    </td>
+                    <td className="py-5 font-medium text-gray-500">
+                      {credit.created_at?.replace("T", " ")}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
-        <PaginationController
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
-          totalPages={totalPages}
-        />
+        <div className="max-w-full">
+          <PaginationController
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        </div>
       </div>
+    );
+  }
+
+  return (
+    <div className="mt-8">
+      <NoData />
+    </div>
+  );
+};
+
+export default function Credit() {
+  return (
+    <div className="flex w-full flex-col rounded-2xl border border-border bg-box px-4 py-8 md:px-10 xl:w-5/6">
+      <h1 className="text-xl font-bold text-primary">Credit Usage</h1>
+      <CreditTable />
     </div>
   );
 }

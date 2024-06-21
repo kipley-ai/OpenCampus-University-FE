@@ -30,7 +30,7 @@ export const PaginationArrow = ({
   isDisabled?: boolean;
 }) => {
   return (
-    <div className={`${direction == "left" ? "mr-2" : "ml-2"}`}>
+    <div className={`${direction == "left" ? "mr-0 md:mr-2" : "ml-0 md:ml-2"}`}>
       <button
         onClick={isDisabled ? () => {} : onClick}
         className={`inline-flex items-center justify-center rounded px-2.5 py-2 leading-5  ${

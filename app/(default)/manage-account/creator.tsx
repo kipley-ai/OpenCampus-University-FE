@@ -16,35 +16,7 @@ import RangeInputMulti from "@/components/range-input";
 import Button from "@/components/button";
 import { set } from "zod";
 import { withdrawEarnings } from "@/smart-contract/kip-protocol-contract";
-
-type NoDataProps = {
-  item: string;
-  url: string;
-};
-
-const NoData = ({ item, url }: NoDataProps) => {
-  return (
-    <div className="flex flex-col items-center justify-center gap-4">
-      <Image
-        src="/images/no-data.png"
-        width={167}
-        height={115}
-        alt={"No Data"}
-      />
-      <p className="text-lg font-semibold text-heading">No data yet</p>
-      <Link href={url}>
-        <div className="flex items-center gap-2 hover:brightness-75">
-          <IconContext.Provider value={{ color: "#00EDBE" }}>
-            <div>
-              <FaPlus />
-            </div>
-          </IconContext.Provider>
-          <p className="text-sm text-primary">Create new {item}</p>
-        </div>
-      </Link>
-    </div>
-  );
-};
+import { NoData } from "./deposit";
 
 const WithdrawConfirm = ({
   nftData,
@@ -255,7 +227,7 @@ const NFTList = ({
     );
   }
 
-  return <NoData item="SFT" url="/nft/create" />;
+  return <NoData />;
 };
 
 const WithdrawModal = ({
@@ -274,11 +246,9 @@ const WithdrawModal = ({
       >
         <div className="flex w-full flex-row items-center justify-between">
           {step === 1 ? (
-            <h1 className="text-3xl font-bold leading-10 text-heading">
-              My KnowledgeKeys
-            </h1>
+            <h1 className="text-xl font-bold text-primary">My KnowledgeKeys</h1>
           ) : step === 2 ? (
-            <h1 className="text-3xl font-bold leading-10 text-heading">
+            <h1 className="text-xl font-bold text-primary">
               Withdraw KnowledgeKey
             </h1>
           ) : (
@@ -343,12 +313,12 @@ export default function CreatorOverview() {
   return (
     <>
       <WithdrawModal isOpen={showModal} setIsOpen={setShowModal} />
-      <div className="flex w-full xl:w-5/6 flex-col rounded-2xl border border-border bg-box px-4 md:px-10 py-8">
+      <div className="flex w-full flex-col rounded-2xl border border-border bg-box px-4 py-8 md:px-10 xl:w-5/6">
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-bold text-primary">Dashboard</h1>
         </div>
         <div className="my-8 flex flex-col gap-4 rounded-xl">
-          <div className="mb-8 flex items-center justify-between">
+          <div className="mb-8 flex items-center justify-between gap-4">
             {/* <div className="content-none rounded-xl bg-[#B1E5FC]">a</div> */}
             <div className="flex items-center">
               <svg
@@ -372,8 +342,8 @@ export default function CreatorOverview() {
               Withdraw your earnings
             </Button>
           </div>
-          <div className="flex">
-            <div className="mr-3 w-1/2 rounded-xl border border-border p-8 bg-container">
+          <div className="flex gap-3 max-sm:flex-col">
+            <div className="flex-1 rounded-xl border border-border bg-container p-8">
               <div className="mb-4 w-fit">
                 <svg
                   width="24"
@@ -412,10 +382,12 @@ export default function CreatorOverview() {
                 </svg>
               </div>
               <h4 className="text-4xl font-semibold text-primary ">
-                {overviewData?.data.data.earnings}
+                {overviewData?.data.data.earnings
+                  ? overviewData?.data.data.earnings
+                  : 0}
               </h4>
             </div>
-            <div className="mr-3 w-1/2 rounded-xl border border-border p-8 bg-container">
+            <div className="flex-1 rounded-xl border border-border bg-container p-8">
               <div className="mb-4 w-fit">
                 <svg
                   width="24"
@@ -459,7 +431,7 @@ export default function CreatorOverview() {
                 {overviewData?.data.data.users}
               </h4>
             </div>
-            <div className="w-1/2 rounded-xl border border-border p-8 bg-container">
+            <div className="flex-1 rounded-xl border border-border bg-container p-8">
               <div className="mb-4 w-fit">
                 <svg
                   width="20"

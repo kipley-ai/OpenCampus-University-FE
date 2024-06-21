@@ -20,7 +20,7 @@ export default function ManageAccount() {
 
   return (
     <div className="flex flex-col bg-container">
-      <ul className="mb-8 flex xl:hidden w-full gap-6 xs:gap-12 border-b-2 border-secondary text-sm font-semibold dark:border-border">
+      <ul className="mb-2 flex xl:hidden w-full gap-6 xs:gap-12 border-b-2 border-secondary text-sm font-semibold dark:border-border">
         <li
           onClick={() => setSelectedPage("dashboard")}
           className={`relative top-[1px] cursor-pointer ${selectedPage === "dashboard" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}

@@ -32,8 +32,9 @@ import { LoadMoreSpinner } from "@/components/load-more";
 import { useQueryClient } from "@tanstack/react-query";
 
 export default function AccountSettings() {
-  const queryClient = useQueryClient()
-  const { mutate: mutateUpdateUser, isPending: isLoadingUpdateUser,  } = useUpdateUserAPI();
+  const queryClient = useQueryClient();
+  const { mutate: mutateUpdateUser, isPending: isLoadingUpdateUser } =
+    useUpdateUserAPI();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [profileImage, setProfileImage] = useState<any>(AvatarDefault);
@@ -42,7 +43,9 @@ export default function AccountSettings() {
 
   const { modalTopUp, setModalTopUp } = useAppProvider();
   const { data: userDetail, isLoading } = useUserDetail();
-  const { session: { address } } = useAppProvider();
+  const {
+    session: { address },
+  } = useAppProvider();
 
   const { theme, setTheme } = useTheme();
 
@@ -68,15 +71,18 @@ export default function AccountSettings() {
         }
 
         if (userTwitterLink) {
-          mutateUpdateUser({
-            profile_image: userProfileImage,
-            username: userUsername!,
-            twitter_link: userTwitterLink!,
-          }, {
-            onSuccess: () => {
-              queryClient.invalidateQueries({ queryKey: ["user-detail"] });
-            }
-          });
+          mutateUpdateUser(
+            {
+              profile_image: userProfileImage,
+              username: userUsername!,
+              twitter_link: userTwitterLink!,
+            },
+            {
+              onSuccess: () => {
+                queryClient.invalidateQueries({ queryKey: ["user-detail"] });
+              },
+            },
+          );
         }
       }
     }
@@ -87,19 +93,22 @@ export default function AccountSettings() {
     if (file) {
       uploadFile(file, (uploadedFile: string) => {
         setProfileImage(uploadedFile);
-        mutateUpdateUser({
-          profile_image: uploadedFile,
-        }, {
-          onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["user-detail"] });
-          }
-        });
+        mutateUpdateUser(
+          {
+            profile_image: uploadedFile,
+          },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries({ queryKey: ["user-detail"] });
+            },
+          },
+        );
       });
     }
   };
 
   return (
-    <div className="flex w-full xl:w-5/6 flex-col rounded-2xl border border-border bg-box px-4 md:px-10 py-8">
+    <div className="flex w-full flex-col rounded-2xl border border-border bg-box px-4 py-8 md:px-10 xl:w-5/6">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold text-primary">Account Information</h1>
         {/* <DateFilterComponent /> */}
@@ -107,7 +116,7 @@ export default function AccountSettings() {
       <hr className="my-4 border border-border" />
       {/* Profile Picture */}
       <h2 className="text-sm font-medium">Profile</h2>
-      <div className="my-4 flex items-center justify-between">
+      <div className="my-4 flex items-start justify-between gap-4 max-sm:flex-col sm:items-center">
         <div className="relative flex items-center">
           <button
             onClick={() => fileInputRef.current && fileInputRef.current.click()}
@@ -144,14 +153,14 @@ export default function AccountSettings() {
             onChange={handleProfileImage}
           />
           <div className="items-between ml-4">
-            <p className="font-medium">
+            <p className="font-medium max-xs:text-sm">
               {address?.substring(0, 11) +
                 "..." +
                 address?.substring(address.length - 11)}
             </p>
           </div>
         </div>
-        <Link href="/manage-account">
+        <Link href="/manage-account" className="max-sm:self-end">
           <SecondaryButton>
             <span> View Profile</span>
             <svg
@@ -167,14 +176,16 @@ export default function AccountSettings() {
         </Link>
       </div>
       {/* <div className="spinner-container"> */}
-      {isLoadingUpdateUser && <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 z-10">
-        <LoadMoreSpinner />
-      </div>}
+      {isLoadingUpdateUser && (
+        <div className="fixed inset-0 z-10 flex items-center justify-center bg-white bg-opacity-50">
+          <LoadMoreSpinner />
+        </div>
+      )}
       <hr className="mb-4 border border-border" />
       {/* Connected Account */}
       <h2 className="text-sm font-medium">Connected Account</h2>
-      <div className="my-4 flex items-center justify-between">
-        <div className="flex items-center">
+      <div className="my-4 flex items-start justify-between max-sm:flex-col sm:items-center">
+        <div className="flex items-center max-xs:text-sm">
           {/* Placeholder for Twitter icon SVG */}
           <svg
             width="43"
@@ -204,7 +215,7 @@ export default function AccountSettings() {
                 signIn("twitter", { callbackUrl: "/manage-account" });
               }}
             >
-              <p className="font-medium text-primary hover:underline">
+              <p className="text-left font-medium text-primary hover:underline">
                 Connect Twitter Account
               </p>
             </button>
@@ -213,15 +224,21 @@ export default function AccountSettings() {
         {userDetail?.data.data.twitter_link ? (
           <SecondaryButton
             onClick={() => {
-              mutateUpdateUser({
-                twitter_link: "",
-              }, {
-                onSuccess: () => {
-                  queryClient.invalidateQueries({ queryKey: ["user-detail"] });
-                }
-              });
+              mutateUpdateUser(
+                {
+                  twitter_link: "",
+                },
+                {
+                  onSuccess: () => {
+                    queryClient.invalidateQueries({
+                      queryKey: ["user-detail"],
+                    });
+                  },
+                },
+              );
               signOut();
             }}
+            className="mt-4 max-sm:self-end sm:mt-0"
           >
             <span>Disconnect</span>
             <svg
@@ -238,12 +255,12 @@ export default function AccountSettings() {
       </div>
       <hr className="my-4 border border-border" />
       <h2 className="mb-4 text-sm font-medium">Settings</h2>
-      <div className="flex items-center justify-between">
+      <div className="flex items-start justify-between gap-4 max-sm:flex-col sm:items-center">
         <div className="ml-3 flex gap-6">
           <ThemeSwitcher />
-          <h3 className="font-medium">Theme</h3>
+          <h3 className="font-medium max-xs:text-sm">Theme</h3>
         </div>
-        <div className="w-48">
+        <div className="w-48 max-sm:self-end">
           <Switcher
             texts={["Light", "Dark"]}
             mode={theme == "dark" ? 1 : 0}
@@ -259,7 +276,7 @@ export default function AccountSettings() {
       <div className="flex flex-col gap-4">
         <h2 className="text-sm font-medium">User Overview</h2>
         <div className="flex gap-6">
-          <div className="w-1/2 space-y-2 rounded-xl border border-border bg-container px-16 py-8">
+          <div className="w-full space-y-2 rounded-xl border border-border bg-container px-16 py-8 sm:w-1/2">
             <svg
               width="25"
               height="24"

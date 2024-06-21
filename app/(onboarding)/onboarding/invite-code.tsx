@@ -116,15 +116,19 @@ const InviteCode = ({ address }: InviteCodeProps) => {
         },
       );
 
-      if (res.data?.status === "error") {
+      if (
+        res?.data?.status === "error" &&
+        res?.data?.msg !== "Wallet already validated."
+      ) {
         setErrorMessage(res.data?.msg);
         setTimeout(function () {
           setErrorMessage("");
         }, 2000);
       } else {
-        redirect("/dashboard");
+        router.push("/dashboard");
       }
     } catch (error) {
+      console.log(error);
       setErrorMessage("Failed to verify invite code. Please try again.");
       setTimeout(function () {
         setErrorMessage("");

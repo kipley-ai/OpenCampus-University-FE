@@ -8,11 +8,11 @@ import { useGetLastGeneratedQuiz } from "@/hooks/api/quiz_app"
 export default function QuizTrue() {
     const { step, setStep, chatbot_id, questions, answer_state, setAnswerState, total_right, setTotalRight, question_now, setQuestionNow, selected_answer, setSelectedAnswer } = useQuiz();
 
-    const totalQuestions = questions.data?.questions?.length as number;
+    const totalQuestions = questions.data?.questions?.questions?.length as number;
 
     const progress = (question_now / totalQuestions) * 100;
 
-    const correctAnswer = questions.data?.questions[question_now - 1]?.answer; 
+    const correctAnswer = questions.data?.questions?.questions[question_now - 1]?.answer; 
 
     const nextPart = () => {
         if (question_now as number === totalQuestions as number) {
@@ -50,10 +50,10 @@ export default function QuizTrue() {
                         </div>
                     </div>
                     <div className="text-lg font-semibold mb-6">QUESTION {question_now} OF {totalQuestions}</div>
-                    <div className="text-xl font-semibold mb-4">{questions.data?.questions[question_now - 1]?.question}</div>
+                    <div className="text-xl font-semibold mb-4">{questions.data?.questions?.questions[question_now - 1]?.question}</div>
                     <div className="space-y-4 mb-6">
-                        {questions.data?.questions && ["a", "b", "c", "d"].map((choices: any, index: any) => {
-                            const choice = questions.data?.questions[question_now - 1][choices];
+                        {questions.data?.questions?.questions && ["a", "b", "c", "d"].map((choices: any, index: any) => {
+                            const choice = questions.data?.questions?.questions[question_now - 1][choices];
                             return ( <label key={index} className={`flex flex-row w-full text-left px-4 py-3 rounded-lg border border-gray-300 ${selected_answer === choice ? 'bg-blue-100' : ''}`}>
                                 <input type="radio" name="quiz" value={choice} className="opacity-0 absolute w-full"
                                     checked={selected_answer === choice}

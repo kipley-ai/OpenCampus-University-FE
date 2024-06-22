@@ -19,7 +19,7 @@ export default function QuizQuestion() {
     cancel,
   } = useQuiz();
 
-  const totalQuestions = questions.data?.questions?.length as number;
+  const totalQuestions = questions.data?.questions?.questions?.length as number;
 
   const progress = (question_now / totalQuestions) * 100;
   //console.log("Questions: ", questions); // For debugging purpose
@@ -28,8 +28,8 @@ export default function QuizQuestion() {
   const isDisabled = !selected_answer;
 
   const checkAnswer = () => {
-    const correctAnswer = questions.data?.questions[question_now - 1]?.answer
-    const isCorrect = selected_answer === questions.data?.questions[question_now - 1][correctAnswer];
+    const correctAnswer = questions.data?.questions?.questions[question_now - 1]?.answer
+    const isCorrect = selected_answer === questions.data?.questions?.questions[question_now - 1][correctAnswer];
 
     setAnswerState(isCorrect); // Update the answer state
     if (isCorrect) {
@@ -87,13 +87,13 @@ export default function QuizQuestion() {
           QUESTION {question_now} OF {totalQuestions}
         </div>
         <div className="mb-4 text-xl font-semibold">
-          {questions.data?.questions[question_now - 1]?.question}
+          {questions.data?.questions?.questions[question_now - 1]?.question}
         </div>
         <div className="mb-6 space-y-4">
-          {questions.data?.questions && ["a", "b", "c", "d"]
+          {questions.data?.questions?.questions && ["a", "b", "c", "d"]
             .map((choices: any, index: any) => {
               console.log(questions.data)
-              const choice = questions.data?.questions[question_now - 1][choices];
+              const choice = questions.data?.questions?.questions[question_now - 1][choices];
               return ( <label
                 key={index}
                 className={`flex w-full flex-row rounded-lg border border-gray-300 px-4 py-3 text-left ${selected_answer === choice ? "bg-blue-100" : ""}`}
@@ -159,7 +159,7 @@ export default function QuizQuestion() {
         <div className="border-t border-gray-300"></div>
         <div className="mt-6 flex items-center justify-between">
           <button
-            className="z-[999] flex flex-row text-blue-600"
+            className="z-[999] flex flex-row font-medium"
             onClick={() => cancel()}
           >
             <svg
@@ -176,7 +176,7 @@ export default function QuizQuestion() {
             </svg>
             CANCEL
           </button>
-          <button className={`flex flex-row ${isDisabled ? 'text-slate-500' : 'text-blue-600'}`} disabled={isDisabled} onClick={checkAnswer}>
+          <button className={`flex flex-row font-medium ${isDisabled ? 'text-slate-500' : 'text-heading'}`} disabled={isDisabled} onClick={checkAnswer}>
             CHECK
             <svg
               width="24"

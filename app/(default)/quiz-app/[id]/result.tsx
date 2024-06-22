@@ -12,7 +12,7 @@ import ResultImage from "components/quiz-app/result.png"
 export default function QuizResult() {
     const { step, setStep, total_right, setTotalRight, question_now, setQuestionNow, questions, setSelectedAnswer } = useQuiz();
 
-    const totalQuestions = questions.data?.questions?.length as number;
+    const totalQuestions = questions.data?.questions?.questions?.length as number;
 
     const percentage = Math.round((total_right / totalQuestions) * 100);
 

@@ -25,6 +25,7 @@ export default function QuizCover() {
     setTopic,
     chatbot_id,
     setChatbotId,
+    setChatbotName,
     questions,
     setQuestions,
     session_id,
@@ -67,6 +68,7 @@ export default function QuizCover() {
     if (generateQuiz.isSuccess && generateQuiz.data) {
       console.log("Successfully created quiz!", generateQuiz.data);
       setSessionId(generateQuiz.data?.data.session_id as string);
+      setChatbotName(chatbotDetail.data?.data?.data.name as string);
 
       // console.log("Current step:", step); // For debugging purpose
       // console.log("Chatbot id:", chatbot_id); // For debugging purpose
@@ -154,7 +156,7 @@ export default function QuizCover() {
               onChange={(e) => handleFormChange("topic", e.target.value)}
             />
             <Button
-              className="mt-4 self-end px-6 py-3"
+              className="xl:text-base self-end px-6 py-3"
               onClick={handleSubmit}
               disabled={isGenerating}
             >

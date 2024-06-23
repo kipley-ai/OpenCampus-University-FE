@@ -6,6 +6,7 @@ interface QuizContextType {
   step: string;
   topic: string;
   chatbot_id: string;
+  chatbot_name: string;
   session_id: string;
   questions: any;
   answer_state: any;
@@ -16,6 +17,7 @@ interface QuizContextType {
   setStep: (step: string) => void;
   setTopic: (topic: string) => void;
   setChatbotId: (id: string) => void;
+  setChatbotName: (name: string) => void;
   setSessionId: (id: string) => void;
   setQuestions: (questions: any) => void;
   setAnswerState: (answer: any) => void;
@@ -33,6 +35,7 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({
   const [step, setStep] = useState("");
   const [topic, setTopic] = useState("");
   const [chatbot_id, setChatbotId] = useState("");
+  const [chatbot_name, setChatbotName] = useState("");
   const [session_id, setSessionId] = useState("");
   const [questions, setQuestions] = useState("");
   const [answer_state, setAnswerState] = useState("");
@@ -59,6 +62,8 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({
         setTopic,
         chatbot_id,
         setChatbotId,
+        chatbot_name,
+        setChatbotName,
         session_id,
         setSessionId,
         questions,

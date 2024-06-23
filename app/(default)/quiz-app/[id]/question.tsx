@@ -50,7 +50,7 @@ export default function QuizQuestion() {
 
   return (
     <div className="w-full">
-      <span className="text-xl font-semibold">Quiz App</span>
+      <span className="text-lg font-semibold">Quiz App</span>
       <div className="my-10 mt-2 w-full rounded-xl border border-border bg-white">
         <div className="px-10 pt-8">
           <h2 className="text-lg font-semibold text-primary">{chatbot_name}</h2>

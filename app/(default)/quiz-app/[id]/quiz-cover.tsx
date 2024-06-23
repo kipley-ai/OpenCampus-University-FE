@@ -124,9 +124,7 @@ export default function QuizCover() {
     <>
       <ModalQuizLoading setIsOpen={setIsGenerating} isOpen={isGenerating} />
       <div className="">
-        <div className="ml-2">
-          <span className="text-xl font-semibold">Quiz App</span>
-        </div>
+        <span className="text-lg font-semibold">Quiz App</span>
         <div className="mt-4 space-x-4 rounded-lg rounded-xl border-2 border-border bg-box p-6">
           <div className="flex flex-col items-center gap-2">
             <Image

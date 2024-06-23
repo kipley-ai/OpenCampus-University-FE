@@ -22,15 +22,9 @@ function QuizContent() {
     switch (step) {
         case "cover":
             return <QuizCover />;
-        case "question":
-            return <QuizQuestion />;
-        case "true":
-            return <QuizTrue />;
-        case "false":
-            return <QuizFalse />;
         case "result":
             return <QuizResult />;
         default:
-            setStep("cover");
+            return <QuizQuestion />;
     }
 }

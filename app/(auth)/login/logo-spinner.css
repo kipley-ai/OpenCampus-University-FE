@@ -8,7 +8,7 @@
   }
 }
 
-.animate-spin {
+.spin-logo {
   animation: rotate 1s linear infinite;
   width: 112px;
   height: 112px;

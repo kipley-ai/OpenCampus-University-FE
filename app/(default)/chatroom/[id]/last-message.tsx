@@ -76,12 +76,12 @@ const LastAnswer = ({
         {/* Loading icon and generating text */}
         {isGenerating && sender === "bot" && (
           <div
-            className={`mb-2 flex items-center gap-6 space-x-3 text-sm text-gray-400 ${(chatbotData?.data.data.profile_image as string) ? "" : "self-end"} mr-2`}
+            className={`mb-2 flex items-center gap-5 md:gap-6 text-sm text-gray-400 ${(chatbotData?.data.data.profile_image as string) ? "" : "self-end"} mr-2`}
           >
             <Image
               src={LoadingIcon}
               alt="Profile"
-              className="h-5 w-5 animate-spin text-heading"
+              className="ml-1 md:ml-2 h-5 w-5 animate-spin text-heading"
               width={50}
               height={50}
             />

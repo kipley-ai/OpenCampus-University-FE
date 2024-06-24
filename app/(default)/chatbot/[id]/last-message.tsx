@@ -76,11 +76,11 @@ const LastAnswer = ({
       >
         {/* Loading icon and generating text */}
         {isGenerating && (
-          <div className="mb-2 flex items-center gap-6 space-x-3 text-sm text-gray-400">
+          <div className="mb-2 flex items-center gap-5 md:gap-6 text-sm text-gray-400">
             <Image
               src={LoadingIcon}
               alt="Profile"
-              className="ml-2 h-5 w-5 animate-spin text-heading"
+              className="ml-1 md:ml-2 h-5 w-5 animate-spin"
               width={50}
               height={50}
             />
@@ -94,7 +94,7 @@ const LastAnswer = ({
             <Image
               src={profileImage}
               alt="Profile"
-              className="mt-1 h-7 w-7 rounded-full md:h-10 md:w-10"
+              className="mt-1 h-8 w-8 rounded-full md:h-10 md:w-10"
               width={50}
               height={50}
             />

@@ -44,11 +44,11 @@ const CreditTable = () => {
       <div className="flex flex-col">
         <div className="w-full overflow-x-auto">
           <table className="my-4 w-full text-left">
-            <thead>
-              <tr className="border-b border-border text-sm text-body">
-                <th className="py-5 font-semibold">Title</th>
-                <th className="px-2 py-5 font-semibold">Credit</th>
-                <th className="py-5 font-semibold">Date</th>
+            <thead className="rounded bg-[#F9F9FF] dark:bg-[#1c1c1c]">
+              <tr className="text-sm">
+                <th className="px-2 py-5 font-medium">Title</th>
+                <th className="px-2 py-5 font-medium">Credit</th>
+                <th className="py-5 font-medium">Date</th>
               </tr>
             </thead>
             <tbody>
@@ -56,13 +56,13 @@ const CreditTable = () => {
                 const isPositive = credit.credit_amount > 0;
                 return (
                   <tr key={index} className="text-md">
-                    <td className="w-1/2 py-5 font-medium text-heading xs:w-3/5">
+                    <td className="w-1/2 px-2 py-5 font-medium text-heading xs:w-3/5">
                       {credit.product_name}
                     </td>
                     <td
                       className={`${
-                        isPositive ? "!text-green-500" : "!text-red-400"
-                      } px-2 py-5 font-semibold`}
+                        isPositive ? "!text-[#00EDBE]" : "!text-[#F85C72]"
+                      } px-2 py-5 font-medium`}
                     >
                       {(isPositive ? "+" : "") + credit.credit_amount}
                     </td>

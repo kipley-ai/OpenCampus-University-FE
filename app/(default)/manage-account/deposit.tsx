@@ -60,36 +60,36 @@ const ContentListComponent = () => {
     return (
       <div className="flex flex-col">
         <div className="w-full overflow-x-auto">
-          <table className="my-4 min-w-full divide-y divide-border rounded-xl">
-            <thead className="bg-transparent">
+          <table className="my-4 min-w-full">
+            <thead className="rounded bg-[#F9F9FF] dark:bg-[#1c1c1c]">
               <tr>
                 <th
                   scope="col"
-                  className="py-5 pr-2 text-left text-sm font-semibold text-body"
+                  className="px-2 py-5 text-left text-sm font-medium"
                 >
                   Description
                 </th>
                 <th
                   scope="col"
-                  className="px-2 py-5 text-left text-sm font-semibold text-body"
+                  className="px-2 py-5 text-left text-sm font-medium"
                 >
                   Amount
                 </th>
                 <th
                   scope="col"
-                  className="px-2 py-5 text-left text-sm font-semibold text-body"
+                  className="px-2 py-5 text-left text-sm font-medium"
                 >
                   Date
                 </th>
                 <th
                   scope="col"
-                  className="px-2 py-5 text-left text-sm font-semibold text-body"
+                  className="px-2 py-5 text-left text-sm font-medium"
                 >
                   Status
                 </th>
                 <th
                   scope="col"
-                  className="px-2 py-5 text-left text-sm font-semibold text-body"
+                  className="px-2 py-5 text-left text-sm font-medium"
                 >
                   Invoice
                 </th>
@@ -99,7 +99,7 @@ const ContentListComponent = () => {
               {deposits?.map((deposit: any, index: number) => {
                 return (
                   <tr key={index} className="">
-                    <td className="whitespace-nowrap py-4 pr-2 font-medium text-heading">
+                    <td className="whitespace-nowrap px-2 py-4 font-medium text-heading">
                       {deposit.description}
                     </td>
                     <td className="whitespace-nowrap px-2 py-4 font-medium text-heading">
@@ -119,7 +119,7 @@ const ContentListComponent = () => {
 									</td> */}
                     <td
                       className={`${
-                        deposit.pay_status ? "text-green-400" : "text-red-500"
+                        deposit.pay_status ? "text-[#00EDBE]" : "text-[#F85C72]"
                       } whitespace-nowrap px-2 py-4 font-medium`}
                     >
                       {deposit.pay_status ? "Paid" : "Expired"}

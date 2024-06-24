@@ -13,6 +13,7 @@ export default function QuizResult() {
   const {
     step,
     setStep,
+    chatbot_name,
     total_right,
     setTotalRight,
     question_now,
@@ -40,7 +41,7 @@ export default function QuizResult() {
 
   return (
     <div className="w-full">
-      <span className="text-lg font-semibold">Quiz App</span>
+      <span className="text-lg font-semibold">{chatbot_name}</span>
       <div className="my-4 flex w-full flex-col rounded-xl border border-border bg-white p-8">
         <h2 className="text-lg font-semibold text-primary">Quiz Complete!</h2>
         <div className="mt-2 flex justify-center">

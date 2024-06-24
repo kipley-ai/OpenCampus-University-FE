@@ -41,7 +41,7 @@ export default function QuizFalse() {
   };
 
   return (
-    <div className="flex w-full items-center justify-between rounded-b-xl bg-[#FDE2E1] px-10 py-8 text-white">
+    <div className="flex w-full items-center justify-between rounded-b-xl bg-[#FDE2E1] px-10 py-6 text-white">
       <div className="flex items-center gap-3">
         <svg
           width="48"

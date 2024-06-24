@@ -48,11 +48,10 @@ export default function QuizQuestion() {
 
   return (
     <div className="w-full">
-      <span className="text-lg font-semibold">Quiz App</span>
+      <span className="text-lg font-semibold">{chatbot_name}</span>
       <div className="my-10 mt-2 w-full rounded-xl border border-border bg-white">
         <div className="px-10 pt-8">
-          <h2 className="text-lg font-semibold text-primary">{chatbot_name}</h2>
-          <div className="my-6 flex items-center">
+          <div className="mb-4 flex items-center">
             <div className="mr-4 h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
               <div
                 className="h-1.5 rounded-full bg-[#141BEB]"
@@ -93,7 +92,7 @@ export default function QuizQuestion() {
           <div className="mb-6 text-xl font-medium">
             {questions[question_now - 1]?.question}
           </div>
-          <div className="mb-10 space-y-4">
+          <div className="mb-6 space-y-4">
             {questions &&
               ["a", "b", "c", "d"].map((choices: any, index: any) => {
                 console.log(questions.data);

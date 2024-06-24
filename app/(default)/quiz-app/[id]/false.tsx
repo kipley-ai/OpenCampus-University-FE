@@ -21,14 +21,12 @@ export default function QuizFalse() {
     setSelectedAnswer,
   } = useQuiz();
 
-  const totalQuestions = questions.data?.questions?.questions?.length as number;
+  const totalQuestions = questions?.length as number;
 
   const progress = (question_now / totalQuestions) * 100;
 
-  const correctAnswer =
-    questions.data?.questions?.questions[question_now - 1]?.answer;
-  const correctAnswerStr =
-    questions.data?.questions?.questions[question_now - 1][correctAnswer];
+  const correctAnswer = questions[question_now - 1]?.answer;
+  const correctAnswerStr = questions[question_now - 1][correctAnswer];
 
   const nextPart = () => {
     if ((question_now as number) === (totalQuestions as number)) {

@@ -92,7 +92,11 @@ export default function QuizCover() {
       while (true) {
         const { data: quizData } = await quizRefetch();
         if (quizData?.data.status === "success") {
-          setQuestions(quizData?.data!);
+          if (Array.isArray(quizData?.data?.data?.questions)) {
+            setQuestions(quizData?.data?.data?.questions);
+          } else {
+            setQuestions(quizData?.data?.data?.questions?.questions);
+          }
           setStep("question");
           break;
         }
@@ -154,7 +158,7 @@ export default function QuizCover() {
               onChange={(e) => handleFormChange("topic", e.target.value)}
             />
             <Button
-              className="xl:text-base self-end px-6 py-3"
+              className="self-end px-6 py-3 xl:text-base"
               onClick={handleSubmit}
               disabled={isGenerating}
             >

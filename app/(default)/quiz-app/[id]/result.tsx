@@ -21,7 +21,7 @@ export default function QuizResult() {
     setSelectedAnswer,
   } = useQuiz();
 
-  const totalQuestions = questions.data?.questions?.questions?.length as number;
+  const totalQuestions = questions?.length as number;
 
   const percentage = Math.round((total_right / totalQuestions) * 100);
 

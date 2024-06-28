@@ -1,6 +1,6 @@
 "use client";
 import { useAppProvider } from "@/providers/app-provider";
-import { mintNFT } from "@/smart-contract/kip-protocol-contract";
+import { createAsset } from "@/smart-contract/assets";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useCreateChatbotContext } from "./create-knowledge-context";
@@ -44,7 +44,7 @@ interface Form {
 }
 
 export default function NFT() {
-  const { setHeaderTitle, toast, setToast } = useAppProvider();
+  const { setHeaderTitle, toast, setToast, session } = useAppProvider();
   const [showModal, setShowModal] = useState(false);
   const createKBandMintNFT = useCreateKBAndMintNFT();
   const { createKb, createNft } = useCreateChatbotContext();
@@ -163,13 +163,7 @@ export default function NFT() {
             setNftIdCreated(nft_id);
             setKbIdCreated(kb_id);
             try {
-              await mintNFT(
-                kb_id,
-                form.name!,
-                form.symbol!,
-                parseInt(form.shareSupply!),
-                asset_id,
-              );
+              await createAsset(nft_id, session.address);
               mintNFTAPI.mutate(
                 { kb_id: kb_id },
                 {
@@ -253,7 +247,7 @@ export default function NFT() {
         isMinting={isMinting}
       />
       <MintNFTModal
-        children={"Your KnowledgeKey is created successfully!"}
+        children={"Your KnowledgeKey is created!"}
         open={showModal}
         setOpen={setShowModal}
         nftIdCreated={nftIdCreated}

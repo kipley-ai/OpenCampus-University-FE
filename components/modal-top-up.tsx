@@ -1,20 +1,19 @@
 "use client";
 
 import ModalBlank from "@/components/modal-blank-3";
-import { recharge } from "@/smart-contract/kip-protocol-contract";
-import {
-  allowance,
-  approve,
-  balanceOf,
-  mintToken,
-} from "@/smart-contract/kip-token";
+import { balanceOf, allowance, approve } from "@/smart-contract/edu-coin";
+import { topup } from "@/smart-contract/payment";
 import { KIP_TOKEN_DECIMAL } from "@/utils/constants";
 import { useState, useEffect } from "react";
 import { useAppProvider } from "@/providers/app-provider";
 import Notification from "@/components/notification";
 import Button from "@/components/button";
 import { UnderlinedButton } from "@/components/buttons/underlined-button";
-import { useSwitchToSepolia, useSwitchToBase } from "@/hooks/useSwitchNetwork";
+import {
+  useSwitchToSepolia,
+  useSwitchToBase,
+  useSwitchToArbitrumSepolia,
+} from "@/hooks/useSwitchNetwork";
 import { useAddRecharge } from "@/hooks/api/user";
 import { IconContext } from "react-icons";
 import { FaPlus } from "react-icons/fa6";
@@ -48,26 +47,37 @@ export default function ModalTopUp({
 
   // Determine the environment and accordingly use the switch network hook
   const isDevelopment = process.env.NEXT_PUBLIC_ENV_DEV === "1";
-  const { isSepolia, switchToSepolia } = useSwitchToSepolia();
+  // const { isSepolia, switchToSepolia } = useSwitchToSepolia();
   const { isBase, switchToBase } = useSwitchToBase();
+  const { isArbitrumSepolia, switchToArbitrumSepolia } =
+    useSwitchToArbitrumSepolia();
 
   // Determine which network is currently active and which switch function to use
-  const isTargetNetworkActive = isDevelopment ? isSepolia : isBase;
-  const switchToTargetNetwork = isDevelopment ? switchToSepolia : switchToBase;
-  const targetNetworkName = isDevelopment ? "Sepolia" : "Base";
+  const isTargetNetworkActive = isDevelopment ? isArbitrumSepolia : isBase;
+  const switchToTargetNetwork = isDevelopment
+    ? switchToArbitrumSepolia
+    : switchToBase;
+  const targetNetworkName = isDevelopment ? "Arbitrum Sepolia" : "Base";
 
   const addRecharge = useAddRecharge();
   const { connect } = useConnect({
     connector: new InjectedConnector(),
   });
   const { address, isConnected } = useAccount();
-  const { setTopUpAmount } = useAppProvider();
+  const { setTopUpAmount, session } = useAppProvider();
 
   const handleFormChange = (name: string, value: any) => {
     setForm({
       ...form,
       [name]: value,
     });
+  };
+
+  const calculateToken = (amount: number) => {
+    if (process.env.NEXT_PUBLIC_ENV_DEV === "1") {
+      return amount / 1000;
+    }
+    return amount;
   };
 
   const handleConnect = async () => {
@@ -92,6 +102,7 @@ export default function ModalTopUp({
 
     try {
       const bal = await balanceOf();
+      console.log("bal :>> ", bal);
       if (bal === 0) {
         setToast3ErrorOpen(true);
         setErrorMessage(
@@ -101,6 +112,7 @@ export default function ModalTopUp({
       }
 
       const allw = await allowance();
+      console.log("allw :>> ", allw);
 
       if (allw < form.amount! * KIP_TOKEN_DECIMAL) {
         setContinueBtn({
@@ -116,12 +128,15 @@ export default function ModalTopUp({
         text: "Topping up...",
       });
 
-      const rechargeTx = await recharge(form.amount!);
+      const topUpTransaction = await topup(
+        form.amount! / 1000,
+        session.address,
+      );
       setTopUpAmount(form.amount!);
 
       addRecharge.mutate(
         {
-          tx_id: rechargeTx.hash,
+          tx_id: topUpTransaction.hash,
         },
         {
           onSuccess: () => {
@@ -169,22 +184,9 @@ export default function ModalTopUp({
     }
   };
 
-  const handleMintToken = async () => {
-    try {
-      setMinting(true);
-      await mintToken(1000 * KIP_TOKEN_DECIMAL);
-      await delay(3000);
-      setMinted(true);
-    } catch (error) {
-      console.log("handleMintToken", error);
-    } finally {
-      setMinting(false);
-    }
-  };
-
   const checkAllowance = async () => {
     const allw = await allowance();
-    console.log('allw :>> ', allw);
+    console.log("allw :>> ", allw);
     if (allw < form.amount! * KIP_TOKEN_DECIMAL) {
       setContinueBtn({
         disable: false,
@@ -208,7 +210,7 @@ export default function ModalTopUp({
     if (isConnected && isTargetNetworkActive) {
       checkAllowance();
     }
-  }, [address])
+  }, [address]);
 
   return (
     <ModalBlank isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -316,7 +318,7 @@ export default function ModalTopUp({
           <div className="w-80 text-sm font-medium text-body">
             <span>You are paying </span>
             <span className="text-primary">
-              {form?.amount ? form.amount : 0} $EDU
+              {form?.amount ? form.amount / 1000 : 0} $EDU
             </span>
           </div>
         </div>

@@ -38,7 +38,7 @@ const formatTimestamp = (timestamp: string): string => {
 };
 
 const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
-  const nftOpenSeaLink = `${process.env.NEXT_PUBLIC_OPENSEA_URL}/${nftDetail.sft_address}`;
+  const nftOpenSeaLink = `${process.env.NEXT_PUBLIC_OPENSEA_URL}/${nftDetail.sft_address}/${nftDetail.token_id}`;
 
   return (
     <div className="grid grid-cols-1 gap-4 text-heading md:grid-cols-3 md:pb-12">

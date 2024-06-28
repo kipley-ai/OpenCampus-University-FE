@@ -1,7 +1,5 @@
 import { useNetwork, useSwitchNetwork } from "wagmi";
-import { base, sepolia } from "wagmi/chains";
-import { polygon } from "wagmi/chains";
-import { mainnet } from "wagmi/chains";
+import { base, sepolia, arbitrumSepolia, polygon, mainnet } from "wagmi/chains";
 
 export function useSwitchToSepolia() {
   const { chain } = useNetwork();
@@ -57,4 +55,18 @@ export function useSwitchToBase() {
   };
 
   return { isBase, switchToBase };
+}
+
+export function useSwitchToArbitrumSepolia() {
+  const { chain } = useNetwork();
+  const { switchNetwork } = useSwitchNetwork();
+
+  const isArbitrumSepolia = chain?.id === arbitrumSepolia.id;
+  const switchToArbitrumSepolia = async () => {
+    if (!isArbitrumSepolia && switchNetwork) {
+      await switchNetwork(arbitrumSepolia.id);
+    }
+  };
+
+  return { isArbitrumSepolia, switchToArbitrumSepolia };
 }

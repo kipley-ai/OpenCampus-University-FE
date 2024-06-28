@@ -10,80 +10,65 @@ export default function ModalLoginTwitter({
   isOpen,
   setIsOpen,
   redirectUrl,
-	onSuccess,
-	onError,
+  onSuccess,
+  onError,
 }: {
   isOpen: boolean;
   setIsOpen: any;
   redirectUrl?: string;
-	onSuccess?: () => void;
-	onError?: () => void;
+  onSuccess?: () => void;
+  onError?: () => void;
 }) {
   const handleLoginButton = () => {
-    signIn("twitter", { callbackUrl: redirectUrl }).then(onSuccess).catch(onError);
+    signIn("twitter", { callbackUrl: redirectUrl })
+      .then(onSuccess)
+      .catch(onError);
   };
 
   return (
     <ModalBlank isOpen={isOpen} setIsOpen={setIsOpen}>
       <div className="flex flex-col items-center justify-between rounded-lg p-8 shadow-md">
         <div className="inline-flex items-center justify-between self-stretch">
-          <div className="w-80 text-2xl font-bold leading-10 text-heading">
-            Sign in to continue
-          </div>
-          <button
-            className="hover:text-secondary"
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsOpen(false);
-            }}
-          >
-            <div className="sr-only">Close</div>
-            <svg
-              width="40"
-              height="40"
-              viewBox="0 0 40 40"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="fill-none hover:fill-secondary"
-            >
-              <rect
-                x="1"
-                y="1"
-                width="38"
-                height="38"
-                rx="19"
-                stroke="#353945"
-                strokeWidth="2"
-              />
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M13.2929 13.2929C13.6834 12.9024 14.3166 12.9024 14.7071 13.2929L20 18.5858L25.2929 13.2929C25.6834 12.9024 26.3166 12.9024 26.7071 13.2929C27.0976 13.6834 27.0976 14.3166 26.7071 14.7071L21.4142 20L26.7071 25.2929C27.0976 25.6834 27.0976 26.3166 26.7071 26.7071C26.3166 27.0976 25.6834 27.0976 25.2929 26.7071L20 21.4142L14.7071 26.7071C14.3166 27.0976 13.6834 27.0976 13.2929 26.7071C12.9024 26.3166 12.9024 25.6834 13.2929 25.2929L18.5858 20L13.2929 14.7071C12.9024 14.3166 12.9024 13.6834 13.2929 13.2929Z"
-                fill="var(--color-heading)"
-              />
-            </svg>
-          </button>
+          <h2 className="w-80 text-lg font-semibold leading-10 text-primary">
+            Import from Twitter X
+          </h2>
         </div>
         <div className="flex max-w-full flex-col justify-center gap-5 py-5 md:w-96">
           <div className="flex flex-grow items-center justify-center rounded-3xl">
-            <Button
+            <button
               onClick={handleLoginButton}
-              className="w-full py-2"
+              className="flex w-full items-center justify-between gap-4 rounded-md border-2 border-border p-6 hover:bg-secondary"
             >
-              <Image
-                priority={true}
-                className="flex h-5 w-5 items-center justify-center rounded-3xl bg-neutral-800"
-                src={twtLogo}
-                width={40}
-                height={40}
-                alt="Twitter-X Icon"
-              />
-              <div className="text-center text-xs leading-none tracking-wide md:text-sm">
-                Connect X
+              <div className="flex items-center gap-4">
+                <Image
+                  width={32}
+                  height={32}
+                  className="rounded-md bg-heading p-2"
+                  src="/images/X-icon.svg"
+                  alt="Twitter-X Icon"
+                />
+                <p className="text-left font-medium leading-none">
+                  Sign In to Continue
+                </p>
               </div>
-            </Button>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                className="fill-primary"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M7.00065 0.333984L5.82565 1.50898L10.4757 6.16732H0.333984V7.83398H10.4757L5.82565 12.4923L7.00065 13.6673L13.6673 7.00065L7.00065 0.333984Z" />
+              </svg>
+            </button>
           </div>
         </div>
+        <button
+          onClick={() => setIsOpen(false)}
+          className="btn-underlined self-end"
+        >
+          Cancel
+        </button>
       </div>
     </ModalBlank>
   );

@@ -18,8 +18,8 @@ import { useAddRecharge } from "@/hooks/api/user";
 import { IconContext } from "react-icons";
 import { FaPlus } from "react-icons/fa6";
 import { delay } from "@/utils/utils";
-import { useAccount, useConnect } from "wagmi";
-import { InjectedConnector } from "wagmi/connectors/injected";
+import { useAccount, useDisconnect } from "wagmi";
+import { useConnectModal, useAccountModal } from "@rainbow-me/rainbowkit";
 
 interface Form {
   amount?: number;
@@ -40,6 +40,7 @@ export default function ModalTopUp({
     text: "Top up",
   });
 
+  const [isWarningToastOpen, setIsWarningToastOpen] = useState<boolean>(false);
   const [toast3ErrorOpen, setToast3ErrorOpen] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [minting, setMinting] = useState(false);
@@ -60,11 +61,11 @@ export default function ModalTopUp({
   const targetNetworkName = isDevelopment ? "Arbitrum Sepolia" : "Base";
 
   const addRecharge = useAddRecharge();
-  const { connect } = useConnect({
-    connector: new InjectedConnector(),
-  });
+  const { disconnect } = useDisconnect();
   const { address, isConnected } = useAccount();
   const { setTopUpAmount, session } = useAppProvider();
+  const { openConnectModal } = useConnectModal();
+  const { openAccountModal } = useAccountModal();
 
   const handleFormChange = (name: string, value: any) => {
     setForm({
@@ -82,8 +83,8 @@ export default function ModalTopUp({
 
   const handleConnect = async () => {
     try {
-      await connect();
-      console.log("Wallet address connected :>> ", address);
+      openConnectModal && openConnectModal();
+      setIsWarningToastOpen(true);
     } catch (error) {
       console.error("Error connecting wallet:", error);
       setToast3ErrorOpen(true);
@@ -223,6 +224,34 @@ export default function ModalTopUp({
       >
         <p className="font-semibold">{errorMessage}</p>
       </Notification>
+      <Notification
+        type="warning"
+        open={isWarningToastOpen}
+        setOpen={setIsWarningToastOpen}
+        className="fixed inset-x-0 top-9 flex items-center justify-center"
+        action={false}
+      >
+        <p className="font-semibold">
+          {isConnected ? (
+            <>
+              You are connected to{" "}
+              <span className="text-primary">
+                {address?.substring(0, 11) +
+                  "..." +
+                  address?.substring(address.length - 11)}{" "}
+              </span>
+              wallet, and you will use this wallet to top up credits for{" "}
+              <span className="text-primary">{session.edu_username}</span>{" "}
+              account.
+            </>
+          ) : (
+            <>
+              Please connect your wallet to top up credits for{" "}
+              {session.edu_username} account.
+            </>
+          )}
+        </p>
+      </Notification>
       <div className="flex flex-col justify-between gap-4 rounded-lg p-8 shadow-md">
         <div className="flex flex-col gap-1">
           <h1 className="text-lg font-semibold text-primary">
@@ -322,33 +351,45 @@ export default function ModalTopUp({
             </span>
           </div>
         </div>
-        <div className="flex items-center justify-end gap-4">
-          <UnderlinedButton
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsOpen(false);
-              setMinted(false);
-            }}
-          >
-            Cancel
-          </UnderlinedButton>
-          {!isConnected ? (
-            <Button onClick={handleConnect} className="px-6 py-2">
-              <h5>Connect Wallet</h5>
-            </Button>
-          ) : !isTargetNetworkActive ? (
-            <Button onClick={switchToTargetNetwork} className="px-6 py-2">
-              <h5>Change Network to {targetNetworkName}</h5>
-            </Button>
-          ) : (
-            <Button
-              onClick={handleContinue}
-              disabled={continueBtn.disable}
-              className="px-6 py-2"
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            {isConnected && isTargetNetworkActive && (
+              <button
+                className="btn-plain outline-none"
+                onClick={() => disconnect()}
+              >
+                Disconnect
+              </button>
+            )}
+          </div>
+          <div className="flex items-center gap-4">
+            <UnderlinedButton
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsOpen(false);
+                setMinted(false);
+              }}
             >
-              <h5>{continueBtn.text}</h5>
-            </Button>
-          )}
+              Cancel
+            </UnderlinedButton>
+            {!isConnected ? (
+              <Button onClick={handleConnect} className="px-6 py-2">
+                <h5>Connect Wallet</h5>
+              </Button>
+            ) : !isTargetNetworkActive ? (
+              <Button onClick={switchToTargetNetwork} className="px-6 py-2">
+                <h5>Change Network to {targetNetworkName}</h5>
+              </Button>
+            ) : (
+              <Button
+                onClick={handleContinue}
+                disabled={continueBtn.disable}
+                className="px-6 py-2"
+              >
+                <h5>{continueBtn.text}</h5>
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </ModalBlank>

@@ -12,6 +12,7 @@ import {
   useSwitchToArbitrumSepolia,
 } from "@/hooks/useSwitchNetwork";
 import NoCover from "public/images/no-cover.svg";
+import { useConnectModal, useAccountModal } from "@rainbow-me/rainbowkit";
 
 export default function ModalMintConfirmation({
   isOpen,
@@ -44,6 +45,7 @@ export default function ModalMintConfirmation({
     connector: new InjectedConnector(),
   });
   const { isConnected } = useAccount();
+  const { openConnectModal } = useConnectModal();
 
   const handleConnect = async () => {
     try {
@@ -123,9 +125,11 @@ export default function ModalMintConfirmation({
                 Cancel
               </button>
               {!isConnected ? (
-                <Button onClick={handleConnect}>Connect Wallet</Button>
+                <Button onClick={openConnectModal} className="px-6 py-2">
+                  Connect Wallet
+                </Button>
               ) : !isTargetNetworkActive ? (
-                <Button onClick={switchToTargetNetwork}>
+                <Button onClick={switchToTargetNetwork} className="px-6 py-2">
                   <span className="">
                     Change Network to {targetNetworkName}
                   </span>

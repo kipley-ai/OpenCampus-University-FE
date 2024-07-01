@@ -6,39 +6,25 @@ import {
   RainbowKitProvider,
   createAuthenticationAdapter,
   RainbowKitAuthenticationProvider,
-  AuthenticationStatus,
   connectorsForWallets,
 } from "@rainbow-me/rainbowkit";
-import {
-  configureChains,
-  createConfig,
-  WagmiConfig,
-  useDisconnect,
-} from "wagmi";
-import {
-  mainnet,
-  polygon,
-  optimism,
-  arbitrum,
-  base,
-  zora,
-  sepolia,
-} from "wagmi/chains";
-import { alchemyProvider } from "wagmi/providers/alchemy";
+import { configureChains, createConfig, WagmiConfig } from "wagmi";
+import { base, arbitrumSepolia } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
-import { RQProviders } from "@/providers/react-query-provider";
 import { useEffect, useState } from "react";
-import { okxWallet } from "@rainbow-me/rainbowkit/wallets";
-import { trustWallet } from "@rainbow-me/rainbowkit/wallets";
-import { phantomWallet } from "@rainbow-me/rainbowkit/wallets";
-import { oneKeyWallet } from "@rainbow-me/rainbowkit/wallets";
-import { ledgerWallet } from "@rainbow-me/rainbowkit/wallets";
-import { bitKeepWallet } from "@rainbow-me/rainbowkit/wallets";
+import {
+  okxWallet,
+  trustWallet,
+  phantomWallet,
+  oneKeyWallet,
+  ledgerWallet,
+  bitKeepWallet,
+} from "@rainbow-me/rainbowkit/wallets";
 import { useAxios } from "@/hooks/useAxios";
 import { useAppProvider } from "./app-provider";
 
 const { chains, publicClient } = configureChains(
-  [mainnet, polygon, optimism, arbitrum, base, zora, sepolia],
+  [base, arbitrumSepolia],
   [publicProvider()],
 );
 
@@ -66,10 +52,12 @@ const connectors = connectorsForWallets([
 ]);
 
 const wagmiConfig = createConfig({
-  autoConnect: true,
   connectors,
   publicClient,
 });
+
+const initialChain =
+  process.env.NEXT_PUBLIC_ENV_DEV == "1" ? arbitrumSepolia : base;
 
 export function CryptoProvider({ children }: React.PropsWithChildren) {
   const [address, setAddress] = useState("");
@@ -81,18 +69,6 @@ export function CryptoProvider({ children }: React.PropsWithChildren) {
   useEffect(() => {
     setIsReady(true);
   }, []);
-
-  useEffect(() => {
-    // console.log(address,"address")
-    if (verifStatus == "authenticated" && address != "") {
-      sendRequest({
-        method: "POST",
-        url: "/api/user/create",
-        data: { wallet_addr: address },
-        headers: { "x-kf-user-id": address },
-      });
-    }
-  }, [address, verifStatus]);
 
   const authenticationAdapter = createAuthenticationAdapter({
     getNonce: async () => {
@@ -132,9 +108,8 @@ export function CryptoProvider({ children }: React.PropsWithChildren) {
           >
             <RainbowKitProvider
               chains={chains}
-              initialChain={
-                process.env.NEXT_PUBLIC_ENV_DEV == "1" ? sepolia : base
-              }
+              initialChain={initialChain}
+              modalSize="compact"
             >
               {children}
             </RainbowKitProvider>

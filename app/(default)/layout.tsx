@@ -4,16 +4,11 @@ import Header from "@/components/ui/header";
 import ModalTopUpSuccessful from "@/components/modal-top-up-successful";
 import ModalTopUpFailed from "@/components/modal-top-up-failed";
 import { useState, useEffect } from "react";
-import { redirect, useRouter } from "next/navigation";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import { useUserDetail } from "@/hooks/api/user";
 import { useCheckToken } from "@/hooks/api/auth";
 import { useAppProvider } from "@/providers/app-provider";
-import { SUBDOMAINS } from "@/utils/constants";
-import { useConnectModal } from "@rainbow-me/rainbowkit";
-import { CREATOR_PATHS, CREATOR_ROLES } from "@/utils/constants";
-import { useAccount, useConnect } from "wagmi";
-import { InjectedConnector } from "wagmi/connectors/injected";
+import { SUBDOMAINS, CREATOR_PATHS, CREATOR_ROLES } from "@/utils/constants";
 
 export default function DefaultLayout({
   children,
@@ -21,18 +16,9 @@ export default function DefaultLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const { openConnectModal } = useConnectModal();
-  const sign = localStorage.getItem("kip-protocol-signature");
   const { session } = useAppProvider();
   const { data: userDetail, isFetching, refetch } = useUserDetail();
   const [hasRefetched, setHasRefetched] = useState(false);
-  const router = useRouter();
-
-  const { address, isConnected } = useAccount();
-  const { connect } = useConnect({
-    connector: new InjectedConnector(),
-  });
-  const [attemptedConnection, setAttemptedConnection] = useState(false);
 
   const subdomain = window.location.origin.split("//")[1].split(".")[0];
   if (SUBDOMAINS.includes(subdomain) && pathname !== "/") {
@@ -60,23 +46,11 @@ export default function DefaultLayout({
     fetchUserDetails();
   }, [session?.address, userDetail?.data?.msg, hasRefetched, refetch]);
 
-  useEffect(() => {
-    const checkOnboarding = () => {
-      if (session?.address && userDetail?.data?.data?.onboarding === 0) {
-        router.push("/onboarding");
-      }
-    };
-
-    if (!isFetching) {
-      checkOnboarding();
-    }
-  }, [session?.address, userDetail, isFetching, router]);
-
   if (
     CREATOR_PATHS.includes(pathname) &&
     !CREATOR_ROLES.includes(userDetail?.data?.data?.role?.toUpperCase())
   ) {
-    return redirect("/dashboard");
+    redirect("/dashboard");
   }
 
   return (

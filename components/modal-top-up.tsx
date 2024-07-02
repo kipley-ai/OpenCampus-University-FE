@@ -236,18 +236,18 @@ export default function ModalTopUp({
             <>
               You are connected to{" "}
               <span className="text-primary">
-                {address?.substring(0, 11) +
+                {address?.substring(0, 5) +
                   "..." +
-                  address?.substring(address.length - 11)}{" "}
+                  address?.substring(address.length - 5)}
               </span>
-              wallet, and you will use this wallet to top up credits for{" "}
-              <span className="text-primary">{session.edu_username}</span>{" "}
-              account.
+              , which will be used to top up OCU Credits for{" "}
+              <span className="text-primary">{session.edu_username}</span>.
             </>
           ) : (
             <>
-              Please connect your wallet to top up credits for{" "}
-              {session.edu_username} account.
+              Please connect your wallet to top up OCU Credits for your{" "}
+              <span className="text-primary">{session.edu_username}</span>{" "}
+              account.
             </>
           )}
         </p>

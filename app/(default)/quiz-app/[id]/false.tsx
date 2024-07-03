@@ -1,16 +1,19 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { UploadingModal } from "./uploading-modal";
 import { useQuiz } from "../[id]/quiz-app-context";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
-import { useGetLastGeneratedQuiz } from "@/hooks/api/quiz_app";
+import { useGetLastGeneratedQuiz, useAnswerQuiz } from "@/hooks/api/quiz_app";
 
 export default function QuizFalse() {
   const {
     step,
     setStep,
     chatbot_id,
+    session_id,
     questions,
+    answers,
     answer_state,
     setAnswerState,
     total_right,
@@ -21,6 +24,8 @@ export default function QuizFalse() {
     setSelectedAnswer,
   } = useQuiz();
 
+  const [isUploading, setIsUploading] = useState(false);
+
   const totalQuestions = questions?.length as number;
 
   const progress = (question_now / totalQuestions) * 100;
@@ -28,10 +33,24 @@ export default function QuizFalse() {
   const correctAnswer = questions[question_now - 1]?.answer;
   const correctAnswerStr = questions[question_now - 1][correctAnswer];
 
+  const answerQuiz = useAnswerQuiz();
+
   const nextPart = () => {
     if ((question_now as number) === (totalQuestions as number)) {
-      setStep("result");
-      console.log("Step: ", step);
+      answerQuiz.mutate(
+        {
+          chatbot_id,
+          session_id,
+          answer: answers,
+        },
+        {
+          onSuccess: () => {
+            setIsUploading(false);
+            setStep("result");
+          },
+        },
+      );
+      setIsUploading(true);
     } else {
       setSelectedAnswer("");
       setQuestionNow(question_now + 1);
@@ -42,6 +61,7 @@ export default function QuizFalse() {
 
   return (
     <div className="flex w-full items-center justify-between rounded-b-xl bg-[#FDE2E1] px-10 py-6 text-white">
+      <UploadingModal isOpen={isUploading} setIsOpen={setIsUploading} />
       <div className="flex items-center gap-3">
         <svg
           width="48"

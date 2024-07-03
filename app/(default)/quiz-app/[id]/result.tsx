@@ -5,20 +5,25 @@ import { useQuiz } from "../[id]/quiz-app-context";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
 import { useGetLastGeneratedQuiz } from "@/hooks/api/quiz_app";
 import { redirect, useRouter } from "next/navigation";
+import { ShareModal } from "./share-modal";
 
 import Image from "next/image";
 import ResultImage from "public/images/quiz-result.svg";
 
 export default function QuizResult() {
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+
   const {
     step,
     setStep,
+    chatbot_id,
     chatbot_name,
     total_right,
     setTotalRight,
     question_now,
     setQuestionNow,
     questions,
+    setAnswers,
     setSelectedAnswer,
   } = useQuiz();
 
@@ -34,6 +39,7 @@ export default function QuizResult() {
 
   const restartQuiz = () => {
     setSelectedAnswer("");
+    setAnswers([]);
     setTotalRight(0);
     setQuestionNow(1);
     setStep("question");
@@ -41,6 +47,11 @@ export default function QuizResult() {
 
   return (
     <div className="w-full">
+      <ShareModal
+        isOpen={isShareModalOpen}
+        setIsOpen={setIsShareModalOpen}
+        chatbotData={{ chatbot_id, chatbot_name }}
+      />
       <span className="text-lg font-semibold">{chatbot_name}</span>
       <div className="my-4 flex w-full flex-col rounded-xl border border-border bg-white p-8">
         <h2 className="text-lg font-semibold text-primary">Quiz Complete!</h2>
@@ -71,7 +82,10 @@ export default function QuizResult() {
             </div>
           </div>
           <div className="flex items-center justify-between pt-8">
-            <button className="flex flex-row py-2 hover:underline">
+            <button
+              className="flex flex-row py-2 hover:underline"
+              onClick={() => setIsShareModalOpen(true)}
+            >
               <svg
                 width="24"
                 height="25"

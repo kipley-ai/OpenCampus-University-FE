@@ -100,3 +100,56 @@ export const useUpdateQuizAPI = () => {
       }),
   });
 };
+
+export const useAnswerQuiz = () => {
+  const { session: { address } } = useAppProvider();
+  
+  return useMutation({
+    mutationFn: (params: any) =>
+      axios.post("/api/quiz_app/answer", params, {
+        headers: {
+          "x-kf-user-id": address,
+        },
+      }),
+  });
+};
+
+export const useGetSharedQuizId = (params: any) => {
+  const { session: { address } } = useAppProvider();
+  
+  return useQuery({
+    queryKey: ["shared_chat", params.chatbot_id],
+    queryFn: () =>
+      axios.post("/api/quiz_app/get_id_share", params, {
+        headers: {
+          "x-kf-user-id": address,
+        },
+      }),
+  });
+};
+
+export const useShareQuiz = () => {
+  const { session: { address } } = useAppProvider();
+  
+  return useMutation({
+    mutationFn: (params: any) =>
+      axios.post("/api/quiz_app/share", params, {
+        headers: {
+          "x-kf-user-id": address,
+        },
+      }),
+  });
+};
+
+export const useUpdateSharedQuiz = () => {
+  const { session: { address } } = useAppProvider();
+  
+  return useMutation({
+    mutationFn: (params: any) =>
+      axios.post("/api/quiz_app/update_share", params, {
+        headers: {
+          "x-kf-user-id": address,
+        },
+      }),
+  });
+};

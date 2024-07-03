@@ -9,6 +9,7 @@ interface QuizContextType {
   chatbot_name: string;
   session_id: string;
   questions: any;
+  answers: string[];
   answer_state: any;
   selected_answer: any;
   total_right: number;
@@ -20,6 +21,7 @@ interface QuizContextType {
   setChatbotName: (name: string) => void;
   setSessionId: (id: string) => void;
   setQuestions: (questions: any) => void;
+  setAnswers: (answers: string[]) => void;
   setAnswerState: (answer: any) => void;
   setSelectedAnswer: (selected: any) => void;
   setTotalRight: (total: any) => void;
@@ -38,6 +40,7 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({
   const [chatbot_name, setChatbotName] = useState("");
   const [session_id, setSessionId] = useState("");
   const [questions, setQuestions] = useState("");
+  const [answers, setAnswers] = useState<string[]>([]);
   const [answer_state, setAnswerState] = useState("");
   const [selected_answer, setSelectedAnswer] = useState("");
   const [total_right, setTotalRight] = useState(0);
@@ -46,6 +49,7 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({
   const cancel = () => {
     setStep("");
     setTopic("");
+    setAnswers([]);
     setAnswerState("");
     setSelectedAnswer("");
     setTotalRight(0);
@@ -68,6 +72,8 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({
         setSessionId,
         questions,
         setQuestions,
+        answers,
+        setAnswers,
         answer_state,
         setAnswerState,
         total_right,

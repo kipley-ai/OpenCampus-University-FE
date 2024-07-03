@@ -1,16 +1,19 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { UploadingModal } from "./uploading-modal";
 import { useQuiz } from "../[id]/quiz-app-context";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
-import { useGetLastGeneratedQuiz } from "@/hooks/api/quiz_app";
+import { useGetLastGeneratedQuiz, useAnswerQuiz } from "@/hooks/api/quiz_app";
 
 export default function QuizTrue() {
   const {
     step,
     setStep,
     chatbot_id,
+    session_id,
     questions,
+    answers,
     answer_state,
     setAnswerState,
     total_right,
@@ -21,15 +24,32 @@ export default function QuizTrue() {
     setSelectedAnswer,
   } = useQuiz();
 
+  const [isUploading, setIsUploading] = useState(false);
+
   const totalQuestions = questions?.length as number;
 
   const progress = (question_now / totalQuestions) * 100;
 
   const correctAnswer = questions[question_now - 1]?.answer;
 
+  const answerQuiz = useAnswerQuiz();
+
   const nextPart = () => {
     if ((question_now as number) === (totalQuestions as number)) {
-      setStep("result");
+      answerQuiz.mutate(
+        {
+          chatbot_id,
+          session_id,
+          answer: answers,
+        },
+        {
+          onSuccess: () => {
+            setIsUploading(false);
+            setStep("result");
+          },
+        },
+      );
+      setIsUploading(true);
     } else {
       setSelectedAnswer("");
       setQuestionNow(question_now + 1);
@@ -39,6 +59,7 @@ export default function QuizTrue() {
 
   return (
     <div className="flex w-full items-center justify-between rounded-b-xl bg-[#ECFCCB] px-10 py-6 text-white">
+      <UploadingModal isOpen={isUploading} setIsOpen={setIsUploading} />
       <div className="flex items-center gap-3">
         <svg
           width="48"

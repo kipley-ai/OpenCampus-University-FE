@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import CheckIcon from "public/images/check-icon-2.svg";
 import ArrowIcon from "public/images/arrow-3-icon.svg";
 import Image from "next/image";
+import { useAppProvider } from "@/providers/app-provider";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
 import { useNftDetail } from "@/hooks/api/nft";
-import { useParams } from "next/navigation";
+import { useParams, redirect } from "next/navigation";
 import { useKBDetail, useKBItem, useDeleteKBItem } from "@/hooks/api/kb";
 import Link from "next/link";
 import { KBItem } from "@/lib/types";
@@ -13,6 +14,7 @@ import { PaginationController } from "@/components/pagination-2/controller";
 import { keepPreviousData } from "@tanstack/react-query";
 import { FaSpinner } from "react-icons/fa6";
 import DeleteSuccessModal from "@/components/toast-4";
+import { compareStringsIgnoreCase } from "@/utils/utils";
 
 const ManageDataSources = () => {
   const [checkHeader, setCheckHeader] = useState(false);
@@ -21,6 +23,7 @@ const ManageDataSources = () => {
   const deleteItemAPI = useDeleteKBItem();
 
   const { id } = useParams();
+  const { session } = useAppProvider();
 
   const nftDetail = useNftDetail({
     sft_id: id as string,
@@ -118,6 +121,16 @@ const ManageDataSources = () => {
 
   const { kb_item_data: kbItemData, kb_item_count: kbItemCount } =
     data.data.data;
+
+  if (
+    nftDetail.data?.data.data.wallet_addr &&
+    !compareStringsIgnoreCase(
+      session?.address as string,
+      nftDetail.data?.data.data.wallet_addr as string
+    )
+  ) {
+    redirect("/nft/" + id);
+  }
 
   if (kbItemCount >= 0) {
     const totalPages = Math.ceil(kbItemCount / pageSize);

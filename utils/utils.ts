@@ -102,3 +102,7 @@ export const isTokenExpired = (token: string) => {
     return true;
   }
 };
+
+export const compareStringsIgnoreCase = (a?: string, b?: string) => {
+  return a?.toLowerCase() === b?.toLowerCase();
+};

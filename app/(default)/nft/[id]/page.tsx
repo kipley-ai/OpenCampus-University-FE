@@ -21,6 +21,7 @@ import { useChatbotList } from "@/hooks/api/chatbot";
 import { keepPreviousData } from "@tanstack/react-query";
 import { PaginationController } from "@/components/pagination-2/controller";
 import Money from "public/images/money.svg";
+import { compareStringsIgnoreCase } from "@/utils/utils";
 
 const formatTimestamp = (timestamp: string): string => {
   const padZero = (num: number): string => (num < 10 ? `0${num}` : `${num}`);
@@ -38,6 +39,8 @@ const formatTimestamp = (timestamp: string): string => {
 };
 
 const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
+  const { session } = useAppProvider();
+
   const nftOpenSeaLink = `${process.env.NEXT_PUBLIC_OPENSEA_URL}/${nftDetail.sft_address}/${nftDetail.token_id}`;
 
   return (
@@ -110,26 +113,28 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
           </a>
         </div>
         {/* <div className="my-4 border-t-2 border-border"></div> */}
-        <div className="mt-4 flex flex-grow items-center justify-between sm:mb-2 sm:mt-11">
-          <Link href={"/nft/" + nftDetail.sft_id + "/edit"}>
-            <button className="button group inline-flex items-center gap-2 rounded-md">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                className="fill-primary group-hover:fill-container"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M14.8 2H13.2L13.2 3.6H11.6V5.2H10V6.8H8.4V8.4H6.8V10H5.2V11.6H3.6V13.2L2 13.2V16.4V18H3.6H6.8V16.4L8.4 16.4V14.8H10V13.2L11.6 13.2V11.6H13.2V10H14.8V8.4H16.4V6.8H18V5.2H16.4L16.4 3.6H14.8V2ZM14.8 8.4H13.2L13.2 10H11.6V11.6H10V13.2H8.4V14.8H6.8V13.2L5.2 13.2V11.6H6.8V10H8.4V8.4H10V6.8H11.6V5.2H13.2L13.2 6.8H14.8V8.4ZM5.2 13.2H3.6V16.4H6.8V14.8H5.2V13.2Z"
-                />
-              </svg>
-              <span className="text-sm font-medium">Manage</span>
-            </button>
-          </Link>
-        </div>
+        {compareStringsIgnoreCase(nftDetail.wallet_addr, session?.address) && (
+          <div className="mt-4 flex flex-grow items-center justify-between sm:mb-2 sm:mt-11">
+            <Link href={"/nft/" + nftDetail.sft_id + "/edit"}>
+              <button className="button group inline-flex items-center gap-2 rounded-md">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  className="fill-primary group-hover:fill-container"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M14.8 2H13.2L13.2 3.6H11.6V5.2H10V6.8H8.4V8.4H6.8V10H5.2V11.6H3.6V13.2L2 13.2V16.4V18H3.6H6.8V16.4L8.4 16.4V14.8H10V13.2L11.6 13.2V11.6H13.2V10H14.8V8.4H16.4V6.8H18V5.2H16.4L16.4 3.6H14.8V2ZM14.8 8.4H13.2L13.2 10H11.6V11.6H10V13.2H8.4V14.8H6.8V13.2L5.2 13.2V11.6H6.8V10H8.4V8.4H10V6.8H11.6V5.2H13.2L13.2 6.8H14.8V8.4ZM5.2 13.2H3.6V16.4H6.8V14.8H5.2V13.2Z"
+                  />
+                </svg>
+                <span className="text-sm font-medium">Manage</span>
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -419,7 +424,7 @@ const NoData = () => {
 };
 
 const NFTDetail = ({ params }: { params: any }) => {
-  const { setHeaderTitle } = useAppProvider();
+  const { setHeaderTitle, session } = useAppProvider();
   useEffect(() => {
     setHeaderTitle("My KnowledgeKey");
   }, []);
@@ -452,28 +457,33 @@ const NFTDetail = ({ params }: { params: any }) => {
           <span className="text-lg font-semibold text-primary md:pt-3">
             Apps
           </span>
-          <Link href={"/nft/" + id + "/create-app"}>
-            <button className="button group inline-flex items-center gap-2 rounded-md">
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 14 14"
-                xmlns="http://www.w3.org/2000/svg"
-                className="fill-primary group-hover:fill-container"
-              >
-                <g clip-path="url(#clip0_700_11496)">
-                  <path d="M13.125 6.99971C13.125 7.39135 12.8099 7.70644 12.4183 7.70644H7.70673V12.418C7.70673 12.8081 7.39018 13.125 7 13.125C6.60983 13.125 6.29327 12.8096 6.29327 12.418V7.70644H1.58173C1.19156 7.70644 0.875002 7.39017 0.875002 7C0.875002 6.611 1.19156 6.29297 1.58173 6.29297H6.29327V1.58144C6.29327 1.19126 6.60983 0.875 7 0.875C7.39018 0.875 7.70673 1.19126 7.70673 1.58144V6.29297H12.4183C12.8099 6.29297 13.125 6.611 13.125 6.99971Z" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_700_11496">
-                    <rect width="14" height="14" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
+          {compareStringsIgnoreCase(
+            nftQuery.data?.data?.data.wallet_addr,
+            session?.address,
+          ) && (
+            <Link href={"/nft/" + id + "/create-app"}>
+              <button className="button group inline-flex items-center gap-2 rounded-md">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="fill-primary group-hover:fill-container"
+                >
+                  <g clip-path="url(#clip0_700_11496)">
+                    <path d="M13.125 6.99971C13.125 7.39135 12.8099 7.70644 12.4183 7.70644H7.70673V12.418C7.70673 12.8081 7.39018 13.125 7 13.125C6.60983 13.125 6.29327 12.8096 6.29327 12.418V7.70644H1.58173C1.19156 7.70644 0.875002 7.39017 0.875002 7C0.875002 6.611 1.19156 6.29297 1.58173 6.29297H6.29327V1.58144C6.29327 1.19126 6.60983 0.875 7 0.875C7.39018 0.875 7.70673 1.19126 7.70673 1.58144V6.29297H12.4183C12.8099 6.29297 13.125 6.611 13.125 6.99971Z" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_700_11496">
+                      <rect width="14" height="14" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
 
-              <span className="text-sm font-medium">New App</span>
-            </button>
-          </Link>
+                <span className="text-sm font-medium">New App</span>
+              </button>
+            </Link>
+          )}
         </div>
         <div className="pt-3">
           <BotList id={id} />
@@ -499,7 +509,7 @@ const NFTDetail = ({ params }: { params: any }) => {
               />
             </svg>
 
-            <p className="ml-2 text-sm font-medium">Back</p>
+            <p className="ml-2 text-sm font-medium uppercase">Back</p>
           </button>
         </div>
       </div>

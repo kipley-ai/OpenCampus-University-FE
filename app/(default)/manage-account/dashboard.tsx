@@ -160,20 +160,6 @@ export default function AccountSettings() {
             </p>
           </div>
         </div>
-        <Link href="/manage-account" className="max-sm:self-end">
-          <SecondaryButton>
-            <span> View Profile</span>
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              className="fill-current"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M7.00065 0.333984L5.82565 1.50898L10.4757 6.16732H0.333984V7.83398H10.4757L5.82565 12.4923L7.00065 13.6673L13.6673 7.00065L7.00065 0.333984Z" />
-            </svg>
-          </SecondaryButton>
-        </Link>
       </div>
       {/* <div className="spinner-container"> */}
       {isLoadingUpdateUser && (

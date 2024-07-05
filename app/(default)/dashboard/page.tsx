@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { keepPreviousData } from "@tanstack/react-query";
 import { useAppProvider } from "@/providers/app-provider";
+import { ModalUnauthenticated } from "@/components/modal-unauthenticated";
 import { getBreakpoint } from "@/components/utils/utils";
 import { KF_TITLE } from "@/utils/constants";
 import { chatbotSlug } from "@/utils/utils";
@@ -23,7 +24,11 @@ import OC100Image4th from "components/homepage/oc-100-image-4th.svg";
 import OC100Image5th from "components/homepage/oc-100-image-5th.svg";
 import FiresideImage from "components/homepage/fireside-frame-no-text.svg";
 
-export default function Dashboard() {
+interface DashboardProps {
+  searchParams: Record<string, string> | null | undefined;
+}
+
+export default function Dashboard({ searchParams }: DashboardProps) {
   const { setHeaderTitle } = useAppProvider();
   const title = `${KF_TITLE} Dashboard`;
   // const [breakpoint, setBreakpoint] = useState(getBreakpoint());
@@ -140,7 +145,9 @@ export default function Dashboard() {
   }, [currentIndex]);
 
   return (
-    <div className="text-primary mt-2 xl:mt-4">
+    <div className="mt-2 text-primary xl:mt-4">
+      {searchParams?.isUnauthenticated === "true" && <ModalUnauthenticated />}
+      {/* Explore Banner Section */}
       {/* Explore Banner Section */}
       <Image
         src="/images/dashboard-banner.svg"
@@ -290,9 +297,9 @@ export default function Dashboard() {
             </h1>
             <div className="my-1 flex flex-col md:my-3">
               <span className="text-xs text-white md:text-sm">
-                Fireside Chat, hosted by OCU, features some
-                of the most influential OC 100 educators from a diverse range of
-                the Web3 space.
+                Fireside Chat, hosted by OCU, features some of the most
+                influential OC 100 educators from a diverse range of the Web3
+                space.
               </span>
             </div>
             <div className="flex flex-col">

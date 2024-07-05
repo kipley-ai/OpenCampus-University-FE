@@ -31,7 +31,7 @@ export default async function middleware(req: NextRequest) {
   const accessToken = req.cookies.get("access_token");
 
   if (!accessToken) {
-    return NextResponse.redirect(new URL("/dashboard", req.url));
+    return NextResponse.redirect(new URL("/dashboard?isUnauthenticated=true", req.url));
   }
 
   return NextResponse.next();

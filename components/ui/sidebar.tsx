@@ -62,7 +62,7 @@ const ChatHistoryList = () => {
 export default function Sidebar() {
   const router = useRouter();
   const sidebar = useRef<HTMLDivElement>(null);
-  const { sidebarOpen, setSidebarOpen } = useAppProvider();
+  const { sidebarOpen, setSidebarOpen, session } = useAppProvider();
 
   const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(true);
   const segments = useSelectedLayoutSegments();
@@ -176,14 +176,16 @@ export default function Sidebar() {
               </SidebarLink>
             </section>
 
-            <section>
-              <h2 className="text-xs text-secondary-text">CHATS</h2>
-              <ul className="pb-4">
-                <ul className="max-h-[15vh] overflow-y-auto lg:max-h-36">
-                  <ChatHistoryList />
+            {session?.address && (
+              <section>
+                <h2 className="text-xs text-secondary-text">CHATS</h2>
+                <ul className="pb-4">
+                  <ul className="max-h-[15vh] overflow-y-auto lg:max-h-36">
+                    <ChatHistoryList />
+                  </ul>
                 </ul>
-              </ul>
-            </section>
+              </section>
+            )}
 
             <section>
               <CreditBalance />

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { chatbotSlug } from "@/utils/utils";
 import { CopyButton } from "./last-message";
 import { useState } from "react";
 import { useUserDetail } from "@/hooks/api/user";
@@ -85,23 +86,34 @@ const ChatMessage = ({
             </p>
           ))}
           {message?.chatbot_recommendation?.length > 0 && (
-            <div className="flex flex-wrap items-center gap-4 rounded-xl border-2 border-border bg-container p-4">
-              {message?.chatbot_recommendation.map(
-                (chatbot: any, index: number) => (
-                  <div key={index} className="flex flex-col gap-2">
-                    <Image
-                      src={chatbot.profile_image}
-                      alt="User avatar"
-                      className="size-12 rounded-lg"
-                      width={50}
-                      height={50}
-                    />
-                    <p className="text-sm font-semibold text-primary">
-                      {chatbot.name}
-                    </p>
-                  </div>
-                ),
-              )}
+            <div className="flex flex-col gap-4 rounded-xl border-2 border-border bg-container p-4">
+              <h3 className="text-sm font-medium">
+                These educators may be able to answer your question:
+              </h3>
+              <div className="flex flex-wrap items-start gap-4">
+                {message?.chatbot_recommendation.map(
+                  (chatbot: any, index: number) => (
+                    <a
+                      key={index}
+                      href={`/chatbot/${chatbotSlug(chatbot)}`}
+                      className="group flex w-20 flex-col items-center gap-2"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Image
+                        src={chatbot.profile_image}
+                        alt="User avatar"
+                        className="w-full rounded-lg"
+                        width={150}
+                        height={150}
+                      />
+                      <p className="w-full overflow-hidden text-ellipsis text-sm font-semibold text-primary group-hover:underline">
+                        {chatbot.name}
+                      </p>
+                    </a>
+                  ),
+                )}
+              </div>
             </div>
           )}
         </div>

@@ -14,7 +14,7 @@ import { ChatbotData } from "@/lib/types";
 import { LoadMoreSpinner } from "@/components/load-more";
 import { useUserDetail } from "@/hooks/api/user";
 import { useAccount } from "wagmi";
-import { redirect } from "next/navigation";
+import { useSearchParams, redirect } from "next/navigation";
 
 import TrendingImage from "components/homepage/trending-projects-image.svg";
 import OC100Image1st from "components/homepage/oc-100-image.svg";
@@ -24,11 +24,7 @@ import OC100Image4th from "components/homepage/oc-100-image-4th.svg";
 import OC100Image5th from "components/homepage/oc-100-image-5th.svg";
 import FiresideImage from "components/homepage/fireside-frame-no-text.svg";
 
-interface DashboardProps {
-  searchParams: Record<string, string> | null | undefined;
-}
-
-export default function Dashboard({ searchParams }: DashboardProps) {
+export default function Dashboard() {
   const { setHeaderTitle } = useAppProvider();
   const title = `${KF_TITLE} Dashboard`;
   // const [breakpoint, setBreakpoint] = useState(getBreakpoint());
@@ -96,6 +92,8 @@ export default function Dashboard({ searchParams }: DashboardProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fade, setFade] = useState(true);
 
+  const searchParams = useSearchParams();
+
   // useEffect(() => {
   //   const observer = new IntersectionObserver(
   //     ([entry]) => {
@@ -146,7 +144,7 @@ export default function Dashboard({ searchParams }: DashboardProps) {
 
   return (
     <div className="mt-2 text-primary xl:mt-4">
-      {searchParams?.isUnauthenticated === "true" && <ModalUnauthenticated />}
+      {searchParams.get("isUnauthenticated") === "true" && <ModalUnauthenticated />}
       {/* Explore Banner Section */}
       {/* Explore Banner Section */}
       <Image

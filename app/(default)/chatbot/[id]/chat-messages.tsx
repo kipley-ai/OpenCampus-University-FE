@@ -102,11 +102,13 @@ const MessageList = ({
   ]);
 
   useEffect(() => {
-    fieldRef.current?.scrollIntoView();
+    if (replyStatus === "answering") {
+      fieldRef.current?.scrollIntoView();
+    }
+  }, [replyStatus]);
 
-    // console.log("Answer Stream");
-    // console.log(answersStream.slice(0, -2));
-    // console.log("lastJsonMessage :>> ", lastJsonMessage);
+  useEffect(() => {
+    fieldRef.current?.scrollIntoView();
 
     if (lastJsonMessage !== null && lastJsonMessage.type !== "error") {
       if (lastJsonMessage.type === "end") {

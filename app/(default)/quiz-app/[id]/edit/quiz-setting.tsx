@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter, useParams, redirect } from "next/navigation";
 import { useChatbotDetail as useQuizAppDetail } from "@/hooks/api/chatbot";
 import { useUpdateQuizAPI, useGetPlugin } from "@/hooks/api/quiz_app";
 import LoadingIcon from "public/images/loading-icon.svg";
 import UpdateQuizModal from "@/components/toast-4";
 import { PluginConfig, PluginMetaData } from "@/hooks/api/interfaces";
 import { ZodError, z } from "zod";
-import { noMoreThanCharacters } from "@/utils/utils";
+import { noMoreThanCharacters, compareStringsIgnoreCase } from "@/utils/utils";
 import { KF_TITLE } from "@/utils/constants";
 import { useAppProvider } from "@/providers/app-provider";
 import ImageInput from "@/components/image-input-2";
@@ -25,7 +25,7 @@ interface QuizForm {
 }
 
 const QuizSetting = () => {
-  const { setHeaderTitle } = useAppProvider();
+  const { setHeaderTitle, session } = useAppProvider();
   const [showModal, setShowModal] = useState(false);
   const [showModalError, setShowModalError] = useState(false);
   const [errorMessage, setErrorMessage] = useState<any>({});
@@ -187,6 +187,16 @@ const QuizSetting = () => {
         },
       }
     )
+  }
+
+  if (
+    quizDetail.data?.data.data.wallet_addr &&
+    !compareStringsIgnoreCase(
+      session?.address as string,
+      quizDetail.data?.data.data.wallet_addr as string,
+    )
+  ) {
+    redirect("/app/" + id);
   }
   
   return (

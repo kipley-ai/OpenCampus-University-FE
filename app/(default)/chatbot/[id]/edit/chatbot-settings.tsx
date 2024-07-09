@@ -124,7 +124,7 @@ const ChatbotSettings = () => {
         superAdmin.data?.data.status === "failed" &&
         chatbotDetail.data?.data.data.wallet_addr !== address
       ) {
-        redirect(`/nft/${chatbotDetail.data?.data.data.sft_id}`);
+        redirect(`/app/${id}`);
       }
     }
   }, [superAdmin.isSuccess, chatbotDetail.isSuccess]);

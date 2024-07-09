@@ -21,7 +21,10 @@ import { keepPreviousData } from "@tanstack/react-query";
 import { PaginationController } from "@/components/pagination-2/controller";
 import { useGetPlugin } from "@/hooks/api/quiz_app";
 import Money from "public/images/money.svg";
-import { handleAppUrlWithoutSlug } from "@/utils/utils";
+import {
+  handleAppUrlWithoutSlug,
+  compareStringsIgnoreCase,
+} from "@/utils/utils";
 
 const formatTimestamp = (timestamp: string): string => {
   const padZero = (num: number): string => (num < 10 ? `0${num}` : `${num}`);
@@ -51,7 +54,7 @@ const ChatbotSection = ({
     (plugin) => plugin.plugin_id === chatbotDetail.plugin_id,
   );
   // console.log("Plugin detail: ", plugin); // For debugging purpose
-
+  const { session } = useAppProvider();
   const [appType, setAppType] = useState("");
 
   useEffect(() => {
@@ -109,24 +112,29 @@ const ChatbotSection = ({
             {formatTimestamp(chatbotDetail.created_at)}
           </p>
         </div>
-        <Link href={handleAppUrlWithoutSlug(chatbotDetail) + "/edit"}>
-          <button className="button group mt-4 inline-flex items-center gap-2 rounded-md">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              className="fill-primary group-hover:fill-container"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M14.8 2H13.2L13.2 3.6H11.6V5.2H10V6.8H8.4V8.4H6.8V10H5.2V11.6H3.6V13.2L2 13.2V16.4V18H3.6H6.8V16.4L8.4 16.4V14.8H10V13.2L11.6 13.2V11.6H13.2V10H14.8V8.4H16.4V6.8H18V5.2H16.4L16.4 3.6H14.8V2ZM14.8 8.4H13.2L13.2 10H11.6V11.6H10V13.2H8.4V14.8H6.8V13.2L5.2 13.2V11.6H6.8V10H8.4V8.4H10V6.8H11.6V5.2H13.2L13.2 6.8H14.8V8.4ZM5.2 13.2H3.6V16.4H6.8V14.8H5.2V13.2Z"
-              />
-            </svg>
-            <span className="text-sm font-medium">Manage</span>
-          </button>
-        </Link>
+        {compareStringsIgnoreCase(
+          chatbotDetail.wallet_addr,
+          session?.address,
+        ) && (
+          <Link href={handleAppUrlWithoutSlug(chatbotDetail) + "/edit"}>
+            <button className="button group mt-4 inline-flex items-center gap-2 rounded-md">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                className="fill-primary group-hover:fill-container"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M14.8 2H13.2L13.2 3.6H11.6V5.2H10V6.8H8.4V8.4H6.8V10H5.2V11.6H3.6V13.2L2 13.2V16.4V18H3.6H6.8V16.4L8.4 16.4V14.8H10V13.2L11.6 13.2V11.6H13.2V10H14.8V8.4H16.4V6.8H18V5.2H16.4L16.4 3.6H14.8V2ZM14.8 8.4H13.2L13.2 10H11.6V11.6H10V13.2H8.4V14.8H6.8V13.2L5.2 13.2V11.6H6.8V10H8.4V8.4H10V6.8H11.6V5.2H13.2L13.2 6.8H14.8V8.4ZM5.2 13.2H3.6V16.4H6.8V14.8H5.2V13.2Z"
+                />
+              </svg>
+              <span className="text-sm font-medium">Manage</span>
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );
@@ -228,7 +236,7 @@ const NFTCard = ({ nft }: NFTCardProps) => {
           {nft.category || "Uncategorised"}
         </p> */}
       <Link href={`/nft/${nft.sft_id}`}>
-        <div className="hover:bg-primary-dark absolute bottom-8 hidden h-12 w-full items-center justify-center rounded-b-2xl bg-primary group-hover:flex">
+        <div className="absolute bottom-8 hidden h-12 w-full items-center justify-center rounded-b-2xl bg-primary group-hover:flex hover:bg-primary-dark">
           <p className="text-center text-sm font-semibold text-container">
             View More
           </p>
@@ -325,7 +333,7 @@ const NFTList = ({ id }: { id: any }) => {
 };
 
 const BotDetail = ({ params }: { params: any }) => {
-  const { setHeaderTitle } = useAppProvider();
+  const { setHeaderTitle, session } = useAppProvider();
   useEffect(() => {
     setHeaderTitle("My KnowledgeKey");
   }, []);
@@ -397,25 +405,30 @@ const BotDetail = ({ params }: { params: any }) => {
               <span className="text-lg font-semibold text-primary">
                 KnowledgeKeys
               </span>
-              <button className="button group inline-flex items-center gap-2 rounded-md">
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 14 14"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="fill-primary group-hover:fill-container"
-                >
-                  <g clip-path="url(#clip0_700_11496)">
-                    <path d="M13.125 6.99971C13.125 7.39135 12.8099 7.70644 12.4183 7.70644H7.70673V12.418C7.70673 12.8081 7.39018 13.125 7 13.125C6.60983 13.125 6.29327 12.8096 6.29327 12.418V7.70644H1.58173C1.19156 7.70644 0.875002 7.39017 0.875002 7C0.875002 6.611 1.19156 6.29297 1.58173 6.29297H6.29327V1.58144C6.29327 1.19126 6.60983 0.875 7 0.875C7.39018 0.875 7.70673 1.19126 7.70673 1.58144V6.29297H12.4183C12.8099 6.29297 13.125 6.611 13.125 6.99971Z" />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_700_11496">
-                      <rect width="14" height="14" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
-                <span className="text-sm font-medium">New KnowledgeKey</span>
-              </button>
+              {compareStringsIgnoreCase(
+                chatbotQuery.data?.data?.data.wallet_addr,
+                session?.address,
+              ) && (
+                <button className="button group inline-flex items-center gap-2 rounded-md">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="fill-primary group-hover:fill-container"
+                  >
+                    <g clip-path="url(#clip0_700_11496)">
+                      <path d="M13.125 6.99971C13.125 7.39135 12.8099 7.70644 12.4183 7.70644H7.70673V12.418C7.70673 12.8081 7.39018 13.125 7 13.125C6.60983 13.125 6.29327 12.8096 6.29327 12.418V7.70644H1.58173C1.19156 7.70644 0.875002 7.39017 0.875002 7C0.875002 6.611 1.19156 6.29297 1.58173 6.29297H6.29327V1.58144C6.29327 1.19126 6.60983 0.875 7 0.875C7.39018 0.875 7.70673 1.19126 7.70673 1.58144V6.29297H12.4183C12.8099 6.29297 13.125 6.611 13.125 6.99971Z" />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_700_11496">
+                        <rect width="14" height="14" fill="white" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                  <span className="text-sm font-medium">New KnowledgeKey</span>
+                </button>
+              )}
             </div>
             <div className="pt-3">
               <NFTList id={sftId} />

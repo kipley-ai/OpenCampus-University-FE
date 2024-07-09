@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { UploadingModal } from "./uploading-modal";
 import { useQuiz } from "../[id]/quiz-app-context";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
-import { useGetLastGeneratedQuiz, useAnswerQuiz } from "@/hooks/api/quiz_app";
 
 export default function QuizTrue() {
   const {
@@ -32,24 +31,9 @@ export default function QuizTrue() {
 
   const correctAnswer = questions[question_now - 1]?.answer;
 
-  const answerQuiz = useAnswerQuiz();
-
   const nextPart = () => {
     if ((question_now as number) === (totalQuestions as number)) {
-      answerQuiz.mutate(
-        {
-          chatbot_id,
-          session_id,
-          answer: answers,
-        },
-        {
-          onSuccess: () => {
-            setIsUploading(false);
-            setStep("result");
-          },
-        },
-      );
-      setIsUploading(true);
+      setStep("result");
     } else {
       setSelectedAnswer("");
       setQuestionNow(question_now + 1);
@@ -58,7 +42,7 @@ export default function QuizTrue() {
   };
 
   return (
-    <div className="flex w-full items-center justify-between rounded-b-xl bg-[#ECFCCB] px-10 py-6 text-white">
+    <div className="flex w-full items-center justify-between rounded-b-xl bg-[#ECECFF] px-10 py-6 text-white">
       <UploadingModal isOpen={isUploading} setIsOpen={setIsUploading} />
       <div className="flex items-center gap-3">
         <svg
@@ -82,7 +66,7 @@ export default function QuizTrue() {
             <g clip-path="url(#clip1_687_7334)">
               <path
                 d="M14.6665 23.9999L21.3332 30.6666L34.6665 17.3333"
-                stroke="#21C55D"
+                stroke="#00EDBE"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -103,12 +87,12 @@ export default function QuizTrue() {
             </clipPath>
           </defs>
         </svg>
-        <span className="ml-2 mt-1 text-2xl font-bold text-green-600">
+        <span className="ml-2 mt-1 text-2xl font-bold text-[#141BEB]">
           Correct!
         </span>
       </div>
       <button
-        className="flex items-center gap-2 rounded-lg bg-[#21C55D] px-6 py-2 hover:bg-[#1da850]"
+        className="flex items-center gap-2 rounded-lg bg-[#141BEB] px-6 py-2 hover:bg-[#1016BC]"
         onClick={nextPart}
       >
         NEXT

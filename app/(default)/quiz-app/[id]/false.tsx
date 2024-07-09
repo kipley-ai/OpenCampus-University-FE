@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { UploadingModal } from "./uploading-modal";
 import { useQuiz } from "../[id]/quiz-app-context";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
-import { useGetLastGeneratedQuiz, useAnswerQuiz } from "@/hooks/api/quiz_app";
 
 export default function QuizFalse() {
   const {
@@ -33,24 +32,9 @@ export default function QuizFalse() {
   const correctAnswer = questions[question_now - 1]?.answer;
   const correctAnswerStr = questions[question_now - 1][correctAnswer];
 
-  const answerQuiz = useAnswerQuiz();
-
   const nextPart = () => {
     if ((question_now as number) === (totalQuestions as number)) {
-      answerQuiz.mutate(
-        {
-          chatbot_id,
-          session_id,
-          answer: answers,
-        },
-        {
-          onSuccess: () => {
-            setIsUploading(false);
-            setStep("result");
-          },
-        },
-      );
-      setIsUploading(true);
+      setStep("result");
     } else {
       setSelectedAnswer("");
       setQuestionNow(question_now + 1);

@@ -128,11 +128,12 @@ export const useGetSharedQuizId = (params: any) => {
   });
 };
 
-export const useShareQuiz = () => {
+export const useShareQuiz = (params: any) => {
   const { session: { address } } = useAppProvider();
   
-  return useMutation({
-    mutationFn: (params: any) =>
+  return useQuery({
+    queryKey: ["quiz-share", params.share_id],
+    queryFn: () =>
       axios.post("/api/quiz_app/share", params, {
         headers: {
           "x-kf-user-id": address,

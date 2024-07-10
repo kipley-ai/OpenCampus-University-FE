@@ -25,7 +25,7 @@ import OC100Image5th from "components/homepage/oc-100-image-5th.svg";
 import FiresideImage from "components/homepage/fireside-frame-no-text.svg";
 
 export default function Dashboard() {
-  const { setHeaderTitle } = useAppProvider();
+  const { setHeaderTitle, session } = useAppProvider();
   const title = `${KF_TITLE} Dashboard`;
   // const [breakpoint, setBreakpoint] = useState(getBreakpoint());
   // const [pageSize, setPageSize] = useState(20);
@@ -142,9 +142,14 @@ export default function Dashboard() {
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [currentIndex]);
 
+  if (searchParams.get("isUnauthenticated") === "true" && session?.address) {
+    redirect("/dashboard");
+  }
+
   return (
     <div className="mt-2 text-primary xl:mt-4">
-      {searchParams.get("isUnauthenticated") === "true" && <ModalUnauthenticated />}
+      {searchParams.get("isUnauthenticated") === "true" &&
+        !session?.address && <ModalUnauthenticated />}
       {/* Explore Banner Section */}
       {/* Explore Banner Section */}
       <Image

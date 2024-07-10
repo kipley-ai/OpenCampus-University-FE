@@ -34,6 +34,8 @@ interface ContextProps {
   setVerifStatus: any;
   session: any;
   setSession: any;
+  modalUnauthenticated: boolean;
+  setModalUnauthenticated: any;
 }
 
 const AppContext = createContext<ContextProps>({
@@ -59,6 +61,8 @@ const AppContext = createContext<ContextProps>({
   setVerifStatus: () => "unauthenticated",
   session: {},
   setSession: () => {},
+  modalUnauthenticated: false,
+  setModalUnauthenticated: () => false,
 });
 
 export default function AppProvider({
@@ -78,6 +82,7 @@ export default function AppProvider({
   const [verifStatus, setVerifStatus] =
     useState<AuthenticationStatus>("unauthenticated");
   const [session, setSession] = useState({});
+  const [modalUnauthenticated, setModalUnauthenticated] = useState(false);
 
   useEffect(() => {
     const idToken = localStorage.getItem("id_token");
@@ -118,6 +123,8 @@ export default function AppProvider({
         setVerifStatus,
         session,
         setSession,
+        modalUnauthenticated,
+        setModalUnauthenticated,
       }}
     >
       {children}

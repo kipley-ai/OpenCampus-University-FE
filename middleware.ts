@@ -28,12 +28,6 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.rewrite(url);
   }
 
-  const accessToken = req.cookies.get("access_token");
-
-  if (!accessToken) {
-    return NextResponse.redirect(new URL("/dashboard?isUnauthenticated=true", req.url));
-  }
-
   return NextResponse.next();
 }
 

@@ -16,8 +16,8 @@ export default function DefaultLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const { session } = useAppProvider();
-  const { data: userDetail, isFetching, refetch } = useUserDetail();
+  const { session, setModalUnauthenticated } = useAppProvider();
+  const { data: userDetail, isFetching, isPending, refetch } = useUserDetail();
   const [hasRefetched, setHasRefetched] = useState(false);
 
   const subdomain = window.location.origin.split("//")[1].split(".")[0];
@@ -46,7 +46,14 @@ export default function DefaultLayout({
     fetchUserDetails();
   }, [session?.address, userDetail?.data?.msg, hasRefetched, refetch]);
 
+  useEffect(() => {
+    if (pathname !== "/dashboard" && !localStorage.getItem("id_token")) {
+      redirect("/dashboard?isUnauthenticated=true");
+    }
+  }, [pathname, session?.address]);
+
   if (
+    !isPending &&
     CREATOR_PATHS.includes(pathname) &&
     !CREATOR_ROLES.includes(userDetail?.data?.data?.role?.toUpperCase())
   ) {

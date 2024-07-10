@@ -167,7 +167,7 @@ export default function NFT() {
               mintNFTAPI.mutate(
                 { kb_id: kb_id },
                 {
-                  onSuccess: (data) => {
+                  onSuccess: () => {
                     setTimeout(() => {
                       setIsMinting(false);
                       setShowModal(true);

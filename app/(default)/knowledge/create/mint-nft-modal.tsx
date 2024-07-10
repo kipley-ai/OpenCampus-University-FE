@@ -70,12 +70,12 @@ export default function SuccessFailModal({
           <Image src={CheckIcon} width={30} height={30} alt="Check Icon" />
           <span className="text-base font-semibold sm:text-lg">{children}</span>
         </div>
-        <div className="flex w-2/6 justify-center">
+        <div className="flex justify-center">
           <button
-            onClick={() => router.push("/nft/" + nftIdCreated + "/create-app")}
+            onClick={() => router.push("/nft/" + nftIdCreated)}
             className="btn-primary px-5 py-2 text-base font-normal tracking-wide"
           >
-            Continue
+            View Details
           </button>
         </div>
       </div>

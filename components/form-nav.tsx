@@ -13,13 +13,13 @@ export const FormNav = ({
     <div className="my-4 flex items-center justify-between border-t-2 pt-4">
       {!hideBack ? (
         <button
-          className="flex items-center justify-center gap-2 hover:underline"
+          className="flex items-center justify-center gap-2 text-sm font-medium uppercase hover:underline"
           onClick={onBack}
         >
           <svg
             width="8"
             height="13"
-            viewBox="0 0 8 13"
+            viewBox="0 1 8 13"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -29,21 +29,21 @@ export const FormNav = ({
             />
           </svg>
 
-          <p>Back</p>
+          <p className="">Back</p>
         </button>
       ) : (
         <div></div>
       )}
       {!hideNext ? (
         <button
-          className="aligns-end flex items-center justify-center gap-2 hover:underline"
+          className="aligns-end flex items-center justify-center gap-2 text-sm font-medium uppercase hover:underline"
           onClick={onNext}
         >
-          <p>Next</p>
+          <p className="">Next</p>
           <svg
             width="8"
             height="13"
-            viewBox="0 0 8 13"
+            viewBox="0 1 8 13"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >

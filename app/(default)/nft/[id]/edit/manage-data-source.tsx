@@ -1,4 +1,5 @@
-// ManageDataSources.jsx
+"use client";
+
 import { useState, useEffect } from "react";
 import CheckIcon from "public/images/check-icon-2.svg";
 import ArrowIcon from "public/images/arrow-3-icon.svg";
@@ -6,11 +7,12 @@ import Image from "next/image";
 import { useAppProvider } from "@/providers/app-provider";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
 import { useNftDetail } from "@/hooks/api/nft";
-import { useParams, redirect } from "next/navigation";
+import { useParams, redirect, useRouter } from "next/navigation";
 import { useKBDetail, useKBItem, useDeleteKBItem } from "@/hooks/api/kb";
 import Link from "next/link";
 import { KBItem } from "@/lib/types";
 import { PaginationController } from "@/components/pagination-2/controller";
+import { FormNav } from "@/components/form-nav";
 import { keepPreviousData } from "@tanstack/react-query";
 import { FaSpinner } from "react-icons/fa6";
 import DeleteSuccessModal from "@/components/toast-4";
@@ -22,6 +24,7 @@ const ManageDataSources = () => {
   const [deleteSuccessModal, setDeleteSuccessModal] = useState(false);
   const deleteItemAPI = useDeleteKBItem();
 
+  const router = useRouter();
   const { id } = useParams();
   const { session } = useAppProvider();
 
@@ -109,7 +112,7 @@ const ManageDataSources = () => {
     return (
       <div className="flex h-32 w-full items-center justify-center gap-4">
         <FaSpinner size={20} className="animate-spin" />
-        <p className="text-md text-gray-300">Loading</p>
+        <p className="text-md">Loading</p>
       </div>
     );
   }
@@ -207,7 +210,7 @@ const ManageDataSources = () => {
 
         {/* Table */}
         <div className="overflow-x-auto">
-          <table className="min-w-full table-auto border-b border-[#393E44]">
+          <table className="min-w-full table-auto">
             <thead className="bg-container text-left">
               <tr>
                 <th className="px-3 py-7">
@@ -277,12 +280,12 @@ const ManageDataSources = () => {
             </tbody>
           </table>
         </div>
-        <div className="mt-4 flex flex-row items-center justify-center space-x-12">
+        <div className="my-4 flex flex-row items-center justify-center space-x-12">
           <div className="flex flex-col items-center">
             {isFetching ? (
               <div className="flex w-full items-center justify-center gap-4">
                 <FaSpinner size={20} className="animate-spin" />
-                <p className="text-md text-gray-300">Loading</p>
+                <p className="text-md">Loading</p>
               </div>
             ) : (
               <>
@@ -304,6 +307,7 @@ const ManageDataSources = () => {
             )}
           </div>
         </div>
+        <FormNav onBack={() => router.back()} hideNext />
       </div>
       </>
     );

@@ -27,7 +27,11 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 
-export default function TwitterFailModal({ children, open, setOpen }: ToastProps) {
+export default function TwitterFailModal({
+  children,
+  open,
+  setOpen,
+}: ToastProps) {
   const scrapeTwitter = useScrapeTwitter();
   const { data: twitterData } = useSession();
   const { refetch: refetchScrapeStatus } = useScrapeTwitterStatus({
@@ -37,43 +41,22 @@ export default function TwitterFailModal({ children, open, setOpen }: ToastProps
   const handleTryAgain = () => {
     scrapeTwitter.mutate({ username: twitterData?.user?.username! });
     refetchScrapeStatus().then(async () => {
-			await delay(100)
+      await delay(100);
       setOpen(false);
     });
   };
 
   return (
     <ModalBlank isOpen={open} setIsOpen={setOpen}>
-      <div
-        className={`flex w-[360px] flex-col items-center justify-center rounded-2xl px-7 py-10`}
-      >
+      <div className="flex w-[360px] flex-col justify-center rounded-2xl px-7 py-10">
         <div className="flex w-full flex-row items-center justify-between">
-          <h2 className="text-3xl">Error</h2>
-          <button>
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-              onClick={() => setOpen(false)}
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M5 5H7V7H5V5ZM9 9H7V7H9V9ZM11 11H9V9H11V11ZM13 11H11V13H9V15H7V17H5V19H7V17H9V15H11V13H13V15H15V17H17V19H19V17H17V15H15V13H13V11ZM15 9V11H13V9H15ZM17 7V9H15V7H17ZM17 7V5H19V7H17Z"
-                fill="currentColor"
-              />
-            </svg>
-          </button>
+          <h2 className="text-xl font-semibold text-primary">Error</h2>
         </div>
-        <div
-          className={`my-7 flex flex-row items-center justify-center gap-2 text-sm text-red-500`}
-        >
+        <div className="my-7 flex items-start justify-center gap-4 text-sm text-red-500">
           <svg
-            width="25"
+            width="48"
             height="25"
-            viewBox="0 0 48 48"
+            viewBox="0 -4 48 48"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -86,13 +69,21 @@ export default function TwitterFailModal({ children, open, setOpen }: ToastProps
           </svg>
           {children}
         </div>
-        <button
-          className="button w-full"
-          onClick={() => handleTryAgain()}
-          disabled={twitterData?.user?.username === undefined}
-        >
-          Try Again
-        </button>
+        <div className="flex items-center justify-end gap-2">
+          <button
+            className="btn-underlined px-5 py-2"
+            onClick={() => setOpen(false)}
+          >
+            Close
+          </button>
+          <button
+            className="btn-primary px-5 py-2"
+            onClick={() => handleTryAgain()}
+            disabled={twitterData?.user?.username === undefined}
+          >
+            Try Again
+          </button>
+        </div>
       </div>
     </ModalBlank>
   );

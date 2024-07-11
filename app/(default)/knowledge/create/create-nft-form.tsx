@@ -4,11 +4,7 @@ import { createAsset } from "@/smart-contract/assets";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useCreateChatbotContext } from "./create-knowledge-context";
-import {
-  useCreateKBAndMintNFT,
-  useMintNFT,
-  useScrapeTwitter,
-} from "@/hooks/api/kb";
+import { useCreateKBAndMintNFT, useMintNFT } from "@/hooks/api/kb";
 import { useGetCategory } from "@/hooks/api/chatbot";
 import { useSession } from "next-auth/react";
 import { uploadFileS3 } from "@/app/api/upload/s3/helper";
@@ -220,16 +216,6 @@ export default function NFT() {
     }
   };
 
-  const [isTwitter, setIsTwitter] = useState(false);
-
-  useEffect(() => {
-    const kbType = sessionStorage.getItem("kbType");
-    if (kbType === "twitter") {
-      setIsTwitter(true);
-    }
-    sessionStorage.removeItem("kbType");
-  }, []);
-
   useEffect(() => {
     if (categoryList && categoryList.data) {
       const categoryData: Category[] = categoryList.data.data.data;
@@ -253,24 +239,22 @@ export default function NFT() {
         nftIdCreated={nftIdCreated}
         kbIdCreated={kbIdCreated}
       />
-      <ScrapeFailModal
-        children={"Sorry, Something went wrong. Please try again."}
-        open={showFailModal}
-        setOpen={setShowFailModal}
-      />
+      <ScrapeFailModal open={showFailModal} setOpen={setShowFailModal}>
+        <p className="font-medium">
+          Sorry, something went wrong with the tweet scraping process.
+          <br />
+          Please try again.
+        </p>
+      </ScrapeFailModal>
       <div className="flex flex-col rounded-2xl border border-[#DDDDEB] bg-sidebar px-6 py-9 pb-0 lg:px-8 xl:px-14">
         <div>
           <div className="flex items-center justify-between">
-            <h1 className="text-lg font-semibold text-primary">
+            <h1 className="text-lg font-semibold text-primary max-xs:w-1/2">
               Mint KnowledgeKey
             </h1>
-            <div>
-              {isTwitter ? (
-                <TwitterScrapingStatus setShowFailModal={setShowFailModal} />
-              ) : (
-                ""
-              )}
-            </div>
+            {createKb.type === "twitter" && (
+              <TwitterScrapingStatus setShowFailModal={setShowFailModal} />
+            )}
           </div>
         </div>
         <form>
@@ -573,7 +557,7 @@ export default function NFT() {
           </div> */}
           <div className="my-8 mt-2 flex items-center justify-between border-t-2 pt-4">
             <button
-              className="flex items-center justify-center gap-2 hover:underline"
+              className="flex items-center justify-center gap-2 uppercase hover:underline"
               type="submit"
               onClick={() => {
                 setStep("data_source");

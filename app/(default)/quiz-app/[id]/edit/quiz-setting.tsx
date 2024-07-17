@@ -97,7 +97,7 @@ const QuizSetting = () => {
   const setInitialForm = () => {
     if (quizDetail?.data?.data.data) {
       const data = quizDetail?.data?.data.data;
-      const metadata = JSON.parse(data.meta_data);
+      const metadata = JSON.parse(data.meta_data!);
       setForm({
         name: data.name,
         num_questions: metadata.num_questions,

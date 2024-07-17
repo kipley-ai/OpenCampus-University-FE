@@ -254,10 +254,9 @@ export const useChatbotExplore = (
 
   return useQuery({
     queryKey: [
-      params.page,
-      params.page_size,
-      params.explore_name,
+      params.explore_id,
       params.category_id,
+      params.page,
     ],
     queryFn: () =>
       axios.post<ChatbotDataListResponse>("/api/chatbot/list", params),

@@ -121,7 +121,7 @@ export interface IUpdateUserParams {
 export interface IChatbotExplore {
   page: number;
   page_size: number;
-  explore_name: string;
+  explore_id: string;
   category_id?: string | undefined | null;
 }
 

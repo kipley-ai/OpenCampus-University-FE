@@ -12,6 +12,7 @@ import { chatbotSlug } from "@/utils/utils";
 import { useChatbotExplore, useGetCategory } from "@/hooks/api/chatbot";
 import { ChatbotData } from "@/lib/types";
 import { LoadMoreSpinner } from "@/components/load-more";
+import { LoadingSpinner } from "@/components/loading-spinner";
 import { useUserDetail } from "@/hooks/api/user";
 import { useAccount } from "wagmi";
 import { useSearchParams, redirect } from "next/navigation";
@@ -47,39 +48,38 @@ export default function Dashboard() {
   const featuredBotsQuery = useChatbotExplore({
     page: 1,
     page_size: FEATURED_BOTS_PAGE_SIZE,
-    explore_name: "Featured Educators",
+    explore_id: "156470b0-1af7-48e9-921c-f6360dddd527",
   });
 
   const trendingBotsQuery = useChatbotExplore({
     page: 1,
     page_size: 6,
-    explore_name: "Trending Projects",
+    explore_id: "0ea842dc-072c-482a-bcbe-7cbe013db81f",
   });
 
-  const OC100BotsQuery = useChatbotExplore({
-    page: 1,
-    page_size: 6,
-    explore_name: "OC 100",
-  });
+  // const OC100BotsQuery = useChatbotExplore({
+  //   page: 1,
+  //   page_size: 6,
+  //   explore_name: "OC 100",
+  // });
 
   const firesideBotsQuery = useChatbotExplore({
     page: 1,
     page_size: FIRESIDE_BOTS_PAGE_SIZE,
-    explore_name: "Fireside Chat Featured Educators",
+    explore_id: "4485a359-6685-49c6-befa-1f1325976022",
   });
 
-  const { data: popularCreatorsQuery, refetch: refetchPopularCreators } =
-    useChatbotExplore({
-      page: popularCreatorsPage,
-      page_size: POPULAR_CREATORS_PAGE_SIZE,
-      explore_name: "Popular Educators",
-      category_id: tab.category_id,
-    });
+  const popularCreatorsQuery = useChatbotExplore({
+    page: popularCreatorsPage,
+    page_size: POPULAR_CREATORS_PAGE_SIZE,
+    explore_id: "28707dbb-1578-421f-8756-0cf5d33053ec",
+    category_id: tab.category_id,
+  });
 
   const handleChangeCategoryTab = (cat: any) => {
     setTab(cat);
     setPopularCreatorsPage(1);
-    refetchPopularCreators();
+    popularCreatorsQuery.refetch();
   };
 
   const images = [
@@ -164,7 +164,7 @@ export default function Dashboard() {
       <div className="mt-6 rounded-xl border-2 border-border bg-sidebar p-3 md:mt-12 lg:px-10 lg:py-8">
         <div className="flex flex-row justify-between">
           <h1 className="text-lg font-semibold md:text-xl">
-            Featured Educators
+            {featuredBotsQuery?.data?.data?.data.name}
           </h1>
           <div className="mt-4 flex justify-end">
             <button
@@ -242,7 +242,7 @@ export default function Dashboard() {
       <div className="flex w-full gap-10">
         <div className="rounded-xl border-2 border-border bg-sidebar p-3 lg:px-10 lg:py-8 xl:grow">
           <h1 className="text-lg font-semibold md:text-xl">
-            Trending Projects
+            {trendingBotsQuery.data?.data.data.name}
           </h1>
           <div className="mt-4 grid grid-cols-2 items-start gap-x-8 gap-y-4 xs:grid-cols-3 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
             {trendingBotsQuery.data?.data?.data &&
@@ -293,23 +293,22 @@ export default function Dashboard() {
           className="z-10 w-full rounded-xl"
           width={1030}
         />
-        <div className="absolute right-2 top-4 w-1/2 overflow-y-auto max-xs:h-1/5 sm:top-8 lg:right-16 xl:top-12 2xl:top-16">
-          <Link href={"/chatroom/883f98d5-7b3b-4f09-8518-69c954e4cd10"}>
-            <h1 className="font-semibold text-white xs:text-lg md:text-3xl">
+        <div className="group absolute right-2 top-4 w-1/2 overflow-y-auto max-xs:h-1/5 sm:top-8 lg:right-16 xl:top-12 2xl:top-16">
+          <Link href="/chatroom/76084ca7-eae6-4281-a63e-58d692dea79b">
+            <h1 className="font-semibold text-white group-hover:text-[#00EDBE] xs:text-lg md:text-3xl">
               Fireside Chat
             </h1>
             <div className="my-1 flex flex-col md:my-3">
               <span className="text-xs text-white md:text-sm">
                 Fireside Chat, hosted by OCU, features some of the most
-                influential OC 100 educators from a diverse range of the Web3
-                space.
+                influential educators from a diverse range of subjects and
+                perspectives.
               </span>
             </div>
             <div className="flex flex-col">
               <span className="text-xs text-white md:text-sm">
                 Engage in topic-specific discussions, ask questions, and gain
-                well-rounded insights from specialists across various fields
-                within the Web3 space.
+                well-rounded insights from specialists across various fields.
               </span>
               <span className="text-xs text-white md:text-sm"></span>
               <span className="text-xs text-white md:text-sm"></span>
@@ -324,7 +323,7 @@ export default function Dashboard() {
         <div className="rounded-l-xl border-y-2 border-l-2 border-border bg-sidebar p-3 max-sm:mt-4 sm:absolute sm:bottom-4 sm:left-8 lg:px-10 lg:py-8 lg:pr-4 xl:bottom-12 2xl:right-0">
           <div className="flex flex-row justify-between">
             <h1 className="text-lg font-semibold md:text-xl">
-              Featured Educators
+              {firesideBotsQuery.data?.data.data.name}
             </h1>
             <div className="mt-4 flex justify-end">
               <button
@@ -403,7 +402,7 @@ export default function Dashboard() {
       <div className="mt-4 rounded-xl border-2 border-border bg-sidebar p-3 lg:px-10 lg:py-8">
         <div className="flex justify-between gap-4 max-xs:flex-col xs:items-center">
           <h1 className="text-lg font-semibold md:text-xl">
-            Popular Educators
+            {popularCreatorsQuery.data?.data.data.name}
           </h1>
           <select
             name="categories"
@@ -411,10 +410,11 @@ export default function Dashboard() {
             onChange={(e) =>
               handleChangeCategoryTab(JSON.parse(e.target.value))
             }
-            className="block w-full rounded-lg border border-border px-4 py-2 text-sm text-heading placeholder-gray-500 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-gray-500 xs:w-1/2 md:w-2/5 xl:w-[35%]"
+            className="block w-full rounded-lg border border-border bg-transparent px-4 py-2 text-sm text-heading placeholder-gray-500 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-gray-500 xs:w-1/2 md:w-2/5 xl:w-[35%]"
           >
             <option
               value={JSON.stringify({ title: "all", category_id: "" })}
+              hidden
               disabled
               selected
             >
@@ -465,7 +465,7 @@ export default function Dashboard() {
             className="ml-2"
             onClick={() => setPopularCreatorsPage((prev) => prev + 1)}
             disabled={
-              (popularCreatorsQuery?.data?.data?.chatbot_count ?? 0) -
+              (popularCreatorsQuery?.data?.data?.data?.chatbot_count ?? 0) -
                 popularCreatorsPage * POPULAR_CREATORS_PAGE_SIZE <=
               0
             }
@@ -482,7 +482,7 @@ export default function Dashboard() {
               <path
                 d="M8.375 14.5H20.625M20.625 14.5L14.5 20.625M20.625 14.5L14.5 8.375"
                 stroke={
-                  (popularCreatorsQuery?.data?.data?.chatbot_count ?? 0) -
+                  (popularCreatorsQuery?.data?.data?.data?.chatbot_count ?? 0) -
                     popularCreatorsPage * POPULAR_CREATORS_PAGE_SIZE <=
                   0
                     ? "#B0B0B0"
@@ -495,11 +495,30 @@ export default function Dashboard() {
             </svg>
           </button>
         </div>
-        <div className="mt-4 grid grow grid-cols-2 gap-x-8 gap-y-8 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-          {popularCreatorsQuery?.data?.data.chatbot_data?.map((botData) => (
-            <BotItem key={botData.chatbot_id} botData={botData} />
-          ))}
-        </div>
+        {popularCreatorsQuery.isFetching ? (
+          <LoadingSpinner />
+        ) : (
+          <>
+            <div className="mt-4 grid grow grid-cols-2 gap-x-8 gap-y-8 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+              {popularCreatorsQuery?.data?.data?.data.chatbot_data?.map(
+                (botData) => (
+                  <BotItem key={botData.chatbot_id} botData={botData} />
+                ),
+              )}
+            </div>
+            {popularCreatorsQuery?.data?.data?.data?.chatbot_count === 0 && (
+              <div className="mx-auto my-6 flex flex-col items-center justify-center gap-4">
+                <Image
+                  src="/images/money.svg"
+                  width={77}
+                  height={77}
+                  alt="No Data"
+                />
+                <p className="font-semibold text-primary">no data</p>
+              </div>
+            )}
+          </>
+        )}
       </div>
       {/* <div ref={loadMoreRef} className="mb-8">
         {popularCreatorsQuery.isFetching && <LoadMoreSpinner />}

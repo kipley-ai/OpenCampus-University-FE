@@ -2,28 +2,31 @@ export type ChatbotData = {
   chatbot_id: string;
   sft_id: string;
   category_id: string;
+  plugin_id: string;
   profile_image: string;
   name: string;
   description: string;
   instruction: string;
+  instruction_2: string;
+  tone: string;
+  personality: string;
   example_conversation: string;
   kb_id: string;
   is_deleted: number;
   wallet_addr: string;
+  chatbot_price_per_query: number;
+  session_id?: string;
   last_updated: string;
   created_at: string;
-  session_id: string;
-  category_name: string;
-  tone: string;
-  personality: string;
   suggestion_chat: string;
-  plugin_id: string;
-  meta_data: string;
-  chatbot_price_per_query: number;
+  meta_data?: string;
+  pre_question?: string;
+  category_name?: string;
 };
 
 export type ChatbotDataListResponse = {
   data: {
+    name: string;
     chatbot_data: ChatbotData[];
     chatbot_count: number;
   };

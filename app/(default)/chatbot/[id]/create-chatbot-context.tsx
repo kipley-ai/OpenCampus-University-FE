@@ -44,6 +44,7 @@ interface Message {
   chunks?: string;
   chatbot_recommendation?: any[];
   created?: any;
+  suggested_questions?: any[];
 }
 
 const CreateChatbotContext = createContext<

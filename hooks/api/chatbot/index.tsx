@@ -264,3 +264,18 @@ export const useChatbotExplore = (
     refetchOnWindowFocus: false,
   });
 };
+
+export const useGetInitialSuggestedQuestions = (params: any) => {
+  const { session } = useAppProvider();
+  const { address } = session;
+
+  return useQuery({
+    queryKey: ["chatbot", params.chatbot_id, "initial_suggestion"],
+    queryFn: () =>
+      axios.post("/api/chatbot/get_initial_suggested_questions", params, {
+        headers: {
+          "x-kf-user-id": address,
+        },
+      }),
+  });
+};

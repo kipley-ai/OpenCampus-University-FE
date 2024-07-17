@@ -5,7 +5,11 @@ import TestImage from "components/quiz-app/product img.png";
 import React, { useEffect, useState } from "react";
 import { useQuiz } from "../[id]/quiz-app-context";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
-import { useGenerateQuizAPI, useGetQuiz } from "@/hooks/api/quiz_app";
+import {
+  useGenerateQuizAPI,
+  useGetQuiz,
+  useGetSuggestedTopics,
+} from "@/hooks/api/quiz_app";
 import Image from "next/image";
 import { redirect, useParams } from "next/navigation";
 import { useRouter } from "next/router";
@@ -109,12 +113,29 @@ export default function QuizCover() {
     }
   }, [isGenerating]);
 
-  if (chatbotDetail.isLoading) {
-    return <div>Loading...</div>;
-  }
+  const [isSuggestionOn, setIsSuggestionOn] = useState(false);
+  const [presetTopics, setPresetTopics] = useState<string[]>([]);
 
-  let metadata = JSON.parse(chatbotDetail.data?.data?.data.meta_data || "{}");
-  let presetTopics = metadata?.preset_topic || [];
+  useEffect(() => {
+    if (chatbotDetail.isSuccess) {
+      const metadata = JSON.parse(
+        chatbotDetail.data?.data?.data.meta_data || "{}",
+      );
+      const suggestedTopics = metadata?.preset_topic;
+      if (suggestedTopics.length > 0) {
+        setPresetTopics(suggestedTopics);
+      } else {
+        setIsSuggestionOn(true);
+      }
+    }
+  }, [chatbotDetail.isSuccess, chatbotDetail.data]);
+
+  const suggestedTopicsQuery = useGetSuggestedTopics(
+    {
+      chatbot_id: id as string,
+    },
+    isSuggestionOn,
+  );
 
   const handleChooseSuggestedTopic = (topic: string) => {
     setIsGenerating(true);
@@ -128,7 +149,9 @@ export default function QuizCover() {
     <>
       <ModalQuizLoading setIsOpen={setIsGenerating} isOpen={isGenerating} />
       <div className="">
-        <span className="text-lg font-semibold">{chatbotDetail.data?.data?.data.name}</span>
+        <span className="text-lg font-semibold">
+          {chatbotDetail.data?.data?.data.name}
+        </span>
         <div className="mt-4 space-x-4 rounded-lg rounded-xl border-2 border-border bg-box p-6">
           <div className="flex flex-col items-center gap-2">
             <Image
@@ -147,7 +170,7 @@ export default function QuizCover() {
           </div>
         </div>
         <div className="mt-6 flex items-start justify-between gap-6 space-y-0 rounded-lg rounded-xl border-2 border-border bg-box p-6 max-md:flex-col">
-          <div className="flex w-full flex-col space-y-4 md:w-2/3">
+          <div className="flex w-full flex-col space-y-4 md:w-1/2">
             <h2 className="mb-2 text-lg font-semibold text-primary">
               Generate your own Topic
             </h2>
@@ -165,35 +188,62 @@ export default function QuizCover() {
               Start Quiz
             </Button>
           </div>
-          <div className="flex w-full flex-col space-y-2 md:w-1/3">
+          <div className="flex w-full flex-col space-y-2 md:w-1/2">
             <h2 className="mb-4 text-lg font-semibold text-primary">
               or Suggested for You
             </h2>
             <ul className="space-y-2">
-              {presetTopics.map((topic: string) => (
-                <li
-                  key={topic}
-                  className="flex cursor-pointer items-center justify-between rounded border p-4 font-medium text-body hover:bg-secondary"
-                  onClick={() => handleChooseSuggestedTopic(topic)}
-                >
-                  {topic}
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M9 18L15 12L9 6"
-                      stroke="#141BEB"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </li>
-              ))}
+              {isSuggestionOn
+                ? suggestedTopicsQuery?.data?.data?.suggested_topics.map(
+                    (topic: string) => (
+                      <li
+                        key={topic}
+                        className="flex cursor-pointer items-center justify-between rounded border p-4 font-medium text-body hover:bg-secondary"
+                        onClick={() => handleChooseSuggestedTopic(topic)}
+                      >
+                        {topic}
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M9 18L15 12L9 6"
+                            stroke="#141BEB"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </li>
+                    ),
+                  )
+                : presetTopics.map((topic: string) => (
+                    <li
+                      key={topic}
+                      className="flex cursor-pointer items-center justify-between rounded border p-4 font-medium text-body hover:bg-secondary"
+                      onClick={() => handleChooseSuggestedTopic(topic)}
+                    >
+                      {topic}
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9 18L15 12L9 6"
+                          stroke="#141BEB"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </li>
+                  ))}
             </ul>
           </div>
         </div>

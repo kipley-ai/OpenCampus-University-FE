@@ -18,7 +18,7 @@ import { DEFAULT_COVER_IMAGE, KF_TITLE } from "@/utils/constants";
 import Tooltip from "@/components/tooltip";
 import { noMoreThanCharacters } from "@/utils/utils";
 import { FormInput, FormTextarea } from "@/components/form-input";
-import { ModalSuccessBasic } from "@/components/modal-success-basic";
+import { ModalCreateQuizSuccess } from "./modal-create-quiz-success";
 import { useCreateQuizAPI, useGetPlugin } from "@/hooks/api/quiz_app";
 import ModalBasic from "@/components/modal-basic";
 import { useCreateAppContext } from "../create-app/create-app-context";
@@ -131,7 +131,7 @@ export const QuizForm = () => {
     if (form.name && description.tmp) {
       setDescription({
         tmp: true,
-        value: `This is the AI Quizapp of ${form.name}`,
+        value: `This is the AI quiz app of ${form.name}`,
       });
     }
   }, [form.name]);
@@ -191,12 +191,7 @@ export const QuizForm = () => {
 
   return (
     <>
-      <ModalSuccessBasic
-        message="Your quiz is created successfully!"
-        imagePath="/images/create-quiz-success.svg"
-        open={showModal}
-        setOpen={setShowModal}
-      />
+      <ModalCreateQuizSuccess open={showModal} setOpen={setShowModal} />
       <ModalBasic
         title="Error..."
         isOpen={showModalError}
@@ -339,8 +334,8 @@ export const QuizForm = () => {
                     <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold lg:text-sm">
                       <span>Price Per Query (in OCU Credits)</span>
                       <Tooltip bg="dark" position="right" size="md">
-                        Set your price per query on your chatbot app and get
-                        paid in OCU Credits.
+                        Set your price per query on your quiz app and get paid
+                        in OCU Credits.
                       </Tooltip>
                     </label>
                     <input
@@ -364,7 +359,7 @@ export const QuizForm = () => {
                 </div>
               </div>
 
-              <div className="w-full space-y-5 rounded-lg border p-8 bg-indigo-50 border-indigo-100">
+              {/* <div className="w-full space-y-5 rounded-lg border p-8 bg-indigo-50 border-indigo-100">
                 {metaDataForm &&
                   metaDataForm.plugin_config.map(
                     (config: PluginConfig, index: number) => {
@@ -372,7 +367,6 @@ export const QuizForm = () => {
                         return (
                           <div key={index}>
                             <h2 className="mb-4">{config.name}</h2>{" "}
-                            {/* Header title */}
                             {[1, 2, 3].map((topicNumber) => (
                               <FormInput
                                 className="mb-3"
@@ -381,7 +375,6 @@ export const QuizForm = () => {
                                 label={`Topic ${topicNumber}`}
                                 type="text"
                                 value={
-                                  //@ts-ignore
                                   form[
                                     `${config.param_name}_topic${topicNumber}`
                                   ] || ""
@@ -402,7 +395,7 @@ export const QuizForm = () => {
                       }
                     },
                   )}
-              </div>
+              </div> */}
             </div>
           </div>
 

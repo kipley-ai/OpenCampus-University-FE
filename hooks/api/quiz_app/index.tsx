@@ -154,3 +154,18 @@ export const useUpdateSharedQuiz = () => {
       }),
   });
 };
+
+export const useGetSuggestedTopics = (params: any, enabled: boolean) => {
+  const { session: { address } } = useAppProvider();
+  
+  return useQuery({
+    queryKey: ["quiz", params.chatbot_id, "suggested_topics"],
+    queryFn: () =>
+      axios.post("/api/quiz_app/get_suggested_topics", params, {
+        headers: {
+          "x-kf-user-id": address,
+        },
+      }),
+    enabled,
+  });
+};

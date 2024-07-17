@@ -16,7 +16,7 @@ const FirstAnswer = ({
   chatbots: UseQueryResult<AxiosResponse<ChatbotDetailResponse, any>, Error>[];
 }) => {
   const { id } = useParams();
-  
+
   return (
     <>
       <div className="flex flex-col items-center justify-center gap-8 border-b-2 py-5">
@@ -38,11 +38,9 @@ const FirstAnswer = ({
         </div>
       </div>
       <div className="text-center text-heading">
-        {id === FIRESIDE_CHAT_ID && (
-          <p className="mb-4 text-2xl font-medium">
-            Topic: Digital Property Rights
-          </p>
-        )}
+        <p className="mb-4 text-2xl font-medium">
+          Topic: Digital Property Rights
+        </p>
         <p className="mt-2 text-2xl font-medium">
           What would you like to know today?
         </p>

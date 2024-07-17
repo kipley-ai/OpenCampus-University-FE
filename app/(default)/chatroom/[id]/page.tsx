@@ -39,9 +39,9 @@ export default function ChatBotPage() {
       <CreateChatbotProvider>
         <div className="h-full">
           <h1 className="pb-3 text-lg font-semibold text-heading">
-            {id === FIRESIDE_CHAT_ID ? "Fireside Chat" : "Chatbot"}
+            Fireside Chat
           </h1>
-          <div className="flex h-[calc(100vh-7rem)] w-full flex-col rounded-2xl border-2 border-border bg-sidebar p-3 md:h-[calc(100vh-10rem)] xl:h-[calc(100vh-9rem)] md:p-8">
+          <div className="flex h-[calc(100vh-7rem)] w-full flex-col rounded-2xl border-2 border-border bg-sidebar p-3 md:h-[calc(100vh-10rem)] md:p-8 xl:h-[calc(100vh-9rem)]">
             <MessageList
               isOpen={showShareModal}
               setIsOpen={setShowShareModal}

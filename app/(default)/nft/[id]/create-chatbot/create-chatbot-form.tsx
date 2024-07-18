@@ -54,7 +54,9 @@ export const ChatBotForm = () => {
     tmp: true,
     value: "",
   });
-  const { session: { address } } = useAppProvider();
+  const {
+    session: { address },
+  } = useAppProvider();
   const [categories, setCategories] = useState<Category[]>([]);
   const [profileImage, setProfileImage] = useState("");
   const [profileImageUrl, setProfileImageUrl] = useState("");
@@ -253,33 +255,54 @@ export const ChatBotForm = () => {
       <div className="flex flex-col sm:px-6 lg:px-0">
         <div className="flex items-center justify-between max-lg:mb-4">
           <h1 className="text-lg font-semibold text-primary">Chatbot</h1>
-          <div className="flex w-32 items-center xs:w-60">
+          <div className="flex w-min items-center gap-3 md:w-1/4">
             {chatbotPKLStatus ? (
               <>
                 <svg
-                  width="44"
-                  height="48"
-                  viewBox="0 0 22 24"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="mr-2 size-8 xs:size-10 md:size-12"
+                  className="size-[32px] shrink-0"
                 >
-                  <circle
-                    cx="11.2809"
-                    cy="12.149"
-                    r="8.15"
-                    stroke="#141BEB"
-                    stroke-width="2"
-                  />
-                  <path
-                    d="M15.1997 9.93743L15.1261 9.86197H15.1103C14.8661 9.6889 14.5273 9.71525 14.3106 9.93743L14.4896 10.112L14.3106 9.93743L10.6295 13.7125L8.95048 11.9906C8.95031 11.9904 8.95013 11.9903 8.94996 11.9901C8.7046 11.7363 8.30576 11.7423 8.06294 11.9887C7.81966 12.2355 7.82099 12.6347 8.062 12.8818L8.06206 12.8819L10.1872 15.0597C10.1874 15.0599 10.1875 15.0601 10.1877 15.0603C10.4319 15.3127 10.8314 15.3111 11.0756 15.0606L11.0757 15.0606L15.1988 10.8306C15.199 10.8304 15.1992 10.8302 15.1994 10.83C15.4421 10.5831 15.4405 10.1844 15.1997 9.93743Z"
-                    fill="#141BEB"
-                    stroke="#141BEB"
-                    stroke-width="0.5"
-                  />
+                  <g clipPath="url(#clip0_687_7110)">
+                    <rect
+                      x="1"
+                      y="1"
+                      width="22"
+                      height="22"
+                      rx="7"
+                      fill="#141BEB"
+                      stroke="#141BEB"
+                      strokeWidth="2"
+                    />
+                    <g clipPath="url(#clip1_687_7110)">
+                      <path
+                        d="M7.33325 12.0001L10.6666 15.3334L17.3333 8.66675"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </g>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_687_7110">
+                      <rect width="24" height="24" rx="12" fill="white" />
+                    </clipPath>
+                    <clipPath id="clip1_687_7110">
+                      <rect
+                        width="16"
+                        height="16"
+                        fill="white"
+                        transform="translate(4 4)"
+                      />
+                    </clipPath>
+                  </defs>
                 </svg>
 
-                <span className="text-wrap text-xs font-light text-heading md:text-sm">
+                <span className="text-xs leading-5 xs:text-sm">
                   Your KnowledgeKey is ready!
                 </span>
               </>
@@ -288,7 +311,7 @@ export const ChatBotForm = () => {
                 <svg
                   aria-hidden="true"
                   role="status"
-                  className="mr-3 size-10 animate-spin"
+                  className="size-10 animate-spin"
                   viewBox="0 0 100 101"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -302,7 +325,7 @@ export const ChatBotForm = () => {
                     fill="var(--color-primary)"
                   />
                 </svg>
-                <span className="text-wrap text-xs font-light text-heading md:text-sm">
+                <span className="text-xs leading-5 xs:text-sm">
                   Your KnowledgeKey is vectorising…
                 </span>
               </>
@@ -469,13 +492,13 @@ export const ChatBotForm = () => {
                 />
               </svg>
 
-              <p>Back</p>
+              <p className="text-sm font-medium uppercase">Back</p>
             </button>
             <button
               className="flex items-center justify-center gap-2 hover:underline"
               type="submit"
             >
-              <p>Next</p>
+              <p className="text-sm font-medium uppercase">Next</p>
               <svg
                 width="8"
                 height="13"

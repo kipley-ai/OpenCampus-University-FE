@@ -40,7 +40,9 @@ export const QuizForm = () => {
     tmp: true,
     value: "",
   });
-  const { session: { address } } = useAppProvider();
+  const {
+    session: { address },
+  } = useAppProvider();
   const [showModal, setShowModal] = useState(false);
   const [showModalError, setShowModalError] = useState(false);
   const createQuizApp = useCreateQuizAPI();
@@ -89,13 +91,13 @@ export const QuizForm = () => {
     const presetTopics = [
       form.preset_topic_topic1,
       form.preset_topic_topic2,
-      form.preset_topic_topic3
-    ].filter(topic => topic !== null && topic !== undefined && topic !== "");
+      form.preset_topic_topic3,
+    ].filter((topic) => topic !== null && topic !== undefined && topic !== "");
 
     const metaData = JSON.stringify({
       difficulty: difficultyData,
       num_questions: form.num_questions || "3",
-      preset_topic: presetTopics
+      preset_topic: presetTopics,
     });
 
     createQuizApp.mutate(
@@ -420,13 +422,13 @@ export const QuizForm = () => {
                 />
               </svg>
 
-              <p>Back</p>
+              <p className="uppercase font-medium text-sm">Back</p>
             </button>
             <button
               className="flex items-center justify-center gap-2 hover:underline"
               type="submit"
             >
-              <p>Next</p>
+              <p className="uppercase font-medium text-sm">Next</p>
               <svg
                 width="8"
                 height="13"

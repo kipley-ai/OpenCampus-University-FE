@@ -23,50 +23,26 @@ import Button from "@/components/button";
 import { useAppProvider } from "@/providers/app-provider";
 
 const ChatInitialSuggestion = ({ handleSendMessage }: any) => {
+  const [isFetching, setIsFetching] = useState(true);
+
   const { id: slug } = useParams();
   const id = chatbotIdFromSlug(slug.toString());
 
-  const { data, isPending, isError, refetch } = useGetInitialSuggestedQuestions(
+  const { data, status } = useGetInitialSuggestedQuestions(
     {
       chatbot_id: id as string,
     },
+    isFetching,
   );
 
-  if (isPending) {
-    return (
-      <div className="flex items-center justify-center">
-        Loading Chat Suggestions...
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (status === "success" && data?.data?.status === "success") {
+      setIsFetching(false);
+    }
+  }, [status, data]);
 
-  if (isError) {
-    return (
-      <div className="flex items-center justify-center gap-4">
-        <p className="text-red-500">Failed to load chat suggestions</p>
-        <button className="btn-primary" onClick={() => refetch()}>
-          Generate Chat Suggestions
-        </button>
-      </div>
-    );
-  }
-
-  if (data?.data?.status === "error") {
-    return (
-      <div className="flex items-center justify-center">
-        <button className="btn-primary" onClick={() => refetch()}>
-          Generate Chat Suggestions
-        </button>
-      </div>
-    );
-  }
-
-  if (data?.data?.status === "pending") {
-    return (
-      <div className="flex items-center justify-center">
-        Generating Chat Suggestions...
-      </div>
-    );
+  if (status !== "success" || data?.data?.status !== "success") {
+    return;
   }
 
   return (

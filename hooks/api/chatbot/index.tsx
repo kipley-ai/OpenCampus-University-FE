@@ -265,7 +265,7 @@ export const useChatbotExplore = (
   });
 };
 
-export const useGetInitialSuggestedQuestions = (params: any) => {
+export const useGetInitialSuggestedQuestions = (params: any, isFetching: boolean) => {
   const { session } = useAppProvider();
   const { address } = session;
 
@@ -277,5 +277,7 @@ export const useGetInitialSuggestedQuestions = (params: any) => {
           "x-kf-user-id": address,
         },
       }),
+    enabled: isFetching,
+    refetchInterval: 2000,
   });
 };

@@ -193,27 +193,8 @@ export default function QuizCover() {
               or Suggested for You
             </h2>
             <ul className="space-y-2">
-              {isSuggestionOn ? (
-                suggestedTopicsQuery?.data?.data?.status === "error" ? (
-                  <div className="flex h-full w-full items-center justify-center">
-                    <button
-                      className="btn-primary"
-                      onClick={() => suggestedTopicsQuery.refetch()}
-                    >
-                      Generate Suggested Topics
-                    </button>
-                  </div>
-                ) : suggestedTopicsQuery?.data?.data?.status === "pending" ? (
-                  <div className="flex h-full w-full flex-col items-center justify-center gap-4">
-                    Generating Suggested Topics...
-                    <button
-                      className="btn-primary"
-                      onClick={() => suggestedTopicsQuery.refetch()}
-                    >
-                      Refresh
-                    </button>
-                  </div>
-                ) : (
+              {isSuggestionOn
+                ? suggestedTopicsQuery?.data?.data?.suggested_topics &&
                   suggestedTopicsQuery?.data?.data?.suggested_topics.map(
                     (topic: string) => (
                       <li
@@ -240,33 +221,30 @@ export default function QuizCover() {
                       </li>
                     ),
                   )
-                )
-              ) : (
-                presetTopics.map((topic: string) => (
-                  <li
-                    key={topic}
-                    className="flex cursor-pointer items-center justify-between rounded border p-4 font-medium text-body hover:bg-secondary"
-                    onClick={() => handleChooseSuggestedTopic(topic)}
-                  >
-                    {topic}
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
+                : presetTopics.map((topic: string) => (
+                    <li
+                      key={topic}
+                      className="flex cursor-pointer items-center justify-between rounded border p-4 font-medium text-body hover:bg-secondary"
+                      onClick={() => handleChooseSuggestedTopic(topic)}
                     >
-                      <path
-                        d="M9 18L15 12L9 6"
-                        stroke="#141BEB"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </li>
-                ))
-              )}
+                      {topic}
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9 18L15 12L9 6"
+                          stroke="#141BEB"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </li>
+                  ))}
             </ul>
           </div>
         </div>

@@ -167,5 +167,6 @@ export const useGetSuggestedTopics = (params: any, enabled: boolean) => {
         },
       }),
     enabled,
+    refetchInterval: 2000,
   });
 };

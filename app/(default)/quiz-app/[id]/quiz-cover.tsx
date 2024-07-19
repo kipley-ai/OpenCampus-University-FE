@@ -10,6 +10,9 @@ import {
   useGetQuiz,
   useGetSuggestedTopics,
 } from "@/hooks/api/quiz_app";
+import { useCreditDeduction } from "@/hooks/api/credit";
+import { useCreditBalance } from "@/hooks/api/credit";
+import { useCreditBalanceContext } from "../../chatbot/[id]/credit-balance-context";
 import Image from "next/image";
 import { redirect, useParams } from "next/navigation";
 import { useRouter } from "next/router";
@@ -91,6 +94,10 @@ export default function QuizCover() {
     session_id: session_id as string,
   });
 
+  const creditDeduction = useCreditDeduction();
+  const creditBalance = useCreditBalance();
+  const { setCreditBalance } = useCreditBalanceContext();
+
   useEffect(() => {
     const f = async () => {
       while (true) {
@@ -101,7 +108,21 @@ export default function QuizCover() {
           } else {
             setQuestions(quizData?.data?.data?.questions?.questions);
           }
-          setStep("question");
+          creditDeduction.mutate(
+            {
+              answer: JSON.stringify(quizData?.data?.data?.questions),
+              question: topic,
+              chatbot_id,
+              session_id: quizData.data?.data.session_id,
+            },
+            {
+              onSuccess: async () => {
+                const { data } = await creditBalance.refetch();
+                setCreditBalance(data?.data?.data.credit_balance);
+                setStep("question");
+              },
+            },
+          );
           break;
         }
         await delay(3000);
@@ -139,6 +160,7 @@ export default function QuizCover() {
 
   const handleChooseSuggestedTopic = (topic: string) => {
     setIsGenerating(true);
+    setTopic(topic);
     generateQuiz.mutate({
       chatbot_id: id as string,
       topic,

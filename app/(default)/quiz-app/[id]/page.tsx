@@ -2,6 +2,7 @@
 
 import React from "react";
 import { QuizProvider, useQuiz } from "./quiz-app-context";
+import { CreditBalanceProvider } from "../../chatbot/[id]/credit-balance-context";
 import QuizCover from "./quiz-cover";
 import QuizQuestion from "./question";
 import QuizResult from "./result";
@@ -10,9 +11,11 @@ import QuizFalse from "./false";
 
 export default function QuizApp() {
   return (
-    <QuizProvider>
-      <QuizContent />
-    </QuizProvider>
+    <CreditBalanceProvider>
+      <QuizProvider>
+        <QuizContent />
+      </QuizProvider>
+    </CreditBalanceProvider>
   );
 }
 

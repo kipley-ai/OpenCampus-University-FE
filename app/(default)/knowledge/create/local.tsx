@@ -195,35 +195,30 @@ export default function Local({
   const showStateIcon = (state: "uploading" | "success" | "failed") => {
     switch (state) {
       case "uploading":
-        // return (
-        //   <svg
-        //     className="text-heading-0 mt-2 w-6 h-6 animate-spin"
-        //     xmlns="http://www.w3.org/2000/svg"
-        //     fill="none"
-        //     viewBox="0 0 24 24"
-        //   >
-        //     <circle
-        //       className="stroke-container opacity-25"
-        //       cx="24"
-        //       cy="24"
-        //       r="24"
-        //       strokeWidth="4"
-        //     />
-        //     <path
-        //       className="fill-primary opacity-75"
-        //       d="M4 12c0-4.418 3.582-8 8-8v8h8c0 4.418-3.582 8-8 8s-8-3.582-8-8z"
-        //     />
-        //   </svg>
-        // );
         return (
-					<Image
-						width={30}
-						height={30}
-						className={"animate-spin"}
-						src={UploadingIcon}
-						alt="Loading Icon"
-					/>
-				);
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="animate-spin"
+          >
+            <path
+              d="M0.703125 10C0.703125 15.0628 4.80704 19.1667 9.86979 19.1667C14.9325 19.1667 19.0365 15.0628 19.0365 10C19.0365 4.93729 14.9325 0.833374 9.86979 0.833374C4.80704 0.833374 0.703125 4.93729 0.703125 10ZM17.2031 10C17.2031 11.945 16.4305 13.8102 15.0552 15.1855C13.68 16.5608 11.8147 17.3334 9.86979 17.3334C7.92487 17.3334 6.05961 16.5608 4.68434 15.1855C3.30908 13.8102 2.53646 11.945 2.53646 10C2.53646 8.05512 3.30908 6.18986 4.68434 4.81459C6.05961 3.43932 7.92487 2.66671 9.86979 2.66671C11.8147 2.66671 13.68 3.43932 15.0552 4.81459C16.4305 6.18986 17.2031 8.05512 17.2031 10ZM15.3698 10C15.3698 11.4587 14.7903 12.8577 13.7589 13.8891C12.7274 14.9206 11.3285 15.5 9.86979 15.5C8.4111 15.5 7.01215 14.9206 5.9807 13.8891C4.94925 12.8577 4.36979 11.4587 4.36979 10H9.86979V4.50004C11.3285 4.50004 12.7274 5.0795 13.7589 6.11095C14.7903 7.1424 15.3698 8.54135 15.3698 10Z"
+              fill="#141BEB"
+            />
+          </svg>
+        );
+        return (
+          <Image
+            width={30}
+            height={30}
+            className={"animate-spin"}
+            src={UploadingIcon}
+            alt="Loading Icon"
+          />
+        );
       case "failed":
         return (
           <Image width={30} height={30} src={FailedIcon} alt="Failed Icon" />
@@ -236,7 +231,7 @@ export default function Local({
             viewBox="0 0 22 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="mt-2"
+            className=""
           >
             <path
               d="M5.73907 10.1136V4.85273C5.73907 4.06032 6.38145 3.41795 7.17386 3.41795C7.96626 3.41795 8.60864 4.06032 8.60864 4.85273V10.1136C8.60864 11.6984 7.32389 12.9832 5.73907 12.9832C4.15426 12.9832 2.86951 11.6984 2.86951 10.1136V6.28751M11.9565 2.46143H14.5391C16.1462 2.46143 16.9497 2.46143 17.5636 2.77419C18.1035 3.0493 18.5425 3.48829 18.8176 4.02824C19.1304 4.64207 19.1304 5.44562 19.1304 7.05273V17.0006C19.1304 18.6077 19.1304 19.4112 18.8176 20.0251C18.5425 20.565 18.1035 21.004 17.5636 21.2791C16.9497 21.5919 16.1462 21.5919 14.5391 21.5919H8.41733C6.81023 21.5919 6.00667 21.5919 5.39284 21.2791C4.8529 21.004 4.41391 20.565 4.13879 20.0251C3.82603 19.4112 3.82603 18.6077 3.82603 17.0006V16.331"
@@ -260,7 +255,7 @@ export default function Local({
   }, [files, toast]);
 
   return (
-    <div className="flex flex-col px-6 py-9 pb-0 lg:px-8 xl:px-14 bg-sidebar border border-[#DDDDEB] rounded-2xl">
+    <div className="flex flex-col rounded-2xl border border-[#DDDDEB] bg-sidebar px-6 py-9 pb-0 lg:px-8 xl:px-14">
       <Toast
         children={"KB creation successful"}
         open={toast}
@@ -274,7 +269,7 @@ export default function Local({
       </div>
       <div className="mt-4">
         <div
-          className="mb-4 mt-1 flex cursor-pointer flex-col items-center rounded-3xl border-2 border-dashed border-[#E1E1ED] px-20 py-14 bg-box text-center font-inter text-heading bg-container"
+          className="mb-4 mt-1 flex cursor-pointer flex-col items-center rounded-xl border-2 border-dashed border-[#E1E1ED] bg-container px-12 py-14 text-center text-heading hover:bg-secondary xs:px-20"
           onDragEnter={handleDrag}
           onDragOver={handleDrag}
           onDragLeave={handleDrag}
@@ -294,7 +289,7 @@ export default function Local({
               <path d="M4.33329 18.6563C2.72531 17.58 1.66663 15.7469 1.66663 13.6667C1.66663 10.5419 4.0553 7.97506 7.10628 7.69249C7.73038 3.89618 11.027 1 15 1C18.973 1 22.2695 3.89618 22.8936 7.69249C25.9446 7.97506 28.3333 10.5419 28.3333 13.6667C28.3333 15.7469 27.2746 17.58 25.6666 18.6563M9.66663 18.3333L15 13M15 13L20.3333 18.3333M15 13V25" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div> */}
-          <label className="text-md cursor-pointer font-medium">
+          <label className="text-md cursor-pointer font-medium text-body">
             Drag & drop or{" "}
             <span className="text-primary">click to select file</span>
           </label>
@@ -308,9 +303,9 @@ export default function Local({
           )}
         </div>
         <div>
-          <p className="text-xs mb-2">
-              Supported file formats: .pdf, .csv, .txt, .json, .pptx, .xlsx,
-              .docx. Maximum number of files allowed: 10
+          <p className="mb-2 text-xs text-body">
+            Supported file formats: .pdf, .csv, .txt, .json, .pptx, .xlsx,
+            .docx. Maximum number of files allowed: 10
           </p>
         </div>
         <div>
@@ -318,13 +313,17 @@ export default function Local({
             return (
               <div
                 key={file.bucketPath}
-                className="flex py-5 px-8 my-5 rounded-3xl text-heading bg-container justify-between"
+                className="mt-5 flex justify-between rounded-3xl p-5"
               >
-                <div className="flex flex-row">
+                <div className="flex flex-row items-center">
                   {showStateIcon(file.status)}
-                  <div className="flex flex-col ml-8">
-                    <h3 className="font-semibold">{file.filename}</h3>
-                    <p className="text-xs">{formatBytes(file.size)}</p>
+                  <div className="ml-8 flex flex-col">
+                    <h3 className="font-medium text-primary">
+                      {file.filename}
+                    </h3>
+                    <p className="text-sm font-medium text-body">
+                      {formatBytes(file.size)}
+                    </p>
                   </div>
                 </div>
                 {/* <button onClick={async () => {
@@ -368,24 +367,24 @@ export default function Local({
                   </svg>
                 </button> */}
                 <button
-                    className="font-medium text-primary underline text-sm hover:text-secondary"
-                    onClick={async () => {
-                      const filename = files[index].filename;
+                  className="text-sm font-medium text-primary underline hover:text-secondary"
+                  onClick={async () => {
+                    const filename = files[index].filename;
 
-                      files[index].aborter?.abort();
+                    files[index].aborter?.abort();
 
-                      setFiles((prevFiles: UIFile[]) => {
-                        return prevFiles.filter((_, i) => {
-                          return index !== i;
-                        });
+                    setFiles((prevFiles: UIFile[]) => {
+                      return prevFiles.filter((_, i) => {
+                        return index !== i;
                       });
+                    });
 
-                      await deleteFileS3(files[index].bucketPath);
+                    await deleteFileS3(files[index].bucketPath);
 
-                      console.log("Deleted the item: " + filename);
-                    }}
-                  >
-                    Remove
+                    console.log("Deleted the item: " + filename);
+                  }}
+                >
+                  Remove
                 </button>
               </div>
             );
@@ -427,8 +426,8 @@ export default function Local({
           </h5>
         </button>
       </div> */}
-      <div className="my-8 mt-16 flex items-center justify-between border-t-2 pt-4">
-        <button 
+      <div className="my-8 flex items-center justify-between border-t-2 pt-4">
+        <button
           className="flex items-center justify-center gap-2 hover:underline"
           onClick={() => {
             setStep("data_source");
@@ -453,7 +452,7 @@ export default function Local({
           type="submit"
           disabled={files.length === 0 || fileLimitExceeded}
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-            console.log(files)
+            console.log(files);
             if (!fileLimitExceeded && files.length > 0) {
               handleChangeKb(
                 "kb_data",

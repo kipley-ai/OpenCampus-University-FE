@@ -9,8 +9,10 @@ import Notion from "./notion";
 import { KF_TITLE, TWITTER_ITEM_TYPE } from "@/utils/constants";
 import URLInput from "./url-input";
 import { PossibleOption } from "@/app/(default)/knowledge/create/page";
-import { useParams, usePathname, useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter, redirect } from "next/navigation";
 import { useNftDetail } from "@/hooks/api/nft";
+import { useUserDetail } from "@/hooks/api/user";
+import { useSuperAdmin } from "@/hooks/api/access";
 import { useKBItem } from "@/hooks/api/kb";
 import { keepPreviousData } from "@tanstack/react-query";
 import ModalLoginTwitter from "@/components/modal-login-twitter";
@@ -47,9 +49,11 @@ export default function DataSource() {
 
   const { id } = useParams();
 
-  const { data: nftDetail } = useNftDetail({
+  const { data: nftDetail, isPending } = useNftDetail({
     sft_id: id as string,
   });
+  const userDetail = useUserDetail();
+  const superAdmin = useSuperAdmin(userDetail.data?.data.data.wallet_addr);
 
   useEffect(() => {
     if (nftDetail) {
@@ -162,6 +166,19 @@ export default function DataSource() {
       setTwitterExist(true);
     }
   }, [items]);
+
+  if (isPending || userDetail.isPending || superAdmin.isPending) {
+    return null;
+  }
+
+  if (
+    nftDetail?.data.data.wallet_addr !==
+    userDetail.data?.data.data.wallet_addr
+  ) {
+    if (superAdmin.data?.data.status !== "success") {
+      redirect("/nft/" + id);
+    }
+  }
 
   return (
     <>

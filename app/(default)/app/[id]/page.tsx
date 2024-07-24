@@ -9,6 +9,8 @@ import link_nft_chatbot from "@/public/images/link-nft-chatbot.png";
 import { useCallback, useState } from "react";
 import { useNFTList, useNftDetail } from "@/hooks/api/nft";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
+import { useUserDetail } from "@/hooks/api/user";
+import { useSuperAdmin } from "@/hooks/api/access";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useKBDetail } from "@/hooks/api/kb";
@@ -23,7 +25,6 @@ import { useGetPlugin } from "@/hooks/api/quiz_app";
 import Money from "public/images/money.svg";
 import {
   handleAppUrlWithoutSlug,
-  compareStringsIgnoreCase,
 } from "@/utils/utils";
 
 const formatTimestamp = (timestamp: string): string => {
@@ -44,9 +45,11 @@ const formatTimestamp = (timestamp: string): string => {
 const ChatbotSection = ({
   chatbotDetail,
   kbDetail,
+  hasAccess,
 }: {
   chatbotDetail: any;
   kbDetail: any;
+  hasAccess: boolean;
 }) => {
   const { data: pluginData } = useGetPlugin();
 
@@ -112,10 +115,7 @@ const ChatbotSection = ({
             {formatTimestamp(chatbotDetail.created_at)}
           </p>
         </div>
-        {compareStringsIgnoreCase(
-          chatbotDetail.wallet_addr,
-          session?.address,
-        ) && (
+        {hasAccess && (
           <Link href={handleAppUrlWithoutSlug(chatbotDetail) + "/edit"}>
             <button className="button group mt-4 inline-flex items-center gap-2 rounded-md">
               <svg
@@ -346,6 +346,8 @@ const BotDetail = ({ params }: { params: any }) => {
   const chatbotQuery = useChatbotDetail({
     chatbot_id: id,
   });
+  const userDetail = useUserDetail();
+  const superAdmin = useSuperAdmin(userDetail.data?.data.data.wallet_addr);
 
   const { data: kbDetail } = useKBDetail({
     kb_id: chatbotQuery.data?.data?.data.kb_id as string,
@@ -374,6 +376,15 @@ const BotDetail = ({ params }: { params: any }) => {
     }
   }, [chatbotQuery.isSuccess]);
 
+  if (chatbotQuery.isPending || userDetail.isPending || superAdmin.isPending) {
+    return null;
+  }
+
+  let hasAccess =
+    chatbotQuery.data?.data.data.wallet_addr ===
+      userDetail.data?.data.data.wallet_addr ||
+    superAdmin.data?.data.status === "success";
+
   return (
     <div className="bg-container">
       <h1 className="mb-4 text-lg font-semibold text-heading">
@@ -392,6 +403,7 @@ const BotDetail = ({ params }: { params: any }) => {
             <ChatbotSection
               chatbotDetail={chatbotQuery.data?.data.data}
               kbDetail={kbDetail?.data.data}
+              hasAccess={hasAccess}
             />
           ) : // <NoChatbot />
           null}
@@ -405,10 +417,7 @@ const BotDetail = ({ params }: { params: any }) => {
               <span className="text-lg font-semibold text-primary">
                 KnowledgeKeys
               </span>
-              {compareStringsIgnoreCase(
-                chatbotQuery.data?.data?.data.wallet_addr,
-                session?.address,
-              ) && (
+              {hasAccess && (
                 <button className="button group inline-flex items-center gap-2 rounded-md">
                   <svg
                     width="14"

@@ -7,6 +7,8 @@ import Image from "next/image";
 import { useAppProvider } from "@/providers/app-provider";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
 import { useNftDetail } from "@/hooks/api/nft";
+import { useUserDetail } from "@/hooks/api/user";
+import { useSuperAdmin } from "@/hooks/api/access";
 import { useParams, redirect, useRouter } from "next/navigation";
 import { useKBDetail, useKBItem, useDeleteKBItem } from "@/hooks/api/kb";
 import Link from "next/link";
@@ -31,6 +33,8 @@ const ManageDataSources = () => {
   const nftDetail = useNftDetail({
     sft_id: id as string,
   });
+  const userDetail = useUserDetail();
+  const superAdmin = useSuperAdmin(userDetail.data?.data.data.wallet_addr);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(8);
@@ -108,11 +112,11 @@ const ManageDataSources = () => {
     setCurrentPage(page);
   };
 
-  if (isPending) {
+  if (isPending || userDetail.isPending || superAdmin.isPending) {
     return (
       <div className="flex h-32 w-full items-center justify-center gap-4">
         <FaSpinner size={20} className="animate-spin" />
-        <p className="text-md">Loading</p>
+        <p className="">Loading</p>
       </div>
     );
   }
@@ -126,13 +130,12 @@ const ManageDataSources = () => {
     data.data.data;
 
   if (
-    nftDetail.data?.data.data.wallet_addr &&
-    !compareStringsIgnoreCase(
-      session?.address as string,
-      nftDetail.data?.data.data.wallet_addr as string
-    )
+    nftDetail.data?.data.data.wallet_addr !==
+    userDetail.data?.data.data.wallet_addr
   ) {
-    redirect("/nft/" + id);
+    if (superAdmin.data?.data.status !== "success") {
+      redirect("/nft/" + id);
+    }
   }
 
   if (kbItemCount >= 0) {

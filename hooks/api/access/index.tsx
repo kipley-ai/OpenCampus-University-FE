@@ -3,12 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-import { useAppProvider } from "@/providers/app-provider";
-
-export const useSuperAdmin = () => {
-  const { session } = useAppProvider();
-  const { address } = session;
-
+export const useSuperAdmin = (address?: string) => {
   return useQuery({
     queryKey: ["access"],
     queryFn: () =>
@@ -21,5 +16,6 @@ export const useSuperAdmin = () => {
           },
         },
       ),
+    enabled: !!address,
   });
 };

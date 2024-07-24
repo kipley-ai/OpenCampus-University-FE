@@ -8,7 +8,6 @@ import {
   useCreateQuizContext,
 } from "./create-quiz-context";
 import { useSession } from "next-auth/react";
-import { useSuperAdmin } from "@/hooks/api/access";
 import { useNftDetail } from "@/hooks/api/nft";
 import ImageInput from "@/components/image-input-2";
 import { ZodError, number, string, z } from "zod";
@@ -48,7 +47,6 @@ export const QuizForm = () => {
   const createQuizApp = useCreateQuizAPI();
   const { setStep, plugin } = useCreateAppContext();
   const { id } = useParams();
-  const superAdmin = useSuperAdmin();
   const { data: nftData } = useNftDetail({ sft_id: id as string });
   const [selectedFile, setSelectedFile] = useState<any>("");
   const [mode, setMode] = useState(0);
@@ -168,17 +166,6 @@ export const QuizForm = () => {
       return true;
     }
   };
-
-  useEffect(() => {
-    if (superAdmin.isSuccess && nftData) {
-      if (
-        superAdmin.data?.data.status === "failed" &&
-        nftData?.data?.data?.wallet_addr !== address
-      ) {
-        redirect(`/nft/${id}`);
-      }
-    }
-  }, [superAdmin.isSuccess, nftData]);
 
   useEffect(() => {
     if (pluginData) {

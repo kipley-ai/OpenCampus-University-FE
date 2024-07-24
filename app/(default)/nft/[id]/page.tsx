@@ -4,10 +4,11 @@ import Image from "next/image";
 import user_avatar from "@/public/images/user-28-01.jpg";
 import keyboard from "@/public/images/applications-image-23.jpg";
 import { useAppProvider } from "@/providers/app-provider";
-import { useEffect } from "react";
 import link_nft_chatbot from "@/public/images/link-nft-chatbot.png";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { useNftDetail } from "@/hooks/api/nft";
+import { useUserDetail } from "@/hooks/api/user";
+import { useSuperAdmin } from "@/hooks/api/access";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
@@ -21,7 +22,6 @@ import { useChatbotList } from "@/hooks/api/chatbot";
 import { keepPreviousData } from "@tanstack/react-query";
 import { PaginationController } from "@/components/pagination-2/controller";
 import Money from "public/images/money.svg";
-import { compareStringsIgnoreCase } from "@/utils/utils";
 
 const formatTimestamp = (timestamp: string): string => {
   const padZero = (num: number): string => (num < 10 ? `0${num}` : `${num}`);
@@ -38,7 +38,12 @@ const formatTimestamp = (timestamp: string): string => {
   return `${day} ${month} ${year} ${hours}:${minutes}`;
 };
 
-const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
+interface NFTSectionProps {
+  nftDetail: any;
+  hasAccess: boolean;
+}
+
+const NFTSection = ({ nftDetail, hasAccess }: NFTSectionProps) => {
   const { session } = useAppProvider();
 
   const nftOpenSeaLink = `${process.env.NEXT_PUBLIC_OPENSEA_URL}/${nftDetail.sft_address}/${nftDetail.token_id}`;
@@ -113,7 +118,7 @@ const NFTSection = ({ nftDetail }: { nftDetail: any }) => {
           </a>
         </div>
         {/* <div className="my-4 border-t-2 border-border"></div> */}
-        {compareStringsIgnoreCase(nftDetail.wallet_addr, session?.address) && (
+        {hasAccess && (
           <div className="mt-4 flex flex-grow items-center justify-between sm:mb-2 sm:mt-11">
             <Link href={"/nft/" + nftDetail.sft_id + "/edit"}>
               <button className="button group inline-flex items-center gap-2 rounded-md">
@@ -432,6 +437,17 @@ const NFTDetail = ({ params }: { params: any }) => {
   const router = useRouter();
 
   const nftQuery = useNftDetail({ sft_id: id });
+  const userDetail = useUserDetail();
+  const superAdmin = useSuperAdmin(userDetail.data?.data.data.wallet_addr);
+
+  if (nftQuery.isPending || userDetail.isPending || superAdmin.isPending) {
+    return null;
+  }
+
+  let hasAccess =
+    nftQuery.data?.data.data.wallet_addr ===
+      userDetail.data?.data.data.wallet_addr ||
+    superAdmin.data?.data.status === "success";
 
   return (
     <div className="bg-container">
@@ -439,28 +455,16 @@ const NFTDetail = ({ params }: { params: any }) => {
         KnowledgeKey Details
       </h1>
       <div className="flex flex-col rounded-2xl border-2 border-border bg-sidebar px-3 py-3 pb-0 sm:py-8 lg:px-8 xl:px-10">
-        <div>
-          {nftQuery.isPending ? (
-            <div className="flex h-[45vh] w-full items-center justify-center gap-4">
-              <FaSpinner size={20} className="animate-spin" />
-              <p className="text-md text-heading">Loading</p>
-            </div>
-          ) : nftQuery.isError ? (
-            <div>Error: {nftQuery.error.message}</div>
-          ) : nftQuery.data ? (
-            <NFTSection nftDetail={nftQuery.data?.data?.data} />
-          ) : // <NoNFT />
-          null}
-        </div>
+        <NFTSection
+          nftDetail={nftQuery.data?.data?.data}
+          hasAccess={hasAccess}
+        />
         <hr className="my-6 border-t-2 border-border" />
         <div className="flex items-center justify-between">
           <span className="text-lg font-semibold text-primary md:pt-3">
             Apps
           </span>
-          {compareStringsIgnoreCase(
-            nftQuery.data?.data?.data.wallet_addr,
-            session?.address,
-          ) && (
+          {hasAccess && (
             <Link href={"/nft/" + id + "/create-app"}>
               <button className="button group inline-flex items-center gap-2 rounded-md">
                 <svg

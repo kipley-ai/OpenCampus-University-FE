@@ -12,7 +12,6 @@ import { useGetCategory } from "@/hooks/api/chatbot";
 import { useChatbotPKLStatus } from "@/hooks/api/chatbot";
 import { useSession } from "next-auth/react";
 import CreateChatbotModal from "@/components/toast-4";
-import { useSuperAdmin } from "@/hooks/api/access";
 import { useNftDetail } from "@/hooks/api/nft";
 import ImageInput from "@/components/image-input-2";
 import { ZodError, number, string, z } from "zod";
@@ -67,7 +66,6 @@ export const ChatBotForm = () => {
   const createChatbot = useCreateChatbotAPI();
   const { setStep, plugin } = useCreateAppContext();
   const { id } = useParams();
-  const superAdmin = useSuperAdmin();
   const { data: nftData } = useNftDetail({ sft_id: id as string });
   const [selectedFile, setSelectedFile] = useState<any>("");
   const [mode, setMode] = useState(0);
@@ -232,17 +230,6 @@ export const ChatBotForm = () => {
       return true;
     }
   };
-
-  useEffect(() => {
-    if (superAdmin.isSuccess && nftData) {
-      if (
-        superAdmin.data?.data.status === "failed" &&
-        nftData?.data?.data?.wallet_addr !== address
-      ) {
-        redirect(`/nft/${id}`);
-      }
-    }
-  }, [superAdmin.isSuccess, nftData]);
 
   return (
     <>

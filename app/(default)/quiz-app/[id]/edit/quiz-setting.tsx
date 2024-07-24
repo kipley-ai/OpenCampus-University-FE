@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useRouter, useParams, redirect } from "next/navigation";
 import { useChatbotDetail as useQuizAppDetail } from "@/hooks/api/chatbot";
+import { useUserDetail } from "@/hooks/api/user";
+import { useSuperAdmin } from "@/hooks/api/access";
 import { useUpdateQuizAPI, useGetPlugin } from "@/hooks/api/quiz_app";
 import LoadingIcon from "public/images/loading-icon.svg";
 import UpdateQuizModal from "@/components/toast-4";
@@ -51,6 +53,8 @@ const QuizSetting = () => {
   const router = useRouter();
   const { id } = useParams();
   const quizDetail = useQuizAppDetail({ chatbot_id: id as string });
+  const userDetail = useUserDetail();
+  const superAdmin = useSuperAdmin(userDetail.data?.data.data.wallet_addr);
   const updateQuizApp = useUpdateQuizAPI();
 
   useEffect(() => {
@@ -189,14 +193,17 @@ const QuizSetting = () => {
     )
   }
 
+  if (quizDetail.isPending || userDetail.isPending || superAdmin.isPending) {
+    return null;
+  }
+
   if (
-    quizDetail.data?.data.data.wallet_addr &&
-    !compareStringsIgnoreCase(
-      session?.address as string,
-      quizDetail.data?.data.data.wallet_addr as string,
-    )
+    quizDetail.data?.data.data.wallet_addr !==
+    userDetail.data?.data.data.wallet_addr
   ) {
-    redirect("/app/" + id);
+    if (superAdmin.data?.data.status !== "success") {
+      redirect("/app/" + id);
+    }
   }
   
   return (

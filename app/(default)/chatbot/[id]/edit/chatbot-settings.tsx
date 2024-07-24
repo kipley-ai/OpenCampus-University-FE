@@ -8,6 +8,7 @@ import {
   useUpdateChatbotAPI, 
   useGetCategory,
 } from "@/hooks/api/chatbot";
+import { useUserDetail } from "@/hooks/api/user";
 import { useSuperAdmin } from "@/hooks/api/access";
 import defaulUserAvatar from "public/images/chatbot-avatar.png";
 import { useParams, redirect, useRouter } from "next/navigation";
@@ -44,7 +45,8 @@ const ChatbotSettings = () => {
   const { id } = useParams();
   const router = useRouter();
   const chatbotDetail = useChatbotDetail({ chatbot_id: id as string });
-  const superAdmin = useSuperAdmin();
+  const userDetail = useUserDetail();
+  const superAdmin = useSuperAdmin(userDetail.data?.data.data.wallet_addr);
   const categoryList = useGetCategory();
   const [form, setForm] = useState<any>({
     category_id: "",
@@ -119,17 +121,6 @@ const ChatbotSettings = () => {
   }, [personality]);
 
   useEffect(() => {
-    if (superAdmin.isSuccess && chatbotDetail.isSuccess) {
-      if (
-        superAdmin.data?.data.status === "failed" &&
-        chatbotDetail.data?.data.data.wallet_addr !== address
-      ) {
-        redirect(`/app/${id}`);
-      }
-    }
-  }, [superAdmin.isSuccess, chatbotDetail.isSuccess]);
-
-  useEffect(() => {
     if (chatbotDetail.isSuccess) {
       setForm(chatbotDetail.data?.data.data);
       setSelectedFile(chatbotDetail.data?.data.data.profile_image);
@@ -139,6 +130,19 @@ const ChatbotSettings = () => {
       );
     }
   }, [chatbotDetail.isSuccess]);
+
+  if (chatbotDetail.isPending || userDetail.isPending || superAdmin.isPending) {
+    return null;
+  }
+
+  if (
+    chatbotDetail.data?.data.data.wallet_addr !==
+    userDetail.data?.data.data.wallet_addr
+  ) {
+    if (superAdmin.data?.data.status !== "success") {
+      redirect("/app/" + id);
+    }
+  }
 
   return (
     <>

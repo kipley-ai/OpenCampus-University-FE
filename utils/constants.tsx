@@ -18,9 +18,13 @@ export enum ONBOARDING_FLOW {
 
 export const SUBDOMAINS = ["yat-siu", "yat-siu-beta"];
 
-export const CHATBOT_APP = "Chat With KB";
+export const CHATBOT_APP = "Study Companion";
 export const QUIZ_APP = "Semantic Quiz Generation";
-export const VALID_APPS = [CHATBOT_APP, QUIZ_APP];
+export const BOOK_SUMMARIZER_APP = "Book Summarized";
+export const DIGITAL_TWIN_APP = "Chat With KB";
+export const RESEARCH_ASSISTANT_APP = "Research Assistant";
+export const TEACHING_ASSISTANT_APP = "Teaching Assistant";
+export const VALID_APPS = [CHATBOT_APP, QUIZ_APP, BOOK_SUMMARIZER_APP, DIGITAL_TWIN_APP, RESEARCH_ASSISTANT_APP, TEACHING_ASSISTANT_APP];
 
 export const CHATBOT_PLUGIN_ID = "c49f872e-82c9-4733-8e31-e21f764f75bf";
 export const QUIZAPP_PLUGIN_ID = "fea23ba8-4352-49a0-8871-a206248971ce";

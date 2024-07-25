@@ -17,8 +17,8 @@ export interface IChatBoxHistoryParams {
 export interface ICreateChatbotParams {
   profile_image: string;
   name: string;
-  tone: string;
-  personality: string;
+  tone?: string;
+  personality?: string;
   sft_id: string;
   kb_id: string;
   price_per_query: number;

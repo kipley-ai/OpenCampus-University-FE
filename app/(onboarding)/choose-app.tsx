@@ -1,6 +1,6 @@
 import OnboardingProgress from "./onboarding-progress";
-import CreateChatbotImg from "@/public/images/create-chatbot.svg";
-import CreateQuizImg from "@/public/images/create-quiz.svg";
+import CreateChatbotImg from "@/public/images/apps/create-chatbot.svg";
+import CreateQuizImg from "@/public/images/apps/create-quiz.svg";
 import Image from "next/image";
 import { useCreateChatbotContext } from "./create-knowledge-context";
 import { useState } from "react";

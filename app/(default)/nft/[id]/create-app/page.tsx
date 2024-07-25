@@ -1,14 +1,25 @@
 "use client";
 
+import { useEffect } from "react";
 import { useParams, redirect } from "next/navigation";
 import ChooseApp from "./choose-app";
-import { CHATBOT_APP, QUIZ_APP } from "@/utils/constants";
+import {
+  CHATBOT_APP,
+  QUIZ_APP,
+  BOOK_SUMMARIZER_APP,
+  DIGITAL_TWIN_APP,
+  RESEARCH_ASSISTANT_APP,
+  TEACHING_ASSISTANT_APP,
+  VALID_APPS,
+  KF_TITLE,
+} from "@/utils/constants";
 import { useNftDetail } from "@/hooks/api/nft";
 import { useUserDetail } from "@/hooks/api/user";
 import { useSuperAdmin } from "@/hooks/api/access";
 import { useAppProvider } from "@/providers/app-provider";
 import { CreateChatbotForm } from "../create-chatbot/create-chatbot-form";
 import { CreateQuizForm } from "../create-quiz/create-quiz-form";
+import { CreateBookSummarizerForm } from "./create-book-summarizer-form";
 import { CreateAppProvider, useCreateAppContext } from "./create-app-context";
 
 function CreateApp() {
@@ -23,6 +34,8 @@ function CreateApp() {
               return <CreateChatbotForm />;
             case QUIZ_APP:
               return <CreateQuizForm />;
+            case BOOK_SUMMARIZER_APP:
+              return <CreateBookSummarizerForm />;
             case "":
               return <ChooseApp />;
           }
@@ -34,7 +47,7 @@ function CreateApp() {
 
 export default function CreateAppPage() {
   const { id } = useParams();
-  const { session } = useAppProvider();
+  const { session, setHeaderTitle } = useAppProvider();
 
   const nftDetail = useNftDetail({
     sft_id: id as string,
@@ -54,6 +67,12 @@ export default function CreateAppPage() {
       redirect("/nft/" + id);
     }
   }
+
+  // useEffect(() => {
+  //   const title = KF_TITLE + "Create App";
+  //   document.title = title;
+  //   return () => setHeaderTitle("");
+  // }, []);
 
   return (
     <CreateAppProvider>

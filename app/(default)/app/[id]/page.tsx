@@ -26,6 +26,15 @@ import Money from "public/images/money.svg";
 import {
   handleAppUrlWithoutSlug,
 } from "@/utils/utils";
+import {
+  CHATBOT_APP,
+  QUIZ_APP,
+  BOOK_SUMMARIZER_APP,
+  DIGITAL_TWIN_APP,
+  RESEARCH_ASSISTANT_APP,
+  TEACHING_ASSISTANT_APP,
+  VALID_APPS,
+} from "@/utils/constants";
 
 const formatTimestamp = (timestamp: string): string => {
   const padZero = (num: number): string => (num < 10 ? `0${num}` : `${num}`);
@@ -360,16 +369,6 @@ const BotDetail = ({ params }: { params: any }) => {
   );
   // console.log("Plugin detail: ", plugin); // For debugging purpose
 
-  const [appType, setAppType] = useState("");
-
-  useEffect(() => {
-    if (plugin?.title === "Semantic Quiz Generation") {
-      setAppType("Quiz");
-    } else {
-      setAppType("Chatbot");
-    }
-  }, [appType, plugin?.title]);
-
   useEffect(() => {
     if (chatbotQuery.isSuccess) {
       setSftId(chatbotQuery.data?.data?.data.sft_id);
@@ -384,6 +383,18 @@ const BotDetail = ({ params }: { params: any }) => {
     chatbotQuery.data?.data.data.wallet_addr ===
       userDetail.data?.data.data.wallet_addr ||
     superAdmin.data?.data.status === "success";
+
+  let appType: string | undefined = "";
+  switch (plugin?.title) {
+    case QUIZ_APP:
+      appType = "Quiz";
+      break;
+    case DIGITAL_TWIN_APP:
+      appType = "Digital Twin";
+      break;
+    default:
+      appType = plugin?.title;
+  }
 
   return (
     <div className="bg-container">

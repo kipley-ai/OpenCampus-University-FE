@@ -17,9 +17,12 @@ import { useNftDetail } from "@/hooks/api/nft";
 import { useUserDetail } from "@/hooks/api/user";
 import { useSuperAdmin } from "@/hooks/api/access";
 import { useAppProvider } from "@/providers/app-provider";
+import { CreateStudyCompanionForm } from "./create-study-companion-form";
 import { CreateChatbotForm } from "../create-chatbot/create-chatbot-form";
 import { CreateQuizForm } from "../create-quiz/create-quiz-form";
 import { CreateBookSummarizerForm } from "./create-book-summarizer-form";
+import { CreateResearchAssistantForm } from "./create-research-assistant-form";
+import { CreateTeachingAssistantForm } from "./create-teaching-assistant-form";
 import { CreateAppProvider, useCreateAppContext } from "./create-app-context";
 
 function CreateApp() {
@@ -31,11 +34,17 @@ function CreateApp() {
         {(() => {
           switch (step) {
             case CHATBOT_APP:
-              return <CreateChatbotForm />;
+              return <CreateStudyCompanionForm />;
             case QUIZ_APP:
               return <CreateQuizForm />;
             case BOOK_SUMMARIZER_APP:
               return <CreateBookSummarizerForm />;
+            case DIGITAL_TWIN_APP:
+              return <CreateChatbotForm />;
+            case RESEARCH_ASSISTANT_APP:
+              return <CreateResearchAssistantForm />;
+            case TEACHING_ASSISTANT_APP:
+              return <CreateTeachingAssistantForm />;
             case "":
               return <ChooseApp />;
           }

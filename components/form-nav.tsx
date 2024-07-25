@@ -13,7 +13,7 @@ export const FormNav = ({
     <div className="my-4 flex items-center justify-between border-t-2 pt-4">
       {!hideBack ? (
         <button
-          className="flex items-center justify-center gap-2 text-sm font-medium uppercase hover:underline"
+          className="flex items-center justify-center gap-2 text-sm font-medium hover:underline"
           onClick={onBack}
         >
           <svg

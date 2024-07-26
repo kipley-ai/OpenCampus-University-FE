@@ -12,7 +12,7 @@ import Tooltip from "@/components/tooltip";
 import { noMoreThanCharacters } from "@/utils/utils";
 import Image from "next/image";
 import { FormInput, FormTextarea } from "@/components/form-input";
-import { ModalCreateAppSuccess } from "./modal-create-app-success";
+import { ModalSuccessBasic } from "@/components/modal-success-basic";
 import { useCreateAppContext } from "./create-app-context";
 
 interface Category {
@@ -127,10 +127,11 @@ export const CreateStudyCompanionForm = () => {
 
   return (
     <>
-      <ModalCreateAppSuccess
+      <ModalSuccessBasic
+        message="Your study companion app has been created successfully!"
+        imagePath="/images/create-chatbot-success.svg"
         open={showModal}
         setOpen={setShowModal}
-        message="Your study companion app was created successfully!"
       />
       <div className="flex flex-col sm:px-6 lg:px-0">
         <div className="mb-4 flex items-center justify-between">

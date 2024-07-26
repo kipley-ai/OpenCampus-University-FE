@@ -3,40 +3,60 @@ import Loading from "public/images/loading.svg";
 import React, { useEffect, useState } from "react";
 import { redirect, useParams } from "next/navigation";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
-import { useCreditDeduction } from "@/hooks/api/credit";
-import { useCreditBalance } from "@/hooks/api/credit";
+import { useGetSummary } from "@/hooks/api/book-summarizer";
 import { FormNav } from "@/components/form-nav";
 import { ModalGenerating } from "./modal-generating";
 import { useBookContext } from "./context";
 import { History } from "./history";
 
 export function Result() {
-  const { step, setStep, scope, setScope, topic, setTopic } = useBookContext();
+  const { step, setStep, app, scope, setScope, topic, setTopic, resultId } =
+    useBookContext();
   const [isGenerating, setIsGenerating] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
+
+  const summary = useGetSummary({
+    chatbot_id: app.chatbot_id,
+    dialog_id: resultId,
+  });
+
+  if (summary.isPending) {
+    return <div>Loading...</div>;
+  }
+
+  if (summary.isError) {
+    return <div>Error...</div>;
+  }
 
   return (
     <>
       <ModalGenerating isOpen={isGenerating} setIsOpen={setIsGenerating} />
-      <h1 className="text-lg font-semibold">
-        Book Summarizer | Book Summarizer: The Saying of Confucius
-      </h1>
+      <h1 className="text-lg font-semibold">Book Summarizer | {app.name}</h1>
       <div className="mt-4 flex flex-col rounded-lg rounded-xl border-2 border-border bg-box px-10 py-8">
-        <h2 className="mb-8 text-lg font-semibold text-primary">
-          Summarize the whole book of Book Summarizer: The Saying of Confucius
-        </h2>
-        <div className="flex items-center justify-start gap-2">
-          <Image
-            width={35}
-            height={35}
-            src={Loading}
-            alt="Loading Icon"
-            className="animate-spin"
-          />
-          <span className="text-sm text-body">
-            Generating summary for you...
-          </span>
-        </div>
+        {summary.data.data.type === "whole-book" ? (
+          <h2 className="mb-8 text-lg font-semibold text-primary">
+            Summarized Results for the book of {app.name}
+          </h2>
+        ) : (
+          <h2 className="mb-8 text-lg font-semibold text-primary">
+            Summarized Results of a topic in {app.name}
+          </h2>
+        )}
+        {summary.data.data.status !== "success" && (
+          <div className="flex items-center justify-start gap-2">
+            <Image
+              width={35}
+              height={35}
+              src={Loading}
+              alt="Loading Icon"
+              className="animate-spin"
+            />
+            <span className="text-sm text-body">
+              Generating summary for you...
+            </span>
+          </div>
+        )}
+        <div>{summary.data.data.summary}</div>
         <div className="my-4 flex items-center justify-between border-t-2 pt-4">
           <button
             className="btn-plain mr-4 self-end"

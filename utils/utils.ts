@@ -72,13 +72,13 @@ export const handleAppUrl = (bot: ChatbotData) => {
     case QUIZ_PLUGIN_ID:
       return `/quiz-app/` + bot.chatbot_id;
     case STUDY_COMPANION_PLUGIN_ID:
-      return `/study-companion/` + chatbotSlug(bot);
+      return `/study-companion/` + bot.chatbot_id;
     case BOOK_SUMMARIZER_PLUGIN_ID:
-      return `/book-summarizer/` + chatbotSlug(bot);
+      return `/book-summarizer/` + bot.chatbot_id;
     case RESEARCH_ASSISTANT_PLUGIN_ID:
-      return `/research-assistant/` + chatbotSlug(bot);
+      return `/research-assistant/` + bot.chatbot_id;
     case TEACHING_ASSISTANT_PLUGIN_ID:
-      return `/teaching-assistant/` + chatbotSlug(bot);
+      return `/teaching-assistant/` + bot.chatbot_id;
     default:
       return `/chatbot/` + chatbotSlug(bot);
   }

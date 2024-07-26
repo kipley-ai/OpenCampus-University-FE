@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { redirect, useParams } from "next/navigation";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
+import { useSummarize } from "@/hooks/api/book-summarizer";
 import { useCreditDeduction } from "@/hooks/api/credit";
 import { useCreditBalance } from "@/hooks/api/credit";
 import { FormNav } from "@/components/form-nav";
@@ -8,25 +9,68 @@ import { ModalGenerating } from "./modal-generating";
 import { useBookContext } from "./context";
 
 export function Settings() {
-  const { step, setStep, scope, setScope, topic, setTopic } = useBookContext();
+  const {
+    step,
+    setStep,
+    app,
+    setApp,
+    scope,
+    setScope,
+    topic,
+    setTopic,
+    setResultId,
+  } = useBookContext();
   const [isGenerating, setIsGenerating] = useState(false);
+
+  const summarize = useSummarize();
 
   const summarizeWholeBook = () => {
     setScope("whole");
     setIsGenerating(true);
+    summarize.mutate(
+      {
+        chatbot_id: app.chatbot_id,
+        kb_id: app.kb_id,
+        type_summarize: "whole-book",
+      },
+      {
+        onSuccess: (data) => {
+          setTimeout(() => {
+            setIsGenerating(false);
+            setResultId(data.data.dialog_id);
+            setStep(step + 1);
+          }, 5000);
+        },
+      },
+    );
   };
 
   const summarizeTopic = () => {
     setScope("topic");
     setIsGenerating(true);
+    summarize.mutate(
+      {
+        chatbot_id: app.chatbot_id,
+        kb_id: app.kb_id,
+        type_summarize: "topic",
+        topic,
+      },
+      {
+        onSuccess: (data) => {
+          setTimeout(() => {
+            setIsGenerating(false);
+            setResultId(data.data.dialog_id);
+            setStep(step + 1);
+          }, 5000);
+        },
+      },
+    );
   };
 
   return (
     <>
       <ModalGenerating isOpen={isGenerating} setIsOpen={setIsGenerating} />
-      <h1 className="text-lg font-semibold">
-        Book Summarizer | Book Summarizer: The Saying of Confucius
-      </h1>
+      <h1 className="text-lg font-semibold">Book Summarizer | {app.name}</h1>
       <div className="mt-4 flex flex-col rounded-lg rounded-xl border-2 border-border bg-box px-10 py-8">
         <h2 className="mb-8 text-lg font-semibold text-primary">
           Choose what you want to summarize
@@ -61,7 +105,7 @@ export function Settings() {
           onBack={() => setStep(step - 1)}
           onNext={() => setStep(step + 1)}
           backText="Cancel"
-          nextText="Continue"
+          hideNext
         />
       </div>
     </>

@@ -94,7 +94,7 @@ export function History() {
       <div className="mt-12 grid grid-cols-4 gap-2">
         <div
           className="flex cursor-pointer flex-col gap-2 rounded-xl border-2 border-border p-4 hover:bg-secondary"
-          onClick={() => setIsOpen(true)}
+          onClick={() => {}}
         >
           <h3 className="text-sm font-medium text-body">
             What were the main causes of this issue...
@@ -161,7 +161,10 @@ export function History() {
             <span className="text-sm text-[#A8A5AD]">2022-10-22 19:02 UTC</span>
           </div>
         </div>
-        <div className="flex cursor-pointer flex-col space-y-2 rounded-xl border-2 border-border p-4 hover:bg-secondary">
+        <div
+          className="flex cursor-pointer flex-col space-y-2 rounded-xl border-2 border-border p-4 hover:bg-secondary"
+          onClick={() => setIsOpen(true)}
+        >
           <Image src={OCLogo} alt="OCU Logo" width={40} height={40} />
           <span className="text-sm font-medium text-primary">
             View more history

@@ -1,10 +1,29 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { Cover } from "./cover";
+import { Settings } from "./settings";
+import { useBookContext, BookProvider } from "./context";
 
-export default function BookSummarizer() {
+function BookSummarizer() {
+  const { step, setStep } = useBookContext();
+
+  switch (step) {
+    case 1:
+      return <Cover />;
+    case 2:
+      return <Settings />;
+    case 3:
+      return <div>Step 3</div>;
+  }
+
+  return <div>Book Summarizer</div>;
+}
+
+export default function BookSummarizerPage() {
   return (
-    <>
-      <Cover />
-    </>
+    <BookProvider>
+      <BookSummarizer />
+    </BookProvider>
   );
 }

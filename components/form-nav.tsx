@@ -3,11 +3,15 @@ export const FormNav = ({
   onNext,
   hideBack = false,
   hideNext = false,
+  backText = "Back",
+  nextText = "Next",
 }: {
   onBack?: () => void;
   onNext?: () => void;
   hideBack?: boolean;
   hideNext?: boolean;
+  backText?: string;
+  nextText?: string;
 }) => {
   return (
     <div className="my-4 flex items-center justify-between border-t-2 pt-4">
@@ -29,7 +33,7 @@ export const FormNav = ({
             />
           </svg>
 
-          <p className="">Back</p>
+          <p className="">{backText}</p>
         </button>
       ) : (
         <div></div>
@@ -39,7 +43,7 @@ export const FormNav = ({
           className="aligns-end flex items-center justify-center gap-2 text-sm font-medium uppercase hover:underline"
           onClick={onNext}
         >
-          <p className="">Next</p>
+          <p className="">{nextText}</p>
           <svg
             width="8"
             height="13"

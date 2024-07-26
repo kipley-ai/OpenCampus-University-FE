@@ -10,8 +10,11 @@ import Button from "@/components/button";
 import OCLogo from "@/components/logo/OC Logo.svg";
 import { delay } from "@/utils/utils";
 import TestImage from "@/components/quiz-app/product img.png";
+import { useBookContext } from "./context";
 
 export function Cover() {
+  const { step, setStep } = useBookContext();
+
   return (
     <>
       <span className="text-lg font-semibold">
@@ -33,7 +36,10 @@ export function Cover() {
             Get Key Insights and Study Efficiently!
           </p>
         </div>
-        <button className="btn-primary mt-8 px-4 py-2">
+        <button
+          className="btn-primary mt-8 px-4 py-2"
+          onClick={() => setStep(step + 1)}
+        >
           Start Summarizing
         </button>
         <div className="mt-12 grid grid-cols-4 gap-2">

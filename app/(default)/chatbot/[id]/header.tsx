@@ -12,7 +12,6 @@ import { Archivo } from "next/font/google";
 import { useChatHistory } from "@/hooks/api/chatbox";
 import { useNftDetail } from "@/hooks/api/nft";
 import { useCreateChatbotContext } from "./create-chatbot-context";
-import SidebarRight from "@/components/ui/sidebar-right";
 import Description from "./description";
 import CreditBalance from "./credit-balance";
 import { KF_TITLE } from "@/utils/constants";

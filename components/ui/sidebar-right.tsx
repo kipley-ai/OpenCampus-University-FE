@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 
 interface SidebarRightProps {
   isOpen: boolean;
@@ -7,17 +6,21 @@ interface SidebarRightProps {
   children: any;
 }
 
-const SidebarRight: React.FC<SidebarRightProps> = ({ isOpen, onClose, children }) => {
+export const SidebarRight: React.FC<SidebarRightProps> = ({
+  isOpen,
+  onClose,
+  children,
+}) => {
   return (
     <>
       <div
-        className={`fixed inset-y-0 right-0 w-64 z-50 transform transition-transform pt-6 ${
+        className={`fixed inset-y-0 right-0 z-50 w-96 transform pt-5 transition-transform ${
           isOpen ? "translate-x-0" : "translate-x-full"
         } bg-container duration-300 ease-in-out`}
       >
         {children}
         <button
-          className="absolute right-4 top-4 text-heading hover:text-gray-800"
+          className="absolute right-4 top-5 hover:text-primary"
           onClick={onClose}
         >
           &#10006;
@@ -25,10 +28,11 @@ const SidebarRight: React.FC<SidebarRightProps> = ({ isOpen, onClose, children }
       </div>
       {/* Darkened overlay */}
       {isOpen && (
-        <div className="fixed inset-0 z-20 bg-slate-900 bg-opacity-30 z-40" onClick={onClose}></div>
+        <div
+          className="fixed inset-0 z-20 z-40 bg-slate-900 bg-opacity-30"
+          onClick={onClose}
+        ></div>
       )}
     </>
   );
 };
-
-export default SidebarRight;

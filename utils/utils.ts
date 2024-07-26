@@ -1,6 +1,13 @@
 import axios from "axios";
 import { ChatbotData } from "@/lib/types";
-import { CHATBOT_PLUGIN_ID, QUIZAPP_PLUGIN_ID } from "./constants";
+import {
+  STUDY_COMPANION_PLUGIN_ID,
+  QUIZ_PLUGIN_ID,
+  BOOK_SUMMARIZER_PLUGIN_ID,
+  DIGITAL_TWIN_PLUGIN_ID,
+  RESEARCH_ASSISTANT_PLUGIN_ID,
+  TEACHING_ASSISTANT_PLUGIN_ID,
+} from "./constants";
 
 export function hashUUIDToInteger(uuid: string) {
   let s = uuid.replaceAll("-", "");
@@ -48,7 +55,10 @@ export const delay = (ms: number) => {
 };
 
 export const chatbotSlug = (chatbot: any) => {
-  return `${chatbot.name.replace(/ /g,'-').replace(/[-]+/g, '-').replace(/[^\w-]+/g,'')}-${chatbot.chatbot_id}`;
+  return `${chatbot.name
+    .replace(/ /g, "-")
+    .replace(/[-]+/g, "-")
+    .replace(/[^\w-]+/g, "")}-${chatbot.chatbot_id}`;
 };
 
 export const chatbotIdFromSlug = (slug: string) => {
@@ -57,10 +67,18 @@ export const chatbotIdFromSlug = (slug: string) => {
 
 export const handleAppUrl = (bot: ChatbotData) => {
   switch (bot.plugin_id) {
-    case CHATBOT_PLUGIN_ID:
+    case DIGITAL_TWIN_PLUGIN_ID:
       return `/chatbot/` + chatbotSlug(bot);
-    case QUIZAPP_PLUGIN_ID:
+    case QUIZ_PLUGIN_ID:
       return `/quiz-app/` + bot.chatbot_id;
+    case STUDY_COMPANION_PLUGIN_ID:
+      return `/study-companion/` + chatbotSlug(bot);
+    case BOOK_SUMMARIZER_PLUGIN_ID:
+      return `/book-summarizer/` + chatbotSlug(bot);
+    case RESEARCH_ASSISTANT_PLUGIN_ID:
+      return `/research-assistant/` + chatbotSlug(bot);
+    case TEACHING_ASSISTANT_PLUGIN_ID:
+      return `/teaching-assistant/` + chatbotSlug(bot);
     default:
       return `/chatbot/` + chatbotSlug(bot);
   }
@@ -68,24 +86,38 @@ export const handleAppUrl = (bot: ChatbotData) => {
 
 export const handleAppUrlWithoutSlug = (bot: ChatbotData) => {
   switch (bot.plugin_id) {
-    case CHATBOT_PLUGIN_ID:
+    case DIGITAL_TWIN_PLUGIN_ID:
       return `/chatbot/` + bot.chatbot_id;
-    case QUIZAPP_PLUGIN_ID:
+    case QUIZ_PLUGIN_ID:
       return `/quiz-app/` + bot.chatbot_id;
+    case STUDY_COMPANION_PLUGIN_ID:
+      return `/study-companion/` + bot.chatbot_id;
+    case BOOK_SUMMARIZER_PLUGIN_ID:
+      return `/book-summarizer/` + bot.chatbot_id;
+    case RESEARCH_ASSISTANT_PLUGIN_ID:
+      return `/research-assistant/` + bot.chatbot_id;
+    case TEACHING_ASSISTANT_PLUGIN_ID:
+      return `/teaching-assistant/` + bot.chatbot_id;
     default:
       return `/chatbot/` + bot.chatbot_id;
   }
 };
 
 export const parseJWT = (token: string) => {
-  const base64Url = token.split('.')[1];
-  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-  const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
-    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-  }).join(''));
+  const base64Url = token.split(".")[1];
+  const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  const jsonPayload = decodeURIComponent(
+    window
+      .atob(base64)
+      .split("")
+      .map(function (c) {
+        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+      })
+      .join(""),
+  );
 
   return JSON.parse(jsonPayload);
-}
+};
 
 export const isTokenExpired = (token: string) => {
   if (!token) {

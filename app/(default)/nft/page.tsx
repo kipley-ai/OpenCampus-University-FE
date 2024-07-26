@@ -15,11 +15,7 @@ import Money from "public/images/money.svg";
 
 import { useRouter } from "next/navigation";
 import { useUserDetail } from "@/hooks/api/user";
-import {
-  CHATBOT_PLUGIN_ID,
-  KF_TITLE,
-  QUIZAPP_PLUGIN_ID,
-} from "@/utils/constants";
+import { KF_TITLE } from "@/utils/constants";
 import { chatbotSlug, handleAppUrl } from "@/utils/utils";
 
 type NoDataProps = {

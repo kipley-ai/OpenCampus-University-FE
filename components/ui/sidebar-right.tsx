@@ -20,7 +20,7 @@ export const SidebarRight: React.FC<SidebarRightProps> = ({
       >
         {children}
         <button
-          className="absolute right-4 top-5 hover:text-primary"
+          className="absolute right-6 top-5 hover:text-primary"
           onClick={onClose}
         >
           &#10006;

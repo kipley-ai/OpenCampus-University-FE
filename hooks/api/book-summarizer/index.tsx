@@ -36,8 +36,8 @@ export const useGetSummary = (params: any) => {
   return useQuery({
     queryKey: [
       "book-summarizer",
-      "summary",
       params.chatbot_id,
+      "summary",
       params.dialog_id,
     ],
     queryFn: () =>
@@ -47,5 +47,22 @@ export const useGetSummary = (params: any) => {
         },
       }),
     refetchInterval: 5000,
+  });
+};
+
+export const useGetHistory = (params: any) => {
+  const {
+    session: { address },
+  } = useAppProvider();
+
+  return useQuery({
+    queryKey: ["book-summarizer", params.chatbot_id, "history"],
+    queryFn: () =>
+      axios.post("/api/book-summarizer/history", params, {
+        headers: {
+          "x-kf-user-id": address,
+        },
+      }),
+    enabled: !!params.chatbot_id,
   });
 };

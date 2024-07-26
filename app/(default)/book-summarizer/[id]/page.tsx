@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Cover } from "./cover";
 import { Settings } from "./settings";
+import { Result } from "./result";
 import { useBookContext, BookProvider } from "./context";
 
 function BookSummarizer() {
@@ -14,7 +15,7 @@ function BookSummarizer() {
     case 2:
       return <Settings />;
     case 3:
-      return <div>Step 3</div>;
+      return <Result />;
   }
 
   return <div>Book Summarizer</div>;

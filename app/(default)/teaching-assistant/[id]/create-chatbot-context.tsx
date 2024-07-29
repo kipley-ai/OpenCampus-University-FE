@@ -3,10 +3,7 @@
 import { createContext, useContext, useState } from "react";
 import { ReactSetter } from "@/lib/aliases";
 import { useGetSession } from "@/hooks/api/chatbot";
-import {
-  useChatHistory,
-  useChatboxWS,
-} from "@/hooks/api/study-companion";
+import { useChatHistory, useChatboxWS } from "@/hooks/api/study-companion";
 import { ChatPayload, LastMessagePayload } from "@/hooks/api/chatbox/schema";
 import { useNftDetail } from "@/hooks/api/nft";
 

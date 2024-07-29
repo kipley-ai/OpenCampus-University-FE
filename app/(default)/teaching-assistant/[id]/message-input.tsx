@@ -46,7 +46,7 @@ const ChatInitialSuggestion = ({ handleSendMessage }: any) => {
         (suggestion: string, index: number) => (
           <button
             key={index}
-            className="rounded-lg border border-2 border-[#D1D5DB] bg-container px-4 py-2.5 text-start text-sm font-medium text-heading hover:bg-secondary md:px-8"
+            className="rounded-lg border border-2 border-[#D1D5DB] bg-container px-4 py-3 text-start text-sm font-medium text-heading hover:bg-secondary md:px-6"
             onClick={(e: any) => handleSendMessage(e, suggestion)}
           >
             {suggestion}
@@ -232,7 +232,7 @@ const MessageInput = () => {
               )?.map((suggestion: string, index: number) => (
                 <button
                   key={index}
-                  className="rounded-lg border border-2 border-[#D1D5DB] bg-container px-4 py-2.5 text-start text-sm font-medium text-heading hover:bg-secondary md:px-8"
+                  className="rounded-lg border border-2 border-[#D1D5DB] bg-container px-4 py-1.5 text-start text-sm font-medium text-heading hover:bg-secondary md:px-6"
                   onClick={(e: any) => handleSendMessage(e, suggestion)}
                 >
                   {suggestion}

@@ -4,12 +4,8 @@ import { useParams } from "next/navigation";
 import { useCreateChatbotContext } from "./create-chatbot-context";
 import { uuid } from "uuidv4";
 import { useAccount } from "wagmi";
-import {
-  useChatbotDetail,
-  useGetSession,
-  useNewSession,
-  useGetInitialSuggestedQuestions,
-} from "@/hooks/api/chatbot";
+import { useChatbotDetail, useNewSession } from "@/hooks/api/chatbot";
+import { useGetInitialSuggestedQuestions } from "@/hooks/api/study-companion";
 import { useChatHistory } from "@/hooks/api/chatbox";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -25,8 +21,7 @@ import { useAppProvider } from "@/providers/app-provider";
 const ChatInitialSuggestion = ({ handleSendMessage }: any) => {
   const [isFetching, setIsFetching] = useState(true);
 
-  const { id: slug } = useParams();
-  const id = chatbotIdFromSlug(slug.toString());
+  const { id } = useParams();
 
   const { data, status } = useGetInitialSuggestedQuestions(
     {
@@ -51,7 +46,7 @@ const ChatInitialSuggestion = ({ handleSendMessage }: any) => {
         (suggestion: string, index: number) => (
           <button
             key={index}
-            className="rounded-lg border border-2 border-[#D1D5DB] bg-container px-4 py-2.5 text-start text-sm font-medium text-heading hover:bg-secondary md:px-8"
+            className="rounded-lg border border-2 border-[#D1D5DB] bg-container px-4 py-3 text-start text-sm font-medium text-heading hover:bg-secondary md:px-6"
             onClick={(e: any) => handleSendMessage(e, suggestion)}
           >
             {suggestion}
@@ -167,6 +162,7 @@ const MessageInput = () => {
               dialog_id: data?.data.session_id as string,
               kb_id: chatbotData?.data.data.kb_id as string,
               user_id: address as string,
+              type: "study",
             });
             setMessageHistory((prevHistory) => [
               ...prevHistory,
@@ -186,6 +182,7 @@ const MessageInput = () => {
         dialog_id: chatSession.data?.data.data.session_id as string,
         kb_id: chatbotData?.data.data.kb_id as string,
         user_id: address as string,
+        type: "study",
       });
       setMessageHistory((prevHistory) => [
         ...prevHistory,
@@ -224,24 +221,23 @@ const MessageInput = () => {
         <ChatInitialSuggestion handleSendMessage={handleSendMessage} />
       )}
 
-      <div className="sticky inset-x-0 bottom-4 mt-2 flex-col items-center gap-2">
+      <div className="sticky inset-x-0 bottom-4 flex-col items-center gap-2">
         {messageHistory.length > 0 && (
-          <div className="mb-4 flex flex-col gap-x-4 gap-y-2 md:grid md:grid-cols-2">
+          <div className="mb-4 flex flex-col gap-x-4 gap-y-2 md:grid md:grid-cols-3">
             {replyStatus === "idle" &&
-              messageHistory[messageHistory.length - 1]?.suggested_questions &&
-              messageHistory[
-                messageHistory.length - 1
-              ]?.suggested_questions?.map(
-                (suggestion: string, index: number) => (
-                  <button
-                    key={index}
-                    className="mt-2 rounded-lg border border-2 border-[#D1D5DB] bg-container px-4 py-2.5 text-start text-sm font-medium text-heading hover:bg-secondary md:px-8"
-                    onClick={(e: any) => handleSendMessage(e, suggestion)}
-                  >
-                    {suggestion}
-                  </button>
-                ),
-              )}
+              messageHistory[messageHistory.length - 1]?.suggested_question &&
+              JSON.parse(
+                messageHistory[messageHistory.length - 1]
+                  ?.suggested_question as string,
+              )?.map((suggestion: string, index: number) => (
+                <button
+                  key={index}
+                  className="rounded-lg border border-2 border-[#D1D5DB] bg-container px-4 py-1.5 text-start text-sm font-medium text-heading hover:bg-secondary md:px-6"
+                  onClick={(e: any) => handleSendMessage(e, suggestion)}
+                >
+                  {suggestion}
+                </button>
+              ))}
           </div>
         )}
         <div className="flex items-center gap-4">

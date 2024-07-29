@@ -3,11 +3,7 @@
 import { createContext, useContext, useState } from "react";
 import { ReactSetter } from "@/lib/aliases";
 import { useGetSession } from "@/hooks/api/chatbot";
-import {
-  useChatHistory,
-  useChatSession,
-  useChatboxWS,
-} from "@/hooks/api/chatbox";
+import { useChatHistory, useChatboxWS } from "@/hooks/api/study-companion";
 import { ChatPayload, LastMessagePayload } from "@/hooks/api/chatbox/schema";
 import { useNftDetail } from "@/hooks/api/nft";
 
@@ -36,15 +32,19 @@ interface CreateChatbotContextProps {
   setChatbotId: ReactSetter<string>;
   chatSession: any;
   chatHistoryAPI: any;
+
+  isReferencesOpen: boolean;
+  setIsReferencesOpen: ReactSetter<boolean>;
+  references: any;
+  setReferences: ReactSetter<any>;
 }
 
 interface Message {
   sender: "bot" | "user";
   message: string;
-  chunks?: string;
-  chatbot_recommendation?: any[];
-  created?: any;
-  suggested_questions?: any[];
+  created?: string;
+  citations?: string | null;
+  suggested_question?: string;
 }
 
 const CreateChatbotContext = createContext<
@@ -74,15 +74,18 @@ export const CreateChatbotProvider = ({
   const { lastJsonMessage, readyState, sendValidatedMessage } = useChatboxWS(
     `${process.env.NEXT_PUBLIC_APPS_WS}/study-companion/websocket`,
   );
-  const [replyStatus, setReplyStatus] = useState<"idle" | "answering">("idle"); 
+  const [replyStatus, setReplyStatus] = useState<"idle" | "answering">("idle");
 
   const [chatbotId, setChatbotId] = useState<string>("");
+
+  const [isReferencesOpen, setIsReferencesOpen] = useState(false);
+  const [references, setReferences] = useState<any>([]);
 
   const chatSession = useGetSession({ chatbot_id: chatbotId });
 
   const chatHistoryAPI = useChatHistory({
-    session_id: chatSession.data?.data.data?.session_id,
-    app_id: chatbotId as string,
+    dialog_id: chatSession?.data?.data?.data?.session_id,
+    chatbot_id: chatbotId as string,
     page_num: 1,
     page_size: 20,
   });
@@ -127,6 +130,11 @@ export const CreateChatbotProvider = ({
         setChatbotId,
         chatSession,
         chatHistoryAPI,
+
+        isReferencesOpen,
+        setIsReferencesOpen,
+        references,
+        setReferences,
       }}
     >
       {children}

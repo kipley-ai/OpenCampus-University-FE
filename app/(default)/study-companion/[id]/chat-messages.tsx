@@ -23,6 +23,7 @@ import { useCreditBalance } from "@/hooks/api/credit";
 import { chatbotIdFromSlug } from "@/utils/utils";
 import ShareModal from "@/components/share-chat-modal";
 import TweetAnswer from "./tweet-answer";
+import { SidebarRight } from "@/components/ui/sidebar-right";
 
 const MessageList = ({
   isOpen,
@@ -32,8 +33,6 @@ const MessageList = ({
   setIsOpen: (isOpen: boolean) => void;
 }) => {
   const [answersStream, setAnswersStream] = useState<string[]>([]);
-  const [chunks, setChunks] = useState<string>("");
-  const [recommendation, setRecommendation] = useState<any>([]);
   const fieldRef = useRef<HTMLDivElement>(null);
   const [profileImage, setProfileImage] = useState<StaticImageData | string>(
     "",
@@ -68,6 +67,10 @@ const MessageList = ({
 
     chatSession,
     chatHistoryAPI,
+
+    isReferencesOpen,
+    setIsReferencesOpen,
+    references,
   } = useCreateChatbotContext();
 
   const { id: slug } = useParams();
@@ -111,9 +114,8 @@ const MessageList = ({
     fieldRef.current?.scrollIntoView();
 
     if (lastJsonMessage !== null && lastJsonMessage.type !== "error") {
+      console.log("lastJsonMessage :>> ", lastJsonMessage);
       if (lastJsonMessage.type === "end") {
-        console.log("chunks :>> ", chunks);
-
         const fullBotAnswer = answersStream
           .slice(0, -2)
           .map((message: string, idx: number) => {
@@ -127,12 +129,11 @@ const MessageList = ({
 
         setMessageHistory((prevHistory) => [
           ...prevHistory,
-          { sender: "bot", message: fullBotAnswer, chunks, recommendation },
+          { sender: "bot", message: fullBotAnswer },
         ]);
 
         setAnswersStream([]);
         setReplyStatus("idle");
-        setChunks("");
 
         console.log("Message history");
         console.log(messageHistory);
@@ -154,12 +155,6 @@ const MessageList = ({
         );
 
         return;
-      } else if ("chunks" in lastJsonMessage) {
-        const chunksObject = { chunks: lastJsonMessage.chunks };
-        const chunksString = JSON.stringify(chunksObject);
-        setChunks(chunksString);
-      } else if ("chatbot_recommendation" in lastJsonMessage) {
-        setRecommendation(lastJsonMessage?.chatbot_recommendation);
       } else if (lastJsonMessage.type === "start") {
         setCheckFirstQuotation(true);
       }
@@ -208,6 +203,36 @@ const MessageList = ({
         messageHistory={messageHistory}
         chatbotData={chatbotData?.data.data}
       />
+      <SidebarRight
+        isOpen={isReferencesOpen}
+        onClose={() => setIsReferencesOpen(false)}
+      >
+        <div className="flex items-center gap-2 border-b-2 border-border px-6 pb-8">
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 13 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6.96042 6.89779L1.33542 12.5228C1.22987 12.6283 1.08671 12.6876 0.937447 12.6876C0.788179 12.6876 0.645026 12.6283 0.539478 12.5228C0.43393 12.4172 0.374634 12.2741 0.374634 12.1248C0.374634 11.9756 0.43393 11.8324 0.539478 11.7269L5.76721 6.49982L0.539478 1.27279C0.43393 1.16725 0.374634 1.02409 0.374634 0.874824C0.374634 0.725557 0.43393 0.582404 0.539478 0.476856C0.645026 0.371308 0.788179 0.312012 0.937447 0.312012C1.08671 0.312012 1.22987 0.371308 1.33542 0.476856L6.96042 6.10186C7.01271 6.1541 7.0542 6.21613 7.08251 6.28442C7.11082 6.35271 7.12539 6.4259 7.12539 6.49982C7.12539 6.57375 7.11082 6.64694 7.08251 6.71523C7.0542 6.78351 7.01271 6.84555 6.96042 6.89779ZM12.5854 6.10186L6.96042 0.476856C6.85487 0.371308 6.71171 0.312012 6.56245 0.312012C6.41318 0.312012 6.27003 0.371308 6.16448 0.476856C6.05893 0.582404 5.99963 0.725557 5.99963 0.874824C5.99963 1.02409 6.05893 1.16725 6.16448 1.27279L11.3922 6.49982L6.16448 11.7269C6.05893 11.8324 5.99963 11.9756 5.99963 12.1248C5.99963 12.2741 6.05893 12.4172 6.16448 12.5228C6.27003 12.6283 6.41318 12.6876 6.56245 12.6876C6.71171 12.6876 6.85487 12.6283 6.96042 12.5228L12.5854 6.89779C12.6377 6.84555 12.6792 6.78351 12.7075 6.71523C12.7358 6.64694 12.7504 6.57375 12.7504 6.49982C12.7504 6.4259 12.7358 6.35271 12.7075 6.28442C12.6792 6.21613 12.6377 6.1541 12.5854 6.10186Z"
+              fill="#1C1C1C"
+            />
+          </svg>
+          <h2 className="font-semibold">References</h2>
+        </div>
+        <div className="flex flex-col gap-6 px-6 py-8 text-sm ">
+          <div className="flex items-start gap-3">
+            <h3 className="text-body">[{references?.number}]</h3>
+            <p className="italic text-primary underline">
+              {references?.source}
+            </p>
+          </div>
+          <hr className="border-t-2 border-border" />
+          <p className="">{references?.page_content}</p>
+        </div>
+      </SidebarRight>
       <div className="flex h-auto grow flex-col gap-4 overflow-y-auto">
         {messageHistory.length > 0 && (
           <button
@@ -288,10 +313,9 @@ const MessageList = ({
               profileImage={chatbotData?.data.data.profile_image}
               sender={"bot"}
               message={message.message}
-              chunks={message.chunks}
-              recommendation={message?.chatbot_recommendation}
               isGenerating={replyStatus == "answering"}
               created={message.created}
+              citations={message.citations}
             />
           );
         })}
@@ -302,8 +326,6 @@ const MessageList = ({
             profileImage={chatbotData?.data.data.profile_image}
             sender={"bot"}
             message={answersStream}
-            chunks={chunks}
-            recommendation={recommendation}
             isGenerating={replyStatus == "answering"}
           />
         )}

@@ -49,6 +49,7 @@ export const useChatHistory = (params: any) => {
           "x-kf-user-id": address,
         },
       }),
+    enabled: !!params.chatbot_id && !!params.dialog_id,
   });
 };
 
@@ -67,7 +68,10 @@ export const useDeleteChatHistory = () => {
   });
 };
 
-export const useGetInitialSuggestedQuestions = (params: any, isFetching: boolean) => {
+export const useGetInitialSuggestedQuestions = (
+  params: any,
+  isFetching: boolean,
+) => {
   const { session } = useAppProvider();
   const { address } = session;
 

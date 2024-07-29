@@ -41,7 +41,7 @@ const ChatInitialSuggestion = ({ handleSendMessage }: any) => {
   }
 
   return (
-    <div className="mb-4 flex flex-col gap-x-4 gap-y-2 md:grid md:grid-cols-3">
+    <div className="mb-4 flex flex-col gap-x-4 gap-y-2 md:grid md:grid-cols-2">
       {data?.data?.suggested_questions.map(
         (suggestion: string, index: number) => (
           <button
@@ -227,7 +227,8 @@ const MessageInput = () => {
             {replyStatus === "idle" &&
               messageHistory[messageHistory.length - 1]?.suggested_question &&
               JSON.parse(
-                messageHistory[messageHistory.length - 1]?.suggested_question as string,
+                messageHistory[messageHistory.length - 1]
+                  ?.suggested_question as string,
               )?.map((suggestion: string, index: number) => (
                 <button
                   key={index}

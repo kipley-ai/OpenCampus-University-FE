@@ -8,6 +8,7 @@ import LoadingIcon from "public/images/loading-icon.svg";
 import { useState } from "react";
 import TweetAnswer from "./tweet-answer";
 import Copy from "@/components/icon/copy.svg";
+import Markdown from "react-markdown";
 
 export const CopyButton = ({ message }: { message: string }) => {
   return (
@@ -120,54 +121,12 @@ const LastAnswer = ({
               </div>
               <div className="flex flex-col items-start gap-2">
                 <p className="whitespace-break-spaces break-words text-sm">
-                  {isStream
-                    ? message.slice(0, -2).join("")
-                    : trimQuotationMarks(message)}
-                  {/* {sender === "bot" && sources.length > 0 && (
-                    <TweetAnswer chunks={sources} />
-                  )} */}
-                  {sources.map((source: string, index: number) => (
-                    <p key={index}>
-                      <a
-                        href={source}
-                        className="mt-3 text-xs hover:underline sm:text-sm"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {source}
-                      </a>
-                    </p>
-                  ))}
+                  <Markdown>
+                    {isStream
+                      ? message.slice(0, -2).join("")
+                      : trimQuotationMarks(message)}
+                  </Markdown>
                 </p>
-                {recommendation.length > 0 && (
-                  <div className="flex flex-col gap-4 rounded-xl border-2 border-border bg-container p-4">
-                    <h3 className="text-sm font-medium">
-                      These educators may be able to answer your question:
-                    </h3>
-                    <div className="flex flex-wrap items-start gap-4">
-                      {recommendation.map((chatbot: any, index: number) => (
-                        <a
-                          key={index}
-                          href={`/chatbot/${chatbotSlug(chatbot)}`}
-                          className="group flex w-20 flex-col items-center gap-2"
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <Image
-                            src={chatbot.profile_image}
-                            alt="User avatar"
-                            className="w-full rounded-lg"
-                            width={150}
-                            height={150}
-                          />
-                          <p className="w-full overflow-hidden text-ellipsis text-sm font-semibold text-primary group-hover:underline">
-                            {chatbot.name}
-                          </p>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
             {showCopy && !isStream && <CopyButton message={message} />}

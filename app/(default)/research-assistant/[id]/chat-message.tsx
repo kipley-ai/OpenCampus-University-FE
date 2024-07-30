@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useUserDetail } from "@/hooks/api/user";
 import AvatarDummy from "public/images/avatar-default-02.svg";
 import TweetAnswer from "./tweet-answer";
+import Markdown from "react-markdown";
 
 const ChatMessage = ({
   chatbotData,
@@ -66,56 +67,9 @@ const ChatMessage = ({
                   })}
             </h6>
           </div>
-          {/* <h6 className="mb-1 mt-1 font-black text-lg"> */}
           <p className="whitespace-break-spaces text-sm">
-            {trimQuotationMarks(message.message)}
+            <Markdown>{trimQuotationMarks(message.message)}</Markdown>
           </p>
-          {/* {message.sender === "bot" && sources.length > 0 && (
-            <TweetAnswer chunks={sources} />
-          )} */}
-          {sources.map((source: string, index: number) => (
-            <p key={index}>
-              <a
-                href={source}
-                className="text-xs hover:underline sm:text-sm"
-                target="_blank"
-                rel="noreferrer"
-              >
-                {source}
-              </a>
-            </p>
-          ))}
-          {message?.chatbot_recommendation?.length > 0 && (
-            <div className="flex flex-col gap-4 rounded-xl border-2 border-border bg-container p-4">
-              <h3 className="text-sm font-medium">
-                These educators may be able to answer your question:
-              </h3>
-              <div className="flex flex-wrap items-start gap-4">
-                {message?.chatbot_recommendation.map(
-                  (chatbot: any, index: number) => (
-                    <a
-                      key={index}
-                      href={`/chatbot/${chatbotSlug(chatbot)}`}
-                      className="group flex w-20 flex-col items-center gap-2"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <Image
-                        src={chatbot.profile_image}
-                        alt="User avatar"
-                        className="w-full rounded-lg"
-                        width={150}
-                        height={150}
-                      />
-                      <p className="w-full overflow-hidden text-ellipsis text-sm font-semibold text-primary group-hover:underline">
-                        {chatbot.name}
-                      </p>
-                    </a>
-                  ),
-                )}
-              </div>
-            </div>
-          )}
         </div>
         {showCopy && <CopyButton message={message.message} />}
       </div>

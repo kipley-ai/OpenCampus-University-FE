@@ -20,7 +20,7 @@ export const SUBDOMAINS = ["yat-siu", "yat-siu-beta"];
 
 export const CHATBOT_APP = "Study Companion";
 export const QUIZ_APP = "Semantic Quiz Generation";
-export const BOOK_SUMMARIZER_APP = "Book Summarized";
+export const BOOK_SUMMARIZER_APP = "Book Summarizer";
 export const DIGITAL_TWIN_APP = "Chat With KB";
 export const RESEARCH_ASSISTANT_APP = "Research Assistant";
 export const TEACHING_ASSISTANT_APP = "Teaching Assistant";

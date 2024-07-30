@@ -130,12 +130,12 @@ export const CreateBookSummarizerForm = () => {
       <ModalCreateAppSuccess
         open={showModal}
         setOpen={setShowModal}
-        message="Your book summarized app was created successfully!"
+        message="Your book summarizer app was created successfully!"
       />
       <div className="flex flex-col sm:px-6 lg:px-0">
         <div className="mb-4 flex items-center justify-between">
           <h1 className="text-lg font-semibold text-primary">
-            Book Summarized
+            Book Summarizer
           </h1>
         </div>
         <form onSubmit={handleSubmit}>
@@ -153,7 +153,7 @@ export const CreateBookSummarizerForm = () => {
                 type="text"
                 value={form.name || ""}
                 onChange={(e) => handleFormChange("name", e.target.value)}
-                placeholder="Name your book summarized app"
+                placeholder="Name your book summarizer app"
                 maxLength={100}
                 isRequired
                 errorMessage={errorMessage.name}
@@ -165,7 +165,7 @@ export const CreateBookSummarizerForm = () => {
                 onChange={(e) =>
                   handleFormChange("description", e.target.value)
                 }
-                placeholder="Describe your book summarized app"
+                placeholder="Describe your book summarizer app"
                 rows={3}
                 maxLength={1000}
               />

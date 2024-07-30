@@ -34,7 +34,7 @@ const apps = [
     icon: CreateQuizImg,
   },
   {
-    name: "Book Summarized",
+    name: "Book Summarizer",
     step: BOOK_SUMMARIZER_APP,
     icon: BookSummarizerImg,
   },

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, ReactNode } from "react";
+import { useChatboxWS } from "@/hooks/api/book-summarizer";
 
 interface BookContextType {
   step: number;
@@ -13,6 +14,10 @@ interface BookContextType {
   setTopic: (topic: string) => void;
   resultId: string;
   setResultId: (resultId: string) => void;
+
+  lastJsonMessage: any;
+  readyState: any;
+  sendValidatedMessage: (message: any) => void;
 }
 
 const BookContext = createContext<BookContextType | undefined>(undefined);
@@ -25,6 +30,10 @@ export const BookProvider: React.FC<{ children: ReactNode }> = ({
   const [scope, setScope] = useState<string>("");
   const [topic, setTopic] = useState<string>("");
   const [resultId, setResultId] = useState<string>("");
+
+  const { lastJsonMessage, readyState, sendValidatedMessage } = useChatboxWS(
+    `${process.env.NEXT_PUBLIC_APPS_WS}/book-summarizer/websocket`,
+  );
 
   return (
     <BookContext.Provider
@@ -39,6 +48,10 @@ export const BookProvider: React.FC<{ children: ReactNode }> = ({
         setTopic,
         resultId,
         setResultId,
+
+        lastJsonMessage,
+        readyState,
+        sendValidatedMessage,
       }}
     >
       {children}

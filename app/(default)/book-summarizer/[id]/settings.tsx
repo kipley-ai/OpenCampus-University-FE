@@ -5,6 +5,7 @@ import { useSummarize } from "@/hooks/api/book-summarizer";
 import { useCreditDeduction } from "@/hooks/api/credit";
 import { useCreditBalance } from "@/hooks/api/credit";
 import { FormNav } from "@/components/form-nav";
+import { useAppProvider } from "@/providers/app-provider";
 import { ModalGenerating } from "./modal-generating";
 import { useBookContext } from "./context";
 
@@ -19,52 +20,70 @@ export function Settings() {
     topic,
     setTopic,
     setResultId,
+    sendValidatedMessage,
   } = useBookContext();
+  const { session } = useAppProvider();
+
   const [isGenerating, setIsGenerating] = useState(false);
 
   const summarize = useSummarize();
 
   const summarizeWholeBook = () => {
-    setScope("whole");
-    setIsGenerating(true);
-    summarize.mutate(
-      {
-        chatbot_id: app.chatbot_id,
-        kb_id: app.kb_id,
-        type_summarize: "whole-book",
-      },
-      {
-        onSuccess: (data) => {
-          setTimeout(() => {
-            setIsGenerating(false);
-            setResultId(data.data.dialog_id);
-            setStep(step + 1);
-          }, 5000);
-        },
-      },
-    );
+    setScope("whole-book");
+    setStep(step + 1);
+    sendValidatedMessage({
+      chatbot_id: app.chatbot_id,
+      kb_id: app.kb_id,
+      user_id: session.address,
+      type_summarize: "whole-book",
+    });
+    // setIsGenerating(true);
+    // summarize.mutate(
+    //   {
+    //     chatbot_id: app.chatbot_id,
+    //     kb_id: app.kb_id,
+    //     type_summarize: "whole-book",
+    //   },
+    //   {
+    //     onSuccess: (data) => {
+    //       setTimeout(() => {
+    //         setIsGenerating(false);
+    //         setResultId(data.data.dialog_id);
+    //         setStep(step + 1);
+    //       }, 5000);
+    //     },
+    //   },
+    // );
   };
 
   const summarizeTopic = () => {
     setScope("topic");
-    setIsGenerating(true);
-    summarize.mutate(
-      {
-        chatbot_id: app.chatbot_id,
-        kb_id: app.kb_id,
-        type_summarize: "topic",
-        topic,
-      },
-      {
-        onSuccess: (data) => {
-          setTimeout(() => {
-            setIsGenerating(false);
-            setResultId(data.data.dialog_id);
-            setStep(step + 1);
-          }, 5000);
-        },
-      },
-    );
+    setStep(step + 1);
+    sendValidatedMessage({
+      chatbot_id: app.chatbot_id,
+      kb_id: app.kb_id,
+      user_id: session.address,
+      type_summarize: "topic",
+      topic,
+    });
+    // setIsGenerating(true);
+    // summarize.mutate(
+    //   {
+    //     chatbot_id: app.chatbot_id,
+    //     kb_id: app.kb_id,
+    //     type_summarize: "topic",
+    //     topic,
+    //   },
+    //   {
+    //     onSuccess: (data) => {
+    //       setTimeout(() => {
+    //         setIsGenerating(false);
+    //         setResultId(data.data.dialog_id);
+    //         setStep(step + 1);
+    //       }, 5000);
+    //     },
+    //   },
+    // );
   };
 
   return (
@@ -97,6 +116,7 @@ export function Settings() {
           <button
             className="btn-primary px-4 py-2"
             onClick={() => summarizeTopic()}
+            disabled={!topic}
           >
             Summarize
           </button>

@@ -1,6 +1,7 @@
 import { useMutation, useQuery, keepPreviousData } from "@tanstack/react-query";
 import { useAccount } from "wagmi";
 import axios from "axios";
+import useWebSocket from "react-use-websocket";
 import {
   ICreateKBAndNFTParams,
   IKBAddItem,
@@ -65,4 +66,19 @@ export const useGetHistory = (params: any) => {
       }),
     enabled: !!params.chatbot_id,
   });
+};
+
+export const useChatboxWS = (socketUrl: string) => {
+  const { sendMessage, lastJsonMessage, readyState } =
+    useWebSocket<any>(socketUrl);
+
+  const sendValidatedMessage = (message: any) => {
+    try {
+      sendMessage(JSON.stringify(message));
+    } catch (error) {
+      console.error("Validation failed", error);
+    }
+  };
+
+  return { sendValidatedMessage, lastJsonMessage, readyState };
 };

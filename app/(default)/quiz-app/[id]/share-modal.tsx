@@ -105,7 +105,7 @@ export const ShareModal = ({ isOpen, setIsOpen, chatbotData }: ModalProps) => {
           <div className="flex h-72 flex-col gap-8 overflow-y-auto p-4">
             {questions.map((question: any, qIndex: number) => (
               <div key={qIndex} className="flex items-start gap-4">
-                <div className="flex size-8 items-center justify-center rounded-full border border-gray-300 bg-box">
+                <div className="flex size-8 items-center justify-center rounded-full border border-border bg-box">
                   <p className="font-semibold text-primary">{qIndex + 1}</p>
                 </div>
                 <div className="mt-1 flex w-full flex-col gap-4">
@@ -114,7 +114,7 @@ export const ShareModal = ({ isOpen, setIsOpen, chatbotData }: ModalProps) => {
                     <label
                       key={oIndex}
                       className={`relative flex w-full gap-4 rounded-lg px-4 py-3 text-left 
-                      ${option === answers[qIndex] ? (question.answer === option ? "bg-[#ECECFF] font-medium" : "bg-[#FDE2E1] font-medium") : "border border-gray-300"}
+                      ${option === answers[qIndex] ? (question.answer === option ? "bg-[#ECECFF] font-medium dark:bg-[#04614e]" : "bg-[#FDE2E1] font-medium dark:bg-[#632e2d]") : "border border-border"}
                       `}
                     >
                       <input

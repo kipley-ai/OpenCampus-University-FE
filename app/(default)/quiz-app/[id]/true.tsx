@@ -42,7 +42,7 @@ export default function QuizTrue() {
   };
 
   return (
-    <div className="flex w-full items-center justify-between rounded-b-xl bg-[#ECECFF] px-10 py-6 text-white">
+    <div className="flex w-full items-center justify-between rounded-b-xl bg-[#ECECFF] px-10 py-6 dark:bg-[#04614e]">
       <UploadingModal isOpen={isUploading} setIsOpen={setIsUploading} />
       <div className="flex items-center gap-3">
         <svg
@@ -59,14 +59,13 @@ export default function QuizTrue() {
               width="46"
               height="46"
               rx="7"
-              fill="white"
-              stroke="white"
+              className="fill-white dark:fill-primary dark:stroke-primary"
               stroke-width="2"
             />
             <g clip-path="url(#clip1_687_7334)">
               <path
                 d="M14.6665 23.9999L21.3332 30.6666L34.6665 17.3333"
-                stroke="#00EDBE"
+                className="stroke-primary dark:stroke-white"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -75,24 +74,29 @@ export default function QuizTrue() {
           </g>
           <defs>
             <clipPath id="clip0_687_7334">
-              <rect width="48" height="48" rx="24" fill="white" />
+              <rect
+                width="48"
+                height="48"
+                rx="24"
+                className="fill-white dark:fill-primary"
+              />
             </clipPath>
             <clipPath id="clip1_687_7334">
               <rect
                 width="32"
                 height="32"
-                fill="white"
+                fill="currentColor"
                 transform="translate(8 8)"
               />
             </clipPath>
           </defs>
         </svg>
-        <span className="ml-2 mt-1 text-2xl font-bold text-[#141BEB]">
+        <span className="ml-2 mt-1 text-2xl font-bold text-primary">
           Correct!
         </span>
       </div>
       <button
-        className="flex items-center gap-2 rounded-lg bg-[#141BEB] px-6 py-2 hover:bg-[#1016BC]"
+        className="flex items-center gap-2 rounded-lg bg-primary px-6 py-2 hover:brightness-75 dark:text-black"
         onClick={nextPart}
       >
         NEXT
@@ -106,7 +110,7 @@ export default function QuizTrue() {
         >
           <path
             d="M8.00065 3.33398L6.82565 4.50898L11.4757 9.16732H1.33398V10.834H11.4757L6.82565 15.4923L8.00065 16.6673L14.6673 10.0007L8.00065 3.33398Z"
-            fill="white"
+            fill="currentColor"
           />
         </svg>
       </button>

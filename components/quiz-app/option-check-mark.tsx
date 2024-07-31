@@ -14,8 +14,8 @@ export const OptionCheckMark = () => {
           width="22"
           height="22"
           rx="7"
-          fill="#141BEB"
-          stroke="#141BEB"
+          fill="var(--color-primary)"
+          stroke="var(--color-primary)"
           strokeWidth="2"
         />
         <g clipPath="url(#clip1_687_7110)">

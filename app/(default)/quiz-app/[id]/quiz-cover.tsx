@@ -198,7 +198,7 @@ export default function QuizCover() {
             </h2>
             <textarea
               placeholder="Enter your topic here"
-              className="h-32 w-full resize-none rounded-md border border-gray-300 p-4"
+              className="h-32 w-full resize-none rounded-md border border-border bg-transparent p-4"
               value={form?.topic}
               onChange={(e) => handleFormChange("topic", e.target.value)}
             />
@@ -221,7 +221,7 @@ export default function QuizCover() {
                     (topic: string) => (
                       <li
                         key={topic}
-                        className="flex cursor-pointer items-center justify-between rounded border p-4 font-medium text-body hover:bg-secondary"
+                        className="flex cursor-pointer items-center justify-between rounded border border-border p-4 font-medium text-body hover:bg-secondary"
                         onClick={() => handleChooseSuggestedTopic(topic)}
                       >
                         {topic}
@@ -234,7 +234,7 @@ export default function QuizCover() {
                         >
                           <path
                             d="M9 18L15 12L9 6"
-                            stroke="#141BEB"
+                            stroke="var(--color-primary)"
                             strokeWidth="2"
                             strokeLinecap="round"
                             strokeLinejoin="round"

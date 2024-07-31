@@ -53,10 +53,10 @@ export default function QuizResult() {
         chatbotData={{ chatbot_id, chatbot_name }}
       />
       <span className="text-lg font-semibold">{chatbot_name}</span>
-      <div className="my-4 flex w-full flex-col rounded-xl border border-border bg-white p-8">
+      <div className="my-4 flex w-full flex-col rounded-xl border border-border bg-box p-8">
         <h2 className="text-lg font-semibold text-primary">Quiz Complete!</h2>
         <div className="mt-2 flex justify-center">
-          <div className="flex w-full flex-col items-center rounded-xl bg-[#F9F9FF] p-6">
+          <div className="flex w-full flex-col items-center rounded-xl p-6">
             <Image src={ResultImage} alt=""></Image>
             <p className="mt-4 text-center text-lg font-semibold">
               Your final score is {total_right} / {totalQuestions} ({percentage}
@@ -83,7 +83,7 @@ export default function QuizResult() {
           </div>
           <div className="flex items-center justify-between pt-8">
             <button
-              className="flex flex-row py-2 hover:underline"
+              className="flex flex-row py-2 text-primary hover:underline"
               onClick={() => setIsShareModalOpen(true)}
             >
               <svg
@@ -96,35 +96,35 @@ export default function QuizResult() {
                 <g clip-path="url(#clip0_687_7249)">
                   <path
                     d="M6 15.9358C7.65685 15.9358 9 14.5926 9 12.9358C9 11.2789 7.65685 9.93579 6 9.93579C4.34315 9.93579 3 11.2789 3 12.9358C3 14.5926 4.34315 15.9358 6 15.9358Z"
-                    stroke="#141BEB"
+                    stroke="currentColor"
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   />
                   <path
                     d="M18 9.93579C19.6569 9.93579 21 8.59265 21 6.93579C21 5.27894 19.6569 3.93579 18 3.93579C16.3431 3.93579 15 5.27894 15 6.93579C15 8.59265 16.3431 9.93579 18 9.93579Z"
-                    stroke="#141BEB"
+                    stroke="currentColor"
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   />
                   <path
                     d="M18 21.9358C19.6569 21.9358 21 20.5926 21 18.9358C21 17.2789 19.6569 15.9358 18 15.9358C16.3431 15.9358 15 17.2789 15 18.9358C15 20.5926 16.3431 21.9358 18 21.9358Z"
-                    stroke="#141BEB"
+                    stroke="currentColor"
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   />
                   <path
                     d="M8.7002 11.6358L15.3002 8.23584"
-                    stroke="#141BEB"
+                    stroke="currentColor"
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   />
                   <path
                     d="M8.7002 14.2358L15.3002 17.6358"
-                    stroke="#141BEB"
+                    stroke="currentColor"
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -245,9 +245,7 @@ function QuizComplete() {
           </svg>
           <span className="ml-4 text-[#141BEB]">Share</span>
         </button>
-        <button className="ml-4 rounded bg-blue-600 px-6 py-2 text-white hover:bg-blue-700">
-          Done
-        </button>
+        <button className="btn-primary ml-4 px-6 py-2">Done</button>
       </div>
     </div>
   );

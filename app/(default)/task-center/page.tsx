@@ -13,7 +13,7 @@ export default function TaskCenter() {
   const { setHeaderTitle } = useAppProvider();
 
   useEffect(() => {
-    setHeaderTitle("Task Center");
+    document.title = "Task Center";
   });
 
   const [startPoints, setStartPoints] = useState<number>(0);

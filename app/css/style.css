@@ -37,7 +37,7 @@
   }
 
   .btn-primary {
-    @apply rounded-md bg-primary px-3 py-1 text-xs font-medium text-white hover:bg-[#1016BC] disabled:border-0 disabled:bg-[#B8BABE] disabled:text-[#909295] xl:text-sm;
+    @apply rounded-md bg-primary px-3 py-1 text-xs font-medium text-white hover:bg-[#1016BC] disabled:border-0 disabled:bg-[#B8BABE] disabled:text-[#909295] xl:text-sm dark:border-2 dark:border-primary dark:bg-transparent dark:hover:bg-primary dark:hover:text-container;
   }
 
   .btn-secondary {

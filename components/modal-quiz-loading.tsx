@@ -49,7 +49,7 @@ export default function ModalQuizLoading({
 
   return (
     <ModalBlank isOpen={isOpen} setIsOpen={setIsOpen}>
-      <div className="relative flex w-fit flex-col items-center justify-center rounded-2xl border border-[#DDDDEB] pb-16 shadow-md sm:w-[27rem]">
+      <div className="relative flex w-fit flex-col items-center justify-center rounded-2xl border border-border pb-16 shadow-md sm:w-[27rem]">
         <video
           src="/videos/quiz-loading.mp4"
           width="320"

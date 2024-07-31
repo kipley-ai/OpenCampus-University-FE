@@ -51,7 +51,7 @@ const ChatInitialSuggestion = ({ handleSendMessage }: any) => {
         (suggestion: string, index: number) => (
           <button
             key={index}
-            className="mt-2 rounded-lg border border-2 border-[#D1D5DB] bg-sidebar px-4 py-2.5 text-start text-sm font-medium text-heading hover:bg-secondary md:px-8"
+            className="rounded-lg border border-2 border-[#D1D5DB] bg-sidebar px-4 py-2.5 text-start text-sm font-medium text-heading hover:bg-secondary md:px-8"
             onClick={(e: any) => handleSendMessage(e, suggestion)}
           >
             {suggestion}
@@ -255,11 +255,14 @@ const MessageInput = () => {
 
   return (
     <>
+      <div className="border-t-2 border-border">
+        <h3 className="py-2 text-sm font-medium">Smart Suggestions</h3>
+      </div>
       {messageHistory.length === 0 && (
         <ChatInitialSuggestion handleSendMessage={handleSendMessage} />
       )}
 
-      <div className="sticky inset-x-0 bottom-4 mt-2 flex-col items-center gap-2">
+      <div className="sticky inset-x-0 bottom-4 flex-col items-center gap-2">
         {messageHistory.length > 0 && (
           <div className="mb-4 flex flex-col gap-x-4 gap-y-2 md:grid md:grid-cols-2">
             {replyStatus === "idle" &&
@@ -269,7 +272,7 @@ const MessageInput = () => {
                 (suggestion: string, index: number) => (
                   <button
                     key={index}
-                    className="mt-2 rounded-lg border border-2 border-[#D1D5DB] bg-sidebar px-4 py-2.5 text-start text-sm font-medium text-heading hover:bg-secondary md:px-8"
+                    className="rounded-lg border border-2 border-[#D1D5DB] bg-sidebar px-4 py-2.5 text-start text-sm font-medium text-heading hover:bg-secondary md:px-8"
                     onClick={(e: any) => handleSendMessage(e, suggestion)}
                   >
                     {suggestion}

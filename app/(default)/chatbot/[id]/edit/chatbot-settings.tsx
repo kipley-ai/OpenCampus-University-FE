@@ -147,7 +147,7 @@ const ChatbotSettings = () => {
   return (
     <>
       <CreateChatbotModal
-        children={"Your chatbot has been updated successfully!"}
+        children={"Your digital twin app was updated successfully!"}
         open={showModal}
         setOpen={setShowModal}
         onDone={() => {
@@ -157,7 +157,7 @@ const ChatbotSettings = () => {
       <div>
         <div className="flex items-center justify-between">
           <h1 className="text-lg font-semibold text-primary">
-            Chatbot Settings
+            Digital Twin Settings
           </h1>
         </div>
       </div>

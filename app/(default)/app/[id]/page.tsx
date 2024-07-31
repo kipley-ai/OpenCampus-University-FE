@@ -100,7 +100,7 @@ const ChatbotSection = ({
         </div>
         <div className="mt-3 flex flex-row">
           <p className="mr-2 text-sm font-medium text-[#94A3B8]">
-            Chatbot Owner
+            Owner
           </p>
           <p className="text-sm font-medium text-heading">
             {chatbotDetail.wallet_addr!.substring(0, 6) +

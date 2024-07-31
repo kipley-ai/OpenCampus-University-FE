@@ -116,7 +116,7 @@ export const ChatBotForm = () => {
     if (form.name && description.tmp) {
       setDescription({
         tmp: true,
-        value: `This is the AI Chatbot Twin of ${form.name}`,
+        value: `This is the Digital Twin of ${form.name}`,
       });
     }
   }, [form.name]);
@@ -234,14 +234,14 @@ export const ChatBotForm = () => {
   return (
     <>
       <ModalSuccessBasic
-        message="Your chatbot has been created successfully!"
+        message="Your digital twin app was created successfully!"
         imagePath="/images/create-chatbot-success.svg"
         open={showModal}
         setOpen={setShowModal}
       />
       <div className="flex flex-col sm:px-6 lg:px-0">
         <div className="flex items-center justify-between max-lg:mb-4">
-          <h1 className="text-lg font-semibold text-primary">Chatbot</h1>
+          <h1 className="text-lg font-semibold text-primary">Digital Twin</h1>
           <div className="flex w-min items-center gap-3 md:w-1/4">
             {chatbotPKLStatus ? (
               <>
@@ -334,7 +334,7 @@ export const ChatBotForm = () => {
                 type="text"
                 value={form.name || ""}
                 onChange={(e) => handleFormChange("name", e.target.value)}
-                placeholder="Name your Chatbot"
+                placeholder="Name your digital twin app"
                 maxLength={100}
                 isRequired
                 errorMessage={errorMessage.name}
@@ -349,7 +349,7 @@ export const ChatBotForm = () => {
                     value: e.target.value,
                   })
                 }
-                placeholder="Describe your Chatbot"
+                placeholder="Describe your digital twin app"
                 rows={3}
                 maxLength={1000}
               />

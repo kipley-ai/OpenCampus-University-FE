@@ -66,7 +66,7 @@ const NFTSection = ({ nftDetail, hasAccess }: NFTSectionProps) => {
         <div className="my-4 mb-5 border-t-2 border-border"></div>
         <div className="flex flex-row gap-2">
           <p className="text-sm font-medium text-[#94A3B8]">
-            KnowledgeKey Owner
+            Owner
           </p>
           <p className="text-sm font-medium text-heading">
             {nftDetail.wallet_addr!.substring(0, 6) +

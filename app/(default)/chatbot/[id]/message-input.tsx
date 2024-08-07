@@ -51,7 +51,7 @@ const ChatInitialSuggestion = ({ handleSendMessage }: any) => {
         (suggestion: string, index: number) => (
           <button
             key={index}
-            className="rounded-lg border border-2 border-[#D1D5DB] bg-sidebar px-4 py-2.5 text-start text-sm font-medium text-heading hover:bg-secondary md:px-8"
+            className="rounded-lg border border-2 border-border bg-sidebar px-4 py-3 text-start text-sm font-medium text-heading hover:bg-secondary md:px-5"
             onClick={(e: any) => handleSendMessage(e, suggestion)}
           >
             {suggestion}
@@ -264,15 +264,16 @@ const MessageInput = () => {
 
       <div className="sticky inset-x-0 bottom-4 flex-col items-center gap-2">
         {messageHistory.length > 0 && (
-          <div className="mb-4 flex flex-col gap-x-4 gap-y-2 md:grid md:grid-cols-2">
+          <div className="mb-4 flex gap-4 overflow-x-auto max-md:pb-2 md:grid md:grid-cols-2">
             {replyStatus === "idle" &&
+              messageHistory[messageHistory.length - 1]?.suggested_questions &&
               messageHistory[
                 messageHistory.length - 1
               ]?.suggested_questions?.map(
                 (suggestion: string, index: number) => (
                   <button
                     key={index}
-                    className="rounded-lg border border-2 border-[#D1D5DB] bg-sidebar px-4 py-2.5 text-start text-sm font-medium text-heading hover:bg-secondary md:px-8"
+                    className="rounded-lg border border-2 border-border bg-sidebar px-4 py-3 text-start text-sm font-medium text-heading hover:bg-secondary max-md:min-w-full md:px-5"
                     onClick={(e: any) => handleSendMessage(e, suggestion)}
                   >
                     {suggestion}

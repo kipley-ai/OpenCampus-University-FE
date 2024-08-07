@@ -232,35 +232,35 @@ const MessageList = ({
                 <g clipPath="url(#clip0_1624_9009)">
                   <path
                     d="M4 10.6787C5.10457 10.6787 6 9.78328 6 8.67871C6 7.57414 5.10457 6.67871 4 6.67871C2.89543 6.67871 2 7.57414 2 8.67871C2 9.78328 2.89543 10.6787 4 10.6787Z"
-                    stroke="#141BEB"
+                    stroke="var(--color-primary)"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                   <path
                     d="M12 6.67871C13.1046 6.67871 14 5.78328 14 4.67871C14 3.57414 13.1046 2.67871 12 2.67871C10.8954 2.67871 10 3.57414 10 4.67871C10 5.78328 10.8954 6.67871 12 6.67871Z"
-                    stroke="#141BEB"
+                    stroke="var(--color-primary)"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                   <path
                     d="M12 14.6787C13.1046 14.6787 14 13.7833 14 12.6787C14 11.5741 13.1046 10.6787 12 10.6787C10.8954 10.6787 10 11.5741 10 12.6787C10 13.7833 10.8954 14.6787 12 14.6787Z"
-                    stroke="#141BEB"
+                    stroke="var(--color-primary)"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                   <path
                     d="M5.80005 7.81208L10.2 5.54541"
-                    stroke="#141BEB"
+                    stroke="var(--color-primary)"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                   <path
                     d="M5.80005 9.54541L10.2 11.8121"
-                    stroke="#141BEB"
+                    stroke="var(--color-primary)"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"

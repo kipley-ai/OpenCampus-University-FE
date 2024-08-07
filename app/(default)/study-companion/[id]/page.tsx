@@ -23,7 +23,7 @@ export default function ChatBotPage() {
 
   return (
     <div className="h-full">
-      <h1 className="pb-3 text-lg font-semibold text-heading">
+      <h1 className="truncate pb-3 text-lg font-semibold text-heading">
         Study Companion | {chatbotData?.data?.data?.name}
       </h1>
       <CreditBalanceProvider>

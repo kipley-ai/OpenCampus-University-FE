@@ -122,20 +122,18 @@ const LastAnswer = ({
                       })}
                 </h6>
               </div>
-              <div className="flex flex-col items-start gap-2">
-                <p className="whitespace-break-spaces break-words text-sm">
-                  {isStream ? (
-                    <ClickableReferences
-                      text={message.slice(0, -2).join("")}
-                      onReferenceClick={handleReferenceClick}
-                    />
-                  ) : (
-                    <ClickableReferences
-                      text={trimQuotationMarks(message)}
-                      onReferenceClick={handleReferenceClick}
-                    />
-                  )}
-                </p>
+              <div className="flex flex-col items-start gap-2 text-sm">
+                {isStream ? (
+                  <ClickableReferences
+                    text={message.slice(0, -2).join("")}
+                    onReferenceClick={handleReferenceClick}
+                  />
+                ) : (
+                  <ClickableReferences
+                    text={trimQuotationMarks(message)}
+                    onReferenceClick={handleReferenceClick}
+                  />
+                )}
               </div>
             </div>
             {showCopy && !isStream && <CopyButton message={message} />}

@@ -20,35 +20,35 @@ const ShareIcon = () => {
       <g clipPath="url(#clip0_2226_23427)">
         <path
           d="M6 15C7.65685 15 9 13.6569 9 12C9 10.3431 7.65685 9 6 9C4.34315 9 3 10.3431 3 12C3 13.6569 4.34315 15 6 15Z"
-          stroke="#141BEB"
+          stroke="var(--color-primary)"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M18 9C19.6569 9 21 7.65685 21 6C21 4.34315 19.6569 3 18 3C16.3431 3 15 4.34315 15 6C15 7.65685 16.3431 9 18 9Z"
-          stroke="#141BEB"
+          stroke="var(--color-primary)"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M18 21C19.6569 21 21 19.6569 21 18C21 16.3431 19.6569 15 18 15C16.3431 15 15 16.3431 15 18C15 19.6569 16.3431 21 18 21Z"
-          stroke="#141BEB"
+          stroke="var(--color-primary)"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M8.69995 10.6998L15.3 7.2998"
-          stroke="#141BEB"
+          stroke="var(--color-primary)"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M8.69995 13.2998L15.3 16.6998"
-          stroke="#141BEB"
+          stroke="var(--color-primary)"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -132,15 +132,17 @@ export function Result() {
             </span>
           </div>
         )}
-        <Markdown>{summaryStream.join("")}</Markdown>
-        <div className="my-4 flex items-center justify-between border-t-2 pt-4">
+        <Markdown className="whitespace-pre-wrap">
+          {summaryStream.join("")}
+        </Markdown>
+        <div className="my-4 flex items-center justify-between border-t-2 border-border pt-4">
           <button
-            className="btn-plain mr-4 self-end"
+            className="btn-plain mr-4 self-end text-heading"
             onClick={() => setIsShareOpen(true)}
           >
             <div className="flex items-center gap-2">
               <ShareIcon />
-              <p className="text-heading">Share</p>
+              <p>Share</p>
             </div>
           </button>
           <button
@@ -157,7 +159,7 @@ export function Result() {
             >
               <path
                 d="M2 0.889648L0.589996 2.29965L5.17 6.88965L0.589996 11.4796L2 12.8896L8 6.88965L2 0.889648Z"
-                fill="#141BEB"
+                fill="var(--color-primary)"
               />
             </svg>
           </button>

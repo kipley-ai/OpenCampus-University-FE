@@ -223,7 +223,7 @@ const MessageInput = () => {
 
       <div className="sticky inset-x-0 bottom-4 flex-col items-center gap-2">
         {messageHistory.length > 0 && (
-          <div className="mb-4 w-full flex overflow-x-auto gap-4 md:grid md:grid-cols-3">
+          <div className="mb-4 flex gap-4 overflow-x-auto max-md:pb-2 md:grid md:grid-cols-3">
             {replyStatus === "idle" &&
               messageHistory[messageHistory.length - 1]?.suggested_question &&
               JSON.parse(
@@ -232,7 +232,7 @@ const MessageInput = () => {
               )?.map((suggestion: string, index: number) => (
                 <button
                   key={index}
-                  className="max-md:min-w-full rounded-lg border border-2 border-border bg-container px-4 py-3 text-start text-sm font-medium text-heading hover:bg-secondary md:px-5"
+                  className="rounded-lg border border-2 border-border bg-container px-4 py-3 text-start text-sm font-medium text-heading hover:bg-secondary max-md:min-w-full md:px-5"
                   onClick={(e: any) => handleSendMessage(e, suggestion)}
                 >
                   {suggestion}

@@ -1,4 +1,5 @@
 import React from "react";
+import Markdown from "react-markdown";
 
 interface ClickableReferencesProps {
   text: string;
@@ -10,11 +11,24 @@ export const ClickableReferences: React.FC<ClickableReferencesProps> = ({
   onReferenceClick,
 }) => {
   const createMarkup = () => {
-    const regex = /\[(\d+)\]/g;
-    const replacedText = text.replace(regex, (match, p1) => {
-      return `<span class="inline cursor-pointer hover:border-b border-heading" data-number="${p1}">${match}</span>`;
-    });
-    return { __html: replacedText };
+    const boldRegex = /\*\*(.*?)\*\*/g;
+    const withBoldText = text.replace(boldRegex, "<b>$1</b>");
+
+    const referenceRegex = /\[(\d+)\]/g;
+    const withClickableReferences = withBoldText.replace(
+      referenceRegex,
+      (match, p1) => {
+        return `<span class="inline cursor-pointer hover:border-b border-heading" data-number="${p1}">${match}</span>`;
+      },
+    );
+
+    const newLineRegex = /\n/g;
+    const withNewLines = withClickableReferences.replace(
+      newLineRegex,
+      "<br />",
+    );
+
+    return { __html: withNewLines };
   };
 
   const handleClick = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {

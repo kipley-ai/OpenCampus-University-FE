@@ -27,6 +27,7 @@ import {
   handleAppUrlWithoutSlug,
 } from "@/utils/utils";
 import {
+  KF_TITLE,
   CHATBOT_APP,
   QUIZ_APP,
   BOOK_SUMMARIZER_APP,
@@ -224,7 +225,7 @@ type NFTCardProps = {
 
 const NFTCard = ({ nft }: NFTCardProps) => {
   return (
-    <div className="group relative flex flex-col rounded-3xl bg-box">
+    <div className="group relative flex flex-col rounded-3xl bg-sidebar">
       <Image
         src={nft.profile_image || "/images/nft-default-thumb.png"}
         className="mx-auto h-full rounded-2xl object-cover"
@@ -232,7 +233,7 @@ const NFTCard = ({ nft }: NFTCardProps) => {
         height={300}
         alt={"NFT Card"}
       />
-      <div className="flex flex-col gap-1 px-4 pt-6">
+      <div className="flex flex-col gap-1 pt-6">
         {/* <Link href={`/nft/${nft.sft_id}`}> */}
         <p className="line-clamp-1 font-semibold text-primary">{nft.name}</p>
         {/* </Link> */}
@@ -342,10 +343,7 @@ const NFTList = ({ id }: { id: any }) => {
 };
 
 const BotDetail = ({ params }: { params: any }) => {
-  const { setHeaderTitle, session } = useAppProvider();
-  useEffect(() => {
-    setHeaderTitle("My KnowledgeKey");
-  }, []);
+  const { session } = useAppProvider();
   const { id } = params;
   const [sftId, setSftId] = useState("");
   const router = useRouter();
@@ -398,10 +396,11 @@ const BotDetail = ({ params }: { params: any }) => {
 
   return (
     <div className="bg-container">
+      <title>{KF_TITLE + chatbotQuery.data?.data?.data.name + " - " + appType + " Details"}</title>
       <h1 className="mb-4 text-lg font-semibold text-heading">
         {appType} Details
       </h1>
-      <div className="flex flex-col rounded-2xl border border-[#DDDDEB] bg-sidebar px-3 py-3 pb-0 sm:py-8 lg:px-8 xl:px-10">
+      <div className="flex flex-col rounded-2xl border border-border bg-sidebar px-3 py-3 pb-0 sm:py-8 lg:px-8 xl:px-10">
         <div>
           {chatbotQuery.isLoading ? (
             <div className="flex h-[50vh] w-full items-center justify-center gap-4">

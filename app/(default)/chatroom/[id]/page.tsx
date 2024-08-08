@@ -21,23 +21,18 @@ import { CreditBalanceProvider } from "./credit-balance-context";
 import InaccessibleChat from "./inaccessible-shared-chat";
 import Image from "next/image";
 import Link from "next/link";
-import { FIRESIDE_CHAT_ID } from "@/utils/constants";
+import { KF_TITLE, FIRESIDE_CHAT_ID } from "@/utils/constants";
 
 export default function ChatBotPage() {
   const [showShareModal, setShowShareModal] = useState(false);
-  const { setHeaderTitle } = useAppProvider();
   const pathname = usePathname();
-
   const { id } = useParams();
-
-  useEffect(() => {
-    return () => setHeaderTitle("Default Title");
-  }, []);
 
   return (
     <CreditBalanceProvider>
       <CreateChatbotProvider>
         <div className="h-full">
+          <title>{KF_TITLE + "Fireside Chat"}</title>
           <h1 className="pb-3 text-lg font-semibold text-heading">
             Fireside Chat
           </h1>

@@ -1,26 +1,21 @@
 "use client";
 import { useState } from "react";
+import { KF_TITLE } from "@/utils/constants";
 import Image from "next/image";
 import Credit from "./credit";
 import Dashboard from "./dashboard";
 import Deposit from "./deposit";
 import Earning from "./earning";
 import Withdraw from "./withdraw";
-import { useEffect } from "react";
-import { useAppProvider } from "@/providers/app-provider";
 import CreatorOverview from "./creator";
 
 export default function ManageAccount() {
   const [selectedPage, setSelectedPage] = useState("dashboard");
-  const { setHeaderTitle } = useAppProvider();
-
-  useEffect(() => {
-    setHeaderTitle("Manage Account");
-  }, []);
 
   return (
     <div className="flex flex-col bg-container">
-      <ul className="mb-2 flex xl:hidden w-full gap-6 xs:gap-12 border-b-2 border-secondary text-sm font-semibold dark:border-border">
+      <title>{KF_TITLE + "Manage Account"}</title>
+      <ul className="mb-2 flex w-full gap-6 border-b-2 border-secondary text-sm font-semibold dark:border-border xs:gap-12 xl:hidden">
         <li
           onClick={() => setSelectedPage("dashboard")}
           className={`relative top-[1px] cursor-pointer ${selectedPage === "dashboard" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}

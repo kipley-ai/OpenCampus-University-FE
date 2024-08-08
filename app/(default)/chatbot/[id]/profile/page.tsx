@@ -5,6 +5,7 @@ import Link from "next/link";
 import Button from "@/components/button";
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import { KF_TITLE } from "@/utils/constants";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
 import { useNftDetail } from "@/hooks/api/nft";
 import { chatbotIdFromSlug } from "@/utils/utils";
@@ -26,6 +27,7 @@ export default function Profile() {
 
   return (
     <>
+      <title>{KF_TITLE + chatbotData?.data.data.name + " - Profile"}</title>
       <h1 className="mb-4 text-lg font-semibold">Profile</h1>
       <div className="rounded-2xl border-2 border-border bg-sidebar">
         <section className="">

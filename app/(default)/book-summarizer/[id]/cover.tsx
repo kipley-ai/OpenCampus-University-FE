@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
+import { KF_TITLE } from "@/utils/constants";
 import { useParams } from "next/navigation";
 import { useBookContext } from "./context";
 import { History } from "./history";
@@ -29,6 +30,9 @@ export function Cover() {
 
   return (
     <>
+      <title>
+        {KF_TITLE + chatbotDetail.data?.data?.data?.name + " - Book Summarizer"}
+      </title>
       <span className="text-lg font-semibold">
         Book Summarizer | {chatbotDetail.data?.data?.data?.name}
       </span>

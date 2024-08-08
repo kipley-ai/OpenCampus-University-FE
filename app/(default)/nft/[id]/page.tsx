@@ -3,6 +3,7 @@ import nft1 from "@/public/images/nft-1.png";
 import Image from "next/image";
 import user_avatar from "@/public/images/user-28-01.jpg";
 import keyboard from "@/public/images/applications-image-23.jpg";
+import { KF_TITLE } from "@/utils/constants";
 import { useAppProvider } from "@/providers/app-provider";
 import link_nft_chatbot from "@/public/images/link-nft-chatbot.png";
 import { useCallback, useState, useEffect } from "react";
@@ -238,7 +239,7 @@ type BotCardProps = {
 
 const BotCard = ({ bot }: BotCardProps) => {
   return (
-    <div className="group relative flex flex-col rounded-3xl bg-box">
+    <div className="group relative flex flex-col rounded-3xl bg-sidebar">
       <Image
         src={bot.profile_image || "/images/bot-default-thumb.png"}
         className="mx-auto h-full rounded-2xl object-cover"
@@ -246,7 +247,7 @@ const BotCard = ({ bot }: BotCardProps) => {
         height={300}
         alt={"Bot Card"}
       />
-      <div className="flex flex-col gap-1 px-4 pt-6">
+      <div className="flex flex-col gap-1 pt-6">
         <p className="line-clamp-1 text-ellipsis font-semibold text-primary">
           {bot.name}
         </p>
@@ -429,10 +430,7 @@ const NoData = () => {
 };
 
 const NFTDetail = ({ params }: { params: any }) => {
-  const { setHeaderTitle, session } = useAppProvider();
-  useEffect(() => {
-    setHeaderTitle("My KnowledgeKey");
-  }, []);
+  const { session } = useAppProvider();
   const { id } = params;
   const router = useRouter();
 
@@ -451,6 +449,7 @@ const NFTDetail = ({ params }: { params: any }) => {
 
   return (
     <div className="bg-container">
+      <title>{KF_TITLE + nftQuery.data?.data?.data.name + " - KnowledgeKey Details"}</title>
       <h1 className="mb-4 text-lg font-semibold text-heading">
         KnowledgeKey Details
       </h1>

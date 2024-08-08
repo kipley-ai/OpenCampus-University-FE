@@ -1,4 +1,5 @@
 "use client";
+import { KF_TITLE } from "@/utils/constants";
 import { useAppProvider } from "@/providers/app-provider";
 import { useEffect, useState } from "react";
 import { useTaskBasePoint } from "@/hooks/api/task";
@@ -10,11 +11,6 @@ import ReferralBonus from "./referral-bonus";
 
 export default function TaskCenter() {
   const [tab, setTab] = useState<string>("active-tasks"); // active-tasks, leaderboard, referral-bonus
-  const { setHeaderTitle } = useAppProvider();
-
-  useEffect(() => {
-    document.title = "Task Center";
-  });
 
   const [startPoints, setStartPoints] = useState<number>(0);
   const [endPoints, setEndPoints] = useState<number>(0);
@@ -30,13 +26,14 @@ export default function TaskCenter() {
 
   return (
     <div className="mt-2 max-w-[1100px] rounded-2xl border-2 border-border bg-sidebar px-3 pb-10 pt-3 md:p-10 xl:mt-4">
+      <title>{KF_TITLE + "Task Center"}</title>
       <div>
         <h1 className="text-xl font-bold">Task Center</h1>
         <h6 className="text-sm font-medium text-body">
           Complete various tasks to earn OCU Credits!
         </h6>
       </div>
-      <div className="mb-8 mt-4 flex items-center space-x-10 border-b-2 text-sm font-semibold text-primary">
+      <div className="mb-8 mt-4 flex items-center space-x-10 border-b-2 border-border text-sm font-semibold text-primary">
         <button
           className={`${tab == "active-tasks" ? "border-b-2 border-primary" : "opacity-50 hover:text-body hover:opacity-100"}`}
           onClick={() => setTab("active-tasks")}

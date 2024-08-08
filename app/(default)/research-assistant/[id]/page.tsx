@@ -9,6 +9,7 @@ import { useChatbotDetail } from "@/hooks/api/chatbot";
 import Description from "./description";
 import CreditBalance from "./credit-balance";
 import { CreditBalanceProvider } from "./credit-balance-context";
+import { KF_TITLE } from "@/utils/constants";
 import { chatbotIdFromSlug } from "@/utils/utils";
 
 export default function ChatBotPage() {
@@ -23,6 +24,7 @@ export default function ChatBotPage() {
 
   return (
     <div className="h-full">
+      <title>{KF_TITLE + chatbotData?.data?.data?.name + " - Research Assistant"}</title>
       <h1 className="truncate pb-3 text-lg font-semibold text-heading">
         Research Assistant | {chatbotData?.data?.data?.name}
       </h1>

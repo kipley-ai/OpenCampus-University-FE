@@ -4,6 +4,7 @@ import TestImage from "components/quiz-app/product img.png";
 
 import React, { useEffect, useState } from "react";
 import { useQuiz } from "../[id]/quiz-app-context";
+import { KF_TITLE } from "@/utils/constants";
 import { useChatbotDetail } from "@/hooks/api/chatbot";
 import {
   useGenerateQuizAPI,
@@ -169,6 +170,7 @@ export default function QuizCover() {
 
   return (
     <>
+      <title>{KF_TITLE + chatbotDetail.data?.data?.data.name + " - Quiz Generator"}</title>
       <ModalQuizLoading setIsOpen={setIsGenerating} isOpen={isGenerating} />
       <div className="">
         <span className="text-lg font-semibold">
@@ -203,7 +205,7 @@ export default function QuizCover() {
               onChange={(e) => handleFormChange("topic", e.target.value)}
             />
             <Button
-              className="self-end px-6 py-3 xl:text-base"
+              className="self-end px-6 py-3"
               onClick={handleSubmit}
               disabled={isGenerating}
             >

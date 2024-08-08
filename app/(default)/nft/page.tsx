@@ -262,8 +262,8 @@ export default function NFT() {
   return (
     <div className="mb-6 h-full">
       <h1 className="py-3 text-lg font-semibold text-heading">My Assets</h1>
-      <div className="flex flex-col rounded-2xl border border-[#DDDDEB] bg-sidebar px-4 py-7 pb-0 lg:px-6 xl:px-8">
-        <div className="mb-8 mt-0 flex items-center space-x-10 border-b-2 text-sm font-semibold text-primary">
+      <div className="flex flex-col rounded-2xl border border-border bg-sidebar px-4 py-7 pb-0 lg:px-6 xl:px-8">
+        <div className="mb-8 mt-0 flex items-center space-x-10 border-b-2 border-border text-sm font-semibold text-primary">
           <button
             className={`relative top-[1px] ${tab == "knowledge-assets" ? "border-b-2 border-primary text-primary" : "opacity-50 hover:text-body"}`}
             onClick={() => setTab("knowledge-assets")}

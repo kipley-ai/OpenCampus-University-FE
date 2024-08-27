@@ -44,7 +44,7 @@ export function Cover() {
             className="rounded-lg"
             width={100}
             height={100}
-            onError={(e) => {
+            onError={(e: any) => {
               e.target.onerror = null;
               e.target.src = "/images/no-cover.svg";
             }}

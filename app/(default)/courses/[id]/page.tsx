@@ -16,9 +16,7 @@ const AccordionItem = ({ section, ...rest }: any) => (
     header={({ state: { isEnter } }) => (
       <>
         <div className="flex flex-col items-start gap-2">
-          <h2
-            className={`font-medium ${isEnter ? "text-primary" : "text-heading"}`}
-          >
+          <h2 className={`font-medium ${isEnter ? "" : "text-heading"}`}>
             {section.title}
           </h2>
           <p className="text-body">
@@ -28,7 +26,7 @@ const AccordionItem = ({ section, ...rest }: any) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className={`ml-auto transition-transform duration-200 ease-out ${
-            isEnter ? "rotate-180 stroke-primary" : "stroke-gray-500"
+            isEnter ? "rotate-180" : ""
           }`}
           width="24"
           height="24"
@@ -48,7 +46,7 @@ const AccordionItem = ({ section, ...rest }: any) => (
     buttonProps={{
       className: ({ isEnter }) =>
         `flex w-full p-4 text-left bg-container hover:bg-secondary border border-border ${
-          isEnter && "brightness-50 dark:brightness-150"
+          isEnter && ""
         }`,
     }}
     contentProps={{
@@ -603,7 +601,10 @@ export default function CourseDetailPage() {
                   <AccordionItem key={i} section={sections[i]}>
                     <div className="flex flex-col gap-4 ">
                       {section.resources.map((resource, j) => (
-                        <Link key={j} href={`/${resource.type}/${resource.id}`}>
+                        <Link
+                          key={j}
+                          href={`/courses/${resource.type}/${resource.id}`}
+                        >
                           <div className="group flex items-center gap-4">
                             {getResourceSVG(resource.type)}
                             <p className="font-medium group-hover:text-primary">

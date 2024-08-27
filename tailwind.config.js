@@ -19,9 +19,9 @@ module.exports = {
       colors: {
         primary: {
           DEFAULT: "var(--color-primary)",
-          dark: "#1016BC",
+          dark: "var(--color-primary-dark)",
+          light: "var(--color-primary-light)",
         },
-        primary_50: "#9498ED",
         secondary: "var(--color-secondary)",
         heading: "var(--color-heading)",
         body: "var(--color-body)",

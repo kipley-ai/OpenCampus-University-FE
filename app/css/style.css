@@ -10,6 +10,8 @@
 @layer base {
   :root {
     --color-primary: #1227F2;
+    --color-primary-dark: #1016BC;
+    --color-primary-light: #ECECFF;
     --color-secondary: #BABFF8;
     --color-heading: #181B1F;
     --color-body: #525252;
@@ -21,6 +23,8 @@
 
   :root[class~="dark"] {
     --color-primary: #00EDBE;
+    --color-primary-dark: #00EDBE50;
+    --color-primary-light: #87E6D4;
     --color-secondary: #141BEA;
     --color-heading: #EEEEEE;
     --color-body: #BBBBBB;

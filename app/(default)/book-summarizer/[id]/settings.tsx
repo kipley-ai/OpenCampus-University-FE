@@ -90,7 +90,7 @@ export function Settings() {
     <>
       <ModalGenerating isOpen={isGenerating} setIsOpen={setIsGenerating} />
       <h1 className="text-lg font-semibold">Book Summarizer | {app.name}</h1>
-      <div className="mt-4 flex flex-col rounded-lg rounded-xl border-2 border-border bg-box px-10 py-8">
+      <div className="mt-4 flex flex-col rounded-lg rounded-xl border-2 border-border bg-box px-3 py-8 md:px-10">
         <h2 className="mb-8 text-lg font-semibold text-primary">
           Choose what you want to summarize
         </h2>
@@ -103,8 +103,8 @@ export function Settings() {
             Summarize
           </button>
         </div>
-        <div className="mb-12 flex items-end justify-between py-4">
-          <div className="flex w-3/5 flex-col items-start gap-2">
+        <div className="mb-12 flex xs:items-end justify-between py-4 max-xs:flex-col">
+          <div className="flex w-full xs:w-3/5 flex-col items-start gap-2">
             <h3 className="font-medium">Summarize your preferred topics</h3>
             <textarea
               placeholder="Enter your topic here"
@@ -114,7 +114,7 @@ export function Settings() {
             />
           </div>
           <button
-            className="btn-primary px-4 py-2"
+            className="max-xs:self-end max-xs:mt-4 btn-primary px-4 py-2"
             onClick={() => summarizeTopic()}
             disabled={!topic}
           >

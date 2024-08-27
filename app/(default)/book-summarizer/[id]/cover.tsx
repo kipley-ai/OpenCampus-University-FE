@@ -36,7 +36,7 @@ export function Cover() {
       <span className="text-lg font-semibold">
         Book Summarizer | {chatbotDetail.data?.data?.data?.name}
       </span>
-      <div className="mt-4 flex flex-col items-center rounded-lg rounded-xl border-2 border-border bg-box px-10 py-16">
+      <div className="mt-4 flex flex-col items-center rounded-lg rounded-xl border-2 border-border bg-box px-3 py-16 md:px-10">
         <div className="flex flex-col items-center gap-2">
           <Image
             src={chatbotDetail.data?.data?.data?.profile_image}
@@ -44,6 +44,10 @@ export function Cover() {
             className="rounded-lg"
             width={100}
             height={100}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "/images/no-cover.svg";
+            }}
           />
           <h1 className="text-lg font-semibold text-primary">
             {chatbotDetail.data?.data?.data?.name}

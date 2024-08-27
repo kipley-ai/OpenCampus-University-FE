@@ -122,7 +122,7 @@ export function History() {
         onClose={() => setIsOpen(false)}
         history={data.data.history}
       />
-      <div className="mt-12 grid w-full grid-cols-4 grid-rows-1 gap-4">
+      <div className="mt-12 grid w-full grid-cols-1 gap-4 xs:grid-cols-2 xl:grid-cols-4 xl:grid-rows-1">
         {data.data.history.slice(0, 3).map((history: any, index: number) => (
           <div
             key={index}

@@ -98,7 +98,7 @@ const Courses = () => {
   )
 }
 
-export const Educator = () => {
+export default function Educator2() {
   const [tab, setTab] = useState<string>("courses");
   return (
     <div className="mb-10 mt-3 max-w-[1100px] rounded-2xl border-2 border-border bg-sidebar p-3 md:p-10 xl:mt-4 space-y-9">
@@ -137,7 +137,5 @@ export const Educator = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
-
-export default Educator;

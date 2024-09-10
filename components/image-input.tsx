@@ -99,8 +99,8 @@ const ImageInput = ({
                 <Image
                   src={selectedFile}
                   alt="Edit Preview"
-                  width={125}
-                  height={125}
+                  width={100}
+                  height={100}
                   className="rounded-lg object-cover"
                   priority
                 />
@@ -120,15 +120,15 @@ const ImageInput = ({
       </div>
       <div className="flex flex-col gap-2 pt-6 md:pt-0">
         <div className="flex gap-2">
-          <Button
+          <button
             onClick={handleDeviceCover}
-            className="rounded-lg bg-primary text-white"
+            className="btn-primary"
           >
             Upload Image
-          </Button>
-          <Button onClick={handleGalleryCover} className="bg-sidebar text-primary rounded-lg border border-primary border-2 hover:bg-sidebar">
+          </button>
+          <button onClick={handleGalleryCover} className="btn-secondary">
             Choose From Gallery
-          </Button>
+          </button>
         </div>
         <p className="w-3/5 text-xs text-gray-400 my-0.5 leading-4">
           Please upload JPG, GIF or PNG only. Maximum size of 800KB, minimum
@@ -138,13 +138,13 @@ const ImageInput = ({
           <button
             type="button"
             onClick={handleRandomCover}
-            className="text-xs text-primary underline"
+            className="text-xs text-primary underline hover:text-primary-dark"
           >
             Random
           </button>
           <button
             onClick={handleRemoveCover}
-            className="text-xs text-red-700 underline"
+            className="text-xs text-red-700 underline hover:text-red-900"
             type="button"
           >
             Remove image

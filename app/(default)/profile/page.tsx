@@ -170,6 +170,28 @@ export default function TaskCenter() {
           </select>
         </div>
       </form>
+      <div className="my-8 mt-8 flex items-center justify-between border-t-2 pt-4">
+        <div />
+        <button
+          className="flex items-center justify-center gap-2 text-sm font-medium text-primary hover:underline"
+          onClick={() => {}}
+          type="button"
+        >
+          <span className="uppercase">Save</span>
+          <svg
+            width="8"
+            height="13"
+            viewBox="0 0 8 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2 0.889648L0.589996 2.29965L5.17 6.88965L0.589996 11.4796L2 12.8896L8 6.88965L2 0.889648Z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 }

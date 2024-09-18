@@ -30,6 +30,10 @@ export default function RedirectPage() {
       user_id: user.user_id,
       edu_username: user.edu_username,
     };
+    if ("eth_address" in user) {
+      user["address"] = user["eth_address"];
+      delete user["eth_address"];
+    }
 
     createUser.mutate(userForBackend, {
       onSuccess: async () => {
@@ -91,22 +95,22 @@ export default function RedirectPage() {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <circle cx="56" cy="56" r="52" fill="white" />
+          <circle cx="56" cy="56" r="52" fill="" />
           <circle
             cx="56"
             cy="56"
             r="54"
-            stroke="#141BEB"
-            stroke-opacity="0.14"
-            stroke-width="4"
+            stroke="var(--color-primary)"
+            strokeOpacity="0.14"
+            strokeWidth="4"
           />
           <path
             d="M104.035 29.2109C97.8339 18.0923 87.974 9.47905 76.1486 4.82349C75.5993 4.60725 74.9836 4.89016 74.7781 5.4435V5.4435C74.5725 5.99684 74.855 6.61103 75.4041 6.82769C86.7528 11.3058 96.2148 19.5777 102.168 30.252C108.121 40.9264 110.186 53.3235 108.032 65.3321C107.928 65.9131 108.302 66.4763 108.881 66.5922V66.5922C109.46 66.7081 110.024 66.3329 110.129 65.752C112.382 53.2445 110.236 40.3295 104.035 29.2109Z"
-            stroke="#141BEB"
-            stroke-width="2"
+            stroke="var(--color-primary)"
+            strokeWidth="2"
             className="spin-logo"
           />
-          <g clip-path="url(#clip0_1324_40833)">
+          <g clipPath="url(#clip0_1324_40833)">
             <path
               d="M55.5703 26.0023C49.6145 26.0751 43.8136 27.8741 38.8975 31.1728C33.9814 34.4715 30.1697 39.1228 27.9418 44.5413C25.714 49.9598 25.1695 55.9035 26.377 61.6248C27.5844 67.3461 30.4897 72.5894 34.7276 76.6949C38.9654 80.8005 44.3465 83.5851 50.1936 84.6982C56.0408 85.8113 62.0931 85.2032 67.5889 82.9506C73.0847 80.698 77.7785 76.9014 81.0799 72.0384C84.3814 67.1754 86.143 61.4633 86.143 55.6207C86.0925 47.7163 82.8431 40.1553 77.1097 34.6009C71.3763 29.0465 63.6285 25.9535 55.5703 26.0023Z"
               fill="#00EDBE"
@@ -135,7 +139,7 @@ export default function RedirectPage() {
             </clipPath>
           </defs>
         </svg>
-        <h1 className="text-center font-bold text-body">
+        <h1 className="text-center font-bold text-body dark:text-heading">
           Finishing up and preparing your dashboard...
         </h1>
       </div>

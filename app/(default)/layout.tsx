@@ -1,4 +1,5 @@
 "use client";
+
 import Sidebar from "@/components/ui/sidebar";
 import Header from "@/components/ui/header";
 import ModalTopUpSuccessful from "@/components/modal-top-up-successful";
@@ -10,15 +11,13 @@ import { useCheckToken } from "@/hooks/api/auth";
 import { useAppProvider } from "@/providers/app-provider";
 import { SUBDOMAINS, CREATOR_PATHS, CREATOR_ROLES } from "@/utils/constants";
 
-export default function DefaultLayout({
-  children,
-}: {
+interface DefaultLayoutProps {
   children: React.ReactNode;
-}) {
+}
+
+export default function DefaultLayout({ children }: DefaultLayoutProps) {
   const pathname = usePathname();
-  const { session, setModalUnauthenticated } = useAppProvider();
-  const { data: userDetail, isFetching, isPending, refetch } = useUserDetail();
-  const [hasRefetched, setHasRefetched] = useState(false);
+  const { data: userDetail, isPending } = useUserDetail();
 
   const subdomain = window.location.origin.split("//")[1].split(".")[0];
   if (SUBDOMAINS.includes(subdomain) && pathname !== "/") {
@@ -26,25 +25,14 @@ export default function DefaultLayout({
   }
 
   const {
+    session,
+    setModalUnauthenticated,
     modalTopUpSuccessful,
     setModalTopUpSuccessful,
     modalTopUpFailed,
     setModalTopUpFailed,
     topUpAmount,
   } = useAppProvider();
-
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      if (session?.address && !hasRefetched) {
-        if (userDetail?.data?.msg === "user not found") {
-          await refetch();
-          setHasRefetched(true);
-        }
-      }
-    };
-
-    fetchUserDetails();
-  }, [session?.address, userDetail?.data?.msg, hasRefetched, refetch]);
 
   useEffect(() => {
     if (pathname !== "/dashboard" && !localStorage.getItem("id_token")) {

@@ -10,6 +10,7 @@ import {
   useSwitchToSepolia,
   useSwitchToBase,
   useSwitchToArbitrumSepolia,
+  useSwitchToEduNetwork,
 } from "@/hooks/useSwitchNetwork";
 import NoCover from "public/images/no-cover.svg";
 import { useConnectModal, useAccountModal } from "@rainbow-me/rainbowkit";
@@ -31,15 +32,21 @@ export default function ModalMintConfirmation({
   const isDevelopment = process.env.NEXT_PUBLIC_ENV_DEV === "1";
   const { isSepolia, switchToSepolia } = useSwitchToSepolia();
   const { isBase, switchToBase } = useSwitchToBase();
-  const { isArbitrumSepolia, switchToArbitrumSepolia } =
-    useSwitchToArbitrumSepolia();
+
+
+  // const { isArbitrumSepolia, switchToArbitrumSepolia } = useSwitchToArbitrumSepolia();
+  const { isEduNetwork, switchToEduNetwork } = useSwitchToEduNetwork();
 
   // Determine which network is currently active and which switch function to use
-  const isTargetNetworkActive = isDevelopment ? isArbitrumSepolia : isBase;
-  const switchToTargetNetwork = isDevelopment
-    ? switchToArbitrumSepolia
-    : switchToBase;
-  const targetNetworkName = isDevelopment ? "Arbitrum Sepolia" : "Base";
+  // const isTargetNetworkActive = isDevelopment ? isArbitrumSepolia : isBase;
+  // const switchToTargetNetwork = isDevelopment
+  //   ? switchToArbitrumSepolia
+  //   : switchToBase;
+  // const targetNetworkName = isDevelopment ? "Arbitrum Sepolia" : "Base";
+
+  const isTargetNetworkActive = isEduNetwork;
+  const switchToTargetNetwork = switchToEduNetwork;
+  const targetNetworkName = "EDU Network"
 
   const { connect } = useConnect({
     connector: new InjectedConnector(),

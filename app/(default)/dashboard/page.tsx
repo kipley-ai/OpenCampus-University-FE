@@ -184,9 +184,9 @@ export default function Dashboard() {
                 <path
                   d="M20.625 14.498H8.375M8.375 14.498L14.5 20.623M8.375 14.498L14.5 8.37305"
                   stroke={featuredBotsPage === 1 ? "#B0B0B0" : "#141BEB"}
-                  stroke-width="1.75"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </button>
@@ -217,9 +217,9 @@ export default function Dashboard() {
                       ? "#B0B0B0"
                       : "#141BEB"
                   }
-                  stroke-width="1.75"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </button>
@@ -343,9 +343,9 @@ export default function Dashboard() {
                   <path
                     d="M20.625 14.498H8.375M8.375 14.498L14.5 20.623M8.375 14.498L14.5 8.37305"
                     stroke={firesideBotsPage === 1 ? "#B0B0B0" : "#141BEB"}
-                    stroke-width="1.75"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.75"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
               </button>
@@ -376,9 +376,9 @@ export default function Dashboard() {
                         ? "#B0B0B0"
                         : "#141BEB"
                     }
-                    stroke-width="1.75"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.75"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
               </button>
@@ -410,13 +410,13 @@ export default function Dashboard() {
             onChange={(e) =>
               handleChangeCategoryTab(JSON.parse(e.target.value))
             }
+            defaultValue={JSON.stringify({ title: "all", category_id: "" })}
             className="block w-full rounded-lg border border-border bg-transparent px-4 py-2 text-sm text-heading placeholder-gray-500 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-gray-500 xs:w-1/2 md:w-2/5 xl:w-[35%]"
           >
             <option
               value={JSON.stringify({ title: "all", category_id: "" })}
               hidden
               disabled
-              selected
             >
               Select Category
             </option>
@@ -455,9 +455,9 @@ export default function Dashboard() {
               <path
                 d="M20.625 14.498H8.375M8.375 14.498L14.5 20.623M8.375 14.498L14.5 8.37305"
                 stroke={popularCreatorsPage === 1 ? "#B0B0B0" : "#141BEB"}
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </button>
@@ -488,9 +488,9 @@ export default function Dashboard() {
                     ? "#B0B0B0"
                     : "#141BEB"
                 }
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </button>

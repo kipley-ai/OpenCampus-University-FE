@@ -8,6 +8,7 @@ import { useDisconnect, useAccount } from "wagmi";
 import Link from "next/link";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useAppProvider } from "@/providers/app-provider";
+import { useOCAuth } from "@opencampus/ocid-connect-js";
 
 type StatusType = "online" | "busy" | "away" | "offline";
 
@@ -24,6 +25,7 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { disconnect } = useDisconnect();
   const { session } = useAppProvider();
+  const { authState, ocAuth } = useOCAuth();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -33,6 +35,7 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
     e.preventDefault();
     localStorage.setItem("kip-protocol-signature", "");
     localStorage.setItem("id_token", "");
+    localStorage.setItem("oc-token-storage", "");
   
     try {
       const response = await fetch("/api/auth/logout", {
@@ -87,7 +90,7 @@ const AvatarWithStatus: React.FC<AvatarWithStatusProps> = ({
           />
         )}
         <span className="flex items-center gap-0 text-[9px] font-medium group-hover:underline xs:gap-1 xs:text-xs sm:gap-2 sm:text-[0.8rem]">
-          {session?.edu_username}
+          {ocAuth.getAuthInfo().edu_username}
           <IoMdArrowDropdown />
         </span>
       </div>

@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import Theme from "../providers/theme-provider";
 import AppProvider from "../providers/app-provider";
 import NextAuthProvider from "../providers/session-provider";
+import OCConnectWrapper from "../providers/oc-connect-wrapper";
 
 import "@rainbow-me/rainbowkit/styles.css";
 import { RQProviders } from "@/providers/react-query-provider";
@@ -71,6 +72,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const opts = {
+    redirectUri: "http://127.0.0.1:3000/redirect",
+    referralCode: "",
+  };
+
   return (
     <html lang="en">
       <body
@@ -80,7 +86,11 @@ export default function RootLayout({
           <Theme>
             <AppProvider>
               <NextAuthProvider>
-                <CryptoProvider>{children}</CryptoProvider>
+                <CryptoProvider>
+                  <OCConnectWrapper opts={opts} sandboxMode={true}>
+                    {children}
+                  </OCConnectWrapper>
+                </CryptoProvider>
               </NextAuthProvider>
             </AppProvider>
           </Theme>

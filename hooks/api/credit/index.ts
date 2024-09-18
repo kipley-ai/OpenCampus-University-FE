@@ -25,7 +25,7 @@ export const useCreditBalance = () => {
   const { address } = session;
 
   return useQuery({
-    queryKey: [],
+    queryKey: ["credit-balance"],
     queryFn: () =>
       axios.post(
         "/api/credit/balance",
@@ -34,7 +34,7 @@ export const useCreditBalance = () => {
           headers: {
             "x-kf-user-id": address,
           },
-        }
+        },
       ),
   });
 };

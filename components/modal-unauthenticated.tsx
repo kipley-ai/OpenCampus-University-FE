@@ -2,9 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import ModalBlank from "@/components/modal-blank-3";
 import Button from "@/components/button";
-import { handleLogin } from "@/utils/auth";
+import { useLogin } from "@/utils/auth";
 
 export function ModalUnauthenticated() {
+  const handleLogin = useLogin();
+
   return (
     <ModalBlank isOpen={true} setIsOpen={() => {}}>
       <div className="w-lg flex flex-col items-center justify-center gap-4 rounded-2xl px-20 py-8 font-semibold">

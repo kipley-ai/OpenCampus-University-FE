@@ -16,7 +16,7 @@ import { useTheme } from "next-themes";
 import { FaArrowRight } from "react-icons/fa6";
 import { useAccount } from "wagmi";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
-import { handleLogin } from "@/utils/auth";
+import { useLogin } from "@/utils/auth";
 
 export default function CreditBalance() {
   const [topUpStatus, setTopUpStatus] = useState<string>("");
@@ -63,6 +63,8 @@ export default function CreditBalance() {
       }
     }
   }, [data, topUpStatus]);
+
+  const handleLogin = useLogin();
 
   const handleTopUp = () => {
     if (session?.address) {

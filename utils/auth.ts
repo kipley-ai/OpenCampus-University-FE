@@ -1,27 +1,15 @@
-export const handleLogin = async () => {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_TERMINAL3_URL}/authorize?` +
-        new URLSearchParams({
-          response_type: "code",
-          scope: "openid",
-          client_id: "3kG6UNvSppAH5uKpA3pLg6tqdLVMSK1B",
-          redirect_uri: `${process.env.NEXT_PUBLIC_APP_URL}/login`,
-          state: "/",
-          new_session: "true",
-        }),
-      {
-        method: "GET",
-        redirect: "follow",
-      },
-    );
+import { useOCAuth } from "@opencampus/ocid-connect-js";
 
-    if (response.redirected) {
-      window.location.href = response.url;
-    } else {
-      console.log("Unexpected response:", response);
+export const useLogin = () => {
+  const { ocAuth } = useOCAuth();
+
+  const handleLogin = async () => {
+    try {
+      await ocAuth.signInWithRedirect({ state: "opencampus" });
+    } catch (error) {
+      console.error("Login error:", error);
     }
-  } catch (error) {
-    console.error("Error:", error);
-  }
+  };
+
+  return handleLogin;
 };

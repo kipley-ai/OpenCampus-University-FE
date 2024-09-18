@@ -158,7 +158,7 @@ export const useUserDetail = () => {
           },
         },
       ),
-    staleTime: 300000,
+    enabled: !!address,
   });
 };
 

@@ -20,7 +20,8 @@ import DarkThemeIcon from "../icon/dark-theme.svg";
 import LightThemeIcon from "../icon/light-theme.svg";
 import ThemeSwitcher from "../theme-switcher";
 import { CREATOR_ROLES } from "@/utils/constants";
-import { handleLogin } from "@/utils/auth";
+import { useOCAuth } from "@opencampus/ocid-connect-js";
+import LoginButton from "@/components/buttons/login-button";
 
 export default function Header() {
   const { sidebarOpen, setSidebarOpen } = useAppProvider();
@@ -35,6 +36,8 @@ export default function Header() {
   const { data: userData, refetch: refetchUserDetail } = useUserDetail();
 
   const { theme, setTheme } = useTheme();
+
+  const { authState, ocAuth } = useOCAuth();
 
   useEffect(() => {
     let sub = true;
@@ -129,16 +132,22 @@ export default function Header() {
             {/* <ThemeSwitcher /> */}
             {/* Profile Picture */}
 
-            {localStorage.getItem("id_token") ? (
+            {/* {localStorage.getItem("id_token") ? (
               <AvatarWithStatus image={profileImage} status="away" />
             ) : (
-              // <GetInvolvedButton
-              //   buttonStyle="button bg-container rounded-md py-1 px-2 sm:px-3.5 border-2 text-[9px] xs:text-xs sm:text-[0.8rem]"
-              //   content={<span>Login</span>}
-              // />
               <button className="btn-secondary" onClick={handleLogin}>
                 Login
               </button>
+            )} */}
+
+            {authState.isLoading ? (
+              <div>Loading...</div>
+            ) : authState.error ? (
+              <div>Error: {authState.error.message}</div>
+            ) : authState.isAuthenticated ? (
+              <AvatarWithStatus image={profileImage} status="away" />
+            ) : (
+              <LoginButton />
             )}
           </div>
         </div>

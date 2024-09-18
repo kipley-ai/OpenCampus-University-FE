@@ -12,6 +12,7 @@ import {
   useSwitchToSepolia,
   useSwitchToBase,
   useSwitchToArbitrumSepolia,
+  useSwitchToEduNetwork,
 } from "@/hooks/useSwitchNetwork";
 import { useAddRecharge } from "@/hooks/api/user";
 import { IconContext } from "react-icons";
@@ -50,16 +51,21 @@ export default function ModalTopUp({
   // Determine the environment and accordingly use the switch network hook
   const isDevelopment = process.env.NEXT_PUBLIC_ENV_DEV === "1";
   // const { isSepolia, switchToSepolia } = useSwitchToSepolia();
-  const { isBase, switchToBase } = useSwitchToBase();
-  const { isArbitrumSepolia, switchToArbitrumSepolia } =
-    useSwitchToArbitrumSepolia();
+  // const { isBase, switchToBase } = useSwitchToBase();
+  // const { isArbitrumSepolia, switchToArbitrumSepolia } =
+  useSwitchToArbitrumSepolia();
+  const { isEduNetwork, switchToEduNetwork } = useSwitchToEduNetwork();
 
   // Determine which network is currently active and which switch function to use
-  const isTargetNetworkActive = isDevelopment ? isArbitrumSepolia : isBase;
-  const switchToTargetNetwork = isDevelopment
-    ? switchToArbitrumSepolia
-    : switchToBase;
-  const targetNetworkName = isDevelopment ? "Arbitrum Sepolia" : "Base";
+  // const isTargetNetworkActive = isDevelopment ? isArbitrumSepolia : isBase;
+  // const switchToTargetNetwork = isDevelopment
+  //   ? switchToArbitrumSepolia
+  //   : switchToBase;
+  // const targetNetworkName = isDevelopment ? "Arbitrum Sepolia" : "Base";
+
+  const isTargetNetworkActive = isEduNetwork;
+  const switchToTargetNetwork = switchToEduNetwork;
+  const targetNetworkName = "EDU Network";
 
   const addRecharge = useAddRecharge();
   const { disconnect } = useDisconnect();

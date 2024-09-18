@@ -73,7 +73,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const opts = {
-    redirectUri: "http://127.0.0.1:3000/redirect",
+    redirectUri: `${process.env.NEXT_PUBLIC_APP_URL}/redirect`,
     referralCode: "",
   };
 

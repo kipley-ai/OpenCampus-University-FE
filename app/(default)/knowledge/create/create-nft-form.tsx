@@ -1,6 +1,5 @@
 "use client";
 import { useAppProvider } from "@/providers/app-provider";
-import { createAsset } from "@/smart-contract/assets";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useCreateChatbotContext } from "./create-knowledge-context";
@@ -19,6 +18,7 @@ import { ZodError, z } from "zod";
 import { noMoreThanCharacters } from "@/utils/utils";
 import { TwitterScrapingStatus } from "@/components/twitter-scraping-status";
 import ScrapeFailModal from "@/components/scrape-fail-modal";
+import { createAsset } from "@/smart-contract/edu-asset";
 
 interface Category {
   title: string;
@@ -155,11 +155,12 @@ export default function NFT() {
         },
         {
           async onSuccess(data, variables, context) {
-            const { kb_id, nft_id, asset_id } = data.data;
+            const { kb_id, nft_id, asset_id, retrieve_uri } = data.data;
+            const { price_per_query } = variables;
             setNftIdCreated(nft_id);
             setKbIdCreated(kb_id);
             try {
-              await createAsset(nft_id, session.address);
+              await createAsset(price_per_query, retrieve_uri);
               mintNFTAPI.mutate(
                 { kb_id: kb_id },
                 {
@@ -363,7 +364,7 @@ export default function NFT() {
                     placeholder={
                       form.name
                         ? "e.g. " +
-                          form.name?.replace(" ", "").slice(0, 4).toUpperCase()
+                        form.name?.replace(" ", "").slice(0, 4).toUpperCase()
                         : "Name NFT Token Symbol"
                     }
                     // placeholder={"Enter NFT Token Symbol"}

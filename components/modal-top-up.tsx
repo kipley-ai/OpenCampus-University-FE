@@ -2,7 +2,6 @@
 
 import ModalBlank from "@/components/modal-blank-3";
 import { balanceOf, allowance, approve } from "@/smart-contract/edu-coin";
-import { topup } from "@/smart-contract/payment";
 import { KIP_TOKEN_DECIMAL } from "@/utils/constants";
 import { useState, useEffect } from "react";
 import { useAppProvider } from "@/providers/app-provider";
@@ -13,13 +12,16 @@ import {
   useSwitchToSepolia,
   useSwitchToBase,
   useSwitchToArbitrumSepolia,
+  useSwitchToEduNetwork,
 } from "@/hooks/useSwitchNetwork";
 import { useAddRecharge } from "@/hooks/api/user";
 import { IconContext } from "react-icons";
 import { FaPlus } from "react-icons/fa6";
 import { delay } from "@/utils/utils";
+
 import { useAccount, useDisconnect } from "wagmi";
 import { useConnectModal, useAccountModal } from "@rainbow-me/rainbowkit";
+import { topup } from "@/smart-contract/edu-contract";
 
 interface Form {
   amount?: number;
@@ -49,16 +51,21 @@ export default function ModalTopUp({
   // Determine the environment and accordingly use the switch network hook
   const isDevelopment = process.env.NEXT_PUBLIC_ENV_DEV === "1";
   // const { isSepolia, switchToSepolia } = useSwitchToSepolia();
-  const { isBase, switchToBase } = useSwitchToBase();
-  const { isArbitrumSepolia, switchToArbitrumSepolia } =
-    useSwitchToArbitrumSepolia();
+  // const { isBase, switchToBase } = useSwitchToBase();
+  // const { isArbitrumSepolia, switchToArbitrumSepolia } =
+  useSwitchToArbitrumSepolia();
+  const { isEduNetwork, switchToEduNetwork } = useSwitchToEduNetwork();
 
   // Determine which network is currently active and which switch function to use
-  const isTargetNetworkActive = isDevelopment ? isArbitrumSepolia : isBase;
-  const switchToTargetNetwork = isDevelopment
-    ? switchToArbitrumSepolia
-    : switchToBase;
-  const targetNetworkName = isDevelopment ? "Arbitrum Sepolia" : "Base";
+  // const isTargetNetworkActive = isDevelopment ? isArbitrumSepolia : isBase;
+  // const switchToTargetNetwork = isDevelopment
+  //   ? switchToArbitrumSepolia
+  //   : switchToBase;
+  // const targetNetworkName = isDevelopment ? "Arbitrum Sepolia" : "Base";
+
+  const isTargetNetworkActive = isEduNetwork;
+  const switchToTargetNetwork = switchToEduNetwork;
+  const targetNetworkName = "EDU Network";
 
   const addRecharge = useAddRecharge();
   const { disconnect } = useDisconnect();
@@ -130,8 +137,7 @@ export default function ModalTopUp({
       });
 
       const topUpTransaction = await topup(
-        form.amount! / 1000,
-        session.address,
+        form.amount! / 1000
       );
       setTopUpAmount(form.amount!);
 
@@ -282,9 +288,8 @@ export default function ModalTopUp({
         <div className="inline-flex items-center justify-between self-stretch">
           <div className="grid w-full grid-cols-3 gap-3">
             <button
-              className={`flex h-12 flex-col items-center justify-center rounded-lg border-2 font-medium text-heading ${
-                form?.amount == 50 ? "border-primary" : "border-border"
-              }`}
+              className={`flex h-12 flex-col items-center justify-center rounded-lg border-2 font-medium text-heading ${form?.amount == 50 ? "border-primary" : "border-border"
+                }`}
               onClick={() => {
                 handleFormChange("amount", 50);
               }}
@@ -292,9 +297,8 @@ export default function ModalTopUp({
               <span className="text-sm leading-6">50</span>
             </button>
             <button
-              className={`flex h-12 flex-col items-center justify-center rounded-lg border-2 font-medium text-heading ${
-                form?.amount == 100 ? "border-primary" : "border-border"
-              }`}
+              className={`flex h-12 flex-col items-center justify-center rounded-lg border-2 font-medium text-heading ${form?.amount == 100 ? "border-primary" : "border-border"
+                }`}
               onClick={() => {
                 handleFormChange("amount", 100);
               }}
@@ -302,9 +306,8 @@ export default function ModalTopUp({
               <span className="text-sm leading-6">100</span>
             </button>
             <button
-              className={`flex h-12 flex-col items-center justify-center rounded-lg border-2 font-medium text-heading ${
-                form?.amount == 300 ? "border-primary" : "border-border"
-              }`}
+              className={`flex h-12 flex-col items-center justify-center rounded-lg border-2 font-medium text-heading ${form?.amount == 300 ? "border-primary" : "border-border"
+                }`}
               onClick={() => {
                 handleFormChange("amount", 300);
               }}
@@ -312,9 +315,8 @@ export default function ModalTopUp({
               <span className="text-sm leading-6">300</span>
             </button>
             <button
-              className={`flex h-12 flex-col items-center justify-center rounded-lg border-2 font-medium text-heading ${
-                form?.amount == 500 ? "border-primary" : "border-border"
-              }`}
+              className={`flex h-12 flex-col items-center justify-center rounded-lg border-2 font-medium text-heading ${form?.amount == 500 ? "border-primary" : "border-border"
+                }`}
               onClick={() => {
                 handleFormChange("amount", 500);
               }}
@@ -322,9 +324,8 @@ export default function ModalTopUp({
               <span className="text-sm leading-6">500</span>
             </button>
             <button
-              className={`flex h-12 flex-col items-center justify-center rounded-lg border-2 font-medium text-heading ${
-                form?.amount == 750 ? "border-primary" : "border-border"
-              }`}
+              className={`flex h-12 flex-col items-center justify-center rounded-lg border-2 font-medium text-heading ${form?.amount == 750 ? "border-primary" : "border-border"
+                }`}
               onClick={() => {
                 handleFormChange("amount", 750);
               }}
@@ -332,9 +333,8 @@ export default function ModalTopUp({
               <span className="text-sm leading-6">750</span>
             </button>
             <button
-              className={`flex h-12 flex-col items-center justify-center rounded-lg border-2 font-medium text-heading ${
-                form?.amount == 1000 ? "border-primary" : "border-border"
-              }`}
+              className={`flex h-12 flex-col items-center justify-center rounded-lg border-2 font-medium text-heading ${form?.amount == 1000 ? "border-primary" : "border-border"
+                }`}
               onClick={() => {
                 handleFormChange("amount", 1000);
               }}

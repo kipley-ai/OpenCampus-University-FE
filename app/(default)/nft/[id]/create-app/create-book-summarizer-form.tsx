@@ -14,6 +14,7 @@ import Image from "next/image";
 import { FormInput, FormTextarea } from "@/components/form-input";
 import { ModalCreateAppSuccess } from "./modal-create-app-success";
 import { useCreateAppContext } from "./create-app-context";
+import { createAsset } from "@/smart-contract/edu-asset";
 
 interface Category {
   title: string;
@@ -111,7 +112,9 @@ export const CreateBookSummarizerForm = () => {
         plugin_id: plugin?.plugin_id,
       },
       {
-        async onSuccess() {
+        async onSuccess(data, variables, context) {
+          const { retrieve_uri } = data.data;
+          await createAsset(variables.price_per_query, retrieve_uri);
           setShowModal(true);
         },
       },
@@ -180,9 +183,8 @@ export const CreateBookSummarizerForm = () => {
                   <select
                     id="category"
                     value={form.category_id}
-                    className={`my-1 w-full rounded-lg border-2 border-border bg-transparent text-xs lg:text-sm ${
-                      form.category_id ? "" : "text-[#6B7280]"
-                    }`}
+                    className={`my-1 w-full rounded-lg border-2 border-border bg-transparent text-xs lg:text-sm ${form.category_id ? "" : "text-[#6B7280]"
+                      }`}
                     onChange={(e) =>
                       handleFormChange("category_id", e.target.value)
                     }

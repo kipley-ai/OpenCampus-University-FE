@@ -144,7 +144,7 @@ export default function QuizCover() {
         chatbotDetail.data?.data?.data.meta_data || "{}",
       );
       const suggestedTopics = metadata?.preset_topic;
-      if (suggestedTopics.length > 0) {
+      if (suggestedTopics && suggestedTopics.length > 0) {
         setPresetTopics(suggestedTopics);
       } else {
         setIsSuggestionOn(true);
@@ -219,36 +219,11 @@ export default function QuizCover() {
             <ul className="space-y-2">
               {isSuggestionOn
                 ? suggestedTopicsQuery?.data?.data?.suggested_topics &&
-                  suggestedTopicsQuery?.data?.data?.suggested_topics.map(
-                    (topic: string) => (
-                      <li
-                        key={topic}
-                        className="flex cursor-pointer items-center justify-between rounded border border-border p-4 font-medium text-body hover:bg-secondary"
-                        onClick={() => handleChooseSuggestedTopic(topic)}
-                      >
-                        {topic}
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M9 18L15 12L9 6"
-                            stroke="var(--color-primary)"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </li>
-                    ),
-                  )
-                : presetTopics.map((topic: string) => (
+                suggestedTopicsQuery?.data?.data?.suggested_topics.map(
+                  (topic: string) => (
                     <li
                       key={topic}
-                      className="flex cursor-pointer items-center justify-between rounded border p-4 font-medium text-body hover:bg-secondary"
+                      className="flex cursor-pointer items-center justify-between rounded border border-border p-4 font-medium text-body hover:bg-secondary"
                       onClick={() => handleChooseSuggestedTopic(topic)}
                     >
                       {topic}
@@ -261,14 +236,39 @@ export default function QuizCover() {
                       >
                         <path
                           d="M9 18L15 12L9 6"
-                          stroke="#141BEB"
+                          stroke="var(--color-primary)"
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
                         />
                       </svg>
                     </li>
-                  ))}
+                  ),
+                )
+                : presetTopics.map((topic: string) => (
+                  <li
+                    key={topic}
+                    className="flex cursor-pointer items-center justify-between rounded border p-4 font-medium text-body hover:bg-secondary"
+                    onClick={() => handleChooseSuggestedTopic(topic)}
+                  >
+                    {topic}
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9 18L15 12L9 6"
+                        stroke="#141BEB"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </li>
+                ))}
             </ul>
           </div>
         </div>

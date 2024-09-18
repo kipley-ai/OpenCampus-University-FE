@@ -22,9 +22,31 @@ import {
 } from "@rainbow-me/rainbowkit/wallets";
 import { useAxios } from "@/hooks/useAxios";
 import { useAppProvider } from "./app-provider";
+import { defineChain } from "viem";
+
+export const eduChain = defineChain({
+  id: 656476,
+  name: "Open Campus Codex Sepolia",
+  nativeCurrency: {
+    name: "EDU",
+    symbol: "EDU",
+    decimals: 18,
+  },
+  rpcUrls: {
+    default: { http: ["https://open-campus-codex-sepolia.drpc.org"] },
+    public: { http: ["https://open-campus-codex-sepolia.drpc.org"] },
+  },
+  network: "Open Campus Codex",
+  blockExplorers: {
+    default: {
+      name: "Open Campus Blockscout",
+      url: "https://opencampus-codex.blockscout.com",
+    },
+  },
+});
 
 const { chains, publicClient } = configureChains(
-  [base, arbitrumSepolia],
+  [base, arbitrumSepolia, eduChain],
   [publicProvider()],
 );
 
@@ -56,8 +78,7 @@ const wagmiConfig = createConfig({
   publicClient,
 });
 
-const initialChain =
-  process.env.NEXT_PUBLIC_ENV_DEV == "1" ? arbitrumSepolia : base;
+const initialChain = eduChain;
 
 export function CryptoProvider({ children }: React.PropsWithChildren) {
   const [address, setAddress] = useState("");

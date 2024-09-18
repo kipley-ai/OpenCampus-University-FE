@@ -21,14 +21,14 @@ export async function allowance() {
   const { contractWrite } = await getKipTokenContract();
   return await contractWrite.allowance(
     signer.address,
-    process.env.NEXT_PUBLIC_PAYMENT_CONTRACT_ADDRESS!,
+    process.env.NEXT_PUBLIC_EDU_PAYMENT_PROXY_ADDRESS!,
   );
 }
 
 export async function approve(value: BigInt) {
   const { contractWrite } = await getKipTokenContract();
   return await contractWrite.approve(
-    process.env.NEXT_PUBLIC_PAYMENT_CONTRACT_ADDRESS!,
+    process.env.NEXT_PUBLIC_EDU_PAYMENT_PROXY_ADDRESS!,
     value,
   );
 }

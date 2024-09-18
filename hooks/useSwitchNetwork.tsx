@@ -1,3 +1,4 @@
+import { eduChain } from "@/providers/crypto-provider";
 import { useNetwork, useSwitchNetwork } from "wagmi";
 import { base, sepolia, arbitrumSepolia, polygon, mainnet } from "wagmi/chains";
 
@@ -69,4 +70,18 @@ export function useSwitchToArbitrumSepolia() {
   };
 
   return { isArbitrumSepolia, switchToArbitrumSepolia };
+}
+
+export function useSwitchToEduNetwork() {
+  const { chain } = useNetwork();
+  const { switchNetwork } = useSwitchNetwork();
+
+  const isEduNetwork = chain?.id === eduChain.id;
+  const switchToEduNetwork = async () => {
+    if (!isEduNetwork && switchNetwork) {
+      await switchNetwork(eduChain.id);
+    }
+  };
+
+  return { isEduNetwork, switchToEduNetwork };
 }

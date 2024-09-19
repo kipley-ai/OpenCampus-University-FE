@@ -27,6 +27,7 @@ import { useTheme } from "next-themes";
 import { FormInput, FormTextarea } from "@/components/form-input";
 import { ModalSuccessBasic } from "@/components/modal-success-basic";
 import { useCreateAppContext } from "../create-app/create-app-context";
+import { createAsset } from "@/smart-contract/edu-asset";
 
 interface Category {
   title: string;
@@ -146,7 +147,9 @@ export const ChatBotForm = () => {
         plugin_id: plugin?.plugin_id,
       },
       {
-        async onSuccess() {
+        async onSuccess(data, variables, context) {
+          const { retrieve_uri, chatbot_id } = data.data;
+          await createAsset(variables.price_per_query, retrieve_uri, chatbot_id);
           setShowModal(true);
         },
       },

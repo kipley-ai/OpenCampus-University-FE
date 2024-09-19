@@ -113,8 +113,8 @@ export const CreateStudyCompanionForm = () => {
       },
       {
         async onSuccess(data, variables, context) {
-          const { retrieve_uri } = data.data;
-          await createAsset(variables.price_per_query, retrieve_uri);
+          const { retrieve_uri, chatbot_id } = data.data;
+          await createAsset(variables.price_per_query, retrieve_uri, chatbot_id);
           setShowModal(true);
         },
       },

@@ -22,6 +22,7 @@ import { useCreateQuizAPI, useGetPlugin } from "@/hooks/api/quiz_app";
 import ModalBasic from "@/components/modal-basic";
 import { useCreateAppContext } from "../create-app/create-app-context";
 import { PluginConfig, PluginMetaData } from "@/hooks/api/interfaces";
+import { createAsset } from "@/smart-contract/edu-asset";
 
 interface Form {
   name?: string;
@@ -110,7 +111,9 @@ export const QuizForm = () => {
         plugin_id: plugin?.plugin_id,
       },
       {
-        async onSuccess() {
+        async onSuccess(data, variables, context) {
+          const { retrieve_uri, chatbot_id } = data.data;
+          await createAsset(variables.price_per_query, retrieve_uri, chatbot_id);
           setShowModal(true);
         },
         async onError() {

@@ -13,13 +13,12 @@ export async function getContract() {
   return { contractWrite };
 }
 
-export async function createAsset(amount: number, retriveURI: string) {
+export async function createAsset(amount: number, retriveURI: string, reference_id: string) {
   const signer = await getSigner();
   const { contractWrite } = await getContract();
 
   const PRICE_TOKEN = process.env.NEXT_PUBLIC_EDU_COIN_CONTRACT_ADDRESS!; 
   const price = BigInt(amount * 1e18);
-  const reference_id = uuidv4();
   const referenceIdBytes = ethers.encodeBytes32String(reference_id.slice(0, 31),);
   const WL_needed = false
 

@@ -160,7 +160,7 @@ export default function NFT() {
             setNftIdCreated(nft_id);
             setKbIdCreated(kb_id);
             try {
-              await createAsset(price_per_query, retrieve_uri);
+              await createAsset(price_per_query, retrieve_uri, kb_id);
               mintNFTAPI.mutate(
                 { kb_id: kb_id },
                 {

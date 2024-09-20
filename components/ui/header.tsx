@@ -103,32 +103,33 @@ export default function Header() {
             {/* Create Chatbot Button */}
             {CREATOR_ROLES.includes(
               userData?.data?.data?.role?.toUpperCase(),
-            ) && (
-              <>
-                <Link href="/knowledge/create">
-                  <div className="group flex items-center gap-1 text-primary">
-                    <svg
-                      className="size-3 fill-primary xs:size-4 sm:size-5"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      width="24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="m17 13h-4v4h-2v-4h-4v-2h4v-4h2v4h4m-5-9a10 10 0 0 0 -10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10 10 10 0 0 0 -10-10z" />
-                    </svg>
-                    <p className="font-medium group-hover:underline max-xs:w-20">
-                      Create KnowledgeKey
+            ) &&
+              authState.isAuthenticated && (
+                <>
+                  <Link href="/knowledge/create">
+                    <div className="group flex items-center gap-1 text-primary">
+                      <svg
+                        className="size-3 fill-primary xs:size-4 sm:size-5"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="m17 13h-4v4h-2v-4h-4v-2h4v-4h2v4h4m-5-9a10 10 0 0 0 -10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10 10 10 0 0 0 -10-10z" />
+                      </svg>
+                      <p className="font-medium group-hover:underline max-xs:w-20">
+                        Create KnowledgeKey
+                      </p>
+                    </div>
+                  </Link>
+                  {/* My Bot Button */}
+                  <Link href="/nft">
+                    <p className="font-medium text-primary hover:underline max-xs:text-center">
+                      My Assets
                     </p>
-                  </div>
-                </Link>
-                {/* My Bot Button */}
-                <Link href="/nft">
-                  <p className="font-medium text-primary hover:underline max-xs:text-center">
-                    My Assets
-                  </p>
-                </Link>
-              </>
-            )}
+                  </Link>
+                </>
+              )}
             {/* <ThemeSwitcher /> */}
             {/* Profile Picture */}
 

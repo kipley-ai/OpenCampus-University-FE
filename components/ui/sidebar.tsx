@@ -4,6 +4,7 @@ import React, { MouseEventHandler, useEffect, useRef, useState } from "react";
 import { Transition } from "@headlessui/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useOCAuth } from "@opencampus/ocid-connect-js";
 import { useAppProvider } from "@/providers/app-provider";
 import { useSearchParams, useSelectedLayoutSegments } from "next/navigation";
 import { getBreakpoint } from "../utils/utils";
@@ -104,6 +105,8 @@ export default function Sidebar() {
     };
   }, [breakpoint]);
 
+  const { authState, ocAuth } = useOCAuth();
+
   return (
     <>
       <CreditBalanceProvider>
@@ -203,7 +206,7 @@ export default function Sidebar() {
               </SidebarLink>
             </section>
 
-            {session?.address && (
+            {authState.isAuthenticated && (
               <section>
                 <h2 className="text-xs text-secondary-text">CHATS</h2>
                 <ul className="pb-4">

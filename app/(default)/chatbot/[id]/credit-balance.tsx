@@ -7,6 +7,7 @@ import ModalTopUpFailed from "@/components/modal-top-up-failed";
 import CreditBalanceIcon from "@/components/icon/credit-balance-icon.svg";
 import RefreshCreditIcon from "@/components/icon/refresh-credit-icon.svg";
 import Button from "@/components/button";
+import { useOCAuth } from "@opencampus/ocid-connect-js";
 import { useCreditBalanceContext } from "./credit-balance-context";
 import { useCreditBalance } from "@/hooks/api/credit";
 import { useRechargeStatus } from "@/hooks/api/user";
@@ -33,6 +34,7 @@ export default function CreditBalance() {
   const { theme } = useTheme();
   const { status } = useAccount();
   const { openConnectModal } = useConnectModal();
+  const { authState, ocAuth } = useOCAuth();
 
   useEffect(() => {
     if (data) {
@@ -67,7 +69,7 @@ export default function CreditBalance() {
   const handleLogin = useLogin();
 
   const handleTopUp = () => {
-    if (session?.address) {
+    if (authState.isAuthenticated) {
       setModalTopUp(true);
     } else {
       handleLogin();
@@ -80,7 +82,7 @@ export default function CreditBalance() {
         <div className="flex items-center gap-3">
           <h2 className="text-xs text-secondary-text">OCU CREDITS BALANCE</h2>
         </div>
-        {session?.address && (
+        {authState.isAuthenticated && (
           <button
             className="self-end rounded-full hover:text-primary"
             onClick={() => setRefetch(true)}
@@ -104,7 +106,7 @@ export default function CreditBalance() {
           </button>
         )}
       </div>
-      {session?.address && (
+      {authState.isAuthenticated && (
         <div className="mx-2 mb-2 flex items-center gap-3 text-secondary-text">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -132,7 +134,7 @@ export default function CreditBalance() {
         </div>
       )}
       <Button onClick={handleTopUp} disabled={topUpStatus === "processing"}>
-        <p>{session?.address ? "Top up OCU Credits" : "Log In to View"}</p>
+        <p>{authState.isAuthenticated ? "Top up OCU Credits" : "Log In to View"}</p>
         <FaArrowRight />
       </Button>
       <ModalTopUpSuccessful

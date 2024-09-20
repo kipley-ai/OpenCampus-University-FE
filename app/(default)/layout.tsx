@@ -6,6 +6,7 @@ import ModalTopUpSuccessful from "@/components/modal-top-up-successful";
 import ModalTopUpFailed from "@/components/modal-top-up-failed";
 import { useState, useEffect } from "react";
 import { redirect, usePathname } from "next/navigation";
+import { useOCAuth } from "@opencampus/ocid-connect-js";
 import { useUserDetail } from "@/hooks/api/user";
 import { useCheckToken } from "@/hooks/api/auth";
 import { useAppProvider } from "@/providers/app-provider";
@@ -34,11 +35,13 @@ export default function DefaultLayout({ children }: DefaultLayoutProps) {
     topUpAmount,
   } = useAppProvider();
 
+  const { authState, ocAuth } = useOCAuth();
+
   useEffect(() => {
-    if (pathname !== "/dashboard" && !localStorage.getItem("id_token")) {
+    if (pathname !== "/dashboard" && !authState.isAuthenticated) {
       redirect("/dashboard?isUnauthenticated=true");
     }
-  }, [pathname, session?.address]);
+  }, [pathname, authState.isAuthenticated]);
 
   if (
     !isPending &&

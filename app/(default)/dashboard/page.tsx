@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useOCAuth } from "@opencampus/ocid-connect-js";
 import { keepPreviousData } from "@tanstack/react-query";
 import { useAppProvider } from "@/providers/app-provider";
 import { ModalUnauthenticated } from "@/components/modal-unauthenticated";
@@ -142,14 +143,18 @@ export default function Dashboard() {
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [currentIndex]);
 
-  if (searchParams.get("isUnauthenticated") === "true" && session?.address) {
+  const { authState, ocAuth } = useOCAuth();
+  if (
+    searchParams.get("isUnauthenticated") === "true" &&
+    authState.isAuthenticated
+  ) {
     redirect("/dashboard");
   }
 
   return (
     <div className="mt-2 text-primary xl:mt-4">
       {searchParams.get("isUnauthenticated") === "true" &&
-        !session?.address && <ModalUnauthenticated />}
+        !authState.isAuthenticated && <ModalUnauthenticated />}
       {/* Explore Banner Section */}
       {/* Explore Banner Section */}
       <Image

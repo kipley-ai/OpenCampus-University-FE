@@ -5,6 +5,7 @@ import { Cover } from "./cover";
 import { Settings } from "./settings";
 import { Result } from "./result";
 import { useBookContext, BookProvider } from "./context";
+import { CreditBalanceProvider } from "./credit-balance-context";
 
 function BookSummarizer() {
   const { step, setStep } = useBookContext();
@@ -24,7 +25,9 @@ function BookSummarizer() {
 export default function BookSummarizerPage() {
   return (
     <BookProvider>
-      <BookSummarizer />
+      <CreditBalanceProvider>
+        <BookSummarizer />
+      </CreditBalanceProvider>
     </BookProvider>
   );
 }

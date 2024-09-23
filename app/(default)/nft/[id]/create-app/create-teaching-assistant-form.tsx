@@ -128,6 +128,8 @@ export const CreateTeachingAssistantForm = () => {
     }
   }, [categoryList]);
 
+  // console.log("Plugin: ", plugin);
+
   return (
     <>
       <ModalCreateAppSuccess

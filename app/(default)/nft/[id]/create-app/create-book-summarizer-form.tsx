@@ -128,6 +128,8 @@ export const CreateBookSummarizerForm = () => {
     }
   }, [categoryList]);
 
+  // console.log("Plugin: ", plugin);
+
   return (
     <>
       <ModalCreateAppSuccess

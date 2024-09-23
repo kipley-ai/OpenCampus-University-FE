@@ -383,12 +383,20 @@ const BotDetail = ({ params }: { params: any }) => {
     superAdmin.data?.data.status === "success";
 
   let appType: string | undefined = "";
+  console.log("Plugin: ", plugin);
+  
   switch (plugin?.title) {
     case QUIZ_APP:
       appType = "Quiz";
       break;
     case DIGITAL_TWIN_APP:
       appType = "Digital Twin";
+      break;
+    case BOOK_SUMMARIZER_APP:
+      appType = "Book Summarizer";
+      break;
+    case CHATBOT_APP:
+      appType = "Study Companion";
       break;
     default:
       appType = plugin?.title;

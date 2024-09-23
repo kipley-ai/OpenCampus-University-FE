@@ -8,7 +8,7 @@ import ResearchAssistantImg from "@/public/images/apps/research-assistant.svg";
 import TeachingAssistantImg from "@/public/images/apps/teaching-assistant.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react"; // Add this import
 import { FormNav } from "@/components/form-nav";
 import {
   CHATBOT_APP,
@@ -65,13 +65,14 @@ export default function ChooseApp() {
 
   const router = useRouter();
 
-  const { setStep, setPlugin } = useCreateAppContext();
+  const { setStep, plugin, setPlugin } = useCreateAppContext();
   const { data: pluginList, isLoading } = useGetPlugin();
   if (isLoading) return null;
 
   const handleCreateApp = () => {
     if (chosenApp === "") return;
     if (VALID_APPS.includes(chosenApp)) {
+      handleChosenApp(chosenApp);
       setStep(chosenApp);
     }
   };
@@ -84,6 +85,10 @@ export default function ChooseApp() {
       setChosenApp(app);
     }
   };
+
+  // console.log("Chosen App: ", chosenApp);
+  // console.log("Plugin List: ", pluginList);
+  // console.log("Plugin: ", plugin);
 
   return (
     <>

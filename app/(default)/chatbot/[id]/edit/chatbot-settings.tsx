@@ -136,8 +136,8 @@ const ChatbotSettings = () => {
   }
 
   if (
-    chatbotDetail.data?.data.data.wallet_addr !==
-    userDetail.data?.data.data.wallet_addr
+    chatbotDetail.data?.data.data.wallet_addr.toLowerCase() !==
+    userDetail.data?.data.data.wallet_addr.toLowerCase()
   ) {
     if (superAdmin.data?.data.status !== "success") {
       redirect("/app/" + id);

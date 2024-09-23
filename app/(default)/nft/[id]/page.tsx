@@ -443,8 +443,8 @@ const NFTDetail = ({ params }: { params: any }) => {
   }
 
   let hasAccess =
-    nftQuery.data?.data.data.wallet_addr ===
-      userDetail.data?.data.data.wallet_addr ||
+    nftQuery.data?.data.data.wallet_addr.toLowerCase() ===
+      userDetail.data?.data.data.wallet_addr.toLowerCase() ||
     superAdmin.data?.data.status === "success";
 
   return (

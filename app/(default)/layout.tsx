@@ -41,10 +41,8 @@ export default function DefaultLayout({ children }: DefaultLayoutProps) {
   useEffect(() => {
     if (
       pathname !== "/dashboard" &&
-      (!session?.address || session?.exp < Date.now())
+      (!session?.address || session?.exp * 1000 < Date.now())
     ) {
-      setSession({});
-      localStorage.setItem("id_token", "");
       redirect("/dashboard?isUnauthenticated=true");
     }
   }, [pathname, session?.address, session?.exp]);

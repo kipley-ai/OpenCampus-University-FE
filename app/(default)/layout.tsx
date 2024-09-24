@@ -27,6 +27,7 @@ export default function DefaultLayout({ children }: DefaultLayoutProps) {
 
   const {
     session,
+    setSession,
     setModalUnauthenticated,
     modalTopUpSuccessful,
     setModalTopUpSuccessful,
@@ -38,10 +39,15 @@ export default function DefaultLayout({ children }: DefaultLayoutProps) {
   const { authState, ocAuth } = useOCAuth();
 
   useEffect(() => {
-    if (pathname !== "/dashboard" && !authState.isAuthenticated) {
+    if (
+      pathname !== "/dashboard" &&
+      (!session?.address || session?.exp < Date.now())
+    ) {
+      setSession({});
+      localStorage.setItem("id_token", "");
       redirect("/dashboard?isUnauthenticated=true");
     }
-  }, [pathname, authState.isAuthenticated]);
+  }, [pathname, session?.address, session?.exp]);
 
   if (
     !isPending &&

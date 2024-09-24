@@ -21,7 +21,7 @@ type ModalProps = {
 export const ShareModal = ({ isOpen, setIsOpen, chatbotData }: ModalProps) => {
   const [isFirstShare, setIsFirstShare] = useState(true);
   const [sharedChatId, setSharedChatId] = useState("");
-  const [copyClipboard, setCopyClipboard] = useState(false);
+  const [copyStatus, setCopyStatus] = useState("idle"); // New state for copy status
   const sharedIdAPI = useGetSharedQuizId({
     chatbot_id: chatbotData?.chatbot_id,
   });
@@ -47,39 +47,41 @@ export const ShareModal = ({ isOpen, setIsOpen, chatbotData }: ModalProps) => {
     if (sharedIdAPI.isSuccess && sharedIdAPI.data.data.data) {
       setSharedChatId(sharedIdAPI.data.data.data.share_id);
 
-      if (!sharedIdAPI.isRefetching && copyClipboard) {
+      if (!sharedIdAPI.isRefetching && copyStatus === "copying") {
         // console.log(`${BASE_URL}/chat/${sharedIdAPI.data.data.data.share_id}`)
         navigator.clipboard.writeText(
           `${BASE_URL}/share/quiz-app/${sharedIdAPI.data.data.data.share_id}`,
         );
+        setCopyStatus("copied");
         setTimeout(() => {
-          setCopyClipboard(false);
+          setCopyStatus("idle");
+          setIsFirstShare(false);
         }, 3000);
       }
     }
-  }, [sharedIdAPI.isSuccess, sharedIdAPI.isRefetching]);
+  }, [sharedIdAPI.isSuccess, sharedIdAPI.isRefetching, copyStatus]);
 
-  const handleUpdateSharedChat = () => {
-    setCopyClipboard(true);
-    answerQuiz.mutate(
-      {
+  const handleUpdateSharedChat = async () => {
+    setCopyStatus("updating");
+    try {
+      await answerQuiz.mutateAsync({
         chatbot_id: chatbotData?.chatbot_id,
         session_id,
         answer: answers,
-      },
-      {
-        onSuccess: () => {
-          updateSharedAPI.mutate(
-            { chatbot_id: chatbotData?.chatbot_id },
-            {
-              onSuccess(data, variables, context) {
-                sharedIdAPI.refetch();
-              },
-            },
-          );
-        },
-      },
-    );
+      });
+      await updateSharedAPI.mutateAsync({ chatbot_id: chatbotData?.chatbot_id });
+      const result = await sharedIdAPI.refetch();
+      if (result.isSuccess && result.data.data.data) {
+        const shareLink = `${BASE_URL}/share/quiz-app/${result.data.data.data.share_id}`;
+        await navigator.clipboard.writeText(shareLink);
+        setCopyStatus("copied");
+        setIsFirstShare(false);
+        setTimeout(() => setCopyStatus("idle"), 3000);
+      }
+    } catch (error) {
+      console.error("Share update failed:", error);
+      setCopyStatus("idle");
+    }
   };
 
   return (
@@ -159,15 +161,15 @@ export const ShareModal = ({ isOpen, setIsOpen, chatbotData }: ModalProps) => {
           >
             <div className="flex items-center gap-2">
               <p className="">
-                {copyClipboard
-                  ? updateSharedAPI.isSuccess
-                    ? "Copied!"
-                    : "Copying..."
+                {copyStatus === "updating"
+                  ? "Copying..."
+                  : copyStatus === "copied"
+                  ? "Copied!"
                   : isFirstShare
-                    ? "Copy link"
-                    : "Update and copy link"}
+                  ? "Copy link"
+                  : "Update and copy link"}
               </p>
-              {!copyClipboard && (
+              {copyStatus === "idle" && (
                 <svg
                   width="25"
                   height="25"

@@ -128,6 +128,8 @@ export const CreateResearchAssistantForm = () => {
     }
   }, [categoryList]);
 
+  // console.log("Plugin: ", plugin);
+
   return (
     <>
       <ModalCreateAppSuccess

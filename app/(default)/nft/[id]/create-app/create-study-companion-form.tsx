@@ -128,6 +128,8 @@ export const CreateStudyCompanionForm = () => {
     }
   }, [categoryList]);
 
+  // console.log("Plugin: ", plugin);
+
   return (
     <>
       <ModalSuccessBasic

@@ -1,20 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import { useCreateChatbotAPI } from "@/hooks/api/chatbot";
-import { useGetCategory } from "@/hooks/api/chatbot";
-import CreateChatbotModal from "@/components/toast-4";
-import { useNftDetail } from "@/hooks/api/nft";
-import ImageInput from "@/components/image-input-2";
-import { ZodError, number, string, z } from "zod";
-import Tooltip from "@/components/tooltip";
-import { noMoreThanCharacters } from "@/utils/utils";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import { useAccount } from "wagmi";
+import { 
+  useChatbotDetail, 
+  useUpdateChatbotAPI, 
+  useGetCategory,
+} from "@/hooks/api/chatbot";
+import { useUserDetail } from "@/hooks/api/user";
+import { useSuperAdmin } from "@/hooks/api/access";
+import defaulUserAvatar from "public/images/chatbot-avatar.png";
+import { useParams, redirect, useRouter } from "next/navigation";
+import { useDebouncedCallback } from "use-debounce";
+import ImageInput from "@/components/image-input-2";
+import LoadingIcon from "public/images/loading-icon.svg";
+import CreateChatbotModal from "@/components/toast-4";
+import Switcher from "@/components/switcher";
+import Tooltip from "@/components/tooltip";
+import { useAppProvider } from "@/providers/app-provider";
 import { FormInput, FormTextarea } from "@/components/form-input";
-import { ModalCreateAppSuccess } from "./modal-create-app-success";
-import { useCreateAppContext } from "./create-app-context";
-import { createAsset } from "@/smart-contract/edu-asset";
 
 interface Category {
   title: string;
@@ -25,19 +30,41 @@ interface Category {
 }
 
 interface Form {
-  name?: string;
-  description?: string;
-  category_id?: string;
-  pricePerQuery?: number;
+  category_id: string;
+  chatbot_id: string;
+  name: string;
+  description: string;
+  instruction: string;
+  example_conversation: string;
+  profile_image: string;
 }
 
-export const CreateTeachingAssistantForm = () => {
-  const { id } = useParams();
-  const { setStep, plugin } = useCreateAppContext();
-  const { data: nftData } = useNftDetail({ sft_id: id as string });
+const ChatbotSettings = () => {
+  const updateChatbot = useUpdateChatbotAPI();
+  const { session: { address } } = useAppProvider();
 
-  const [form, setForm] = useState<Form>({});
-  const [selectedFile, setSelectedFile] = useState<any>("");
+  const { id } = useParams();
+  const router = useRouter();
+  const chatbotDetail = useChatbotDetail({ chatbot_id: id as string });
+  const userDetail = useUserDetail();
+  const superAdmin = useSuperAdmin(userDetail.data?.data.data.wallet_addr);
+  const categoryList = useGetCategory();
+  const [form, setForm] = useState<any>({
+    category_id: "",
+    chatbot_id: "",
+    name: "",
+    description: "",
+    profile_image: "",
+    chatbot_price_per_query: 0,
+  });
+  const [selectedFile, setSelectedFile] = useState<any>(LoadingIcon);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [showModal, setShowModal] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [mode, setMode] = useState(0);
+  const [toneData, setToneData] = useState("");
+  const [personality, setPersonality] = useState(0);
+  const [personalityData, setPersonalityData] = useState("");
   const [errorMessage, setErrorMessage] = useState<any>({});
 
   const handleFormChange = (name: string, value: any) => {
@@ -47,78 +74,28 @@ export const CreateTeachingAssistantForm = () => {
     });
   };
 
-  const [categories, setCategories] = useState<Category[]>([]);
-  const categoryList = useGetCategory();
-
-  const formValidation = z.object({
-    name: z
-      .string({
-        required_error: "Name is required",
-      })
-      .min(1, "Name is required")
-      .max(100, noMoreThanCharacters(100)),
-
-    category_id: z.string({
-      required_error: "Category is required",
-    }),
-
-    pricePerQuery: z
-      .string({
-        required_error: "Price per query is required",
-      })
-      .min(1, "Price per query is required"),
-  });
-
-  const validateForm = () => {
-    let errorTmp = {};
+  const handleUpdateChatbot = async () => {
     try {
-      formValidation.parse(form);
-    } catch (error) {
-      const er = error as ZodError;
-      er.errors.map((e) => {
-        errorTmp = {
-          ...errorTmp,
-          [e.path[0]]: e.message,
-        };
-      });
-    } finally {
-      setErrorMessage(errorTmp);
-
-      if (Object.keys(errorTmp).length > 0) {
-        return false;
-      }
-
-      return true;
-    }
-  };
-
-  const createChatbot = useCreateChatbotAPI();
-  const [showModal, setShowModal] = useState(false);
-
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-
-    if (!validateForm()) return;
-
-    createChatbot.mutate(
-      {
-        profile_image: selectedFile,
-        name: form.name as string,
-        sft_id: id as string,
-        kb_id: nftData?.data.data.kb_id as string,
-        price_per_query: form.pricePerQuery as number,
-        category_id: form.category_id,
-        description: form.description as string,
-        plugin_id: plugin?.plugin_id,
-      },
-      {
-        async onSuccess(data, variables, context) {
-          const { retrieve_uri, chatbot_id } = data.data;
-          await createAsset(variables.price_per_query, retrieve_uri, chatbot_id);
-          setShowModal(true);
+      updateChatbot.mutate(
+        {
+          category_id: form.category_id as string,
+          chatbot_id: id as string,
+          profile_image: selectedFile,
+          name: form.name as string,
+          description: form.description as string,
+          tone: toneData,
+          personality: personalityData,
+          price_per_query: form.chatbot_price_per_query as number,
         },
-      },
-    );
+        {
+          onSuccess(data, variables, context) {
+            setShowModal(true);
+          },
+        },
+      );
+    } catch (error: any) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -128,22 +105,63 @@ export const CreateTeachingAssistantForm = () => {
     }
   }, [categoryList]);
 
-  // console.log("Plugin: ", plugin);
+  useEffect(() => {
+    if (mode == 0) {
+      setToneData("instruction");
+    } else if (mode == 1) {
+      setToneData("instruction_2");
+    }
+  }, [mode]);
+
+  useEffect(() => {
+    if (personality == 0) {
+      setPersonalityData("focused");
+    } else if (personality == 1) {
+      setPersonalityData("creative");
+    }
+  }, [personality]);
+
+  useEffect(() => {
+    if (chatbotDetail.isSuccess) {
+      setForm(chatbotDetail.data?.data.data);
+      setSelectedFile(chatbotDetail.data?.data.data.profile_image);
+      setMode(chatbotDetail.data?.data.data.tone === "instruction" ? 0 : 1);
+      setPersonality(
+        chatbotDetail.data?.data.data.personality === "focused" ? 0 : 1,
+      );
+    }
+  }, [chatbotDetail.isSuccess]);
+
+  if (chatbotDetail.isPending || userDetail.isPending || superAdmin.isPending) {
+    return null;
+  }
+
+  if (
+    chatbotDetail.data?.data.data.wallet_addr.toLowerCase() !==
+    userDetail.data?.data.data.wallet_addr.toLowerCase()
+  ) {
+    if (superAdmin.data?.data.status !== "success") {
+      redirect("/app/" + id);
+    }
+  }
 
   return (
     <>
-      <ModalCreateAppSuccess
+      <CreateChatbotModal
+        children={"Your book summarizer app was updated successfully!"}
         open={showModal}
         setOpen={setShowModal}
-        message="Your teaching assistant app was created successfully!"
+        onDone={() => {
+          router.push(`/app/${chatbotDetail.data?.data.data.chatbot_id}`);
+        }}
       />
       <div className="flex flex-col sm:px-6 lg:px-0">
         <div className="mb-4 flex items-center justify-between">
           <h1 className="text-lg font-semibold text-primary">
-            Teaching Assistant
+            Book Summarizer Settings
           </h1>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => { e.preventDefault(); handleUpdateChatbot(); }}>
           <div className="flex flex-col gap-8">
             <ImageInput
               selectedFile={selectedFile}
@@ -158,7 +176,7 @@ export const CreateTeachingAssistantForm = () => {
                 type="text"
                 value={form.name || ""}
                 onChange={(e) => handleFormChange("name", e.target.value)}
-                placeholder="Name your teaching assistant app"
+                placeholder="Name your Chatbot"
                 maxLength={100}
                 isRequired
                 errorMessage={errorMessage.name}
@@ -170,7 +188,7 @@ export const CreateTeachingAssistantForm = () => {
                 onChange={(e) =>
                   handleFormChange("description", e.target.value)
                 }
-                placeholder="Describe your teaching assistant app"
+                placeholder="Describe your Chatbot"
                 rows={3}
                 maxLength={1000}
               />
@@ -225,10 +243,10 @@ export const CreateTeachingAssistantForm = () => {
                     placeholder="e.g. 1"
                     onChange={(e) => {
                       if (parseFloat(e.target.value) < 0)
-                        handleFormChange("pricePerQuery", 0);
-                      else handleFormChange("pricePerQuery", e.target.value);
+                        handleFormChange("chatbot_price_per_query", 0);
+                      else handleFormChange("chatbot_price_per_query", Number(e.target.value));
                     }}
-                    value={form.pricePerQuery}
+                    value={form.chatbot_price_per_query}
                   />
                   {errorMessage && errorMessage.pricePerQuery && (
                     <p className="text-xs text-red-400">
@@ -245,7 +263,7 @@ export const CreateTeachingAssistantForm = () => {
               className="flex items-center justify-center gap-2 hover:underline"
               type="button"
               onClick={() => {
-                setStep("");
+                router.push(`/app/${chatbotDetail.data?.data.data.chatbot_id}`);
               }}
             >
               <svg
@@ -265,9 +283,12 @@ export const CreateTeachingAssistantForm = () => {
             </button>
             <button
               className="flex items-center justify-center gap-2 hover:underline"
-              type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                handleUpdateChatbot();
+              }}
             >
-              <p className="text-sm font-medium uppercase">Next</p>
+              <p className="text-sm font-medium uppercase">Save Changes</p>
               <svg
                 width="8"
                 height="13"
@@ -287,3 +308,5 @@ export const CreateTeachingAssistantForm = () => {
     </>
   );
 };
+
+export default ChatbotSettings;

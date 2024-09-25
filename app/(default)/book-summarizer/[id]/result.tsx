@@ -6,6 +6,9 @@ import { FormNav } from "@/components/form-nav";
 import { useAppProvider } from "@/providers/app-provider";
 import { useBookContext } from "./context";
 import { History } from "./history";
+import { useCreditBalance, useCreditDeduction } from "@/hooks/api/credit";
+import { v4 as uuidv4 } from "uuid";
+import { useCreditBalanceContext } from "./credit-balance-context";
 
 const ShareIcon = () => {
   return (
@@ -72,6 +75,10 @@ export function Result() {
     "idle" | "generating" | "error"
   >("idle");
 
+  const creditBalance = useCreditBalance();
+  const { setCreditBalance } = useCreditBalanceContext();
+  const creditDeduction = useCreditDeduction();
+
   useEffect(() => {
     if (lastJsonMessage !== null) {
       switch (lastJsonMessage.type) {
@@ -83,7 +90,38 @@ export function Result() {
           setSummaryStream((prev) => [...prev, lastJsonMessage.message]);
           break;
         case "end":
-          setReplyStatus("idle");
+          if (replyStatus==="generating") {
+            setReplyStatus("idle");
+
+            const fullBotAnswer = JSON.parse(lastJsonMessage.message).answer;
+
+            console.log("fullBotAnswer");
+            console.log(fullBotAnswer);
+
+            let question = ""
+
+            if (scope=="whole-book") {
+              question = `Summarized Results for the book of ${app.name}`;
+            } else if (scope=="topic") {
+              question = `Summarized Results of ${topic} topic in ${app.name}`;
+            }
+
+            creditDeduction.mutate(
+              {
+                answer: fullBotAnswer,
+                question: question,
+                chatbot_id: app.chatbot_id as string,
+                session_id: uuidv4(),
+              },
+              {
+                onSuccess: async () => {
+                  const { data } = await creditBalance.refetch();
+                  setCreditBalance(data?.data?.data.credit_balance);
+                },
+              },
+            );
+          }
+
           break;
         case "error":
           setReplyStatus("error");

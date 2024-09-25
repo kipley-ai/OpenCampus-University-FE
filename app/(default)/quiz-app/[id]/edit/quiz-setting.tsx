@@ -21,9 +21,9 @@ interface QuizForm {
   num_questions: string;
   pricePerQuery: number;
   description: string;
-  preset_topic_topic1?: string;
-  preset_topic_topic2?: string;
-  preset_topic_topic3?: string;
+  // preset_topic_topic1?: string;
+  // preset_topic_topic2?: string;
+  // preset_topic_topic3?: string;
 }
 
 const QuizSetting = () => {
@@ -36,9 +36,9 @@ const QuizSetting = () => {
     num_questions: "3",
     pricePerQuery: 0,
     description: "",
-    preset_topic_topic1: "",
-    preset_topic_topic2: "",
-    preset_topic_topic3: "",
+    // preset_topic_topic1: "",
+    // preset_topic_topic2: "",
+    // preset_topic_topic3: "",
   });
   const [selectedFile, setSelectedFile] = useState<any>(LoadingIcon);
   const [mode, setMode] = useState(0);
@@ -107,9 +107,9 @@ const QuizSetting = () => {
         num_questions: metadata.num_questions,
         pricePerQuery: data.chatbot_price_per_query,
         description: data.description,
-        preset_topic_topic1: metadata.preset_topic[0],
-        preset_topic_topic2: metadata.preset_topic[1],
-        preset_topic_topic3: metadata.preset_topic[2],
+        // preset_topic_topic1: metadata.preset_topic[0],
+        // preset_topic_topic2: metadata.preset_topic[1],
+        // preset_topic_topic3: metadata.preset_topic[2],
       });
       setSelectedFile(data.profile_image);
       setDescription({
@@ -156,16 +156,16 @@ const QuizSetting = () => {
 
     if (!validateForm()) return;
 
-    const presetTopics = [
-      form.preset_topic_topic1,
-      form.preset_topic_topic2,
-      form.preset_topic_topic3
-    ].filter(topic => topic !== null && topic !== undefined && topic !== "");
+    // const presetTopics = [
+    //   form.preset_topic_topic1,
+    //   form.preset_topic_topic2,
+    //   form.preset_topic_topic3
+    // ].filter(topic => topic !== null && topic !== undefined && topic !== "");
 
     const metaData = JSON.stringify({
       difficulty: difficultyData,
       num_questions: form.num_questions || "3",
-      preset_topic: presetTopics
+      // preset_topic: presetTopics
     });
 
     const payload = {
@@ -377,25 +377,24 @@ const QuizSetting = () => {
                 </div>
               </div>
 
-              <div className="w-full space-y-5 rounded-lg border p-8 bg-indigo-50 border-indigo-100">
+              {/* <div className="w-full space-y-5 rounded-lg border p-8 bg-indigo-50 border-indigo-100">
                 {metaDataForm &&
                   metaDataForm.plugin_config.map(
                     (config: PluginConfig, index: number) => {
                       if (config.type === "array") {
                         return (
                           <div key={index}>
-                            <h2 className="mb-4">{config.name}</h2>{" "}
+                            <h2 className="mb-4">{config.name}</h2>{" "} */}
                             {/* Header title */}
-                            {[1, 2, 3].map((topicNumber) => (
+                            {/* {[1, 2, 3].map((topicNumber) => (
                               <FormInput
                                 className="mb-3"
                                 key={`${config.param_name}_topic${topicNumber}`}
                                 id={`${config.param_name}_topic${topicNumber}`}
                                 label={`Topic ${topicNumber}`}
                                 type="text"
-                                value={
-                                  //@ts-ignore
-                                  form[
+                                value={ */}
+                                  {/* form[
                                     `${config.param_name}_topic${topicNumber}`
                                   ] || ""
                                 }
@@ -415,7 +414,7 @@ const QuizSetting = () => {
                       }
                     },
                   )}
-              </div>
+              </div> */}
             </div>
           </div>
 

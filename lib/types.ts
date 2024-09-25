@@ -58,6 +58,7 @@ export type NftData = {
   slot_value: number;
   token_amount: number;
   profile_image: string;
+  token_id: string;
 };
 
 export type NftDataListResponse = {

@@ -1,22 +1,20 @@
 import DashboardCard05 from "@/app/(dashboard)/dashboard/dashboard-card-05";
 import ModalBlank from "@/components/modal-blank-3";
 import Image from "next/image";
-import { useCreatorOverview } from "@/hooks/api/user";
+import {
+  useCreatorOverview,
+  useGetClaimIncomeSignature,
+} from "@/hooks/api/user";
 import { useEffect, useState } from "react";
-import CrossIcon from "public/images/cross-icon.svg";
 import { keepPreviousData } from "@tanstack/react-query";
 import { useMyNFTs } from "@/hooks/api/nft";
 import { PaginationController } from "@/components/pagination-2/controller";
-import { FaPlus, FaSpinner } from "react-icons/fa6";
-import { ChatbotData, NftData } from "@/lib/types";
-import { IconContext } from "react-icons";
-import ArrowIcon from "public/images/arrow.svg";
-import Link from "next/link";
+import { FaSpinner } from "react-icons/fa6";
+import { NftData } from "@/lib/types";
 import RangeInputMulti from "@/components/range-input";
 import Button from "@/components/button";
-import { set } from "zod";
-import { withdrawEarnings } from "@/smart-contract/kip-protocol-contract";
 import { NoData } from "./deposit";
+import { claimIncome, getLastClaimId } from "@/smart-contract/edu-contract";
 
 const WithdrawConfirm = ({
   nftData,
@@ -29,6 +27,7 @@ const WithdrawConfirm = ({
 }) => {
   const [withdrawValue, setWithdrawValue] = useState<string>("0");
   const [values, setValues] = useState<number[]>([0, 500]);
+  const getClaimSignature = useGetClaimIncomeSignature();
 
   useEffect(() => {
     setWithdrawValue(values[1].toString());
@@ -36,12 +35,27 @@ const WithdrawConfirm = ({
 
   const handleWithdraw = async () => {
     try {
-      const res = await withdrawEarnings(
-        nftData?.sft_address!,
-        1,
-        Number(withdrawValue),
+      const claimId = await getLastClaimId();
+
+      const withdrawAmount = Number(withdrawValue) * 1e18;
+      const { data } = await getClaimSignature.mutateAsync({
+        kb_id: nftData?.kb_id,
+        chatbot_id: nftData?.chatbot_id,
+        claimed_id: Number(claimId),
+        income_amount: withdrawAmount,
+        type: "kb",
+      });
+
+      await claimIncome(
+        {
+          amount: BigInt(withdrawAmount),
+          tokenId: BigInt(Number(nftData?.token_id)),
+          tokenOwner: nftData?.wallet_addr || "",
+        },
+        data.data.signature,
+        data.data.signature_expiration_time,
+        data.data.reference_id,
       );
-      console.log(res);
     } catch (error) {
       console.log(error);
     }

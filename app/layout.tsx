@@ -87,7 +87,12 @@ export default function RootLayout({
             <AppProvider>
               <NextAuthProvider>
                 <CryptoProvider>
-                  <OCConnectWrapper opts={opts} sandboxMode={true}>
+                  <OCConnectWrapper
+                    opts={opts}
+                    sandboxMode={
+                      process.env.NEXT_PUBLIC_OC_CONNECT_SANDBOX_MODE === "1"
+                    }
+                  >
                     {children}
                   </OCConnectWrapper>
                 </CryptoProvider>

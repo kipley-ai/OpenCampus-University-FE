@@ -209,3 +209,11 @@ export interface IKBDeleteItem {
   filename: string;
   type: string;
 }
+
+export interface IClaimSignatureRequest {
+  kb_id?: string;
+  chatbot_id?: string;
+  claimed_id: number;
+  income_amount: number;
+  type: "chatbot" | "kb";
+}

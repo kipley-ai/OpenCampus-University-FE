@@ -92,7 +92,7 @@ export default function SharedQuiz({ params }: SharedQuizProps) {
                       <label
                         key={oIndex}
                         className={`relative flex w-full gap-4 rounded-lg px-4 py-3 text-left 
-                        ${option === answers[qIndex] ? (question.answer === option ? "bg-[#ECECFF] font-medium" : "bg-[#FDE2E1] font-medium") : "border border-gray-300"}
+                        ${option === answers[qIndex] ? (question.answer === option ? "bg-[#ECECFF] dark:bg-transparent dark:border font-medium" : "bg-[#FDE2E1] dark:bg-transparent dark:border font-medium") : "border border-gray-300"}
                         `}
                       >
                         <input

@@ -8,7 +8,7 @@ import CreateKnowledgeKeyImage from "@/public/images/educators/create-knowledgek
 import Faq from "@/public/images/educators/faq.svg";
 import HelpSupport from "@/public/images/educators/help-support.svg";
 
-const CreateCourse = () => {
+export const CreateCourse = () => {
   return (
     <div className="flex flex-col rounded-xl border p-4 max-sm:gap-4 sm:flex-row">
       <Image
@@ -35,7 +35,7 @@ const CreateCourse = () => {
   );
 };
 
-const CreateKnowledgeKey = () => {
+export const CreateKnowledgeKey = () => {
   return (
     <div className="flex flex-col rounded-xl border p-4 max-sm:gap-4 sm:flex-row">
       <Image
@@ -59,7 +59,7 @@ const CreateKnowledgeKey = () => {
   );
 };
 
-const BuildAiApp = () => {
+export const BuildAiApp = () => {
   return (
     <div className="flex flex-col rounded-xl border p-4 max-sm:gap-4 sm:flex-row">
       <Image src={BuildAiIcon} alt="Build AI App" className="max-sm:mx-auto" />

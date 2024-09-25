@@ -33,7 +33,7 @@ const ProgressBar = ({
 const Courses = () => {
   return (
     <div className="flex flex-col space-y-6">
-      <div className="flex cursor-pointer flex-row gap-4 rounded-2xl border">
+      <div className="flex cursor-pointer flex-row gap-4 rounded-2xl border border-border">
         <Image src={CoursesIcon} alt="Courses" />
         <div className="flex w-full flex-col justify-between p-3 sm:flex-row">
           <div className="flex w-full flex-col justify-between sm:w-5/12">
@@ -49,7 +49,7 @@ const Courses = () => {
           </div>
         </div>
       </div>
-      <div className="group relative flex cursor-pointer flex-row gap-4 rounded-2xl border">
+      <div className="group relative flex cursor-pointer flex-row gap-4 rounded-2xl border border-border">
         <div className="absolute inset-0 z-10 flex items-center justify-center rounded-2xl bg-white bg-opacity-80 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
           <p className=" font-semibold text-primary">Edit / manage course</p>
         </div>

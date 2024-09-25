@@ -10,7 +10,7 @@ import HelpSupport from "@/public/images/educators/help-support.svg";
 
 export const CreateCourse = () => {
   return (
-    <div className="flex flex-col rounded-xl border p-4 max-sm:gap-4 sm:flex-row">
+    <div className="flex flex-col rounded-xl border border-border p-4 max-sm:gap-4 sm:flex-row">
       <Image
         src={CreateCourseIcon}
         alt="Create Course"
@@ -37,7 +37,7 @@ export const CreateCourse = () => {
 
 export const CreateKnowledgeKey = () => {
   return (
-    <div className="flex flex-col rounded-xl border p-4 max-sm:gap-4 sm:flex-row">
+    <div className="flex flex-col rounded-xl border border-border p-4 max-sm:gap-4 sm:flex-row">
       <Image
         src={CreateKnowledgeKeyImage}
         alt="Create KnowledgeKey"
@@ -61,7 +61,7 @@ export const CreateKnowledgeKey = () => {
 
 export const BuildAiApp = () => {
   return (
-    <div className="flex flex-col rounded-xl border p-4 max-sm:gap-4 sm:flex-row">
+    <div className="flex flex-col rounded-xl border border-border p-4 max-sm:gap-4 sm:flex-row">
       <Image src={BuildAiIcon} alt="Build AI App" className="max-sm:mx-auto" />
       <div className="flex flex-col justify-center space-y-3">
         <h2 className="text-xl font-medium">Build AI App</h2>

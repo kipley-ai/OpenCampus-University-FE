@@ -133,7 +133,7 @@ export default function DataSource({
                 >
                   <path
                     d="M2 0.889648L0.589996 2.29965L5.17 6.88965L0.589996 11.4796L2 12.8896L8 6.88965L2 0.889648Z"
-                    fill="#141BEB"
+                    fill="var(--color-primary)"
                   />
                 </svg>
               </button>

@@ -479,7 +479,7 @@ const BotDetail = ({ params }: { params: any }) => {
             >
               <path
                 d="M7.41 2.29965L6 0.889648L0 6.88965L6 12.8896L7.41 11.4796L2.83 6.88965L7.41 2.29965Z"
-                fill="#141BEB"
+                fill="var(--color-primary)"
               />
             </svg>
 

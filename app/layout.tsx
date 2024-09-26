@@ -1,3 +1,5 @@
+"use client";
+
 import "./css/style.css";
 
 import localFont from "next/font/local";
@@ -9,6 +11,7 @@ import OCConnectWrapper from "../providers/oc-connect-wrapper";
 import "@rainbow-me/rainbowkit/styles.css";
 import { RQProviders } from "@/providers/react-query-provider";
 import { CryptoProvider } from "@/providers/crypto-provider";
+import { useEffect, useState } from "react";
 
 const mikado = localFont({
   src: [
@@ -72,10 +75,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const opts = {
-    redirectUri: `${process.env.NEXT_PUBLIC_APP_URL}/redirect`,
+  const [opts, setOpts] = useState({
+    redirectUri: "",
     referralCode: "",
-  };
+  });
+
+  useEffect(() => {
+    setOpts({
+      ...opts,
+      redirectUri: `${window!.location.origin}/redirect`,
+    });
+  }, []);
 
   return (
     <html lang="en">

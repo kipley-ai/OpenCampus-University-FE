@@ -39,6 +39,14 @@ export default function Header() {
 
   const { authState, ocAuth } = useOCAuth();
 
+  const [isEducatorPlatform, setIsEducatorPlatform] = useState(false);
+
+  useEffect(() => {
+    setIsEducatorPlatform(
+      window!.location.origin === process.env.NEXT_PUBLIC_EDUCATOR_PLATFORM_URL,
+    );
+  }, []);
+
   useEffect(() => {
     let sub = true;
 
@@ -126,6 +134,19 @@ export default function Header() {
                   <Link href="/nft">
                     <p className="font-medium text-primary hover:underline max-xs:text-center">
                       My Assets
+                    </p>
+                  </Link>
+                  <Link
+                    href={
+                      isEducatorPlatform
+                        ? `${process.env.NEXT_PUBLIC_APP_URL}/dashboard`
+                        : "/educator"
+                    }
+                  >
+                    <p className="font-medium text-primary hover:underline max-xs:text-center">
+                      {isEducatorPlatform
+                        ? "Student Platform"
+                        : "Creator Platform"}
                     </p>
                   </Link>
                 </>

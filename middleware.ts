@@ -5,6 +5,16 @@ import { getToken } from "next-auth/jwt";
 
 const PUBLIC_FILE = /\.(.*)$/; // Files
 
+const EDUCATOR_URLS = ["/educator"];
+
+function checkEducatorURLS(url: string) {
+  for (const u of EDUCATOR_URLS) {
+    if (url.startsWith(u)) return true;
+  }
+
+  return false;
+}
+
 export default async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
   if (
@@ -28,11 +38,21 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.rewrite(url);
   }
 
+  if (
+    checkEducatorURLS(url.pathname) &&
+    hostname ===
+      process.env
+        .NEXT_PUBLIC_APP_URL!.replace("https://", "")
+        .replace("http://", "")
+  ) {
+    return NextResponse.redirect(
+      process.env.NEXT_PUBLIC_EDUCATOR_PLATFORM_URL! + "/" + url.pathname,
+    );
+  }
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: [
-    "/((?!dashboard|login|onboarding).*)",
-  ],
+  matcher: ["/((?!dashboard|login|onboarding).*)"],
 };

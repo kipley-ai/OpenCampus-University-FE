@@ -25,6 +25,8 @@ export default function DefaultLayout({ children }: DefaultLayoutProps) {
     redirect(process.env.NEXT_PUBLIC_HOST + pathname);
   }
 
+  const [isEducatorPlatform, setIsEducatorPlatform] = useState(false);
+
   const {
     session,
     setSession,
@@ -37,6 +39,12 @@ export default function DefaultLayout({ children }: DefaultLayoutProps) {
   } = useAppProvider();
 
   const { authState, ocAuth } = useOCAuth();
+
+  useEffect(() => {
+    setIsEducatorPlatform(
+      window!.location.origin === process.env.NEXT_PUBLIC_EDUCATOR_PLATFORM_URL,
+    );
+  }, []);
 
   useEffect(() => {
     if (
@@ -55,10 +63,22 @@ export default function DefaultLayout({ children }: DefaultLayoutProps) {
     redirect("/dashboard");
   }
 
+  const renderSidebar = () => {
+    if (pathname === "/knowledge/create/iframe") {
+      return null;
+    }
+
+    if (isEducatorPlatform) {
+      return null;
+    }
+
+    return <Sidebar />;
+  };
+
   return (
     <div className="flex h-dvh divide-x-2 divide-border text-heading">
       {/* Sidebar */}
-      {pathname === "/knowledge/create/iframe" ? null : <Sidebar />}
+      {renderSidebar()}
 
       {/* Content area */}
       <ModalTopUpSuccessful

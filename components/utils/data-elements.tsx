@@ -49,7 +49,7 @@ export const buttons = [
     icon: YoutubeIcon,
     lightIcon: YoutubeIcon,
     text: "Youtube",
-    comingSoon: false,
+    comingSoon: true,
   },
   {
     type: "files",

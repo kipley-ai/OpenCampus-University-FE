@@ -142,7 +142,7 @@ export default function DataSource() {
     } else if (selectedButton == "files") {
       setStep("upload_files");
     } else if (
-      selectedButton == "youtube" ||
+      // selectedButton == "youtube" ||
       selectedButton == "medium" ||
       selectedButton == "notion"
     ) {

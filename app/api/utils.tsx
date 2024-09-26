@@ -39,8 +39,6 @@ export const constructHeader = async (
 		}
 	}
 
-
-	console.log(commonHeaders);
 	return commonHeaders;
 };
 

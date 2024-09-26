@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { WelcomeOptions } from "../educator/welcome-options";
+import { WelcomeOptions } from "../welcome-options";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -72,7 +72,7 @@ const Courses = () => {
 export default function Educator2() {
   const [tab, setTab] = useState<string>("courses");
   return (
-    <div className="mb-10 mt-3 max-w-[1100px] space-y-9 rounded-2xl border-2 border-border bg-sidebar p-3 md:p-10 xl:mt-4">
+    <div className="mb-10 mt-3 space-y-9 rounded-2xl border-2 border-border bg-sidebar p-3 md:p-10 xl:mt-4">
       <div className="flex flex-col justify-between gap-4 sm:flex-row">
         <h1 className="text-lg font-semibold text-primary">Welcome Ray!</h1>
         <input

@@ -1,6 +1,6 @@
 "use client";
 
-import { WelcomeOptions } from "./welcome-options";
+import { WelcomeOptions } from "../welcome-options";
 
 export default function Educator() {
   return (

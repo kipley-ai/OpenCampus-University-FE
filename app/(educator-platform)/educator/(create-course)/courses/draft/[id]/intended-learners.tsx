@@ -4,7 +4,7 @@ export const IntendedLearners = () => {
   const router = useRouter();
 
   return (
-    <main className="flex w-3/4 flex-col gap-8 rounded-2xl border-2 border-border bg-sidebar p-3 text-sm md:p-10 xl:mt-4">
+    <main className="flex w-3/4 max-w-[1000px] flex-col gap-8 rounded-2xl border-2 border-border bg-sidebar p-3 text-sm md:p-10 xl:mt-4">
       <h1 className="text-lg font-semibold text-primary">Intended Learners</h1>
       <p className="text-body">
         The following descriptions will be publicly visible on your{" "}
@@ -35,7 +35,7 @@ export const IntendedLearners = () => {
             type="text"
             placeholder="Example: Define the roles and responsibilities of a project manager"
           />
-          <span className="absolute right-4 top-7 text-xs text-[#6B7280]">
+          <span className="absolute right-4 top-7 text-sm text-[#6B7280]">
             14
           </span>
         </div>
@@ -45,7 +45,7 @@ export const IntendedLearners = () => {
             type="text"
             placeholder="Example: Estimate project timelines and budgets"
           />
-          <span className="absolute right-4 top-7 text-xs text-[#6B7280]">
+          <span className="absolute right-4 top-7 text-sm text-[#6B7280]">
             160
           </span>
         </div>
@@ -55,7 +55,7 @@ export const IntendedLearners = () => {
             type="text"
             placeholder="Example: Identify and manage project risks"
           />
-          <span className="absolute right-4 top-7 text-xs text-[#6B7280]">
+          <span className="absolute right-4 top-7 text-sm text-[#6B7280]">
             160
           </span>
         </div>
@@ -65,7 +65,7 @@ export const IntendedLearners = () => {
             type="text"
             placeholder="Example: Complete a case study to manage a project from conception to completion"
           />
-          <span className="absolute right-4 top-7 text-xs text-[#6B7280]">
+          <span className="absolute right-4 top-7 text-sm text-[#6B7280]">
             14
           </span>
         </div>

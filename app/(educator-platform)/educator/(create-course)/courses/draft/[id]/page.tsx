@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { KF_TITLE } from "@/utils/constants";
 import { IntendedLearners } from "./intended-learners";
+import { LandingPage } from "./landing-page";
 
 export default function CourseDraft() {
   const [step, setStep] = useState("INTENDED_LEARNERS");
@@ -43,7 +44,7 @@ export default function CourseDraft() {
           <span className="text-sm font-bold">Save</span>
         </button>
       </div>
-      <div className="flex max-w-[1300px] items-start gap-16 bg-container px-8 py-8">
+      <div className="flex items-start gap-16 bg-container px-8 py-8">
         <div className="mt-8 flex w-fit items-center gap-4">
           <div className="flex flex-col items-center justify-start gap-4 rounded-full bg-primary-light p-1 text-white">
             <div className="flex size-6 items-center justify-center rounded-full bg-primary text-sidebar">
@@ -113,6 +114,8 @@ export default function CourseDraft() {
           switch (step) {
             case "INTENDED_LEARNERS":
               return <IntendedLearners />;
+            case "LANDING_PAGE":
+              return <LandingPage />;
             default:
               return null;
           }

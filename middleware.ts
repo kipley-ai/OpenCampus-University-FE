@@ -39,6 +39,7 @@ export default async function middleware(req: NextRequest) {
   }
 
   if (
+    process.env.NODE_ENV === "production" &&
     checkEducatorURLS(url.pathname) &&
     hostname ===
       process.env

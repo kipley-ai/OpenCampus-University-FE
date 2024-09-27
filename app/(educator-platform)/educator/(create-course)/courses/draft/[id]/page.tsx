@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { KF_TITLE } from "@/utils/constants";
+import { IntendedLearners } from "./intended-learners";
 
 export default function CourseDraft() {
   const [step, setStep] = useState("INTENDED_LEARNERS");
@@ -9,6 +11,7 @@ export default function CourseDraft() {
 
   return (
     <>
+      <title>{KF_TITLE + "Course Draft - " + "Learn Java from Scratch"}</title>
       <div className="flex h-12 w-full items-center justify-between bg-primary px-8 text-sidebar shadow-lg">
         <div className="flex items-center gap-12">
           <button
@@ -78,175 +81,42 @@ export default function CourseDraft() {
             </div>
           </div>
           <div className="flex flex-col items-start justify-start gap-4">
-            <span className="font-semibold text-heading">Plan your course</span>
-            <span className="ml-4 font-semibold text-primary">
+            <button className="font-semibold text-heading">
+              Plan your course
+            </button>
+            <button
+              onClick={() => setStep("INTENDED_LEARNERS")}
+              disabled={step === "INTENDED_LEARNERS"}
+              className={`ml-4 ${step === "INTENDED_LEARNERS" ? "font-semibold text-primary" : "font-medium text-[#6B7280] hover:text-secondary"}`}
+            >
               Intended learners
-            </span>
-            <span className="ml-4 font-medium text-[#6B7280]">
+            </button>
+            <button
+              onClick={() => setStep("LANDING_PAGE")}
+              disabled={step === "LANDING_PAGE"}
+              className={`ml-4 ${step === "LANDING_PAGE" ? "font-semibold text-primary" : "font-medium text-[#6B7280] hover:text-secondary"}`}
+            >
               Landing page
-            </span>
-            <span className="font-semibold text-heading">
+            </button>
+            <button className="font-semibold text-heading">
               Create your content
-            </span>
-            <span className="font-semibold text-heading">
+            </button>
+            <button className="font-semibold text-heading">
               Publish your course
-            </span>
-            <span className="font-semibold text-heading">
+            </button>
+            <button className="font-semibold text-heading">
               Submit for review
-            </span>
+            </button>
           </div>
         </div>
-        <main className="flex w-3/4 flex-col gap-8 rounded-2xl border-2 border-border bg-sidebar p-3 text-sm md:p-10 xl:mt-4">
-          <h1 className="text-lg font-semibold text-primary">
-            Intended Learners
-          </h1>
-          <p className="text-body">
-            The following descriptions will be publicly visible on your{" "}
-            <span
-              className="cursor-pointer text-primary underline hover:text-secondary"
-              onClick={() => router.push("/courses")}
-            >
-              Course Landing Page
-            </span>{" "}
-            and will have a direct impact on your course performance. These
-            descriptions will help learners decide if your course is right for
-            them.
-          </p>
-
-          <section>
-            <h2 className="font-bold text-heading">
-              What will students learn in your course?
-            </h2>
-            <p className="mt-2 text-body">
-              You must enter at least 4{" "}
-              <span className="text-primary underline">
-                learning objectives or outcomes
-              </span>{" "}
-              that learners can expect to achieve after completing your course.
-            </p>
-            <div className="relative w-full xl:w-10/12">
-              <input
-                className="input-text mt-4 w-full font-normal"
-                type="text"
-                placeholder="Example: Define the roles and responsibilities of a project manager"
-              />
-              <span className="absolute right-4 top-7 text-xs text-[#6B7280]">
-                14
-              </span>
-            </div>
-            <div className="relative w-full xl:w-10/12">
-              <input
-                className="input-text mt-4 w-full font-normal"
-                type="text"
-                placeholder="Example: Estimate project timelines and budgets"
-              />
-              <span className="absolute right-4 top-7 text-xs text-[#6B7280]">
-                160
-              </span>
-            </div>
-            <div className="relative w-full xl:w-10/12">
-              <input
-                className="input-text mt-4 w-full font-normal"
-                type="text"
-                placeholder="Example: Identify and manage project risks"
-              />
-              <span className="absolute right-4 top-7 text-xs text-[#6B7280]">
-                160
-              </span>
-            </div>
-            <div className="relative w-full xl:w-10/12">
-              <input
-                className="input-text mt-4 w-full font-normal"
-                type="text"
-                placeholder="Example: Complete a case study to manage a project from conception to completion"
-              />
-              <span className="absolute right-4 top-7 text-xs text-[#6B7280]">
-                14
-              </span>
-            </div>
-            <button className="mt-6 flex items-center gap-2 font-bold leading-none text-primary hover:text-secondary">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="15"
-                fill="none"
-                viewBox="0 0 14 15"
-              >
-                <path
-                  fill="currentColor"
-                  d="M14 8.7H8v6H6v-6H0v-2h6v-6h2v6h6v2Z"
-                />
-              </svg>
-              Add more
-            </button>
-          </section>
-
-          <section>
-            <h2 className="font-bold text-heading">
-              What are the requirements or prerequisites for taking your course?
-            </h2>
-            <p className="mt-2 text-body">
-              List the required skills, experience, tools or equipment learners
-              should have prior to taking your course. If there are no
-              requirements, use this space as an opportunity to lower the
-              barrier for beginners.
-            </p>
-            <div className="relative w-full xl:w-10/12">
-              <input
-                className="input-text mt-4 w-full font-normal"
-                type="text"
-                placeholder="Example: No programming experience needed. You will learn everything you need to know"
-              />
-            </div>
-            <button className="mt-6 flex items-center gap-2 font-bold leading-none text-primary hover:text-secondary">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="15"
-                fill="none"
-                viewBox="0 0 14 15"
-              >
-                <path
-                  fill="currentColor"
-                  d="M14 8.7H8v6H6v-6H0v-2h6v-6h2v6h6v2Z"
-                />
-              </svg>
-              Add more
-            </button>
-          </section>
-
-          <section>
-            <h2 className="font-bold text-heading">Who is this course for?</h2>
-            <p className="mt-2 text-body">
-              Write a clear description of the{" "}
-              <span className="text-primary underline">intended learners</span>{" "}
-              for your course who will find your course content valuable. This
-              will help you attract the right learners to your course.
-            </p>
-            <div className="relative w-full xl:w-10/12">
-              <input
-                className="input-text mt-4 w-full font-normal"
-                type="text"
-                placeholder="Example: Beginner Python developers curious about data science"
-              />
-            </div>
-            <button className="mb-12 mt-6 flex items-center gap-2 font-bold leading-none text-primary hover:text-secondary">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="15"
-                fill="none"
-                viewBox="0 0 14 15"
-              >
-                <path
-                  fill="currentColor"
-                  d="M14 8.7H8v6H6v-6H0v-2h6v-6h2v6h6v2Z"
-                />
-              </svg>
-              Add more
-            </button>
-          </section>
-        </main>
+        {(() => {
+          switch (step) {
+            case "INTENDED_LEARNERS":
+              return <IntendedLearners />;
+            default:
+              return null;
+          }
+        })()}
       </div>
     </>
   );

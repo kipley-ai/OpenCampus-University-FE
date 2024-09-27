@@ -1,3 +1,7 @@
+import { Pricing } from "./pricing";
+import CourseMessages from "./course-messages";
+import SubmitForReview from "./submit-for-review";
+
 export default function CourseDraft() {
   return (
     <>
@@ -17,7 +21,9 @@ export default function CourseDraft() {
           </div>
           <span className="font-semibold text-heading">Plan your course</span>
         </div>
-        <main className="w-4/5 rounded-2xl border-2 border-border bg-sidebar p-3 md:p-10 xl:mt-4"></main>
+        <main className="w-4/5 rounded-2xl border-2 border-border bg-sidebar p-3 md:p-10 xl:mt-4">
+          <SubmitForReview />
+        </main>
       </div>
     </>
   );

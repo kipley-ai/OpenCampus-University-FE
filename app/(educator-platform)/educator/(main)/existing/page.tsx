@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { WelcomeOptions } from "../welcome-options";
 
 import Link from "next/link";
@@ -28,6 +29,8 @@ const ProgressBar = ({
 };
 
 const Courses = () => {
+  const router = useRouter();
+
   return (
     <div className="flex flex-col space-y-6">
       <div className="flex cursor-pointer flex-row gap-4 rounded-2xl border border-border">
@@ -46,7 +49,10 @@ const Courses = () => {
           </div>
         </div>
       </div>
-      <div className="group relative flex cursor-pointer flex-row gap-4 rounded-2xl border border-border">
+      <div
+        className="group relative flex cursor-pointer flex-row gap-4 rounded-2xl border border-border"
+        onClick={() => router.push("/educator/courses/draft/1")}
+      >
         <div className="absolute inset-0 z-10 flex items-center justify-center rounded-2xl bg-white bg-opacity-80 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
           <p className=" font-semibold text-primary">Edit / manage course</p>
         </div>

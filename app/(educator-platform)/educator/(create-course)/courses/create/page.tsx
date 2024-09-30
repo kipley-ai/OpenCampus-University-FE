@@ -1,7 +1,7 @@
 "use client";
 
 import Header from "@/components/ui/header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { TitleInput } from "./title-input";
 import { CategoryInput } from "./category-input";

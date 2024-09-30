@@ -5,6 +5,9 @@ import { useRouter } from "next/navigation";
 import { KF_TITLE } from "@/utils/constants";
 import { IntendedLearners } from "./intended-learners";
 import { LandingPage } from "./landing-page";
+import { Pricing } from "./pricing";
+import CourseMessages from "./course-messages";
+import SubmitForReview from "./submit-for-review";
 
 export default function CourseDraft() {
   const [step, setStep] = useState("INTENDED_LEARNERS");
@@ -110,16 +113,24 @@ export default function CourseDraft() {
             </button>
           </div>
         </div>
-        {(() => {
-          switch (step) {
-            case "INTENDED_LEARNERS":
-              return <IntendedLearners />;
-            case "LANDING_PAGE":
-              return <LandingPage />;
-            default:
-              return null;
-          }
-        })()}
+        <main className="w-4/5 rounded-2xl border-2 border-border bg-sidebar p-3 md:p-10 xl:mt-4">
+          {(() => {
+            switch (step) {
+              case "INTENDED_LEARNERS":
+                return <IntendedLearners />;
+              case "LANDING_PAGE":
+                return <LandingPage />;
+              case "PRICING":
+                return <Pricing />;
+              case "COURSE_MESSAGES":
+                return <CourseMessages />;
+              case "SUBMIT_FOR_REVIEW":
+                return <SubmitForReview />;
+              default:
+                return null;
+            }
+          })()}
+        </main>
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 interface LessonProps {
   number: number;
@@ -8,12 +9,13 @@ interface LessonProps {
 }
 
 const Lesson = ({ number, title }: LessonProps) => {
-  const [isNewContentExpanded, setIsNewContentExpanded] = useState(false);
+  const [step, setStep] = useState<string>("DEFAULT");
+  const [videoTab, setVideoTab] = useState<string>("UPLOAD_VIDEO");
 
   return (
     <>
       <div
-        className={`relative mt-4 flex items-center justify-between rounded-t-lg ${isNewContentExpanded ? "" : "rounded-b-lg"} border border-border bg-sidebar p-4`}
+        className={`relative mt-4 flex items-center justify-between rounded-t-lg ${step === "DEFAULT" ? "rounded-b-lg" : ""} border border-border bg-sidebar p-4`}
       >
         <h3 className="">
           <svg
@@ -45,9 +47,9 @@ const Lesson = ({ number, title }: LessonProps) => {
           </svg>
           {title}
         </h3>
-        {!isNewContentExpanded && (
+        {step === "DEFAULT" && (
           <button
-            onClick={() => setIsNewContentExpanded(!isNewContentExpanded)}
+            onClick={() => setStep("SELECT_CONTENT_TYPE")}
             className="flex w-fit items-center gap-2 rounded-lg border border-border px-4 py-2 text-primary hover:bg-secondary"
           >
             <svg
@@ -66,12 +68,23 @@ const Lesson = ({ number, title }: LessonProps) => {
           </button>
         )}
       </div>
-      {isNewContentExpanded && (
-        <div className="relative z-20 flex w-full flex-col items-center gap-4 rounded-b-lg border-x border-b border-border bg-sidebar px-4 py-2">
+      {step !== "DEFAULT" && (
+        <div className="relative z-20 w-full rounded-b-lg border-x border-b border-border bg-sidebar px-4 py-2">
           <div className="absolute bottom-full right-4 flex items-center gap-4 rounded-t-lg border-x border-t border-border bg-sidebar px-4 py-2">
-            <span className="text-xs font-semibold">Select content type</span>
+            <span className="text-xs font-semibold">
+              {(() => {
+                switch (step) {
+                  case "SELECT_CONTENT_TYPE":
+                    return "Select content type";
+                  case "ADD_VIDEO":
+                    return "Add Video";
+                  default:
+                    return null;
+                }
+              })()}
+            </span>
             <button
-              onClick={() => setIsNewContentExpanded(false)}
+              onClick={() => setStep("DEFAULT")}
               className="hover:text-primary"
             >
               <svg
@@ -88,66 +101,209 @@ const Lesson = ({ number, title }: LessonProps) => {
               </svg>
             </button>
           </div>
-          <p className="text-xs">
-            Select the main type of content. Files and links can be added as
-            resources.{" "}
-            <span className="cursor-pointer text-primary underline hover:text-secondary">
-              Learn more about content types.
-            </span>
-          </p>
-          <div className="flex items-center gap-8">
-            <button className="group flex w-20 flex-col items-center justify-between gap-2 rounded-lg border border-border bg-container pt-2 hover:bg-primary">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="28"
-                height="27"
-                fill="none"
-                viewBox="0 0 28 27"
-              >
-                <path
-                  fill="#D1D7DC"
-                  d="M.666 13.6c0 7.367 5.967 13.333 13.333 13.333 7.367 0 13.334-5.966 13.334-13.333S21.366.267 13.999.267C6.633.267.666 6.233.666 13.6Zm20 .152L9.999 18.933V8.267l10.667 5.485Z"
-                />
-              </svg>
-              <div className="w-full rounded-b-lg bg-primary-light text-[0.6rem] text-primary group-hover:bg-primary group-hover:text-sidebar">
-                Video
-              </div>
-            </button>
-            <button className="group flex w-20 flex-col items-center justify-between gap-2 rounded-lg border border-border bg-container pt-2 hover:bg-primary">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="25"
-                fill="none"
-                viewBox="0 0 24 25"
-              >
-                <path
-                  fill="#D1D7DC"
-                  d="M9.333 7.267v10.666L16 12.6 9.333 7.267Zm12-6.667H2.667A2.675 2.675 0 0 0 0 3.267v18.666C0 23.4 1.2 24.6 2.667 24.6h18.666C22.8 24.6 24 23.4 24 21.933V3.267C24 1.8 22.8.6 21.333.6Zm0 21.333H2.667V3.267h18.666v18.666Z"
-                />
-              </svg>
-              <div className="w-full rounded-b-lg bg-primary-light text-[0.6rem] text-primary group-hover:bg-primary group-hover:text-sidebar">
-                Video & Slide
-              </div>
-            </button>
-            <button className="group flex w-20 flex-col items-center justify-between gap-2 rounded-lg border border-border bg-container pt-2 hover:bg-primary">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="27"
-                fill="none"
-                viewBox="0 0 22 27"
-              >
-                <path
-                  fill="#D1D7DC"
-                  d="M13.667.267H3.001A2.663 2.663 0 0 0 .347 2.933L.334 24.267a2.663 2.663 0 0 0 2.653 2.666h16.014c1.466 0 2.666-1.2 2.666-2.666v-16l-8-8Zm-10.666 24V2.933h9.333V9.6h6.667v14.667H3Z"
-                />
-              </svg>
-              <div className="w-full rounded-b-lg bg-primary-light text-[0.6rem] text-primary group-hover:bg-primary group-hover:text-sidebar">
-                Article
-              </div>
-            </button>
-          </div>
+          {(() => {
+            switch (step) {
+              case "SELECT_CONTENT_TYPE":
+                return (
+                  <>
+                    <p className="text-xs">
+                      Select the main type of content. Files and links can be
+                      added as resources.{" "}
+                      <span className="cursor-pointer text-primary underline hover:text-secondary">
+                        Learn more about content types.
+                      </span>
+                    </p>
+                    <div className="mt-4 flex items-center justify-center gap-8">
+                      <button
+                        onClick={() => setStep("ADD_VIDEO")}
+                        className="group flex w-20 flex-col items-center justify-between gap-2 rounded-lg border border-border bg-container pt-2 hover:bg-primary"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="28"
+                          height="27"
+                          fill="none"
+                          viewBox="0 0 28 27"
+                        >
+                          <path
+                            fill="#D1D7DC"
+                            d="M.666 13.6c0 7.367 5.967 13.333 13.333 13.333 7.367 0 13.334-5.966 13.334-13.333S21.366.267 13.999.267C6.633.267.666 6.233.666 13.6Zm20 .152L9.999 18.933V8.267l10.667 5.485Z"
+                          />
+                        </svg>
+                        <div className="w-full rounded-b-lg bg-primary-light text-[0.6rem] text-primary group-hover:bg-primary group-hover:text-sidebar">
+                          Video
+                        </div>
+                      </button>
+                      <button className="group flex w-20 flex-col items-center justify-between gap-2 rounded-lg border border-border bg-container pt-2 hover:bg-primary">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="25"
+                          fill="none"
+                          viewBox="0 0 24 25"
+                        >
+                          <path
+                            fill="#D1D7DC"
+                            d="M9.333 7.267v10.666L16 12.6 9.333 7.267Zm12-6.667H2.667A2.675 2.675 0 0 0 0 3.267v18.666C0 23.4 1.2 24.6 2.667 24.6h18.666C22.8 24.6 24 23.4 24 21.933V3.267C24 1.8 22.8.6 21.333.6Zm0 21.333H2.667V3.267h18.666v18.666Z"
+                          />
+                        </svg>
+                        <div className="w-full rounded-b-lg bg-primary-light text-[0.6rem] text-primary group-hover:bg-primary group-hover:text-sidebar">
+                          Video & Slide
+                        </div>
+                      </button>
+                      <button className="group flex w-20 flex-col items-center justify-between gap-2 rounded-lg border border-border bg-container pt-2 hover:bg-primary">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="22"
+                          height="27"
+                          fill="none"
+                          viewBox="0 0 22 27"
+                        >
+                          <path
+                            fill="#D1D7DC"
+                            d="M13.667.267H3.001A2.663 2.663 0 0 0 .347 2.933L.334 24.267a2.663 2.663 0 0 0 2.653 2.666h16.014c1.466 0 2.666-1.2 2.666-2.666v-16l-8-8Zm-10.666 24V2.933h9.333V9.6h6.667v14.667H3Z"
+                          />
+                        </svg>
+                        <div className="w-full rounded-b-lg bg-primary-light text-[0.6rem] text-primary group-hover:bg-primary group-hover:text-sidebar">
+                          Article
+                        </div>
+                      </button>
+                    </div>
+                  </>
+                );
+              case "ADD_VIDEO":
+                return (
+                  <>
+                    <div className="flex flex-row items-center space-x-4 border-b-2 border-border text-sm font-semibold text-heading sm:space-x-10">
+                      <button
+                        className={`${videoTab == "UPLOAD_VIDEO" ? "border-b-2 border-heading" : "opacity-50 transition-opacity duration-300 hover:text-body hover:opacity-100"}`}
+                        onClick={() => setVideoTab("UPLOAD_VIDEO")}
+                      >
+                        Upload video
+                      </button>
+                      <button
+                        className={`${videoTab == "ADD_FROM_LIBRARY" ? "border-b-2 border-heading" : "opacity-50 transition-opacity duration-300 hover:text-body hover:opacity-100"}`}
+                        onClick={() => setVideoTab("ADD_FROM_LIBRARY")}
+                      >
+                        Add from library
+                      </button>
+                    </div>
+                    <div className="mt-4 flex items-center rounded-lg border border-border">
+                      <div className="w-10/12 border-r border-border bg-container p-3 text-body">
+                        No file selected
+                      </div>
+                      <button
+                        onClick={() => setStep("VIDEO_IS_PRESENT")}
+                        className="flex w-2/12 items-center justify-center p-3 font-semibold text-heading"
+                      >
+                        <span>Select Video</span>
+                      </button>
+                    </div>
+                    <p className="my-2 text-xs text-body">
+                      <span className="font-semibold">Note: </span>All files
+                      should be at least 720p and less than 4.0 GB.
+                    </p>
+                  </>
+                );
+              case "VIDEO_IS_PRESENT":
+                return (
+                  <div className="p-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <Image
+                          src="/images/feed-image-01.jpg"
+                          alt="Video Thumbnail"
+                          width={120}
+                          height={80}
+                        />
+                        <div>
+                          <h4 className="font-semibold">canva-game-4.mp4</h4>
+                          <p className="">00:23</p>
+                          <button className="flex items-center gap-2 text-primary hover:text-secondary">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="12"
+                              height="13"
+                              fill="none"
+                              viewBox="0 0 12 13"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="M0 10.2v2.5h2.5l7.373-7.373-2.5-2.5L0 10.2Zm11.807-6.807a.665.665 0 0 0 0-.94l-1.56-1.56a.665.665 0 0 0-.94 0l-1.22 1.22 2.5 2.5 1.22-1.22Z"
+                              />
+                            </svg>
+                            Edit Content
+                          </button>
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-end gap-4 ">
+                        <button className="mt-2 flex w-fit items-center gap-2 rounded-lg border border-border bg-sidebar px-4 py-2 text-primary hover:bg-secondary">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="14"
+                            height="15"
+                            fill="none"
+                            viewBox="0 0 14 15"
+                          >
+                            <path
+                              fill="currentColor"
+                              d="M14 8.7H8v6H6v-6H0v-2h6v-6h2v6h6v2Z"
+                            />
+                          </svg>
+                          <span className="font-bold">Preview</span>
+                        </button>
+                        <div className="flex items-center gap-4">
+                          Downloadable:
+                          <label className="relative inline-flex cursor-pointer items-center">
+                            <input
+                              id="switch"
+                              type="checkbox"
+                              className="peer sr-only"
+                            />
+                            <label htmlFor="switch" className="hidden"></label>
+                            <div className="peer h-6 w-11 rounded-full border bg-slate-200 after:absolute after:left-[2px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-slate-800 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-green-300"></div>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <hr className="mt-2 border-t border-border" />
+                    <button className="mt-2 flex w-fit items-center gap-2 rounded-lg border border-border bg-sidebar px-4 py-2 text-primary hover:bg-secondary">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="15"
+                        fill="none"
+                        viewBox="0 0 14 15"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M14 8.7H8v6H6v-6H0v-2h6v-6h2v6h6v2Z"
+                        />
+                      </svg>
+                      <span className="font-bold">Description</span>
+                    </button>
+                    <button className="mb-2 mt-2 flex w-fit items-center gap-2 rounded-lg border border-border bg-sidebar px-4 py-2 text-primary hover:bg-secondary">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="15"
+                        fill="none"
+                        viewBox="0 0 14 15"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M14 8.7H8v6H6v-6H0v-2h6v-6h2v6h6v2Z"
+                        />
+                      </svg>
+                      <span className="font-bold">Question</span>
+                    </button>
+                  </div>
+                );
+
+              default:
+                return null;
+            }
+          })()}
         </div>
       )}
     </>
@@ -176,7 +332,7 @@ const Quiz = ({ number, title }: LessonProps) => {
               d="M7 .323A6.67 6.67 0 0 0 .335 6.99a6.67 6.67 0 0 0 6.667 6.667 6.67 6.67 0 0 0 6.666-6.667A6.67 6.67 0 0 0 7.001.323Zm-1.333 10L2.782 7.438l.94-.94 1.945 1.939L9.89 4.215l.94.946-5.162 5.162Z"
             />
           </svg>
-          Quiz 1:
+          Quiz {number}:
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="14"
@@ -216,7 +372,18 @@ const Quiz = ({ number, title }: LessonProps) => {
       {step !== "DEFAULT" && (
         <div className="relative z-20 w-full rounded-b-lg border-x border-b border-border bg-sidebar px-4 py-2">
           <div className="absolute bottom-full right-4 flex items-center gap-4 rounded-t-lg border-x border-t border-border bg-sidebar px-4 py-2">
-            <span className="text-xs font-semibold">Select question type</span>
+            <span className="text-xs font-semibold">
+              {(() => {
+                switch (step) {
+                  case "SELECT_QUESTION_TYPE":
+                    return "Select question type";
+                  case "MULTIPLE_CHOICE":
+                    return "Add Multiple Choice";
+                  default:
+                    return null;
+                }
+              })()}
+            </span>
             <button
               onClick={() => setStep("DEFAULT")}
               className="hover:text-primary"

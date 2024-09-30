@@ -60,6 +60,10 @@ export default function CourseDraft() {
     LANDING_PAGE: 1,
     CURRICULUM: 2,
     AI_APPS: 2,
+    PRICING: 3,
+    PROMOTIONS: 3,
+    COURSE_MESSAGES: 3,
+    SUBMIT_FOR_REVIEW: 4,
   };
 
   return (
@@ -102,8 +106,8 @@ export default function CourseDraft() {
         <div className="mt-8 flex w-fit items-start gap-4">
           <div className="flex flex-col items-center justify-start gap-4 rounded-full bg-primary-light p-1 text-white">
             <NumberBullet currentStep={stepDict[step]} number={1} />
-            {stepDict[step] === 1 && (
-              <>
+            {stepDict[step] === 1 &&
+              [...Array(2)].map((e, i) => (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="6"
@@ -111,6 +115,7 @@ export default function CourseDraft() {
                   fill="none"
                   viewBox="-2 -2 6 6"
                   className="size-6"
+                  key={i}
                 >
                   <rect
                     width="2"
@@ -119,26 +124,10 @@ export default function CourseDraft() {
                     rx="1"
                   />
                 </svg>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="6"
-                  height="6"
-                  fill="none"
-                  viewBox="-2 -2 6 6"
-                  className="size-6"
-                >
-                  <rect
-                    width="2"
-                    height="2"
-                    fill="var(--color-primary)"
-                    rx="1"
-                  />
-                </svg>
-              </>
-            )}
+              ))}
             <NumberBullet currentStep={stepDict[step]} number={2} />
-            {stepDict[step] === 2 && (
-              <>
+            {stepDict[step] === 2 &&
+              [...Array(2)].map((e, i) => (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="6"
@@ -146,6 +135,7 @@ export default function CourseDraft() {
                   fill="none"
                   viewBox="-2 -2 6 6"
                   className="size-6"
+                  key={i}
                 >
                   <rect
                     width="2"
@@ -154,6 +144,10 @@ export default function CourseDraft() {
                     rx="1"
                   />
                 </svg>
+              ))}
+            <NumberBullet currentStep={stepDict[step]} number={3} />
+            {stepDict[step] === 3 &&
+              [...Array(3)].map((e, i) => (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="6"
@@ -161,6 +155,7 @@ export default function CourseDraft() {
                   fill="none"
                   viewBox="-2 -2 6 6"
                   className="size-6"
+                  key={i}
                 >
                   <rect
                     width="2"
@@ -169,14 +164,8 @@ export default function CourseDraft() {
                     rx="1"
                   />
                 </svg>
-              </>
-            )}
-            <div className="flex size-6 items-center justify-center rounded-full bg-[#6B7280]">
-              3
-            </div>
-            <div className="flex size-6 items-center justify-center rounded-full bg-[#6B7280]">
-              4
-            </div>
+              ))}
+            <NumberBullet currentStep={stepDict[step]} number={4} />
           </div>
 
           <div className="flex flex-col items-start justify-start gap-4 pt-1">
@@ -230,14 +219,48 @@ export default function CourseDraft() {
                 </button>
               </>
             )}
-            <button className="font-semibold text-heading">
+            <button
+              onClick={() => setStep("PRICING")}
+              disabled={stepDict[step] === 3}
+              className="font-semibold text-heading enabled:hover:text-secondary"
+            >
               Publish your course
             </button>
-            <button className="font-semibold text-heading">
+            {stepDict[step] === 3 && (
+              <>
+                <button
+                  onClick={() => setStep("PRICING")}
+                  disabled={step === "PRICING"}
+                  className={`ml-4 ${step === "PRICING" ? "font-semibold text-primary" : "font-medium text-[#6B7280] hover:text-secondary"}`}
+                >
+                  Pricing
+                </button>
+                <button
+                  onClick={() => setStep("PROMOTIONS")}
+                  disabled={step === "PROMOTIONS"}
+                  className={`ml-4 ${step === "PROMOTIONS" ? "font-semibold text-primary" : "font-medium text-[#6B7280] hover:text-secondary"}`}
+                >
+                  Promotions
+                </button>
+                <button
+                  onClick={() => setStep("COURSE_MESSAGES")}
+                  disabled={step === "COURSE_MESSAGES"}
+                  className={`ml-4 ${step === "COURSE_MESSAGES" ? "font-semibold text-primary" : "font-medium text-[#6B7280] hover:text-secondary"}`}
+                >
+                  Course messages
+                </button>
+              </>
+            )}
+            <button
+              onClick={() => setStep("SUBMIT_FOR_REVIEW")}
+              disabled={stepDict[step] === 4}
+              className="font-semibold text-heading enabled:hover:text-secondary"
+            >
               Submit for review
             </button>
           </div>
         </div>
+
         <main className="w-4/5 rounded-2xl border-2 border-border bg-sidebar p-3 md:p-10 xl:mt-4">
           {(() => {
             switch (step) {

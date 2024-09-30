@@ -261,7 +261,7 @@ export default function CourseDraft() {
           </div>
         </div>
 
-        <main className="w-4/5 rounded-2xl border-2 border-border bg-sidebar p-3 md:p-10 xl:mt-4">
+        <main className="w-4/5 max-w-[1000px] rounded-2xl border-2 border-border bg-sidebar p-3 md:p-10 xl:mt-4">
           {(() => {
             switch (step) {
               case "INTENDED_LEARNERS":

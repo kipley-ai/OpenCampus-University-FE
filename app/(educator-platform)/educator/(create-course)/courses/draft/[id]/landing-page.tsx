@@ -112,7 +112,7 @@ export const LandingPage = () => {
               </svg>
             </div>
             <textarea
-              className="size-full border-none px-3 text-sm"
+              className="size-full rounded-b-lg border-none px-3 text-sm"
               placeholder="Insert your course description"
             />
           </div>

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { KF_TITLE } from "@/utils/constants";
 import { IntendedLearners } from "./intended-learners";
 import { LandingPage } from "./landing-page";
+import { Curriculum } from "./curriculum";
 import { Pricing } from "./pricing";
 import CourseMessages from "./course-messages";
 import SubmitForReview from "./submit-for-review";
@@ -268,6 +269,8 @@ export default function CourseDraft() {
                 return <IntendedLearners />;
               case "LANDING_PAGE":
                 return <LandingPage />;
+              case "CURRICULUM":
+                return <Curriculum />;
               case "PRICING":
                 return <Pricing />;
               case "COURSE_MESSAGES":

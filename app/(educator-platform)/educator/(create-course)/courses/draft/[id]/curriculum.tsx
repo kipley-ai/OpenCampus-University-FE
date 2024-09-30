@@ -1,3 +1,159 @@
+"use client";
+
+import { useState } from "react";
+
+interface LessonProps {
+  number: number;
+  title: string;
+}
+
+const Lesson = ({ number, title }: LessonProps) => {
+  const [isNewContentExpanded, setIsNewContentExpanded] = useState(false);
+
+  return (
+    <>
+      <div
+        className={`relative mt-4 flex items-center justify-between rounded-t-lg ${isNewContentExpanded ? "" : "rounded-b-lg"} border border-border bg-sidebar p-4`}
+      >
+        <h3 className="">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            fill="none"
+            viewBox="0 0 14 14"
+            className="mb-1 mr-2 inline"
+          >
+            <path
+              fill="#111827"
+              d="M7 .323A6.67 6.67 0 0 0 .335 6.99a6.67 6.67 0 0 0 6.667 6.667 6.67 6.67 0 0 0 6.666-6.667A6.67 6.67 0 0 0 7.001.323Zm-1.333 10L2.782 7.438l.94-.94 1.945 1.939L9.89 4.215l.94.946-5.162 5.162Z"
+            />
+          </svg>
+          Lesson {number}:
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="14"
+            fill="none"
+            viewBox="0 0 12 14"
+            className="mb-1 ml-3 mr-2 inline"
+          >
+            <path
+              fill="#111827"
+              d="M7.333.323H1.999c-.733 0-1.326.6-1.326 1.334L.666 12.323c0 .734.593 1.334 1.327 1.334h8.006c.734 0 1.334-.6 1.334-1.334v-8l-4-4Zm-5.334 12V1.657h4.667V4.99h3.333v7.333H2Z"
+            />
+          </svg>
+          {title}
+        </h3>
+        {!isNewContentExpanded && (
+          <button
+            onClick={() => setIsNewContentExpanded(!isNewContentExpanded)}
+            className="flex w-fit items-center gap-2 rounded-lg border border-border px-4 py-2 text-primary hover:bg-secondary"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="15"
+              fill="none"
+              viewBox="0 0 14 15"
+            >
+              <path
+                fill="currentColor"
+                d="M14 8.7H8v6H6v-6H0v-2h6v-6h2v6h6v2Z"
+              />
+            </svg>
+            <span className="font-bold">Content</span>
+          </button>
+        )}
+      </div>
+      {isNewContentExpanded && (
+        <div className="relative z-20 flex w-full flex-col items-center gap-4 rounded-b-lg border-x border-b border-border bg-sidebar px-4 py-2">
+          <div className="absolute bottom-full bg-sidebar right-4 flex items-center gap-4 rounded-t-lg border-x border-t border-border px-4 py-2">
+            <span className="text-xs font-semibold">Select content type</span>
+            <button
+              onClick={() => setIsNewContentExpanded(false)}
+              className="hover:text-primary"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="13"
+                height="12"
+                fill="none"
+                viewBox="0 0 13 12"
+              >
+                <path
+                  fill="currentColor"
+                  d="M12.385 1.241 11.21.066 6.552 4.725 1.894.066.719 1.241 5.377 5.9.72 10.558l1.175 1.175 4.658-4.658 4.658 4.658 1.175-1.175L7.727 5.9l4.658-4.659Z"
+                />
+              </svg>
+            </button>
+          </div>
+          <p className="text-xs">
+            Select the main type of content. Files and links can be added as
+            resources.{" "}
+            <span className="cursor-pointer text-primary underline hover:text-secondary">
+              Learn more about content types.
+            </span>
+          </p>
+          <div className="flex items-center gap-8">
+            <button className="group flex w-20 flex-col items-center justify-between gap-2 rounded-lg border border-border bg-container pt-2 hover:bg-primary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="27"
+                fill="none"
+                viewBox="0 0 28 27"
+              >
+                <path
+                  fill="#D1D7DC"
+                  d="M.666 13.6c0 7.367 5.967 13.333 13.333 13.333 7.367 0 13.334-5.966 13.334-13.333S21.366.267 13.999.267C6.633.267.666 6.233.666 13.6Zm20 .152L9.999 18.933V8.267l10.667 5.485Z"
+                />
+              </svg>
+              <div className="w-full rounded-b-lg bg-primary-light text-[0.6rem] text-primary group-hover:bg-primary group-hover:text-sidebar">
+                Video
+              </div>
+            </button>
+            <button className="group flex w-20 flex-col items-center justify-between gap-2 rounded-lg border border-border bg-container pt-2 hover:bg-primary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="25"
+                fill="none"
+                viewBox="0 0 24 25"
+              >
+                <path
+                  fill="#D1D7DC"
+                  d="M9.333 7.267v10.666L16 12.6 9.333 7.267Zm12-6.667H2.667A2.675 2.675 0 0 0 0 3.267v18.666C0 23.4 1.2 24.6 2.667 24.6h18.666C22.8 24.6 24 23.4 24 21.933V3.267C24 1.8 22.8.6 21.333.6Zm0 21.333H2.667V3.267h18.666v18.666Z"
+                />
+              </svg>
+              <div className="w-full rounded-b-lg bg-primary-light text-[0.6rem] text-primary group-hover:bg-primary group-hover:text-sidebar">
+                Video & Slide
+              </div>
+            </button>
+            <button className="group flex w-20 flex-col items-center justify-between gap-2 rounded-lg border border-border bg-container pt-2 hover:bg-primary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="27"
+                fill="none"
+                viewBox="0 0 22 27"
+              >
+                <path
+                  fill="#D1D7DC"
+                  d="M13.667.267H3.001A2.663 2.663 0 0 0 .347 2.933L.334 24.267a2.663 2.663 0 0 0 2.653 2.666h16.014c1.466 0 2.666-1.2 2.666-2.666v-16l-8-8Zm-10.666 24V2.933h9.333V9.6h6.667v14.667H3Z"
+                />
+              </svg>
+              <div className="w-full rounded-b-lg bg-primary-light text-[0.6rem] text-primary group-hover:bg-primary group-hover:text-sidebar">
+                Article
+              </div>
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
 export const Curriculum = () => {
   return (
     <div className="text-sm">
@@ -33,53 +189,7 @@ export const Curriculum = () => {
           Introduction
         </h2>
 
-        <div className="mt-4 flex items-center justify-between rounded-lg border border-border bg-sidebar p-4">
-          <h3 className="">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              fill="none"
-              viewBox="0 0 14 14"
-              className="mb-1 mr-2 inline"
-            >
-              <path
-                fill="#111827"
-                d="M7 .323A6.67 6.67 0 0 0 .335 6.99a6.67 6.67 0 0 0 6.667 6.667 6.67 6.67 0 0 0 6.666-6.667A6.67 6.67 0 0 0 7.001.323Zm-1.333 10L2.782 7.438l.94-.94 1.945 1.939L9.89 4.215l.94.946-5.162 5.162Z"
-              />
-            </svg>
-            Lesson 1:
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="14"
-              fill="none"
-              viewBox="0 0 12 14"
-              className="mb-1 ml-3 mr-2 inline"
-            >
-              <path
-                fill="#111827"
-                d="M7.333.323H1.999c-.733 0-1.326.6-1.326 1.334L.666 12.323c0 .734.593 1.334 1.327 1.334h8.006c.734 0 1.334-.6 1.334-1.334v-8l-4-4Zm-5.334 12V1.657h4.667V4.99h3.333v7.333H2Z"
-              />
-            </svg>
-            The Basic
-          </h3>
-          <button className="flex w-fit items-center gap-2 rounded-lg border border-border px-4 py-2 text-primary hover:bg-secondary">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="15"
-              fill="none"
-              viewBox="0 0 14 15"
-            >
-              <path
-                fill="currentColor"
-                d="M14 8.7H8v6H6v-6H0v-2h6v-6h2v6h6v2Z"
-              />
-            </svg>
-            <span className="font-bold">Content</span>
-          </button>
-        </div>
+        <Lesson number={1} title="The Basic" />
 
         <div className="mt-4 flex items-center justify-between rounded-lg border border-border bg-sidebar p-4">
           <h3 className="">
@@ -129,68 +239,7 @@ export const Curriculum = () => {
           </button>
         </div>
 
-        <div className="mt-4 flex items-center justify-between rounded-lg border border-border bg-sidebar p-4">
-          <h3 className="">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              fill="none"
-              viewBox="0 0 14 14"
-              className="mb-1 mr-2 inline"
-            >
-              <path
-                fill="#111827"
-                d="M7 .323A6.67 6.67 0 0 0 .335 6.99a6.67 6.67 0 0 0 6.667 6.667 6.67 6.67 0 0 0 6.666-6.667A6.67 6.67 0 0 0 7.001.323Zm-1.333 10L2.782 7.438l.94-.94 1.945 1.939L9.89 4.215l.94.946-5.162 5.162Z"
-              />
-            </svg>
-            Lesson 2:
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="14"
-              fill="none"
-              viewBox="0 0 12 14"
-              className="mb-1 ml-3 mr-2 inline"
-            >
-              <path
-                fill="#111827"
-                d="M7.333.323H1.999c-.733 0-1.326.6-1.326 1.334L.666 12.323c0 .734.593 1.334 1.327 1.334h8.006c.734 0 1.334-.6 1.334-1.334v-8l-4-4Zm-5.334 12V1.657h4.667V4.99h3.333v7.333H2Z"
-              />
-            </svg>
-            test.pdf
-          </h3>
-          <div className="flex items-center gap-4">
-            <button className="flex w-fit items-center gap-2 rounded-lg border border-border px-4 py-2 text-primary hover:bg-secondary">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="15"
-                fill="none"
-                viewBox="0 0 14 15"
-              >
-                <path
-                  fill="currentColor"
-                  d="M14 8.7H8v6H6v-6H0v-2h6v-6h2v6h6v2Z"
-                />
-              </svg>
-              <span className="font-bold">Content</span>
-            </button>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="10"
-              height="5"
-              fill="none"
-              viewBox="0 0 10 5"
-              className="cursor-pointer hover:text-primary"
-            >
-              <path
-                fill="currentColor"
-                d="m9.016.765-3.75 3.75a.375.375 0 0 1-.531 0L.985.765a.375.375 0 0 1 .265-.64h7.5a.375.375 0 0 1 .266.64Z"
-              />
-            </svg>
-          </div>
-        </div>
+        <Lesson number={2} title="dsds" />
 
         <div className="mt-4 flex items-center justify-between rounded-lg border border-border bg-sidebar p-4">
           <h3 className="">

@@ -1,4 +1,9 @@
-export const TitleInput = () => {
+interface TitleInputProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+export const TitleInput: React.FC<TitleInputProps> = ({ value, onChange }) => {
   return (
     <>
       <h1 className="mt-12 text-center text-3xl font-bold">
@@ -10,7 +15,9 @@ export const TitleInput = () => {
       <input
         className="input-text mt-12 w-full font-normal sm:w-7/12"
         type="text"
-        placeholder="Learn Java from Scratch"
+        placeholder="e.g. Learn Java from Scratch"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
       />
     </>
   );

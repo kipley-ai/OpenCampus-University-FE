@@ -217,3 +217,123 @@ export interface IClaimSignatureRequest {
   income_amount: number;
   type: "chatbot" | "kb";
 }
+
+export interface IUpdateCourseParams {
+  uuid: string;
+  title: string;
+  created_by: string;
+  level: string;
+  published: number;
+  create: number;
+  user_id: string;
+  subtitle: string;
+  outline: string;
+  language: string;
+  description: string;
+  taught: string;
+  course_for: string[];
+  course_instructors: string[];
+  course_goals: any[]; // Need to be checked to be more specific
+  duration: number;
+  course_reqs: any[]; // Need to be checked to be more specific
+  category_id: number;
+  subcategory_id: number;
+  cover_image: string;
+  cover_video: string;
+  price: string;
+  data_status: number;
+}
+
+export interface IFetchCourseParams {
+  uuid: string;
+}
+
+export interface ICourseIndexParams {
+  uuid: string;
+  created_by: string;
+  data_status: number;
+  published: number;
+  user_id: string;
+}
+
+export interface IUpdateSectionParams {
+  uuid: string;
+  course_uuid: string;
+  duration: number;
+  create: number;
+  created_by: string;
+  title: string;
+  goals: string[];
+  published: number;
+  sort: number;
+  data_status: number;
+  description: string;
+}
+
+export interface IFetchSectionParams {
+  uuid: string;
+}
+
+export interface ISectionIndexParams {
+  created_by: string;
+  data_status: number;
+  published: number;
+  course_uuid: string;
+}
+
+export interface IUpdateLessonsParams {
+  uuid: string;
+  course_uuid: string;
+  duration: number;
+  section_uuid: string;
+  create: number;
+  created_by: string;
+  title: string;
+  goals: string[];
+  published: number;
+  sort: number;
+  description: string;
+  type: string;
+  type_data: string[];
+  data_status: number;
+  resources: string[];
+}
+
+export interface IFetchLessonsParams {
+  uuid: string;
+}
+
+export interface ILessonsIndexParams {
+  created_by: string;
+  data_status: number;
+  published: number;
+  course_uuid: string;
+  section_uuid: string;
+}
+
+export interface IUpdateFilesParams {
+  uuid: string;
+  user_id: string;
+  file_url: string;
+  file_name: string;
+  file_size: number;
+  file_extension: string;
+  file_path: string;
+  s3_url: string;
+  s3_service: string;
+  data_status: number;
+  create: number;
+  created_by: string;
+  type: string;
+}
+
+export interface IFetchFilesParams {
+  uuid: string;
+}
+
+export interface IFilesIndexParams {
+  created_by: string;
+  data_status: number;
+  user_id: string;
+  file_url: string;
+}

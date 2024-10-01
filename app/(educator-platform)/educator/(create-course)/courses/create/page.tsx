@@ -5,11 +5,50 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { TitleInput } from "./title-input";
 import { CategoryInput } from "./category-input";
+import { useCreateCourse } from "@/hooks/api/educator-platform";
 
 export default function CreateCoursePage() {
   const [step, setStep] = useState<number>(1);
+  const [courseData, setCourseData] = useState({
+    title: "",
+    category_id: "",
+  });
 
   const router = useRouter();
+  const createCourseMutation = useCreateCourse();
+
+  const handleCreateCourse = async () => {
+    try {
+      await createCourseMutation.mutateAsync({
+        ...courseData,
+        created_by: "", // Add the missing properties
+        level: "",
+        published: 0,
+        create: 0,
+        user_id: "",
+        subtitle: "",
+        outline: "",
+        language: "",
+        description: "",
+        taught: "",
+        course_for: [],
+        course_instructors: [],
+        course_goals: [],
+        duration: 0,
+        course_reqs: [],
+        subcategory_id: 0,
+        cover_image: "",
+        cover_video: "",
+        price: "0.00",
+        data_status: 0,
+        category_id: parseInt(courseData.category_id)
+      });
+      router.push("/educator/existing");
+    } catch (error) {
+      console.error("Error creating course:", error);
+      // Handle error (e.g., show error message to user)
+    }
+  };
 
   return (
     <div className="relative flex h-dvh flex-1 grow flex-col overflow-y-auto text-heading">
@@ -19,9 +58,9 @@ export default function CreateCoursePage() {
         {(() => {
           switch (step) {
             case 1:
-              return <TitleInput />;
+              return <TitleInput value={courseData.title} onChange={(title) => setCourseData({ ...courseData, title })} />;
             case 2:
-              return <CategoryInput />;
+              return <CategoryInput value={courseData.category_id} onChange={(category_id) => setCourseData({ ...courseData, category_id })} />;
             default:
               return null;
           }
@@ -39,7 +78,7 @@ export default function CreateCoursePage() {
           className="btn-primary px-4 py-2 font-bold"
           onClick={
             step === 2
-              ? () => router.push("/educator/existing")
+              ? handleCreateCourse
               : () => setStep(step + 1)
           }
         >

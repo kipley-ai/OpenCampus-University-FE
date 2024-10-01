@@ -1,11 +1,9 @@
 "use client";
 
-import Sidebar from "@/components/ui/sidebar";
 import Header from "@/components/ui/header";
 import { redirect, usePathname } from "next/navigation";
 import { useAccount } from "wagmi";
 import { useUserDetail } from "@/hooks/api/user";
-import { useEffect } from "react";
 import { SUBDOMAINS } from "@/utils/constants";
 
 export default function DefaultLayout({
@@ -37,7 +35,7 @@ export default function DefaultLayout({
   return (
     <div className="flex h-[100dvh] overflow-hidden bg-sidebar text-heading">
       {/* Sidebar */}
-      <Sidebar />
+      {/* <Sidebar /> */}
 
       {/* Content area */}
       <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden rounded-lg bg-container p-0 pb-8 pl-0 lg:m-6 lg:ml-0">

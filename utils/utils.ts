@@ -138,3 +138,7 @@ export const isTokenExpired = (token: string) => {
 export const compareStringsIgnoreCase = (a?: string, b?: string) => {
   return a?.toLowerCase() === b?.toLowerCase();
 };
+
+export const randomIntBetween = (a: number, b: number) => {
+  return Math.floor(Math.random() * (b - a + 1)) + a;
+};

@@ -8,7 +8,7 @@ import { keepPreviousData } from "@tanstack/react-query";
 import { useAppProvider } from "@/providers/app-provider";
 import { ModalUnauthenticated } from "@/components/modal-unauthenticated";
 import { getBreakpoint } from "@/components/utils/utils";
-import { KF_TITLE } from "@/utils/constants";
+import { CourseCategories, courses, KF_TITLE } from "@/utils/constants";
 import { chatbotSlug } from "@/utils/utils";
 import { useChatbotExplore, useGetCategory } from "@/hooks/api/chatbot";
 import { ChatbotData } from "@/lib/types";
@@ -25,6 +25,8 @@ import OC100Image3rd from "components/homepage/oc-100-image-3rd.svg";
 import OC100Image4th from "components/homepage/oc-100-image-4th.svg";
 import OC100Image5th from "components/homepage/oc-100-image-5th.svg";
 import FiresideImage from "components/homepage/fireside-frame-no-text.svg";
+import { ProfessorList } from "../chatbot/[id]/profile/professor-page";
+import { CourseCard } from "../courses/course-card";
 
 export default function Dashboard() {
   const { setHeaderTitle, session } = useAppProvider();
@@ -166,7 +168,7 @@ export default function Dashboard() {
       />
 
       {/* Featured Creators Section */}
-      <div className="mt-6 rounded-xl border-2 border-border bg-sidebar p-3 md:mt-12 lg:px-10 lg:py-8">
+      {/* <div className="mt-6 rounded-xl border-2 border-border bg-sidebar p-3 md:mt-10 lg:px-10 lg:py-8">
         <div className="flex flex-row justify-between">
           <h1 className="text-lg font-semibold md:text-xl">
             {featuredBotsQuery?.data?.data?.data.name}
@@ -236,15 +238,43 @@ export default function Dashboard() {
               <BotItem key={botData.chatbot_id} botData={botData} />
             ))}
         </div>
+      </div> */}
+
+      {/* Featured Creators Section */}
+      <div className="mt-6 rounded-xl border-2 border-border bg-sidebar p-3 md:mt-10 lg:px-10 lg:py-8">
+        <div className="flex flex-row items-center justify-between">
+          <h1 className="text-lg font-semibold md:text-xl">
+            Featured Creators
+          </h1>
+          <button className="text-primary underline">See all</button>
+        </div>
+        <div className="mt-4 grid grid-cols-2 gap-x-11 gap-y-8 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          {ProfessorList.map((prof) => (
+            <ProfItem key={prof.id} profData={prof} />
+          ))}
+        </div>
       </div>
+
+      {/* Featured Courses Section */}
+      <div className="mt-6 rounded-xl border-2 border-border bg-sidebar p-3 md:mt-10 lg:px-10 lg:py-8">
+        <div className="flex flex-row items-center justify-between">
+          <h1 className="text-lg font-semibold md:text-xl">Featured Courses</h1>
+          <button className="text-primary underline">See all</button>
+        </div>
+        <div className="mt-4 grid grid-cols-2 gap-x-5 gap-y-8 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+          {courses.map((course, index) => (
+            <CourseCard key={index} course={course} />
+          ))}
+        </div>
+      </div>
+
       {/* Load More Spinner */}
       {/* <div ref={loadMoreRef} className="mb-12">
         {featuredBotsQuery.isFetching && <LoadMoreSpinner />}
       </div> */}
-      <div className="mb-12"></div>
 
       {/* Trending Projects Section */}
-      <div className="flex w-full gap-10">
+      {/* <div className="mt-10 flex w-full gap-10">
         <div className="rounded-xl border-2 border-border bg-sidebar p-3 lg:px-10 lg:py-8 xl:grow">
           <h1 className="text-lg font-semibold md:text-xl">
             {trendingBotsQuery.data?.data.data.name}
@@ -263,7 +293,7 @@ export default function Dashboard() {
           width={330}
           height={747}
         />
-      </div>
+      </div> */}
 
       {/* ОC 100 Sections */}
       {/* <div className="mt-12 rounded-xl border-2 border-border bg-sidebar p-3 lg:px-10 lg:py-8">
@@ -288,10 +318,9 @@ export default function Dashboard() {
       {/* <div ref={loadMoreRef} className="mb-12">
         {OC100BotsQuery.isFetching && <LoadMoreSpinner />}
       </div> */}
-      <div className="mb-12"></div>
 
       {/* Fireside Chat Sections */}
-      <div className="relative w-full">
+      <div className="relative mt-10 w-full">
         <Image
           src={FiresideImage}
           alt="Fireside Chat"
@@ -400,16 +429,39 @@ export default function Dashboard() {
         {/* <div ref={loadMoreRef} className="mb-12">
           {firesideBotsQuery.isFetching && <LoadMoreSpinner />}
         </div> */}
-        <div className="mb-12"></div>
+      </div>
+
+      {/* Popular Courses Section */}
+      <div className="mt-6 rounded-xl border-2 border-border bg-sidebar p-3 md:mt-10 lg:px-10 lg:py-8">
+        <div className="flex flex-row items-center justify-between">
+          <h1 className="text-lg font-semibold md:text-xl">Popular Courses</h1>
+          <button className="text-primary underline">See all</button>
+        </div>
+        <div className="mt-4 grid grid-cols-2 gap-x-5 gap-y-8 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+          {courses.map((course, index) => (
+            <CourseCard key={index} course={course} />
+          ))}
+        </div>
+      </div>
+
+      {/* Explore Courses Section */}
+      <div className="mt-6 md:mt-10">
+        <h1 className="text-lg font-semibold md:text-xl">
+          Explore Courses on Open Campus U
+        </h1>
+        <div className="mt-5 grid grid-cols-2 gap-2 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+          {CourseCategories.map((cat, index) => (
+            <CourseCategoryItem key={index} catData={cat} />
+          ))}
+        </div>
       </div>
 
       {/* Popular Creators Section */}
-      <div className="mt-4 rounded-xl border-2 border-border bg-sidebar p-3 lg:px-10 lg:py-8">
+      <div className="mt-4 rounded-xl border-2 border-border bg-sidebar p-3 md:mt-10 lg:px-10 lg:py-8">
         <div className="flex justify-between gap-4 max-xs:flex-col xs:items-center">
-          <h1 className="text-lg font-semibold md:text-xl">
-            {popularCreatorsQuery.data?.data.data.name}
-          </h1>
-          <select
+          <h1 className="text-lg font-semibold md:text-xl">Popular Books</h1>
+          <button className="text-primary underline">See all</button>
+          {/* <select
             name="categories"
             id="categories"
             onChange={(e) =>
@@ -440,9 +492,9 @@ export default function Dashboard() {
                 {cat.title}
               </option>
             ))}
-          </select>
+          </select> */}
         </div>
-        <div className="mt-4 flex justify-end">
+        {/* <div className="mt-4 flex justify-end">
           <button
             className="mr-2"
             onClick={() => setPopularCreatorsPage((prev) => prev - 1)}
@@ -499,12 +551,12 @@ export default function Dashboard() {
               />
             </svg>
           </button>
-        </div>
+        </div> */}
         {popularCreatorsQuery.isFetching ? (
           <LoadingSpinner />
         ) : (
           <>
-            <div className="mt-4 grid grow grid-cols-2 gap-x-8 gap-y-8 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            <div className="mt-4 grid grow grid-cols-2 gap-x-8 gap-y-8 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
               {popularCreatorsQuery?.data?.data?.data.chatbot_data?.map(
                 (botData) => (
                   <BotItem key={botData.chatbot_id} botData={botData} />
@@ -547,6 +599,37 @@ const BotItem = ({ botData }: { botData: ChatbotData }) => (
     <div className="mt-4 flex-grow">
       <div className="break-words font-medium max-md:text-sm">
         {botData.name}
+      </div>
+    </div>
+  </Link>
+);
+
+const ProfItem = ({ profData }: { profData: any }) => (
+  <Link
+    href={`/chatbot/${profData.id}/profile`}
+    className="delay-50 group relative flex grow cursor-pointer flex-col transition ease-in-out"
+  >
+    <Image
+      src={profData.profilePic}
+      height={150}
+      width={150}
+      className="w-full rounded-xl group-hover:shadow-xl dark:group-hover:shadow-gray-700"
+      alt="Avatar"
+    />
+    <div className="mt-2 flex items-center gap-1">
+      <Image
+        height={20}
+        width={20}
+        src={profData.institutionLogo}
+        alt={profData.institutionName}
+      />
+      <p className="align-top text-xs text-gray-500">
+        {profData.institutionName}
+      </p>
+    </div>
+    <div className="mt-2 flex-grow">
+      <div className="break-words font-medium max-md:text-sm">
+        {profData.name}
       </div>
     </div>
   </Link>
@@ -607,6 +690,25 @@ const BotItemTrending = ({ botData }: { botData: ChatbotData }) => (
     <div className="mt-4">
       <div className="break-words font-medium max-md:text-sm">
         {botData.name}
+      </div>
+    </div>
+  </Link>
+);
+
+const CourseCategoryItem = ({ catData }: { catData: any }) => (
+  <Link
+    href={"#"}
+    className="delay-50 group relative flex h-28 cursor-pointer flex-col rounded-xl border bg-white transition ease-in-out"
+  >
+    <div className="flex items-center justify-start gap-5">
+      <Image
+        src={catData.image}
+        height={110}
+        className="rounded-l-xl group-hover:shadow-xl dark:group-hover:shadow-gray-700"
+        alt="Avatar"
+      />
+      <div className="break-words text-xl font-semibold text-primary max-md:text-sm">
+        {catData.name}
       </div>
     </div>
   </Link>

@@ -97,7 +97,7 @@ export default function DefaultLayout({ children }: DefaultLayoutProps) {
             sjhsjhfkjshdfkjshdjkfh
             {children}
           </main> */}
-          <main className="p-3 lg:px-56">{children}</main>
+          <main className="p-3 lg:px-24">{children}</main>
         </div>
       </div>
     </div>

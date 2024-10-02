@@ -19,9 +19,6 @@ export const HeaderBottomNav = () => {
       >
         Home
       </Link>
-      <div className={`p-1 font-semibold text-primary ${active("/nft")}`}>
-        Courses
-      </div>
       <div className={`p-1 font-semibold text-primary ${active("/knowledge")}`}>
         My Learning
       </div>

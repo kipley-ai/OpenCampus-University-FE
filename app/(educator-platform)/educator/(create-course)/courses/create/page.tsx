@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { TitleInput } from "./title-input";
 import { CategoryInput } from "./category-input";
 import { useCreateCourse } from "@/hooks/api/educator-platform";
+import { useUserDetail } from "@/hooks/api/user";
 
 export default function CreateCoursePage() {
   const [step, setStep] = useState<number>(1);
@@ -16,13 +17,13 @@ export default function CreateCoursePage() {
 
   const router = useRouter();
   const createCourseMutation = useCreateCourse();
-
+  const userDetail = useUserDetail();
   const handleCreateCourse = async () => {
     try {
       await createCourseMutation.mutateAsync({
         ...courseData,
-        created_by: "", // Add the missing properties
-        level: "",
+        created_by: `${userDetail.data?.data.data.wallet_addr}`, // Add the missing properties
+        level: "All",
         published: 0,
         create: 0,
         user_id: "",
@@ -31,11 +32,11 @@ export default function CreateCoursePage() {
         language: "",
         description: "",
         taught: "",
-        course_for: [],
-        course_instructors: [],
-        course_goals: [],
+        course_for: "[]",
+        course_instructors: "[]",
+        course_goals: "[]",
         duration: 0,
-        course_reqs: [],
+        course_reqs: "[]",
         subcategory_id: 0,
         cover_image: "",
         cover_video: "",

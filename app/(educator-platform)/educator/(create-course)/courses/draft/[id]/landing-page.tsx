@@ -2,8 +2,18 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Tooltip from "@/components/tooltip";
 
-export const LandingPage = () => {
+import { useCategoryIndex, useLanguageIndex, useLevelIndex } from "@/hooks/api/educator-platform";
+
+export const LandingPage = ({ title, subtitle, description, taught, category_id, language, level, onUpdateTitle, onUpdateSubtitle, onUpdateDescription, onUpdateTaught, onUpdateCategory, onUpdateLanguage, onUpdateLevel }: { title: string, subtitle: string, description: string, taught: string, category_id: number, language: string, level: string, onUpdateTitle: (value: string) => void, onUpdateSubtitle: (value: string) => void, onUpdateDescription: (value: string) => void, onUpdateTaught: (value: string) => void, onUpdateCategory: (value: number) => void, onUpdateLanguage: (value: string) => void, onUpdateLevel: (value: string) => void }) => {
   const router = useRouter();
+
+  const { data: categoriesData, isLoading: isCategoriesLoading, error: categoriesError } = useCategoryIndex();
+  const { data: languagesData, isLoading: isLanguagesLoading, error: languagesError } = useLanguageIndex();
+  const { data: levelsData, isLoading: isLevelsLoading, error: levelsError } = useLevelIndex();
+
+  const categories = categoriesData?.data?.data?.categories || {};
+  const languages = languagesData?.data?.data?.languages || {};
+  const levels = levelsData?.data?.data?.levels || [];
 
   return (
     <main className="flex w-3/4 max-w-[1000px] flex-col gap-8 rounded-2xl border-2 border-border bg-sidebar p-3 text-sm md:p-10 xl:mt-4">
@@ -25,6 +35,7 @@ export const LandingPage = () => {
         </span>
       </p>
 
+      {/* Course Title Section */}
       <section>
         <h2 className="font-bold text-heading">Course title</h2>
         <div className="relative w-full">
@@ -32,8 +43,12 @@ export const LandingPage = () => {
             className="input-text mt-2 w-full font-normal"
             type="text"
             placeholder="Learn Java from Scratch"
+            value={title}
+            onChange={(e) => onUpdateTitle(e.target.value)}
           />
-          <span className="absolute right-4 top-5 text-[#6B7280]">57</span>
+          <span className="absolute right-4 top-5 text-[#6B7280]">
+            {title.length}
+          </span>
         </div>
         <p className="mt-2 text-xs text-body">
           Your title should be a mix of attention-grabbing, informative, and
@@ -41,6 +56,7 @@ export const LandingPage = () => {
         </p>
       </section>
 
+      {/* Course Subtitle Section */}
       <section>
         <h2 className="font-bold text-heading">Course subtitle</h2>
         <div className="relative w-full">
@@ -48,8 +64,12 @@ export const LandingPage = () => {
             className="input-text mt-2 w-full font-normal"
             type="text"
             placeholder="Insert your course subtitle"
+            value={subtitle}
+            onChange={(e) => onUpdateSubtitle(e.target.value)}
           />
-          <span className="absolute right-4 top-5 text-[#6B7280]">120</span>
+          <span className="absolute right-4 top-5 text-[#6B7280]">
+            {subtitle.length}
+          </span>
         </div>
         <p className="mt-2 text-xs text-body">
           Use 1 or 2 related keywords, and mention 3-4 of the most important
@@ -57,6 +77,7 @@ export const LandingPage = () => {
         </p>
       </section>
 
+      {/* Course Description Section */}
       <section>
         <h2 className="font-bold text-heading">Course description</h2>
         <div className="relative mt-2 w-full">
@@ -114,6 +135,8 @@ export const LandingPage = () => {
             <textarea
               className="size-full border-none px-3 text-sm"
               placeholder="Insert your course description"
+              value={description}
+              onChange={(e) => onUpdateDescription(e.target.value)}
             />
           </div>
         </div>
@@ -122,48 +145,60 @@ export const LandingPage = () => {
         </p>
       </section>
 
+      {/* Basic Info Section */}
       <section>
         <h2 className="font-bold text-heading">Basic info</h2>
         <div className="mt-2 grid w-full grid-cols-3 gap-4">
+          
+          {/* Language */}
           <select
             name="language"
             id="language"
-            onChange={(e) => console.log(e.target.value)}
-            defaultValue="en-us"
+            onChange={(e) => onUpdateLanguage(e.target.value)}
+            value={language || ""}
             className="w-full rounded-lg border border-border bg-transparent px-4 py-2 text-sm text-heading placeholder-gray-500 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-gray-500"
           >
-            <option value="en-us">English (US)</option>
-            <option value="en-uk">English (UK)</option>
-            <option value="es">Spanish</option>
-            <option value="fr">French</option>
-            <option value="de">German</option>
+            <option value="">-- Select Language --</option>
+            {Object.entries(languages).map(([code, name]) => (
+              <option key={code} value={code}>
+                {name as string}
+              </option>
+            ))}
           </select>
+
+          {/* Level */}
           <select
             name="level"
             id="level"
-            onChange={(e) => console.log(e.target.value)}
-            defaultValue="select-level"
+            onChange={(e) => onUpdateLevel(e.target.value)}
+            value={level || ""}
             className="w-full rounded-lg border border-border bg-transparent px-4 py-2 text-sm text-heading placeholder-gray-500 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-gray-500"
           >
-            <option value="select-level">-- Select Level --</option>
-            <option value="beginner">Beginner</option>
-            <option value="intermediate">Intermediate</option>
-            <option value="advanced">Advanced</option>
-            <option value="native">Native</option>
+            <option value="">-- Select Level --</option>
+            {levels.map((levelOption: any) => (
+              <option key={levelOption} value={levelOption}>
+                {levelOption}
+              </option>
+            ))}
           </select>
+          
+          {/* Category */}
           <select
             name="category"
             id="category"
-            onChange={(e) => console.log(e.target.value)}
-            defaultValue="IT & Software"
+            onChange={(e) => onUpdateCategory(Number(e.target.value))}
+            value={category_id || ""}
             className="w-full rounded-lg border border-border bg-transparent px-4 py-2 text-sm text-heading placeholder-gray-500 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-gray-500"
           >
-            <option value="it-software">IT & Software</option>
-            <option value="business">Business</option>
-            <option value="design">Design</option>
-            <option value="marketing">Marketing</option>
-            <option value="music">Music</option>
+            <option value="">-- Select category --</option>
+            {Object.entries(categories).map(([id, name]) => (
+              <option key={id} value={Number(id)}>
+                {name as string}
+              </option>
+            ))}
           </select>
+          
+          {/* Subcategory */}
           <select
             name="subcategory"
             id="subcategory"
@@ -179,6 +214,7 @@ export const LandingPage = () => {
         </div>
       </section>
 
+      {/* Taught Section */}
       <section>
         <div className="flex items-center gap-4">
           <h2 className="font-bold text-heading">
@@ -202,9 +238,12 @@ export const LandingPage = () => {
           className="input-text mt-2 w-full font-normal xl:w-1/2"
           type="text"
           placeholder="e.g. Landscape Photography"
+          value={taught}
+          onChange={(e) => onUpdateTaught(e.target.value)}
         />
       </section>
 
+      {/* Course Image Section */}
       <section>
         <h2 className="font-bold text-heading">Course image</h2>
         <div className="flex gap-4">
@@ -237,6 +276,7 @@ export const LandingPage = () => {
         </div>
       </section>
 
+      {/* Promotional Video Section */}
       <section>
         <h2 className="font-bold text-heading">Promotional video</h2>
         <div className="flex gap-4">
@@ -267,6 +307,7 @@ export const LandingPage = () => {
         </div>
       </section>
 
+      {/* Instructor Profile Section */}
       <section>
         <h2 className="font-bold text-heading">Instructor profile(s)</h2>
         <div className="mt-2 flex items-start gap-4 bg-primary-light p-4">

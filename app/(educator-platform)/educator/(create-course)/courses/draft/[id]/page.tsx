@@ -1,21 +1,161 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, useCallback } from "react";
+import { useRouter, useParams } from "next/navigation";
 import { KF_TITLE } from "@/utils/constants";
 import { IntendedLearners } from "./intended-learners";
 import { LandingPage } from "./landing-page";
 import { Pricing } from "./pricing";
 import CourseMessages from "./course-messages";
 import SubmitForReview from "./submit-for-review";
+import { useUpdateCourse, useFetchCourse } from "@/hooks/api/educator-platform";
+import { useUserDetail } from "@/hooks/api/user";
 
 export default function CourseDraft() {
   const [step, setStep] = useState("INTENDED_LEARNERS");
   const router = useRouter();
+  const { id } = useParams();
+
+  const { data: courseData, isLoading, error, isError } = useFetchCourse(id as string);
+  const updateCourseMutation = useUpdateCourse();
+  const userDetail = useUserDetail();
+
+  console.log("Course Data", courseData?.data?.data.course);
+
+  const [courseDetails, setCourseDetails] = useState({
+    title: "",
+    subtitle: "",
+    description: "",
+    language: "",
+    level: "",
+    category_id: 0,
+    subcategory_id: 0,
+    course_goals: "[]",
+    course_reqs: "[]",
+    course_for: "[]",
+    taught: "",
+    cover_image: "",
+    cover_video: "",
+  });
+
+  useEffect(() => {
+    if (courseData?.data?.data?.course) {
+      const course = courseData.data.data.course;
+      setCourseDetails({
+        title: course.title || "",
+        subtitle: course.subtitle || "",
+        description: course.description || "",
+        language: course.language || "",
+        level: course.level || "All",
+        category_id: course.category_id || 0,
+        subcategory_id: course.subcategory_id || 0,
+        course_goals: course.course_goals || "[]",
+        course_reqs: course.course_reqs || "[]",
+        course_for: course.course_for || "[]",
+        taught: course.taught || "",
+        cover_image: course.cover_image || "",
+        cover_video: course.cover_video || "",
+      });
+    }
+  }, [courseData]);
+
+  const handleCourseGoalsUpdate = (updatedGoals: string) => {
+    setCourseDetails(prev => ({
+      ...prev,
+      course_goals: updatedGoals
+    }));
+  };
+
+  const handleCourseReqsUpdate = (updatedReqs: string) => {
+    setCourseDetails(prev => ({
+      ...prev,
+      course_reqs: updatedReqs
+    }));
+  };
+
+  const handleCourseForUpdate = (updatedFor: string) => {
+    setCourseDetails(prev => ({
+      ...prev,
+      course_for: updatedFor
+    }));
+  };
+
+  const handleTitleUpdate = (updatedTitle: string) => {
+    setCourseDetails(prev => ({
+      ...prev,
+      title: updatedTitle
+    }));
+  };
+
+  const handleSubtitleUpdate = (updatedSubtitle: string) => {
+    setCourseDetails(prev => ({
+      ...prev,
+      subtitle: updatedSubtitle
+    }));
+  };
+
+  const handleDescriptionUpdate = (updatedDescription: string) => {
+    setCourseDetails(prev => ({
+      ...prev,
+      description: updatedDescription
+    }));
+  };
+
+  const handleTaughtUpdate = (updatedTaught: string) => {
+    setCourseDetails(prev => ({
+      ...prev,
+      taught: updatedTaught
+    }));
+  };
+
+  const handleCategoryUpdate = (updatedCategory: number) => {
+    setCourseDetails(prev => ({
+      ...prev,
+      category_id: updatedCategory
+    }));
+  };
+
+  const handleLanguageUpdate = (updatedLanguage: string) => {
+    setCourseDetails(prev => ({
+      ...prev,
+      language: updatedLanguage
+    }));
+  };
+
+  const handleLevelUpdate = (updatedLevel: string) => {
+    setCourseDetails(prev => ({
+      ...prev,
+      level: updatedLevel
+    }));
+  };
+
+  const handleSave = useCallback(async () => {
+    try {
+      await updateCourseMutation.mutateAsync({
+        uuid: id as string,
+        ...courseDetails, // Spread all existing courseDetails
+        created_by: `${userDetail.data?.data.data.wallet_addr}`,
+        published: 0,
+        create: 0,
+        user_id: ``,
+        course_instructors: "[]",
+        duration: 0,
+        price: "",
+        data_status: 0,
+        outline: ""
+      });
+      console.log("Course updated successfully");
+    } catch (error) {
+      console.error("Failed to update course:", error);
+    }
+  }, [id, courseDetails, updateCourseMutation, userDetail.data?.data.data.wallet_addr]);
+
+  if (isLoading) return <div>Loading course data...</div>;
+  if (isError) return <div>Error loading course data: {error.message}</div>;
 
   return (
     <>
-      <title>{KF_TITLE + "Course Draft - " + "Learn Java from Scratch"}</title>
+      <title>{KF_TITLE + "Course Draft - " + courseData?.data?.data?.course?.title}</title>
       <div className="flex h-12 w-full items-center justify-between bg-primary px-8 text-sidebar shadow-lg">
         <div className="flex items-center gap-12">
           <button
@@ -36,14 +176,17 @@ export default function CourseDraft() {
             </svg>
             <span className="text-sm">Back to Dashboard</span>
           </button>
-          <div className="flex items-center items-center gap-4">
-            <h1 className="font-bold">Learn Java from Scratch</h1>
+          <div className="flex items-center gap-4">
+            <h1 className="font-bold">{courseData?.data?.data?.course?.title}</h1>
             <span className="bg-[#6B7280] px-2 py-1 text-xs font-semibold uppercase text-white">
               Draft
             </span>
           </div>
         </div>
-        <button className="rounded-lg bg-sidebar px-6 py-1 text-primary hover:bg-secondary">
+        <button 
+          className="rounded-lg bg-sidebar px-6 py-1 text-primary hover:bg-secondary"
+          onClick={handleSave}
+        >
           <span className="text-sm font-bold">Save</span>
         </button>
       </div>
@@ -117,9 +260,31 @@ export default function CourseDraft() {
           {(() => {
             switch (step) {
               case "INTENDED_LEARNERS":
-                return <IntendedLearners />;
+                return <IntendedLearners 
+                  courseGoals={courseDetails.course_goals}
+                  courseReqs={courseDetails.course_reqs}
+                  courseFor={courseDetails.course_for}
+                  onUpdateGoals={handleCourseGoalsUpdate}
+                  onUpdateReqs={handleCourseReqsUpdate}
+                  onUpdateFor={handleCourseForUpdate}
+                />;
               case "LANDING_PAGE":
-                return <LandingPage />;
+                return <LandingPage
+                  title={courseDetails.title}
+                  subtitle={courseDetails.subtitle}
+                  description={courseDetails.description}
+                  taught={courseDetails.taught}
+                  category_id={courseDetails.category_id}
+                  language={courseDetails.language}
+                  level={courseDetails.level}
+                  onUpdateTitle={handleTitleUpdate}
+                  onUpdateSubtitle={handleSubtitleUpdate}
+                  onUpdateDescription={handleDescriptionUpdate}
+                  onUpdateTaught={handleTaughtUpdate}
+                  onUpdateCategory={handleCategoryUpdate}
+                  onUpdateLanguage={handleLanguageUpdate}
+                  onUpdateLevel={handleLevelUpdate}
+                />;
               case "PRICING":
                 return <Pricing />;
               case "COURSE_MESSAGES":

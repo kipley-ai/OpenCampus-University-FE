@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { useMutation, useQuery, keepPreviousData } from "@tanstack/react-query";
+import { v4 as uuidv4 } from 'uuid';
 
 import { 
     IUpdateCourseParams, 
@@ -22,18 +23,20 @@ import {
 } from "../interfaces";
 
 import { useAppProvider } from "@/providers/app-provider";
+import { educatorPlatformHeader } from "@/app/api/utils";
 
 export const useCreateCourse = () => {
     const { session: { address } } = useAppProvider();
     
     return useMutation({
-        mutationFn: (data: Omit<IUpdateCourseParams, 'uuid'>) =>
-            axios.post("/api/educator-platform/course_update/", data, {
+        mutationFn: (data: Omit<IUpdateCourseParams, 'uuid'>) => {
+            const uuid = uuidv4();
+            return axios.post("/api/educator-platform/course_create", { ...data, uuid }, {
                 headers: {
                     "x-kf-user-id": address,
-                    "x-api-key": process.env.NEXT_PUBLIC_EDUCATOR_BE_API_KEY,
                 },
-            }),
+            });
+        },
     });
 };
 
@@ -45,7 +48,6 @@ export const useUpdateCourse = () => {
             axios.post(`/api/educator-platform/course_update/${params.uuid}`, params, {
                 headers: {
                     "x-kf-user-id": address,
-                    "x-api-key": process.env.NEXT_PUBLIC_EDUCATOR_BE_API_KEY,
                 },
             }),
     });
@@ -56,12 +58,7 @@ export const useFetchCourse = (uuid: string) => {
     
     return useQuery({
         queryKey: ["course", uuid, address],
-        queryFn: () => axios.post(`/api/educator-platform/course_fetch/${uuid}`, null, {
-            headers: {
-                "x-kf-user-id": address,
-                "x-api-key": process.env.NEXT_PUBLIC_EDUCATOR_BE_API_KEY,
-            },
-        }),
+        queryFn: () => axios.post(`/api/educator-platform/course_fetch/${uuid}`),
     });
 };
 
@@ -168,12 +165,7 @@ export const useFetchLesson = (uuid: string) => {
     
     return useQuery({
         queryKey: ["lesson", uuid, address],
-        queryFn: () => axios.post(`/api/educator-platform/lesson_fetch/${uuid}`, null, {
-            headers: {
-                "x-kf-user-id": address,
-                "x-api-key": process.env.NEXT_PUBLIC_EDUCATOR_BE_API_KEY,
-            },
-        }),
+        queryFn: () => axios.post(`/api/educator-platform/lesson_fetch/${uuid}`),
     });
 };
 
@@ -248,38 +240,22 @@ export const useFileIndex = (params: IFilesIndexParams) => {
 };
 
 export const useLanguageIndex = () => {
-    const { session: { address } } = useAppProvider();
-    
     return useQuery({
-        queryKey: ["languageIndex", address],
-        queryFn: () => axios.post("/api/educator-platform/language", null, {
-            headers: {
-                "x-api-key": process.env.NEXT_PUBLIC_EDUCATOR_BE_API_KEY,
-            },
-        }),
+        queryKey: ["languageIndex"],
+        queryFn: () => axios.post("/api/educator-platform/language"),
     });
 };
 
 export const useCategoryIndex = () => {
     return useQuery({
         queryKey: ["categoryIndex"],
-        queryFn: () => axios.post("/api/educator-platform/category", null, {
-            headers: {
-                "x-api-key": process.env.NEXT_PUBLIC_EDUCATOR_BE_API_KEY,
-            },
-        }),
+        queryFn: () => axios.post("/api/educator-platform/category"),
     });
 };
 
 export const useLevelIndex = () => {
-    const { session: { address } } = useAppProvider();
-    
     return useQuery({
-        queryKey: ["levelIndex", address],
-        queryFn: () => axios.post("/api/educator-platform/level", null, {
-            headers: {
-                "x-api-key": process.env.NEXT_PUBLIC_EDUCATOR_BE_API_KEY,
-            },
-        }),
+        queryKey: ["levelIndex"],
+        queryFn: () => axios.post("/api/educator-platform/level"),
     });
 };

@@ -231,11 +231,11 @@ export interface IUpdateCourseParams {
   language: string;
   description: string;
   taught: string;
-  course_for: string[];
-  course_instructors: string[];
-  course_goals: any[]; // Need to be checked to be more specific
+  course_for: string;
+  course_instructors: string;
+  course_goals: string; // Need to be checked to be more specific
   duration: number;
-  course_reqs: any[]; // Need to be checked to be more specific
+  course_reqs: string; // Need to be checked to be more specific
   category_id: number;
   subcategory_id: number;
   cover_image: string;

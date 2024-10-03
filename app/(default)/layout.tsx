@@ -1,16 +1,14 @@
 "use client";
 
-import Sidebar from "@/components/ui/sidebar";
-import Header from "@/components/ui/header";
 import ModalTopUpSuccessful from "@/components/modal-top-up-successful";
 import ModalTopUpFailed from "@/components/modal-top-up-failed";
 import { useState, useEffect } from "react";
 import { redirect, usePathname } from "next/navigation";
 import { useOCAuth } from "@opencampus/ocid-connect-js";
 import { useUserDetail } from "@/hooks/api/user";
-import { useCheckToken } from "@/hooks/api/auth";
 import { useAppProvider } from "@/providers/app-provider";
 import { SUBDOMAINS, CREATOR_PATHS, CREATOR_ROLES } from "@/utils/constants";
+import HeaderV2 from "@/components/ui/header-2";
 
 interface DefaultLayoutProps {
   children: React.ReactNode;
@@ -72,7 +70,7 @@ export default function DefaultLayout({ children }: DefaultLayoutProps) {
       return null;
     }
 
-    return <Sidebar />;
+    return null;
   };
 
   return (
@@ -93,11 +91,13 @@ export default function DefaultLayout({ children }: DefaultLayoutProps) {
       <div className="relative flex flex-1 flex-col overflow-y-auto">
         <div className="h-[max(100vh, fit-content)] grow bg-container">
           {/*  Site header */}
-          {pathname === "/knowledge/create/iframe" ? null : <Header />}
+          {pathname === "/knowledge/create/iframe" ? null : <HeaderV2 />}
 
-          <main className="grow p-3 md:p-6 xl:w-5/6 xl:pl-8 xl:pr-0 xl:pt-4">
+          {/* <main className="grow border p-3 md:p-6 xl:w-5/6 xl:pl-8 xl:pr-0 xl:pt-4">
+            sjhsjhfkjshdfkjshdjkfh
             {children}
-          </main>
+          </main> */}
+          <main className="p-3 lg:px-24">{children}</main>
         </div>
       </div>
     </div>

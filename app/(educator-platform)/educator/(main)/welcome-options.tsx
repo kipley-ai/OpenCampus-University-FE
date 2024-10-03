@@ -24,7 +24,7 @@ export const CreateCourse = () => {
           you're starting.
         </p>
         <Link
-          href="/educator"
+          href="/educator/courses/create"
           className="text-sm font-medium text-primary underline hover:text-secondary"
         >
           Get Started
@@ -48,7 +48,7 @@ export const CreateKnowledgeKey = () => {
           Set your course up for success by building your audience.
         </p>
         <Link
-          href="/educator"
+          href="/knowledge/create"
           className="text-sm font-medium text-primary underline hover:text-secondary"
         >
           Get Started
@@ -70,7 +70,7 @@ export const BuildAiApp = () => {
           course on time will receive a special bonus to celebrate. Start today!
         </p>
         <Link
-          href="/educator"
+          href="#"
           className="text-sm font-medium text-primary underline hover:text-secondary"
         >
           Get Started
@@ -95,7 +95,7 @@ export const WelcomeOptions = () => {
         <div className="flex flex-col gap-10 sm:flex-row">
           <div className="flex w-full flex-col">
             <Link
-              href="/educator"
+              href="#"
               className="mb-1 flex flex-col items-center justify-center space-y-5 rounded-lg p-2 hover:bg-secondary"
             >
               <svg
@@ -118,7 +118,7 @@ export const WelcomeOptions = () => {
           </div>
           <div className="flex w-full flex-col">
             <Link
-              href="/educator"
+              href="#"
               className="mb-1 flex flex-col items-center justify-center space-y-5 rounded-lg p-2 hover:bg-secondary"
             >
               <svg

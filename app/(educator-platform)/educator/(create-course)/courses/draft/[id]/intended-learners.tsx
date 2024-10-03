@@ -63,7 +63,7 @@ export const IntendedLearners = ({ courseGoals, courseReqs, courseFor, onUpdateG
   const router = useRouter();
 
   return (
-    <main className="flex w-3/4 max-w-[1000px] flex-col gap-8 rounded-2xl border-2 border-border bg-sidebar p-3 text-sm md:p-10 xl:mt-4">
+    <div className="flex flex-col gap-8 text-sm">
       <h1 className="text-lg font-semibold text-primary">Intended Learners</h1>
       <p className="text-body">
         The following descriptions will be publicly visible on your{" "}
@@ -206,6 +206,6 @@ export const IntendedLearners = ({ courseGoals, courseReqs, courseFor, onUpdateG
           Add more
         </button>
       </section>
-    </main>
+    </div>
   );
 };

@@ -202,7 +202,7 @@ export const LandingPage = ({ title, subtitle, description, taught, category_id,
   };
 
   return (
-    <main className="flex w-3/4 max-w-[1000px] flex-col gap-8 rounded-2xl border-2 border-border bg-sidebar p-3 text-sm md:p-10 xl:mt-4">
+    <main className="flex flex-col gap-8 text-sm">
       <h1 className="text-lg font-semibold text-primary">
         Course Landing Page
       </h1>
@@ -319,7 +319,7 @@ export const LandingPage = ({ title, subtitle, description, taught, category_id,
               </svg>
             </div>
             <textarea
-              className="size-full border-none px-3 text-sm"
+              className="size-full rounded-b-lg border-none px-3 text-sm"
               placeholder="Insert your course description"
               value={description}
               onChange={(e) => onUpdateDescription(e.target.value)}

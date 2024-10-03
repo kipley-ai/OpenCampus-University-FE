@@ -3,9 +3,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { useAccount } from "wagmi";
-import { 
-  useChatbotDetail, 
-  useUpdateChatbotAPI, 
+import {
+  useChatbotDetail,
+  useUpdateChatbotAPI,
   useGetCategory,
 } from "@/hooks/api/chatbot";
 import { useUserDetail } from "@/hooks/api/user";
@@ -40,7 +40,9 @@ interface Form {
 
 const ChatbotSettings = () => {
   const updateChatbot = useUpdateChatbotAPI();
-  const { session: { address } } = useAppProvider();
+  const {
+    session: { address },
+  } = useAppProvider();
 
   const { id } = useParams();
   const router = useRouter();
@@ -157,7 +159,7 @@ const ChatbotSettings = () => {
       <div>
         <div className="flex items-center justify-between">
           <h1 className="text-lg font-semibold text-primary">
-            Chatbot Settings
+            Teaching Assistant Settings
           </h1>
         </div>
       </div>
@@ -169,7 +171,10 @@ const ChatbotSettings = () => {
 
         <div className="flex w-full flex-col gap-0">
           <div className="flex flex-col gap-1">
-            <label htmlFor="characterName" className="text-xs font-semibold text-heading lg:text-sm">
+            <label
+              htmlFor="characterName"
+              className="text-xs font-semibold text-heading lg:text-sm"
+            >
               Name*
             </label>
             <input
@@ -183,7 +188,7 @@ const ChatbotSettings = () => {
             />
           </div>
 
-          <div className="flex flex-col gap-1 mt-7">
+          <div className="mt-7 flex flex-col gap-1">
             <label
               htmlFor="description"
               className="text-xs font-semibold text-heading lg:text-sm"
@@ -195,139 +200,81 @@ const ChatbotSettings = () => {
               value={form.description}
               className="placeholder-text-[#6B7280] rounded-lg border-[#D1D5DB] bg-transparent text-xs text-heading lg:text-sm"
               placeholder="Describe your Chatbot"
-              onChange={(e) =>
-                handleFormChange("description", e.target.value)
-              }
+              onChange={(e) => handleFormChange("description", e.target.value)}
               rows={3}
               maxLength={1000}
             />
           </div>
 
-          <div className="flex flex-col gap-1 mt-7">
-            <label
-              className="text-xs font-semibold text-heading lg:text-sm"
-              htmlFor="category"
-            >
-              Category
-            </label>
-            <select
-              id="category"
-              value={form.category_id}
-              className="w-full rounded-lg border-[#D1D5DB] bg-transparent text-xs text-heading lg:text-sm"
-              onChange={(e) => 
-                handleFormChange("category_id", e.target.value)
-              }
-            >
-              <option 
-                className="bg-sidebar text-[#6B7280]" 
-                selected 
-                disabled 
-                hidden 
-                value=""
+          <div className="mt-7 flex items-end gap-4 max-sm:flex-col">
+            <div className="w-full">
+              <label
+                className="flex w-full flex-col text-xs font-medium lg:text-sm"
+                htmlFor="category"
               >
-                Select a category
-              </option>
-              {categories.map((cat) => (
-                <option 
-                  className="bg-sidebar text-body" 
-                  key={cat.category_id} 
-                  value={cat.category_id}>
-                  {cat.title}
+                Category*
+              </label>
+              <select
+                id="category"
+                value={form.category_id}
+                className={`my-1 w-full rounded-lg border-2 border-border bg-transparent text-xs lg:text-sm ${
+                  form.category_id ? "" : "text-[#6B7280]"
+                }`}
+                onChange={(e) =>
+                  handleFormChange("category_id", e.target.value)
+                }
+              >
+                <option selected disabled hidden value="">
+                  Select a category
                 </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="grid grid-cols-12 gap-4">
-            <div className="flex flex-col col-span-6 gap-1 mt-7">
-              <label
-                htmlFor="tone"
-                className="w-full rounded-lg border-[#D1D5DB] bg-transparent text-xs text-heading lg:text-sm"
-              >
-                Tone
-              </label>
-              <Switcher
-                texts={["1st Person Tone", "3rd Person Tone"]}
-                mode={mode}
-                setWhich={setMode}
-              />
+                {categories.map((cat) => (
+                  <option
+                    className="bg-sidebar text-heading"
+                    key={cat.category_id}
+                    value={cat.category_id}
+                  >
+                    {cat.title}
+                  </option>
+                ))}
+              </select>
+              {errorMessage && errorMessage.category_id && (
+                <p className="text-xs text-red-400">
+                  {errorMessage.category_id}
+                </p>
+              )}
             </div>
-
-            <div className="flex flex-col col-span-6  gap-1 mt-7">
-              <label
-                htmlFor="personality"
-                className="w-full rounded-lg border-[#D1D5DB] bg-transparent text-xs text-heading lg:text-sm"
-              >
-                Personality
+            <div className="w-full">
+              <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-medium lg:text-sm">
+                <span>Price Per Query (in OCU Credits)*</span>
+                <Tooltip bg="dark" position="right" size="md">
+                  Set your price per query on your app and get paid in OCU
+                  Credits.
+                </Tooltip>
               </label>
-              <Switcher
-                texts={["More Focused", "More Creative"]}
-                mode={personality}
-                setWhich={setPersonality}
+              <input
+                className="my-1 w-full rounded-lg border-2 border-border bg-transparent text-xs lg:text-sm"
+                type="number"
+                name="pricePerQuery"
+                placeholder="e.g. 1"
+                onChange={(e) => {
+                  if (parseFloat(e.target.value) < 0)
+                    handleFormChange("chatbot_price_per_query", 0);
+                  else
+                    handleFormChange("chatbot_price_per_query", e.target.value);
+                }}
+                value={form.chatbot_price_per_query}
               />
+              {errorMessage && errorMessage.chatbot_price_per_query && (
+                <p className="text-xs text-red-400">
+                  {errorMessage.chatbot_price_per_query}
+                </p>
+              )}
             </div>
-          </div>
-
-          <div className="flex flex-col gap-1 mt-7">
-            <label className=" flex flex-row items-center space-x-3 text-wrap text-xs font-semibold lg:text-sm">
-              <span>Price Per Query (in OCU Credits)</span>
-              {/* <Tooltip bg="dark" position="right" size="md">
-                Set your price per query on your chatbot app and get paid in
-                OCU Credits.
-              </Tooltip> */}
-            </label>
-            <input
-              className="rounded-lg border-[#D1D5DB] bg-transparent text-xs text-heading lg:text-sm"
-              type="number"
-              name="pricePerQuery"
-              placeholder="e.g. 1"
-              onChange={(e) => {
-                if (parseFloat(e.target.value) < 0)
-                  handleFormChange("chatbot_price_per_query", 0);
-                else
-                  handleFormChange(
-                    "chatbot_price_per_query",
-                    Number(e.target.value),
-                  );
-              }}
-              value={form.chatbot_price_per_query}
-            />
-            {errorMessage && errorMessage.pricePerQuery ? (
-              <div className=" text-xs text-red-400">
-                {errorMessage.pricePerQuery}
-              </div>
-            ) : (
-              <div className="text-xs opacity-0 lg:text-sm">a</div>
-            )}
           </div>
         </div>
 
-        {/* Cancel and Save Changes Button */}
-        {/* <div className="form-action flex flex-row justify-between">
-          <button
-            className="mt-8 flex items-center justify-center rounded-3xl p-2 px-5 ring-2 ring-gray-600 hover:opacity-75"
-            type="button"
-            onClick={() => {
-              router.push(`/app/${chatbotDetail.data?.data.data.chatbot_id}`);
-            }}
-          >
-            <h5 className="text-sm">Cancel</h5>
-          </button>
-          <button
-            className="mt-8 button w-32"
-            type="submit"
-            onClick={(e) => {
-              e.preventDefault();
-              handleUpdateChatbot();
-            }}
-          >
-            <h5>
-              Save Changes
-            </h5>
-          </button>
-        </div> */}
         <div className="my-8 mt-0 flex items-center justify-between">
-          <button 
+          <button
             className="flex items-center justify-center gap-2 hover:underline"
             type="button"
             onClick={() => {
@@ -347,7 +294,7 @@ const ChatbotSettings = () => {
               />
             </svg>
 
-            <p className="uppercase font-medium text-sm ml-2">Cancel</p>
+            <p className="ml-2 text-sm font-medium uppercase">Cancel</p>
           </button>
           <button
             className="flex items-center justify-center gap-2 hover:underline"
@@ -357,7 +304,7 @@ const ChatbotSettings = () => {
             }}
             type="button"
           >
-            <p className="uppercase font-medium text-sm mr-2">Save Changes</p>
+            <p className="mr-2 text-sm font-medium uppercase">Save Changes</p>
             <svg
               width="8"
               height="13"

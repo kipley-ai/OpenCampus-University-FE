@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+
 export default function Educator() {
-  return <div>Test</div>;
+  redirect("/educator/new");
 }

@@ -173,7 +173,7 @@ export default function CourseDraft() {
             <button
               onClick={() => setStep("INTENDED_LEARNERS")}
               disabled={stepDict[step] === 1}
-              className="font-semibold text-heading enabled:hover:text-secondary"
+              className="text-left font-semibold text-heading enabled:hover:text-secondary"
             >
               Plan your course
             </button>
@@ -182,14 +182,14 @@ export default function CourseDraft() {
                 <button
                   onClick={() => setStep("INTENDED_LEARNERS")}
                   disabled={step === "INTENDED_LEARNERS"}
-                  className={`ml-4 ${step === "INTENDED_LEARNERS" ? "font-semibold text-primary" : "font-medium text-[#6B7280] hover:text-secondary"}`}
+                  className={`ml-4 text-left ${step === "INTENDED_LEARNERS" ? "font-semibold text-primary" : "font-medium text-[#6B7280] hover:text-secondary"}`}
                 >
                   Intended learners
                 </button>
                 <button
                   onClick={() => setStep("LANDING_PAGE")}
                   disabled={step === "LANDING_PAGE"}
-                  className={`ml-4 ${step === "LANDING_PAGE" ? "font-semibold text-primary" : "font-medium text-[#6B7280] hover:text-secondary"}`}
+                  className={`ml-4 text-left ${step === "LANDING_PAGE" ? "font-semibold text-primary" : "font-medium text-[#6B7280] hover:text-secondary"}`}
                 >
                   Landing page
                 </button>
@@ -198,7 +198,7 @@ export default function CourseDraft() {
             <button
               onClick={() => setStep("CURRICULUM")}
               disabled={stepDict[step] === 2}
-              className="font-semibold text-heading enabled:hover:text-secondary"
+              className="text-left font-semibold text-heading enabled:hover:text-secondary"
             >
               Create your content
             </button>
@@ -207,14 +207,14 @@ export default function CourseDraft() {
                 <button
                   onClick={() => setStep("CURRICULUM")}
                   disabled={step === "CURRICULUM"}
-                  className={`ml-4 ${step === "CURRICULUM" ? "font-semibold text-primary" : "font-medium text-[#6B7280] hover:text-secondary"}`}
+                  className={`ml-4 text-left ${step === "CURRICULUM" ? "font-semibold text-primary" : "font-medium text-[#6B7280] hover:text-secondary"}`}
                 >
                   Curriculum
                 </button>
                 <button
                   onClick={() => setStep("AI_APPS")}
                   disabled={step === "AI_APPS"}
-                  className={`ml-4 ${step === "AI_APPS" ? "font-semibold text-primary" : "font-medium text-[#6B7280] hover:text-secondary"}`}
+                  className={`ml-4 text-left ${step === "AI_APPS" ? "font-semibold text-primary" : "font-medium text-[#6B7280] hover:text-secondary"}`}
                 >
                   AI apps
                 </button>
@@ -223,7 +223,7 @@ export default function CourseDraft() {
             <button
               onClick={() => setStep("PRICING")}
               disabled={stepDict[step] === 3}
-              className="font-semibold text-heading enabled:hover:text-secondary"
+              className="text-left font-semibold text-heading enabled:hover:text-secondary"
             >
               Publish your course
             </button>
@@ -232,21 +232,21 @@ export default function CourseDraft() {
                 <button
                   onClick={() => setStep("PRICING")}
                   disabled={step === "PRICING"}
-                  className={`ml-4 ${step === "PRICING" ? "font-semibold text-primary" : "font-medium text-[#6B7280] hover:text-secondary"}`}
+                  className={`ml-4 text-left ${step === "PRICING" ? "font-semibold text-primary" : "font-medium text-[#6B7280] hover:text-secondary"}`}
                 >
                   Pricing
                 </button>
                 <button
                   onClick={() => setStep("PROMOTIONS")}
                   disabled={step === "PROMOTIONS"}
-                  className={`ml-4 ${step === "PROMOTIONS" ? "font-semibold text-primary" : "font-medium text-[#6B7280] hover:text-secondary"}`}
+                  className={`ml-4 text-left ${step === "PROMOTIONS" ? "font-semibold text-primary" : "font-medium text-[#6B7280] hover:text-secondary"}`}
                 >
                   Promotions
                 </button>
                 <button
                   onClick={() => setStep("COURSE_MESSAGES")}
                   disabled={step === "COURSE_MESSAGES"}
-                  className={`ml-4 ${step === "COURSE_MESSAGES" ? "font-semibold text-primary" : "font-medium text-[#6B7280] hover:text-secondary"}`}
+                  className={`ml-4 text-left ${step === "COURSE_MESSAGES" ? "font-semibold text-primary" : "font-medium text-[#6B7280] hover:text-secondary"}`}
                 >
                   Course messages
                 </button>
@@ -255,7 +255,7 @@ export default function CourseDraft() {
             <button
               onClick={() => setStep("SUBMIT_FOR_REVIEW")}
               disabled={stepDict[step] === 4}
-              className="font-semibold text-heading enabled:hover:text-secondary"
+              className="text-left font-semibold text-heading enabled:hover:text-secondary"
             >
               Submit for review
             </button>

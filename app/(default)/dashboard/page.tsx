@@ -613,7 +613,7 @@ const ProfItem = ({ profData }: { profData: any }) => (
       src={profData.profilePic}
       height={150}
       width={150}
-      className="w-full rounded-xl group-hover:shadow-xl dark:group-hover:shadow-gray-700"
+      className="aspect-square w-full rounded-xl object-cover group-hover:shadow-xl dark:group-hover:shadow-gray-700"
       alt="Avatar"
     />
     <div className="mt-2 flex items-center gap-1">

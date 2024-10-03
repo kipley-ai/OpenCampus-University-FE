@@ -11,6 +11,15 @@ import DalharSusantoPic from "public/images/professors/4 Dalhar Susanto.jpg";
 import DalharSusantoInst from "public/images/professors/4 University Indonesia.png";
 import JavierChaPic from "public/images/professors/5 Javier Cha.jpg";
 import JavierCharInst from "public/images/professors/5 HKU.jpg";
+import BryanCheangPic from "public/images/professors/6 bryan cheang.jpeg";
+import BryanCheangInst from "public/images/professors/6 King_s college.png";
+import DavidWarnerPic from "public/images/professors/7 david warner.png";
+import DavidWarnerInst from "public/images/professors/7 university pittsburgh.png";
+import LeiGuoPic from "public/images/professors/8 lei guo.jpeg";
+import LeiGuoInst from "public/images/professors/8 nus.jpg";
+import KeithCarterPic from "public/images/professors/9 Keith Carter.jpg";
+import KeithCarterInst from "public/images/professors/9 nus.jpg";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -112,6 +121,81 @@ export const ProfessorList = [
       "https://scholar.google.com/citations?user=jWGH7sQAAAAJ&hl=en",
     institutionName: "The University of Hong Kong",
     institutionLogo: JavierCharInst,
+    totalEnrolled: randomIntBetween(1000, 10000),
+    totalReviews: randomIntBetween(100, 1000),
+  },
+  {
+    id: "oc-prof-Bryan-Cheang",
+    name: "Bryan Cheang",
+    headline:
+      "Assistant Director, Centre for the Study of Governance & Society, King’s College",
+    about:
+      "Bryan Cheang is the Assistant Director of the Centre for the Study of Governance & Society. He received his PhD and MA in Political Economy from King’s College London and is a graduate of the National University of Singapore. His research interests pertain to the political economy of development and applied economic policy. He is broadly interested topics regarding state-market relations, comparative political economy and particularly, the challenges of successful industrial policy interventions. He is currently researching into the epistemic challenges faced in industrial policy schemes. Bryan also brings with him his policy experience from the Singapore civil service.",
+    profilePic: BryanCheangPic,
+    website: "https://www.kcl.ac.uk/people/bryan-cheang",
+    twitter: "https://x.com/bryancheang_",
+    linkedin: "https://www.linkedin.com/in/bryancheang",
+    blog: null,
+    googleScholar: null,
+    institutionName: "King’s College",
+    institutionLogo: BryanCheangInst,
+    totalEnrolled: randomIntBetween(1000, 10000),
+    totalReviews: randomIntBetween(100, 1000),
+  },
+  {
+    id: "oc-prof-David-Warner",
+    name: "David Warner",
+    headline: "Lecturer, University of Pittsburgh",
+    about:
+      "David Warner received a BA with Honors in East Asian Studies from Haverford College and a Juris Doctor from the University of Hawaii School of Law. He has taught law at the Sino-British College and at Donghua University in Shanghai and has taught Chinese improvisation at the Shanghai Theater Academy. His research is focused on group dynamics in sketch comedy and improvisation groups in China. ",
+    profilePic: DavidWarnerPic,
+    website: "https://www.deall.pitt.edu/people/david-warner",
+    twitter: null,
+    linkedin: "https://www.linkedin.com/in/david-warner-3b59b920",
+    blog: null,
+    googleScholar: null,
+    institutionName: "University of Pittsburgh",
+    institutionLogo: DavidWarnerInst,
+    totalEnrolled: randomIntBetween(1000, 10000),
+    totalReviews: randomIntBetween(100, 1000),
+  },
+  {
+    id: "oc-prof-Guo-Lei",
+    name: "Guo Lei",
+    headline:
+      "Lecturer, Advanced Computing for Executives, National University of Singapore",
+    about:
+      "Dr. Guo Lei, an active educator and researcher in business analytics and experience-led innovation, blends extensive industry experience with an international academic background. She specializes in applied research, education, and consultancy, driving innovation across diverse sectors globally.",
+    profilePic: LeiGuoPic,
+    website: "https://discovery.nus.edu.sg/19573-lei-guo",
+    twitter: null,
+    linkedin: "https://www.linkedin.com/in/lei-guo-81b265177/",
+    blog: null,
+    googleScholar: null,
+    institutionName: "National University of Singapore",
+    institutionLogo: LeiGuoInst,
+    totalEnrolled: randomIntBetween(1000, 10000),
+    totalReviews: randomIntBetween(100, 1000),
+  },
+  {
+    id: "oc-prof-Keith-Carter",
+    name: "Keith Carter",
+    headline:
+      "Co-Director, Crystal Centre School of Computing, National University of Singapore",
+    about: `Keith B. Carter has 30+ years of experience spanning:
+Wall St. Tech, Fashion, and Academia. 
+Member, Bretton Woods Committee, Washington DC
+Board Member, DEC Institute, Zurich
+CEO, KDA Capabilities & JustAskProf Singapore
+`,
+    profilePic: KeithCarterPic,
+    website: "https://www.keithbcarter.com/",
+    twitter: null,
+    linkedin: "https://www.linkedin.com/in/keithcarter",
+    blog: null,
+    googleScholar: null,
+    institutionName: "National University of Singapore",
+    institutionLogo: KeithCarterInst,
     totalEnrolled: randomIntBetween(1000, 10000),
     totalReviews: randomIntBetween(100, 1000),
   },

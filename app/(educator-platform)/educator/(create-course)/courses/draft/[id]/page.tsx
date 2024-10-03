@@ -20,8 +20,6 @@ export default function CourseDraft() {
   const updateCourseMutation = useUpdateCourse();
   const userDetail = useUserDetail();
 
-  console.log("Course Data", courseData?.data?.data.course);
-
   const [courseDetails, setCourseDetails] = useState({
     title: "",
     subtitle: "",
@@ -129,12 +127,26 @@ export default function CourseDraft() {
     }));
   };
 
+  const handleCoverImageUpdate = (updatedCoverImage: string) => {
+    setCourseDetails(prev => ({
+      ...prev,
+      cover_image: updatedCoverImage
+    }));
+  };
+
+  const handleCoverVideoUpdate = (updatedCoverVideo: string) => {
+    setCourseDetails(prev => ({
+      ...prev,
+      cover_video: updatedCoverVideo
+    }));
+  };
+
   const handleSave = useCallback(async () => {
     try {
       await updateCourseMutation.mutateAsync({
         uuid: id as string,
-        ...courseDetails, // Spread all existing courseDetails
-        created_by: `${userDetail.data?.data.data.wallet_addr}`,
+        ...courseDetails, // This now includes cover_image
+        created_by: `4610212f-4980-4b51-a30d-9b40c6d44edd`,
         published: 0,
         create: 0,
         user_id: ``,
@@ -284,6 +296,11 @@ export default function CourseDraft() {
                   onUpdateCategory={handleCategoryUpdate}
                   onUpdateLanguage={handleLanguageUpdate}
                   onUpdateLevel={handleLevelUpdate}
+                  cover_image={courseDetails.cover_image}
+                  onUpdateCoverImage={handleCoverImageUpdate}
+                  cover_video={courseDetails.cover_video}
+                  onUpdateCoverVideo={handleCoverVideoUpdate}
+                  created_by={courseData?.data?.data?.course?.created_by || ""}
                 />;
               case "PRICING":
                 return <Pricing />;

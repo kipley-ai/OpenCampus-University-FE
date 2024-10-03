@@ -187,13 +187,15 @@ export const useCreateFile = () => {
     const { session: { address } } = useAppProvider();
     
     return useMutation({
-        mutationFn: (data: Omit<IUpdateFilesParams, 'uuid'>) =>
-            axios.post("/api/educator-platform/file_update/", data, {
+        mutationFn: (data: Omit<IUpdateFilesParams, 'uuid'>) => {
+            const uuid = uuidv4();
+            return axios.post("/api/educator-platform/file_create", { ...data, uuid }, {
                 headers: {
                     "x-kf-user-id": address,
                     "x-api-key": process.env.NEXT_PUBLIC_EDUCATOR_BE_API_KEY,
                 },
-            }),
+            });
+        },
     });
 };
 
@@ -216,12 +218,7 @@ export const useFetchFile = (uuid: string) => {
     
     return useQuery({
         queryKey: ["file", uuid, address],
-        queryFn: () => axios.post(`/api/educator-platform/file_fetch/${uuid}`, null, {
-            headers: {
-                "x-kf-user-id": address,
-                "x-api-key": process.env.NEXT_PUBLIC_EDUCATOR_BE_API_KEY,
-            },
-        }),
+        queryFn: () => axios.post(`/api/educator-platform/file_fetch/${uuid}`),
     });
 };
 
@@ -257,5 +254,27 @@ export const useLevelIndex = () => {
     return useQuery({
         queryKey: ["levelIndex"],
         queryFn: () => axios.post("/api/educator-platform/level"),
+    });
+};
+
+export const useUpdateProfile = () => {
+    const { session: { address } } = useAppProvider();
+    
+    return useMutation({
+        mutationFn: (params: IUpdateLessonsParams) =>
+            axios.post(`/api/educator-platform/profile_update/${params.uuid}`, params, {
+                headers: {
+                    "x-kf-user-id": address,
+                },
+            }),
+    });
+};
+
+export const useFetchProfile = (uuid: string) => {
+    const { session: { address } } = useAppProvider();
+    
+    return useQuery({
+        queryKey: ["profile", uuid, address],
+        queryFn: () => axios.post(`/api/educator-platform/profile_fetch/${uuid}`),
     });
 };

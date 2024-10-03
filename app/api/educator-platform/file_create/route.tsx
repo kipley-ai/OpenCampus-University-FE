@@ -6,7 +6,7 @@ export async function POST(req: Request) {
   try {
     const data = await req.json();
     const { uuid } = data;
-    const baseUrl = `${process.env.NEXT_EDUCATOR_BE_URL}/api_v1/course/update/${uuid}`;
+    const baseUrl = `${process.env.NEXT_EDUCATOR_BE_URL}/api_v1/files/update/${uuid}`;
     const headers = await educatorPlatformHeader();
     
     const res = await axios(baseUrl, {

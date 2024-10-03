@@ -13,7 +13,7 @@ export const CategoryInput: React.FC<CategoryInputProps> = ({ value, onChange })
 
   const categories = categoriesData?.data?.data?.categories || {};
 
-  console.log("Categories:", categories);
+  // console.log("Categories:", categories);
 
   return (
     <>

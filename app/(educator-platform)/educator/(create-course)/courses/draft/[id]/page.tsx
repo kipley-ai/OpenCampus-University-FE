@@ -195,7 +195,7 @@ export default function CourseDraft() {
         data_status: 0,
         outline: ""
       });
-      console.log("Course updated successfully");
+      // console.log("Course updated successfully");
     } catch (error) {
       console.error("Failed to update course:", error);
     }

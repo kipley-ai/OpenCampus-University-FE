@@ -132,9 +132,9 @@ export const LandingPage = ({ title, subtitle, description, taught, category_id,
       });
 
       onUpdateCoverImage(fileUuid);
-      console.log("File uploaded to S3 and metadata updated with UUID:", fileUuid);
+      // console.log("File uploaded to S3 and metadata updated with UUID:", fileUuid);
     } catch (error) {
-      console.error("Error processing or uploading file:", error);
+      // console.error("Error processing or uploading file:", error);
       // Show error message to user
     }
   };
@@ -194,9 +194,9 @@ export const LandingPage = ({ title, subtitle, description, taught, category_id,
       });
 
       onUpdateCoverVideo(fileUuid);
-      console.log("Video uploaded to S3 and metadata updated with UUID:", fileUuid);
+      // console.log("Video uploaded to S3 and metadata updated with UUID:", fileUuid);
     } catch (error) {
-      console.error("Error processing or uploading video:", error);
+      // console.error("Error processing or uploading video:", error);
       // Show error message to user
     }
   };

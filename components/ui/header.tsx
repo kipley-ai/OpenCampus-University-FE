@@ -146,7 +146,7 @@ export default function Header() {
                     <p className="font-medium text-primary hover:underline max-xs:text-center">
                       {isEducatorPlatform
                         ? "Student Platform"
-                        : "Creator Platform"}
+                        : "Educator Platform"}
                     </p>
                   </Link>
                 </>

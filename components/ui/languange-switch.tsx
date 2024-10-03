@@ -43,11 +43,6 @@ const LanguangeSwitch = () => {
             fill="#1C1C1C"
           />
         </svg>
-
-        <span className="flex items-center gap-0 text-[9px] font-medium group-hover:underline xs:gap-1 xs:text-xs sm:gap-2 sm:text-[0.8rem]">
-          {lang}
-          <IoMdArrowDropdown />
-        </span>
       </div>
       {isDropdownOpen && (
         <div className="absolute right-0 z-50 mt-2 w-36 rounded-md bg-container py-2 text-[9px] shadow-xl xs:w-48 xs:text-xs sm:text-[0.8rem]">

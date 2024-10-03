@@ -76,7 +76,7 @@ export default function HeaderV2() {
       <div className="px-2 md:px-6">
         <div className="-mb-px flex h-12 items-center justify-between md:h-16">
           {/* Header: Left side */}
-          <div className="flex h-1/2 w-1/2 items-center gap-6">
+          <div className="flex h-1/2 w-5/12 items-center gap-4">
             <Link href="/dashboard" className="block">
               <Logo />
             </Link>
@@ -146,7 +146,21 @@ export default function HeaderV2() {
             ) &&
               authState.isAuthenticated && (
                 <>
-                  {/* <Link href="/knowledge/create">
+                  <Link
+                    href={
+                      isEducatorPlatform
+                        ? `${process.env.NEXT_PUBLIC_APP_URL}/dashboard`
+                        : "/educator"
+                    }
+                  >
+                    <p className="font-medium text-primary hover:underline max-xs:text-center">
+                      {isEducatorPlatform
+                        ? "Student Platform"
+                        : "Educator Platform"}
+                    </p>
+                  </Link>
+
+                  <Link href="/knowledge/create">
                     <div className="group flex items-center gap-1 text-primary">
                       <svg
                         className="size-3 fill-primary xs:size-4 sm:size-5"
@@ -161,26 +175,13 @@ export default function HeaderV2() {
                         Create KnowledgeKey
                       </p>
                     </div>
-                  </Link> */}
-                  {/* My Bot Button */}
-                  {/* <Link href="/nft">
+                  </Link>
+
+                  <Link href="/nft">
                     <p className="font-medium text-primary hover:underline max-xs:text-center">
                       My Assets
                     </p>
                   </Link>
-                  <Link
-                    href={
-                      isEducatorPlatform
-                        ? `${process.env.NEXT_PUBLIC_APP_URL}/dashboard`
-                        : "/educator"
-                    }
-                  >
-                    <p className="font-medium text-primary hover:underline max-xs:text-center">
-                      {isEducatorPlatform
-                        ? "Student Platform"
-                        : "Creator Platform"}
-                    </p>
-                  </Link> */}
                 </>
               )}
             {/* <ThemeSwitcher /> */}

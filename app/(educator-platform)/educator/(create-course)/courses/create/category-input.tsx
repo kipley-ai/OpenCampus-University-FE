@@ -1,4 +1,20 @@
-export const CategoryInput = () => {
+import { useCategoryIndex } from "@/hooks/api/educator-platform";
+
+interface CategoryInputProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+export const CategoryInput: React.FC<CategoryInputProps> = ({ value, onChange }) => {
+  const { data: categoriesData, isLoading, error } = useCategoryIndex();
+
+  if (isLoading) return <p>Loading categories...</p>;
+  if (error) return <p>Error loading categories. Please try again.</p>;
+
+  const categories = categoriesData?.data?.data?.categories || {};
+
+  // console.log("Categories:", categories);
+
   return (
     <>
       <h1 className="mt-12 text-center text-3xl font-bold">
@@ -10,15 +26,16 @@ export const CategoryInput = () => {
       <select
         name="categories"
         id="categories"
-        onChange={(e) => console.log(e.target.value)}
-        defaultValue="Development"
+        onChange={(e) => onChange(e.target.value)}
+        value={value}
         className="mt-12 w-full rounded-lg border border-border bg-transparent px-4 py-2 text-sm text-heading placeholder-gray-500 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-gray-500 xs:w-1/2 md:w-2/5 xl:w-[35%]"
       >
-        <option value="Development">Development</option>
-        <option value="Business">Business</option>
-        <option value="Design">Design</option>
-        <option value="Marketing">Marketing</option>
-        <option value="Music">Music</option>
+        <option value="">Select a category</option>
+        {Object.entries(categories).map(([id, name]) => (
+          <option key={id} value={id}>
+            {name as string}
+          </option>
+        ))}
       </select>
     </>
   );

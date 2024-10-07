@@ -19,6 +19,12 @@ import LeiGuoPic from "public/images/professors/8 lei guo.jpeg";
 import LeiGuoInst from "public/images/professors/8 nus.jpg";
 import KeithCarterPic from "public/images/professors/9 Keith Carter.jpg";
 import KeithCarterInst from "public/images/professors/9 nus.jpg";
+import KrisChildressPic from "public/images/professors/10 Kris Childress.jpeg";
+import KrisChildressInst from "public/images/professors/10 nus.jpg";
+import KaraVanderPic from "public/images/professors/11 Kara Vander Linden .jpg";
+import KaraVanderInst from "public/images/professors/11 Institute for Research and Theory Methodologies.png";
+import JenniferPic from "public/images/professors/12 Jennifer Dodgson.jpeg";
+import JenniferInst from "public/images/professors/12 KIP.png";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -143,6 +149,22 @@ export const ProfessorList = [
     totalReviews: randomIntBetween(100, 1000),
   },
   {
+    id: "oc-prof-Kris-Childress",
+    name: "Kris Childress",
+    headline: "Mentor-in-Residence at National University of Singapore's Enterprise Incubator",
+    about: "Kris Childress is currently a Mentor-in-Residence at NUS Enterprise. Kris Childress brings experience from previous roles at Kris Consulting, Singapore, The Founder Institute and National University of Singapore. Kris Childress holds a 1980 - 1981 NA in Officer Training @ US Air Force Officer Training School. With a robust skill set that includes Leadership, Product Marketing, Writing, Team Building, International Business and more. Kris Childress has 3 emails on RocketReach.",
+    profilePic: KrisChildressPic,
+    website: null,
+    twitter: null,
+    linkedin: "https://www.linkedin.com/in/thekris/",
+    blog: null,
+    googleScholar: null,
+    institutionName: "City University of Hong Kong",
+    institutionLogo: KrisChildressInst,
+    totalEnrolled: randomIntBetween(1000, 10000),
+    totalReviews: randomIntBetween(100, 1000),
+  },
+  {
     id: "oc-prof-David-Warner",
     name: "David Warner",
     headline: "Lecturer, University of Pittsburgh",
@@ -199,12 +221,44 @@ CEO, KDA Capabilities & JustAskProf Singapore
     totalEnrolled: randomIntBetween(1000, 10000),
     totalReviews: randomIntBetween(100, 1000),
   },
+  {
+    id: "oc-prof-Kara-Vander-Linden",
+    name: "Kara Vander Linden",
+    headline: "President Of The Board Of Directors and Founder, Institute for Research and Theory Methodologies",
+    about: "Dr. Kara Vander Linden is scholar-practitioner and lifelong learner. As a scholar she believes in the importance of research and its role in creating research based best practices. As an educator she believes using research based best practices to meet students where they are in their current knowledge base and moving them forward in their learning. As a lifelong learner she believes in the important of continuing to learn and grow throughout one's lifetime.\n\nDr. Vander Linden has been a classic grounded theory (GT) researcher and educator for over 15 years. She currently teaches research and supervises classic GT dissertations at Saybrook University. She is a peer reviewer for the Grounded Theory Review and is the founder of the Institute for the Advancement of Classic Grounded Theory (IACGT).\n\nDr. Vander Linden received her doctorate in education from Fielding Graduate University with specializations in classic grounded theory and higher education. She has a master's in special education from the University of North Carolina and a BA in mathematics from Queens University. She also has special training in working with children with dyslexia and reading disabilities. Her research interest include human behavior and research within the social sciences.",
+    profilePic: KaraVanderPic,
+    website: "https://www.saybrook.edu/faculty/byname/kara_vander_linden/",
+    twitter: null,
+    linkedin: "https://www.linkedin.com/in/kara-vander-linden-a020126b/",
+    blog: null,
+    googleScholar: null,
+    institutionName: "National University of Singapore",
+    institutionLogo: KaraVanderInst,
+    totalEnrolled: randomIntBetween(1000, 10000),
+    totalReviews: randomIntBetween(100, 1000),
+  },
+  {
+    id: "oc-prof-Jennifer-Dodgson",
+    name: "Jennifer Dodgson",
+    headline: "Chief AI Officer / Co-Founder of KIP Protocol",
+    about: "Dr Jennifer Dodgson holds a doctorate in Qualitative Analytics and a noted expert in computational linguistics with 10 years of experience. She has worked extensively on NLP and AI projects for governments, corporates, and large organizations, providing strategic insights and advanced solutions in language technology and artificial intelligence. She is recognized for deep and early expertise in shaping AI-driven initiatives across diverse sectors.",
+    profilePic: JenniferPic,
+    website: null,
+    twitter: "https://x.com/HumanLevelJen",
+    linkedin: "https://www.linkedin.com/in/jennifer-dodgson-21642a23",
+    blog: null,
+    googleScholar: null,
+    institutionName: "KIP Protocol",
+    institutionLogo: JenniferInst,
+    totalEnrolled: randomIntBetween(1000, 10000),
+    totalReviews: randomIntBetween(100, 1000),
+  },
 ];
 
-type Tabs = "KnowledgeKeys" | "Apps";
+type Tabs = "KnowledgeKeys" | "Apps" | "Courses";
 
 export default function ProfessorProfilePage() {
-  const [activeTab, setActiveTab] = useState<Tabs>("KnowledgeKeys");
+  const [activeTab, setActiveTab] = useState<Tabs>("Courses");
 
   const { id: slug } = useParams();
 
@@ -217,11 +271,10 @@ export default function ProfessorProfilePage() {
         <div className="w-2/3 rounded-2xl border-2 border-border bg-sidebar">
           <div className="px-3 py-10 md:px-10">
             <div className="mb-8">
-              <h1 className="text-sm font-semibold">INSTRUCTOR</h1>
-              <h1 className="text-2xl font-semibold text-primary">
+              <h1 className="text-3xl font-semibold text-primary">
                 {profDetail?.name}
               </h1>
-              <h1 className="text-sm font-semibold">{profDetail?.headline}</h1>
+              <h1 className="text-lg font-semibold">{profDetail?.headline}</h1>
             </div>
 
             <section>
@@ -232,7 +285,8 @@ export default function ProfessorProfilePage() {
             </section>
 
             <section>
-              <div className="mt-8 flex items-center gap-4">
+              <h1 className="text-base font-semibold mt-8 mb-4">Associated Organization</h1>
+              <div className="flex items-center gap-4">
                 <Image
                   src={profDetail?.institutionLogo!}
                   alt={profDetail?.institutionName!}
@@ -245,6 +299,12 @@ export default function ProfessorProfilePage() {
             </section>
 
             <div className="mt-8 flex gap-8">
+            <div>
+                <h1 className="mb-2 text-sm font-semibold">COURSES</h1>
+                <p className="text-right text-lg font-semibold">
+                  {randomIntBetween(1, 5)}
+                </p>
+              </div>
               <div>
                 <h1 className="mb-2 text-sm font-semibold">TOTAL ENROLLED</h1>
                 <p className="text-right text-lg font-semibold">
@@ -274,7 +334,7 @@ export default function ProfessorProfilePage() {
               <div className="mt-6 flex w-[200px] flex-col gap-2">
                 <Link
                   href={profDetail?.website || "#"}
-                  className="flex items-center justify-center gap-2 rounded-lg border border-primary px-6 py-3 font-bold text-primary"
+                  className={`flex items-center justify-center gap-2 rounded-lg border border-primary px-6 py-3 font-bold text-primary ${profDetail?.website ? "" : "hidden"}`}
                 >
                   <Image src={WebsiteLogo} alt="website-logo" />
                   <p>Website</p>
@@ -282,31 +342,31 @@ export default function ProfessorProfilePage() {
 
                 <Link
                   href={profDetail?.twitter || "#"}
-                  className="flex items-center justify-center gap-2 rounded-lg border border-primary px-6 py-3 font-bold text-primary"
+                  className={`flex items-center justify-center gap-2 rounded-lg border border-primary px-6 py-3 font-bold text-primary ${profDetail?.twitter ? "" : "hidden"}`}
                 >
                   <Image src={TwitterLogo} alt="website-logo" />
                   <p>Twitter</p>
                 </Link>
                 <Link
-                  href={"#"}
-                  className="flex items-center justify-center gap-2 rounded-lg border border-primary px-6 py-3 font-bold text-primary"
+                  href={profDetail?.blog || "#"}
+                  className={`flex items-center justify-center gap-2 rounded-lg border border-primary px-6 py-3 font-bold text-primary ${profDetail?.blog ? "" : "hidden"}`}
                 >
-                  <Image src={FacebookLogo} alt="website-logo" />
-                  <p>Facebook</p>
+                  {/* <Image src={FacebookLogo} alt="website-logo" /> */}
+                  <p>Blog</p>
                 </Link>
                 <Link
                   href={profDetail?.linkedin || "#"}
-                  className="flex items-center justify-center gap-2 rounded-lg border border-primary px-6 py-3 font-bold text-primary"
+                  className={`flex items-center justify-center gap-2 rounded-lg border border-primary px-6 py-3 font-bold text-primary ${profDetail?.linkedin ? "" : "hidden"}`}
                 >
                   <Image src={LinkedinLogo} alt="website-logo" />
                   <p>Linkedin</p>
                 </Link>
                 <Link
-                  href={"#"}
-                  className="flex items-center justify-center gap-2 rounded-lg border border-primary px-6 py-3 font-bold text-primary"
+                  href={profDetail?.googleScholar || "#"}
+                  className={`flex items-center justify-center gap-2 rounded-lg border border-primary px-6 py-3 font-bold text-primary ${profDetail?.googleScholar ? "" : "hidden"}`}
                 >
-                  <Image src={YoutubeLogo} alt="website-logo" />
-                  <p>Youtube</p>
+                  {/* <Image src={YoutubeLogo} alt="website-logo" /> */}
+                  <p>Google Scholar</p>
                 </Link>
               </div>
             </div>
@@ -318,6 +378,12 @@ export default function ProfessorProfilePage() {
         <div className="px-3 pb-10 md:px-10">
           <section className="mt-8">
             <ul className="mb-8 flex w-full gap-12 border-b-2 border-secondary text-sm font-semibold dark:border-border">
+              <li
+                onClick={() => setActiveTab("Courses")}
+                className={`relative top-[1px] cursor-pointer ${activeTab === "Courses" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
+              >
+                Courses
+              </li>
               <li
                 onClick={() => setActiveTab("KnowledgeKeys")}
                 className={`relative top-[1px] cursor-pointer ${activeTab === "KnowledgeKeys" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}

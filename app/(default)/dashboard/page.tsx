@@ -167,7 +167,7 @@ export default function Dashboard() {
         height={264}
       />
 
-      {/* Featured Creators Section */}
+      {/* Featured Educators Section */}
       {/* <div className="mt-6 rounded-xl border-2 border-border bg-sidebar p-3 md:mt-10 lg:px-10 lg:py-8">
         <div className="flex flex-row justify-between">
           <h1 className="text-lg font-semibold md:text-xl">
@@ -240,11 +240,11 @@ export default function Dashboard() {
         </div>
       </div> */}
 
-      {/* Featured Creators Section */}
+      {/* Featured Educators Section */}
       <div className="mt-6 rounded-xl border-2 border-border bg-sidebar p-3 md:mt-10 lg:px-10 lg:py-8">
         <div className="flex flex-row items-center justify-between">
           <h1 className="text-lg font-semibold md:text-xl">
-            Featured Creators
+            Featured Educators
           </h1>
           <button className="text-primary underline">See all</button>
         </div>

@@ -1,10 +1,27 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import PricingWarningIcon from "components/icon/pricing-warning.svg";
 import InfoOutlineIcon from "components/icon/icon-info-outline.svg";
 
-export const Pricing = () => {
+interface PricingProps {
+  price: string;
+  onUpdatePrice: (price: string) => void;
+}
+
+export const Pricing: React.FC<PricingProps> = ({ price, onUpdatePrice }) => {
+  const [localPrice, setLocalPrice] = useState(price);
+
+  useEffect(() => {
+    setLocalPrice(price);
+  }, [price]);
+
+  const handlePriceChange = (newPrice: string) => {
+    setLocalPrice(newPrice);
+    onUpdatePrice(newPrice);
+  };
+
   return (
     <>
       <div className="max-w-3xl mx-auto">
@@ -42,8 +59,17 @@ export const Pricing = () => {
             Price Tier 
             <Image src={InfoOutlineIcon} alt="Info" className="inline-block w-4 h-4 ml-1 text-gray-400" />
           </label>
-          <select id="price-tier" className="border rounded-md px-3 py-2 w-full">
-            <option>Free</option>
+          <select 
+            id="price-tier" 
+            className="border rounded-md px-3 py-2 w-full"
+            value={price === "0" ? "Free" : price}
+            onChange={(e) => onUpdatePrice(e.target.value === "Free" ? "0" : e.target.value)}
+          >
+            <option value="Free">Free</option>
+            <option value="19.99">$19.99</option>
+            <option value="29.99">$29.99</option>
+            <option value="39.99">$39.99</option>
+            {/* Add more price options as needed */}
           </select>
         </div>
       </div>

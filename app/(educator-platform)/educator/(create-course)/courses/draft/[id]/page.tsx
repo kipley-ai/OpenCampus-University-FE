@@ -73,6 +73,7 @@ export default function CourseDraft() {
     taught: "",
     cover_image: "",
     cover_video: "",
+    price: "",
   });
 
   useEffect(() => {
@@ -92,6 +93,7 @@ export default function CourseDraft() {
         taught: course.taught || "",
         cover_image: course.cover_image || "",
         cover_video: course.cover_video || "",
+        price: course.price || "0.00",
       });
     }
   }, [courseData]);
@@ -180,18 +182,24 @@ export default function CourseDraft() {
     }));
   };
 
+  const handlePriceUpdate = (updatedPrice: string) => {
+    setCourseDetails(prev => ({
+      ...prev,
+      price: updatedPrice
+    }));
+  };
+
   const handleSave = useCallback(async () => {
     try {
       await updateCourseMutation.mutateAsync({
         uuid: id as string,
-        ...courseDetails, // This now includes cover_image
+        ...courseDetails,
         created_by: `4610212f-4980-4b51-a30d-9b40c6d44edd`,
         published: 0,
         create: 0,
         user_id: ``,
         course_instructors: "[]",
         duration: 0,
-        price: "",
         data_status: 0,
         outline: ""
       });
@@ -452,8 +460,11 @@ export default function CourseDraft() {
               />;
             case "CURRICULUM":
               return <Curriculum />;
-            case "PRICING":
-              return <Pricing />;
+              case "PRICING":
+                return <Pricing 
+                  price={courseDetails.price}
+                  onUpdatePrice={handlePriceUpdate}
+                />;
             case "COURSE_MESSAGES":
               return <CourseMessages />;
             case "SUBMIT_FOR_REVIEW":

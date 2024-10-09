@@ -39,6 +39,7 @@ import TwitterLogo from "public/images/social-logo/twitter.svg";
 import FacebookLogo from "public/images/social-logo/facebook.svg";
 import LinkedinLogo from "public/images/social-logo/linkedin.svg";
 import YoutubeLogo from "public/images/social-logo/youtube.svg";
+import ResearchLogo from "public/images/social-logo/book.svg";
 import React from "react";
 
 export const ProfessorList = [
@@ -365,8 +366,8 @@ export default function ProfessorProfilePage() {
                   href={profDetail?.googleScholar || "#"}
                   className={`flex items-center justify-center gap-2 rounded-lg border border-primary px-6 py-3 font-bold text-primary ${profDetail?.googleScholar ? "" : "hidden"}`}
                 >
-                  {/* <Image src={YoutubeLogo} alt="website-logo" /> */}
-                  <p>Google Scholar</p>
+                  <Image src={ResearchLogo} alt="website-logo" />
+                  <p>Research</p>
                 </Link>
               </div>
             </div>

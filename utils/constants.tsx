@@ -147,4 +147,12 @@ export const courses = [
     duration: "30 minutes",
     lessons: 12,
   },
+  {
+    id: 123,
+    image: "/images/Phsical computing 101.png",
+    category: "Development",
+    title: "Physical Computing 101",
+    duration: "12 Hours",
+    lessons: 36,
+  },
 ];

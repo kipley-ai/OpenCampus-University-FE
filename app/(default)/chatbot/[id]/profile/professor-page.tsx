@@ -388,13 +388,13 @@ export default function ProfessorProfilePage() {
                 onClick={() => setActiveTab("KnowledgeKeys")}
                 className={`relative top-[1px] cursor-pointer ${activeTab === "KnowledgeKeys" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
               >
-                KnowledgeKeys
+                Knowledge Keys
               </li>
               <li
                 onClick={() => setActiveTab("Apps")}
                 className={`relative top-[1px] cursor-pointer ${activeTab === "Apps" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
               >
-                Apps
+                AI Apps
               </li>
             </ul>
             {/* {(() => {

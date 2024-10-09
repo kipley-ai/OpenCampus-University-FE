@@ -432,7 +432,7 @@ export default function Dashboard() {
       </div>
 
       {/* Popular Courses Section */}
-      <div className="mt-6 rounded-xl border-2 border-border bg-sidebar p-3 md:mt-10 lg:px-10 lg:py-8">
+      {/* <div className="mt-6 rounded-xl border-2 border-border bg-sidebar p-3 md:mt-10 lg:px-10 lg:py-8">
         <div className="flex flex-row items-center justify-between">
           <h1 className="text-lg font-semibold md:text-xl">Popular Courses</h1>
           <button className="text-primary underline">See all</button>
@@ -442,7 +442,7 @@ export default function Dashboard() {
             <CourseCard key={index} course={course} />
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* Explore Courses Section */}
       <div className="mt-6 md:mt-10">
@@ -459,7 +459,7 @@ export default function Dashboard() {
       {/* Popular Creators Section */}
       <div className="mt-4 rounded-xl border-2 border-border bg-sidebar p-3 md:mt-10 lg:px-10 lg:py-8">
         <div className="flex justify-between gap-4 max-xs:flex-col xs:items-center">
-          <h1 className="text-lg font-semibold md:text-xl">Popular Books</h1>
+          <h1 className="text-lg font-semibold md:text-xl">Popular Textbooks and Publications</h1>
           <button className="text-primary underline">See all</button>
           {/* <select
             name="categories"

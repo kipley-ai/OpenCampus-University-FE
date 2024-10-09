@@ -159,7 +159,7 @@ export const ProfessorList = [
     linkedin: "https://www.linkedin.com/in/thekris/",
     blog: null,
     googleScholar: null,
-    institutionName: "City University of Hong Kong",
+    institutionName: "National University of Singapore",
     institutionLogo: KrisChildressInst,
     totalEnrolled: randomIntBetween(1000, 10000),
     totalReviews: randomIntBetween(100, 1000),

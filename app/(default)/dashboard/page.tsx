@@ -617,20 +617,23 @@ const ProfItem = ({ profData }: { profData: any }) => (
       alt="Avatar"
     />
     <div className="mt-2 flex items-center gap-1">
+      <div className="break-words font-medium max-md:text-sm">
+        {profData.name}
+      </div>
+    </div>
+    <div className="text-xs text-gray-500">
+      {profData.headline}
+    </div>
+    <div className="mt-2 flex items-center gap-1">
       <Image
         height={20}
         width={20}
         src={profData.institutionLogo}
         alt={profData.institutionName}
       />
-      <p className="align-top text-xs text-gray-500">
+      <p className="text-sm text-gray-500">
         {profData.institutionName}
       </p>
-    </div>
-    <div className="mt-2 flex-grow">
-      <div className="break-words font-medium max-md:text-sm">
-        {profData.name}
-      </div>
     </div>
   </Link>
 );

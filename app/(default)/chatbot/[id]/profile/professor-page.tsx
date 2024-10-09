@@ -39,7 +39,12 @@ import TwitterLogo from "public/images/social-logo/twitter.svg";
 import FacebookLogo from "public/images/social-logo/facebook.svg";
 import LinkedinLogo from "public/images/social-logo/linkedin.svg";
 import YoutubeLogo from "public/images/social-logo/youtube.svg";
+import ResearchLogo from "public/images/social-logo/book.svg";
 import React from "react";
+
+import PyshicalComputingImage from "public/images/Phsical computing 101.png";
+import RoboticImage from "public/images/Introduction to Robotics From Concept to Creation 2. jpeg.webp";
+import { title } from "process";
 
 export const ProfessorList = [
   {
@@ -159,7 +164,7 @@ export const ProfessorList = [
     linkedin: "https://www.linkedin.com/in/thekris/",
     blog: null,
     googleScholar: null,
-    institutionName: "City University of Hong Kong",
+    institutionName: "National University of Singapore",
     institutionLogo: KrisChildressInst,
     totalEnrolled: randomIntBetween(1000, 10000),
     totalReviews: randomIntBetween(100, 1000),
@@ -257,12 +262,39 @@ CEO, KDA Capabilities & JustAskProf Singapore
 
 type Tabs = "KnowledgeKeys" | "Apps" | "Courses";
 
+export const DemoCourses = [
+  {
+    id: 123,
+    image: PyshicalComputingImage,
+    category: "Development",
+    title: "Physical Computing 101",
+    duration: "12 Hours",
+    lessons: 36,
+  },
+  {
+    id: 6,
+    image: RoboticImage,
+    category: "Development",
+    title: "Introduction to Robotics: From Concept to Creation",
+    duration: "16 Hours",
+    lessons: 52,
+  },
+];
+
 export default function ProfessorProfilePage() {
   const [activeTab, setActiveTab] = useState<Tabs>("Courses");
 
   const { id: slug } = useParams();
-
   const profDetail = ProfessorList.find((p) => slug == p.id);
+
+  const isWilliamPeng = profDetail?.id === "oc-prof-William-Peng";
+
+  const getNumberOfCourses = (profId: string) => {
+    if (profId === "oc-prof-William-Peng") {
+      return 2;
+    }
+    return randomIntBetween(1, 5);
+  };
 
   return (
     <>
@@ -302,7 +334,7 @@ export default function ProfessorProfilePage() {
             <div>
                 <h1 className="mb-2 text-sm font-semibold">COURSES</h1>
                 <p className="text-right text-lg font-semibold">
-                  {randomIntBetween(1, 5)}
+                  {getNumberOfCourses(profDetail?.id || "")}
                 </p>
               </div>
               <div>
@@ -365,8 +397,8 @@ export default function ProfessorProfilePage() {
                   href={profDetail?.googleScholar || "#"}
                   className={`flex items-center justify-center gap-2 rounded-lg border border-primary px-6 py-3 font-bold text-primary ${profDetail?.googleScholar ? "" : "hidden"}`}
                 >
-                  {/* <Image src={YoutubeLogo} alt="website-logo" /> */}
-                  <p>Google Scholar</p>
+                  <Image src={ResearchLogo} alt="website-logo" />
+                  <p>Research</p>
                 </Link>
               </div>
             </div>
@@ -388,25 +420,35 @@ export default function ProfessorProfilePage() {
                 onClick={() => setActiveTab("KnowledgeKeys")}
                 className={`relative top-[1px] cursor-pointer ${activeTab === "KnowledgeKeys" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
               >
-                KnowledgeKeys
+                Knowledge Keys
               </li>
               <li
                 onClick={() => setActiveTab("Apps")}
                 className={`relative top-[1px] cursor-pointer ${activeTab === "Apps" ? "border-b-2 border-primary text-primary" : "text-secondary hover:brightness-50 dark:text-heading"}`}
               >
-                Apps
+                AI Apps
               </li>
             </ul>
-            {/* {(() => {
+            {(() => {
               switch (activeTab) {
                 case "KnowledgeKeys":
                   return <KnowledgeAssets />;
                 case "Apps":
                   return <Apps />;
                 default:
-                  return null;
+                  return isWilliamPeng ? (
+                    <div className="mt-4 grid grid-cols-2 gap-x-5 gap-y-8 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+                      {DemoCourses.map((course, index) => (
+                        <CourseCard key={index} course={course} />
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="mt-4 text-center text-gray-500">
+                      No courses available for this professor.
+                    </div>
+                  );
               }
-            })()} */}
+            })()}
           </section>
         </div>
       </div>
@@ -423,7 +465,7 @@ const KnowledgeAssets = () => {
   });
 
   const { data: sftData } = useNftDetail({
-    sft_id: chatbotData?.data.data.sft_id as string,
+    sft_id: chatbotData?.data?.data.sft_id as string,
   });
 
   const sftID = sftData?.data.data.sft_id as string;
@@ -451,16 +493,16 @@ const Apps = () => {
     chatbot_id: id as string,
   });
 
-  const appID = chatbotData?.data.data.chatbot_id;
+  const appID = chatbotData?.data?.data.chatbot_id;
 
   return (
     <div className="flex flex-wrap gap-8">
       <Link href={`/chatbot/${appID}`}>
-        {[chatbotData?.data.data].map((item: any) => (
+        {[chatbotData?.data?.data].map((item: any) => (
           <ProfileItem
             key={item}
-            name={chatbotData?.data.data.name as string}
-            profileImage={chatbotData?.data.data.profile_image as string}
+            name={chatbotData?.data?.data.name as string}
+            profileImage={chatbotData?.data?.data.profile_image as string}
           />
         ))}
       </Link>
@@ -486,5 +528,76 @@ const ProfileItem = ({
       />
       <h2 className="font-semibold text-primary">{name}</h2>
     </div>
+  );
+};
+
+const CourseCard = ({course}: {course: any}) => {
+  return (
+    <Link href={`/courses/${course.id}`}>
+    <div className="flex w-full cursor-pointer flex-col gap-3 rounded-2xl border-2 border-border p-4 hover:bg-secondary">
+      <Image
+        src={course.image}
+        alt="Course Thumbnail"
+        width={270}
+        height={160}
+        className="w-full rounded-lg object-contain"
+      />
+      <div className="w-fit rounded-lg bg-primary-light px-3 py-1 text-sm text-primary dark:bg-primary-dark dark:text-heading">
+        <span>{course.category}</span>
+      </div>
+      <h2 className="text-lg font-medium leading-none">{course.title}</h2>
+      <div className="flex items-center gap-6 md:mr-6">
+        <div className="flex items-center gap-1 text-body">
+          <svg
+            width="15"
+            height="18"
+            viewBox="0 0 12 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M5.98168 12.3245C2.77433 12.3245 0.174805 9.71648 0.174805 6.49967C0.174816 3.2824 2.77432 0.674805 5.98168 0.674805C9.18896 0.674805 11.7885 3.2824 11.7885 6.49967C11.7885 9.71648 9.18896 12.3245 5.98168 12.3245ZM5.98159 1.76667C3.37588 1.76667 1.26374 3.88544 1.26374 6.49968C1.26374 9.11296 3.37588 11.2322 5.98159 11.2322C8.58725 11.2322 10.6994 9.11296 10.6994 6.49968C10.6994 3.88545 8.58725 1.76667 5.98159 1.76667ZM7.25167 7.04543H8.34073C8.64128 7.04543 8.88496 6.80127 8.88496 6.49974C8.88496 6.19821 8.64127 5.95357 8.34073 5.95357H7.25167H6.52632V3.22273C6.52632 2.92118 6.28262 2.67655 5.98158 2.67655C5.68098 2.67655 5.43729 2.92118 5.43729 3.22273V6.49974C5.43729 6.80126 5.68098 7.04543 5.98158 7.04543H6.52632H7.25167Z"
+              fill="currentColor"
+            />
+          </svg>
+          <p className="text-sm text-body">{course.duration}</p>
+        </div>
+        <div className="flex items-center gap-1 text-body">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2.25 12.375L9 16.3125L15.75 12.375"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M2.25 9L9 12.9375L15.75 9"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M2.25 5.625L9 9.5625L15.75 5.625L9 1.6875L2.25 5.625Z"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <p className="text-sm">{course.lessons} lessons</p>
+        </div>
+      </div>
+    </div>
+  </Link>
   );
 };

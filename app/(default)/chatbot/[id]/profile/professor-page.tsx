@@ -18,8 +18,8 @@ import DavidWarnerInst from "public/images/professors/7 university pittsburgh.pn
 import LeiGuoPic from "public/images/professors/8 lei guo.jpeg";
 import LeiGuoInst from "public/images/professors/8 nus.jpg";
 import KeithCarterPic from "public/images/professors/9 Keith Carter.jpg";
-import KeithCarterInst from "public/images/professors/9 nus.jpg";
-import KrisChildressPic from "public/images/professors/10 Kris Childress.jpeg";
+import KeithCarterInst from "public/images/professors/9 KDA Capabilities.jpeg";
+import KrisChildressPic from "public/images/professors/10 Chris Childress.jpeg";
 import KrisChildressInst from "public/images/professors/10 nus.jpg";
 import KaraVanderPic from "public/images/professors/11 Kara Vander Linden .jpg";
 import KaraVanderInst from "public/images/professors/11 Institute for Research and Theory Methodologies.png";
@@ -40,6 +40,7 @@ import FacebookLogo from "public/images/social-logo/facebook.svg";
 import LinkedinLogo from "public/images/social-logo/linkedin.svg";
 import YoutubeLogo from "public/images/social-logo/youtube.svg";
 import ResearchLogo from "public/images/social-logo/book.svg";
+import BlogLogo from "public/images/social-logo/blog.svg";
 import React from "react";
 
 import PyshicalComputingImage from "public/images/Phsical computing 101.png";
@@ -105,7 +106,7 @@ export const ProfessorList = [
     name: "Dalhar Susanto",
     headline: "Head of Department of Architecture, University of Indonesia",
     about:
-      "Professor Dalhar Susanto holds a doctoral degree in Architecture, Urban and Housing at Fakultaet fuer Architektur, Universitaet Stuttgart, Germany, in 1999. He has been a permanent lecturer at the Department of Architecture, University of Indonesia since 1991, teaching Architectural Design, Building Technology and Housing. He has been active in research and community service activities with the specialization topics of “sustainablehousing technology” and “appropriate building technology”. He practiced as a professional architect and has designed several hotel, residential and commercial buildings. He is a holder of several professional certificates: “Associate Architect Certificate of Expertise” lkatan ArsitekIndonesia (2008); ‘Building Technical Performer License /PTB’ DKl Jakarta 2008; and ‘Certificate of Educator / Lecturer’ Ministry of National Education Rl 2011. Currently, he is a member of the Indonesian Architects Association (lAl); a member of the Jakarta City Architecture Advisory Team 2010-2013; a member of the Jakarta Building Experts 2014-2017; and an assessor of the National Accreditation Board for Higher Education since 2014.",
+      `Professor Dalhar Susanto holds a doctoral degree in Architecture, Urban and Housing at Fakultaet fuer Architektur, Universitaet Stuttgart, Germany, in 1999. He has been a permanent lecturer at the Department of Architecture, University of Indonesia since 1991, teaching Architectural Design, Building Technology and Housing. He has been active in research and community service activities with the specialization topics of “sustainablehousing technology” and “appropriate building technology”. He practiced as a professional architect and has designed several hotel, residential and commercial buildings. He is a holder of several professional certificates: “Associate Architect Certificate of Expertise” lkatan ArsitekIndonesia (2008); ‘Building Technical Performer License /PTB’ DKl Jakarta 2008; and ‘Certificate of Educator / Lecturer’ Ministry of National Education Rl 2011. Currently, he is a member of the Indonesian Architects Association (lAl); a member of the Jakarta City Architecture Advisory Team 2010-2013; a member of the Jakarta Building Experts 2014-2017; and an assessor of the National Accreditation Board for Higher Education since 2014.`,
     profilePic: DalharSusantoPic,
     website: "https://architecture.ui.ac.id/people/dalhar-susanto/",
     twitter: null,
@@ -122,7 +123,7 @@ export const ProfessorList = [
     name: "Javier Cha",
     headline: "Director, Big Data Studies Lab, The University of Hong Kong",
     about:
-      "Professor Javier Chat currently works as Assistant Professor of Digital Humanities in the Department of History at the University of Hong Kong, where he teaches in the new Bachelor of Arts in Humanities and Digital Technologies programme. Prior to moving to Hong Kong, he was Associate Professor of East Asian Studies in the College of Liberal Studies at Seoul National University. He received my BA and MA education in Asian Studies at the University of British Columbia and PhD in East Asian Languages and Civilizations at Harvard University.",
+      `Professor Javier Chat currently works as Assistant Professor of Digital Humanities in the Department of History at the University of Hong Kong, where he teaches in the new Bachelor of Arts in Humanities and Digital Technologies programme. Prior to moving to Hong Kong, he was Associate Professor of East Asian Studies in the College of Liberal Studies at Seoul National University. He received my BA and MA education in Asian Studies at the University of British Columbia and PhD in East Asian Languages and Civilizations at Harvard University.`,
     profilePic: JavierChaPic,
     website: "https://javiercha.com/",
     twitter: null,
@@ -141,7 +142,7 @@ export const ProfessorList = [
     headline:
       "Assistant Director, Centre for the Study of Governance & Society, King’s College",
     about:
-      "Bryan Cheang is the Assistant Director of the Centre for the Study of Governance & Society. He received his PhD and MA in Political Economy from King’s College London and is a graduate of the National University of Singapore. His research interests pertain to the political economy of development and applied economic policy. He is broadly interested topics regarding state-market relations, comparative political economy and particularly, the challenges of successful industrial policy interventions. He is currently researching into the epistemic challenges faced in industrial policy schemes. Bryan also brings with him his policy experience from the Singapore civil service.",
+      `Bryan Cheang is the Assistant Director of the Centre for the Study of Governance & Society. He received his PhD and MA in Political Economy from King’s College London and is a graduate of the National University of Singapore. His research interests pertain to the political economy of development and applied economic policy. He is broadly interested topics regarding state-market relations, comparative political economy and particularly, the challenges of successful industrial policy interventions. He is currently researching into the epistemic challenges faced in industrial policy schemes. Bryan also brings with him his policy experience from the Singapore civil service.`,
     profilePic: BryanCheangPic,
     website: "https://www.kcl.ac.uk/people/bryan-cheang",
     twitter: "https://x.com/bryancheang_",
@@ -157,7 +158,7 @@ export const ProfessorList = [
     id: "oc-prof-Kris-Childress",
     name: "Kris Childress",
     headline: "Mentor-in-Residence at National University of Singapore's Enterprise Incubator",
-    about: "Kris Childress is currently a Mentor-in-Residence at NUS Enterprise. Kris Childress brings experience from previous roles at Kris Consulting, Singapore, The Founder Institute and National University of Singapore. Kris Childress holds a 1980 - 1981 NA in Officer Training @ US Air Force Officer Training School. With a robust skill set that includes Leadership, Product Marketing, Writing, Team Building, International Business and more. Kris Childress has 3 emails on RocketReach.",
+    about: `Kris Childress is currently a Mentor-in-Residence at NUS Enterprise. Kris Childress brings experience from previous roles at Kris Consulting, Singapore, The Founder Institute and National University of Singapore. Kris Childress holds a 1980 - 1981 NA in Officer Training @ US Air Force Officer Training School. With a robust skill set that includes Leadership, Product Marketing, Writing, Team Building, International Business and more. Kris Childress has 3 emails on RocketReach.`,
     profilePic: KrisChildressPic,
     website: null,
     twitter: null,
@@ -192,7 +193,7 @@ export const ProfessorList = [
     headline:
       "Lecturer, Advanced Computing for Executives, National University of Singapore",
     about:
-      "Dr. Guo Lei, an active educator and researcher in business analytics and experience-led innovation, blends extensive industry experience with an international academic background. She specializes in applied research, education, and consultancy, driving innovation across diverse sectors globally.",
+      `Dr. Guo Lei, an active educator and researcher in business analytics and experience-led innovation, blends extensive industry experience with an international academic background. She specializes in applied research, education, and consultancy, driving innovation across diverse sectors globally.`,
     profilePic: LeiGuoPic,
     website: "https://discovery.nus.edu.sg/19573-lei-guo",
     twitter: null,
@@ -230,7 +231,11 @@ CEO, KDA Capabilities & JustAskProf Singapore
     id: "oc-prof-Kara-Vander-Linden",
     name: "Kara Vander Linden",
     headline: "President Of The Board Of Directors and Founder, Institute for Research and Theory Methodologies",
-    about: "Dr. Kara Vander Linden is scholar-practitioner and lifelong learner. As a scholar she believes in the importance of research and its role in creating research based best practices. As an educator she believes using research based best practices to meet students where they are in their current knowledge base and moving them forward in their learning. As a lifelong learner she believes in the important of continuing to learn and grow throughout one's lifetime.\n\nDr. Vander Linden has been a classic grounded theory (GT) researcher and educator for over 15 years. She currently teaches research and supervises classic GT dissertations at Saybrook University. She is a peer reviewer for the Grounded Theory Review and is the founder of the Institute for the Advancement of Classic Grounded Theory (IACGT).\n\nDr. Vander Linden received her doctorate in education from Fielding Graduate University with specializations in classic grounded theory and higher education. She has a master's in special education from the University of North Carolina and a BA in mathematics from Queens University. She also has special training in working with children with dyslexia and reading disabilities. Her research interest include human behavior and research within the social sciences.",
+    about: `Dr. Kara Vander Linden is scholar-practitioner and lifelong learner. As a scholar she believes in the importance of research and its role in creating research based best practices. As an educator she believes using research based best practices to meet students where they are in their current knowledge base and moving them forward in their learning. As a lifelong learner she believes in the important of continuing to learn and grow throughout one's lifetime.
+    
+    Dr. Vander Linden has been a classic grounded theory (GT) researcher and educator for over 15 years. She currently teaches research and supervises classic GT dissertations at Saybrook University. She is a peer reviewer for the Grounded Theory Review and is the founder of the Institute for the Advancement of Classic Grounded Theory (IACGT).
+    
+    Dr. Vander Linden received her doctorate in education from Fielding Graduate University with specializations in classic grounded theory and higher education. She has a master's in special education from the University of North Carolina and a BA in mathematics from Queens University. She also has special training in working with children with dyslexia and reading disabilities. Her research interest include human behavior and research within the social sciences.`,
     profilePic: KaraVanderPic,
     website: "https://www.saybrook.edu/faculty/byname/kara_vander_linden/",
     twitter: null,
@@ -383,7 +388,7 @@ export default function ProfessorProfilePage() {
                   href={profDetail?.blog || "#"}
                   className={`flex items-center justify-center gap-2 rounded-lg border border-primary px-6 py-3 font-bold text-primary ${profDetail?.blog ? "" : "hidden"}`}
                 >
-                  {/* <Image src={FacebookLogo} alt="website-logo" /> */}
+                  <Image src={BlogLogo} alt="website-logo" />
                   <p>Blog</p>
                 </Link>
                 <Link

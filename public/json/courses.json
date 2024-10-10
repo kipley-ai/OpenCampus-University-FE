@@ -1,0 +1,110 @@
+[
+  {
+    "id": "123",
+    "category": "Marketing",
+    "title": "MBA in a Box: Business Lessons from a CEO",
+    "description": "Learn the most common Business Development Essentials Principals used in all the major Fortune 500 companies.",
+    "author": "Sean Janson",
+    "rating": 4.8,
+    "raterCount": 122,
+    "enrolleeCount": 20,
+    "duration": 40,
+    "lessonCount": 12,
+    "level": "Beginner",
+    "language": "English",
+    "fullLifetimeAccess": true,
+    "certificateOfCompletion": true,
+    "updatedOn": "2024-07-03",
+    "sections": [
+      {
+        "title": "Marketing Principles",
+        "duration": 58,
+        "lessons": 6,
+        "resources": [
+          {
+            "id": 1,
+            "type": "video",
+            "title": "Introduction"
+          },
+          {
+            "id": 2,
+            "type": "video",
+            "title": "Jakob's Law - Other Pages"
+          },
+          {
+            "id": 3,
+            "type": "video",
+            "title": "Consistency is Key"
+          },
+          {
+            "id": 1,
+            "type": "image",
+            "title": "ROC Analysis Chart"
+          },
+          {
+            "id": 1,
+            "type": "file",
+            "title": "The strategic importance of the industry life cycle model"
+          },
+          {
+            "id": 2,
+            "type": "file",
+            "title": "Organic growth - building a solid foundation"
+          }
+        ]
+      },
+      {
+        "title": "Identity Your Customer Lifetime Value",
+        "duration": 58,
+        "lessons": 6,
+        "resources": [
+          {
+            "id": 1,
+            "type": "video",
+            "title": "Introduction"
+          }
+        ]
+      },
+      {
+        "title": "Build Your Online Presence",
+        "duration": 58,
+        "lessons": 6,
+        "resources": [
+          {
+            "id": 1,
+            "type": "video",
+            "title": "Introduction"
+          }
+        ]
+      }
+    ],
+    "objectives": [
+      "Improve the structure of your plan by understanding marketing principles",
+      "Improve your communication skills with your team",
+      "Improve your writing skills",
+      "Improve the design quality of your project or your clients"
+    ],
+    "similarCourses": [
+      {
+        "id": 10,
+        "image": "/images/applications-image-10.jpg",
+        "title": "Intro to Marketing Strategy",
+        "author": "Sen Janson",
+        "rating": 4.8,
+        "raters": 122,
+        "duration": 30,
+        "lessons": 12
+      },
+      {
+        "id": 11,
+        "image": "/images/applications-image-11.jpg",
+        "title": "How to Write a Business Plan",
+        "author": "Sen Janson",
+        "rating": 4.8,
+        "raters": 122,
+        "duration": 30,
+        "lessons": 12
+      }
+    ]
+  }
+]

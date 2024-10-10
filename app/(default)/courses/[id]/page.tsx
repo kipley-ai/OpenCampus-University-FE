@@ -5,10 +5,12 @@ import {
   AccordionItem as Item,
   useAccordionProvider,
 } from "@szhsin/react-accordion";
+import { useParams } from "next/navigation";
 import { useState } from "react";
 import { KF_TITLE } from "@/utils/constants";
 import Image from "next/image";
 import Link from "next/link";
+import Courses from "@/public/json/courses.json";
 
 const AccordionItem = ({ section, ...rest }: any) => (
   <Item
@@ -57,6 +59,36 @@ const AccordionItem = ({ section, ...rest }: any) => (
 );
 
 export default function CourseDetailPage() {
+  const { id } = useParams();
+
+  interface Course {
+    id: string;
+    category: string;
+    title: string;
+    description: string;
+    author: string;
+    rating: number;
+    raterCount: number;
+    enrolleeCount: number;
+    duration: number;
+    lessonCount: number;
+    level: string;
+    language: string;
+    fullLifetimeAccess: boolean;
+    certificateOfCompletion: boolean;
+    updatedOn: string;
+    sections: {
+      title: string;
+      duration: number;
+      lessons: number;
+      resources: any[];
+    }[];
+    objectives: string[];
+    similarCourses: any[];
+  }
+
+  const course: Course | undefined = Courses.find((course) => course.id === id);
+
   const [tab, setTab] = useState<string>("Overview");
   const [isAllCollapsed, setIsAllCollapsed] = useState<boolean>(true);
 
@@ -77,69 +109,18 @@ export default function CourseDetailPage() {
     setIsAllCollapsed(!isAllCollapsed);
   };
 
-  const sections = [
-    {
-      title: "Marketing Principles",
-      duration: 58, // in minutes
-      lessons: 6,
-      resources: [
-        {
-          id: 1,
-          type: "video",
-          title: "Introduction",
-        },
-        {
-          id: 2,
-          type: "video",
-          title: "Jakob's Law - Other Pages",
-        },
-        {
-          id: 3,
-          type: "video",
-          title: "Consistency is Key",
-        },
-        {
-          id: 1,
-          type: "image",
-          title: "ROC Analysis Chart",
-        },
-        {
-          id: 1,
-          type: "file",
-          title: "The strategic importance of the industry life cycle model",
-        },
-        {
-          id: 2,
-          type: "file",
-          title: "Organic growth - building a solid foundation",
-        },
-      ],
-    },
-    {
-      title: "Identity Your Customer Lifetime Value",
-      duration: 58,
-      lessons: 6,
-      resources: [
-        {
-          id: 1,
-          type: "video",
-          title: "Introduction",
-        },
-      ],
-    },
-    {
-      title: "Build Your Online Presence",
-      duration: 58,
-      lessons: 6,
-      resources: [
-        {
-          id: 1,
-          type: "video",
-          title: "Introduction",
-        },
-      ],
-    },
-  ];
+  function formatDateToDDMMYYYY(dateInput: string | number | Date | undefined) {
+    if (!dateInput) {
+      return "Invalid Date";
+    }
+
+    const date = new Date(dateInput);
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+  }
 
   const getResourceSVG = (type: string) => {
     switch (type) {
@@ -192,36 +173,6 @@ export default function CourseDetailPage() {
         return null;
     }
   };
-
-  const objectives = [
-    "Improve the structure of your plan by understanding marketing principles",
-    "Improve your communication skills with your team",
-    "Improve your writing skills",
-    "Improve the design quality of your project or your clients",
-  ];
-
-  const similarCourses = [
-    {
-      id: 10,
-      image: "/images/applications-image-10.jpg",
-      title: "Intro to Marketing Strategy",
-      author: "Sen Janson",
-      rating: 4.8,
-      raters: 122,
-      duration: 30,
-      lessons: 12,
-    },
-    {
-      id: 11,
-      image: "/images/applications-image-11.jpg",
-      title: "How to Write a Business Plan",
-      author: "Sen Janson",
-      rating: 4.8,
-      raters: 122,
-      duration: 30,
-      lessons: 12,
-    },
-  ];
 
   return (
     <div className="relative mb-10 mt-3 max-w-[1100px] rounded-2xl border-2 border-border bg-sidebar xl:mt-4">
@@ -280,7 +231,7 @@ export default function CourseDetailPage() {
                   d="M11.918 11.75a6.182 6.182 0 0 1 5.063 2.63"
                 />
               </svg>
-              20 Enrolled
+              {course?.enrolleeCount} Enrolled
             </p>
             <p className="text-body">
               <svg
@@ -298,7 +249,7 @@ export default function CourseDetailPage() {
                   fill="currentColor"
                 />
               </svg>
-              40 minutes to complete
+              {course?.duration} minutes to complete
             </p>
             <p className="text-body">
               <svg
@@ -331,7 +282,7 @@ export default function CourseDetailPage() {
                   strokeLinejoin="round"
                 />
               </svg>
-              12 lessons
+              {course?.lessonCount} lessons
             </p>
             <p className="text-body">
               <svg
@@ -357,7 +308,7 @@ export default function CourseDetailPage() {
                   d="M5.231 10.063H1.294v5.062H5.23v-5.063Z"
                 />
               </svg>
-              Beginner level
+              {course?.level} level
             </p>
             <p className="text-body">
               <svg
@@ -383,53 +334,57 @@ export default function CourseDetailPage() {
                   d="m3.488 13.395.822-.499a.562.562 0 0 0 .267-.478l.014-2.538a.541.541 0 0 1 .092-.296l1.392-2.186a.57.57 0 0 1 .809-.155l1.378.998c.119.083.263.12.408.106l2.214-.302a.549.549 0 0 0 .345-.19l1.56-1.8a.57.57 0 0 0 .135-.394l-.078-1.709m.309 10.871-.759-.76a.576.576 0 0 0-.253-.147l-1.512-.394a.563.563 0 0 1-.408-.626l.162-1.139a.577.577 0 0 1 .345-.436l2.137-.893a.563.563 0 0 1 .598.106l1.75 1.603"
                 />
               </svg>
-              English
+              {course?.language}
             </p>
-            <p className="text-body">
-              <svg
-                className="mr-2 inline"
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="19"
-                fill="none"
-                viewBox="0 0 18 19"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="m7.495 11.194-.611.69a3.368 3.368 0 1 1 0-4.768l4.232 4.768a3.369 3.369 0 1 0 0-4.768l-.611.69"
-                />
-              </svg>
-              Full Lifetime Access
-            </p>
-            <p className="text-body">
-              <svg
-                className="mr-2 inline"
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="19"
-                fill="none"
-                viewBox="0 0 18 19"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="M3.938 4.438v3.874c0 2.791 2.235 5.104 5.027 5.126a5.064 5.064 0 0 0 5.098-5.063V4.437a.563.563 0 0 0-.563-.562h-9a.563.563 0 0 0-.563.563ZM6.75 16.25h4.5M9 13.438v2.812"
-                />
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="M13.936 9.5h.689a2.25 2.25 0 0 0 2.25-2.25V6.125a.563.563 0 0 0-.563-.563h-2.25M4.078 9.5h-.71a2.25 2.25 0 0 1-2.25-2.25V6.125a.563.563 0 0 1 .562-.563h2.25"
-                />
-              </svg>
-              Certificate of Completion
-            </p>
+            {course?.fullLifetimeAccess ? (
+              <p className="text-body">
+                <svg
+                  className="mr-2 inline"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="19"
+                  fill="none"
+                  viewBox="0 0 18 19"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
+                    d="m7.495 11.194-.611.69a3.368 3.368 0 1 1 0-4.768l4.232 4.768a3.369 3.369 0 1 0 0-4.768l-.611.69"
+                  />
+                </svg>
+                Full Lifetime Access
+              </p>
+            ) : null}
+            {course?.certificateOfCompletion ? (
+              <p className="text-body">
+                <svg
+                  className="mr-2 inline"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="19"
+                  fill="none"
+                  viewBox="0 0 18 19"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
+                    d="M3.938 4.438v3.874c0 2.791 2.235 5.104 5.027 5.126a5.064 5.064 0 0 0 5.098-5.063V4.437a.563.563 0 0 0-.563-.562h-9a.563.563 0 0 0-.563.563ZM6.75 16.25h4.5M9 13.438v2.812"
+                  />
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
+                    d="M13.936 9.5h.689a2.25 2.25 0 0 0 2.25-2.25V6.125a.563.563 0 0 0-.563-.563h-2.25M4.078 9.5h-.71a2.25 2.25 0 0 1-2.25-2.25V6.125a.563.563 0 0 1 .562-.563h2.25"
+                  />
+                </svg>
+                Certificate of Completion
+              </p>
+            ) : null}
             <p className="text-body">
               <svg
                 className="mr-2 inline"
@@ -454,15 +409,15 @@ export default function CourseDetailPage() {
                   d="M10.688 7.813H7.312v3.375h3.375V7.812Z"
                 />
               </svg>
-              Updated on 03/07/2024
+              Updated on {formatDateToDDMMYYYY(course?.updatedOn)}
             </p>
           </div>
         </div>
       </div>
-      <div className="bg-primary-light flex w-full gap-14 rounded-t-xl px-6 pt-8 dark:bg-primary-dark">
+      <div className="flex w-full gap-14 rounded-t-xl bg-primary-light px-6 pt-8 dark:bg-primary-dark">
         <div className="w-3/12"></div>
         <div className="w-9/12">
-          <div className="dark:text-primary-light flex items-center gap-4 text-xs font-medium text-[#888CEB]">
+          <div className="flex items-center gap-4 text-xs font-medium text-[#888CEB] dark:text-primary-light">
             <Link href="/" className="hover:text-primary">
               <span className="">Browse</span>
             </Link>
@@ -471,7 +426,7 @@ export default function CourseDetailPage() {
               <span className="">Courses</span>
             </Link>
             <span className="">&gt;</span>
-            <span className="text-primary">Marketing</span>
+            <span className="text-primary">{course?.category}</span>
           </div>
           <h1 className="mt-4 text-2xl font-medium text-primary">
             MBA in a Box: Business Lessons from a CEO
@@ -595,10 +550,10 @@ export default function CourseDetailPage() {
             providerValue={providerValue}
             className="flex flex-col rounded-lg"
           >
-            {sections &&
-              sections.map((section, i) => {
+            {course?.sections &&
+              course?.sections.map((section, i) => {
                 return (
-                  <AccordionItem key={i} section={sections[i]}>
+                  <AccordionItem key={i} section={course.sections[i]}>
                     <div className="flex flex-col gap-4 ">
                       {section.resources.map((resource, j) => (
                         <Link
@@ -623,7 +578,7 @@ export default function CourseDetailPage() {
             What You&apos;ll Learn
           </h2>
           <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-4 rounded-lg border border-border p-6">
-            {objectives.map((objective, i) => (
+            {course?.objectives.map((objective, i) => (
               <div key={i} className="flex items-start justify-start gap-2">
                 <svg
                   width="14"
@@ -651,7 +606,7 @@ export default function CourseDetailPage() {
           <h2 className="mt-8 text-lg font-semibold text-primary">
             Similar Courses
           </h2>
-          {similarCourses.map((course, i) => (
+          {course?.similarCourses.map((course, i) => (
             <div
               key={i}
               className="mt-4 flex items-start gap-4 rounded-lg border border-border p-4"

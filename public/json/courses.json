@@ -1,14 +1,18 @@
 [
   {
-    "id": "123",
+    "id": "999",
     "category": "Marketing",
+    "thumbnailPath": "/images/applications-image-01.jpg",
     "title": "MBA in a Box: Business Lessons from a CEO",
     "description": "Learn the most common Business Development Essentials Principals used in all the major Fortune 500 companies.",
-    "author": "Sean Janson",
+    "author": {
+      "id": "oc-prof-Sean-Janson",
+      "name": "Sean Janson"
+    },
     "rating": 4.8,
     "raterCount": 122,
     "enrolleeCount": 20,
-    "duration": 40,
+    "duration": "40 minutes",
     "lessonCount": 12,
     "level": "Beginner",
     "language": "English",
@@ -103,7 +107,340 @@
         "rating": 4.8,
         "raters": 122,
         "duration": 30,
-        "lessons": 12
+        "lessonCount": 12
+      }
+    ]
+  },
+  {
+    "id": "101",
+    "category": "Development",
+    "thumbnailPath": "/images/Phsical computing 101.png",
+    "title": "Physical Computing 101",
+    "description": "Every day we rely heavily on devices that gather data from the environment and interpret that information to interact with the wider world. The objective of this course is to provide an accessible, first introduction to physical computing, the foundations of that mixed digital and physical reality we inhabit. Students will gain practical hands-on experience with a microcontroller and all types of common sensors—from joysticks to cameras—and actuators such—from haptic devices to servomotors.",
+    "author": {
+      "id": "oc-prof-William-Peng",
+      "name": "William Peng"
+    },
+    "rating": 4.9,
+    "raterCount": 376,
+    "enrolleeCount": 3678,
+    "duration": "12 hours",
+    "lessonCount": 36,
+    "level": "Beginner",
+    "language": "English",
+    "fullLifetimeAccess": true,
+    "certificateOfCompletion": true,
+    "updatedOn": "2024-10-08",
+    "sections": [
+      {
+        "title": "Introduction to Physical Computing",
+        "duration": 40,
+        "lessons": 2,
+        "resources": [
+          {
+            "id": 1,
+            "type": "video",
+            "title": "Overview of Physical Computing, real-world applications, and course objectives"
+          },
+          {
+            "id": 2,
+            "type": "video",
+            "title": "Introduction to basic system engineering"
+          }
+        ]
+      },
+      {
+        "title": "Basic Circuit Components",
+        "duration": 50,
+        "lessons": 3,
+        "resources": [
+          {
+            "id": 3,
+            "type": "video",
+            "title": "Understanding indicators, potentiometers and circuits"
+          },
+          {
+            "id": 4,
+            "type": "video",
+            "title": "Introduction to analog and digital signals"
+          },
+          {
+            "id": 1,
+            "type": "file",
+            "title": "Reading: Switches"
+          }
+        ]
+      },
+      {
+        "title": "Binary Arithmetic and Logic",
+        "duration": 45,
+        "lessons": 3,
+        "resources": [
+          {
+            "id": 5,
+            "type": "video",
+            "title": "Binary and Decimal Systems"
+          },
+          {
+            "id": 2,
+            "type": "file",
+            "title": "Practical exercises with logic gates"
+          },
+          {
+            "id": 6,
+            "type": "video",
+            "title": "Adders and Subtractors"
+          }
+        ]
+      },
+      {
+        "title": "Introduction to Microcontrollers",
+        "duration": 50,
+        "lessons": 3,
+        "resources": [
+          {
+            "id": 7,
+            "type": "video",
+            "title": "Microcontroller architecture, types, and functions"
+          },
+          {
+            "id": 8,
+            "type": "video",
+            "title": "Introduction to programming microcontrollers and IDE setup"
+          },
+          {
+            "id": 9,
+            "type": "video",
+            "title": "Basic hands-on programming on microcontroller"
+          }
+        ]
+      },
+      {
+        "title": "Serial Monitor, Circuit Control",
+        "duration": 40,
+        "lessons": 2,
+        "resources": [
+          {
+            "id": 10,
+            "type": "video",
+            "title": "Serial communication"
+          },
+          {
+            "id": 11,
+            "type": "video",
+            "title": "Circuit control"
+          }
+        ]
+      },
+      {
+        "title": "Analog and Digital Inputs",
+        "duration": 45,
+        "lessons": 2,
+        "resources": [
+          {
+            "id": 5,
+            "type": "video",
+            "title": "Analog inputs and digital inputs"
+          },
+          {
+            "id": 2,
+            "type": "file",
+            "title": "Reading: analog inputs and digital inputs"
+          }
+        ]
+      },
+      {
+        "title": "Logic Statements, Analog Output: Pulse Width Modulation",
+        "duration": 60,
+        "lessons": 2,
+        "resources": [
+          {
+            "id": 5,
+            "type": "file",
+            "title": "Logic Statements"
+          },
+          {
+            "id": 2,
+            "type": "file",
+            "title": "Pulse Width Modulation"
+          }
+        ]
+      },
+      {
+        "title": "Neopixels, Joystick",
+        "duration": 40,
+        "lessons": 2,
+        "resources": [
+          {
+            "id": 5,
+            "type": "video",
+            "title": "Neopixels"
+          },
+          {
+            "id": 6,
+            "type": "video",
+            "title": "Joystick"
+          }
+        ]
+      },
+      {
+        "title": "Motion Sensing",
+        "duration": 45,
+        "lessons": 2,
+        "resources": [
+          {
+            "id": 5,
+            "type": "video",
+            "title": "Introduction to motion sensors"
+          },
+          {
+            "id": 2,
+            "type": "file",
+            "title": "Reading: PIR sensors"
+          }
+        ]
+      },
+      {
+        "title": "Sound",
+        "duration": 40,
+        "lessons": 2,
+        "resources": [
+          {
+            "id": 5,
+            "type": "video",
+            "title": "Basics of sound output"
+          },
+          {
+            "id": 2,
+            "type": "file",
+            "title": "Reading: Speakers"
+          }
+        ]
+      },
+      {
+        "title": "Haptic Devices",
+        "duration": 30,
+        "lessons": 1,
+        "resources": [
+          {
+            "id": 5,
+            "type": "video",
+            "title": "Introduction to haptic devices"
+          }
+        ]
+      },
+      {
+        "title": "DC Motor Control",
+        "duration": 50,
+        "lessons": 2,
+        "resources": [
+          {
+            "id": 5,
+            "type": "video",
+            "title": "Introduction to DC motors and motor drivers"
+          },
+          {
+            "id": 2,
+            "type": "file",
+            "title": "Reading: Transistors"
+          }
+        ]
+      },
+      {
+        "title": "Sensors and Servomotors",
+        "duration": 30,
+        "lessons": 1,
+        "resources": [
+          {
+            "id": 5,
+            "type": "video",
+            "title": "Introduction to sensors and servomotors"
+          }
+        ]
+      },
+      {
+        "title": "Environmental Sensing: Temperature, Humidity, Proximity",
+        "duration": 80,
+        "lessons": 4,
+        "resources": [
+          {
+            "id": 5,
+            "type": "video",
+            "title": "Working with environmental sensors"
+          },
+          {
+            "id": 2,
+            "type": "file",
+            "title": "Reading: temperature sensors"
+          },
+          {
+            "id": 2,
+            "type": "file",
+            "title": "Reading: proximity sensors"
+          },
+          {
+            "id": 2,
+            "type": "file",
+            "title": "Reading: DHT sensors"
+          }
+        ]
+      },
+      {
+        "title": "Wi-Fi and Bluetooth Connectivity",
+        "duration": 35,
+        "lessons": 2,
+        "resources": [
+          {
+            "id": 5,
+            "type": "video",
+            "title": "Basics of Wi-Fi"
+          },
+          {
+            "id": 6,
+            "type": "video",
+            "title": "Basics of Bluetooth"
+          }
+        ]
+      },
+      {
+        "title": "Object Detection with Cameras",
+        "duration": 40,
+        "lessons": 3,
+        "resources": [
+          {
+            "id": 5,
+            "type": "video",
+            "title": "Introduction to computer vision and object detection with cameras"
+          },
+          {
+            "id": 2,
+            "type": "file",
+            "title": "Reading: Pixy2"
+          },
+          {
+            "id": 6,
+            "type": "file",
+            "title": "Reading: Implementing a simple object detection system"
+          }
+        ]
+      }
+    ],
+    "objectives": [
+      "Understand the core components of circuits and how to work with microcontrollers to control various devices.",
+      "Gain hands-on experience programming microcontrollers to interact with hardware such as LEDs, motors, and sensors.",
+      "Learn how to establish Wi-Fi and Bluetooth connections for data exchange between devices in physical computing projects.",
+      "Design and build functional systems using sensors, actuators, and cameras, applying object detection and other sensing technologies."
+    ],
+    "similarCourses": [
+      {
+        "id": 10,
+        "image": "/images/Introduction to Robotics From Concept to Creation 2. jpeg.webp",
+        "title": "Introduction to Robotics: From Concept to Creation",
+        "author": "William Peng",
+        "rating": 4.8,
+        "raters": 122,
+        "duration": "16 hours",
+        "lessonCount": 52
       }
     ]
   }

@@ -64,13 +64,17 @@ export default function CourseDetailPage() {
   interface Course {
     id: string;
     category: string;
+    thumbnailPath: string;
     title: string;
     description: string;
-    author: string;
+    author: {
+      id: string;
+      name: string;
+    };
     rating: number;
     raterCount: number;
     enrolleeCount: number;
-    duration: number;
+    duration: string;
     lessonCount: number;
     level: string;
     language: string;
@@ -179,7 +183,7 @@ export default function CourseDetailPage() {
       <title>{KF_TITLE + "Course Detail"}</title>
       <div className="absolute left-6 top-8 z-10 w-1/4">
         <Image
-          src="/images/applications-image-01.jpg"
+          src={course!.thumbnailPath}
           className="rounded-t-lg"
           alt="..."
           width={600}
@@ -249,7 +253,7 @@ export default function CourseDetailPage() {
                   fill="currentColor"
                 />
               </svg>
-              {course?.duration} minutes to complete
+              {course?.duration} to complete
             </p>
             <p className="text-body">
               <svg
@@ -429,15 +433,16 @@ export default function CourseDetailPage() {
             <span className="text-primary">{course?.category}</span>
           </div>
           <h1 className="mt-4 text-2xl font-medium text-primary">
-            MBA in a Box: Business Lessons from a CEO
+            {course?.title}
           </h1>
-          <p className="mb-4 mt-2 text-sm text-body">
-            Learn the most common Business Development Essentials Principals
-            used in all the major Fortune 500 companies.
-          </p>
+          <p className="mb-4 mt-2 text-sm text-body">{course?.description}</p>
           <p className="mb-2 text-xs text-body">
             Created by{" "}
-            <span className="text-primary underline">Sean Janson</span>
+            <Link href={`/chatbot/${course?.author?.id}/profile`}>
+              <span className="text-primary underline hover:text-secondary">
+                {course?.author?.name}
+              </span>
+            </Link>
           </p>
           <div className="mb-8 flex items-center gap-2">
             <div className="flex items-center gap-1">
@@ -502,7 +507,9 @@ export default function CourseDetailPage() {
                 />
               </svg>
             </div>
-            <span className="text-xs text-body">4.8 (122)</span>
+            <span className="text-xs text-body">
+              {course?.rating} ({course?.raterCount})
+            </span>
           </div>
         </div>
       </div>
@@ -609,7 +616,7 @@ export default function CourseDetailPage() {
           {course?.similarCourses.map((course, i) => (
             <div
               key={i}
-              className="mt-4 flex items-start gap-4 rounded-lg border border-border p-4"
+              className="mt-4 flex cursor-pointer items-start gap-4 rounded-lg border border-border p-4 hover:bg-secondary"
             >
               <Image
                 src={course.image}
@@ -658,7 +665,7 @@ export default function CourseDetailPage() {
                         fill="currentColor"
                       />
                     </svg>{" "}
-                    {course.duration} minutes
+                    {course.duration}
                   </span>
                   <span>
                     <svg
@@ -691,7 +698,7 @@ export default function CourseDetailPage() {
                         strokeLinejoin="round"
                       />
                     </svg>{" "}
-                    {course.lessons} lessons
+                    {course.lessonCount} lessons
                   </span>
                 </p>
               </div>

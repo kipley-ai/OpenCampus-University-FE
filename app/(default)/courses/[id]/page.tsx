@@ -179,7 +179,7 @@ export default function CourseDetailPage() {
   };
 
   return (
-    <div className="relative mb-10 mt-3 max-w-[1100px] rounded-2xl border-2 border-border bg-sidebar xl:mt-4">
+    <div className="relative mb-10 mt-3 rounded-2xl border-2 border-border bg-sidebar xl:mt-4">
       <title>{KF_TITLE + "Course Detail"}</title>
       <div className="absolute left-6 top-8 z-10 w-1/4">
         <Image

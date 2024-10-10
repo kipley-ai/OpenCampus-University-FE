@@ -621,17 +621,17 @@ const ProfItem = ({ profData }: { profData: any }) => (
         {profData.name}
       </div>
     </div>
-    <div className="text-xs text-gray-500">
+    <div className="text-xs text-[#9498ED] border-b-2 pb-3">
       {profData.headline}
     </div>
-    <div className="mt-2 flex items-center gap-1">
+    <div className="mt-2 flex items-center gap-1 pt-1">
       <Image
         height={20}
         width={20}
         src={profData.institutionLogo}
         alt={profData.institutionName}
       />
-      <p className="text-sm text-gray-500">
+      <p className="text-xs text-gray-500">
         {profData.institutionName}
       </p>
     </div>

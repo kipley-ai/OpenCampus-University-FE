@@ -205,7 +205,7 @@ export default function VideoPage() {
   };
 
   return (
-    <div className="mb-10 mt-3 flex max-w-[1100px] gap-4 rounded-2xl border-2 border-border bg-sidebar p-3 pb-16 md:p-4 md:pb-16 xl:mt-4">
+    <div className="mb-10 mt-3 flex gap-4 rounded-2xl border-2 border-border bg-sidebar p-3 pb-16 md:p-4 md:pb-16 xl:mt-4">
       <div className="w-1/3">
         <h1 className="font-medium">
           MBA in a Box: Business Lessons from a CEO

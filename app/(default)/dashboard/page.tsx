@@ -320,14 +320,15 @@ export default function Dashboard() {
       </div> */}
 
       {/* Fireside Chat Sections */}
-      <div className="relative mt-10 w-full">
+      <div className="relative mt-10 min-h-[33rem] w-full w-full rounded-xl bg-[#141BEB] md:h-[40rem] xl:h-[45rem] 2xl:min-h-[55rem]">
         <Image
-          src={FiresideImage}
+          src="/images/fireside-bulb.svg"
           alt="Fireside Chat"
-          className="z-10 w-full rounded-xl"
-          width={1030}
+          className="w-2/5 md:h-full"
+          width={400}
+          height={400}
         />
-        <div className="group absolute right-2 top-4 w-1/2 overflow-y-auto max-xs:h-1/5 sm:top-8 lg:right-16 xl:top-12 2xl:top-16">
+        <div className="group absolute right-2 top-4 w-1/2 sm:top-8 lg:right-16 xl:top-12 2xl:top-16">
           <Link href="/chatroom/76084ca7-eae6-4281-a63e-58d692dea79b">
             <h1 className="font-semibold text-white group-hover:text-[#00EDBE] xs:text-lg md:text-3xl">
               Fireside Chat
@@ -354,7 +355,7 @@ export default function Dashboard() {
             </div>
           </Link>
         </div>
-        <div className="rounded-l-xl border-y-2 border-l-2 border-border bg-sidebar p-3 max-sm:mt-4 sm:absolute sm:bottom-4 sm:left-8 lg:px-10 lg:py-8 lg:pr-4 xl:bottom-12 2xl:right-0">
+        <div className="relative rounded-l-xl border-y-2 border-l-2 border-border bg-sidebar p-3 max-sm:rounded-xl max-xs:mt-16 sm:absolute sm:bottom-4 sm:left-8 lg:px-10 lg:py-8 lg:pr-4 xl:bottom-12 2xl:right-0">
           <div className="flex flex-row justify-between">
             <h1 className="text-lg font-semibold md:text-xl">
               {firesideBotsQuery.data?.data.data.name}
@@ -459,7 +460,9 @@ export default function Dashboard() {
       {/* Popular Creators Section */}
       <div className="mt-4 rounded-xl border-2 border-border bg-sidebar p-3 md:mt-10 lg:px-10 lg:py-8">
         <div className="flex justify-between gap-4 max-xs:flex-col xs:items-center">
-          <h1 className="text-lg font-semibold md:text-xl">Popular Textbooks and Publications</h1>
+          <h1 className="text-lg font-semibold md:text-xl">
+            Popular Textbooks and Publications
+          </h1>
           <button className="text-primary underline">See all</button>
           {/* <select
             name="categories"

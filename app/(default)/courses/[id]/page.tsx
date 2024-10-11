@@ -5,10 +5,12 @@ import {
   AccordionItem as Item,
   useAccordionProvider,
 } from "@szhsin/react-accordion";
+import { useParams } from "next/navigation";
 import { useState } from "react";
 import { KF_TITLE } from "@/utils/constants";
 import Image from "next/image";
 import Link from "next/link";
+import Courses from "@/public/json/courses.json";
 
 const AccordionItem = ({ section, ...rest }: any) => (
   <Item
@@ -57,6 +59,45 @@ const AccordionItem = ({ section, ...rest }: any) => (
 );
 
 export default function CourseDetailPage() {
+  const { id } = useParams();
+
+  interface Course {
+    id: string;
+    category: string;
+    thumbnailPath: string;
+    title: string;
+    description: string;
+    author: {
+      id: string;
+      name: string;
+    };
+    rating: number;
+    raterCount: number;
+    enrolleeCount: number;
+    duration: string;
+    lessonCount: number;
+    level: string;
+    language: string;
+    fullLifetimeAccess: boolean;
+    certificateOfCompletion: boolean;
+    updatedOn: string;
+    sections: {
+      title: string;
+      duration: number;
+      lessons: number;
+      resources: any[];
+    }[];
+    objectives: string[];
+    similarCourses: any[];
+  }
+
+  let course: Course | undefined;
+  if (id !== "101" || id === undefined) {
+    course = Courses.find((course) => course.id === "999");
+  } else {
+    course = Courses.find((course) => course.id === id);
+  }
+
   const [tab, setTab] = useState<string>("Overview");
   const [isAllCollapsed, setIsAllCollapsed] = useState<boolean>(true);
 
@@ -77,69 +118,18 @@ export default function CourseDetailPage() {
     setIsAllCollapsed(!isAllCollapsed);
   };
 
-  const sections = [
-    {
-      title: "Marketing Principles",
-      duration: 58, // in minutes
-      lessons: 6,
-      resources: [
-        {
-          id: 1,
-          type: "video",
-          title: "Introduction",
-        },
-        {
-          id: 2,
-          type: "video",
-          title: "Jakob's Law - Other Pages",
-        },
-        {
-          id: 3,
-          type: "video",
-          title: "Consistency is Key",
-        },
-        {
-          id: 1,
-          type: "image",
-          title: "ROC Analysis Chart",
-        },
-        {
-          id: 1,
-          type: "file",
-          title: "The strategic importance of the industry life cycle model",
-        },
-        {
-          id: 2,
-          type: "file",
-          title: "Organic growth - building a solid foundation",
-        },
-      ],
-    },
-    {
-      title: "Identity Your Customer Lifetime Value",
-      duration: 58,
-      lessons: 6,
-      resources: [
-        {
-          id: 1,
-          type: "video",
-          title: "Introduction",
-        },
-      ],
-    },
-    {
-      title: "Build Your Online Presence",
-      duration: 58,
-      lessons: 6,
-      resources: [
-        {
-          id: 1,
-          type: "video",
-          title: "Introduction",
-        },
-      ],
-    },
-  ];
+  function formatDateToDDMMYYYY(dateInput: string | number | Date | undefined) {
+    if (!dateInput) {
+      return "Invalid Date";
+    }
+
+    const date = new Date(dateInput);
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+  }
 
   const getResourceSVG = (type: string) => {
     switch (type) {
@@ -193,42 +183,12 @@ export default function CourseDetailPage() {
     }
   };
 
-  const objectives = [
-    "Improve the structure of your plan by understanding marketing principles",
-    "Improve your communication skills with your team",
-    "Improve your writing skills",
-    "Improve the design quality of your project or your clients",
-  ];
-
-  const similarCourses = [
-    {
-      id: 10,
-      image: "/images/applications-image-10.jpg",
-      title: "Intro to Marketing Strategy",
-      author: "Sen Janson",
-      rating: 4.8,
-      raters: 122,
-      duration: 30,
-      lessons: 12,
-    },
-    {
-      id: 11,
-      image: "/images/applications-image-11.jpg",
-      title: "How to Write a Business Plan",
-      author: "Sen Janson",
-      rating: 4.8,
-      raters: 122,
-      duration: 30,
-      lessons: 12,
-    },
-  ];
-
   return (
-    <div className="relative mb-10 mt-3 max-w-[1100px] rounded-2xl border-2 border-border bg-sidebar xl:mt-4">
+    <div className="relative mb-10 mt-3 rounded-2xl border-2 border-border bg-sidebar xl:mt-4">
       <title>{KF_TITLE + "Course Detail"}</title>
       <div className="absolute left-6 top-8 z-10 w-1/4">
         <Image
-          src="/images/applications-image-01.jpg"
+          src={course!.thumbnailPath}
           className="rounded-t-lg"
           alt="..."
           width={600}
@@ -280,7 +240,7 @@ export default function CourseDetailPage() {
                   d="M11.918 11.75a6.182 6.182 0 0 1 5.063 2.63"
                 />
               </svg>
-              20 Enrolled
+              {course?.enrolleeCount} Enrolled
             </p>
             <p className="text-body">
               <svg
@@ -298,7 +258,7 @@ export default function CourseDetailPage() {
                   fill="currentColor"
                 />
               </svg>
-              40 minutes to complete
+              {course?.duration} to complete
             </p>
             <p className="text-body">
               <svg
@@ -331,7 +291,7 @@ export default function CourseDetailPage() {
                   strokeLinejoin="round"
                 />
               </svg>
-              12 lessons
+              {course?.lessonCount} lessons
             </p>
             <p className="text-body">
               <svg
@@ -357,7 +317,7 @@ export default function CourseDetailPage() {
                   d="M5.231 10.063H1.294v5.062H5.23v-5.063Z"
                 />
               </svg>
-              Beginner level
+              {course?.level} level
             </p>
             <p className="text-body">
               <svg
@@ -383,53 +343,57 @@ export default function CourseDetailPage() {
                   d="m3.488 13.395.822-.499a.562.562 0 0 0 .267-.478l.014-2.538a.541.541 0 0 1 .092-.296l1.392-2.186a.57.57 0 0 1 .809-.155l1.378.998c.119.083.263.12.408.106l2.214-.302a.549.549 0 0 0 .345-.19l1.56-1.8a.57.57 0 0 0 .135-.394l-.078-1.709m.309 10.871-.759-.76a.576.576 0 0 0-.253-.147l-1.512-.394a.563.563 0 0 1-.408-.626l.162-1.139a.577.577 0 0 1 .345-.436l2.137-.893a.563.563 0 0 1 .598.106l1.75 1.603"
                 />
               </svg>
-              English
+              {course?.language}
             </p>
-            <p className="text-body">
-              <svg
-                className="mr-2 inline"
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="19"
-                fill="none"
-                viewBox="0 0 18 19"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="m7.495 11.194-.611.69a3.368 3.368 0 1 1 0-4.768l4.232 4.768a3.369 3.369 0 1 0 0-4.768l-.611.69"
-                />
-              </svg>
-              Full Lifetime Access
-            </p>
-            <p className="text-body">
-              <svg
-                className="mr-2 inline"
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="19"
-                fill="none"
-                viewBox="0 0 18 19"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="M3.938 4.438v3.874c0 2.791 2.235 5.104 5.027 5.126a5.064 5.064 0 0 0 5.098-5.063V4.437a.563.563 0 0 0-.563-.562h-9a.563.563 0 0 0-.563.563ZM6.75 16.25h4.5M9 13.438v2.812"
-                />
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="M13.936 9.5h.689a2.25 2.25 0 0 0 2.25-2.25V6.125a.563.563 0 0 0-.563-.563h-2.25M4.078 9.5h-.71a2.25 2.25 0 0 1-2.25-2.25V6.125a.563.563 0 0 1 .562-.563h2.25"
-                />
-              </svg>
-              Certificate of Completion
-            </p>
+            {course?.fullLifetimeAccess ? (
+              <p className="text-body">
+                <svg
+                  className="mr-2 inline"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="19"
+                  fill="none"
+                  viewBox="0 0 18 19"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
+                    d="m7.495 11.194-.611.69a3.368 3.368 0 1 1 0-4.768l4.232 4.768a3.369 3.369 0 1 0 0-4.768l-.611.69"
+                  />
+                </svg>
+                Full Lifetime Access
+              </p>
+            ) : null}
+            {course?.certificateOfCompletion ? (
+              <p className="text-body">
+                <svg
+                  className="mr-2 inline"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="19"
+                  fill="none"
+                  viewBox="0 0 18 19"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
+                    d="M3.938 4.438v3.874c0 2.791 2.235 5.104 5.027 5.126a5.064 5.064 0 0 0 5.098-5.063V4.437a.563.563 0 0 0-.563-.562h-9a.563.563 0 0 0-.563.563ZM6.75 16.25h4.5M9 13.438v2.812"
+                  />
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
+                    d="M13.936 9.5h.689a2.25 2.25 0 0 0 2.25-2.25V6.125a.563.563 0 0 0-.563-.563h-2.25M4.078 9.5h-.71a2.25 2.25 0 0 1-2.25-2.25V6.125a.563.563 0 0 1 .562-.563h2.25"
+                  />
+                </svg>
+                Certificate of Completion
+              </p>
+            ) : null}
             <p className="text-body">
               <svg
                 className="mr-2 inline"
@@ -454,15 +418,15 @@ export default function CourseDetailPage() {
                   d="M10.688 7.813H7.312v3.375h3.375V7.812Z"
                 />
               </svg>
-              Updated on 03/07/2024
+              Updated on {formatDateToDDMMYYYY(course?.updatedOn)}
             </p>
           </div>
         </div>
       </div>
-      <div className="bg-primary-light flex w-full gap-14 rounded-t-xl px-6 pt-8 dark:bg-primary-dark">
+      <div className="flex w-full gap-14 rounded-t-xl bg-primary-light px-6 pt-8 dark:bg-primary-dark">
         <div className="w-3/12"></div>
         <div className="w-9/12">
-          <div className="dark:text-primary-light flex items-center gap-4 text-xs font-medium text-[#888CEB]">
+          <div className="flex items-center gap-4 text-xs font-medium text-[#888CEB] dark:text-primary-light">
             <Link href="/" className="hover:text-primary">
               <span className="">Browse</span>
             </Link>
@@ -471,18 +435,19 @@ export default function CourseDetailPage() {
               <span className="">Courses</span>
             </Link>
             <span className="">&gt;</span>
-            <span className="text-primary">Marketing</span>
+            <span className="text-primary">{course?.category}</span>
           </div>
           <h1 className="mt-4 text-2xl font-medium text-primary">
-            MBA in a Box: Business Lessons from a CEO
+            {course?.title}
           </h1>
-          <p className="mb-4 mt-2 text-sm text-body">
-            Learn the most common Business Development Essentials Principals
-            used in all the major Fortune 500 companies.
-          </p>
+          <p className="mb-4 mt-2 text-sm text-body">{course?.description}</p>
           <p className="mb-2 text-xs text-body">
             Created by{" "}
-            <span className="text-primary underline">Sean Janson</span>
+            <Link href={`/chatbot/${course?.author?.id}/profile`}>
+              <span className="text-primary underline hover:text-secondary">
+                {course?.author?.name}
+              </span>
+            </Link>
           </p>
           <div className="mb-8 flex items-center gap-2">
             <div className="flex items-center gap-1">
@@ -547,7 +512,9 @@ export default function CourseDetailPage() {
                 />
               </svg>
             </div>
-            <span className="text-xs text-body">4.8 (122)</span>
+            <span className="text-xs text-body">
+              {course?.rating} ({course?.raterCount})
+            </span>
           </div>
         </div>
       </div>
@@ -595,10 +562,10 @@ export default function CourseDetailPage() {
             providerValue={providerValue}
             className="flex flex-col rounded-lg"
           >
-            {sections &&
-              sections.map((section, i) => {
+            {course?.sections &&
+              course?.sections.map((section, i) => {
                 return (
-                  <AccordionItem key={i} section={sections[i]}>
+                  <AccordionItem key={i} section={course?.sections[i]}>
                     <div className="flex flex-col gap-4 ">
                       {section.resources.map((resource, j) => (
                         <Link
@@ -623,7 +590,7 @@ export default function CourseDetailPage() {
             What You&apos;ll Learn
           </h2>
           <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-4 rounded-lg border border-border p-6">
-            {objectives.map((objective, i) => (
+            {course?.objectives.map((objective, i) => (
               <div key={i} className="flex items-start justify-start gap-2">
                 <svg
                   width="14"
@@ -651,96 +618,95 @@ export default function CourseDetailPage() {
           <h2 className="mt-8 text-lg font-semibold text-primary">
             Similar Courses
           </h2>
-          {similarCourses.map((course, i) => (
-            <div
-              key={i}
-              className="mt-4 flex items-start gap-4 rounded-lg border border-border p-4"
-            >
-              <Image
-                src={course.image}
-                alt="..."
-                width={200}
-                height={200}
-                className="rounded-lg"
-              />
-              <div className="flex flex-col">
-                <h3 className="text-lg font-medium">{course.title}</h3>
-                <p className="mb-4 mt-2 flex items-center gap-2 text-sm text-body">
-                  <span>By {course.author}</span>
-                  <span>•</span>
-                  <svg
-                    width="16"
-                    height="14"
-                    viewBox="0 0 18 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="inline"
-                  >
-                    <path
-                      d="M9.30943 12.9086L12.8532 15.1586C13.3102 15.4469 13.8727 15.018 13.7391 14.4906L12.7126 10.4547C12.6848 10.3428 12.6892 10.2254 12.7253 10.1159C12.7614 10.0065 12.8276 9.9094 12.9165 9.83595L16.0946 7.18517C16.5094 6.84064 16.2985 6.14455 15.7571 6.10939L11.6087 5.8422C11.4955 5.83562 11.3866 5.7962 11.2955 5.72877C11.2043 5.66135 11.1348 5.56883 11.0954 5.46252L9.5485 1.5672C9.50755 1.45464 9.43295 1.35739 9.33484 1.28868C9.23672 1.21996 9.11984 1.18311 9.00006 1.18311C8.88027 1.18311 8.76339 1.21996 8.66528 1.28868C8.56716 1.35739 8.49257 1.45464 8.45162 1.5672L6.90475 5.46252C6.86532 5.56883 6.79578 5.66135 6.70463 5.72877C6.61348 5.7962 6.50466 5.83562 6.39146 5.8422L2.24303 6.10939C1.70162 6.14455 1.49068 6.84064 1.90553 7.18517L5.08365 9.83595C5.17248 9.9094 5.23875 10.0065 5.27483 10.1159C5.3109 10.2254 5.31532 10.3428 5.28756 10.4547L4.33834 14.1953C4.17662 14.8281 4.85162 15.3414 5.39303 14.9969L8.69068 12.9086C8.78316 12.8498 8.89047 12.8186 9.00006 12.8186C9.10964 12.8186 9.21696 12.8498 9.30943 12.9086V12.9086Z"
-                      stroke="#FFC761"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  {course.rating} ({course.raters})
-                </p>
-                <p className="flex items-center gap-6 text-sm text-body">
-                  <span>
+          {course?.similarCourses.map((course, i) => (
+            <Link key={i} href={`/courses/${course?.id}`}>
+              <div className="mt-4 flex cursor-pointer items-start gap-4 rounded-lg border border-border p-4 hover:bg-secondary">
+                <Image
+                  src={course.image}
+                  alt="..."
+                  width={200}
+                  height={200}
+                  className="rounded-lg"
+                />
+                <div className="flex flex-col">
+                  <h3 className="text-lg font-medium">{course.title}</h3>
+                  <p className="mb-4 mt-2 flex items-center gap-2 text-sm text-body">
+                    <span>By {course.author}</span>
+                    <span>•</span>
                     <svg
-                      width="15"
-                      height="18"
-                      viewBox="0 0 12 15"
+                      width="16"
+                      height="14"
+                      viewBox="0 0 18 16"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                       className="inline"
                     >
                       <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M5.98168 12.3245C2.77433 12.3245 0.174805 9.71648 0.174805 6.49967C0.174816 3.2824 2.77432 0.674805 5.98168 0.674805C9.18896 0.674805 11.7885 3.2824 11.7885 6.49967C11.7885 9.71648 9.18896 12.3245 5.98168 12.3245ZM5.98159 1.76667C3.37588 1.76667 1.26374 3.88544 1.26374 6.49968C1.26374 9.11296 3.37588 11.2322 5.98159 11.2322C8.58725 11.2322 10.6994 9.11296 10.6994 6.49968C10.6994 3.88545 8.58725 1.76667 5.98159 1.76667ZM7.25167 7.04543H8.34073C8.64128 7.04543 8.88496 6.80127 8.88496 6.49974C8.88496 6.19821 8.64127 5.95357 8.34073 5.95357H7.25167H6.52632V3.22273C6.52632 2.92118 6.28262 2.67655 5.98158 2.67655C5.68098 2.67655 5.43729 2.92118 5.43729 3.22273V6.49974C5.43729 6.80126 5.68098 7.04543 5.98158 7.04543H6.52632H7.25167Z"
-                        fill="currentColor"
-                      />
-                    </svg>{" "}
-                    {course.duration} minutes
-                  </span>
-                  <span>
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 18 18"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="inline"
-                    >
-                      <path
-                        d="M2.25 12.375L9 16.3125L15.75 12.375"
-                        stroke="currentColor"
+                        d="M9.30943 12.9086L12.8532 15.1586C13.3102 15.4469 13.8727 15.018 13.7391 14.4906L12.7126 10.4547C12.6848 10.3428 12.6892 10.2254 12.7253 10.1159C12.7614 10.0065 12.8276 9.9094 12.9165 9.83595L16.0946 7.18517C16.5094 6.84064 16.2985 6.14455 15.7571 6.10939L11.6087 5.8422C11.4955 5.83562 11.3866 5.7962 11.2955 5.72877C11.2043 5.66135 11.1348 5.56883 11.0954 5.46252L9.5485 1.5672C9.50755 1.45464 9.43295 1.35739 9.33484 1.28868C9.23672 1.21996 9.11984 1.18311 9.00006 1.18311C8.88027 1.18311 8.76339 1.21996 8.66528 1.28868C8.56716 1.35739 8.49257 1.45464 8.45162 1.5672L6.90475 5.46252C6.86532 5.56883 6.79578 5.66135 6.70463 5.72877C6.61348 5.7962 6.50466 5.83562 6.39146 5.8422L2.24303 6.10939C1.70162 6.14455 1.49068 6.84064 1.90553 7.18517L5.08365 9.83595C5.17248 9.9094 5.23875 10.0065 5.27483 10.1159C5.3109 10.2254 5.31532 10.3428 5.28756 10.4547L4.33834 14.1953C4.17662 14.8281 4.85162 15.3414 5.39303 14.9969L8.69068 12.9086C8.78316 12.8498 8.89047 12.8186 9.00006 12.8186C9.10964 12.8186 9.21696 12.8498 9.30943 12.9086V12.9086Z"
+                        stroke="#FFC761"
                         strokeWidth="1.5"
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       />
-                      <path
-                        d="M2.25 9L9 12.9375L15.75 9"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M2.25 5.625L9 9.5625L15.75 5.625L9 1.6875L2.25 5.625Z"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>{" "}
-                    {course.lessons} lessons
-                  </span>
-                </p>
+                    </svg>
+                    {course.rating} ({course.raters})
+                  </p>
+                  <p className="flex items-center gap-6 text-sm text-body">
+                    <span>
+                      <svg
+                        width="15"
+                        height="18"
+                        viewBox="0 0 12 15"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="inline"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M5.98168 12.3245C2.77433 12.3245 0.174805 9.71648 0.174805 6.49967C0.174816 3.2824 2.77432 0.674805 5.98168 0.674805C9.18896 0.674805 11.7885 3.2824 11.7885 6.49967C11.7885 9.71648 9.18896 12.3245 5.98168 12.3245ZM5.98159 1.76667C3.37588 1.76667 1.26374 3.88544 1.26374 6.49968C1.26374 9.11296 3.37588 11.2322 5.98159 11.2322C8.58725 11.2322 10.6994 9.11296 10.6994 6.49968C10.6994 3.88545 8.58725 1.76667 5.98159 1.76667ZM7.25167 7.04543H8.34073C8.64128 7.04543 8.88496 6.80127 8.88496 6.49974C8.88496 6.19821 8.64127 5.95357 8.34073 5.95357H7.25167H6.52632V3.22273C6.52632 2.92118 6.28262 2.67655 5.98158 2.67655C5.68098 2.67655 5.43729 2.92118 5.43729 3.22273V6.49974C5.43729 6.80126 5.68098 7.04543 5.98158 7.04543H6.52632H7.25167Z"
+                          fill="currentColor"
+                        />
+                      </svg>{" "}
+                      {course.duration}
+                    </span>
+                    <span>
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 18 18"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="inline"
+                      >
+                        <path
+                          d="M2.25 12.375L9 16.3125L15.75 12.375"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M2.25 9L9 12.9375L15.75 9"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M2.25 5.625L9 9.5625L15.75 5.625L9 1.6875L2.25 5.625Z"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>{" "}
+                      {course.lessonCount} lessons
+                    </span>
+                  </p>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

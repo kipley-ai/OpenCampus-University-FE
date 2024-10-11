@@ -62,8 +62,8 @@ export const ProfessorList = [
     googleScholar: null,
     institutionName: "Animoca Brands",
     institutionLogo: YatSiuInst,
-    totalEnrolled: randomIntBetween(1000, 10000),
-    totalReviews: randomIntBetween(100, 1000),
+    totalEnrolled: 967,
+    totalReviews: 6175,
   },
   {
     id: "oc-prof-William-Peng",
@@ -81,8 +81,8 @@ export const ProfessorList = [
       "https://scholar.google.com/citations?user=SAMBaaEAAAAJ&hl=en&oi=sra",
     institutionName: "New York University",
     institutionLogo: WilliamPengInst,
-    totalEnrolled: randomIntBetween(1000, 10000),
-    totalReviews: randomIntBetween(100, 1000),
+    totalEnrolled: 967,
+    totalReviews: 6175,
   },
   {
     id: "oc-prof-Sergio-Morales",
@@ -98,8 +98,8 @@ export const ProfessorList = [
     googleScholar: null,
     institutionName: "Universidad de Buenos Aires",
     institutionLogo: SergioMoralesInst,
-    totalEnrolled: randomIntBetween(1000, 10000),
-    totalReviews: randomIntBetween(100, 1000),
+    totalEnrolled: 967,
+    totalReviews: 6175,
   },
   {
     id: "oc-prof-Dalhar-Susanto",
@@ -115,8 +115,8 @@ export const ProfessorList = [
     googleScholar: null,
     institutionName: "University of Indonesia",
     institutionLogo: DalharSusantoInst,
-    totalEnrolled: randomIntBetween(1000, 10000),
-    totalReviews: randomIntBetween(100, 1000),
+    totalEnrolled: 967,
+    totalReviews: 6175,
   },
   {
     id: "oc-prof-Javier-Cha",
@@ -133,8 +133,8 @@ export const ProfessorList = [
       "https://scholar.google.com/citations?user=jWGH7sQAAAAJ&hl=en",
     institutionName: "The University of Hong Kong",
     institutionLogo: JavierCharInst,
-    totalEnrolled: randomIntBetween(1000, 10000),
-    totalReviews: randomIntBetween(100, 1000),
+    totalEnrolled: 967,
+    totalReviews: 6175,
   },
   {
     id: "oc-prof-Bryan-Cheang",
@@ -151,8 +151,8 @@ export const ProfessorList = [
     googleScholar: null,
     institutionName: "King’s College",
     institutionLogo: BryanCheangInst,
-    totalEnrolled: randomIntBetween(1000, 10000),
-    totalReviews: randomIntBetween(100, 1000),
+    totalEnrolled: 967,
+    totalReviews: 6175,
   },
   {
     id: "oc-prof-Kris-Childress",
@@ -167,8 +167,8 @@ export const ProfessorList = [
     googleScholar: null,
     institutionName: "National University of Singapore",
     institutionLogo: KrisChildressInst,
-    totalEnrolled: randomIntBetween(1000, 10000),
-    totalReviews: randomIntBetween(100, 1000),
+    totalEnrolled: 967,
+    totalReviews: 6175,
   },
   {
     id: "oc-prof-David-Warner",
@@ -184,8 +184,8 @@ export const ProfessorList = [
     googleScholar: null,
     institutionName: "University of Pittsburgh",
     institutionLogo: DavidWarnerInst,
-    totalEnrolled: randomIntBetween(1000, 10000),
-    totalReviews: randomIntBetween(100, 1000),
+    totalEnrolled: 967,
+    totalReviews: 6175,
   },
   {
     id: "oc-prof-Guo-Lei",
@@ -202,8 +202,8 @@ export const ProfessorList = [
     googleScholar: null,
     institutionName: "National University of Singapore",
     institutionLogo: LeiGuoInst,
-    totalEnrolled: randomIntBetween(1000, 10000),
-    totalReviews: randomIntBetween(100, 1000),
+    totalEnrolled: 967,
+    totalReviews: 6175,
   },
   {
     id: "oc-prof-Keith-Carter",
@@ -222,10 +222,10 @@ CEO, KDA Capabilities & JustAskProf Singapore
     linkedin: "https://www.linkedin.com/in/keithcarter",
     blog: null,
     googleScholar: null,
-    institutionName: "National University of Singapore",
+    institutionName: "KDA Capabilities",
     institutionLogo: KeithCarterInst,
-    totalEnrolled: randomIntBetween(1000, 10000),
-    totalReviews: randomIntBetween(100, 1000),
+    totalEnrolled: 967,
+    totalReviews: 6175,
   },
   {
     id: "oc-prof-Kara-Vander-Linden",
@@ -242,10 +242,10 @@ CEO, KDA Capabilities & JustAskProf Singapore
     linkedin: "https://www.linkedin.com/in/kara-vander-linden-a020126b/",
     blog: null,
     googleScholar: null,
-    institutionName: "National University of Singapore",
+    institutionName: "Institute for Research and Theory Methodologies",
     institutionLogo: KaraVanderInst,
-    totalEnrolled: randomIntBetween(1000, 10000),
-    totalReviews: randomIntBetween(100, 1000),
+    totalEnrolled: 967,
+    totalReviews: 6175,
   },
   {
     id: "oc-prof-Jennifer-Dodgson",
@@ -260,8 +260,8 @@ CEO, KDA Capabilities & JustAskProf Singapore
     googleScholar: null,
     institutionName: "KIP Protocol",
     institutionLogo: JenniferInst,
-    totalEnrolled: randomIntBetween(1000, 10000),
-    totalReviews: randomIntBetween(100, 1000),
+    totalEnrolled: 967,
+    totalReviews: 6175,
   },
 ];
 
@@ -297,6 +297,8 @@ export default function ProfessorProfilePage() {
   const getNumberOfCourses = (profId: string) => {
     if (profId === "oc-prof-William-Peng") {
       return 2;
+    } else if (profId === "oc-prof-Yat-Siu") {
+      return 1;
     }
     return randomIntBetween(1, 5);
   };

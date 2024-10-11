@@ -609,31 +609,33 @@ const ProfItem = ({ profData }: { profData: any }) => (
     href={`/chatbot/${profData.id}/profile`}
     className="delay-50 group relative flex grow cursor-pointer flex-col transition ease-in-out"
   >
-    <Image
-      src={profData.profilePic}
-      height={150}
-      width={150}
-      className="aspect-square w-full rounded-xl object-cover group-hover:shadow-xl dark:group-hover:shadow-gray-700"
-      alt="Avatar"
-    />
-    <div className="mt-2 flex items-center gap-1">
-      <div className="break-words font-medium max-md:text-sm">
-        {profData.name}
-      </div>
-    </div>
-    <div className="text-xs text-gray-500">
-      {profData.headline}
-    </div>
-    <div className="mt-2 flex items-center gap-1">
+    <div className="flex h-full flex-col">
       <Image
-        height={20}
-        width={20}
-        src={profData.institutionLogo}
-        alt={profData.institutionName}
+        src={profData.profilePic}
+        height={150}
+        width={150}
+        className="aspect-square w-full rounded-xl object-cover group-hover:shadow-xl dark:group-hover:shadow-gray-700"
+        alt="Avatar"
       />
-      <p className="text-sm text-gray-500">
-        {profData.institutionName}
-      </p>
+      <div className="mt-2 flex flex-col flex-grow">
+        <div className="break-words font-medium max-md:text-sm">
+          {profData.name}
+        </div>
+        <div className="text-xs text-gray-500 line-clamp-2">
+          {profData.headline}
+        </div>
+      </div>
+      <div className="mt-2 flex items-center gap-1">
+        <Image
+          height={20}
+          width={20}
+          src={profData.institutionLogo}
+          alt={profData.institutionName}
+        />
+        <p className="text-sm text-gray-500 truncate">
+          {profData.institutionName}
+        </p>
+      </div>
     </div>
   </Link>
 );

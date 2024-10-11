@@ -269,7 +269,7 @@ type Tabs = "KnowledgeKeys" | "Apps" | "Courses";
 
 export const DemoCourses = [
   {
-    id: 123,
+    id: 101,
     image: PyshicalComputingImage,
     category: "Development",
     title: "Physical Computing 101",
@@ -539,7 +539,7 @@ const ProfileItem = ({
 const CourseCard = ({course}: {course: any}) => {
   return (
     <Link href={`/courses/${course.id}`}>
-    <div className="flex w-full cursor-pointer flex-col gap-3 rounded-2xl border-2 border-border p-4 hover:bg-secondary">
+    <div className="flex size-full cursor-pointer flex-col gap-3 rounded-2xl border-2 border-border p-4 hover:bg-secondary">
       <Image
         src={course.image}
         alt="Course Thumbnail"

@@ -160,7 +160,7 @@ export default function Dashboard() {
         !authState.isAuthenticated && <ModalUnauthenticated />}
       {/* Explore Banner Section */}
       {/* Explore Banner Section */}
-      <div className="h-48">
+      <div className="h-44 2xl:h-56">
         <Image
           src={DashboardBanner}
           alt="Explore Banner"
@@ -249,7 +249,7 @@ export default function Dashboard() {
           </h1>
           <button className="text-primary underline">See all</button>
         </div>
-        <div className="mt-4 grid grid-cols-2 gap-x-11 gap-y-8 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        <div className="mt-4 grid grid-cols-2 gap-x-11 gap-y-4 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {ProfessorList.map((prof) => (
             <ProfItem key={prof.id} profData={prof} />
           ))}
@@ -321,7 +321,7 @@ export default function Dashboard() {
       </div> */}
 
       {/* Fireside Chat Sections */}
-      <div className="relative mt-10 min-h-[33rem] w-full w-full rounded-xl bg-[#141BEB] md:h-[40rem] xl:h-[45rem] 2xl:min-h-[55rem]">
+      <div className="relative mt-10 min-h-[33rem] w-full rounded-xl bg-[#141BEB] md:h-[40rem] xl:h-[45rem] 2xl:min-h-[55rem]">
         <Image
           src="/images/fireside-bulb.svg"
           alt="Fireside Chat"
@@ -611,31 +611,29 @@ const BotItem = ({ botData }: { botData: ChatbotData }) => (
 const ProfItem = ({ profData }: { profData: any }) => (
   <Link
     href={`/chatbot/${profData.id}/profile`}
-    className="delay-50 group relative flex grow cursor-pointer flex-col transition ease-in-out"
+    className="delay-50 flex flex-grow cursor-pointer flex-col transition ease-in-out"
   >
-    <div className="flex h-full flex-col">
+    <Image
+      src={profData.profilePic}
+      height={150}
+      width={150}
+      className="aspect-square w-full rounded-xl object-cover group-hover:shadow-xl dark:group-hover:shadow-gray-700"
+      alt="Avatar"
+    />
+    <div className="mt-2 flex-grow gap-2">
+      <div className="break-words font-semibold max-md:text-sm">
+        {profData.name}
+      </div>
+      <div className="text-xs text-[#9498ED]">{profData.headline}</div>
+    </div>
+    <div className="mt-2 flex h-20 items-center gap-1.5">
       <Image
-        src={profData.profilePic}
-        height={150}
-        width={150}
-        className="aspect-square w-full rounded-xl object-cover group-hover:shadow-xl dark:group-hover:shadow-gray-700"
-        alt="Avatar"
+        height={24}
+        width={24}
+        src={profData.institutionLogo}
+        alt={profData.institutionName}
       />
-      <div className="mt-2 flex flex-grow flex-col">
-        <div className="break-words font-semibold max-md:text-sm">
-          {profData.name}
-        </div>
-        <div className="text-xs text-[#9498ED]">{profData.headline}</div>
-      </div>
-      <div className="mt-2 flex items-center gap-1">
-        <Image
-          height={30}
-          width={30}
-          src={profData.institutionLogo}
-          alt={profData.institutionName}
-        />
-        <p className="text-sm text-gray-500">{profData.institutionName}</p>
-      </div>
+      <p className="text-sm text-gray-500">{profData.institutionName}</p>
     </div>
   </Link>
 );

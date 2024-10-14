@@ -60,6 +60,7 @@ const AccordionItem = ({ section, ...rest }: any) => (
 
 export default function CourseDetailPage() {
   const { id } = useParams();
+  console.log("ID", id);
 
   interface Course {
     id: string;
@@ -92,7 +93,7 @@ export default function CourseDetailPage() {
   }
 
   let course: Course | undefined;
-  if (id !== "101" || id === undefined) {
+  if (id !== "1" && id !== "101" && id !== undefined) {
     course = Courses.find((course) => course.id === "999");
   } else {
     course = Courses.find((course) => course.id === id);

@@ -8,6 +8,7 @@ import {
 import { useState } from "react";
 import { KF_TITLE } from "@/utils/constants";
 import Link from "next/link";
+import Courses from "@/public/json/courses.json";
 
 const AccordionItem = ({ section, ...rest }: any) => (
   <Item

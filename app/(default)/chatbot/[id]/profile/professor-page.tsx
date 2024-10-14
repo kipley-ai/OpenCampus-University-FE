@@ -284,6 +284,14 @@ export const DemoCourses = [
     duration: "16 Hours",
     lessons: 52,
   },
+  {
+    id: 1,
+    image: "/images/featured-courses/Introduction to Digital Property Rights.jpg",
+    category: "Business",
+    title: "Introduction to Digital Property Rights",
+    duration: "8 Hours",
+    lessons: 16,
+  } 
 ];
 
 export default function ProfessorProfilePage() {
@@ -293,6 +301,7 @@ export default function ProfessorProfilePage() {
   const profDetail = ProfessorList.find((p) => slug == p.id);
 
   const isWilliamPeng = profDetail?.id === "oc-prof-William-Peng";
+  const isYatSiu = profDetail?.id === "oc-prof-Yat-Siu";
 
   const getNumberOfCourses = (profId: string) => {
     if (profId === "oc-prof-William-Peng") {
@@ -443,9 +452,12 @@ export default function ProfessorProfilePage() {
                 case "Apps":
                   return <Apps />;
                 default:
-                  return isWilliamPeng ? (
+                  return isWilliamPeng || isYatSiu ? (
                     <div className="mt-4 grid grid-cols-2 gap-x-5 gap-y-8 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-                      {DemoCourses.map((course, index) => (
+                      {DemoCourses.filter(course => 
+                        (isWilliamPeng && (course.id === 101 || course.id === 6)) ||
+                        (isYatSiu && course.id === 1)
+                      ).map((course, index) => (
                         <CourseCard key={index} course={course} />
                       ))}
                     </div>

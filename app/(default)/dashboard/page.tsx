@@ -320,7 +320,7 @@ export default function Dashboard() {
       </div> */}
 
       {/* Fireside Chat Sections */}
-      <div className="relative mt-10 min-h-[33rem] w-full w-full rounded-xl bg-[#141BEB] md:h-[40rem] xl:h-[45rem] 2xl:min-h-[55rem]">
+      <div className="relative mt-10 min-h-[33rem] w-full rounded-xl bg-[#141BEB] md:h-[40rem] xl:h-[45rem] 2xl:min-h-[55rem]">
         <Image
           src="/images/fireside-bulb.svg"
           alt="Fireside Chat"

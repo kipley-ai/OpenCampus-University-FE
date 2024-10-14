@@ -443,5 +443,186 @@
         "lessonCount": 52
       }
     ]
+  },
+  {
+    "id": "1",
+    "category": "Business",
+    "thumbnailPath": "/images/featured-courses/Introduction to Digital Property Rights.jpg",
+    "title": "Introduction to Digital Property Rights",
+    "description": "Every day we rely heavily on devices that gather data from the environment and interpret that information to interact with the wider world. The objective of this course is to provide an accessible, first introduction to physical computing, the foundations of that mixed digital and physical reality we inhabit. Students will gain practical hands-on experience with a microcontroller and all types of common sensors—from joysticks to cameras—and actuators such—from haptic devices to servomotors.",
+    "author": {
+      "id": "oc-prof-Yat-Siu",
+      "name": "Yat Siu"
+    },
+    "rating": 5.0,
+    "raterCount": 1024,
+    "enrolleeCount": 6528,
+    "duration": "8 hours",
+    "lessonCount": 16,
+    "level": "Beginner",
+    "language": "English",
+    "fullLifetimeAccess": true,
+    "certificateOfCompletion": true,
+    "updatedOn": "2024-10-14",
+    "sections": [
+      {
+        "title": "Fundamentals of Digital Property Rights",
+        "duration": 60,
+        "lessons": 2,
+        "resources": [
+          {
+            "id": 1,
+            "type": "file",
+            "title": "Definition and Importance of Digital Property Rights",
+            "link": "https://ysiu.medium.com/the-critical-role-of-culture-and-ownership-in-the-metaverse-4edfb6f17bf3"
+          },
+          {
+            "id": 2,
+            "type": "file",
+            "title": "Historical Context of Digital Property"
+          }
+        ]
+      },
+      {
+        "title": "The Role of Web3 in Digital Ownership",
+        "duration": 60,
+        "lessons": 2,
+        "resources": [
+          {
+            "id": 3,
+            "type": "file",
+            "title": "Introduction to Web3"
+          },
+          {
+            "id": 1,
+            "type": "video",
+            "title": "NFTs as Digital Property",
+            "link": "https://www.youtube.com/watch?v=Cvfw140p8gk"
+          }
+        ]
+      },
+      {
+        "title": "Economic Implications of Digital Property Rights",
+        "duration": 60,
+        "lessons": 2,
+        "resources": [
+          {
+            "id": 4,
+            "type": "file",
+            "title": "Ownership and Economic Growth"
+          },
+          {
+            "id": 5,
+            "type": "file",
+            "title": "Case Studies in Web3 Economies"
+          }
+        ]
+      },
+      {
+        "title": "Challenges in Digital Property Rights",
+        "duration": 60,
+        "lessons": 2,
+        "resources": [
+          {
+            "id": 6,
+            "type": "file",
+            "title": "Legal Frameworks and Regulations"
+          },
+          {
+            "id": 7,
+            "type": "file",
+            "title": "Security and Fraud Risks"
+          }
+        ]
+      },
+      {
+        "title": "Real-World Applications of Digital Property Rights",
+        "duration": 60,
+        "lessons": 2,
+        "resources": [
+          {
+            "id": 8,
+            "type": "file",
+            "title": "Immersive Advertising in Augmented Reality (AR)"
+          },
+          {
+            "id": 2,
+            "type": "video",
+            "title": "Monetizing Virtual Spaces in the Metaverse",
+            "link": "https://www.ted.com/talks/yat_siu_the_dream_of_digital_ownership_powered_by_the_metaverse?subtitle=en"
+          }
+        ]
+      },
+      {
+        "title": "The Impact of Gaming on Digital Property Rights",
+        "duration": 60,
+        "lessons": 2,
+        "resources": [
+          {
+            "id": 3,
+            "type": "video",
+            "title": "Gaming Ecosystems and Ownership",
+            "link": "https://www.youtube.com/watch?v=8HERrqHe1Dk"
+          },
+          {
+            "id": 9,
+            "type": "file",
+            "title": "Future of Gaming in a Web3 World"
+          }
+        ]
+      },
+      {
+        "title": "Intellectual Property Challenges in the Metaverse",
+        "duration": 60,
+        "lessons": 2,
+        "resources": [
+          {
+            "id": 10,
+            "type": "file",
+            "title": "Ownership and Usage Rights in Virtual Worlds"
+          },
+          {
+            "id": 11,
+            "type": "file",
+            "title": "Jurisdictional Issues and Legal Frameworks"
+          }
+        ]
+      },
+      {
+        "title": "Future Trends and Innovations in Digital Property Rights",
+        "duration": 60,
+        "lessons": 2,
+        "resources": [
+          {
+            "id": 12,
+            "type": "file",
+            "title": "Emerging Technologies Impacting Ownership"
+          },
+          {
+            "id": 13,
+            "type": "file",
+            "title": "Vision for a Fairer Society through Digital Ownership"
+          }
+        ]
+      }
+    ],
+    "objectives": [
+      "Define and explain the fundamental concepts of digital property rights, including ownership and intellectual property.",
+      "Analyze the economic implications of digital property rights on innovation and community-driven economies through real-world case studies.",
+      "Evaluate legal frameworks and ethical challenges related to digital property rights, focusing on security and jurisdiction issues.",
+      "Apply knowledge of digital property rights to real-world scenarios in sectors such as gaming, education, and advertising."
+    ],
+    "similarCourses": [
+      {
+        "id": 10,
+        "image": "/images/Introduction to Robotics From Concept to Creation 2. jpeg.webp",
+        "title": "Introduction to Web3 and Decentralized Networks",
+        "author": "William Peng",
+        "rating": 4.8,
+        "raters": 122,
+        "duration": "16 hours",
+        "lessonCount": 52
+      }
+    ]
   }
 ]

@@ -30,8 +30,8 @@ import { CourseCard } from "../courses/course-card";
 import DashboardBanner from "public/images/dashboard-banner.svg";
 import FeaturedApp from "./featured-app";
 import { BotItem } from "./item";
-import FeaturedAI from "public/images/featured-ai.png";
-import FeaturedAICircuit from "public/images/featured-ai-circuit.png";
+import FeaturedAI from "public/images/featured-ai.svg";
+import FeaturedAICircuit from "public/images/featured-ai-circuit.svg";
 
 export default function Dashboard() {
   const { setHeaderTitle, session } = useAppProvider();

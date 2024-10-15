@@ -28,6 +28,10 @@ import FiresideImage from "components/homepage/fireside-frame-no-text.svg";
 import { ProfessorList } from "../chatbot/[id]/profile/professor-page";
 import { CourseCard } from "../courses/course-card";
 import DashboardBanner from "public/images/dashboard-banner.svg";
+import FeaturedApp from "./featured-app";
+import { BotItem } from "./item";
+import FeaturedAI from "public/images/featured-ai.png";
+import FeaturedAICircuit from "public/images/featured-ai-circuit.png";
 
 export default function Dashboard() {
   const { setHeaderTitle, session } = useAppProvider();
@@ -320,6 +324,21 @@ export default function Dashboard() {
         {OC100BotsQuery.isFetching && <LoadMoreSpinner />}
       </div> */}
 
+      {/* Featured AI Apps Sections */}
+      <div className="relative mt-6 rounded-xl border-2 border-border bg-[#EFF1FF] p-3 md:mt-10 lg:px-10 lg:py-8">
+        <Image
+          src={FeaturedAICircuit}
+          alt="featured-ai-circuit"
+          className="absolute inset-x-0 inset-y-0 object-cover"
+        />
+        <Image
+          src={FeaturedAI}
+          alt="featured-ai"
+          className="absolute right-3 top-0 object-cover lg:right-10"
+        />
+        <FeaturedApp />
+      </div>
+
       {/* Fireside Chat Sections */}
       <div className="relative mt-10 min-h-[33rem] w-full rounded-xl bg-[#141BEB] md:h-[40rem] xl:h-[45rem] 2xl:min-h-[55rem]">
         <Image
@@ -587,26 +606,6 @@ export default function Dashboard() {
     </div>
   );
 }
-
-const BotItem = ({ botData }: { botData: ChatbotData }) => (
-  <Link
-    href={`/ai-app/${chatbotSlug(botData)}/profile`}
-    className="delay-50 group relative flex grow cursor-pointer flex-col transition ease-in-out"
-  >
-    <Image
-      src={botData.profile_image ?? ""}
-      height={260}
-      width={260}
-      className="w-full rounded-xl group-hover:shadow-xl dark:group-hover:shadow-gray-700"
-      alt="Avatar"
-    />
-    <div className="mt-4 flex-grow">
-      <div className="break-words font-medium max-md:text-sm">
-        {botData.name}
-      </div>
-    </div>
-  </Link>
-);
 
 const ProfItem = ({ profData }: { profData: any }) => (
   <Link

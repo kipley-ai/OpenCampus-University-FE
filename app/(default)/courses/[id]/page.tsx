@@ -196,18 +196,20 @@ export default function CourseDetailPage() {
           height={400}
         />
         <div className="rounded-b-lg border-x border-b border-border bg-sidebar p-4">
-          <button className="btn-primary flex w-full items-center justify-center gap-3 p-3">
-            Join this course
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              className="fill-current"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M7.00065 0.333984L5.82565 1.50898L10.4757 6.16732H0.333984V7.83398H10.4757L5.82565 12.4923L7.00065 13.6673L13.6673 7.00065L7.00065 0.333984Z" />
-            </svg>
-          </button>
+          <Link href={id === "1" ? "/courses/video/1" : "/courses/video/999"}>
+            <button className="btn-primary flex w-full items-center justify-center gap-3 p-3">
+              Join this course
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                className="fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M7.00065 0.333984L5.82565 1.50898L10.4757 6.16732H0.333984V7.83398H10.4757L5.82565 12.4923L7.00065 13.6673L13.6673 7.00065L7.00065 0.333984Z" />
+              </svg>
+            </button>
+          </Link>
           <hr className="my-4 border-border" />
           <div className="space-y-2 text-sm">
             <p className="font-medium">This course includes:</p>
@@ -571,7 +573,7 @@ export default function CourseDetailPage() {
                       {section.resources.map((resource, j) => (
                         <Link
                           key={j}
-                          href={`/courses/${resource.type}/${resource.id}`}
+                          href={`/courses/video/${resource.id}`} // hardcoded to video for now
                         >
                           <div className="group flex items-center gap-4">
                             {getResourceSVG(resource.type)}

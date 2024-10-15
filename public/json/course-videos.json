@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "courseId": "1",
+    "type": "YOUTUBE",
+    "link": "https://www.youtube.com/embed/nnocXvMjYC4"
+  },
+  {
+    "id": "2",
+    "courseId": "1",
+    "type": "YOUTUBE",
+    "link": "https://www.youtube.com/embed/Cvfw140p8gk"
+  },
+  {
+    "id": "3",
+    "courseId": "1",
+    "type": "TED",
+    "link": "https://embed.ted.com/talks/yat_siu_the_dream_of_digital_ownership_powered_by_the_metaverse?subtitle=en"
+  },
+  {
+    "id": "4",
+    "courseId": "1",
+    "type": "YOUTUBE",
+    "link": "https://www.youtube.com/embed/8HERrqHe1Dk"
+  },
+  {
+    "id": "999",
+    "courseId": "999",
+    "type": "YOUTUBE",
+    "link": "https://www.youtube.com/embed/QX7RBS24qww"
+  }
+]

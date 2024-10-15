@@ -590,7 +590,7 @@ export default function Dashboard() {
 
 const BotItem = ({ botData }: { botData: ChatbotData }) => (
   <Link
-    href={`/chatbot/${chatbotSlug(botData)}/profile`}
+    href={`/ai-app/${chatbotSlug(botData)}/profile`}
     className="delay-50 group relative flex grow cursor-pointer flex-col transition ease-in-out"
   >
     <Image
@@ -610,7 +610,7 @@ const BotItem = ({ botData }: { botData: ChatbotData }) => (
 
 const ProfItem = ({ profData }: { profData: any }) => (
   <Link
-    href={`/chatbot/${profData.id}/profile`}
+    href={`/educator/${profData.id}/profile`}
     className="delay-50 flex flex-grow cursor-pointer flex-col transition ease-in-out"
   >
     <Image

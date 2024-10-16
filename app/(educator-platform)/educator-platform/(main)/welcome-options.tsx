@@ -24,7 +24,7 @@ export const CreateCourse = () => {
           you're starting.
         </p>
         <Link
-          href="/educator/courses/create"
+          href="/educator-platform/courses/create"
           className="text-sm font-medium text-primary underline hover:text-secondary"
         >
           Get Started

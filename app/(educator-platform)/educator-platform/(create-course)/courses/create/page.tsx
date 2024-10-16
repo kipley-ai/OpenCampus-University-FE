@@ -42,9 +42,9 @@ export default function CreateCoursePage() {
         cover_video: "",
         price: "0.00",
         data_status: 0,
-        category_id: parseInt(courseData.category_id)
+        category_id: parseInt(courseData.category_id),
       });
-      router.push("/educator/existing");
+      router.push("/educator-platform/existing");
     } catch (error) {
       console.error("Error creating course:", error);
       // Handle error (e.g., show error message to user)
@@ -59,9 +59,21 @@ export default function CreateCoursePage() {
         {(() => {
           switch (step) {
             case 1:
-              return <TitleInput value={courseData.title} onChange={(title) => setCourseData({ ...courseData, title })} />;
+              return (
+                <TitleInput
+                  value={courseData.title}
+                  onChange={(title) => setCourseData({ ...courseData, title })}
+                />
+              );
             case 2:
-              return <CategoryInput value={courseData.category_id} onChange={(category_id) => setCourseData({ ...courseData, category_id })} />;
+              return (
+                <CategoryInput
+                  value={courseData.category_id}
+                  onChange={(category_id) =>
+                    setCourseData({ ...courseData, category_id })
+                  }
+                />
+              );
             default:
               return null;
           }
@@ -77,11 +89,7 @@ export default function CreateCoursePage() {
         </button>
         <button
           className="btn-primary px-4 py-2 font-bold"
-          onClick={
-            step === 2
-              ? handleCreateCourse
-              : () => setStep(step + 1)
-          }
+          onClick={step === 2 ? handleCreateCourse : () => setStep(step + 1)}
         >
           {step === 2 ? "Create Course" : "Continue"}
         </button>

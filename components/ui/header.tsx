@@ -140,7 +140,7 @@ export default function Header() {
                     href={
                       isEducatorPlatform
                         ? `${process.env.NEXT_PUBLIC_APP_URL}/dashboard`
-                        : "/educator"
+                        : "/educator-platform"
                     }
                   >
                     <p className="font-medium text-primary hover:underline max-xs:text-center">

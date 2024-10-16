@@ -5,7 +5,7 @@ import { getToken } from "next-auth/jwt";
 
 const PUBLIC_FILE = /\.(.*)$/; // Files
 
-const EDUCATOR_URLS = ["/educator"];
+const EDUCATOR_URLS = ["/educator-platform"];
 
 function checkEducatorURLS(url: string) {
   for (const u of EDUCATOR_URLS) {

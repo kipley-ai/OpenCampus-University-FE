@@ -55,7 +55,12 @@ export default function CourseDraft() {
   const router = useRouter();
   const { id } = useParams();
 
-  const { data: courseData, isLoading, error, isError } = useFetchCourse(id as string);
+  const {
+    data: courseData,
+    isLoading,
+    error,
+    isError,
+  } = useFetchCourse(id as string);
   const updateCourseMutation = useUpdateCourse();
   const userDetail = useUserDetail();
 
@@ -97,86 +102,86 @@ export default function CourseDraft() {
   }, [courseData]);
 
   const handleCourseGoalsUpdate = (updatedGoals: string) => {
-    setCourseDetails(prev => ({
+    setCourseDetails((prev) => ({
       ...prev,
-      course_goals: updatedGoals
+      course_goals: updatedGoals,
     }));
   };
 
   const handleCourseReqsUpdate = (updatedReqs: string) => {
-    setCourseDetails(prev => ({
+    setCourseDetails((prev) => ({
       ...prev,
-      course_reqs: updatedReqs
+      course_reqs: updatedReqs,
     }));
   };
 
   const handleCourseForUpdate = (updatedFor: string) => {
-    setCourseDetails(prev => ({
+    setCourseDetails((prev) => ({
       ...prev,
-      course_for: updatedFor
+      course_for: updatedFor,
     }));
   };
 
   const handleTitleUpdate = (updatedTitle: string) => {
-    setCourseDetails(prev => ({
+    setCourseDetails((prev) => ({
       ...prev,
-      title: updatedTitle
+      title: updatedTitle,
     }));
   };
 
   const handleSubtitleUpdate = (updatedSubtitle: string) => {
-    setCourseDetails(prev => ({
+    setCourseDetails((prev) => ({
       ...prev,
-      subtitle: updatedSubtitle
+      subtitle: updatedSubtitle,
     }));
   };
 
   const handleDescriptionUpdate = (updatedDescription: string) => {
-    setCourseDetails(prev => ({
+    setCourseDetails((prev) => ({
       ...prev,
-      description: updatedDescription
+      description: updatedDescription,
     }));
   };
 
   const handleTaughtUpdate = (updatedTaught: string) => {
-    setCourseDetails(prev => ({
+    setCourseDetails((prev) => ({
       ...prev,
-      taught: updatedTaught
+      taught: updatedTaught,
     }));
   };
 
   const handleCategoryUpdate = (updatedCategory: number) => {
-    setCourseDetails(prev => ({
+    setCourseDetails((prev) => ({
       ...prev,
-      category_id: updatedCategory
+      category_id: updatedCategory,
     }));
   };
 
   const handleLanguageUpdate = (updatedLanguage: string) => {
-    setCourseDetails(prev => ({
+    setCourseDetails((prev) => ({
       ...prev,
-      language: updatedLanguage
+      language: updatedLanguage,
     }));
   };
 
   const handleLevelUpdate = (updatedLevel: string) => {
-    setCourseDetails(prev => ({
+    setCourseDetails((prev) => ({
       ...prev,
-      level: updatedLevel
+      level: updatedLevel,
     }));
   };
 
   const handleCoverImageUpdate = (updatedCoverImage: string) => {
-    setCourseDetails(prev => ({
+    setCourseDetails((prev) => ({
       ...prev,
-      cover_image: updatedCoverImage
+      cover_image: updatedCoverImage,
     }));
   };
 
   const handleCoverVideoUpdate = (updatedCoverVideo: string) => {
-    setCourseDetails(prev => ({
+    setCourseDetails((prev) => ({
       ...prev,
-      cover_video: updatedCoverVideo
+      cover_video: updatedCoverVideo,
     }));
   };
 
@@ -193,13 +198,18 @@ export default function CourseDraft() {
         duration: 0,
         price: "",
         data_status: 0,
-        outline: ""
+        outline: "",
       });
       // console.log("Course updated successfully");
     } catch (error) {
       console.error("Failed to update course:", error);
     }
-  }, [id, courseDetails, updateCourseMutation, userDetail.data?.data.data.wallet_addr]);
+  }, [
+    id,
+    courseDetails,
+    updateCourseMutation,
+    userDetail.data?.data.data.wallet_addr,
+  ]);
 
   if (isLoading) return <div>Loading course data...</div>;
   if (isError) return <div>Error loading course data: {error.message}</div>;
@@ -221,12 +231,14 @@ export default function CourseDraft() {
 
   return (
     <>
-    <title>{KF_TITLE + "Course Draft - " + courseData?.data?.data?.course?.title}</title>
+      <title>
+        {KF_TITLE + "Course Draft - " + courseData?.data?.data?.course?.title}
+      </title>
       <div className="flex h-12 w-full items-center justify-between bg-primary px-8 text-sidebar shadow-lg">
         <div className="flex items-center gap-12">
           <button
             className="flex items-center gap-3 text-sidebar hover:text-secondary"
-            onClick={() => router.push("/educator/existing")}
+            onClick={() => router.push("/educator-platform/existing")}
           >
             <svg
               width="8"
@@ -243,13 +255,15 @@ export default function CourseDraft() {
             <span className="text-sm">Back to Dashboard</span>
           </button>
           <div className="flex items-center gap-4">
-            <h1 className="font-bold">{courseData?.data?.data?.course?.title}</h1>
+            <h1 className="font-bold">
+              {courseData?.data?.data?.course?.title}
+            </h1>
             <span className="bg-[#6B7280] px-2 py-1 text-xs font-semibold uppercase text-white">
               Draft
             </span>
           </div>
         </div>
-        <button 
+        <button
           className="rounded-lg bg-sidebar px-6 py-1 text-primary hover:bg-secondary"
           onClick={handleSave}
         >
@@ -417,52 +431,58 @@ export default function CourseDraft() {
         </div>
 
         <main className="w-4/5 max-w-[1000px] rounded-2xl border-2 border-border bg-sidebar p-3 md:p-10 xl:mt-4">
-        {(() => {
-          switch (step) {
-            case "INTENDED_LEARNERS":
-              return <IntendedLearners 
-                courseGoals={courseDetails.course_goals}
-                courseReqs={courseDetails.course_reqs}
-                courseFor={courseDetails.course_for}
-                onUpdateGoals={handleCourseGoalsUpdate}
-                onUpdateReqs={handleCourseReqsUpdate}
-                onUpdateFor={handleCourseForUpdate}
-              />;
-            case "LANDING_PAGE":
-              return <LandingPage
-                title={courseDetails.title}
-                subtitle={courseDetails.subtitle}
-                description={courseDetails.description}
-                taught={courseDetails.taught}
-                category_id={courseDetails.category_id}
-                language={courseDetails.language}
-                level={courseDetails.level}
-                onUpdateTitle={handleTitleUpdate}
-                onUpdateSubtitle={handleSubtitleUpdate}
-                onUpdateDescription={handleDescriptionUpdate}
-                onUpdateTaught={handleTaughtUpdate}
-                onUpdateCategory={handleCategoryUpdate}
-                onUpdateLanguage={handleLanguageUpdate}
-                onUpdateLevel={handleLevelUpdate}
-                cover_image={courseDetails.cover_image}
-                onUpdateCoverImage={handleCoverImageUpdate}
-                cover_video={courseDetails.cover_video}
-                onUpdateCoverVideo={handleCoverVideoUpdate}
-                created_by={courseData?.data?.data?.course?.created_by || ""}
-              />;
-            case "CURRICULUM":
-              return <Curriculum />;
-            case "PRICING":
-              return <Pricing />;
-            case "COURSE_MESSAGES":
-              return <CourseMessages />;
-            case "SUBMIT_FOR_REVIEW":
-              return <SubmitForReview />;
-            default:
-              return null;
-          }
-        })()}
-      </main>
+          {(() => {
+            switch (step) {
+              case "INTENDED_LEARNERS":
+                return (
+                  <IntendedLearners
+                    courseGoals={courseDetails.course_goals}
+                    courseReqs={courseDetails.course_reqs}
+                    courseFor={courseDetails.course_for}
+                    onUpdateGoals={handleCourseGoalsUpdate}
+                    onUpdateReqs={handleCourseReqsUpdate}
+                    onUpdateFor={handleCourseForUpdate}
+                  />
+                );
+              case "LANDING_PAGE":
+                return (
+                  <LandingPage
+                    title={courseDetails.title}
+                    subtitle={courseDetails.subtitle}
+                    description={courseDetails.description}
+                    taught={courseDetails.taught}
+                    category_id={courseDetails.category_id}
+                    language={courseDetails.language}
+                    level={courseDetails.level}
+                    onUpdateTitle={handleTitleUpdate}
+                    onUpdateSubtitle={handleSubtitleUpdate}
+                    onUpdateDescription={handleDescriptionUpdate}
+                    onUpdateTaught={handleTaughtUpdate}
+                    onUpdateCategory={handleCategoryUpdate}
+                    onUpdateLanguage={handleLanguageUpdate}
+                    onUpdateLevel={handleLevelUpdate}
+                    cover_image={courseDetails.cover_image}
+                    onUpdateCoverImage={handleCoverImageUpdate}
+                    cover_video={courseDetails.cover_video}
+                    onUpdateCoverVideo={handleCoverVideoUpdate}
+                    created_by={
+                      courseData?.data?.data?.course?.created_by || ""
+                    }
+                  />
+                );
+              case "CURRICULUM":
+                return <Curriculum />;
+              case "PRICING":
+                return <Pricing />;
+              case "COURSE_MESSAGES":
+                return <CourseMessages />;
+              case "SUBMIT_FOR_REVIEW":
+                return <SubmitForReview />;
+              default:
+                return null;
+            }
+          })()}
+        </main>
       </div>
     </>
   );

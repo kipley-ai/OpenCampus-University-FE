@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function Educator() {
-  redirect("/educator/new");
+  redirect("/educator-platform/new");
 }

@@ -472,12 +472,12 @@
         "resources": [
           {
             "id": 1,
-            "type": "file",
+            "type": "video",
             "title": "Definition and Importance of Digital Property Rights",
             "link": "https://ysiu.medium.com/the-critical-role-of-culture-and-ownership-in-the-metaverse-4edfb6f17bf3"
           },
           {
-            "id": 2,
+            "id": 102,
             "type": "file",
             "title": "Historical Context of Digital Property"
           }
@@ -489,12 +489,12 @@
         "lessons": 2,
         "resources": [
           {
-            "id": 3,
+            "id": 103,
             "type": "file",
             "title": "Introduction to Web3"
           },
           {
-            "id": 1,
+            "id": 2,
             "type": "video",
             "title": "NFTs as Digital Property",
             "link": "https://www.youtube.com/watch?v=Cvfw140p8gk"
@@ -507,12 +507,12 @@
         "lessons": 2,
         "resources": [
           {
-            "id": 4,
+            "id": 104,
             "type": "file",
             "title": "Ownership and Economic Growth"
           },
           {
-            "id": 5,
+            "id": 105,
             "type": "file",
             "title": "Case Studies in Web3 Economies"
           }
@@ -524,12 +524,12 @@
         "lessons": 2,
         "resources": [
           {
-            "id": 6,
+            "id": 106,
             "type": "file",
             "title": "Legal Frameworks and Regulations"
           },
           {
-            "id": 7,
+            "id": 107,
             "type": "file",
             "title": "Security and Fraud Risks"
           }
@@ -541,12 +541,12 @@
         "lessons": 2,
         "resources": [
           {
-            "id": 8,
+            "id": 108,
             "type": "file",
             "title": "Immersive Advertising in Augmented Reality (AR)"
           },
           {
-            "id": 2,
+            "id": 3,
             "type": "video",
             "title": "Monetizing Virtual Spaces in the Metaverse",
             "link": "https://www.ted.com/talks/yat_siu_the_dream_of_digital_ownership_powered_by_the_metaverse?subtitle=en"
@@ -559,13 +559,13 @@
         "lessons": 2,
         "resources": [
           {
-            "id": 3,
+            "id": 4,
             "type": "video",
             "title": "Gaming Ecosystems and Ownership",
             "link": "https://www.youtube.com/watch?v=8HERrqHe1Dk"
           },
           {
-            "id": 9,
+            "id": 109,
             "type": "file",
             "title": "Future of Gaming in a Web3 World"
           }
@@ -577,12 +577,12 @@
         "lessons": 2,
         "resources": [
           {
-            "id": 10,
+            "id": 110,
             "type": "file",
             "title": "Ownership and Usage Rights in Virtual Worlds"
           },
           {
-            "id": 11,
+            "id": 111,
             "type": "file",
             "title": "Jurisdictional Issues and Legal Frameworks"
           }
@@ -594,12 +594,12 @@
         "lessons": 2,
         "resources": [
           {
-            "id": 12,
+            "id": 112,
             "type": "file",
             "title": "Emerging Technologies Impacting Ownership"
           },
           {
-            "id": 13,
+            "id": 113,
             "type": "file",
             "title": "Vision for a Fairer Society through Digital Ownership"
           }

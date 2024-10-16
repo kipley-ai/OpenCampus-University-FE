@@ -5,9 +5,11 @@ import {
   AccordionItem as Item,
   useAccordionProvider,
 } from "@szhsin/react-accordion";
+import { useParams } from "next/navigation";
 import { useState } from "react";
 import { KF_TITLE } from "@/utils/constants";
 import Link from "next/link";
+import CourseVideos from "@/public/json/course-videos.json";
 import Courses from "@/public/json/courses.json";
 
 const AccordionItem = ({ section, ...rest }: any) => (
@@ -17,9 +19,9 @@ const AccordionItem = ({ section, ...rest }: any) => (
       <>
         <div className="flex flex-col items-start gap-2 text-sm">
           <h2 className={`font-medium ${isEnter ? "" : "text-heading"}`}>
-            {section.title}
+            {section?.title}
           </h2>
-          <p className="text-body">2/6 | {section.points}</p>
+          <p className="text-body">0/2 | 12.50</p>
         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -51,13 +53,27 @@ const AccordionItem = ({ section, ...rest }: any) => (
       className:
         "transition-height duration-200 ease-out border border-border text-sm",
     }}
-    panelProps={{ className: "p-4" }}
+    panelProps={{ className: "" }}
   />
 );
 
 export default function VideoPage() {
   const [tab, setTab] = useState<string>("Notes");
   const categories = ["Notes", "Q & A", "Learning Tools"];
+
+  const { id } = useParams();
+
+  interface CourseVideo {
+    id: string;
+    courseId: string;
+    type: string;
+    link: string;
+  }
+
+  const video: CourseVideo | undefined =
+    CourseVideos.find((video) => video.id === id) ||
+    CourseVideos.find((video) => video.id === "999");
+  const course = Courses.find((course) => course.id === video?.courseId);
 
   const [isAllCollapsed, setIsAllCollapsed] = useState<boolean>(true);
 
@@ -77,81 +93,6 @@ export default function VideoPage() {
     toggleAll(isAllCollapsed);
     setIsAllCollapsed(!isAllCollapsed);
   };
-
-  const sections = [
-    {
-      title: "Marketing Principles",
-      duration: 58, // in minutes
-      lessons: 6,
-      resources: [
-        {
-          id: 1,
-          type: "video",
-          title: "Introduction",
-          points: "2.00",
-        },
-        {
-          id: 2,
-          type: "video",
-          title: "Jakob's Law - Other Pages",
-          points: "2.00",
-        },
-        {
-          id: 3,
-          type: "video",
-          title: "Consistency is Key",
-          points: "2.00",
-        },
-        {
-          id: 1,
-          type: "image",
-          title: "ROC Analysis Chart",
-          points: "2.00",
-        },
-        {
-          id: 1,
-          type: "file",
-          title: "The strategic importance of the industry life cycle model",
-          points: "2.00",
-        },
-        {
-          id: 2,
-          type: "file",
-          title: "Organic growth - building a solid foundation",
-          points: "2.00",
-        },
-      ],
-      points: "12.00",
-    },
-    {
-      title: "Identity Your Customer Lifetime Value",
-      duration: 58,
-      lessons: 6,
-      resources: [
-        {
-          id: 1,
-          type: "video",
-          title: "Introduction",
-          points: "30.00",
-        },
-      ],
-      points: "30.00",
-    },
-    {
-      title: "Build Your Online Presence",
-      duration: 58,
-      lessons: 6,
-      resources: [
-        {
-          id: 1,
-          type: "video",
-          title: "Introduction",
-          points: "58.00",
-        },
-      ],
-      points: "58.00",
-    },
-  ];
 
   const getResourceSVG = (type: string) => {
     switch (type) {
@@ -208,70 +149,80 @@ export default function VideoPage() {
   return (
     <div className="mb-10 mt-3 flex gap-4 rounded-2xl border-2 border-border bg-sidebar p-3 pb-16 md:p-4 md:pb-16 xl:mt-4">
       <div className="w-1/3">
-        <h1 className="font-medium">
-          MBA in a Box: Business Lessons from a CEO
-        </h1>
+        <h1 className="font-medium">{course?.title}</h1>
         <div className="mt-4 flex items-center gap-4">
           <div className="mr-4 h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
             <div
               className="h-1.5 rounded-full bg-primary"
-              style={{ width: `${25}%` }}
+              style={{ width: `${0}%` }}
             ></div>
           </div>
-          <span className="font-medium">25%</span>
+          <span className="font-medium">0%</span>
         </div>
         <hr className="my-4 border-border" />
         <ControlledAccordion
           providerValue={providerValue}
           className="flex flex-col rounded-lg"
         >
-          {sections &&
-            sections.map((section, i) => {
+          {course?.sections &&
+            course?.sections.map((section, i) => {
               return (
-                <AccordionItem key={i} section={sections[i]}>
+                <AccordionItem
+                  key={i}
+                  section={section}
+                  initialEntered={section?.resources?.some(
+                    (resource) => resource.id.toString() === id,
+                  )}
+                >
                   <div className="flex flex-col gap-4 ">
-                    {section.resources.map((resource, j) => (
+                    {section?.resources.map((resource, j) => (
                       <Link
                         key={j}
-                        href={`/courses/${resource.type}/${resource.id}`}
+                        href={`/courses/video/${resource?.id}`} // hardcoded to video for now
                       >
-                        <div className="group flex items-start gap-2">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="20"
-                            height="20"
-                            fill="none"
-                            viewBox="0 0 20 20"
-                            className="shrink-0"
-                          >
-                            <rect
+                        <div
+                          className={`group flex items-start gap-2 p-4 ${resource?.id.toString() === id ? "bg-primary-light" : ""}`}
+                        >
+                          {resource?.id.toString() === id ? (
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
                               width="20"
                               height="20"
-                              fill="#141BEB"
-                              rx="4"
-                            />
-                            <g clip-path="url(#a)">
-                              <path
-                                stroke="var(--color-sidebar)"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                stroke-width="1.5"
-                                d="m5.333 10 3.334 3.333 6.666-6.666"
+                              fill="none"
+                              viewBox="0 0 20 20"
+                              className="shrink-0"
+                            >
+                              <rect
+                                width="20"
+                                height="20"
+                                fill="#141BEB"
+                                rx="4"
                               />
-                            </g>
-                            <defs>
-                              <clipPath id="a">
-                                <path fill="#fff" d="M2 2h16v16H2z" />
-                              </clipPath>
-                            </defs>
-                          </svg>
+                              <g clip-path="url(#a)">
+                                <path
+                                  stroke="var(--color-sidebar)"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="1.5"
+                                  d="m5.333 10 3.334 3.333 6.666-6.666"
+                                />
+                              </g>
+                              <defs>
+                                <clipPath id="a">
+                                  <path fill="#fff" d="M2 2h16v16H2z" />
+                                </clipPath>
+                              </defs>
+                            </svg>
+                          ) : (
+                            <div className="size-5 rounded border-2 border-border"></div>
+                          )}
                           <div className="flex flex-col items-start gap-2">
-                            <p className="font-medium group-hover:text-primary">
-                              {resource.title}
+                            <p className="font-medium leading-4 group-hover:text-primary">
+                              {resource?.title}
                             </p>
                             <div className="flex items-center gap-2 text-sm text-body">
-                              {getResourceSVG(resource.type)}
-                              <span>{resource.points}</span>
+                              {getResourceSVG(resource?.type)}
+                              <span>6.25</span>
                             </div>
                           </div>
                         </div>
@@ -285,14 +236,28 @@ export default function VideoPage() {
       </div>
       <div className="w-2/3">
         <div className="col-lg-8">
-          <iframe
-            width="100%"
-            height="400"
-            src="https://www.youtube.com/embed/QX7RBS24qww"
-            frameBorder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
+          {video?.type === "YOUTUBE" ? (
+            <iframe
+              width="100%"
+              height="400"
+              src={video?.link}
+              frameBorder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          ) : (
+            video?.type === "TED" && (
+              <iframe
+                src="https://embed.ted.com/talks/yat_siu_the_dream_of_digital_ownership_powered_by_the_metaverse?subtitle=en"
+                width="100%"
+                height="400"
+                title="The dream of digital ownership, powered by the metaverse"
+                frameBorder="0"
+                scrolling="no"
+                allowFullScreen
+              ></iframe>
+            )
+          )}
           <div className="mb-8 mt-4 flex items-center gap-8 overflow-x-auto border-b-2 border-border text-sm font-semibold text-primary md:gap-10">
             {categories.map((category) => (
               <button
@@ -325,22 +290,22 @@ export default function VideoPage() {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
                   d="M10 17.5a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15Z"
                 />
                 <path
                   fill="#6B7280"
                   stroke="currentColor"
-                  stroke-width=".125"
+                  strokeWidth=".125"
                   d="M7.906 8.438a.719.719 0 1 1-1.437 0 .719.719 0 0 1 1.437 0Zm5.625 0a.719.719 0 1 1-1.437 0 .719.719 0 0 1 1.437 0Z"
                 />
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
                   d="M13.25 11.875a3.758 3.758 0 0 1-6.5 0"
                 />
               </svg>
@@ -353,9 +318,9 @@ export default function VideoPage() {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
                   d="M1 6.375h6.875a3.125 3.125 0 1 1 0 6.25H1V.75h5.938a2.813 2.813 0 0 1 0 5.625"
                 />
               </svg>
@@ -368,9 +333,9 @@ export default function VideoPage() {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
                   d="m4.875 1.375-3.75 11.25"
                 />
               </svg>
@@ -404,7 +369,7 @@ export default function VideoPage() {
           </div>
 
           <div className="mt-8 flex items-center justify-between gap-4">
-            <div className="bg-primary-light w-fit rounded-2xl px-4 py-1 text-primary">
+            <div className="w-fit rounded-2xl bg-primary-light px-4 py-1 text-primary">
               1.0
             </div>
             <div className="flex gap-4">
@@ -417,9 +382,9 @@ export default function VideoPage() {
               >
                 <path
                   stroke="#32BCA3"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
                   d="M7.5 16.875H3.75a.625.625 0 0 1-.625-.625v-3.492a.617.617 0 0 1 .18-.438l9.375-9.375a.625.625 0 0 1 .89 0l3.485 3.485a.627.627 0 0 1 0 .89L7.5 16.875ZM10.625 5 15 9.375m1.875 7.5H7.5"
                 />
               </svg>
@@ -432,9 +397,9 @@ export default function VideoPage() {
               >
                 <path
                   stroke="#FF6550"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
                   d="M16.875 4.375H3.125m3.75-2.5h6.25m2.5 2.5V16.25a.624.624 0 0 1-.625.625H5a.625.625 0 0 1-.625-.625V4.375"
                 />
               </svg>
@@ -451,7 +416,7 @@ export default function VideoPage() {
           </div>
 
           <div className="mt-8 flex items-center justify-between gap-4">
-            <div className="bg-primary-light w-fit rounded-2xl px-4 py-1 text-primary">
+            <div className="w-fit rounded-2xl bg-primary-light px-4 py-1 text-primary">
               2.0
             </div>
             <div className="flex gap-4">
@@ -464,9 +429,9 @@ export default function VideoPage() {
               >
                 <path
                   stroke="#32BCA3"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
                   d="M7.5 16.875H3.75a.625.625 0 0 1-.625-.625v-3.492a.617.617 0 0 1 .18-.438l9.375-9.375a.625.625 0 0 1 .89 0l3.485 3.485a.627.627 0 0 1 0 .89L7.5 16.875ZM10.625 5 15 9.375m1.875 7.5H7.5"
                 />
               </svg>
@@ -479,9 +444,9 @@ export default function VideoPage() {
               >
                 <path
                   stroke="#FF6550"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
                   d="M16.875 4.375H3.125m3.75-2.5h6.25m2.5 2.5V16.25a.624.624 0 0 1-.625.625H5a.625.625 0 0 1-.625-.625V4.375"
                 />
               </svg>

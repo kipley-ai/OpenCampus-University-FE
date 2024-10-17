@@ -143,6 +143,41 @@ export const WelcomeOptions = () => {
           </div>
         </div>
       </div>
+      <hr className="mt-10 w-full border-t border-border" />
+      <div className="my-12 flex flex-col items-center gap-8 sm:flex-row">
+        <Image
+          src="/images/grants-fund-coins.svg"
+          alt="Grants Fund Coins"
+          className="mx-8 w-3/5 sm:w-[45%]"
+          width={429}
+          height={184}
+        />
+        <div className="flex flex-col items-center gap-5 max-sm:text-center sm:w-[55%] sm:items-start">
+          <h2 className="text-2xl font-semibold text-primary">
+            The Open Campus University
+            <br />
+            Academic Grants Fund
+          </h2>
+          <p className="text-sm text-body">
+            We partner and integrate with like-minded entities to advance models
+            of education with the power of Web3.
+          </p>
+          <Link href="/articles/academic-grants-fund">
+            <button className="btn-primary flex items-center gap-3 px-4 py-2">
+              Read More
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                className="fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M7.00065 0.333984L5.82565 1.50898L10.4757 6.16732H0.333984V7.83398H10.4757L5.82565 12.4923L7.00065 13.6673L13.6673 7.00065L7.00065 0.333984Z" />
+              </svg>
+            </button>
+          </Link>
+        </div>
+      </div>
     </>
   );
 };

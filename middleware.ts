@@ -6,6 +6,7 @@ import { getToken } from "next-auth/jwt";
 const PUBLIC_FILE = /\.(.*)$/; // Files
 
 const EDUCATOR_URLS = ["/educator-platform"];
+const HOMEPAGE_URLS = ["/", "/dashboard"];
 
 function checkEducatorURLS(url: string) {
   for (const u of EDUCATOR_URLS) {
@@ -39,6 +40,13 @@ export default async function middleware(req: NextRequest) {
   }
 
   if (
+    req.nextUrl.origin === process.env.NEXT_PUBLIC_EDUCATOR_PLATFORM_URL &&
+    HOMEPAGE_URLS.includes(url.pathname)
+  ) {
+    return NextResponse.redirect("/educator-platform/new");
+  }
+
+  if (
     process.env.NODE_ENV === "production" &&
     checkEducatorURLS(url.pathname) &&
     hostname ===
@@ -46,12 +54,6 @@ export default async function middleware(req: NextRequest) {
         .NEXT_PUBLIC_APP_URL!.replace("https://", "")
         .replace("http://", "")
   ) {
-    if (url.pathname === "/" || url.pathname === "/dashboard") {
-      return NextResponse.redirect(
-        process.env.NEXT_PUBLIC_EDUCATOR_PLATFORM_URL! +
-          "/educator-platform/new",
-      );
-    }
     return NextResponse.redirect(
       process.env.NEXT_PUBLIC_EDUCATOR_PLATFORM_URL! + "/" + url.pathname,
     );

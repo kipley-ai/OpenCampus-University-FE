@@ -43,7 +43,9 @@ export default async function middleware(req: NextRequest) {
     req.nextUrl.origin === process.env.NEXT_PUBLIC_EDUCATOR_PLATFORM_URL &&
     HOMEPAGE_URLS.includes(url.pathname)
   ) {
-    return NextResponse.redirect("/educator-platform/new");
+    return NextResponse.redirect(
+      process.env.NEXT_PUBLIC_EDUCATOR_PLATFORM_URL! + "/educator-platform/new",
+    );
   }
 
   if (

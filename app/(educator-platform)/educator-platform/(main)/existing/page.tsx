@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useOCAuth } from "@opencampus/ocid-connect-js";
 import { WelcomeOptions } from "../welcome-options";
 
 import Link from "next/link";
@@ -77,10 +78,28 @@ const Courses = () => {
 
 export default function Educator2() {
   const [tab, setTab] = useState<string>("courses");
+
+  const { authState, ocAuth } = useOCAuth();
+
+  function getFirstName(username: string): string {
+    const [firstName] = username.split("_");
+    return firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+  }
+
   return (
     <div className="mb-10 mt-3 space-y-9 rounded-2xl border-2 border-border bg-sidebar p-3 md:p-10 xl:mt-4">
       <div className="flex flex-col justify-between gap-4 sm:flex-row">
-        <h1 className="text-lg font-semibold text-primary">Welcome Ray!</h1>
+        <h1 className="text-lg font-semibold text-primary">
+          {authState.isLoading ? (
+            <div>Loading...</div>
+          ) : authState.error ? (
+            <div>Error: {authState.error.message}</div>
+          ) : authState.isAuthenticated ? (
+            <>Welcome, {getFirstName(ocAuth.getAuthInfo().edu_username)}!</>
+          ) : (
+            <>Welcome!</>
+          )}
+        </h1>
         <input
           className="input-text w-full font-normal sm:w-1/2 xl:w-1/4"
           type="text"

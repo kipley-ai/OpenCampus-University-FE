@@ -46,6 +46,12 @@ export default async function middleware(req: NextRequest) {
         .NEXT_PUBLIC_APP_URL!.replace("https://", "")
         .replace("http://", "")
   ) {
+    if (url.pathname === "/" || url.pathname === "/dashboard") {
+      return NextResponse.redirect(
+        process.env.NEXT_PUBLIC_EDUCATOR_PLATFORM_URL! +
+          "/educator-platform/new",
+      );
+    }
     return NextResponse.redirect(
       process.env.NEXT_PUBLIC_EDUCATOR_PLATFORM_URL! + "/" + url.pathname,
     );

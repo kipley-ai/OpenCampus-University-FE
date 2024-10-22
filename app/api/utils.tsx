@@ -48,6 +48,6 @@ const createSign = (content: string) => {
 
 export const educatorPlatformHeader = () => {
   return {
-    "x-api-key": process.env.NEXT_PUBLIC_EDUCATOR_BE_API_KEY!,
+    "x-api-key": process.env.EDUCATOR_BE_API_KEY!,
   };
 };

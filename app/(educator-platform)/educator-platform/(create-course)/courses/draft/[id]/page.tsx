@@ -238,7 +238,7 @@ export default function CourseDraft() {
         <div className="flex items-center gap-12">
           <button
             className="flex items-center gap-3 text-sidebar hover:text-secondary"
-            onClick={() => router.push("/educator-platform/existing")}
+            onClick={() => router.push("/educator-platform")}
           >
             <svg
               width="8"

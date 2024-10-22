@@ -249,11 +249,11 @@ export interface IFetchCourseParams {
 }
 
 export interface ICourseIndexParams {
-  uuid: string;
+  uuid?: string;
   created_by: string;
   data_status: number;
   published: number;
-  user_id: string;
+  user_id?: string;
 }
 
 export interface IUpdateSectionParams {

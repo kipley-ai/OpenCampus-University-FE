@@ -126,10 +126,44 @@ export default function CourseDetailPage() {
     created_by: string;
   }
 
+  interface Section {
+    uuid: string;
+    course_uuid: string;
+    created_by: string;
+    duration: number;
+    title: string;
+    goals: string;
+    published: number;
+    sort: number;
+    description: string;
+    data_status: number;
+    updated_at: string;
+    created_at: string;
+  }
+
+  interface Lesson {
+    uuid: string;
+    course_uuid: string;
+    duration: number;
+    section_uuid: string;
+    created_by: string;
+    title: string;
+    goals: string;
+    published: number;
+    sort: number;
+    description: string;
+    type: string;
+    type_data: string;
+    data_status: number;
+    resources: string;
+    updated_at: string;
+    created_at: string;
+  }
+
   let course: Course | undefined;
   let courseDetails: CourseData | undefined;
-  let sections: any[] | undefined;
-  let lessons: any[] | undefined;
+  let sections: Section[] | undefined;
+  let lessons: Lesson[] | undefined;
   let categories: any[] | undefined;
 
   if (id !== "1" && id !== "101" && id !== undefined) {

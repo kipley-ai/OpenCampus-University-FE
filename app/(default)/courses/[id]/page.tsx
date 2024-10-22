@@ -6,7 +6,7 @@ import {
   useAccordionProvider,
 } from "@szhsin/react-accordion";
 import { redirect, useParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { KF_TITLE } from "@/utils/constants";
 import Image from "next/image";
 import Link from "next/link";
@@ -165,6 +165,7 @@ export default function CourseDetailPage() {
   let sections: Section[] | undefined;
   let lessons: Lesson[] | undefined;
   let categories: any[] | undefined;
+  let similarCourses: Course | undefined;
 
   if (id !== "1" && id !== "101" && id !== undefined) {
     if (uuidRegex.test(id as string)) {
@@ -208,10 +209,11 @@ export default function CourseDetailPage() {
 
       categories = categoriesData?.data?.data?.categories;
 
-      console.log(courseDetails);
       if ((!courseDetails || Object.keys(courseDetails).length === 0) && !isLoadingCourse) {
         redirect("/courses");
       }
+      
+      similarCourses = Courses.find((course) => course.id === "999");
     } else {
       course = Courses.find((course) => course.id === "999");
     }
@@ -231,6 +233,18 @@ export default function CourseDetailPage() {
     //     console.log(`${key} is expanded: ${current.isEnter}`);
     // },
   });
+
+  
+  const [enrolleeCount, setEnrolleeCount] = useState(0);
+  const [ratingCount, setRatingCount] = useState("0.0");
+  const [raterCount, setRaterCount] = useState(0);
+  const rating = 4 + Math.random();
+
+  useEffect(() => {
+    setEnrolleeCount(Math.floor(Math.random() * 10000));
+    setRatingCount(rating === 4 || rating === 5 ? rating.toFixed(0) : rating.toFixed(1));
+    setRaterCount(Math.floor(Math.random() * 1000));
+  }, []);
 
   const { toggle, toggleAll } = providerValue;
 
@@ -364,7 +378,9 @@ export default function CourseDetailPage() {
                   d="M11.918 11.75a6.182 6.182 0 0 1 5.063 2.63"
                 />
               </svg>
-              {courseDetails ? "" : course?.enrolleeCount + " Enrolled" ?? ""}
+              {courseDetails
+                ? `${enrolleeCount!} Enrolled`
+                : `${course?.enrolleeCount} Enrolled` ?? ""}
             </p>
             <p className="text-body">
               <svg
@@ -469,7 +485,7 @@ export default function CourseDetailPage() {
               </svg>
               {courseDetails ? courseDetails?.language : course?.language}
             </p>
-            {!courseDetails && course?.fullLifetimeAccess ? (
+            {courseDetails || course?.fullLifetimeAccess ? (
               <p className="text-body">
                 <svg
                   className="mr-2 inline"
@@ -490,7 +506,7 @@ export default function CourseDetailPage() {
                 Full Lifetime Access
               </p>
             ) : null}
-            {!courseDetails && course?.certificateOfCompletion ? (
+            {courseDetails || course?.certificateOfCompletion ? (
               <p className="text-body">
                 <svg
                   className="mr-2 inline"
@@ -639,7 +655,7 @@ export default function CourseDetailPage() {
               </svg>
             </div>
             <span className="text-xs text-body">
-            {courseDetails ? "" : (course?.rating && course?.raterCount) 
+            {courseDetails ? `${ratingCount} (${raterCount})` : (course?.rating && course?.raterCount) 
               ? `${course.rating} (${course.raterCount})` 
               : ""}
             </span>
@@ -794,7 +810,96 @@ export default function CourseDetailPage() {
             Similar Courses
           </h2>
           {courseDetails ? (
-            <></>
+            similarCourses?.similarCourses.map((course, i) => (
+              <Link key={i} href={`/courses/${course?.id}`}>
+                <div className="mt-4 flex cursor-pointer items-start gap-4 rounded-lg border border-border p-4 hover:bg-secondary">
+                  <Image
+                    src={course.image}
+                    alt="..."
+                    width={200}
+                    height={200}
+                    className="rounded-lg"
+                  />
+                  <div className="flex flex-col">
+                    <h3 className="text-lg font-medium">{course.title}</h3>
+                    <p className="mb-4 mt-2 flex items-center gap-2 text-sm text-body">
+                      <span>By {course.author}</span>
+                      <span>•</span>
+                      <svg
+                        width="16"
+                        height="14"
+                        viewBox="0 0 18 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="inline"
+                      >
+                        <path
+                          d="M9.30943 12.9086L12.8532 15.1586C13.3102 15.4469 13.8727 15.018 13.7391 14.4906L12.7126 10.4547C12.6848 10.3428 12.6892 10.2254 12.7253 10.1159C12.7614 10.0065 12.8276 9.9094 12.9165 9.83595L16.0946 7.18517C16.5094 6.84064 16.2985 6.14455 15.7571 6.10939L11.6087 5.8422C11.4955 5.83562 11.3866 5.7962 11.2955 5.72877C11.2043 5.66135 11.1348 5.56883 11.0954 5.46252L9.5485 1.5672C9.50755 1.45464 9.43295 1.35739 9.33484 1.28868C9.23672 1.21996 9.11984 1.18311 9.00006 1.18311C8.88027 1.18311 8.76339 1.21996 8.66528 1.28868C8.56716 1.35739 8.49257 1.45464 8.45162 1.5672L6.90475 5.46252C6.86532 5.56883 6.79578 5.66135 6.70463 5.72877C6.61348 5.7962 6.50466 5.83562 6.39146 5.8422L2.24303 6.10939C1.70162 6.14455 1.49068 6.84064 1.90553 7.18517L5.08365 9.83595C5.17248 9.9094 5.23875 10.0065 5.27483 10.1159C5.3109 10.2254 5.31532 10.3428 5.28756 10.4547L4.33834 14.1953C4.17662 14.8281 4.85162 15.3414 5.39303 14.9969L8.69068 12.9086C8.78316 12.8498 8.89047 12.8186 9.00006 12.8186C9.10964 12.8186 9.21696 12.8498 9.30943 12.9086V12.9086Z"
+                          stroke="#FFC761"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      {course.rating} ({course.raters})
+                    </p>
+                    <p className="flex items-center gap-6 text-sm text-body">
+                      <span>
+                        <svg
+                          width="15"
+                          height="18"
+                          viewBox="0 0 12 15"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="inline"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M5.98168 12.3245C2.77433 12.3245 0.174805 9.71648 0.174805 6.49967C0.174816 3.2824 2.77432 0.674805 5.98168 0.674805C9.18896 0.674805 11.7885 3.2824 11.7885 6.49967C11.7885 9.71648 9.18896 12.3245 5.98168 12.3245ZM5.98159 1.76667C3.37588 1.76667 1.26374 3.88544 1.26374 6.49968C1.26374 9.11296 3.37588 11.2322 5.98159 11.2322C8.58725 11.2322 10.6994 9.11296 10.6994 6.49968C10.6994 3.88545 8.58725 1.76667 5.98159 1.76667ZM7.25167 7.04543H8.34073C8.64128 7.04543 8.88496 6.80127 8.88496 6.49974C8.88496 6.19821 8.64127 5.95357 8.34073 5.95357H7.25167H6.52632V3.22273C6.52632 2.92118 6.28262 2.67655 5.98158 2.67655C5.68098 2.67655 5.43729 2.92118 5.43729 3.22273V6.49974C5.43729 6.80126 5.68098 7.04543 5.98158 7.04543H6.52632H7.25167Z"
+                            fill="currentColor"
+                          />
+                        </svg>{" "}
+                        {course.duration}
+                      </span>
+                      <span>
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 18 18"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="inline"
+                        >
+                          <path
+                            d="M2.25 12.375L9 16.3125L15.75 12.375"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M2.25 9L9 12.9375L15.75 9"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M2.25 5.625L9 9.5625L15.75 5.625L9 1.6875L2.25 5.625Z"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>{" "}
+                        {course.lessonCount} lessons
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))
             ) : 
               course?.similarCourses.map((course, i) => (
                 <Link key={i} href={`/courses/${course?.id}`}>

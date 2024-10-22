@@ -308,7 +308,7 @@ export interface ILessonsIndexParams {
   data_status: number;
   published: number;
   course_uuid: string;
-  section_uuid: string;
+  section_uuid?: string;
 }
 
 export interface IUpdateFilesParams {

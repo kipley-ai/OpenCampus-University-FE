@@ -5,14 +5,15 @@ import {
   AccordionItem as Item,
   useAccordionProvider,
 } from "@szhsin/react-accordion";
-import { useParams } from "next/navigation";
+import { redirect, useParams } from "next/navigation";
 import { useState } from "react";
 import { KF_TITLE } from "@/utils/constants";
 import Image from "next/image";
 import Link from "next/link";
 import Courses from "@/public/json/courses.json";
+import { useFetchCourse, useSectionIndex, useLessonIndex, useCategoryIndex } from "@/hooks/api/educator-platform";
 
-const AccordionItem = ({ section, ...rest }: any) => (
+const AccordionItem = ({ section, lessons = null, ...rest }: any) => (
   <Item
     {...rest}
     header={({ state: { isEnter } }) => (
@@ -22,7 +23,10 @@ const AccordionItem = ({ section, ...rest }: any) => (
             {section.title}
           </h2>
           <p className="text-body">
-            {section.duration} Min • {section.lessons} Lessons
+            {section.duration} Min • {lessons === null 
+              ? `${section.lessons} Lessons`
+              : `${lessons.filter((lesson: any) => lesson.section_uuid === section.uuid).length} Lessons`
+            }
           </p>
         </div>
         <svg
@@ -60,6 +64,9 @@ const AccordionItem = ({ section, ...rest }: any) => (
 
 export default function CourseDetailPage() {
   const { id } = useParams();
+
+  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
   console.log("ID", id);
 
   interface Course {
@@ -92,9 +99,122 @@ export default function CourseDetailPage() {
     similarCourses: any[];
   }
 
+  interface CourseData {
+    uuid: string;
+    published: number;
+    user_id: string;
+    title: string;
+    subtitle: string;
+    outline: string;
+    level: string;
+    language: string;
+    description: string;
+    taught: string;
+    course_for: string;
+    course_instructors: string;
+    course_goals: string;
+    duration: number;
+    course_reqs: string;
+    category_id: number;
+    subcategory_id: number;
+    cover_image: string;
+    cover_video: string;
+    price: string;
+    updated_at: string;
+    created_at: string;
+    data_status: number;
+    created_by: string;
+  }
+
+  interface Section {
+    uuid: string;
+    course_uuid: string;
+    created_by: string;
+    duration: number;
+    title: string;
+    goals: string;
+    published: number;
+    sort: number;
+    description: string;
+    data_status: number;
+    updated_at: string;
+    created_at: string;
+  }
+
+  interface Lesson {
+    uuid: string;
+    course_uuid: string;
+    duration: number;
+    section_uuid: string;
+    created_by: string;
+    title: string;
+    goals: string;
+    published: number;
+    sort: number;
+    description: string;
+    type: string;
+    type_data: string;
+    data_status: number;
+    resources: string;
+    updated_at: string;
+    created_at: string;
+  }
+
   let course: Course | undefined;
+  let courseDetails: CourseData | undefined;
+  let sections: Section[] | undefined;
+  let lessons: Lesson[] | undefined;
+  let categories: any[] | undefined;
+
   if (id !== "1" && id !== "101" && id !== undefined) {
-    course = Courses.find((course) => course.id === "999");
+    if (uuidRegex.test(id as string)) {
+      const {
+        data: courseData,
+        isLoading: isLoadingCourse,
+        error: errorCourse,
+        isError: isErrorCourse,
+      } = useFetchCourse(id as string);
+      courseDetails = courseData?.data?.data?.course;
+
+      const payload = {
+        created_by: courseDetails?.created_by ?? "",
+        data_status: 1,
+        published: 0,
+        course_uuid: courseDetails?.uuid ?? "",
+      }
+
+      const {
+        data: sectionsData,
+        isLoading: isLoadingSections,
+        error: errorSections,
+        isError: isErrorSections,
+      } = useSectionIndex(payload);
+      sections = sectionsData?.data?.data?.courses;
+
+      const {
+        data: lessonsData,
+        isLoading: isLoadingLessons,
+        error: errorLessons,
+        isError: isErrorLessons,
+      } = useLessonIndex(payload);
+      lessons = lessonsData?.data?.data?.lessons;
+      
+      const {
+        data: categoriesData,
+        isLoading: isLoadingCategories,
+        error: errorCategories,
+        isError: isErrorCategories,
+      } = useCategoryIndex();
+
+      categories = categoriesData?.data?.data?.categories;
+
+      console.log(courseDetails);
+      if ((!courseDetails || Object.keys(courseDetails).length === 0) && !isLoadingCourse) {
+        redirect("/courses");
+      }
+    } else {
+      course = Courses.find((course) => course.id === "999");
+    }
   } else {
     course = Courses.find((course) => course.id === id);
   }
@@ -165,6 +285,7 @@ export default function CourseDetailPage() {
           </svg>
         );
       case "file":
+      case "online_document":
         return (
           <svg
             width="17"
@@ -189,7 +310,7 @@ export default function CourseDetailPage() {
       <title>{KF_TITLE + "Course Detail"}</title>
       <div className="absolute left-6 top-8 z-10 w-1/4">
         <Image
-          src={course!.thumbnailPath}
+          src={courseDetails ? courseDetails.cover_image : course?.thumbnailPath ?? ""}
           className="rounded-t-lg"
           alt="..."
           width={600}
@@ -243,7 +364,7 @@ export default function CourseDetailPage() {
                   d="M11.918 11.75a6.182 6.182 0 0 1 5.063 2.63"
                 />
               </svg>
-              {course?.enrolleeCount} Enrolled
+              {courseDetails ? "" : course?.enrolleeCount + " Enrolled" ?? ""}
             </p>
             <p className="text-body">
               <svg
@@ -261,7 +382,7 @@ export default function CourseDetailPage() {
                   fill="currentColor"
                 />
               </svg>
-              {course?.duration} to complete
+              {courseDetails ? courseDetails?.duration + " minutes to complete" : course?.duration + " to complete" ?? ""}
             </p>
             <p className="text-body">
               <svg
@@ -294,7 +415,7 @@ export default function CourseDetailPage() {
                   strokeLinejoin="round"
                 />
               </svg>
-              {course?.lessonCount} lessons
+              {lessons ? lessons?.length : course?.lessonCount} lessons
             </p>
             <p className="text-body">
               <svg
@@ -320,9 +441,9 @@ export default function CourseDetailPage() {
                   d="M5.231 10.063H1.294v5.062H5.23v-5.063Z"
                 />
               </svg>
-              {course?.level} level
+              {courseDetails ? courseDetails?.level : course?.level} level
             </p>
-            <p className="text-body">
+            <p className="text-body capitalize">
               <svg
                 className="mr-2 inline"
                 xmlns="http://www.w3.org/2000/svg"
@@ -346,9 +467,9 @@ export default function CourseDetailPage() {
                   d="m3.488 13.395.822-.499a.562.562 0 0 0 .267-.478l.014-2.538a.541.541 0 0 1 .092-.296l1.392-2.186a.57.57 0 0 1 .809-.155l1.378.998c.119.083.263.12.408.106l2.214-.302a.549.549 0 0 0 .345-.19l1.56-1.8a.57.57 0 0 0 .135-.394l-.078-1.709m.309 10.871-.759-.76a.576.576 0 0 0-.253-.147l-1.512-.394a.563.563 0 0 1-.408-.626l.162-1.139a.577.577 0 0 1 .345-.436l2.137-.893a.563.563 0 0 1 .598.106l1.75 1.603"
                 />
               </svg>
-              {course?.language}
+              {courseDetails ? courseDetails?.language : course?.language}
             </p>
-            {course?.fullLifetimeAccess ? (
+            {!courseDetails && course?.fullLifetimeAccess ? (
               <p className="text-body">
                 <svg
                   className="mr-2 inline"
@@ -369,7 +490,7 @@ export default function CourseDetailPage() {
                 Full Lifetime Access
               </p>
             ) : null}
-            {course?.certificateOfCompletion ? (
+            {!courseDetails && course?.certificateOfCompletion ? (
               <p className="text-body">
                 <svg
                   className="mr-2 inline"
@@ -421,7 +542,7 @@ export default function CourseDetailPage() {
                   d="M10.688 7.813H7.312v3.375h3.375V7.812Z"
                 />
               </svg>
-              Updated on {formatDateToDDMMYYYY(course?.updatedOn)}
+              Updated on {courseDetails ? formatDateToDDMMYYYY(courseDetails?.updated_at) : formatDateToDDMMYYYY(course?.updatedOn)}
             </p>
           </div>
         </div>
@@ -438,17 +559,19 @@ export default function CourseDetailPage() {
               <span className="">Courses</span>
             </Link>
             <span className="">&gt;</span>
-            <span className="text-primary">{course?.category}</span>
+            <span className="text-primary">{courseDetails ? courseDetails && courseDetails.category_id !== undefined && categories ? categories[courseDetails.category_id] || courseDetails.category_id : 'Uncategorized' : course?.category ?? ""}</span>
           </div>
           <h1 className="mt-4 text-2xl font-medium text-primary">
-            {course?.title}
+            {courseDetails ? courseDetails?.title : course?.title ?? ""}
           </h1>
-          <p className="mb-4 mt-2 text-sm text-body">{course?.description}</p>
+          <p className="mb-4 mt-2 text-sm text-body">
+            {courseDetails ? courseDetails?.description : course?.description ?? ""}
+          </p>
           <p className="mb-2 text-xs text-body">
             Created by{" "}
-            <Link href={`/chatbot/${course?.author?.id}/profile`}>
+            <Link href={`/chatbot/${courseDetails ? courseDetails?.created_by : course?.author?.id}/profile`}>
               <span className="text-primary underline hover:text-secondary">
-                {course?.author?.name}
+                {courseDetails ? courseDetails?.created_by : course?.author?.name ?? ""}
               </span>
             </Link>
           </p>
@@ -516,7 +639,9 @@ export default function CourseDetailPage() {
               </svg>
             </div>
             <span className="text-xs text-body">
-              {course?.rating} ({course?.raterCount})
+            {courseDetails ? "" : (course?.rating && course?.raterCount) 
+              ? `${course.rating} (${course.raterCount})` 
+              : ""}
             </span>
           </div>
         </div>
@@ -565,20 +690,20 @@ export default function CourseDetailPage() {
             providerValue={providerValue}
             className="flex flex-col rounded-lg"
           >
-            {course?.sections &&
-              course?.sections.map((section, i) => {
+            {courseDetails ? (
+              sections && sections.map((section, i) => {
                 return (
-                  <AccordionItem key={i} section={course?.sections[i]}>
+                  <AccordionItem key={i} section={section} lessons={lessons}>
                     <div className="flex flex-col gap-4 ">
-                      {section.resources.map((resource, j) => (
+                      {lessons?.filter(lesson => lesson.section_uuid === section.uuid).map((lesson, j) => (
                         <Link
                           key={j}
-                          href={`/courses/video/${resource.id}`} // hardcoded to video for now
+                          href={`/courses/video/${lesson.uuid}`} // hardcoded to video for now
                         >
                           <div className="group flex items-center gap-4">
-                            {getResourceSVG(resource.type)}
+                            {getResourceSVG(lesson.type)}
                             <p className="font-medium group-hover:text-primary">
-                              {resource.title}
+                              {lesson.title}
                             </p>
                           </div>
                         </Link>
@@ -586,131 +711,182 @@ export default function CourseDetailPage() {
                     </div>
                   </AccordionItem>
                 );
-              })}
+              })) : 
+                course?.sections && course?.sections.map((section, i) => {
+                  return (
+                    <AccordionItem key={i} section={course?.sections[i]}>
+                      <div className="flex flex-col gap-4 ">
+                        {section.resources.map((resource, j) => (
+                          <Link
+                            key={j}
+                            href={`/courses/video/${resource.id}`} // hardcoded to video for now
+                          >
+                            <div className="group flex items-center gap-4">
+                              {getResourceSVG(resource.type)}
+                              <p className="font-medium group-hover:text-primary">
+                                {resource.title}
+                              </p>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </AccordionItem>
+                  );
+                })
+              }
+            
           </ControlledAccordion>
 
           <h2 className="mt-8 text-lg font-semibold text-primary">
             What You&apos;ll Learn
           </h2>
           <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-4 rounded-lg border border-border p-6">
-            {course?.objectives.map((objective, i) => (
-              <div key={i} className="flex items-start justify-start gap-2">
-                <svg
-                  width="14"
-                  height="10"
-                  viewBox="0 0 14 10"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="relative top-1 shrink-0"
-                >
-                  <path
-                    d="M13.1875 1.0625L5.3125 8.9375L1.375 5"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                <p key={i} className="">
-                  {objective}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <h2 className="mt-8 text-lg font-semibold text-primary">
-            Similar Courses
-          </h2>
-          {course?.similarCourses.map((course, i) => (
-            <Link key={i} href={`/courses/${course?.id}`}>
-              <div className="mt-4 flex cursor-pointer items-start gap-4 rounded-lg border border-border p-4 hover:bg-secondary">
-                <Image
-                  src={course.image}
-                  alt="..."
-                  width={200}
-                  height={200}
-                  className="rounded-lg"
-                />
-                <div className="flex flex-col">
-                  <h3 className="text-lg font-medium">{course.title}</h3>
-                  <p className="mb-4 mt-2 flex items-center gap-2 text-sm text-body">
-                    <span>By {course.author}</span>
-                    <span>•</span>
+            { courseDetails ? (
+                JSON.parse(courseDetails?.course_goals || '[]').map((goal: string, i: number) => (
+                  <div key={i} className="flex items-start justify-start gap-2">
                     <svg
-                      width="16"
-                      height="14"
-                      viewBox="0 0 18 16"
+                      width="14"
+                      height="10"
+                      viewBox="0 0 14 10"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="inline"
+                      className="relative top-1 shrink-0"
                     >
                       <path
-                        d="M9.30943 12.9086L12.8532 15.1586C13.3102 15.4469 13.8727 15.018 13.7391 14.4906L12.7126 10.4547C12.6848 10.3428 12.6892 10.2254 12.7253 10.1159C12.7614 10.0065 12.8276 9.9094 12.9165 9.83595L16.0946 7.18517C16.5094 6.84064 16.2985 6.14455 15.7571 6.10939L11.6087 5.8422C11.4955 5.83562 11.3866 5.7962 11.2955 5.72877C11.2043 5.66135 11.1348 5.56883 11.0954 5.46252L9.5485 1.5672C9.50755 1.45464 9.43295 1.35739 9.33484 1.28868C9.23672 1.21996 9.11984 1.18311 9.00006 1.18311C8.88027 1.18311 8.76339 1.21996 8.66528 1.28868C8.56716 1.35739 8.49257 1.45464 8.45162 1.5672L6.90475 5.46252C6.86532 5.56883 6.79578 5.66135 6.70463 5.72877C6.61348 5.7962 6.50466 5.83562 6.39146 5.8422L2.24303 6.10939C1.70162 6.14455 1.49068 6.84064 1.90553 7.18517L5.08365 9.83595C5.17248 9.9094 5.23875 10.0065 5.27483 10.1159C5.3109 10.2254 5.31532 10.3428 5.28756 10.4547L4.33834 14.1953C4.17662 14.8281 4.85162 15.3414 5.39303 14.9969L8.69068 12.9086C8.78316 12.8498 8.89047 12.8186 9.00006 12.8186C9.10964 12.8186 9.21696 12.8498 9.30943 12.9086V12.9086Z"
-                        stroke="#FFC761"
+                        d="M13.1875 1.0625L5.3125 8.9375L1.375 5"
+                        stroke="currentColor"
                         strokeWidth="1.5"
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       />
                     </svg>
-                    {course.rating} ({course.raters})
-                  </p>
-                  <p className="flex items-center gap-6 text-sm text-body">
-                    <span>
+                    <p key={i} className="">
+                      {goal}
+                    </p>
+                  </div>
+                ))) : 
+                  course?.objectives.map((objective, i) => (
+                    <div key={i} className="flex items-start justify-start gap-2">
                       <svg
-                        width="15"
-                        height="18"
-                        viewBox="0 0 12 15"
+                        width="14"
+                        height="10"
+                        viewBox="0 0 14 10"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
-                        className="inline"
+                        className="relative top-1 shrink-0"
                       >
                         <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M5.98168 12.3245C2.77433 12.3245 0.174805 9.71648 0.174805 6.49967C0.174816 3.2824 2.77432 0.674805 5.98168 0.674805C9.18896 0.674805 11.7885 3.2824 11.7885 6.49967C11.7885 9.71648 9.18896 12.3245 5.98168 12.3245ZM5.98159 1.76667C3.37588 1.76667 1.26374 3.88544 1.26374 6.49968C1.26374 9.11296 3.37588 11.2322 5.98159 11.2322C8.58725 11.2322 10.6994 9.11296 10.6994 6.49968C10.6994 3.88545 8.58725 1.76667 5.98159 1.76667ZM7.25167 7.04543H8.34073C8.64128 7.04543 8.88496 6.80127 8.88496 6.49974C8.88496 6.19821 8.64127 5.95357 8.34073 5.95357H7.25167H6.52632V3.22273C6.52632 2.92118 6.28262 2.67655 5.98158 2.67655C5.68098 2.67655 5.43729 2.92118 5.43729 3.22273V6.49974C5.43729 6.80126 5.68098 7.04543 5.98158 7.04543H6.52632H7.25167Z"
-                          fill="currentColor"
-                        />
-                      </svg>{" "}
-                      {course.duration}
-                    </span>
-                    <span>
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 18 18"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="inline"
-                      >
-                        <path
-                          d="M2.25 12.375L9 16.3125L15.75 12.375"
+                          d="M13.1875 1.0625L5.3125 8.9375L1.375 5"
                           stroke="currentColor"
                           strokeWidth="1.5"
                           strokeLinecap="round"
                           strokeLinejoin="round"
                         />
-                        <path
-                          d="M2.25 9L9 12.9375L15.75 9"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M2.25 5.625L9 9.5625L15.75 5.625L9 1.6875L2.25 5.625Z"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>{" "}
-                      {course.lessonCount} lessons
-                    </span>
-                  </p>
-                </div>
-              </div>
-            </Link>
-          ))}
+                      </svg>
+                      <p key={i} className="">
+                        {objective}
+                      </p>
+                    </div>
+                  ))}
+          </div>
+
+          <h2 className="mt-8 text-lg font-semibold text-primary">
+            Similar Courses
+          </h2>
+          {courseDetails ? (
+            <></>
+            ) : 
+              course?.similarCourses.map((course, i) => (
+                <Link key={i} href={`/courses/${course?.id}`}>
+                  <div className="mt-4 flex cursor-pointer items-start gap-4 rounded-lg border border-border p-4 hover:bg-secondary">
+                    <Image
+                      src={course.image}
+                      alt="..."
+                      width={200}
+                      height={200}
+                      className="rounded-lg"
+                    />
+                    <div className="flex flex-col">
+                      <h3 className="text-lg font-medium">{course.title}</h3>
+                      <p className="mb-4 mt-2 flex items-center gap-2 text-sm text-body">
+                        <span>By {course.author}</span>
+                        <span>•</span>
+                        <svg
+                          width="16"
+                          height="14"
+                          viewBox="0 0 18 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="inline"
+                        >
+                          <path
+                            d="M9.30943 12.9086L12.8532 15.1586C13.3102 15.4469 13.8727 15.018 13.7391 14.4906L12.7126 10.4547C12.6848 10.3428 12.6892 10.2254 12.7253 10.1159C12.7614 10.0065 12.8276 9.9094 12.9165 9.83595L16.0946 7.18517C16.5094 6.84064 16.2985 6.14455 15.7571 6.10939L11.6087 5.8422C11.4955 5.83562 11.3866 5.7962 11.2955 5.72877C11.2043 5.66135 11.1348 5.56883 11.0954 5.46252L9.5485 1.5672C9.50755 1.45464 9.43295 1.35739 9.33484 1.28868C9.23672 1.21996 9.11984 1.18311 9.00006 1.18311C8.88027 1.18311 8.76339 1.21996 8.66528 1.28868C8.56716 1.35739 8.49257 1.45464 8.45162 1.5672L6.90475 5.46252C6.86532 5.56883 6.79578 5.66135 6.70463 5.72877C6.61348 5.7962 6.50466 5.83562 6.39146 5.8422L2.24303 6.10939C1.70162 6.14455 1.49068 6.84064 1.90553 7.18517L5.08365 9.83595C5.17248 9.9094 5.23875 10.0065 5.27483 10.1159C5.3109 10.2254 5.31532 10.3428 5.28756 10.4547L4.33834 14.1953C4.17662 14.8281 4.85162 15.3414 5.39303 14.9969L8.69068 12.9086C8.78316 12.8498 8.89047 12.8186 9.00006 12.8186C9.10964 12.8186 9.21696 12.8498 9.30943 12.9086V12.9086Z"
+                            stroke="#FFC761"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        {course.rating} ({course.raters})
+                      </p>
+                      <p className="flex items-center gap-6 text-sm text-body">
+                        <span>
+                          <svg
+                            width="15"
+                            height="18"
+                            viewBox="0 0 12 15"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="inline"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              clipRule="evenodd"
+                              d="M5.98168 12.3245C2.77433 12.3245 0.174805 9.71648 0.174805 6.49967C0.174816 3.2824 2.77432 0.674805 5.98168 0.674805C9.18896 0.674805 11.7885 3.2824 11.7885 6.49967C11.7885 9.71648 9.18896 12.3245 5.98168 12.3245ZM5.98159 1.76667C3.37588 1.76667 1.26374 3.88544 1.26374 6.49968C1.26374 9.11296 3.37588 11.2322 5.98159 11.2322C8.58725 11.2322 10.6994 9.11296 10.6994 6.49968C10.6994 3.88545 8.58725 1.76667 5.98159 1.76667ZM7.25167 7.04543H8.34073C8.64128 7.04543 8.88496 6.80127 8.88496 6.49974C8.88496 6.19821 8.64127 5.95357 8.34073 5.95357H7.25167H6.52632V3.22273C6.52632 2.92118 6.28262 2.67655 5.98158 2.67655C5.68098 2.67655 5.43729 2.92118 5.43729 3.22273V6.49974C5.43729 6.80126 5.68098 7.04543 5.98158 7.04543H6.52632H7.25167Z"
+                              fill="currentColor"
+                            />
+                          </svg>{" "}
+                          {course.duration}
+                        </span>
+                        <span>
+                          <svg
+                            width="18"
+                            height="18"
+                            viewBox="0 0 18 18"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="inline"
+                          >
+                            <path
+                              d="M2.25 12.375L9 16.3125L15.75 12.375"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <path
+                              d="M2.25 9L9 12.9375L15.75 9"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <path
+                              d="M2.25 5.625L9 9.5625L15.75 5.625L9 1.6875L2.25 5.625Z"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>{" "}
+                          {course.lessonCount} lessons
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              ))
+            }
         </div>
       </div>
     </div>

@@ -92,11 +92,11 @@ export const WelcomeOptions = () => {
         <p className="text-center">
           Have questions? Here are our most popular instructor resources.
         </p>
-        <div className="flex flex-col gap-10 sm:flex-row">
-          <div className="flex w-full flex-col">
+        <div className="flex flex-col gap-10 sm:flex-row sm:gap-24">
+          <div className="flex flex-col">
             <Link
               href="#"
-              className="mb-1 flex flex-col items-center justify-center space-y-5 rounded-lg p-2 hover:bg-secondary"
+              className="mb-1 flex flex-col items-center justify-center space-y-5 rounded-lg p-4 hover:bg-secondary"
             >
               <svg
                 width="41"
@@ -110,16 +110,20 @@ export const WelcomeOptions = () => {
                   fill="var(--color-primary)"
                 />
               </svg>
-              <p className="text-sm font-medium text-primary underline">FAQ</p>
+              <p className="text-sm font-medium leading-none text-primary underline">
+                FAQ
+              </p>
             </Link>
             <p className="text-center text-sm text-body">
-              Learn about best practices for teaching on Open Campus
+              Learn about best practices for
+              <br />
+              teaching on Open Campus
             </p>
           </div>
-          <div className="flex w-full flex-col">
+          <div className="flex flex-col">
             <Link
               href="#"
-              className="mb-1 flex flex-col items-center justify-center space-y-5 rounded-lg p-2 hover:bg-secondary"
+              className="mb-1 flex flex-col items-center justify-center space-y-5 rounded-lg p-4 hover:bg-secondary"
             >
               <svg
                 width="36"
@@ -127,18 +131,20 @@ export const WelcomeOptions = () => {
                 viewBox="0 0 36 36"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                className="mb-1"
               >
                 <path
                   d="M32 0H4C1.8 0 0 1.8 0 4V32C0 34.2 1.8 36 4 36H32C34.2 36 36 34.2 36 32V4C36 1.8 34.2 0 32 0ZM18.02 30C16.62 30 15.5 28.88 15.5 27.48C15.5 26.06 16.62 24.98 18.02 24.98C19.44 24.98 20.52 26.06 20.52 27.48C20.5 28.86 19.44 30 18.02 30ZM24.04 15.2C22.52 17.42 21.08 18.12 20.3 19.54C19.98 20.12 19.86 20.5 19.86 22.36H16.22C16.22 21.38 16.06 19.78 16.84 18.4C17.82 16.66 19.68 15.62 20.76 14.08C21.9 12.46 21.26 9.42 18.02 9.42C15.9 9.42 14.86 11.02 14.42 12.38L11.12 10.98C12.02 8.3 14.44 6 17.98 6C20.94 6 22.96 7.34 24 9.04C24.88 10.48 25.4 13.18 24.04 15.2Z"
                   fill="var(--color-primary)"
                 />
               </svg>
-              <p className="text-sm font-medium text-primary underline">
+              <p className="text-sm font-medium leading-none text-primary underline">
                 Help and Support
               </p>
             </Link>
             <p className="text-center text-sm text-body">
-              Browse our Help Center or contact our support team
+              Browse our Help Center or <br />
+              contact our support team
             </p>
           </div>
         </div>

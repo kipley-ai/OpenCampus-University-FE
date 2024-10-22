@@ -28,12 +28,8 @@ export default function Educator() {
   return (
     <div className="mb-10 mt-3 max-w-[1100px] space-y-8 rounded-2xl border-2 border-border bg-sidebar p-3 pb-8 md:p-10 xl:mt-4">
       <h1 className="text-lg font-semibold text-primary">
-        {authState.isLoading ? (
-          <div>Loading...</div>
-        ) : authState.error ? (
-          <div>Error: {authState.error.message}</div>
-        ) : authState.isAuthenticated ? (
-          <>Welcome, {getFirstName(ocAuth.getAuthInfo().edu_username)}!</>
+        {authState?.isAuthenticated ? (
+          <>Welcome, {getFirstName(ocAuth?.getAuthInfo()?.edu_username)}!</>
         ) : (
           <>Welcome!</>
         )}

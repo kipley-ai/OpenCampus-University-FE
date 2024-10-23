@@ -4,6 +4,8 @@ import GetInvolvedButton from "@/components/GetInvolvedButton/get-involved-butto
 import { redirect, useSearchParams } from "next/navigation";
 import { useAccount } from "wagmi";
 import { useAppProvider } from "@/providers/app-provider";
+import { AcademicGrantsFundPage } from "./(articles)/articles/academic-grants-fund/academic-grants-fund";
+import EducatorLayout from "./(educator-platform)/educator-platform/layout";
 
 export default function Home() {
   const { isConnected } = useAccount();
@@ -13,6 +15,8 @@ export default function Home() {
 
   const searchParams = useSearchParams();
   const nextUrl = searchParams.get("next") || "/dashboard";
+
+  const { isEducatorPlatform } = useAppProvider();
 
   if (isConnected && (sign || verifStatus === "authenticated")) {
     return redirect(nextUrl);
@@ -50,6 +54,14 @@ export default function Home() {
           }
         />
       </div>
+    );
+  }
+
+  if (isEducatorPlatform) {
+    return (
+      <EducatorLayout>
+        <AcademicGrantsFundPage />
+      </EducatorLayout>
     );
   }
 

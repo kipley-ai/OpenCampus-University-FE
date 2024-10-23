@@ -15,7 +15,7 @@ export default function RedirectPage() {
   const createUser = useCreateUser();
   const queryClient = useQueryClient();
   const { authState } = useOCAuth();
-  const { setSession } = useAppProvider();
+  const { setSession, isEducatorPlatform } = useAppProvider();
 
   useEffect(() => {
     const { isAuthenticated, idToken, accessToken } = authState;
@@ -68,6 +68,10 @@ export default function RedirectPage() {
         console.error("Error:", error);
       },
       onSettled: () => {
+        if (isEducatorPlatform) {
+          router.push("/");
+          return;
+        }
         router.push("/dashboard");
       },
     });

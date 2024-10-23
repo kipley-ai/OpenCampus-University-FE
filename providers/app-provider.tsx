@@ -36,6 +36,7 @@ interface ContextProps {
   setSession: any;
   modalUnauthenticated: boolean;
   setModalUnauthenticated: any;
+  isEducatorPlatform: boolean;
 }
 
 const AppContext = createContext<ContextProps>({
@@ -63,6 +64,7 @@ const AppContext = createContext<ContextProps>({
   setSession: () => {},
   modalUnauthenticated: false,
   setModalUnauthenticated: () => false,
+  isEducatorPlatform: false,
 });
 
 export default function AppProvider({
@@ -83,6 +85,7 @@ export default function AppProvider({
     useState<AuthenticationStatus>("unauthenticated");
   const [session, setSession] = useState({});
   const [modalUnauthenticated, setModalUnauthenticated] = useState(false);
+  const [isEducatorPlatform, setIsEducatorPlatform] = useState(false);
 
   useEffect(() => {
     const idToken = localStorage.getItem("id_token");
@@ -96,6 +99,10 @@ export default function AppProvider({
         setSession(user);
       }
     }
+
+    setIsEducatorPlatform(
+      window!.location.origin === process.env.NEXT_PUBLIC_EDUCATOR_PLATFORM_URL,
+    );
   }, []);
 
   return (
@@ -125,6 +132,7 @@ export default function AppProvider({
         setSession,
         modalUnauthenticated,
         setModalUnauthenticated,
+        isEducatorPlatform,
       }}
     >
       {children}

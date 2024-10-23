@@ -44,7 +44,7 @@ export default function CreateCoursePage() {
         data_status: 0,
         category_id: parseInt(courseData.category_id),
       });
-      router.push("/educator-platform/existing");
+      router.push("/educator-platform");
     } catch (error) {
       console.error("Error creating course:", error);
       // Handle error (e.g., show error message to user)

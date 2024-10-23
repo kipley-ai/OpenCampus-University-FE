@@ -24,7 +24,7 @@ import { useOCAuth } from "@opencampus/ocid-connect-js";
 import LoginButton from "@/components/buttons/login-button";
 
 export default function Header() {
-  const { sidebarOpen, setSidebarOpen } = useAppProvider();
+  const { sidebarOpen, setSidebarOpen, isEducatorPlatform } = useAppProvider();
 
   const { data: twitterSession, status: twitterStatus } = useSession();
   const [profileImage, setProfileImage] = useState<StaticImageData | string>(
@@ -38,14 +38,6 @@ export default function Header() {
   const { theme, setTheme } = useTheme();
 
   const { authState, ocAuth } = useOCAuth();
-
-  const [isEducatorPlatform, setIsEducatorPlatform] = useState(false);
-
-  useEffect(() => {
-    setIsEducatorPlatform(
-      window!.location.origin === process.env.NEXT_PUBLIC_EDUCATOR_PLATFORM_URL,
-    );
-  }, []);
 
   useEffect(() => {
     let sub = true;
@@ -140,7 +132,7 @@ export default function Header() {
                     href={
                       isEducatorPlatform
                         ? `${process.env.NEXT_PUBLIC_APP_URL}/dashboard`
-                        : "/educator-platform"
+                        : process.env.NEXT_PUBLIC_EDUCATOR_PLATFORM_URL!
                     }
                   >
                     <p className="font-medium text-primary hover:underline max-xs:text-center">

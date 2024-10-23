@@ -5,17 +5,6 @@ import { getToken } from "next-auth/jwt";
 
 const PUBLIC_FILE = /\.(.*)$/; // Files
 
-const EDUCATOR_URLS = ["/educator-platform"];
-const HOMEPAGE_URLS = ["/", "/dashboard"];
-
-function checkEducatorURLS(url: string) {
-  for (const u of EDUCATOR_URLS) {
-    if (url.startsWith(u)) return true;
-  }
-
-  return false;
-}
-
 export default async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
   if (

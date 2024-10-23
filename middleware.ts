@@ -5,8 +5,6 @@ import { getToken } from "next-auth/jwt";
 
 const PUBLIC_FILE = /\.(.*)$/; // Files
 
-const HOMEPAGE_URLS = ["/", "/dashboard"];
-
 export default async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
   if (
@@ -30,13 +28,10 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.rewrite(url);
   }
 
-  // console.log("dfad,", url.pathname);
-
   // if (
   //   req.nextUrl.origin === process.env.NEXT_PUBLIC_EDUCATOR_PLATFORM_URL &&
   //   HOMEPAGE_URLS.includes(url.pathname)
   // ) {
-  //   console.log("asdksdjhfkuhdfiushd");
   //   return NextResponse.redirect(
   //     process.env.NEXT_PUBLIC_EDUCATOR_PLATFORM_URL! + "/educator-platform/new",
   //   );

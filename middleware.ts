@@ -40,7 +40,10 @@ export default async function middleware(req: NextRequest) {
 
   if (
     process.env.NODE_ENV === "production" &&
-    req.nextUrl.origin === process.env.NEXT_PUBLIC_EDUCATOR_PLATFORM_URL &&
+    hostname ===
+      process.env
+        .NEXT_PUBLIC_EDUCATOR_PLATFORM_URL!.replace("https://", "")
+        .replace("http://", "") &&
     HOMEPAGE_URLS.includes(url.pathname)
   ) {
     return NextResponse.redirect(
@@ -57,7 +60,7 @@ export default async function middleware(req: NextRequest) {
         .replace("http://", "")
   ) {
     return NextResponse.redirect(
-      process.env.NEXT_PUBLIC_EDUCATOR_PLATFORM_URL! + "/" + url.pathname,
+      process.env.NEXT_PUBLIC_EDUCATOR_PLATFORM_URL! + url.pathname,
     );
   }
 

@@ -26,7 +26,7 @@ export function AcademicGrantsFundPage() {
               Academic Grants Fund, a USD 10M fund intended to help spur the
               adoption of educational AI across the globe.
             </h2>
-            <p className="mt-6 text-xs text-body">
+            <p className="mt-6 text-base text-body">
               OCU research grants of up to $10,000 and fellowships of up to
               $30,000 will be awarded to assist educators in making their
               courses AI-ready. Grants are available to researchers and
@@ -43,7 +43,7 @@ export function AcademicGrantsFundPage() {
         </div>
 
         <h2 className="mt-8 text-xl font-medium">The Open Campus U Platform</h2>
-        <p className="mt-4 text-xs text-body">
+        <p className="mt-4 text-base text-body">
           Our goal in starting the OCU Academic Grants fund is to encourage
           critical thinking and thoughtful adoption of AI in education. Students
           are already using AI in their academic work, and our goal is to
@@ -52,7 +52,7 @@ export function AcademicGrantsFundPage() {
           multiply their own capacities, rather than simply to complete
           assignments on their behalf.
         </p>
-        <p className="mt-4 text-xs text-body">
+        <p className="mt-4 text-base text-body">
           For this purpose we created the Open Campus U platform, a
           decentralised and easy-to-use AI integration system. Educators can
           securely upload copyrighted materials without any risk that their
@@ -64,7 +64,7 @@ export function AcademicGrantsFundPage() {
         </p>
 
         <h2 className="mt-8 text-xl font-medium">Requirements</h2>
-        <p className="mt-4 text-xs text-body">
+        <p className="mt-4 text-base text-body">
           Coming from an academic background ourselves, we are well aware of how
           opaque grant funding can often be. In designing the OCU grant
           programme, we have worked to make the application process as simple
@@ -75,7 +75,7 @@ export function AcademicGrantsFundPage() {
           platform and the number of students these courses are projected to
           attract.
         </p>
-        <p className="mt-4 text-xs text-body">
+        <p className="mt-4 text-base text-body">
           To apply for grant funding (up to $10,000) an educator must commit to
           upload at least two current taught courses with existing students. To
           apply for a fellowship (up to $30,000) an educator must commit to
@@ -83,7 +83,7 @@ export function AcademicGrantsFundPage() {
           In both cases the final 20% of the funding amount is contingent upon
           the courses attracting the projected number of students.
         </p>
-        <p className="mt-4 text-xs text-body">
+        <p className="mt-4 text-base text-body">
           Applications will be assessed by the Grant Committee based on:
           <ul className="ml-6 mt-2 list-outside list-disc space-y-1">
             <li>
@@ -126,7 +126,7 @@ export function AcademicGrantsFundPage() {
         <div className="mt-4 flex flex-col gap-2">
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSeQhJqvQ6LxGQEl2g-CHlIDCisFLidqeFlSNwcLfN3TG7_JXA/viewform"
-            className="text-xs text-primary underline hover:text-secondary"
+            className="text-base text-primary underline hover:text-secondary"
             target="_blank"
             rel="noreferrer noopener"
           >
@@ -134,7 +134,7 @@ export function AcademicGrantsFundPage() {
           </a>
           <a
             href="https://docs.google.com/forms/u/4/d/e/1FAIpQLSfg4FleWGY8pQ96ys8Nic_BWKYe_7RzsK_H3PNe8o-x24zfgw/viewform"
-            className="text-xs text-primary underline hover:text-secondary"
+            className="text-base text-primary underline hover:text-secondary"
             target="_blank"
             rel="noreferrer noopener"
           >
@@ -142,7 +142,7 @@ export function AcademicGrantsFundPage() {
           </a>
           <a
             href="https://kipprotocol.docsend.com/view/3ervkgycdtyi8zj6"
-            className="text-xs text-primary underline hover:text-secondary"
+            className="text-base text-primary underline hover:text-secondary"
             target="_blank"
             rel="noreferrer noopener"
           >

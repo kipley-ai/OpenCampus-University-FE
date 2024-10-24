@@ -7,8 +7,8 @@ export default function Logo() {
       <Image
         className=""
         src={OpenCampusLogo}
-        width={40}
-        height={40}
+        width={30}
+        height={30}
         alt="open-campus-logo"
       />
       <h1 className="font-mikado text-xl font-bold text-primary">

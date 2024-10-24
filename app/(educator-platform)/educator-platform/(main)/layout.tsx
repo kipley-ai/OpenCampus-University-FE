@@ -36,7 +36,7 @@ export default function EducatorLayout({ children }: EducatorLayoutProps) {
 
   useEffect(() => {
     if (
-      pathname !== "/" &&
+      pathname !== "/educator-platform" &&
       (!session?.address || session?.exp * 1000 < Date.now())
     ) {
       redirect("/dashboard?isUnauthenticated=true");

@@ -1,5 +1,5 @@
-import { AcademicGrantsFundPage } from "./academic-grants-fund";
+import { redirect } from "next/navigation";
 
 export default function Page() {
-  return <AcademicGrantsFundPage />;
+  redirect("/grants/overview");
 }

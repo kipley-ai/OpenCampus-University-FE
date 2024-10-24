@@ -4,7 +4,6 @@ import GetInvolvedButton from "@/components/GetInvolvedButton/get-involved-butto
 import { redirect, useSearchParams } from "next/navigation";
 import { useAccount } from "wagmi";
 import { useAppProvider } from "@/providers/app-provider";
-import { AcademicGrantsFundPage } from "./(articles)/articles/academic-grants-fund/academic-grants-fund";
 
 export default function Home() {
   const { isConnected } = useAccount();

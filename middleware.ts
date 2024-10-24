@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { SUBDOMAINS } from "./utils/constants";
-import { isTokenExpired } from "./utils/utils";
-import { getToken } from "next-auth/jwt";
 
 const PUBLIC_FILE = /\.(.*)$/; // Files
 
